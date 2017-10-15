@@ -28,8 +28,11 @@ localhots:8081
 # Documentacion importante
 
 > [Vuejs](https://vuejs.org) Documentacion del framework
+
 > [Bootstrap](https://getbootstrap.com/docs/3.3/) Css
+
 > [vue-router](https://router.vuejs.org/en/) Ruteador
+
 > [vee-validate](http://vee-validate.logaretm.com/) Para validaciones de formularios
 
 # Estructura de la carpeta src
