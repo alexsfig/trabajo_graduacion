@@ -47,9 +47,7 @@ localhots:8081
 
 
 
-# Rutas Plugins
-
-Dillinger is currently extended with the following plugins. Instructions on how to use them in your own application are linked below.
+# Rutas 
 
 | nombre | Ruta |
 | ------ | ------ |
