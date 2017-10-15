@@ -11,7 +11,6 @@ export default {
     // Create method to authenticate Users
     /*
     Use the context to redirect after succeded login
-    params: {email: 'jdoe@foo.com', password: '123456'}
     */
     authenticate(context, params){
         context.showAlert = false;

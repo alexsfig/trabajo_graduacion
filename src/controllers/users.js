@@ -11,17 +11,6 @@ const USERS = 'usuario/'
 export default {
     /*
         Use context to update vars dinamyc
-        object Users: {
-            isLogin: false,
-            first_name: '',
-            last_name: '',
-            ssn: '',
-            email: '',
-            phone_number: '',
-            birth_date: '',
-            apply_incentives: false,
-            profile_picture: '',
-        }
     */
     /* 
         Use the context to redirect after succeded and update var to use in view
