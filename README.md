@@ -17,7 +17,7 @@ Estructura de carpetas
   - ```sh
     $ cd proyecto
     $ npm install 
-    $ node run dev
+    $ npm run dev
     ```
     - Al correr npm run dev abrir el navegador y usar localhost:8081
  ```sh
