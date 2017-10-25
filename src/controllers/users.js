@@ -19,23 +19,22 @@ export default {
     */
     create(context, user){
         context.showAlert = false 
+        user.id = 0
         context.showSuccess = false 
         HTTP.post(USERS, user)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
-                    console.log(resp)
-                    var id = resp.data.id
-                    // redirect to show user view 
-                    context.$router.push({ name: 'EmployeesShow', params: {  id }}) 
+                    context.showSuccess = true
+                    context.successMsg = "Usuario Creado"
+                    context.createUser = {}
+                    context.confirm_password = ""
+                    context.errors.clear()
                 }
             })
             .catch((err) => {
-                context.showAlert = true
-                context.errMsg = err.response.data
-                console.log(err)
                 if (err.response) {
-                    console.log(err.response.data);
-                    console.log(err.response);
+                    context.showAlert = true
+                    context.errMsg = err.response.data
                 }
             })
     },
@@ -53,7 +52,7 @@ export default {
                     context.showAlert = false 
                 }
                 context.showSuccess = true
-                context.successMsg = "Users updated successfully"
+                context.successMsg = "Usuario Actualizado"
             })
             .catch((err) => {
                 context.showAlert = true
@@ -95,18 +94,30 @@ export default {
     /* 
         Method to retrieve user, pass the context and user id, use this method when you need to edit user
     */
-    
     retrieve(context, id){
         HTTP.get(USERS + id)
             .then((resp) => {
                 console.log(resp)
-                context.usuario = resp.data.usuario;
-                context.id = resp.data.id;
+                context.usuario = resp.data;
             })
             .catch((err) => {
               console.log(err)
             })
     },
+    /* 
+        Method to delete user, pass the context and user id, use this method when you need to delete user
+    */
+    delete(context, id, swal) {
+        HTTP.delete(USERS + id)
+            .then((resp) => {
+                console.log(resp);
+                swal("Deleted!", "El usuario ha sido eliminado", "success")
+                context.fetchData();
+            })
+            .catch((err) => {               
+                swal("Oh snap!", "Ocurrio un error.", "error")
+            })
+    }
     
 
 }
