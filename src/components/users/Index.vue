@@ -26,19 +26,22 @@
                             </div>
 
                             <div class="table-responsive">
-                                <table class="table table-condensed">
-                                    <tbody>
+                                <table class="table table-bordered table-striped table-condensed">
+                                    <thead>
                                         <tr>
                                             <th>Usuario</th>
                                             <th>Rol</th>
                                             <th>Accion</th>
                                         </tr>
+                                    </thead>
+                                    <tbody>
                                         <tr v-for="user in users">
-                                            <td>{{ user.usuario }} {{ user.usuario }}</td>
+                                            <td>{{ user.usuario }}</td>
                                             <td>{{ user.rolId.descripcion}}</td>
                                             <td>
-                                                <button type="button" class="btn btn-primary" @click="open1=true, retrieveData(user.id)" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actuzlizar</button>
-                                                <!-- <modalUser title="Edit Employee" v-bind:id="user.id" buttonMsg="Update" methodSubmit="update"></modalUser> -->
+                                                <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="openModal=true, retrieveData(user.id)" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar</button>
+                                                <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="openModalPassword=true, retrieveData(user.id)" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar Contraseña</button>
+                                                <button type="button" class="margin btn btn-sm btn-flat btn-danger" @click="clickHandler(user.id, user)" ><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -48,7 +51,8 @@
                     </div>    
                 </div>
             </div>
-            <modalUser :methodSubmit="methodSubmit" :title="'Actualizar Usuario'" :buttonMsg="'Actualizar'" :open1="open1" :usuario="usuario" :rol="rol" :id="id" v-on:openChange="isChange"></modalUser>
+            <modalUser :methodSubmit="methodSubmit" :title="'Actualizar Usuario'" :buttonMsg="'Actualizar'" :openModal="openModal" :usuario="usuario" v-on:openChange="isChange"></modalUser>
+            <modalUserPassword :methodSubmit="methodSubmit" :title="'Actualizar Contraseña'" :buttonMsg="'Actualizar'" :openModal="openModalPassword" :usuario="usuario" v-on:openChange="isChange"></modalUserPassword>
             
 
         </section>
@@ -56,8 +60,9 @@
 </template>
 
 <script>
-    import users from '../../controllers/users.js'
+    import usersController from '../../controllers/users.js'
     import ModalUser from './subcomponents/ModalUser'
+    import ModalUserPassword from './subcomponents/ModalUserPassword'
     export default {
         name: 'Employee',
         data() {
@@ -65,18 +70,20 @@
                 methodSubmit: 'update',
                 buttonMsg: "Actualizar",
                 users:{},   
-                open1: false,
+                openModal: false,
+                openModalPassword: false,
                 errMsg:  '',
                 success: false,
                 isLogin: false,
                 // We need to initialize the component with any
                 // properties that will be used in it
-                usuario: ' ',
+                usuario: {},
                 rol: ' ',
             }
         },
         components:{
-            "modalUser": ModalUser
+            "modalUser": ModalUser,
+            "modalUserPassword": ModalUserPassword
         },
         created() {
             this.fetchData()
@@ -85,8 +92,35 @@
             '$route': 'fetchData'
         },
         methods: {
+            clickHandler(id, user) {
+                let swal = this.$swal
+                let context = this
+                swal({
+                    title: 'Estas Seguro?',
+                    html: 'No podras recuperar la informacion del usuario <b>' + user.usuario + '</b>',
+                    type: 'error',
+                    showCancelButton: true,
+                    confirmButtonText: 'Si, Eliminar!',
+                    cancelButtonText: 'No, Mantener'
+                }).then(
+                    function() {
+                        usersController.delete(context, id, swal)
+                    }, 
+                    function(dismiss) {
+                      // dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
+                      if (dismiss === 'cancel') {
+                        swal(
+                          'Cancelado',
+                          'El usuario no se elimino',
+                          'error'
+                        )
+                      }
+                    }
+                )
+            },
             isChange () {
-                this.open1 = false
+                this.openModal = false
+                this.openModalPassword = false
                 this.fetchData()
             },
             showCallback () {
@@ -94,13 +128,16 @@
                 this.showSuccess = false 
             },
             dismissCallback (msg) {
-                users.index(this)
+                this.openModal =false
+                this.openModalPassword =false
+                usersController.index(this)
+                this.fetchData()
             },
             fetchData() {
-                users.index(this)
+                usersController.index(this)
             },
             retrieveData(id) {
-                users.retrieve(this, id)
+                usersController.retrieve(this, id)
             },
         }
 
