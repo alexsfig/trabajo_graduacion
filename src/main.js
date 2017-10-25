@@ -10,6 +10,8 @@ import esp from 'vee-validate/dist/locale/es';
 /* eslint-disable no-new */
 import VeeValidate, { Validator } from 'vee-validate';
 
+import VueSweetAlert from 'vue-sweetalert'
+Vue.use(VueSweetAlert)
 Vue.use(uiv)
 
 Vue.config.productionTip = false
