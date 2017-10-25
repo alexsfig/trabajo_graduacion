@@ -31,35 +31,30 @@
 		    <!-- sidebar menu: : style can be found in sidebar.less -->
 		    <ul class="sidebar-menu" data-widget="tree">
 		        
-		        <li class="header">MAIN NAVIGATION</li>
+		        <li class="header">Navegación principal</li>
 
 		        <li>
 		            <router-link to="#">
 		                <i class="fa fa-tachometer" aria-hidden="true"></i> <span>Dashboard</span>
 		            </router-link>
 		        </li>
-		        <li>
-		            <router-link to="#">
-		                <i class="fa fa-calendar" aria-hidden="true"></i> <span>Schedule</span>
-		            </router-link>
-		        </li>
 		        <li class="treeview">
 		            <router-link to="#">
 		                <i class="fa fa-users" aria-hidden="true"></i>
-		                <span>Employees</span>
+		                <span>Usuarios</span>
 		                <span class="pull-right-container">
 		                    <i class="fa fa-angle-left pull-right"></i>
 		                </span>                    
 		            </router-link>
 		            <ul class="treeview-menu">
 		                <li>
-		                    <router-link to="/admin/employees/create">
-		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Add Employees</span>
+		                    <router-link to="/admin/users/">
+		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Manejo de usuarios</span>
 		                    </router-link>
 		                </li>
 		                <li>
-		                    <router-link to="/admin/employees/">
-		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Employees Management</span>
+		                    <router-link to="/admin/users/create">
+		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Agregar usuario</span>
 		                    </router-link>
 		                </li>
 		            </ul>
@@ -69,7 +64,7 @@
 		                <i class="fa fa-user-plus" aria-hidden="true"></i> <span>Roles</span>
 		            </router-link>
 		        </li>
-		        <li class="treeview">
+		        <!-- <li class="treeview">
 		            <router-link to="#">
 		                <i class="fa fa-tasks" aria-hidden="true"></i>
 		                <span>Duties & Areas</span>
@@ -114,7 +109,7 @@
 		            <router-link to="#">
 		                <i class="fa fa-cogs" aria-hidden="true"></i> <span>Configuration</span>
 		            </router-link>
-		        </li>
+		        </li> -->
 		    </ul>
 
 		</section>
