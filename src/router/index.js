@@ -3,9 +3,13 @@ import Router from 'vue-router'
 // Import components to use in view
 //import HelloWorld from '@/components/HelloWorld'
 import Login from '@/components/login/Login'
-import EmployeesCreate from '@/components/users/Create'
-import EmployeesShow from '@/components/users/Show'
-import EmployeeIndex from '@/components/users/Index'
+import UsersCreate from '@/components/users/Create'
+import UsersShow from '@/components/users/Show'
+import UsersIndex from '@/components/users/Index'
+
+import NoticiasCreate from '@/components/noticias/Create'
+import NoticiasShow from '@/components/noticias/Show'
+import NoticiasIndex from '@/components/noticias/Index'
 // Import base templates
 import AdminTemplate from '@/layouts/Admin'
 import LoginTemplate from '@/layouts/Login'
@@ -34,21 +38,36 @@ export default new Router({
       children: [
         {
           path: 'users/create',
-          name: 'EmployeesCreate',
-          component: EmployeesCreate
+          name: 'UsersCreate',
+          component: UsersCreate
         },
         {
           path: 'users',
-          name: 'EmployeeIndex',
-          component: EmployeeIndex
+          name: 'UsersIndex',
+          component: UsersIndex
         },
         {
           path: 'users/:id',
-          name: 'EmployeesShow',
-          component: EmployeesShow
+          name: 'UsersShow',
+          component: UsersShow
+        },
+        {
+          path: 'noticias/create',
+          name: 'NoticiasCreate',
+          component: NoticiasCreate
+        },
+        {
+          path: 'noticias',
+          name: 'NoticiasIndex',
+          component: NoticiasIndex
+        },
+        {
+          path: 'noticias/:id',
+          name: 'NoticiasShow',
+          component: NoticiasShow
         }
       ]
-    },
+    },	
   ]
 })
 
