@@ -5,7 +5,7 @@ import {HTTP} from '../common_class/http.js';
 import {router} from '../router/index.js'
 import moment from 'moment'
 // define base url to Employees
-const USERS = 'noticias/'
+const NOTICIAS = 'noticias/'
 
 
 export default {
@@ -17,17 +17,16 @@ export default {
         
         Method to create users, pass object Users
     */
-    create(context, user){
+    create(context, noticias){
         context.showAlert = false 
-        user.id = 0
-        context.showSuccess = false 
-        HTTP.post(USERS, user)
+         context.showSuccess = false 
+          noticias.id=0
+        HTTP.post(NOTICIAS, noticias)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
                     context.showSuccess = true
-                    context.successMsg = "Usuario Creado"
-                    context.createUser = {}
-                    context.confirm_password = ""
+                    context.successMsg = "Noticia Creada"
+                    context.createNoticias = {}
                     context.errors.clear()
                 }
             })
@@ -37,11 +36,11 @@ export default {
                     context.errMsg = err.response.data
                 }
             })
-    },
+    }, 
     /* 
         Method to update user, pass context, object Users and user id
     */
-    
+   /* 
     update(context, user){
         context.showAlert = false 
         context.showSuccess = false 
@@ -64,37 +63,37 @@ export default {
                     context.showAlert = true 
                 }
             })
-    },
+    }, */
     /* 
         Method to get user, pass only the context, id will be taken from url
     */
     show(context){
-        HTTP.get(USERS + context.$route.params.id+'/')
+        HTTP.get(NOTICIAS + context.$route.params.id+'/')
             .then((resp) => {
-                context.user = resp.data
+                context.users = resp.data
 
             })
             .catch((err) => {
               console.log(err)
             })
-    },
+    }, 
     /* 
         Method to display all users, pass only the context
     */
-    index(context){
-        HTTP.get(USERS)
+   index(context){
+        HTTP.get(NOTICIAS)
             .then((resp) => {
-                context.users = resp.data
+                context.noticias = resp.data
                 console.log(resp.data)
             })
             .catch((err) => {
               console.log(err)
             })
-    },
+    }
     /* 
         Method to retrieve user, pass the context and user id, use this method when you need to edit user
     */
-    retrieve(context, id){
+   /* retrieve(context, id){
         HTTP.get(USERS + id)
             .then((resp) => {
                 console.log(resp)
@@ -103,11 +102,11 @@ export default {
             .catch((err) => {
               console.log(err)
             })
-    },
+    }, */
     /* 
         Method to delete user, pass the context and user id, use this method when you need to delete user
     */
-    delete(context, id, swal) {
+   /* delete(context, id, swal) {
         HTTP.delete(USERS + id)
             .then((resp) => {
                 console.log(resp);
@@ -116,8 +115,8 @@ export default {
             })
             .catch((err) => {               
                 swal("Oh snap!", "Ocurrio un error.", "error")
-            })
-    }
+            }) 
+    } */
     
 
 }

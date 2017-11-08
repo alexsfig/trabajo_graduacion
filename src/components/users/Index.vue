@@ -38,11 +38,11 @@
                                         <tr v-for="user in users">
                                             <td>{{ user.usuario }}</td>
                                             <td>{{ user.rolId.descripcion}}</td>
-                                            <td>
+                                           <td>
                                                 <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="openModal=true, retrieveData(user.id)" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar</button>
                                                 <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="openModalPassword=true, retrieveData(user.id)" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar Contraseña</button>
                                                 <button type="button" class="margin btn btn-sm btn-flat btn-danger" @click="clickHandler(user.id, user)" ><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
-                                            </td>
+                                            </td> 
                                         </tr>
                                     </tbody>
                                 </table>

@@ -33,52 +33,59 @@
                                 <div class="box-body">
 
                                     <div class="col-xs-12 col-sm-6">
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('nombre') }" >
+                                            <label for="">Titulo</label>
+                                            <input type="text" id="nombre" name="nombre" data-vv-as="Nombre de la noticia" class="form-control" v-model="createNoticias.nombre" v-validate="'required'" >
+                                            <span class="help-block" for="nombre" v-bind:data-error="errors.first('nombre')">
+                                                {{ errors.first('nombre') }}
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-6">
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('nombre') }" >
+                                            <label for="">Titulo</label>
+                                            <input type="text" id="descripcion" name="descripcion" data-vv-as="Nombre de la noticia" class="form-control" v-model="createNoticias.descripcion" v-validate="'required'" >
+                                            <span class="help-block" for="nombre" v-bind:data-error="errors.first('nombre')">
+                                                {{ errors.first('nombre') }}
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-6">
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('nombre') }" >
+                                            <label for="">Titulo</label>
+                                            <input type="date" id="Fechainicio" name="Fechainicio" data-vv-as="Nombre de la noticia" class="form-control" v-model="createNoticias.Fechainicio" v-validate="'required'" >
+                                            <span class="help-block" for="nombre" v-bind:data-error="errors.first('nombre')">
+                                                {{ errors.first('nombre') }}
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-6">
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('nombre') }" >
+                                            <label for="">Titulo</label>
+                                            <input type="date" id="Fechafin" name="Fechafin" data-vv-as="Nombre de la noticia" class="form-control" v-model="createNoticias.Fechafin" v-validate="'required'" >
+                                            <span class="help-block" for="nombre" v-bind:data-error="errors.first('nombre')">
+                                                {{ errors.first('nombre') }}
+                                            </span>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('usuario') }" >
                                             <label for="">Usuario</label>
-                                            <input type="text" id="usuario" name="usuario" data-vv-as="Nombre de usuario" class="form-control" v-model="createUser.usuario" v-validate="'required'" >
+                                            <input type="number" id="usuarioId" name="usuarioId" data-vv-as="Nombre de usuario" class="form-control" v-model="createNoticias.usuarioId" v-validate="'required'" >
                                             <span class="help-block" for="usuario" v-bind:data-error="errors.first('usuario')">
                                                 {{ errors.first('usuario') }}
                                             </span>
                                         </div>
                                     </div>
-                                    <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup"  :class="{ 'has-error': errors.has('rol_edit') }">
-                                            <label for="">Position</label>
-                                            <v-select
-                                                :debounce="250"
-                                                :options="roles"
-                                                v-model="createUser.rolId"
-                                                placeholder="Rol Usuario" 
-                                                label="nombre">
-                                            </v-select>
-                                            <div class="clearfix"></div>
-                                            <input type="hidden" name="rol_edit" value="" data-vv-as="Position Employee"  v-model="createUser.rolId" v-validate="'required'">
-                                            <span class="help-block" for="rol_edit" v-bind:data-error="errors.first('rol_edit')">
-                                                {{ errors.first('rol_edit') }}
-                                            </span>
-                                        </div>
-                                    </div>
+                                   
                                     <div class="clearfix"></div>
-                                    <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('password') }">
-                                            <label for="">Contraseña</label>
-                                            <input type="password" id="password" name="password" class="form-control" data-vv-as="Contraseña"  v-model="createUser.contrasena" v-validate="'required|confirmed:confirm_password|min:8'" >
-                                            <span class="help-block" for="password" v-bind:data-error="errors.first('password')">
-                                                {{ errors.first('password') }}
-                                            </span>
-
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('confirm_password') }">
-                                            <label for="">Confirmación de contraseña</label>
-                                            <input type="password" id="confirm_password" name="confirm_password" class="form-control" data-vv-as="Confirmación de contraseña"  v-model="confirm_password" v-validate="'required'" >
-                                            <span class="help-block" for="confirm_password" v-bind:data-error="errors.first('confirm_password')">
-                                                {{ errors.first('confirm_password') }}
-                                            </span>
-
-                                        </div>
-                                    </div>         
+                                   
+                                      
                                     
                                 </div>
                                 <div class="box-footer">
@@ -97,11 +104,11 @@
 </template>
 
 <script>
-    import users from '../../controllers/users.js'
-    import roles from '../../controllers/roles.js'
-    import vSelect from "vue-select"
+    import noticias from '../../controllers/noticias.js'
+    
+    
     export default {
-        name: 'Usuarios',
+        name: 'Noticias',
         data() {
             return {
                 errMsg:  '',
@@ -111,29 +118,22 @@
                 successMsg: "",
                 errMsg: "",
                 isLogin: false,
-                createUser: {},
-                confirm_password: "",
-                roles: [],
+                createNoticias: {}
+                
 
             }
         },
-        components:{
-            vSelect
-        },
-        created(){
-            this.retrieveRoles()
-        },
+       
+        
         methods: {
-            retrieveRoles(){
-                roles.index(this)
-            },
+            
             submit() {
                 this.showAlert = false
                 this.showSuccess = false
                 this.$validator.validateAll().then(success => {
                     if (success) {
                       
-                        users.create(this, this.createUser)
+                        noticias.create(this, this.createNoticias)
                     }
                     else{
                         this.showAlert = true

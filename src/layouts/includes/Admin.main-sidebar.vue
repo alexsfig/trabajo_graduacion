@@ -62,7 +62,7 @@
 				
 				 <li class="treeview">
 		            <router-link to="#">
-		                <i class="fa fa-users" aria-hidden="true"></i>
+		                <i class="fa fa-newspaper-o" aria-hidden="true"></i>
 		                <span>Noticias</span>
 		                <span class="pull-right-container">
 		                    <i class="fa fa-angle-left pull-right"></i>

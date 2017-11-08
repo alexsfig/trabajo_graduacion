@@ -6,7 +6,7 @@
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li>Manejo de noticias</li>
+                <li>Manejo de Noticias</li>
             </ol>
         </section>
         <section class="content" >
@@ -14,14 +14,14 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Manejo de usuarios</h3>
+                            <h3 class="box-title">Manejo de Noticias</h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
                             
                             <div class="box-action">
-                                <router-link to="/admin/users/create" class="btn btn-default btn-flat">
-                                    <i class="fa fa-plus"></i> Agregar nuevo
+                                <router-link to="/admin/noticias/create" class="btn btn-default btn-flat">
+                                    <i class="fa fa-plus"></i> Nueva Noticia
                                 </router-link>
                             </div>
 
@@ -29,20 +29,26 @@
                                 <table class="table table-bordered table-striped table-condensed">
                                     <thead>
                                         <tr>
-                                            <th>Usuario</th>
-                                            <th>Rol</th>
-                                            <th>Accion</th>
-                                        </tr>
+                                            <th>Titulo</th>
+                                            <th>Descripcion</th>
+                                            <th>Fecha Inicio</th>
+                                            <th>Fecha Fin</th>
+                                            <th>Publicada Por:</th>
+                                          <!--   <th>Accion</th -->
+                                     </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="user in users">
-                                            <td>{{ user.usuario }}</td>
-                                            <td>{{ user.rolId.descripcion}}</td>
-                                            <td>
+                                        <tr v-for="noticias in noticias">
+                                            <td>{{ noticias.nombre }}</td>
+                                            <td>{{ noticias.descripcion }}</td>
+                                             <td>{{ noticias.fechaInicio }}</td>
+                                              <td>{{ noticias.fechaFin }}</td>
+                                             <td>{{ noticias.usuarioId.usuario }}</td>
+                                          <td>
                                                 <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="openModal=true, retrieveData(user.id)" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar</button>
                                                 <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="openModalPassword=true, retrieveData(user.id)" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar Contraseña</button>
                                                 <button type="button" class="margin btn btn-sm btn-flat btn-danger" @click="clickHandler(user.id, user)" ><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
-                                            </td>
+                                            </td> 
                                         </tr>
                                     </tbody>
                                 </table>
@@ -60,11 +66,11 @@
 </template>
 
 <script>
-    import usersController from '../../controllers/users.js'
+    import noticiasController from '../../controllers/noticias.js'
     import ModalUser from './subcomponents/ModalUser'
     import ModalUserPassword from './subcomponents/ModalUserPassword'
     export default {
-        name: 'Employee',
+        name: 'noticias',
         data() {
             return {
                 methodSubmit: 'update',
@@ -77,8 +83,10 @@
                 isLogin: false,
                 // We need to initialize the component with any
                 // properties that will be used in it
-                usuario: {},
-                rol: ' ',
+                noticias: {}
+                /*usuario: ' ' */
+
+            
             }
         },
         components:{
@@ -134,7 +142,7 @@
                 this.fetchData()
             },
             fetchData() {
-                usersController.index(this)
+                noticiasController.index(this)
             },
             retrieveData(id) {
                 usersController.retrieve(this, id)
