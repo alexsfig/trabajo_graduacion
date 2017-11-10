@@ -20,7 +20,8 @@ export default {
     create(context, noticias){
         context.showAlert = false 
          context.showSuccess = false 
-          noticias.id=0
+          noticias.id=0;
+          noticias.usuarioId=1;
         HTTP.post(NOTICIAS, noticias)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
