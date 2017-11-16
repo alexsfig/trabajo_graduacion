@@ -75,7 +75,7 @@
 </div>
 <script>
     import users from '../../controllers/users.js'
-    import ModalUser from './subcomponents/ModalUser'
+    /*import ModalUser from './subcomponents/ModalUser' */
     export default {
         name: 'Employee',
         data() {
@@ -96,7 +96,7 @@
             '$route': 'fetchData'
         },
         components:{
-            "modalUser": ModalUser
+           /* "modalUser": ModalUser */
         },
         methods: {
             isChange () {

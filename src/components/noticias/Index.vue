@@ -45,9 +45,9 @@
                                               <td>{{ noticias.fechaFin }}</td>
                                              <td>{{ noticias.usuarioId.usuario }}</td>
                                           <td>
-                                                <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="openModal=true, retrieveData(user.id)" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar</button>
-                                                <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="openModalPassword=true, retrieveData(user.id)" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar Contraseña</button>
-                                                <button type="button" class="margin btn btn-sm btn-flat btn-danger" @click="clickHandler(user.id, user)" ><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
+                                                <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="openModal=true, retrieveData(noticias.id)" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar</button>
+                                               <!-- <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="openModalPassword=true, retrieveData(user.id)" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar Contraseña</button> -->
+                                                <button type="button" class="margin btn btn-sm btn-flat btn-danger" @click="clickHandler(noticias.id, noticias)" ><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
                                             </td> 
                                         </tr>
                                     </tbody>
@@ -57,8 +57,8 @@
                     </div>    
                 </div>
             </div>
-            <modalUser :methodSubmit="methodSubmit" :title="'Actualizar Usuario'" :buttonMsg="'Actualizar'" :openModal="openModal" :usuario="usuario" v-on:openChange="isChange"></modalUser>
-            <modalUserPassword :methodSubmit="methodSubmit" :title="'Actualizar Contraseña'" :buttonMsg="'Actualizar'" :openModal="openModalPassword" :usuario="usuario" v-on:openChange="isChange"></modalUserPassword>
+            <modalNoticias :methodSubmit="methodSubmit" :title="'Actualizar Usuario'" :buttonMsg="'Actualizar'" :openModal="openModal" :noticias="noticias" v-on:openChange="isChange"></modalNoticias>
+         <!--   <modalUserPassword :methodSubmit="methodSubmit" :title="'Actualizar Contraseña'" :buttonMsg="'Actualizar'" :openModal="openModalPassword" :usuario="usuario" v-on:openChange="isChange"></modalUserPassword> -->
             
 
         </section>
@@ -67,17 +67,18 @@
 
 <script>
     import noticiasController from '../../controllers/noticias.js'
-    import ModalUser from './subcomponents/ModalUser'
-    import ModalUserPassword from './subcomponents/ModalUserPassword'
+    /*import ModalUser from './subcomponents/ModalUser' */
+    import ModalNoticias from './subcomponents/ModalNoticias'
+   /* import ModalUserPassword from './subcomponents/ModalUserPassword' */
     export default {
         name: 'noticias',
         data() {
             return {
                 methodSubmit: 'update',
                 buttonMsg: "Actualizar",
-                users:{},   
+                /*users:{},  */ 
                 openModal: false,
-                openModalPassword: false,
+                /*openModalPassword: false, */
                 errMsg:  '',
                 success: false,
                 isLogin: false,
@@ -90,8 +91,8 @@
             }
         },
         components:{
-            "modalUser": ModalUser,
-            "modalUserPassword": ModalUserPassword
+            "modalNoticias": ModalNoticias
+            /*"modalUserPassword": ModalUserPassword */
         },
         created() {
             this.fetchData()
@@ -100,26 +101,26 @@
             '$route': 'fetchData'
         },
         methods: {
-            clickHandler(id, user) {
+            clickHandler(id, noticias) {
                 let swal = this.$swal
                 let context = this
                 swal({
                     title: 'Estas Seguro?',
-                    html: 'No podras recuperar la informacion del usuario <b>' + user.usuario + '</b>',
+                    html: 'No podras recuperar la informacion de la Noticia <b>' + noticias.nombre + '</b>',
                     type: 'error',
                     showCancelButton: true,
                     confirmButtonText: 'Si, Eliminar!',
                     cancelButtonText: 'No, Mantener'
                 }).then(
                     function() {
-                        usersController.delete(context, id, swal)
+                        noticiasController.delete(context, id, swal)
                     }, 
                     function(dismiss) {
                       // dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
                       if (dismiss === 'cancel') {
                         swal(
                           'Cancelado',
-                          'El usuario no se elimino',
+                          'La Noticia no se elimino',
                           'error'
                         )
                       }
@@ -128,7 +129,7 @@
             },
             isChange () {
                 this.openModal = false
-                this.openModalPassword = false
+                /*this.openModalPassword = false */
                 this.fetchData()
             },
             showCallback () {
@@ -137,15 +138,15 @@
             },
             dismissCallback (msg) {
                 this.openModal =false
-                this.openModalPassword =false
-                usersController.index(this)
+                /*this.openModalPassword =false */
+                noticiasController.index(this)
                 this.fetchData()
             },
             fetchData() {
                 noticiasController.index(this)
             },
             retrieveData(id) {
-                usersController.retrieve(this, id)
+                noticiasController.retrieve(this, id)
             },
         }
 

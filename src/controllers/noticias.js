@@ -8,6 +8,8 @@ import moment from 'moment'
 const NOTICIAS = 'noticias/'
 
 
+
+
 export default {
     /*
         Use context to update vars dinamyc
@@ -21,7 +23,8 @@ export default {
         context.showAlert = false 
          context.showSuccess = false 
           noticias.id=0;
-          noticias.usuarioId=1;
+          noticias.usuarioId= 1;
+          //noticias.fechaInicio = moment(noticias.fechaInicio).format('YYYY-MM-DD');
         HTTP.post(NOTICIAS, noticias)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
@@ -41,18 +44,18 @@ export default {
     /* 
         Method to update user, pass context, object Users and user id
     */
-   /* 
-    update(context, user){
+   
+    update(context, noticias){
         context.showAlert = false 
         context.showSuccess = false 
-        HTTP.put(USERS, user)
+        HTTP.put(NOTICIAS, noticias)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
                     var id = resp.data.id
                     context.showAlert = false 
                 }
                 context.showSuccess = true
-                context.successMsg = "Usuario Actualizado"
+                context.successMsg = "Noticia Actualizada"
             })
             .catch((err) => {
                 context.showAlert = true
@@ -64,20 +67,21 @@ export default {
                     context.showAlert = true 
                 }
             })
-    }, */
+    }, 
     /* 
         Method to get user, pass only the context, id will be taken from url
     */
     show(context){
         HTTP.get(NOTICIAS + context.$route.params.id+'/')
             .then((resp) => {
-                context.users = resp.data
+                context.noticias = resp.data
+
 
             })
             .catch((err) => {
               console.log(err)
             })
-    }, 
+    },  
     /* 
         Method to display all users, pass only the context
     */
@@ -90,34 +94,34 @@ export default {
             .catch((err) => {
               console.log(err)
             })
-    }
+    },
     /* 
         Method to retrieve user, pass the context and user id, use this method when you need to edit user
     */
-   /* retrieve(context, id){
-        HTTP.get(USERS + id)
+    retrieve(context, id){
+        HTTP.get(NOTICIAS + id)
             .then((resp) => {
                 console.log(resp)
-                context.usuario = resp.data;
+                context.noticias = resp.data;
             })
             .catch((err) => {
               console.log(err)
             })
-    }, */
+    }, 
     /* 
         Method to delete user, pass the context and user id, use this method when you need to delete user
     */
-   /* delete(context, id, swal) {
-        HTTP.delete(USERS + id)
+    delete(context, id, swal) {
+        HTTP.delete(NOTICIAS + id)
             .then((resp) => {
                 console.log(resp);
-                swal("Deleted!", "El usuario ha sido eliminado", "success")
+                swal("Deleted!", "La Noticia ha sido eliminada", "success")
                 context.fetchData();
             })
             .catch((err) => {               
                 swal("Oh snap!", "Ocurrio un error.", "error")
             }) 
-    } */
+    } 
     
 
 }
