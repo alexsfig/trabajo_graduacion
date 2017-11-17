@@ -26,26 +26,23 @@
                             </div>
 
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped table-condensed">
-                                    <thead>
-                                        <tr>
-                                            <th>Usuario</th>
-                                            <th>Rol</th>
-                                            <th>Accion</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr v-for="user in users">
-                                            <td>{{ user.usuario }}</td>
-                                            <td>{{ user.rolId.descripcion}}</td>
-                                            <td>
-                                                <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="openModal=true, retrieveData(user.id)" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar</button>
-                                                <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="openModalPassword=true, retrieveData(user.id)" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar Contraseña</button>
-                                                <button type="button" class="margin btn btn-sm btn-flat btn-danger" @click="clickHandler(user.id, user)" ><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <vue-good-table
+                                  title="Dynamic Table"
+                                  :columns="columns"
+                                  :rows="users"
+                                  :globalSearch="true"
+                                  :paginate="true"
+                                  styleClass="table table-striped table-condensed">
+                                  <template slot="table-row" scope="props">
+                                    <td>{{ props.row.usuario }}</td>
+                                    <td>{{ props.row.rolId.descripcion}}</td>
+                                    <td>
+                                        <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="openModal=true, retrieveData(props.row.id)" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar</button>
+                                        <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="openModalPassword=true, retrieveData(props.row.id)" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar Contraseña</button>
+                                        <button type="button" class="margin btn btn-sm btn-flat btn-danger" @click="clickHandler(props.row.id, user)" ><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
+                                    </td>
+                                  </template>
+                                </vue-good-table>
                             </div>
                         </div>
                     </div>    
@@ -67,9 +64,26 @@
         name: 'Employee',
         data() {
             return {
+                columns: [
+                    {
+                      label: 'Usuario',
+                      field: 'usuario',
+                      filterable: true,
+                    },
+                    {
+                      label: 'Rol',
+                      field: 'rolId.descripcion',
+                     filterable: true,
+                    },
+                    {
+                      label: '',
+                      field: '',
+                      filterable: true,
+                    }
+                ],
                 methodSubmit: 'update',
                 buttonMsg: "Actualizar",
-                users:{},   
+                users: [],   
                 openModal: false,
                 openModalPassword: false,
                 errMsg:  '',

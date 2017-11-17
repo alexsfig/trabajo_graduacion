@@ -7,8 +7,11 @@ import * as uiv from 'uiv'
 import moment from 'moment'
 import {HTTP} from './common_class/http.js';
 import esp from 'vee-validate/dist/locale/es';
+import VueGoodTable from 'vue-good-table'
 /* eslint-disable no-new */
 import VeeValidate, { Validator } from 'vee-validate';
+
+Vue.use(VueGoodTable)
 
 import VueSweetAlert from 'vue-sweetalert'
 Vue.use(VueSweetAlert)
