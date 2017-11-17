@@ -38,16 +38,16 @@
                                      </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="noticias in noticias">
-                                            <td>{{ noticias.nombre }}</td>
-                                            <td>{{ noticias.descripcion }}</td>
-                                             <td>{{ noticias.fechaInicio }}</td>
-                                              <td>{{ noticias.fechaFin }}</td>
-                                             <td>{{ noticias.usuarioId.usuario }}</td>
+                                        <tr v-for="noticia in noticias">
+                                            <td>{{ noticia.nombre }}</td>
+                                            <td>{{ noticia.descripcion }}</td>
+                                             <td>{{ noticia.fechaInicio }}</td>
+                                              <td>{{ noticia.fechaFin }}</td>
+                                             <td>{{ noticia.usuarioId.usuario }}</td>
                                           <td>
-                                                <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="openModal=true, retrieveData(noticias.id)" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar</button>
+                                                <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="openModal=true, retrieveData(noticia.id)" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar</button>
                                                <!-- <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="openModalPassword=true, retrieveData(user.id)" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar Contraseña</button> -->
-                                                <button type="button" class="margin btn btn-sm btn-flat btn-danger" @click="clickHandler(noticias.id, noticias)" ><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
+                                                <button type="button" class="margin btn btn-sm btn-flat btn-danger" @click="clickHandler(noticia.id, noticia)" ><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
                                             </td> 
                                         </tr>
                                     </tbody>
@@ -57,7 +57,7 @@
                     </div>    
                 </div>
             </div>
-            <modalNoticias :methodSubmit="methodSubmit" :title="'Actualizar Usuario'" :buttonMsg="'Actualizar'" :openModal="openModal" :noticias="noticias" v-on:openChange="isChange"></modalNoticias>
+            <modalNoticias :methodSubmit="methodSubmit" :title="'Actualizar Usuario'" :buttonMsg="'Actualizar'" :openModal="openModal" :noticia="noticia" v-on:openChange="isChange"></modalNoticias>
          <!--   <modalUserPassword :methodSubmit="methodSubmit" :title="'Actualizar Contraseña'" :buttonMsg="'Actualizar'" :openModal="openModalPassword" :usuario="usuario" v-on:openChange="isChange"></modalUserPassword> -->
             
 
@@ -84,7 +84,8 @@
                 isLogin: false,
                 // We need to initialize the component with any
                 // properties that will be used in it
-                noticias: {}
+                noticias: {},
+                noticia: {}
                 /*usuario: ' ' */
 
             
@@ -101,7 +102,7 @@
             '$route': 'fetchData'
         },
         methods: {
-            clickHandler(id, noticias) {
+            clickHandler(id, noticia) {
                 let swal = this.$swal
                 let context = this
                 swal({

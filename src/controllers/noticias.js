@@ -74,7 +74,7 @@ export default {
     show(context){
         HTTP.get(NOTICIAS + context.$route.params.id+'/')
             .then((resp) => {
-                context.noticias = resp.data
+                context.noticia = resp.data
 
 
             })
@@ -102,7 +102,7 @@ export default {
         HTTP.get(NOTICIAS + id)
             .then((resp) => {
                 console.log(resp)
-                context.noticias = resp.data;
+                context.noticia = resp.data;
             })
             .catch((err) => {
               console.log(err)
