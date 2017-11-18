@@ -3,6 +3,7 @@ import Router from 'vue-router'
 // Import components to use in view
 //import HelloWorld from '@/components/HelloWorld'
 import Login from '@/components/login/Login'
+import Playas from '@/components/playas/Index'
 import EmployeesCreate from '@/components/users/Create'
 import EmployeesShow from '@/components/users/Show'
 import EmployeeIndex from '@/components/users/Index'
@@ -32,6 +33,12 @@ export default new Router({
       component: AdminTemplate,
       meta: { requiresAuth: true },
       children: [
+        {
+          path: 'playas',
+          name: 'Playas',
+          component: Playas
+        },
+        
         {
           path: 'users/create',
           name: 'EmployeesCreate',
