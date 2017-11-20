@@ -71,18 +71,7 @@
                                             </span>
                                         </div>
                                     </div>
-                                       <!--
-
-                                    <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('usuarioId') }" >
-                                            <label for="">Publicada Por:</label>
-                                            <input type="input" id="usuarioId" name="usuarioId" data-vv-as="Publicada Por:" class="form-control" v-model="createNoticias.usuarioId" v-validate="'required'" >
-                                            <span class="help-block" for="usuarioId" v-bind:data-error="errors.first('usuarioId')">
-                                                {{ errors.first('usuarioId') }}
-                                            </span>
-                                        </div>
-                                    </div>
-                                   -->
+                                      
                                     <div class="clearfix"></div>
                                    
                                       

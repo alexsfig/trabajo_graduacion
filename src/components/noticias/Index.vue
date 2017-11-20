@@ -16,7 +16,7 @@
                         <div class="box-header">
                             <h3 class="box-title">Manejo de Noticias</h3>
                         </div>
-                        <!-- /.box-header -->
+                       
                         <div class="box-body">
                             
                             <div class="box-action">
@@ -26,39 +26,35 @@
                             </div>
 
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped table-condensed">
-                                    <thead>
-                                        <tr>
-                                            <th>Titulo</th>
-                                            <th>Descripcion</th>
-                                            <th>Fecha Inicio</th>
-                                            <th>Fecha Fin</th>
-                                            <th>Publicada Por:</th>
-                                          <!--   <th>Accion</th -->
-                                     </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr v-for="noticia in noticias">
-                                            <td>{{ noticia.nombre }}</td>
-                                            <td>{{ noticia.descripcion }}</td>
-                                             <td>{{ noticia.fechaInicio }}</td>
-                                              <td>{{ noticia.fechaFin }}</td>
-                                             <td>{{ noticia.usuarioId.usuario }}</td>
-                                          <td>
-                                                <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="openModal=true, retrieveData(noticia.id)" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar</button>
-                                               <!-- <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="openModalPassword=true, retrieveData(user.id)" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar Contraseña</button> -->
-                                                <button type="button" class="margin btn btn-sm btn-flat btn-danger" @click="clickHandler(noticia.id, noticia)" ><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
-                                            </td> 
-                                        </tr>
-                                    </tbody>
-                                </table>
+                              
+                                <vue-good-table
+                                  title="Dynamic Table"
+                                  :columns="columns"
+                                  :rows="noticias"
+                                  :globalSearch="true"
+                                  :paginate="true"
+                                  styleClass="table table-striped table-condensed">
+                                  <template slot="table-row" slot-scope="props">
+                                    <td>{{ props.row.nombre }}</td>
+                                    <td>{{ props.row.descripcion}}</td>
+                                    <td>{{ props.row.fechaInicio}}</td>
+                                    <td>{{ props.row.fechaFin}}</td>
+                                    <td>{{ props.row.usuarioId.usuario}}</td>
+                                    <td>
+                                        <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="openModal=true, retrieveData(props.row.id)" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar</button>
+                                        
+                                        <button type="button" class="margin btn btn-sm btn-flat btn-danger" @click="clickHandler(props.row.id, noticia)" ><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
+                                    </td>
+                                  </template>
+                                </vue-good-table>
+
                             </div>
                         </div>
                     </div>    
                 </div>
             </div>
-            <modalNoticias :methodSubmit="methodSubmit" :title="'Actualizar Usuario'" :buttonMsg="'Actualizar'" :openModal="openModal" :noticia="noticia" v-on:openChange="isChange"></modalNoticias>
-         <!--   <modalUserPassword :methodSubmit="methodSubmit" :title="'Actualizar Contraseña'" :buttonMsg="'Actualizar'" :openModal="openModalPassword" :usuario="usuario" v-on:openChange="isChange"></modalUserPassword> -->
+            <modalNoticias :methodSubmit="methodSubmit"  :title="'Actualizar Noticia'" :buttonMsg="'Actualizar'" :openModal="openModal" :noticia="noticia" v-on:openChange="isChange"></modalNoticias>
+         
             
 
         </section>
@@ -67,33 +63,65 @@
 
 <script>
     import noticiasController from '../../controllers/noticias.js'
-    /*import ModalUser from './subcomponents/ModalUser' */
+   
     import ModalNoticias from './subcomponents/ModalNoticias'
-   /* import ModalUserPassword from './subcomponents/ModalUserPassword' */
+   
     export default {
         name: 'noticias',
         data() {
             return {
+                columns: [
+                    {
+                      label: 'Titulo',
+                      field: 'nombre',
+                      filterable: true,
+                    },
+                    {
+                      label: 'Descripcion',
+                      field: 'descripcion',
+                     filterable: true,
+                    },
+                    {
+                      label: 'Fecha Inicio',
+                      field: 'fechaInicio',
+                      filterable: true,
+                    },
+                    {
+                      label: 'Fecha Fin',
+                      field: 'fechaFin',
+                      filterable: true,
+                    },
+                    {
+                      label: 'Publicada Por:',
+                      field: 'usuarioId.usuario',
+                      filterable: true,
+                    },
+                     {
+                      label: 'Accion',
+                      field: '',
+                      filterable: true,
+                    }
+                ],
                 methodSubmit: 'update',
                 buttonMsg: "Actualizar",
-                /*users:{},  */ 
+               
                 openModal: false,
-                /*openModalPassword: false, */
+                
                 errMsg:  '',
                 success: false,
                 isLogin: false,
                 // We need to initialize the component with any
                 // properties that will be used in it
-                noticias: {},
+                noticias: [],
                 noticia: {}
-                /*usuario: ' ' */
+                
 
             
             }
         },
         components:{
             "modalNoticias": ModalNoticias
-            /*"modalUserPassword": ModalUserPassword */
+            
         },
         created() {
             this.fetchData()
@@ -107,7 +135,7 @@
                 let context = this
                 swal({
                     title: 'Estas Seguro?',
-                    html: 'No podras recuperar la informacion de la Noticia <b>' + noticias.nombre + '</b>',
+                    html: 'No podras recuperar la informacion de la Noticia <b>' + noticia.nombre + '</b>',
                     type: 'error',
                     showCancelButton: true,
                     confirmButtonText: 'Si, Eliminar!',
@@ -130,7 +158,6 @@
             },
             isChange () {
                 this.openModal = false
-                /*this.openModalPassword = false */
                 this.fetchData()
             },
             showCallback () {
@@ -139,7 +166,6 @@
             },
             dismissCallback (msg) {
                 this.openModal =false
-                /*this.openModalPassword =false */
                 noticiasController.index(this)
                 this.fetchData()
             },
