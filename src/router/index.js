@@ -3,6 +3,7 @@ import Router from 'vue-router'
 // Import components to use in view
 //import HelloWorld from '@/components/HelloWorld'
 import Login from '@/components/login/Login'
+
 import UsersCreate from '@/components/users/Create'
 import UsersShow from '@/components/users/Show'
 import UsersIndex from '@/components/users/Index'
@@ -10,6 +11,9 @@ import UsersIndex from '@/components/users/Index'
 import NoticiasCreate from '@/components/noticias/Create'
 import NoticiasShow from '@/components/noticias/Show'
 import NoticiasIndex from '@/components/noticias/Index'
+
+import Playas from '@/components/playas/Index'
+
 // Import base templates
 import AdminTemplate from '@/layouts/Admin'
 import LoginTemplate from '@/layouts/Login'
@@ -36,6 +40,12 @@ export default new Router({
       component: AdminTemplate,
       meta: { requiresAuth: true },
       children: [
+        {
+          path: 'playas',
+          name: 'Playas',
+          component: Playas
+        },
+        
         {
           path: 'users/create',
           name: 'UsersCreate',
