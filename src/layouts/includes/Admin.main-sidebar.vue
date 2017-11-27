@@ -82,6 +82,28 @@
 		            </ul>
 		        </li>
 				
+
+				<li class="treeview">
+		            <router-link to="#">
+		                <i class="fa fa-address-card-o" aria-hidden="true"></i>
+		                <span>Perfiles Personales</span>
+		                <span class="pull-right-container">
+		                    <i class="fa fa-angle-left pull-right"></i>
+		                </span>                    
+		            </router-link>
+		            <ul class="treeview-menu">
+		                <li>
+		                    <router-link to="/admin/juntamiembros/">
+		                        <i class="fa fa-male" aria-hidden="true"></i> <span>Manejo Miembros de Junta</span>
+		                    </router-link>
+		                </li>
+		                <li>
+		                    <router-link to="/admin/juntamiembros/create">
+		                        <i class="fa fa-male" aria-hidden="true"></i> <span>Agregar Miembro Junta</span>
+		                    </router-link>
+		                </li>
+		            </ul>
+		        </li>
 				
 				
 				

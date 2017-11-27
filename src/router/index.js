@@ -12,6 +12,10 @@ import NoticiasCreate from '@/components/noticias/Create'
 import NoticiasShow from '@/components/noticias/Show'
 import NoticiasIndex from '@/components/noticias/Index'
 
+import JuntamiembrosCreate from '@/components/juntamiembros/Create'
+import JuntamiembrosShow from '@/components/juntamiembros/Show'
+import JuntamiembrosIndex from '@/components/juntamiembros/Index'
+
 import Playas from '@/components/playas/Index'
 
 // Import base templates
@@ -75,6 +79,21 @@ export default new Router({
           path: 'noticias/:id',
           name: 'NoticiasShow',
           component: NoticiasShow
+        },
+        {
+          path: 'juntamiembros/create',
+          name: 'JuntamiembrosCreate',
+          component: JuntamiembrosCreate
+        },
+        {
+          path: 'juntamiembros',
+          name: 'JuntamiembrosIndex',
+          component: JuntamiembrosIndex
+        },
+        {
+          path: 'juntamiembros/:id',
+          name: 'JuntamiembrosShow',
+          component: JuntamiembrosShow
         }
       ]
     },	
