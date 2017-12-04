@@ -12,9 +12,7 @@ import NoticiasCreate from '@/components/noticias/Create'
 import NoticiasShow from '@/components/noticias/Show'
 import NoticiasIndex from '@/components/noticias/Index'
 
-import Playas from '@/components/playas/Index'
 
->>>>>>> 82e9c632d3392e62a1939a13ed2feac83efe76d2
 // Import base templates
 import AdminTemplate from '@/layouts/Admin'
 import LoginTemplate from '@/layouts/Login'
