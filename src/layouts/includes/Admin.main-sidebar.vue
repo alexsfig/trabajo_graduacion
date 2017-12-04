@@ -59,6 +59,37 @@
 		                </li>
 		            </ul>
 		        </li>
+				
+				 <li class="treeview">
+		            <router-link to="#">
+		                <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+		                <span>Noticias</span>
+		                <span class="pull-right-container">
+		                    <i class="fa fa-angle-left pull-right"></i>
+		                </span>                    
+		            </router-link>
+		            <ul class="treeview-menu">
+		                <li>
+		                    <router-link to="/admin/noticias/">
+		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Manejo de Noticias</span>
+		                    </router-link>
+		                </li>
+		                <li>
+		                    <router-link to="/admin/noticias/create">
+		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Agregar Noticia</span>
+		                    </router-link>
+		                </li>
+		            </ul>
+		        </li>
+				
+				
+				
+				
+		        <li>
+		            <router-link to="/admin/playas">
+		                <i class="fa fa-pagelines" aria-hidden="true"></i> <span>Playas</span>
+		            </router-link>
+		        </li>
 		        <li>
 		            <router-link to="/admin/playas">
 		                <i class="fa fa-pagelines" aria-hidden="true"></i> <span>Playas</span>
