@@ -7,6 +7,7 @@ import Playas from '@/components/playas/Index'
 import UsersCreate from '@/components/users/Create'
 import UsersShow from '@/components/users/Show'
 import UsersIndex from '@/components/users/Index'
+import PersonaIndex from '@/components/persona/Index'
 
 import NoticiasCreate from '@/components/noticias/Create'
 import NoticiasShow from '@/components/noticias/Show'
@@ -44,7 +45,11 @@ export default new Router({
           name: 'Playas',
           component: Playas
         },
-        
+        {
+          path: 'persona',
+          name: 'PersonaIndex',
+          component: PersonaIndex
+        },
         {
           path: 'users/create',
           name: 'UsersCreate',

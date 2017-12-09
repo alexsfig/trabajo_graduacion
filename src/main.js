@@ -10,8 +10,12 @@ import esp from 'vee-validate/dist/locale/es';
 import VueGoodTable from 'vue-good-table'
 /* eslint-disable no-new */
 import VeeValidate, { Validator } from 'vee-validate';
-
+import VueMask from 'v-mask'
+Vue.use(VueMask);
 Vue.use(VueGoodTable)
+
+import ToggleButton from 'vue-js-toggle-button'
+Vue.use(ToggleButton)
 
 import VueSweetAlert from 'vue-sweetalert'
 Vue.use(VueSweetAlert)
