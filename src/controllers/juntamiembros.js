@@ -45,17 +45,17 @@ export default {
         Method to update user, pass context, object Users and user id
     */
    
-    update(context, noticias){
+    update(context, juntamiembros){
         context.showAlert = false 
         context.showSuccess = false 
-        HTTP.put(NOTICIAS, noticias)
+        HTTP.put(JUNTAMIEMBROS, juntamiembros)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
                     var id = resp.data.id
                     context.showAlert = false 
                 }
                 context.showSuccess = true
-                context.successMsg = "Noticia Actualizada"
+                context.successMsg = "Miembro Actualizado"
             })
             .catch((err) => {
                 context.showAlert = true
@@ -72,9 +72,9 @@ export default {
         Method to get user, pass only the context, id will be taken from url
     */
     show(context){
-        HTTP.get(NOTICIAS + context.$route.params.id+'/')
+        HTTP.get(JUNTAMIEMBROS + context.$route.params.id+'/')
             .then((resp) => {
-                context.noticia = resp.data
+                context.miembrojunta = resp.data
 
 
             })
@@ -99,10 +99,10 @@ export default {
         Method to retrieve user, pass the context and user id, use this method when you need to edit user
     */
     retrieve(context, id){
-        HTTP.get(NOTICIAS + id)
+        HTTP.get(JUNTAMIEMBROS + id)
             .then((resp) => {
                 console.log(resp)
-                context.noticia = resp.data;
+                context.miembrojunta = resp.data;
             })
             .catch((err) => {
               console.log(err)
@@ -112,10 +112,10 @@ export default {
         Method to delete user, pass the context and user id, use this method when you need to delete user
     */
     delete(context, id, swal) {
-        HTTP.delete(NOTICIAS + id)
+        HTTP.delete(JUNTAMIEMBROS + id)
             .then((resp) => {
                 console.log(resp);
-                swal("Deleted!", "La Noticia ha sido eliminada", "success")
+                swal("Deleted!", "El miembro ha sido eliminado", "success")
                 context.fetchData();
             })
             .catch((err) => {               

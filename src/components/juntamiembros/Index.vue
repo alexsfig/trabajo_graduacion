@@ -20,7 +20,7 @@
                         <div class="box-body">
                             
                             <div class="box-action">
-                                <router-link to="/admin/noticias/create" class="btn btn-default btn-flat">
+                                <router-link to="/admin/juntamiembros/create" class="btn btn-default btn-flat">
                                     <i class="fa fa-plus"></i> Nuevo Miembro
                                 </router-link>
                             </div>
@@ -50,7 +50,7 @@
                                     <td>
                                         <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="openModal=true, retrieveData(props.row.id)" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar</button>
                                         
-                                        <button type="button" class="margin btn btn-sm btn-flat btn-danger" @click="clickHandler(props.row.id, noticia)" ><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
+                                        <button type="button" class="margin btn btn-sm btn-flat btn-danger" @click="clickHandler(props.row.id, miembrojunta)" ><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
                                     </td>
                                   </template>
                                 </vue-good-table>
@@ -60,7 +60,7 @@
                     </div>    
                 </div>
             </div>
-            <modalNoticias :methodSubmit="methodSubmit"  :title="'Actualizar Noticia'" :buttonMsg="'Actualizar'" :openModal="openModal" :noticia="noticia" v-on:openChange="isChange"></modalNoticias>
+            <modaljuntamiembros :methodSubmit="methodSubmit"  :title="'Actualizar'" :buttonMsg="'Actualizar'" :openModal="openModal" :miembrojunta="miembrojunta" v-on:openChange="isChange"></modaljuntamiembros>
          
             
 
@@ -71,10 +71,10 @@
 <script>
     import juntamiembrosController from '../../controllers/juntamiembros.js'
    
-    import ModalNoticias from './subcomponents/ModalNoticias'
+    import ModalJuntaMiembros from './subcomponents/ModalJuntaMiembros' 
    
     export default {
-        name: 'entrenadores',
+        name: 'juntamiembros',
         data() {
             return {
                 columns: [
@@ -154,7 +154,7 @@
             }
         },
         components:{
-            "modalNoticias": ModalNoticias
+            "modaljuntamiembros": ModalJuntaMiembros
             
         },
         created() {
@@ -164,26 +164,26 @@
             '$route': 'fetchData'
         },
         methods: {
-            clickHandler(id, noticia) {
+            clickHandler(id, miembrojunta) {
                 let swal = this.$swal
                 let context = this
                 swal({
                     title: 'Estas Seguro?',
-                    html: 'No podras recuperar la informacion de la Noticia <b>' + noticia.nombre + '</b>',
+                    html: 'No podras recuperar la informacion del miembro <b>' + miembrojunta.nivelJerarquia + '</b>',
                     type: 'error',
                     showCancelButton: true,
                     confirmButtonText: 'Si, Eliminar!',
                     cancelButtonText: 'No, Mantener'
                 }).then(
                     function() {
-                        noticiasController.delete(context, id, swal)
+                        juntamiembrosController.delete(context, id, swal)
                     }, 
                     function(dismiss) {
                       // dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
                       if (dismiss === 'cancel') {
                         swal(
                           'Cancelado',
-                          'La Noticia no se elimino',
+                          'El miembro no se elimino',
                           'error'
                         )
                       }
@@ -200,7 +200,7 @@
             },
             dismissCallback (msg) {
                 this.openModal =false
-                noticiasController.index(this)
+                juntamiembrosController.index(this)
                 this.fetchData()
             },
             fetchData() {
