@@ -35,7 +35,19 @@ router.beforeEach((to, from, next) => {
             query: { redirect: to.fullPath }
           })
         } else {
-          next()
+          HTTP.get('persona')
+                .then((resp) => {
+                    next()
+                })
+                .catch((err) => {
+                  localStorage.removeItem('authorization')
+                    next({
+                        path: '/login',
+                        query: {
+                            redirect: to.fullPath
+                        }
+                    })
+                })
         }
       } 
   else {
