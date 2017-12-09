@@ -109,6 +109,7 @@
                                                 <template slot="dropdown">
                                                     <li>
                                                         <date-picker class="date-picker"
+                                                          :language="'es'"
                                                           v-model="createPersona.fechaNacimiento"
                                                           :today-btn="todayBtn"
                                                           :clear-btn="clearBtn"
@@ -443,6 +444,8 @@
     import playasController from '../../controllers/playas.js'
     import personaController from '../../controllers/persona.js'
     import vSelect from "vue-select"
+    import moment from "moment"
+
     import masked from "vue-masked-input"
     export default {
         name: 'Usuarios',
@@ -455,14 +458,20 @@
                 successMsg: "",
                 errMsg: "",
                 isLogin: false,
-                createPersona: {},
+                createPersona: {
+                    'fechaNacimiento' : null,
+                    'telefono': null,
+                    'dui': null,
+                    'nit': null
+                },
                 createAtleta: {
                     "compitioFechas": false,
                     "sabeEscribir": false,
                     "sabeFirmar": false,
                     "sabeLeer": false,
                     "tieneLesion": false,
-                    "ladoPie": true
+                    "ladoPie": true,
+                    
                 },
                 type: null,
                 confirm_password: "",
@@ -516,7 +525,8 @@
         },
         created(){
             this.fetchData()
-            console.log(personaController.index())
+            //console.log(personaController.index())
+            console.log(moment)
         },
         methods: {
             onChangeLesion(evt){
