@@ -19,11 +19,11 @@
                        
                         <div class="box-body">
                             
-                            <div class="box-action">
+                         <!--   <div class="box-action">
                                 <router-link to="/admin/juntamiembros/create" class="btn btn-default btn-flat">
                                     <i class="fa fa-plus"></i> Nuevo Miembro
                                 </router-link>
-                            </div>
+                            </div> -->
 
                             <div class="table-responsive">
                               
