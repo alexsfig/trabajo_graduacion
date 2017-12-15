@@ -16,6 +16,10 @@ import JuntamiembrosCreate from '@/components/juntamiembros/Create'
 import JuntamiembrosShow from '@/components/juntamiembros/Show'
 import JuntamiembrosIndex from '@/components/juntamiembros/Index'
 
+import EntrenadoresCreate from '@/components/entrenadores/Create'
+import EntrenadoresShow from '@/components/entrenadores/Show'
+import EntrenadoresIndex from '@/components/entrenadores/Index'
+
 import Playas from '@/components/playas/Index'
 
 // Import base templates
@@ -94,6 +98,21 @@ export default new Router({
           path: 'juntamiembros/:id',
           name: 'JuntamiembrosShow',
           component: JuntamiembrosShow
+        },
+        {
+          path: 'entrenadores/create',
+          name: 'EntrenadoresCreate',
+          component: EntrenadoresCreate
+        },
+        {
+          path: 'entrenadores',
+          name: 'EntrenadoresIndex',
+          component: EntrenadoresIndex
+        },
+        {
+          path: 'entrenadores/:id',
+          name: 'EntrenadoresShow',
+          component: EntrenadoresShow
         }
       ]
     },	

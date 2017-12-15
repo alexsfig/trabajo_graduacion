@@ -97,6 +97,11 @@
 		                        <i class="fa fa-male" aria-hidden="true"></i> <span>Manejo Miembros de Junta</span>
 		                    </router-link>
 		                </li>
+		                <li>
+		                    <router-link to="/admin/entrenadores/">
+		                        <i class="fa fa-male" aria-hidden="true"></i> <span>Manejo Entrenadores</span>
+		                    </router-link>
+		                </li>
 		              <!--  <li>
 		                    <router-link to="/admin/juntamiembros/create">
 		                        <i class="fa fa-male" aria-hidden="true"></i> <span>Agregar Miembro Junta</span>
