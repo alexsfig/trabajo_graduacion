@@ -94,12 +94,17 @@
 		            <ul class="treeview-menu">
 		                <li>
 		                    <router-link to="/admin/juntamiembros/">
-		                        <i class="fa fa-male" aria-hidden="true"></i> <span>Manejo Miembros de Junta</span>
+		                        <i class="fa fa-sitemap" aria-hidden="true"></i> <span>Manejo Miembros de Junta</span>
 		                    </router-link>
 		                </li>
 		                <li>
 		                    <router-link to="/admin/entrenadores/">
 		                        <i class="fa fa-male" aria-hidden="true"></i> <span>Manejo Entrenadores</span>
+		                    </router-link>
+		                </li>
+		                <li>
+		                    <router-link to="/admin/clubes/">
+		                        <i class="fa fa-users" aria-hidden="true"></i> <span>Manejo de Clubes</span>
 		                    </router-link>
 		                </li>
 		              <!--  <li>

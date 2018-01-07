@@ -1,6 +1,7 @@
 import axios from 'axios';
 // Define custom base url to connect to API
 const BASE_URL = "http://104.131.164.244:8080/";
+//const BASE_URL = "http://192.168.1.63:8080/";
 axios.interceptors.response.use(function (response) {
     console.log(response)
     // Do something with response data

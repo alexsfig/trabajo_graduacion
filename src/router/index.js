@@ -20,6 +20,10 @@ import EntrenadoresCreate from '@/components/entrenadores/Create'
 import EntrenadoresShow from '@/components/entrenadores/Show'
 import EntrenadoresIndex from '@/components/entrenadores/Index'
 
+import ClubesCreate from '@/components/clubes/Create'
+import ClubesShow from '@/components/clubes/Show'
+import ClubesIndex from '@/components/clubes/Index'
+
 import Playas from '@/components/playas/Index'
 
 // Import base templates
@@ -113,6 +117,21 @@ export default new Router({
           path: 'entrenadores/:id',
           name: 'EntrenadoresShow',
           component: EntrenadoresShow
+        },
+         {
+          path: 'clubes/create',
+          name: 'ClubesCreate',
+          component: ClubesCreate
+        },
+        {
+          path: 'clubes',
+          name: 'ClubesIndex',
+          component: ClubesIndex
+        },
+        {
+          path: 'clubes/:id',
+          name: 'ClubesShow',
+          component: ClubesShow
         }
       ]
     },	
