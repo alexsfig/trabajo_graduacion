@@ -25,7 +25,7 @@
                     <li class="dropdown user user-menu">
                         <router-link to="" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="../../assets/images/user2-160x160.jpg" class="user-image" alt="User Image">
-                            <span class="hidden-xs">Alexander Pierce</span>
+                            <span class="hidden-xs">{{usuario}}</span>
                         </router-link>
                     
                         <ul class="dropdown-menu">
@@ -34,8 +34,7 @@
                             <li class="user-header">
                                 <img src="../../assets/images/user2-160x160.jpg" class="img-circle" alt="User Image">
 
-                                <p>
-                                Alexander Pierce - Web Developer
+                                <p> {{usuario}} - Web Developer
                                 <small>Member since Nov. 2012</small>
                                 </p>
                             </li>
@@ -81,10 +80,20 @@
 import auth from '../../controllers/authentication.js'
 
 export default {
+  
+    computed: {
+             usuario() {
+                 return localStorage.getItem('usuario');
+                      }
+                  },
+
+
     methods: {
         signOut() {
             auth.signOut(this)
         }
     }
 };
+
+
 </script>

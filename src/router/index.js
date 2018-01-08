@@ -24,6 +24,10 @@ import ClubesCreate from '@/components/clubes/Create'
 import ClubesShow from '@/components/clubes/Show'
 import ClubesIndex from '@/components/clubes/Index'
 
+import JuecesCreate from '@/components/jueces/Create'
+import JuecesShow from '@/components/jueces/Show'
+import JuecesIndex from '@/components/jueces/Index'
+
 import Playas from '@/components/playas/Index'
 
 // Import base templates
@@ -132,6 +136,21 @@ export default new Router({
           path: 'clubes/:id',
           name: 'ClubesShow',
           component: ClubesShow
+        },
+         {
+          path: 'jueces/create',
+          name: 'JuecesCreate',
+          component: JuecesCreate
+        },
+        {
+          path: 'jueces',
+          name: 'JuecesIndex',
+          component: JuecesIndex
+        },
+        {
+          path: 'jueces/:id',
+          name: 'JuecesShow',
+          component: JuecesShow
         }
       ]
     },	

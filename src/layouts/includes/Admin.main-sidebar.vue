@@ -10,7 +10,7 @@
 		        </div>
 		        
 		        <div class="pull-left info">
-		            <p>Alexander Pierce</p>
+		            <p>{{usuario}}</p>
 		            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
 		        </div>
 		    </div>
@@ -99,12 +99,17 @@
 		                </li>
 		                <li>
 		                    <router-link to="/admin/entrenadores/">
-		                        <i class="fa fa-male" aria-hidden="true"></i> <span>Manejo Entrenadores</span>
+		                        <i class="fa fa-binoculars" aria-hidden="true"></i> <span>Manejo Entrenadores</span>
 		                    </router-link>
 		                </li>
 		                <li>
 		                    <router-link to="/admin/clubes/">
-		                        <i class="fa fa-users" aria-hidden="true"></i> <span>Manejo de Clubes</span>
+		                        <i class="fa fa-university" aria-hidden="true"></i> <span>Manejo de Clubes</span>
+		                    </router-link>
+		                </li>
+		                 <li>
+		                    <router-link to="/admin/jueces/">
+		                        <i class="fa fa-gavel" aria-hidden="true"></i> <span>Manejo de Jueces</span>
 		                    </router-link>
 		                </li>
 		              <!--  <li>
@@ -178,3 +183,20 @@
 		</section>
 	</div>
 </template>
+
+<script>
+
+
+export default {
+  
+    computed: {
+             usuario() {
+                 return localStorage.getItem('usuario');
+                      }
+                  },
+
+
+    };
+
+
+</script>
