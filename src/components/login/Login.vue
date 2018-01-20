@@ -1,10 +1,9 @@
 <template>
 	<div class="login-box">
-
 	    <div class="login-logo">
 	        <div class="text-center">
-	        	<img src="../../assets/images/logo.png" alt="">
-	        	<a href="">SWELL</a>
+	        	<!-- <img src="../../assets/images/logo.png" alt=""> -->
+	        	<img src="../../assets/images/logo2.png" alt="">
 	        </div>
 	    </div>
 	    <!-- /.login-logo -->
