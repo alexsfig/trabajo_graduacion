@@ -5,7 +5,7 @@ import {HTTP} from '../common_class/http.js';
 import {router} from '../router/index.js'
 import moment from 'moment'
 // define base url to Employees
-const PERSONA = 'persona/'
+const PERSONA = 'atleta/'
 
 
 export default {
@@ -128,7 +128,7 @@ export default {
     index(context){
         HTTP.get(PERSONA)
             .then((resp) => {
-                //context.atletas = resp.data
+                context.personas = resp.data
                 //return  resp.data
                 console.log('mmmmmmmmmmmmm')
                 console.log(resp.data)

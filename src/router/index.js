@@ -8,6 +8,7 @@ import UsersCreate from '@/components/users/Create'
 import UsersShow from '@/components/users/Show'
 import UsersIndex from '@/components/users/Index'
 import PersonaIndex from '@/components/persona/Index'
+import PersonaCreate from '@/components/persona/Create'
 
 import NoticiasCreate from '@/components/noticias/Create'
 import NoticiasShow from '@/components/noticias/Show'
@@ -49,6 +50,11 @@ export default new Router({
           path: 'persona',
           name: 'PersonaIndex',
           component: PersonaIndex
+        },
+        {
+          path: 'persona/create',
+          name: 'PersonaCreate',
+          component: PersonaCreate
         },
         {
           path: 'users/create',
