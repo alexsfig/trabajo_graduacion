@@ -68,7 +68,7 @@ Vue.filter('formatDateTime', function(value) {
 })
 
 // Merge the locales.
-Validator.addLocale(esp);
+Validator.localize('es', esp);
 
 const config = {
     locale: 'es'
