@@ -10,7 +10,7 @@
 		        </div>
 		        
 		        <div class="pull-left info">
-		            <p>Alexander Pierce</p>
+		            <p>{{usuario}}</p>
 		            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
 		        </div>
 		    </div>
@@ -82,6 +82,43 @@
 		            </ul>
 		        </li>
 				
+
+				<li class="treeview">
+		            <router-link to="#">
+		                <i class="fa fa-address-card-o" aria-hidden="true"></i>
+		                <span>Perfiles Personales</span>
+		                <span class="pull-right-container">
+		                    <i class="fa fa-angle-left pull-right"></i>
+		                </span>                    
+		            </router-link>
+		            <ul class="treeview-menu">
+		                <li>
+		                    <router-link to="/admin/juntamiembros/">
+		                        <i class="fa fa-sitemap" aria-hidden="true"></i> <span>Manejo Miembros de Junta</span>
+		                    </router-link>
+		                </li>
+		                <li>
+		                    <router-link to="/admin/entrenadores/">
+		                        <i class="fa fa-binoculars" aria-hidden="true"></i> <span>Manejo Entrenadores</span>
+		                    </router-link>
+		                </li>
+		                <li>
+		                    <router-link to="/admin/clubes/">
+		                        <i class="fa fa-university" aria-hidden="true"></i> <span>Manejo de Clubes</span>
+		                    </router-link>
+		                </li>
+		                 <li>
+		                    <router-link to="/admin/jueces/">
+		                        <i class="fa fa-gavel" aria-hidden="true"></i> <span>Manejo de Jueces</span>
+		                    </router-link>
+		                </li>
+		              <!--  <li>
+		                    <router-link to="/admin/juntamiembros/create">
+		                        <i class="fa fa-male" aria-hidden="true"></i> <span>Agregar Miembro Junta</span>
+		                    </router-link>
+		                </li> -->
+		            </ul>
+		        </li>
 				
 				
 				
@@ -151,3 +188,20 @@
 		</section>
 	</div>
 </template>
+
+<script>
+
+
+export default {
+  
+    computed: {
+             usuario() {
+                 return localStorage.getItem('usuario');
+                      }
+                  },
+
+
+    };
+
+
+</script>

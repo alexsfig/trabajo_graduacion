@@ -5,7 +5,7 @@ import {HTTP} from '../common_class/http.js';
 import {router} from '../router/index.js'
 import moment from 'moment'
 // define base url to Employees
-const NOTICIAS = 'noticias/'
+const CLUBES = 'club/'
 
 
 
@@ -46,17 +46,17 @@ export default {
         Method to update user, pass context, object Users and user id
     */
    
-    update(context, noticias){
+    update(context, clubes){
         context.showAlert = false 
         context.showSuccess = false 
-        HTTP.put(NOTICIAS, noticias)
+        HTTP.put(CLUBES, clubes)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
                     var id = resp.data.id
                     context.showAlert = false 
                 }
                 context.showSuccess = true
-                context.successMsg = "Noticia Actualizada"
+                context.successMsg = "Club Actualizado"
             })
             .catch((err) => {
                 context.showAlert = true
@@ -87,9 +87,9 @@ export default {
         Method to display all users, pass only the context
     */
    index(context){
-        HTTP.get(NOTICIAS)
+        HTTP.get(CLUBES)
             .then((resp) => {
-                context.noticias = resp.data
+                context.clubes = resp.data
                 console.log(resp.data)
             })
             .catch((err) => {
@@ -100,10 +100,10 @@ export default {
         Method to retrieve user, pass the context and user id, use this method when you need to edit user
     */
     retrieve(context, id){
-        HTTP.get(NOTICIAS + id)
+        HTTP.get(CLUBES + id)
             .then((resp) => {
                 console.log(resp)
-                context.noticia = resp.data;
+                context.club = resp.data;
             })
             .catch((err) => {
               console.log(err)
@@ -113,10 +113,10 @@ export default {
         Method to delete user, pass the context and user id, use this method when you need to delete user
     */
     delete(context, id, swal) {
-        HTTP.delete(NOTICIAS + id)
+        HTTP.delete(CLUBES + id)
             .then((resp) => {
                 console.log(resp);
-                swal("Deleted!", "La Noticia ha sido eliminada", "success")
+                swal("Deleted!", "El club ha sido eliminado", "success")
                 context.fetchData();
             })
             .catch((err) => {               

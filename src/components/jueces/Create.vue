@@ -1,12 +1,12 @@
 <template>
     <div>
         <section class="content-header">
-            <h1>Noticias</h1>
+            <h1>Miembros de Junta Directiva</h1>
             <ol class="breadcrumb">
                 
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><router-link to="/admin/noticias">Noticias</router-link></li>
-                <li class="active">Agregar Noticia</li>
+                <li><router-link to="/admin/juntamiembros">Miembros de Junta</router-link></li>
+                <li class="active">Agregar Miembro de Junta</li>
             </ol>
         </section>
        <section class="content">
@@ -24,7 +24,7 @@
                     </div>
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Agregar Noticia</h3>
+                            <h3 class="box-title">Agregar Miembro de Junta</h3>
                         </div>
                         
                         <div class="box-body">

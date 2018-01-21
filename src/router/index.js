@@ -14,6 +14,22 @@ import NoticiasCreate from '@/components/noticias/Create'
 import NoticiasShow from '@/components/noticias/Show'
 import NoticiasIndex from '@/components/noticias/Index'
 
+import JuntamiembrosCreate from '@/components/juntamiembros/Create'
+import JuntamiembrosShow from '@/components/juntamiembros/Show'
+import JuntamiembrosIndex from '@/components/juntamiembros/Index'
+
+import EntrenadoresCreate from '@/components/entrenadores/Create'
+import EntrenadoresShow from '@/components/entrenadores/Show'
+import EntrenadoresIndex from '@/components/entrenadores/Index'
+
+import ClubesCreate from '@/components/clubes/Create'
+import ClubesShow from '@/components/clubes/Show'
+import ClubesIndex from '@/components/clubes/Index'
+
+import JuecesCreate from '@/components/jueces/Create'
+import JuecesShow from '@/components/jueces/Show'
+import JuecesIndex from '@/components/jueces/Index'
+
 
 // Import base templates
 import AdminTemplate from '@/layouts/Admin'
@@ -85,6 +101,66 @@ export default new Router({
           path: 'noticias/:id',
           name: 'NoticiasShow',
           component: NoticiasShow
+        },
+        {
+          path: 'juntamiembros/create',
+          name: 'JuntamiembrosCreate',
+          component: JuntamiembrosCreate
+        },
+        {
+          path: 'juntamiembros',
+          name: 'JuntamiembrosIndex',
+          component: JuntamiembrosIndex
+        },
+        {
+          path: 'juntamiembros/:id',
+          name: 'JuntamiembrosShow',
+          component: JuntamiembrosShow
+        },
+        {
+          path: 'entrenadores/create',
+          name: 'EntrenadoresCreate',
+          component: EntrenadoresCreate
+        },
+        {
+          path: 'entrenadores',
+          name: 'EntrenadoresIndex',
+          component: EntrenadoresIndex
+        },
+        {
+          path: 'entrenadores/:id',
+          name: 'EntrenadoresShow',
+          component: EntrenadoresShow
+        },
+         {
+          path: 'clubes/create',
+          name: 'ClubesCreate',
+          component: ClubesCreate
+        },
+        {
+          path: 'clubes',
+          name: 'ClubesIndex',
+          component: ClubesIndex
+        },
+        {
+          path: 'clubes/:id',
+          name: 'ClubesShow',
+          component: ClubesShow
+        },
+         {
+          path: 'jueces/create',
+          name: 'JuecesCreate',
+          component: JuecesCreate
+        },
+        {
+          path: 'jueces',
+          name: 'JuecesIndex',
+          component: JuecesIndex
+        },
+        {
+          path: 'jueces/:id',
+          name: 'JuecesShow',
+          component: JuecesShow
         }
       ]
     },	
