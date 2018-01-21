@@ -6,7 +6,7 @@
 		    <!-- Sidebar user panel -->
 		    <div class="user-panel">
 		        <div class="pull-left image">
-		            <img src="../../assets/images/user2-160x160.jpg" class="img-circle" alt="User Image">
+		            <img src="../../assets/images/logo3.png" class="img-circle" alt="User Image">
 		        </div>
 		        
 		        <div class="pull-left info">
@@ -105,7 +105,7 @@
 		                </li> 
 		                <li>
 		                    <router-link to="/admin/juntamiembros/">
-		                        <i class="fa fa-sitemap" aria-hidden="true"></i> <span>Manejo Miembros de Junta</span>
+		                        <i class="fa fa-sitemap" aria-hidden="true"></i> <span>Manejo Miembros</span>
 		                    </router-link>
 		                </li>
 		                <li>
