@@ -34,7 +34,7 @@
                                   :globalSearch="true"
                                   :paginate="true"
                                   styleClass="table table-striped table-condensed">
-                                  <template slot="table-row" slot-scope="props">
+                                  <template slot="table-row" scope="props">
                                     <td>{{ props.row.personaId.nombre}}</td> 
                                     <td>{{ props.row.personaId.apellido}}</td> 
                                     <td>{{ props.row.personaId.fechaNacimiento}}</td> 

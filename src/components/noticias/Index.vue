@@ -34,7 +34,7 @@
                                   :globalSearch="true"
                                   :paginate="true"
                                   styleClass="table table-striped table-condensed">
-                                  <template slot="table-row" slot-scope="props">
+                                  <template slot="table-row" scope="props">
                                     <td>{{ props.row.nombre }}</td>
                                     <td>{{ props.row.descripcion}}</td>
                                     <td>{{ props.row.fechaInicio}}</td>

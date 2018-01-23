@@ -35,7 +35,7 @@
                         <div class="box-body">
                             
                             <vue-good-table :columns="columns" :rows="personas" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
-                                <template slot="table-row" slot-scope="props">
+                                <template slot="table-row" scope="props">
                                     <td class="nowrap">{{ props.row.nombre }}</td>
                                     <td>{{ props.row.apellido }}</td>
                                     <td class="nowrap">
