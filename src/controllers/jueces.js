@@ -122,7 +122,8 @@ export default {
                           
                 swal("Oh snap!", "Ocurrio un error.", "error")
             }) 
-    } 
+    },
+     
     
 
 }

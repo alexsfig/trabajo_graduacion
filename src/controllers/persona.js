@@ -5,7 +5,7 @@ import {HTTP} from '../common_class/http.js';
 import {router} from '../router/index.js'
 import moment from 'moment'
 // define base url to Employees
-const PERSONA = 'atleta/'
+const PERSONA = 'persona/'
 
 
 export default {
@@ -36,10 +36,54 @@ export default {
                 }
             })
     },
+    createJuez(context, juez){
+        context.showAlert = false 
+        context.showSuccess = false 
+        HTTP.post(PERSONA, juez.personaId)
+            .then((resp) => {
+                if (resp.status>= 200 && resp.status <=300){
+                    HTTP.get(PERSONA)
+                        .then((resp) => {
+                            let personas = resp.data
+                            let id = personas[personas.length -1]
+                            context.juez_id = id.id
+                            juez.personaId = id
+                            console.log('sdsds')
+                            HTTP.post('juez', juez)
+                            .then((resp) => {
+                                if (resp.status>= 200 && resp.status <=300){
+                                    context.showSuccess = true
+                                    context.successMsg = "persona Creada"
+                                    context.fetchData()
+                                    context.reset()
+                                }
+                            })
+                            .catch((err) => {
+                                if (err.response) {
+                                    context.showAlert = true
+                                    context.errMsg = err.response.data
+                                }
+                            })
+
+                        })
+                        .catch((err) => {
+                          console.log(err)
+                        })
+                }
+            })
+            .catch((err) => {
+                if (err.response) {
+                    context.showAlert = true
+                    context.errMsg = err.response.data
+                }
+            })
+
+
+        
+    },
     createAtleta(context, atleta){
         context.showAlert = false 
         context.showSuccess = false 
-        atleta.personaId.fechaNacimiento = '2017-12-09'
         HTTP.post(PERSONA, atleta.personaId)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
