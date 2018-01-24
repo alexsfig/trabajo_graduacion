@@ -48,6 +48,7 @@ export default {
                             let id = personas[personas.length -1]
                             context.juez_id = id.id
                             juez.personaId = id
+                            context.juez.personaId = id
                             console.log('sdsds')
                             HTTP.post('juez', juez)
                             .then((resp) => {

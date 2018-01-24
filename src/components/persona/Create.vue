@@ -27,9 +27,9 @@
                             <h3 class="box-title">Agregar Persona</h3>
                         </div>
                         
-                        <div class="box-body">
+                        <div class="box-body" v-if="datosPersona">
         
-                            <form @submit.prevent="submit('form-1')"  role="form" v-if="datosPersona" data-vv-scope="form-1"> 
+                            <form @submit.prevent="submit('form-1')"  role="form"  data-vv-scope="form-1"> 
                                 <div>
 
                                     <div class="col-xs-12 col-sm-6">
@@ -163,385 +163,389 @@
                                 </div>
 
                             </form>
-                                <div class="col-xs-12 text-left">
-                                    <button type="button" @click="returnToSelect" class="btn btn-flat btn-sm btn-warning margin "><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Regresar a Editar informacion de persona</button>
-                                </div>
-                                <!---#################################################################################--> 
-                                <!---#################################################################################--> 
-                                <!---                  FORM ATLETA                               #####################-->
-                                <!-- #################################################################################--> 
-                                <!---#################################################################################--> 
-                                <form @submit.prevent="submitAtleta('form-2')" action="" v-if="datosTipo" data-vv-scope="form-2">
-                                    <div v-if="type.name == 'Atleta'">
-                                        <h3>Información del Atleta</h3>
-                                        <div class="col-xs-12 col-sm-4">
-                                            <div class="fgroup" :class="{ 'has-error': errors.has('form-2.aniosPracticando') }" >
-                                                <label for="">Años practicando</label>
-                                                <input min="0" max="50" type="number" id="aniosPracticando" name="aniosPracticando" data-vv-as="Años practicando " class="form-control" v-model="createAtleta.aniosPracticando" v-validate="'required'" >
-                                                <span class="help-block" for="aniosPracticando" v-bind:data-error="errors.first('form-2.aniosPracticando')">
-                                                    {{ errors.first('form-2.aniosPracticando') }}
-                                                </span>
-                                            </div>
+                        </div>
+
+                        <div class="box-body" v-if="datosTipo">
+
+                            <div class="col-xs-12 text-left">
+                                <button type="button" @click="returnToSelect" class="btn btn-flat btn-sm btn-warning margin "><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Regresar a Editar informacion de persona</button>
+                            </div>
+                            <!---#################################################################################--> 
+                            <!---#################################################################################--> 
+                            <!---                  FORM ATLETA                               #####################-->
+                            <!-- #################################################################################--> 
+                            <!---#################################################################################--> 
+                            <form @submit.prevent="submitAtleta('form-2')" action="" v-if="datosTipo" data-vv-scope="form-2">
+                                <div v-if="type.name == 'Atleta'">
+                                    <h3>Información del Atleta</h3>
+                                    <div class="col-xs-12 col-sm-4">
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('form-2.aniosPracticando') }" >
+                                            <label for="">Años practicando</label>
+                                            <input min="0" max="50" type="number" id="aniosPracticando" name="aniosPracticando" data-vv-as="Años practicando " class="form-control" v-model="createAtleta.aniosPracticando" v-validate="'required'" >
+                                            <span class="help-block" for="aniosPracticando" v-bind:data-error="errors.first('form-2.aniosPracticando')">
+                                                {{ errors.first('form-2.aniosPracticando') }}
+                                            </span>
                                         </div>
-                                        <div class="col-xs-12 col-sm-4">
-                                            <div class="fgroup" :class="{ 'has-error': errors.has('form-2.edadInicio') }" >
-                                                <label for="">Edad que inicio</label>
-                                                <input type="number" min="5" max="50" id="edadInicio" name="edadInicio" data-vv-as="Edad que inicio " class="form-control" v-model="createAtleta.edadInicio" v-validate="'required'" >
-                                                <span class="help-block" for="edadInicio" v-bind:data-error="errors.first('form-2.edadInicio')">
-                                                    {{ errors.first('form-2.edadInicio') }}
-                                                </span>
-                                            </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-4">
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('form-2.edadInicio') }" >
+                                            <label for="">Edad que inicio</label>
+                                            <input type="number" min="5" max="50" id="edadInicio" name="edadInicio" data-vv-as="Edad que inicio " class="form-control" v-model="createAtleta.edadInicio" v-validate="'required'" >
+                                            <span class="help-block" for="edadInicio" v-bind:data-error="errors.first('form-2.edadInicio')">
+                                                {{ errors.first('form-2.edadInicio') }}
+                                            </span>
                                         </div>
-                                        <div class="col-xs-12 col-sm-4">
-                                            <div class="fgroup"  :class="{ 'has-error': errors.has('form-2.type') }">
-                                                <label for="">Idiomas</label>
-                                                <v-select
-                                                    multiple
-                                                    :debounce="250"
-                                                    :options="idiomas"
-                                                    v-model="createAtleta.idiomas"
-                                                    placeholder="Seleccione el idioma" 
-                                                    label="name">
-                                                </v-select>
-                                                <div class="clearfix"></div>
-                                                <input type="hidden" name="type" value="" data-vv-as="Tipo"  v-model="type" v-validate="'required'">
-                                                <span class="help-block" for="type" v-bind:data-error="errors.first('form-2.type')">
-                                                    {{ errors.first('form-2.type') }}
-                                                </span>
-                                            </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-4">
+                                        <div class="fgroup"  :class="{ 'has-error': errors.has('form-2.type') }">
+                                            <label for="">Idiomas</label>
+                                            <v-select
+                                                multiple
+                                                :debounce="250"
+                                                :options="idiomas"
+                                                v-model="createAtleta.idiomas"
+                                                placeholder="Seleccione el idioma" 
+                                                label="name">
+                                            </v-select>
+                                            <div class="clearfix"></div>
+                                            <input type="hidden" name="type" value="" data-vv-as="Tipo"  v-model="type" v-validate="'required'">
+                                            <span class="help-block" for="type" v-bind:data-error="errors.first('form-2.type')">
+                                                {{ errors.first('form-2.type') }}
+                                            </span>
                                         </div>
-                                        <div class="clearfix"></div>
-                                        <div class="col-xs-12 col-sm-4">
-                                            <div class="fgroup" :class="{ 'has-error': errors.has('form-2.sabeEscribir') }" >
-                                                <label for="">Sabe Escribir</label>
-                                                <br>
-                                                <span class="pull-right">
-                                                    <toggle-button  v-model="createAtleta.sabeEscribir"  :value="true" :width="130" :height="35" id="changed-font" :labels="{checked: 'Si', unchecked: 'No'}" :color="{checked: '#37b53c', unchecked: '#f55d5d'}"/>
-                                                </span>
-                                                <span class="help-block" for="sabeEscribir" v-bind:data-error="errors.first('form-2.sabeEscribir')">
-                                                    {{ errors.first('form-2.sabeEscribir') }}
-                                                </span>
-                                            </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="col-xs-12 col-sm-4">
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('form-2.sabeEscribir') }" >
+                                            <label for="">Sabe Escribir</label>
+                                            <br>
+                                            <span class="pull-right">
+                                                <toggle-button  v-model="createAtleta.sabeEscribir"  :value="true" :width="130" :height="35" id="changed-font" :labels="{checked: 'Si', unchecked: 'No'}" :color="{checked: '#37b53c', unchecked: '#f55d5d'}"/>
+                                            </span>
+                                            <span class="help-block" for="sabeEscribir" v-bind:data-error="errors.first('form-2.sabeEscribir')">
+                                                {{ errors.first('form-2.sabeEscribir') }}
+                                            </span>
                                         </div>
-                                        <div class="col-xs-12 col-sm-4">
-                                            <div class="fgroup" :class="{ 'has-error': errors.has('form-2.sabeFirmar') }" >
-                                                <label for="">Sabe Leer</label>
-                                                <br>
-                                                <span class="pull-right">
-                                                    <toggle-button  v-model="createAtleta.sabeFirmar"  :value="true" :width="130" :height="35" id="changed-font" :labels="{checked: 'Si', unchecked: 'No'}" :color="{checked: '#37b53c', unchecked: '#f55d5d'}"/>
-                                                </span>
-                                                <span class="help-block" for="sabeFirmar" v-bind:data-error="errors.first('form-2.sabeFirmar')">
-                                                    {{ errors.first('form-2.sabeFirmar') }}
-                                                </span>
-                                            </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-4">
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('form-2.sabeFirmar') }" >
+                                            <label for="">Sabe Leer</label>
+                                            <br>
+                                            <span class="pull-right">
+                                                <toggle-button  v-model="createAtleta.sabeFirmar"  :value="true" :width="130" :height="35" id="changed-font" :labels="{checked: 'Si', unchecked: 'No'}" :color="{checked: '#37b53c', unchecked: '#f55d5d'}"/>
+                                            </span>
+                                            <span class="help-block" for="sabeFirmar" v-bind:data-error="errors.first('form-2.sabeFirmar')">
+                                                {{ errors.first('form-2.sabeFirmar') }}
+                                            </span>
                                         </div>
-                                        <div class="col-xs-12 col-sm-4">
-                                            <div class="fgroup" :class="{ 'has-error': errors.has('form-2.sabeLeer') }" >
-                                                <label for="">Sabe Firmar</label>
-                                                <br>
-                                                <span class="pull-right">
-                                                    <toggle-button  v-model="createAtleta.sabeLeer"  :value="true" :width="130" :height="35" id="changed-font" :labels="{checked: 'Si', unchecked: 'No'}" :color="{checked: '#37b53c', unchecked: '#f55d5d'}"/>
-                                                </span>
-                                                <span class="help-block" for="sabeLeer" v-bind:data-error="errors.first('form-2.sabeLeer')">
-                                                    {{ errors.first('form-2.sabeLeer') }}
-                                                </span>
-                                            </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-4">
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('form-2.sabeLeer') }" >
+                                            <label for="">Sabe Firmar</label>
+                                            <br>
+                                            <span class="pull-right">
+                                                <toggle-button  v-model="createAtleta.sabeLeer"  :value="true" :width="130" :height="35" id="changed-font" :labels="{checked: 'Si', unchecked: 'No'}" :color="{checked: '#37b53c', unchecked: '#f55d5d'}"/>
+                                            </span>
+                                            <span class="help-block" for="sabeLeer" v-bind:data-error="errors.first('form-2.sabeLeer')">
+                                                {{ errors.first('form-2.sabeLeer') }}
+                                            </span>
                                         </div>
-                                        <div class="clearfix"></div>
-                                        <div class="col-xs-12 col-sm-4">
-                                            <div class="fgroup" :class="{ 'has-error': errors.has('form-2.nivelAcademico') }" >
-                                                <label for="">Nivel Academico</label>
-                                                <input type="text" id="nivelAcademico" name="nivelAcademico" data-vv-as="Nivel Academico " class="form-control" v-model="createAtleta.nivelAcademico" v-validate="'required'" >
-                                                <span class="help-block" for="nivelAcademico" v-bind:data-error="errors.first('form-2.nivelAcademico')">
-                                                    {{ errors.first('form-2.nivelAcademico') }}
-                                                </span>
-                                            </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="col-xs-12 col-sm-4">
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('form-2.nivelAcademico') }" >
+                                            <label for="">Nivel Academico</label>
+                                            <input type="text" id="nivelAcademico" name="nivelAcademico" data-vv-as="Nivel Academico " class="form-control" v-model="createAtleta.nivelAcademico" v-validate="'required'" >
+                                            <span class="help-block" for="nivelAcademico" v-bind:data-error="errors.first('form-2.nivelAcademico')">
+                                                {{ errors.first('form-2.nivelAcademico') }}
+                                            </span>
                                         </div>
-                                        <div class="col-xs-12 col-sm-4">
-                                            <div class="fgroup" :class="{ 'has-error': errors.has('form-2.uanioCursado') }" >
-                                                <label for="">Ultimo Año cursado</label>
-                                                <input type="text" id="uanioCursado" name="uanioCursado" data-vv-as="Ultimo Año cursado " class="form-control" v-model="createAtleta.uanioCursado" v-validate="'required'" >
-                                                <span class="help-block" for="uanioCursado" v-bind:data-error="errors.first('form-2.uanioCursado')">
-                                                    {{ errors.first('form-2.uanioCursado') }}
-                                                </span>
-                                            </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-4">
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('form-2.uanioCursado') }" >
+                                            <label for="">Ultimo Año cursado</label>
+                                            <input type="text" id="uanioCursado" name="uanioCursado" data-vv-as="Ultimo Año cursado " class="form-control" v-model="createAtleta.uanioCursado" v-validate="'required'" >
+                                            <span class="help-block" for="uanioCursado" v-bind:data-error="errors.first('form-2.uanioCursado')">
+                                                {{ errors.first('form-2.uanioCursado') }}
+                                            </span>
                                         </div>
-                                        
-                                        <div class="col-xs-12 col-sm-4">
-                                            <div class="fgroup" :class="{ 'has-error': errors.has('form-2.otrosEstudios') }" >
-                                                <label for="">Otros Estudios</label>
-                                                <textarea type="text" id="otrosEstudios" name="otrosEstudios" data-vv-as="Otros Estudios " class="form-control" v-model="createAtleta.otrosEstudios" v-validate="''"></textarea>
-                                                <span class="help-block" for="otrosEstudios" v-bind:data-error="errors.first('form-2.otrosEstudios')">
-                                                    {{ errors.first('form-2.otrosEstudios') }}
-                                                </span>
-                                            </div>
+                                    </div>
+                                    
+                                    <div class="col-xs-12 col-sm-4">
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('form-2.otrosEstudios') }" >
+                                            <label for="">Otros Estudios</label>
+                                            <textarea type="text" id="otrosEstudios" name="otrosEstudios" data-vv-as="Otros Estudios " class="form-control" v-model="createAtleta.otrosEstudios" v-validate="''"></textarea>
+                                            <span class="help-block" for="otrosEstudios" v-bind:data-error="errors.first('form-2.otrosEstudios')">
+                                                {{ errors.first('form-2.otrosEstudios') }}
+                                            </span>
                                         </div>
-                                        <div class="clearfix"></div>
-                                        <hr>
-                                        <h3>Informacion sobre Formacion como Atleta</h3>
-                                        <div class="col-xs-12 col-sm-4">
-                                            <div class="fgroup" :class="{ 'has-error': errors.has('form-2.tieneLesion') }" >
-                                                <label for="">Tiene Lesion</label>
-                                                <br>
-                                                <span class="pull-right">
-                                                    <toggle-button  v-model="createAtleta.tieneLesion"  :value="true" :width="130" :height="35" id="changed-font" :labels="{checked: 'Si', unchecked: 'No'}" :color="{checked: '#37b53c', unchecked: '#f55d5d'}" @change="onChangeLesion"/>
-                                                </span>
-                                                <span class="help-block" for="tieneLesion" v-bind:data-error="errors.first('form-2.tieneLesion')">
-                                                    {{ errors.first('form-2.tieneLesion') }}
-                                                </span>
-                                            </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <hr>
+                                    <h3>Informacion sobre Formacion como Atleta</h3>
+                                    <div class="col-xs-12 col-sm-4">
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('form-2.tieneLesion') }" >
+                                            <label for="">Tiene Lesion</label>
+                                            <br>
+                                            <span class="pull-right">
+                                                <toggle-button  v-model="createAtleta.tieneLesion"  :value="true" :width="130" :height="35" id="changed-font" :labels="{checked: 'Si', unchecked: 'No'}" :color="{checked: '#37b53c', unchecked: '#f55d5d'}" @change="onChangeLesion"/>
+                                            </span>
+                                            <span class="help-block" for="tieneLesion" v-bind:data-error="errors.first('form-2.tieneLesion')">
+                                                {{ errors.first('form-2.tieneLesion') }}
+                                            </span>
                                         </div>
-                                        <div class="col-xs-12 col-sm-8">
-                                            <div class="fgroup" :class="{ 'has-error': errors.has('form-2.descripcionLesion') }" >
-                                                <label for="">Descripcion lesión</label>
-                                                <textarea type="text" id="descripcionLesion" name="descripcionLesion" data-vv-as="Descripcion lesión " class="form-control" v-model="createAtleta.descripcionLesion" v-validate="'required'" :disabled="has_lession == true"></textarea>
-                                                <span class="help-block" for="descripcionLesion" v-bind:data-error="errors.first('form-2.descripcionLesion')">
-                                                    {{ errors.first('form-2.descripcionLesion') }}
-                                                </span>
-                                            </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-8">
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('form-2.descripcionLesion') }" >
+                                            <label for="">Descripcion lesión</label>
+                                            <textarea type="text" id="descripcionLesion" name="descripcionLesion" data-vv-as="Descripcion lesión " class="form-control" v-model="createAtleta.descripcionLesion" v-validate="'required'" :disabled="has_lession == true"></textarea>
+                                            <span class="help-block" for="descripcionLesion" v-bind:data-error="errors.first('form-2.descripcionLesion')">
+                                                {{ errors.first('form-2.descripcionLesion') }}
+                                            </span>
                                         </div>
-                                        <div class="clearfix"></div>
-                                        <div class="col-xs-12 col-sm-4">
-                                            <div class="fgroup" :class="{ 'has-error': errors.has('form-2.compitioFechas') }" >
-                                                <label for="">Ha competido en fechas</label>
-                                                <br>
-                                                <span class="pull-right">
-                                                    <toggle-button  v-model="createAtleta.compitioFechas"  :value="true" :width="130" :height="35" id="changed-font" :labels="{checked: 'Si', unchecked: 'No'}" :color="{checked: '#37b53c', unchecked: '#f55d5d'}" @change="onChangeCompetition"/>
-                                                </span>
-                                                <span class="help-block" for="compitioFechas" v-bind:data-error="errors.first('form-2.compitioFechas')">
-                                                    {{ errors.first('form-2.compitioFechas') }}
-                                                </span>
-                                            </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="col-xs-12 col-sm-4">
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('form-2.compitioFechas') }" >
+                                            <label for="">Ha competido en fechas</label>
+                                            <br>
+                                            <span class="pull-right">
+                                                <toggle-button  v-model="createAtleta.compitioFechas"  :value="true" :width="130" :height="35" id="changed-font" :labels="{checked: 'Si', unchecked: 'No'}" :color="{checked: '#37b53c', unchecked: '#f55d5d'}" @change="onChangeCompetition"/>
+                                            </span>
+                                            <span class="help-block" for="compitioFechas" v-bind:data-error="errors.first('form-2.compitioFechas')">
+                                                {{ errors.first('form-2.compitioFechas') }}
+                                            </span>
                                         </div>
-                                        <div class="col-xs-12 col-sm-4">
+                                    </div>
+                                    <div class="col-xs-12 col-sm-4">
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('form-2.cuantasFechas') }" >
                                             <div class="fgroup" :class="{ 'has-error': errors.has('form-2.cuantasFechas') }" >
-                                                <div class="fgroup" :class="{ 'has-error': errors.has('form-2.cuantasFechas') }" >
-                                                <label for="">Fechas que ha competido</label>
-                                                <input type="number" id="cuantasFechas" name="cuantasFechas" data-vv-as="Fechas que ha competido " class="form-control" v-model="createAtleta.cuantasFechas" v-validate="'required'" :disabled="has_competition == true">
-                                                <span class="help-block" for="cuantasFechas" v-bind:data-error="errors.first('form-2.cuantasFechas')">
-                                                    {{ errors.first('form-2.cuantasFechas') }}
-                                                </span>
-                                            </div>
-                                            </div>
+                                            <label for="">Fechas que ha competido</label>
+                                            <input type="number" id="cuantasFechas" name="cuantasFechas" data-vv-as="Fechas que ha competido " class="form-control" v-model="createAtleta.cuantasFechas" v-validate="'required'" :disabled="has_competition == true">
+                                            <span class="help-block" for="cuantasFechas" v-bind:data-error="errors.first('form-2.cuantasFechas')">
+                                                {{ errors.first('form-2.cuantasFechas') }}
+                                            </span>
                                         </div>
-                                        <div class="col-xs-12 col-sm-4">
-                                            
-                                            <div class="fgroup"  :class="{ 'has-error': errors.has('form-2.ultimaParticipacion') }">
-                                                <label for="">Fecha Ultima Competición</label>
-                                                <dropdown class="form-group">
-                                                    <div class="input-group">
-                                                        <input type="text" id="ultimaParticipacion" name="ultimaParticipacion" class="form-control" data-vv-as="Fecha Ultima Competición" v-model="createAtleta.ultimaParticipacion" v-validate="'required|date_format:YYYY-MM-DD'" :class="{'datepicker':true,  'has-error': errors.has('form-2.ultimaParticipacion') }" :disabled="has_competition == true">
-                                                        <div class="input-group-btn">
-                                                            <button class="btn btn-default" type="button" data-role="trigger" :class="{'has-error': errors.has('form-2.ultimaParticipacion') }"  :disabled="has_competition == true"> 
-                                                                <i  class="glyphicon glyphicon-calendar"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                    <template slot="dropdown">
-                                                        <li>
-                                                            <date-picker class="date-picker"
-                                                              v-model="createAtleta.ultimaParticipacion"
-                                                              :today-btn="todayBtn"
-                                                              :clear-btn="clearBtn"
-                                                              :limit-from="limitFrom"
-                                                              :format="format"
-                                                              :week-starts-with="weekStartsWith"
-                                                              :limit-to="limitTo"
-                                                              :close-on-selected="closeOnSelected" >
-                                                            </date-picker>
-                                                        </li>
-                                                  </template>
-                                                </dropdown>
-                                                <span class="help-block" for="ultimaParticipacion" v-bind:data-error="errors.first('form-2.ultimaParticipacion')">
-                                                    {{ errors.first('form-2.ultimaParticipacion') }}
-                                                </span>
-                                            </div>
                                         </div>
-                                        <div class="clearfix"></div>
-                                        <div class="col-xs-12 col-sm-4">
-                                            <div class="fgroup" :class="{ 'has-error': errors.has('form-2.ladoPie') }" >
-                                                <label for="">Lado del Pie</label>
-                                                <br>
-                                                <span class="pull-right">
-                                                    <toggle-button  v-model="createAtleta.ladoPie"  :value="true" :width="130" :height="35" id="changed-font" :labels="{checked: 'Izquierdo', unchecked: 'Derecho'}" :color="{checked: '#37b53c', unchecked: '#545bb3'}"/>
-                                                </span>
-                                                <span class="help-block" for="ladoPie" v-bind:data-error="errors.first('form-2.ladoPie')">
-                                                    {{ errors.first('form-2.createAtleta') }}
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-4">
-                                            <div class="fgroup"  :class="{ 'has-error': errors.has('form-2.type') }">
-                                                <label for="">Ola Favorita</label>
-                                                <v-select
-                                                    :debounce="250"
-                                                    :options="olas"
-                                                    v-model="createAtleta.olaPreferida"
-                                                    placeholder="Seleccione ola favorita" 
-                                                    label="name">
-                                                </v-select>
-                                                <div class="clearfix"></div>
-                                                <input type="hidden" name="type" value="" data-vv-as="Tipo"  v-model="type" v-validate="'required'">
-                                                <span class="help-block" for="type" v-bind:data-error="errors.first('form-2.type')">
-                                                    {{ errors.first('form-2.type') }}
-                                                </span>
-                                            </div>
-                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-4">
                                         
-                                        <div class="col-xs-12 col-sm-4">
-                                            <div class="fgroup" :class="{ 'has-error': errors.has('form-2.logros') }" >
-                                                <label for="">Logros</label>
-                                                <textarea type="text" id="logros" name="logros" data-vv-as="Logros " class="form-control" v-model="createAtleta.logros" v-validate="''"></textarea>
-                                                <span class="help-block" for="logros" v-bind:data-error="errors.first('form-2.logros')">
-                                                    {{ errors.first('form-2.logros') }}
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-4">
-                                            <div class="fgroup" :class="{ 'has-error': errors.has('form-2.playaPractica') }" >
-                                                <label for="">Playa Donde Practica</label>
-                                                <v-select
-                                                    :debounce="250"
-                                                    :options="playas"
-                                                    v-model="createAtleta.playaPractica"
-                                                    placeholder="Seleccione Playa" 
-                                                    label="nombre">
-                                                </v-select>
-                                                <span class="help-block" for="playaPractica" v-bind:data-error="errors.first('form-2.playaPractica')">
-                                                    {{ errors.first('form-2.playaPractica') }}
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-8">
-                                            <div class="fgroup" :class="{ 'has-error': errors.has('form-2.rutinaConstancia') }" >
-                                                <label for="">Rutina Constancia</label>
-                                                <textarea type="text" id="rutinaConstancia" name="rutinaConstancia" data-vv-as="Rutina Constancia " class="form-control" v-model="createAtleta.rutinaConstancia" v-validate="'required'"></textarea>
-                                                <span class="help-block" for="rutinaConstancia" v-bind:data-error="errors.first('form-2.rutinaConstancia')">
-                                                    {{ errors.first('form-2.rutinaConstancia') }}
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                        <div class="col-xs-12 col-sm-12 pull-right">
-                                            <div class="box-footer">
-                                                <div class="col-xs-12 text-right">
-                                                    <button type="submit" class="btn btn-flat btn-sm btn-primary">Guardar </button>
+                                        <div class="fgroup"  :class="{ 'has-error': errors.has('form-2.ultimaParticipacion') }">
+                                            <label for="">Fecha Ultima Competición</label>
+                                            <dropdown class="form-group">
+                                                <div class="input-group">
+                                                    <input type="text" id="ultimaParticipacion" name="ultimaParticipacion" class="form-control" data-vv-as="Fecha Ultima Competición" v-model="createAtleta.ultimaParticipacion" v-validate="'required|date_format:YYYY-MM-DD'" :class="{'datepicker':true,  'has-error': errors.has('form-2.ultimaParticipacion') }" :disabled="has_competition == true">
+                                                    <div class="input-group-btn">
+                                                        <button class="btn btn-default" type="button" data-role="trigger" :class="{'has-error': errors.has('form-2.ultimaParticipacion') }"  :disabled="has_competition == true"> 
+                                                            <i  class="glyphicon glyphicon-calendar"></i>
+                                                        </button>
+                                                    </div>
                                                 </div>
+                                                <template slot="dropdown">
+                                                    <li>
+                                                        <date-picker class="date-picker"
+                                                          v-model="createAtleta.ultimaParticipacion"
+                                                          :today-btn="todayBtn"
+                                                          :clear-btn="clearBtn"
+                                                          :limit-from="limitFrom"
+                                                          :format="format"
+                                                          :week-starts-with="weekStartsWith"
+                                                          :limit-to="limitTo"
+                                                          :close-on-selected="closeOnSelected" >
+                                                        </date-picker>
+                                                    </li>
+                                              </template>
+                                            </dropdown>
+                                            <span class="help-block" for="ultimaParticipacion" v-bind:data-error="errors.first('form-2.ultimaParticipacion')">
+                                                {{ errors.first('form-2.ultimaParticipacion') }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="col-xs-12 col-sm-4">
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('form-2.ladoPie') }" >
+                                            <label for="">Lado del Pie</label>
+                                            <br>
+                                            <span class="pull-right">
+                                                <toggle-button  v-model="createAtleta.ladoPie"  :value="true" :width="130" :height="35" id="changed-font" :labels="{checked: 'Izquierdo', unchecked: 'Derecho'}" :color="{checked: '#37b53c', unchecked: '#545bb3'}"/>
+                                            </span>
+                                            <span class="help-block" for="ladoPie" v-bind:data-error="errors.first('form-2.ladoPie')">
+                                                {{ errors.first('form-2.createAtleta') }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-4">
+                                        <div class="fgroup"  :class="{ 'has-error': errors.has('form-2.type') }">
+                                            <label for="">Ola Favorita</label>
+                                            <v-select
+                                                :debounce="250"
+                                                :options="olas"
+                                                v-model="createAtleta.olaPreferida"
+                                                placeholder="Seleccione ola favorita" 
+                                                label="name">
+                                            </v-select>
+                                            <div class="clearfix"></div>
+                                            <input type="hidden" name="type" value="" data-vv-as="Tipo"  v-model="type" v-validate="'required'">
+                                            <span class="help-block" for="type" v-bind:data-error="errors.first('form-2.type')">
+                                                {{ errors.first('form-2.type') }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-xs-12 col-sm-4">
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('form-2.logros') }" >
+                                            <label for="">Logros</label>
+                                            <textarea type="text" id="logros" name="logros" data-vv-as="Logros " class="form-control" v-model="createAtleta.logros" v-validate="''"></textarea>
+                                            <span class="help-block" for="logros" v-bind:data-error="errors.first('form-2.logros')">
+                                                {{ errors.first('form-2.logros') }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-4">
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('form-2.playaPractica') }" >
+                                            <label for="">Playa Donde Practica</label>
+                                            <v-select
+                                                :debounce="250"
+                                                :options="playas"
+                                                v-model="createAtleta.playaPractica"
+                                                placeholder="Seleccione Playa" 
+                                                label="nombre">
+                                            </v-select>
+                                            <span class="help-block" for="playaPractica" v-bind:data-error="errors.first('form-2.playaPractica')">
+                                                {{ errors.first('form-2.playaPractica') }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-8">
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('form-2.rutinaConstancia') }" >
+                                            <label for="">Rutina Constancia</label>
+                                            <textarea type="text" id="rutinaConstancia" name="rutinaConstancia" data-vv-as="Rutina Constancia " class="form-control" v-model="createAtleta.rutinaConstancia" v-validate="'required'"></textarea>
+                                            <span class="help-block" for="rutinaConstancia" v-bind:data-error="errors.first('form-2.rutinaConstancia')">
+                                                {{ errors.first('form-2.rutinaConstancia') }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="col-xs-12 col-sm-12 pull-right">
+                                        <div class="box-footer">
+                                            <div class="col-xs-12 text-right">
+                                                <button type="submit" class="btn btn-flat btn-sm btn-primary">Guardar </button>
                                             </div>
                                         </div>
                                     </div>
-                                </form>
-                                <!---#################################################################################--> 
-                                <!---#################################################################################--> 
-                                <!---                  FORM JUEz                                 #####################-->
-                                <!-- #################################################################################--> 
-                                <!---#################################################################################--> 
-                                <form @submit.prevent="submitJuez('form-3')" action="" v-if="datosTipo" data-vv-scope="form-3">    
-                                    <div v-if="type.name == 'Juez'">
-                                        <h3>Información del Juez</h3>
-                                        <div class="col-xs-12 col-sm-12">
-                                            <div class="fgroup" :class="{ 'has-error': errors.has('form-2.descripcion') }" >
-                                                <label for="">Descripcion del juez</label>
-                                                <textarea v-model="createJuez.descripcion" class="form-control" name="" id="" cols="30" rows="10"  data-vv-as="Descripcion del juez" v-validate="'required'"> 
-                                                    
-                                                </textarea>
-                                                <span class="help-block" for="descripcion" v-bind:data-error="errors.first('form-3.descripcion')">
-                                                    {{ errors.first('form-3.descripcion') }}
-                                                </span>
-                                            </div>
+                                </div>
+                            </form>
+                            <!---#################################################################################--> 
+                            <!---#################################################################################--> 
+                            <!---                  FORM JUEz                                 #####################-->
+                            <!-- #################################################################################--> 
+                            <!---#################################################################################--> 
+                            <form @submit.prevent="submitJuez('form-3')" action="" v-if="datosTipo" data-vv-scope="form-3">    
+                                <div v-if="type.name == 'Juez'">
+                                    <h3>Información del Juez</h3>
+                                    <div class="col-xs-12 col-sm-12">
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('form-2.descripcion') }" >
+                                            <label for="">Descripcion del juez</label>
+                                            <textarea v-model="createJuez.descripcion" class="form-control" name="descripcion" rows="2"  data-vv-as="Descripcion del juez" v-validate="'required'"> 
+                                                
+                                            </textarea>
+                                            <span class="help-block" for="descripcion" v-bind:data-error="errors.first('form-3.descripcion')">
+                                                {{ errors.first('form-3.descripcion') }}
+                                            </span>
                                         </div>
-                                        <div class="col-sm-10 col-sm-offset-1">
-                                            <form @submit.prevent="add_certificacion('form-4')" action="" data-vv-scope="form-4">    
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <h3>
+                                        Agregar certificaciones:
+                                    </h3>
+                                    <div class="col-sm-12">
+                                        <form @submit.prevent="add_certificacion('form-4')" action="" data-vv-scope="form-4">    
 
+                                            <div class="col-sm-5">
+                                                
                                                 <div class="col-xs-12">
-                                                    <div class="col-xs-12">
-                                                        <h3>
-                                                            Agregar certificaciones:
-                                                        </h3>
+                                                    <div class="fgroup">
+                                                        <label for="">Titulo</label>
+                                                        <input v-model="newCert.titulo" name="titulo" type="text" data-vv-as="titulo" class="form-control" v-validate="'required'">
+                                                        <span class="help-block" for="descripcion"   v-bind:data-error="errors.first('form-4.descripcion')">
+                                                            {{ errors.first('form-4.titulo') }}
+                                                        </span>
                                                     </div>
-                                                    <div class="col-xs-12 col-sm-6">
-                                                        <div class="fgroup">
-                                                            <label for="">Titulo</label>
-                                                            <input v-model="newCert.titulo" name="titulo" type="text" data-vv-as="titulo" class="form-control" v-validate="'required'">
-                                                            <span class="help-block" for="descripcion"   v-bind:data-error="errors.first('form-4.descripcion')">
-                                                                {{ errors.first('form-4.titulo') }}
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xs-12 col-sm-6">
-                                                        
-                                                        <div class="fgroup"  :class="{ 'has-error': errors.has('form-4.fecha') }">
-                                                            <label for="">Fecha</label>
-                                                            <dropdown class="form-group">
-                                                                <div class="input-group">
-                                                                    <input type="text" id="fecha" name="fecha" class="form-control" data-vv-as="Fecha" v-model="newCert.fecha" v-validate="'required|date_format:YYYY-MM-DD'" :class="{'datepicker':true,  'has-error': errors.has('form-4.fecha') }">
-                                                                    <div class="input-group-btn">
-                                                                        <button class="btn btn-default" type="button" data-role="trigger" :class="{'has-error': errors.has('form-4.fecha') }" > 
-                                                                            <i  class="glyphicon glyphicon-calendar"></i>
-                                                                        </button>
-                                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12">
+                                                    
+                                                    <div class="fgroup"  :class="{ 'has-error': errors.has('form-4.fecha') }">
+                                                        <label for="">Fecha</label>
+                                                        <dropdown class="form-group">
+                                                            <div class="input-group">
+                                                                <input type="text" id="fecha" name="fecha" class="form-control" data-vv-as="Fecha" v-model="newCert.fecha" v-validate="'required|date_format:YYYY-MM-DD'" :class="{'datepicker':true,  'has-error': errors.has('form-4.fecha') }">
+                                                                <div class="input-group-btn">
+                                                                    <button class="btn btn-default" type="button" data-role="trigger" :class="{'has-error': errors.has('form-4.fecha') }" > 
+                                                                        <i  class="glyphicon glyphicon-calendar"></i>
+                                                                    </button>
                                                                 </div>
-                                                                <template slot="dropdown">
-                                                                    <li>
-                                                                        <date-picker class="date-picker"
-                                                                          v-model="newCert.fecha"
-                                                                          :today-btn="todayBtn"
-                                                                          :clear-btn="clearBtn"
-                                                                          :limit-from="limitFrom"
-                                                                          :format="format"
-                                                                          :week-starts-with="weekStartsWith"
-                                                                          :limit-to="limitTo"
-                                                                          :close-on-selected="closeOnSelected" >
-                                                                        </date-picker>
-                                                                    </li>
-                                                              </template>
-                                                            </dropdown>
-                                                            <span class="help-block" for="fecha" v-bind:data-error="errors.first('form-4.fecha')">
-                                                                {{ errors.first('form-4.fecha') }}
-                                                            </span>
-                                                        </div>
+                                                            </div>
+                                                            <template slot="dropdown">
+                                                                <li>
+                                                                    <date-picker class="date-picker"
+                                                                      v-model="newCert.fecha"
+                                                                      :today-btn="todayBtn"
+                                                                      :clear-btn="clearBtn"
+                                                                      :limit-from="limitFrom"
+                                                                      :format="format"
+                                                                      :week-starts-with="weekStartsWith"
+                                                                      :limit-to="limitTo"
+                                                                      :close-on-selected="closeOnSelected" >
+                                                                    </date-picker>
+                                                                </li>
+                                                          </template>
+                                                        </dropdown>
+                                                        <span class="help-block" for="fecha" v-bind:data-error="errors.first('form-4.fecha')">
+                                                            {{ errors.first('form-4.fecha') }}
+                                                        </span>
                                                     </div>
-                                                    <div class="clearfix"></div>
-                                                    <div class="col-xs-12 col-sm-6">
-                                                        <div class="fgroup">
-                                                            <label for="">Lugar</label>
-                                                            <input v-model="newCert.lugar" name="lugar" type="text" class="form-control" data-vv-as="Lugar" v-validate="'required'">
-                                                            <span class="help-block" for="descripcion" v-bind:data-error="errors.first('form-4.descripcion')">
-                                                                {{ errors.first('form-4.lugar') }}
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xs-12 text-right">
-                                                        <button type="submit" class="btn btn-flat btn-sm btn-primary">Agregar certificacion </button>
-                                                    </div>
-                                                    <div class="col-xs-12 ">
-                                                        <vue-good-table :columns="columns" :rows="creaCert" title="Certificaciones del juez" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
-                                                            <template slot="table-row" scope="props">
-                                                                <td class="nowrap">{{ props.row.titulo }}</td>
-                                                                <td>{{ props.row.fecha }}</td>
-                                                                <td>{{ props.row.lugar }}</td>
-                                                                <td >
-                                                                    <button type="button" class="margin btn btn-flat btn-sm btn-danger" @click="deleteCert(props.index)"><i aria-hidden="true" class="fa fa-trash-o"></i> Eliminar</button>
-                                                                    
-                                                                </td>
-                                                              </template>
-                                                        </vue-good-table>
-                                                    </div>
-                                                    <div class="clearfix"></div>
                                                 </div>
-                                            </form>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-12 pull-right">
-                                            <div class="box-footer">
+                                                <div class="clearfix"></div>
+                                                <div class="col-xs-12">
+                                                    <div class="fgroup">
+                                                        <label for="">Lugar</label>
+                                                        <input v-model="newCert.lugar" name="lugar" type="text" class="form-control" data-vv-as="Lugar" v-validate="'required'">
+                                                        <span class="help-block" for="descripcion" v-bind:data-error="errors.first('form-4.descripcion')">
+                                                            {{ errors.first('form-4.lugar') }}
+                                                        </span>
+                                                    </div>
+                                                </div>
                                                 <div class="col-xs-12 text-right">
-                                                    <button type="submit" class="btn btn-flat btn-sm btn-primary">Guardar Juez </button>
+                                                    <button type="submit" class="btn btn-flat btn-sm btn-primary">Agregar certificacion </button>
                                                 </div>
+                                            </div>
+                                            <div class="col-xs-7">
+                                                <div class="col-xs-12 ">
+                                                    <vue-good-table :columns="columns" :rows="creaCert" title="Certificaciones del juez" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
+                                                        <template slot="table-row" scope="props">
+                                                            <td class="nowrap">{{ props.row.titulo }}</td>
+                                                            <td>{{ props.row.fecha }}</td>
+                                                            <td>{{ props.row.lugar }}</td>
+                                                            <td >
+                                                                <button type="button" class="margin btn btn-flat btn-sm btn-danger" @click="deleteCert(props.index)"><i aria-hidden="true" class="fa fa-trash-o"></i> Eliminar</button>
+                                                                
+                                                            </td>
+                                                          </template>
+                                                    </vue-good-table>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 pull-right">
+                                        <div class="box-footer">
+                                            <div class="col-xs-12 text-right">
+                                                <button type="submit" class="btn btn-flat btn-sm btn-primary">Guardar Juez </button>
                                             </div>
                                         </div>
                                     </div>
-                                </form>
-
-
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -553,6 +557,7 @@
     import users from '../../controllers/users.js'
     import playasController from '../../controllers/playas.js'
     import personaController from '../../controllers/persona.js'
+    import certificacionController from '../../controllers/certificacion.js'
     import vSelect from "vue-select"
     import moment from "moment"
 
@@ -597,7 +602,7 @@
                 closeOnSelected: true,
                 limitFrom: '',
                 datosPersona: true,
-                datosTipo: true,
+                datosTipo: false,
                 limitTo: '',
                 format: 'yyyy-MM-dd',
                 weekStartsWith: 0,
@@ -649,7 +654,7 @@
                         label: "Action"
                     }
                 ],
-                juez_id: null,
+                juez: null,
             }
         },
         components:{
@@ -662,9 +667,14 @@
             console.log(moment)
         },
         watch: {
-            juez_id(val, old_val){
+            juez(val, old_val){
                 if ( val!= null ){
-                    alert ('asf')
+                    $.each(this.creaCert, function(index, val) {
+                        val.juezId = this.juez
+                        console.log(val) 
+
+                        //certificacionController.create(this, val)
+                    });
                 }
             }
         },
@@ -721,7 +731,6 @@
                 this.showSuccess = false
                 this.$validator.validateAll(scope).then(success => {
                     if (success) {
-                        alert('aasd')
                         let persona = this.createPersona
                         persona.id = 0
                         let juez = {
@@ -729,6 +738,7 @@
                             "descripcion": this.createJuez.descripcion,
                             "personaId": persona,
                         }
+                        this.juez = juez
                         personaController.createJuez(this, juez)
                         console.log(juez)
                     }
