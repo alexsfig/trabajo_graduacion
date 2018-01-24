@@ -4,9 +4,9 @@
         <!-- Logo -->
         <router-link to="" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>INS</b></span>
+            <span class="logo-mini"><b>SW</b></span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg">INSENSE</span>
+            <span class="logo-lg">SWELL</span>
         </router-link>
 
         <!-- Header Navbar: style can be found in header.less -->
@@ -24,7 +24,7 @@
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <router-link to="" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="../../assets/images/user2-160x160.jpg" class="user-image" alt="User Image">
+                            <img src="../../assets/images/logo3.png" class="user-image" alt="User Image">
                             <span class="hidden-xs">{{usuario}}</span>
                         </router-link>
                     
@@ -32,10 +32,10 @@
                             
                             <!-- User image -->
                             <li class="user-header">
-                                <img src="../../assets/images/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                <img src="../../assets/images/logo4.png" class="img-circle" alt="User Image">
 
-                                <p> {{usuario}} - Web Developer
-                                <small>Member since Nov. 2012</small>
+                                <p> Usuario: {{usuario}} 
+                                <small>Fesasurf Copyright © 2014-2016 SWELL</small>
                                 </p>
                             </li>
                     
@@ -43,13 +43,13 @@
                             <li class="user-body">
                                 <div class="row">
                                     <div class="col-xs-4 text-center">
-                                        <router-link to="">Followers</router-link>
+                                        <router-link to="">Atletas</router-link>
                                     </div>
                                     <div class="col-xs-4 text-center">
-                                        <router-link to="">Sales</router-link>
+                                        <router-link to="">Competencias</router-link>
                                     </div>
                                     <div class="col-xs-4 text-center">
-                                        <router-link to="">Friends</router-link>
+                                        <router-link to="">Playas</router-link>
                                     </div>
                                 </div>
                                 <!-- /.row -->
@@ -58,10 +58,10 @@
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <router-link to="" class="btn btn-default btn-flat">Profile</router-link>
+                                    <router-link to="" class="btn btn-default btn-flat">Perfil</router-link>
                                 </div>
                                 <div class="pull-right">
-                                    <button @click="signOut" class="btn btn-default btn-flat">Sing Out</button>
+                                    <button @click="signOut" class="btn btn-default btn-flat">Cerrar Sesión</button>
                                     <!-- <router-link to="" class="btn btn-default btn-flat">Sign out</router-link> -->
                                 </div>
                             </li>

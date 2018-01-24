@@ -29,7 +29,7 @@
                                   :globalSearch="true"
                                   :paginate="true"
                                   styleClass="table table-striped table-condensed">
-                                  <template slot="table-row" slot-scope="props">
+                                  <template slot="table-row" scope="props">
                                     <td>{{ props.row.entidadId.nombre }}</td>
                                     <td>{{ props.row.fundacion}}</td>
                                     <td>{{ props.row.playaId.nombre}}</td>

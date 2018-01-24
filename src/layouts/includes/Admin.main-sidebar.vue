@@ -6,7 +6,7 @@
 		    <!-- Sidebar user panel -->
 		    <div class="user-panel">
 		        <div class="pull-left image">
-		            <img src="../../assets/images/user2-160x160.jpg" class="img-circle" alt="User Image">
+		            <img src="../../assets/images/logo3.png" class="img-circle" alt="User Image">
 		        </div>
 		        
 		        <div class="pull-left info">
@@ -92,9 +92,20 @@
 		                </span>                    
 		            </router-link>
 		            <ul class="treeview-menu">
+
+		            	 <li>
+		                    <router-link to="/admin/persona/create">
+		                        <i class="fa fa-male" aria-hidden="true"></i> <span>Agregar Persona</span>
+		                    </router-link>
+		                </li> 
+		                <li>
+		                    <router-link to="/admin/persona">
+		                        <i class="fa fa-address-book-o" aria-hidden="true"></i> <span>Manejo de Personas</span>
+		                    </router-link>
+		                </li> 
 		                <li>
 		                    <router-link to="/admin/juntamiembros/">
-		                        <i class="fa fa-sitemap" aria-hidden="true"></i> <span>Manejo Miembros de Junta</span>
+		                        <i class="fa fa-sitemap" aria-hidden="true"></i> <span>Manejo Miembros</span>
 		                    </router-link>
 		                </li>
 		                <li>
@@ -112,21 +123,12 @@
 		                        <i class="fa fa-gavel" aria-hidden="true"></i> <span>Manejo de Jueces</span>
 		                    </router-link>
 		                </li>
-		              <!--  <li>
-		                    <router-link to="/admin/juntamiembros/create">
-		                        <i class="fa fa-male" aria-hidden="true"></i> <span>Agregar Miembro Junta</span>
-		                    </router-link>
-		                </li> -->
+		              
 		            </ul>
 		        </li>
 				
 				
 				
-		        <li>
-		            <router-link to="/admin/playas">
-		                <i class="fa fa-pagelines" aria-hidden="true"></i> <span>Playas</span>
-		            </router-link>
-		        </li>
 		        <li>
 		            <router-link to="/admin/playas">
 		                <i class="fa fa-pagelines" aria-hidden="true"></i> <span>Playas</span>
