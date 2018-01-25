@@ -126,6 +126,40 @@
 		              
 		            </ul>
 		        </li>
+
+		        <li class="treeview">
+		            <router-link to="#">
+		                <i class="fa fa-address-card-o" aria-hidden="true"></i>
+		                <span>Escuela</span>
+		                <span class="pull-right-container">
+		                    <i class="fa fa-angle-left pull-right"></i>
+		                </span>                    
+		            </router-link>
+		            <ul class="treeview-menu">
+
+
+		                <li>
+		                    <router-link to="/admin/escuelas/index">
+		                        <i class="fa fa-address-book-o" aria-hidden="true"></i> <span>Manejo de Escuelas</span>
+		                    </router-link>
+		                </li> 
+		                		            	 <li>
+		                    <router-link to="/admin/escuelas/show">
+		                        <i class="fa fa-male" aria-hidden="true"></i> <span>Mostrar Escuelas</span>
+		                    </router-link>
+		                </li> 
+		                <li>
+		                    <router-link to="/admin/escuelas/create">
+		                        <i class="fa fa-sitemap" aria-hidden="true"></i> <span>Crear Escuelas</span>
+		                    </router-link>
+		                </li>
+		              
+		            </ul>
+		        </li>
+
+
+
+		        
 				
 				
 				
@@ -134,6 +168,9 @@
 		                <i class="fa fa-pagelines" aria-hidden="true"></i> <span>Playas</span>
 		            </router-link>
 		        </li>
+
+
+
 		        <li>
 		            <router-link to="#">
 		                <i class="fa fa-user-plus" aria-hidden="true"></i> <span>Roles</span>
@@ -185,6 +222,9 @@
 		                <i class="fa fa-cogs" aria-hidden="true"></i> <span>Configuration</span>
 		            </router-link>
 		        </li> -->
+
+
+				
 		    </ul>
 
 		</section>

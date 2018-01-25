@@ -31,6 +31,11 @@ import JuecesShow from '@/components/jueces/Show'
 import JuecesIndex from '@/components/jueces/Index'
 
 
+import EscuelasCreate from '@/components/escuelas/Create'
+import EscuelasShow from '@/components/escuelas/Show'
+import EscuelasIndex from '@/components/escuelas/Index'
+
+
 // Import base templates
 import AdminTemplate from '@/layouts/Admin'
 import LoginTemplate from '@/layouts/Login'
@@ -161,6 +166,21 @@ export default new Router({
           path: 'jueces/:id',
           name: 'JuecesShow',
           component: JuecesShow
+        },
+        {
+          path: 'escuelas',
+          name: 'EscuelasIndex',
+          component: EscuelasIndex
+        },
+        {
+          path: 'escuelas/create',
+          name: 'EscuelasCreate',
+          component: EscuelasCreate
+        },
+        {
+          path: 'escuelas/:id',
+          name: 'EscuelasShow',
+          component: EscuelasShow
         }
       ]
     },	
