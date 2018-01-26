@@ -175,7 +175,7 @@
                             <!---                  FORM ATLETA                               #####################-->
                             <!-- #################################################################################--> 
                             <!---#################################################################################--> 
-                            <form @submit.prevent="submitAtleta('form-2')" action="" v-if="datosTipo" data-vv-scope="form-2">
+                            <form @submit.prevent="submitAtleta('form-2')" action="" v-if="type.name == 'Atleta'" data-vv-scope="form-2">
                                 <div v-if="type.name == 'Atleta'">
                                     <h3>Información del Atleta</h3>
                                     <div class="col-xs-12 col-sm-4">
@@ -440,7 +440,7 @@
                             <!---                  FORM JUEz                                 #####################-->
                             <!-- #################################################################################--> 
                             <!---#################################################################################--> 
-                            <form @submit.prevent="submitJuez('form-3')" action="" v-if="datosTipo" data-vv-scope="form-3">    
+                            <form @submit.prevent="submitJuez('form-3')" action="" v-if="type.name == 'Juez'" data-vv-scope="form-3">    
                                 <div v-if="type.name == 'Juez'">
                                     <h3>Información del Juez</h3>
                                     <div class="col-xs-12 col-sm-12">
@@ -546,6 +546,69 @@
                                     </div>
                                 </div>
                             </form>
+                            <!---#################################################################################--> 
+                            <!---#################################################################################--> 
+                            <!---                  FORM Entrenador                                 #####################-->
+                            <!-- #################################################################################--> 
+                            <!---#################################################################################--> 
+                            <form @submit.prevent="submitEntrenador('form-5')" action="" v-if="type.name == 'Entrenador'" data-vv-scope="form-5">    
+                                <div v-if="type.name == 'Entrenador'">
+                                    <h3>Información del Entrenador</h3>
+                                    <div class="col-xs-12 col-sm-12">
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('form-2.descripcion') }" >
+                                            <label for="">Descripcion del Entrenador</label>
+                                            <textarea v-model="createEntrenador.descripcion" class="form-control" name="descripcion" rows="2"  data-vv-as="Descripcion del juez" v-validate="'required'"> 
+                                                
+                                            </textarea>
+                                            <span class="help-block" for="descripcion" v-bind:data-error="errors.first('form-5.descripcion')">
+                                                {{ errors.first('form-5.descripcion') }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="col-xs-12 col-sm-12 pull-right">
+                                        <div class="box-footer">
+                                            <div class="col-xs-12 text-right">
+                                                <button type="submit" class="btn btn-flat btn-sm btn-primary">Guardar Entrenador </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <!---#################################################################################--> 
+                            <!---#################################################################################--> 
+                            <!---                  FORM Miembro Junta                                 #####################-->
+                            <!-- #################################################################################--> 
+                            <!---#################################################################################--> 
+                            <form @submit.prevent="submitMiembroJunta('form-6')" action="" v-if="type.name == 'Miembro Junta'" data-vv-scope="form-6">    
+                                <div v-if="type.name == 'Miembro Junta'">
+                                    <h3>Información del Miembro Junta</h3>
+                                    <div class="col-xs-12 col-sm-6">
+                                        <div class="fgroup"  :class="{ 'has-error': errors.has('form-6.nivelJerarquia') }">
+                                            <label for="">Nivel Jerarquia</label>
+                                            <v-select
+                                                multiple
+                                                :debounce="250"
+                                                :options="jerarquia"
+                                                v-model="createMiembroJunta.nivelJerarquia"
+                                                placeholder="Seleccione la jerarquia" 
+                                                label="name">
+                                            </v-select>
+                                            <span class="help-block" for="type" v-bind:data-error="errors.first('form-6.nivelJerarquia')">
+                                                {{ errors.first('form-6.nivelJerarquia') }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 pull-right">
+                                        <div class="box-footer">
+                                            <div class="col-xs-12 text-right">
+                                                <button type="submit" class="btn btn-flat btn-sm btn-primary">Guardar Miembro Junta </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
                         </div>
                     </div>
                 </div>
@@ -580,6 +643,8 @@
                     'nit': null
                 },
                 createJuez: {},
+                createEntrenador: {},
+                createMiembroJunta: {},
                 newCert: {
                     fecha: null,
                 },
@@ -593,6 +658,7 @@
                     "ladoPie": true,
                     
                 },
+                type:{name: 'Juez'},
                 type: null,
                 confirm_password: "",
                 roles: [],
@@ -611,9 +677,20 @@
                 positions:[
                     {name: 'Juez'},
                     {name: 'Atleta'},
-                    {name: 'Miembro de Junta'},
+                    {name: 'Miembro Junta'},
+                    {name: 'Entrenador'},
 
                 ],
+                jerarquia:[
+                    {name: 'Presidente'},
+                    {name: 'Vice Presidente'},
+                    {name: 'Secretario'},
+                    {name: 'Tesorero'},
+                    {name: 'Vocal'},
+                    {name: 'Sindico'},
+
+                ],
+                
                 idiomas:[
                     {name: 'Español'},
                     {name: 'Ingles'},
@@ -636,7 +713,6 @@
                     {name: 'Colapso'},
 
                 ],
-                type:{name: 'Juez'},
                 columns: [
                     {
                         label: "titulo",
@@ -679,6 +755,33 @@
             }
         },
         methods: {
+            resetForm(){
+                this.createPersona = {
+                    'fechaNacimiento' : null,
+                    'telefono': null,
+                    'dui': null,
+                    'nit': null
+                },
+                this.createJuez = {},
+                this.createEntrenador = {},
+                this.createMiembroJunta = {},
+                this.newCert = {
+                    fecha: null,
+                },
+                this.creaCert = [],
+                this.createAtleta = {
+                    "compitioFechas": false,
+                    "sabeEscribir": false,
+                    "sabeFirmar": false,
+                    "sabeLeer": false,
+                    "tieneLesion": false,
+                    "ladoPie": true,
+                    
+                },
+                this.type = null,
+                this.datosPersona = true
+                this.datosTipo    = false
+            },
             add_certificacion(scope){
                 this.$validator.validateAll(scope).then(success => {
                     if (success) {
@@ -725,6 +828,56 @@
                         this.errMsg = "Por favor complete el formulario"
                     }
                 });
+            },
+            submitEntrenador(scope){
+                this.showAlert = false
+                this.showSuccess = false
+                this.$validator.validateAll(scope).then(success => {
+                    if (success) {
+                        let persona = this.createPersona
+                        persona.id = 0
+                        let entrenador = {
+                            "id": 0,
+                            "descripcion": this.createEntrenador.descripcion,
+                            "personaId": persona,
+
+                        }
+                        this.entrenador = entrenador
+                        personaController.createEntrenador(this, entrenador)
+                        console.log(entrenador)
+                    }
+                    else{
+                        this.showAlert = true
+                        this.errMsg = "Por favor complete el formulario"
+                    }
+                    
+                });
+
+            },
+            submitMiembroJunta(scope){
+                this.showAlert = false
+                this.showSuccess = false
+                this.$validator.validateAll(scope).then(success => {
+                    if (success) {
+                        let persona = this.createPersona
+                        persona.id = 0
+                        let miembroJunta = {
+                            "id": 0,
+                            "nivelJerarquia": this.createMiembroJunta.nivelJerarquia.name,
+                            "personaId": persona,
+
+                        }
+                        this.miembroJunta = miembroJunta
+                        personaController.createMiembroJunta(this, miembroJunta)
+                        console.log(miembroJunta)
+                    }
+                    else{
+                        this.showAlert = true
+                        this.errMsg = "Por favor complete el formulario"
+                    }
+                    
+                });
+
             },
             submitJuez(scope){
                 this.showAlert = false
