@@ -587,7 +587,6 @@
                                         <div class="fgroup"  :class="{ 'has-error': errors.has('form-6.nivelJerarquia') }">
                                             <label for="">Nivel Jerarquia</label>
                                             <v-select
-                                                multiple
                                                 :debounce="250"
                                                 :options="jerarquia"
                                                 v-model="createMiembroJunta.nivelJerarquia"
