@@ -4,8 +4,8 @@
             <h1>{{ employee.first_name }} {{ employee.last_name }} Profile</h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><router-link  to="/admin/users">Employees</router-link></li>
-                <li class="active">Add Employees</li>
+                <li><router-link  to="/admin/users">Escuelas</router-link></li>
+                <li class="active">Add Escuela</li>
             </ol>
         </section>
         <section  class="content">

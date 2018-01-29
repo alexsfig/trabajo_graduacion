@@ -5,7 +5,7 @@ import {HTTP} from '../common_class/http.js';
 import {router} from '../router/index.js'
 import moment from 'moment'
 // define base url to Employees
-const ESCUELAS = 'escuela/'
+const ESCUELAS = 'escuelas/'
 
 
 
@@ -19,19 +19,23 @@ export default {
         
         Method to create users, pass object Users
     */
-    create(context, noticias){
+    create(context, escuelas){
         context.showAlert = false 
          context.showSuccess = false 
-          noticias.id= 0;
-           console.log(localStorage.getItem('iduser'));
-          noticias.usuarioId= parseInt(localStorage.getItem('iduser'));
+          escuelas.id= 0;
+           console.log(localStorage.getItem('entidadId'));
+          escuelas.entidadId= parseInt(localStorage.getItem('entidadId'));
+           console.log(localStorage.getItem('playaId'));
+          escuelas.playaId= parseInt(localStorage.getItem('playaId'));
+           console.log(localStorage.getItem('entrenadorId'));
+          escuelas.entrenadorId= parseInt(localStorage.getItem('entrenadorId'));
           //noticias.fechaInicio = moment(noticias.fechaInicio).format('YYYY-MM-DD');
-        HTTP.post(NOTICIAS, noticias)
+        HTTP.post(ESCUELAS, escuelas)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
                     context.showSuccess = true
-                    context.successMsg = "Noticia Creada"
-                    context.createNoticias = {}
+                    context.successMsg = "Escuela Creada"
+                    context.createEscuelas = {}
                     context.errors.clear()
                 }
             })
@@ -46,17 +50,17 @@ export default {
         Method to update user, pass context, object Users and user id
     */
    
-    update(context, noticias){
+    update(context, escuelas){
         context.showAlert = false 
         context.showSuccess = false 
-        HTTP.put(NOTICIAS, noticias)
+        HTTP.put(ESCUELAS, escuelas)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
                     var id = resp.data.id
                     context.showAlert = false 
                 }
                 context.showSuccess = true
-                context.successMsg = "Noticia Actualizada"
+                context.successMsg = "Escuela actualizada"
             })
             .catch((err) => {
                 context.showAlert = true

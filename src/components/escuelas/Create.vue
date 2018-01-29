@@ -5,7 +5,7 @@
             <ol class="breadcrumb">
                 
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><router-link to="/admin/noticias">Noticias</router-link></li>
+                <li><router-link to="/admin/escuelas">Escuelas</router-link></li>
                 <li class="active">Agregar Escuela</li>
             </ol>
         </section>
@@ -33,41 +33,42 @@
                                 <div class="box-body">
 
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('nombre') }" >
-                                            <label for="">Titulo</label>
-                                            <input type="text" id="nombre" name="nombre" data-vv-as="Nombre de la noticia" class="form-control" v-model="createNoticias.nombre" v-validate="'required'" >
-                                            <span class="help-block" for="nombre" v-bind:data-error="errors.first('nombre')">
-                                                {{ errors.first('nombre') }}
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('descripcion') }" >
-                                            <label for="">Descripcion</label>
-                                            <input type="text" id="descripcion" name="descripcion" data-vv-as="Descripcion de la noticia" class="form-control" v-model="createNoticias.descripcion" v-validate="'required'" >
-                                            <span class="help-block" for="descripcion" v-bind:data-error="errors.first('descripcion')">
-                                                {{ errors.first('descripcion') }}
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('fechaInicio') }" >
-                                            <label for="">Fecha Inicio</label>
-                                            <input type="date" id="fechaInicio" name="fechaInicio" data-vv-as="Fecha de Inicio" class="form-control" v-model="createNoticias.fechaInicio" v-validate="'required'" >
-                                            <span class="help-block" for="FechaInicio" v-bind:data-error="errors.first('fechaInicio')">
-                                                {{ errors.first('fechaInicio') }}
+                                            <label for="">Entidad</label>
+                                            <input type="text" id="entidadId" name="Entidad" data-vv-as="entidadId" class="form-control" v-model="createEscuelas.entidadId" v-validate="'required'" >
+                                            <span class="help-block" for="entidadId" v-bind:data-error="errors.first('entidadId')">
+                                                {{ errors.first('entidadId') }}
                                             </span>
                                         </div>
                                     </div>
+
+                                    <div class="col-xs-12 col-sm-6">
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('fundacion') }" >
+                                            <label for="">Fundacion</label>
+                                            <input type="date" id="fundacion" name="fundacion" data-vv-as="fundacion" class="form-control" v-model="createEscuelas.fundacion" v-validate="'required'" >
+                                            <span class="help-block" for="nombre" v-bind:data-error="errors.first('fundacion')">
+                                                {{ errors.first('fundacion') }}
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-6">
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('palya_id') }" >
+                                            <label for="">Playa</label>
+                                            <input type="text" id="playaId" name="Playa" data-vv-as="playaId" class="form-control" v-model="createEscuelas.playaId" v-validate="'required'" >
+                                            <span class="help-block" for="descripcion" v-bind:data-error="errors.first('playaId')">
+                                                {{ errors.first('playaId') }}
+                                            </span>
+                                        </div>
+                                    </div>
+
 
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('fechaFin') }" >
-                                            <label for="">Fecha Fin</label>
-                                            <input type="date" id="fechaFin" name="fechaFin" data-vv-as="Fecha Fin" class="form-control" v-model="createNoticias.fechaFin" v-validate="'required'" >
-                                            <span class="help-block" for="fechaFin" v-bind:data-error="errors.first('fechaFin')">
-                                                {{ errors.first('fechaFin') }}
+                                            <label for="">Entrenador</label>
+                                            <input type="text" id="entrenadorId" name="entrenadorId" data-vv-as="entrenadorId" class="form-control" v-model="createEscuelas.entrenadorId" v-validate="'required'" >
+                                            <span class="help-block" for="entrenadorId" v-bind:data-error="errors.first('entrenadorId')">
+                                                {{ errors.first('entrenadorId') }}
                                             </span>
                                         </div>
                                     </div>
@@ -93,7 +94,7 @@
 </template>
 
 <script>
-    import noticias from '../../controllers/escuelas.js'
+    import escuelas from '../../controllers/escuelas.js'
     
     
     
@@ -108,7 +109,7 @@
                 successMsg: "",
                 errMsg: "",
                 isLogin: false,
-                createNoticias: {},
+                createEscuelas: {},
                 
                 
 
@@ -125,7 +126,7 @@
                 this.$validator.validateAll().then(success => {
                     if (success) {
                       
-                        noticias.create(this, this.createEscuelas)
+                        escuelas.create(this, this.createEscuelas)
                     }
                     else{
                         this.showAlert = true

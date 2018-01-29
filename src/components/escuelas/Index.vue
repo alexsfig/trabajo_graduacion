@@ -32,12 +32,12 @@
                                   <template slot="table-row" slot-scope="props">
                                     <td>{{ props.row.entidadId.nombre }}</td>
                                     <td>{{ props.row.fundacion}}</td>
-                                    <td>{{ props.row.playaPractica}}</td>
-                                    <td>{{ props.row.atletaId.personaId.nombre}}</td>
+                                    <td>{{ props.row.playaId}}</td>
+                                    <td>{{ props.row.entrenadorId}}</td>
                                     <td>
                                         <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="openModal=true, retrieveData(props.row.id)" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar</button>
                                         
-                                        <button type="button" class="margin btn btn-sm btn-flat btn-danger" @click="clickHandler(props.row.id, noticia)" ><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
+                                        <button type="button" class="margin btn btn-sm btn-flat btn-danger" @click="clickHandler(props.row.id, escuela)" ><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
                                     </td>
                                   </template>
                                 </vue-good-table>
@@ -47,7 +47,7 @@
                     </div>    
                 </div>
             </div>
-            <modalNoticias :methodSubmit="methodSubmit"  :title="'Actualizar Noticia'" :buttonMsg="'Actualizar'" :openModal="openModal" :noticia="noticia" v-on:openChange="isChange"></modalNoticias>
+            <modalEscuelas :methodSubmit="methodSubmit"  :title="'Actualizar Escuela'" :buttonMsg="'Actualizar'" :openModal="openModal" :noticia="noticia" v-on:openChange="isChange"></modalEscuelas>
          
             
 
@@ -58,7 +58,7 @@
 <script>
     import escuelasController from '../../controllers/escuelas.js'
    
-    import ModalNoticias from './subcomponents/ModalNoticias'
+    import ModalNoticias from './subcomponents/ModalEscuelas'
    
     export default {
         name: 'escuelas',
