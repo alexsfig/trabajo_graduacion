@@ -5,9 +5,7 @@ import {HTTP} from '../common_class/http.js';
 import {router} from '../router/index.js'
 import moment from 'moment'
 // define base url to Employees
-const JUECES = 'juez/'
-
-
+const CERTIFICACION = 'certificacion/'
 
 
 export default {
@@ -17,20 +15,15 @@ export default {
     /* 
         Use the context to redirect after succeded and update var to use in view
         
-        Method to create users, pass object Users
+        Method to create certificacions, pass object Users
     */
-   /* create(context, noticias){
+    create(context, certificacion){
         context.showAlert = false 
-         context.showSuccess = false 
-          noticias.id=0;
-          noticias.usuarioId= 1;
-          //noticias.fechaInicio = moment(noticias.fechaInicio).format('YYYY-MM-DD');
-        HTTP.post(NOTICIAS, noticias)
+        certificacion.id = 0
+        context.showSuccess = false 
+        HTTP.post(CERTIFICACION, certificacion)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
-                    context.showSuccess = true
-                    context.successMsg = "Noticia Creada"
-                    context.createNoticias = {}
                     context.errors.clear()
                 }
             })
@@ -40,22 +33,22 @@ export default {
                     context.errMsg = err.response.data
                 }
             })
-    }, */
+    },
     /* 
-        Method to update user, pass context, object Users and user id
+        Method to update certificacion, pass context, object Users and certificacion id
     */
-   
-    update(context, JUECES){
+    
+    update(context, certificacion){
         context.showAlert = false 
         context.showSuccess = false 
-        HTTP.put(JUECES, jueces)
+        HTTP.put(CERTIFICACION, certificacion)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
                     var id = resp.data.id
                     context.showAlert = false 
                 }
                 context.showSuccess = true
-                context.successMsg = "Juez Actualizado"
+                context.successMsg = "Certificacion Actualizado"
             })
             .catch((err) => {
                 context.showAlert = true
@@ -67,28 +60,27 @@ export default {
                     context.showAlert = true 
                 }
             })
-    }, 
+    },
     /* 
-        Method to get user, pass only the context, id will be taken from url
+        Method to get certificacion, pass only the context, id will be taken from url
     */
     show(context){
-        HTTP.get(JUECES + context.$route.params.id+'/')
+        HTTP.get(CERTIFICACION + context.$route.params.id+'/')
             .then((resp) => {
-                context.juez = resp.data
-
+                context.certificacion = resp.data
 
             })
             .catch((err) => {
               console.log(err)
             })
-    },  
+    },
     /* 
-        Method to display all users, pass only the context
+        Method to display all certificacions, pass only the context
     */
-   index(context){
-        HTTP.get(JUECES)
+    index(context){
+        HTTP.get(CERTIFICACION)
             .then((resp) => {
-                context.jueces = resp.data
+                context.certificacions = resp.data
                 console.log(resp.data)
             })
             .catch((err) => {
@@ -96,34 +88,32 @@ export default {
             })
     },
     /* 
-        Method to retrieve user, pass the context and user id, use this method when you need to edit user
+        Method to retrieve certificacion, pass the context and certificacion id, use this method when you need to edit certificacion
     */
     retrieve(context, id){
-        HTTP.get(JUECES + id)
+        HTTP.get(CERTIFICACION + id)
             .then((resp) => {
                 console.log(resp)
-                context.juez = resp.data;
+                context.Certificacion = resp.data;
             })
             .catch((err) => {
               console.log(err)
             })
-    }, 
+    },
     /* 
-        Method to delete user, pass the context and user id, use this method when you need to delete user
+        Method to delete certificacion, pass the context and certificacion id, use this method when you need to delete certificacion
     */
     delete(context, id, swal) {
-        HTTP.delete(JUECES + id)
+        HTTP.delete(CERTIFICACION + id)
             .then((resp) => {
                 console.log(resp);
-                swal("Deleted!", "El juez ha sido eliminado", "success")
+                swal("Deleted!", "El Certificacion ha sido eliminado", "success")
                 context.fetchData();
             })
-            .catch((err) => {   
-                          
+            .catch((err) => {               
                 swal("Oh snap!", "Ocurrio un error.", "error")
-            }) 
-    },
-     
+            })
+    }
     
 
 }

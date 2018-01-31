@@ -26,7 +26,7 @@ export default {
                     context.showSuccess = true
                     context.successMsg = "persona Creada"
                     context.fetchData()
-                    context.reset()
+                    context.resetForm()
                 }
             })
             .catch((err) => {
@@ -36,27 +36,158 @@ export default {
                 }
             })
     },
-    createAtleta(context, atleta){
+    createJuez(context, juez){
         context.showAlert = false 
         context.showSuccess = false 
-        atleta.personaId.fechaNacimiento = '2017-12-09'
-        HTTP.post(PERSONA, atleta.personaId)
+        HTTP.post(PERSONA, juez.personaId)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
                     HTTP.get(PERSONA)
                         .then((resp) => {
-                            //context.atletas = resp.data
-                            //return  resp.data
                             let personas = resp.data
                             let id = personas[personas.length -1]
-                            atleta.personaId = id
-                            HTTP.post('atleta', atleta)
+                            context.juez_id = id.id
+                            juez.personaId = id
+                            context.juez.personaId = id
+                            HTTP.post('juez', juez)
                             .then((resp) => {
                                 if (resp.status>= 200 && resp.status <=300){
                                     context.showSuccess = true
                                     context.successMsg = "persona Creada"
                                     context.fetchData()
-                                    context.reset()
+                                    context.resetForm()
+                                }
+                            })
+                            .catch((err) => {
+                                if (err.response) {
+                                    context.showAlert = true
+                                    context.errMsg = err.response.data
+                                }
+                            })
+
+                        })
+                        .catch((err) => {
+                          console.log(err)
+                        })
+                }
+            })
+            .catch((err) => {
+                if (err.response) {
+                    context.showAlert = true
+                    context.errMsg = err.response.data
+                }
+            })
+
+
+        
+    },
+    createEntrenador(context, entrenador){
+        context.showAlert = false 
+        context.showSuccess = false 
+        HTTP.post(PERSONA, entrenador.personaId)
+            .then((resp) => {
+                if (resp.status>= 200 && resp.status <=300){
+                    HTTP.get(PERSONA)
+                        .then((resp) => {
+                            let personas = resp.data
+                            let id = personas[personas.length -1]
+                            context.juez_id = id.id
+                            entrenador.personaId = id
+                            context.entrenador.personaId = id
+                            HTTP.post('entrenador', entrenador)
+                            .then((resp) => {
+                                if (resp.status>= 200 && resp.status <=300){
+                                    context.showSuccess = true
+                                    context.successMsg = "persona Creada"
+                                    context.fetchData()
+                                    context.resetForm()
+                                }
+                            })
+                            .catch((err) => {
+                                if (err.response) {
+                                    context.showAlert = true
+                                    context.errMsg = err.response.data
+                                }
+                            })
+
+                        })
+                        .catch((err) => {
+                          console.log(err)
+                        })
+                }
+            })
+            .catch((err) => {
+                if (err.response) {
+                    context.showAlert = true
+                    context.errMsg = err.response.data
+                }
+            })
+
+
+        
+    },
+    createEntrenador(context, entrenador){
+        context.showAlert = false 
+        context.showSuccess = false 
+        HTTP.post(PERSONA, entrenador.personaId)
+            .then((resp) => {
+                if (resp.status>= 200 && resp.status <=300){
+                    HTTP.get(PERSONA)
+                        .then((resp) => {
+                            let personas = resp.data
+                            let id = personas[personas.length -1]
+                            context.juez_id = id.id
+                            entrenador.personaId = id
+                            context.entrenador.personaId = id
+                            HTTP.post('entrenador', entrenador)
+                            .then((resp) => {
+                                if (resp.status>= 200 && resp.status <=300){
+                                    context.showSuccess = true
+                                    context.successMsg = "persona Creada"
+                                    context.fetchData()
+                                    context.resetForm()
+                                }
+                            })
+                            .catch((err) => {
+                                if (err.response) {
+                                    context.showAlert = true
+                                    context.errMsg = err.response.data
+                                }
+                            })
+
+                        })
+                        .catch((err) => {
+                          console.log(err)
+                        })
+                }
+            })
+            .catch((err) => {
+                if (err.response) {
+                    context.showAlert = true
+                    context.errMsg = err.response.data
+                }
+            })   
+    },
+    createMiembroJunta(context, miembroJunta){
+        context.showAlert = false 
+        context.showSuccess = false 
+        HTTP.post(PERSONA, miembroJunta.personaId)
+            .then((resp) => {
+                if (resp.status>= 200 && resp.status <=300){
+                    HTTP.get(PERSONA)
+                        .then((resp) => {
+                            //context.miembroJuntas = resp.data
+                            //return  resp.data
+                            let personas = resp.data
+                            let id = personas[personas.length -1]
+                            miembroJunta.personaId = id
+                            HTTP.post('miembroJunta', miembroJunta)
+                            .then((resp) => {
+                                if (resp.status>= 200 && resp.status <=300){
+                                    context.showSuccess = true
+                                    context.successMsg = "persona Creada"
+                                    context.fetchData()
+                                    context.resetForm()
                                 }
                             })
                             .catch((err) => {
