@@ -3,7 +3,7 @@
         <section class="content-header">
             <h1>Escuelas</h1>
             <ol class="breadcrumb">
-                
+
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li><router-link to="/admin/escuelas">Escuelas</router-link></li>
                 <li class="active">Agregar Escuela</li>
@@ -26,13 +26,30 @@
                         <div class="box-header">
                             <h3 class="box-title">Agregar Escuela</h3>
                         </div>
-                        
-                        <div class="box-body">
-        
-                            <form @submit.prevent="submit"  role="form"> 
-                                <div class="box-body">
 
+                        <div class="box-body">
+
+                            <form @submit.prevent="submit"  role="form">
+                                <div class="box-body">
+                                    <!-- Agregado por Milton -->
                                     <div class="col-xs-12 col-sm-6">
+                                        <div class="fgroup"  :class="{ 'has-error': errors.has('entidadId') }">
+                                            <label for="">Entidad</label>
+                                            <v-select
+                                                :debounce="250"
+                                                :options="entidades"
+                                                v-model="createEscuelas.entidadId"
+                                                placeholder="Seleccione una entidad"
+                                                label="nombre">
+                                            </v-select>
+                                            <div class="clearfix"></div>
+                                            <input type="hidden" id="entidadId" name="entidadId" data-vv-as="Entidad " class="form-control" v-model="createEscuelas.entidadId" v-validate="'required'" >
+                                            <span class="help-block" for="entidadId" v-bind:data-error="errors.first('entidadId')">
+                                                {{ errors.first('entidadId') }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('fechaInicio') }" >
                                             <label for="">Entidad</label>
                                             <input type="text" id="entidadId" name="Entidad" data-vv-as="entidadId" class="form-control" v-model="createEscuelas.entidadId" v-validate="'required'" >
@@ -40,7 +57,7 @@
                                                 {{ errors.first('entidadId') }}
                                             </span>
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('fundacion') }" >
@@ -51,7 +68,7 @@
                                             </span>
                                         </div>
                                     </div>
-
+                                    <div class="clearfix"></div>
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('palya_id') }" >
                                             <label for="">Playa</label>
@@ -72,11 +89,11 @@
                                             </span>
                                         </div>
                                     </div>
-                                      
+
                                     <div class="clearfix"></div>
-                                   
-                                      
-                                    
+
+
+
                                 </div>
                                 <div class="box-footer">
                                     <div class="col-xs-12 text-right">
@@ -95,9 +112,10 @@
 
 <script>
     import escuelas from '../../controllers/escuelas.js'
-    
-    
-    
+    // Agregado por MILTON
+    import vSelect from "vue-select"
+
+    import entidadesController from '../../controllers/entidad'
     export default {
         name: 'Escuelas',
         data() {
@@ -110,22 +128,27 @@
                 errMsg: "",
                 isLogin: false,
                 createEscuelas: {},
-                
-                
-
+                // Agregado por MILTON
+                entidades: [],
             }
         },
-       
-        
+        components:{
+            vSelect
+          },
+        created() {
+          //do something after creating vue instance
+          this.fetchData()
+        },
         methods: {
-            
-            
+            fetchData(){
+                entidadesController.index(this)
+            },
             submit() {
                 this.showAlert = false
                 this.showSuccess = false
                 this.$validator.validateAll().then(success => {
                     if (success) {
-                      
+
                         escuelas.create(this, this.createEscuelas)
                     }
                     else{
