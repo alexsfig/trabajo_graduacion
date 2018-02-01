@@ -9,9 +9,9 @@
             </ol>
         </section>
         <section class="content" >
-            
+
             <div class="row">
-                <div class="col-xs-12">                    
+                <div class="col-xs-12">
                     <div class="wrapper-alert">
                         <alert type="danger" :closable="true" v-if="showAlert" @close="showAlert=false">
                             <h4><i class="icon fa fa-ban"></i> Alert!</h4>
@@ -24,7 +24,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="row">
                 <div class="col-lg-12">
                     <div class="box box-primary">
@@ -33,22 +33,23 @@
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
-                            
+
                             <vue-good-table :columns="columns" :rows="personas" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
                                 <template slot="table-row" scope="props">
                                     <td class="nowrap">{{ props.row.nombre }}</td>
                                     <td>{{ props.row.apellido }}</td>
+                                    <td>{{ props.row.correo }}</td>
                                     <td class="nowrap">
                                         <button type="button" class="margin btn btn-flat btn-sm btn-primary" @click="openModal=true, retrieveData(props.row.id)"><i aria-hidden="true" class="fa fa-pencil-square-o"></i> Actualizar</button>
-                                        <button type="button" class="margin btn btn-flat btn-sm btn-danger" @click="deleteLocation(props.row.id, props.row.nombre)"><i aria-hidden="true" class="fa fa-trash-o"></i> Eliminar</button>
+                                        <button type="button" class="margin btn btn-flat btn-sm btn-danger" @click="deletePersona(props.row.id, props.row.nombre)"><i aria-hidden="true" class="fa fa-trash-o"></i> Eliminar</button>
                                     </td>
                                   </template>
                             </vue-good-table>
 
                         </div>
-                    </div>    
+                    </div>
                 </div>
-            </div>  
+            </div>
             <!--<modalPlaya :methodSubmit="methodSubmit" :title="'Actualizar Usuario'" :buttonMsg="'Actualizar'" :openModal="openModal" :playa="playa" v-on:openChange="isChange"></modalPlaya> -->
         </section>
     </div>
@@ -78,6 +79,10 @@
                         field: "apellido",
                     },
                     {
+                        label: "Correo",
+                        field: "correo",
+                    },
+                    {
                         label: "Action"
                     }
                 ]
@@ -89,7 +94,29 @@
         methods:{
             fetchData(){
                 personaController.index(this)
-            }
+            },
+            deletePersona(id, nombre) {
+                let context = this;
+                let swal = this.$swal;
+                this.$swal({
+                    title: 'Estas Seguro?',
+                    html: 'No podras recuperar la informacion de la persona <b>&laquo;' + nombre + '&raquo</b><br>y toda la informacion relacion al mismo ya no sera accesible',
+                    type: 'error',
+                    showCancelButton: true,
+                    confirmButtonText: 'Si, Eliminar!',
+                    cancelButtonText: 'No, Mantener'
+                }).then(function() {
+                    personaController.delete(context, id, swal);
+                },function(dismiss) {
+                    if (dismiss === 'cancel') {
+                        swal(
+                          'Cancelado',
+                          'La playa no se elimino',
+                          'error'
+                        )
+                    }
+                })
+            },
         }
     }
 </script>

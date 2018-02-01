@@ -24,7 +24,7 @@ export default {
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
                     context.showSuccess = true
-                    context.successMsg = "persona Creada"
+                    context.successMsg = "Persona creada exitosamente"
                     context.fetchData()
                     context.resetForm()
                 }
@@ -43,7 +43,7 @@ export default {
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
                     context.showSuccess = true
-                    context.successMsg = "persona Creada"
+                    context.successMsg = "Persona creada exitosamente"
                     context.fetchData()
                     context.resetForm()
                 }
@@ -63,7 +63,7 @@ export default {
                             .then((resp) => {
                                 if (resp.status>= 200 && resp.status <=300){
                                     context.showSuccess = true
-                                    context.successMsg = "persona Creada"
+                                    context.successMsg = "Persona creada exitosamente"
                                     context.fetchData()
                                     context.resetForm()
                                 }
@@ -87,7 +87,7 @@ export default {
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
                     context.showSuccess = true
-                    context.successMsg = "persona Creada"
+                    context.successMsg = "Persona creada exitosamente"
                     context.fetchData()
                     context.resetForm()
                 }
@@ -113,7 +113,7 @@ export default {
                     context.showAlert = false
                 }
                 context.showSuccess = true
-                context.successMsg = "Usuario Actualizado"
+                context.successMsg = "Persona Actualizada exitosamente"
             })
             .catch((err) => {
                 context.showAlert = true
@@ -147,8 +147,6 @@ export default {
             .then((resp) => {
                 context.personas = resp.data
                 //return  resp.data
-                console.log('mmmmmmmmmmmmm')
-                console.log(resp.data)
             })
             .catch((err) => {
               console.log(err)
@@ -174,7 +172,7 @@ export default {
         HTTP.delete(PERSONA + id)
             .then((resp) => {
                 console.log(resp);
-                swal("Deleted!", "El usuario ha sido eliminado", "success")
+                swal("Eliminacion exitosa!", "La persona ha sido eliminada", "success")
                 context.fetchData();
             })
             .catch((err) => {
