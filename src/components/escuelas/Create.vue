@@ -62,6 +62,7 @@
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('fundacion') }" >
                                             <label for="">Fundacion</label>
+
                                             <input type="date" id="fundacion" name="fundacion" data-vv-as="fundacion" class="form-control" v-model="createEscuelas.fundacion" v-validate="'required'" >
                                             <span class="help-block" for="nombre" v-bind:data-error="errors.first('fundacion')">
                                                 {{ errors.first('fundacion') }}
@@ -70,22 +71,38 @@
                                     </div>
                                     <div class="clearfix"></div>
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('palya_id') }" >
-                                            <label for="">Playa</label>
-                                            <input type="text" id="playaId" name="Playa" data-vv-as="playaId" class="form-control" v-model="createEscuelas.playaId" v-validate="'required'" >
-                                            <span class="help-block" for="descripcion" v-bind:data-error="errors.first('playaId')">
-                                                {{ errors.first('playaId') }}
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('playaId') }" >
+                                             <label for="">playa</label>
+                                            <v-select
+                                                :debounce="250"
+                                                :options="playas"
+                                                v-model="createEscuelas.playaId"
+                                                placeholder="Seleccione una playa"
+                                                label="nombre">
+                                            </v-select>
+                                            <div class="clearfix"></div>
+                                            <input type="hidden" id="playaId" name="playaId" data-vv-as="Playa" class="form-control" v-model="createEscuelas.playadId" v-validate="'required'" >
+                                            <span class="help-block" for="playaId" v-bind:data-error="errors.first('playaId')">
+                                                {{ errors.first('playaId') }}   
                                             </span>
                                         </div>
                                     </div>
 
 
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('fechaFin') }" >
-                                            <label for="">Entrenador</label>
-                                            <input type="text" id="entrenadorId" name="entrenadorId" data-vv-as="entrenadorId" class="form-control" v-model="createEscuelas.entrenadorId" v-validate="'required'" >
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('entrenadorId') }" >
+                                             <label for="">entrenador</label>
+                                            <v-select
+                                                :debounce="250"
+                                                :options="entrenadores"
+                                                v-model="createEscuelas.entrenadorId"
+                                                placeholder="Seleccione un Entrenador"
+                                                label="nombre">
+                                            </v-select>
+                                            <div class="clearfix"></div>
+                                            <input type="hidden" id="entrenadorId" name="entrenadorId" data-vv-as="Entrenador" class="form-control" v-model="createEscuelas.entrenadorId" v-validate="'required'" >
                                             <span class="help-block" for="entrenadorId" v-bind:data-error="errors.first('entrenadorId')">
-                                                {{ errors.first('entrenadorId') }}
+                                                {{ errors.first('entrenadorId') }}   
                                             </span>
                                         </div>
                                     </div>
@@ -116,6 +133,9 @@
     import vSelect from "vue-select"
 
     import entidadesController from '../../controllers/entidad'
+    import playasController from '../../controllers/playas'
+    import entrenadoresController from '../../controllers/entrenadores'
+    
     export default {
         name: 'Escuelas',
         data() {
@@ -130,6 +150,8 @@
                 createEscuelas: {},
                 // Agregado por MILTON
                 entidades: [],
+                playas: [],
+                entrenadores: [],
             }
         },
         components:{
@@ -142,6 +164,10 @@
         methods: {
             fetchData(){
                 entidadesController.index(this)
+
+                playasController.index(this)
+        
+                entrenadoresController.index(this)
             },
             submit() {
                 this.showAlert = false
