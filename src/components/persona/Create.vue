@@ -3,7 +3,7 @@
         <section class="content-header">
             <h1>Personas</h1>
             <ol class="breadcrumb">
-                
+
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li><router-link to="/admin/users">Personas</router-link></li>
                 <li class="active">Agregar Personas</li>
@@ -26,10 +26,10 @@
                         <div class="box-header">
                             <h3 class="box-title">Agregar Persona</h3>
                         </div>
-                        
+
                         <div class="box-body" v-if="datosPersona">
-        
-                            <form @submit.prevent="submit('form-1')"  role="form"  data-vv-scope="form-1"> 
+
+                            <form @submit.prevent="submit('form-1')"  role="form"  data-vv-scope="form-1">
                                 <div>
 
                                     <div class="col-xs-12 col-sm-6">
@@ -50,7 +50,7 @@
                                             </span>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="clearfix"></div>
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('form-1.correo') }" >
@@ -92,9 +92,9 @@
                                             </span>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="col-xs-12 col-sm-6">
-                                        
+
                                         <div class="fgroup"  :class="{ 'has-error': errors.has('form-1.fechaNacimiento') }">
                                             <label for="">Fecha Nacimiento</label>
                                             <dropdown class="form-group">
@@ -134,7 +134,7 @@
                                                 :debounce="250"
                                                 :options="positions"
                                                 v-model="type"
-                                                placeholder="Seleccione el tipo" 
+                                                placeholder="Seleccione el tipo"
                                                 label="name">
                                             </v-select>
                                             <div class="clearfix"></div>
@@ -154,7 +154,7 @@
                                             </span>
                                         </div>
                                     </div>
-                                    <div class="clearfix"></div>                                           
+                                    <div class="clearfix"></div>
                                 </div>
                                 <div class="box-footer">
                                     <div class="col-xs-12 text-right">
@@ -170,11 +170,11 @@
                             <div class="col-xs-12 text-left">
                                 <button type="button" @click="returnToSelect" class="btn btn-flat btn-sm btn-warning margin "><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Regresar a Editar informacion de persona</button>
                             </div>
-                            <!---#################################################################################--> 
-                            <!---#################################################################################--> 
+                            <!---#################################################################################-->
+                            <!---#################################################################################-->
                             <!---                  FORM ATLETA                               #####################-->
-                            <!-- #################################################################################--> 
-                            <!---#################################################################################--> 
+                            <!-- #################################################################################-->
+                            <!---#################################################################################-->
                             <form @submit.prevent="submitAtleta('form-2')" action="" v-if="type.name == 'Atleta'" data-vv-scope="form-2">
                                 <div v-if="type.name == 'Atleta'">
                                     <h3>Información del Atleta</h3>
@@ -204,7 +204,7 @@
                                                 :debounce="250"
                                                 :options="idiomas"
                                                 v-model="createAtleta.idiomas"
-                                                placeholder="Seleccione el idioma" 
+                                                placeholder="Seleccione el idioma"
                                                 label="name">
                                             </v-select>
                                             <div class="clearfix"></div>
@@ -270,7 +270,7 @@
                                             </span>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="col-xs-12 col-sm-4">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('form-2.otrosEstudios') }" >
                                             <label for="">Otros Estudios</label>
@@ -329,14 +329,14 @@
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-4">
-                                        
+
                                         <div class="fgroup"  :class="{ 'has-error': errors.has('form-2.ultimaParticipacion') }">
                                             <label for="">Fecha Ultima Competición</label>
                                             <dropdown class="form-group">
                                                 <div class="input-group">
                                                     <input type="text" id="ultimaParticipacion" name="ultimaParticipacion" class="form-control" data-vv-as="Fecha Ultima Competición" v-model="createAtleta.ultimaParticipacion" v-validate="'required|date_format:YYYY-MM-DD'" :class="{'datepicker':true,  'has-error': errors.has('form-2.ultimaParticipacion') }" :disabled="has_competition == true">
                                                     <div class="input-group-btn">
-                                                        <button class="btn btn-default" type="button" data-role="trigger" :class="{'has-error': errors.has('form-2.ultimaParticipacion') }"  :disabled="has_competition == true"> 
+                                                        <button class="btn btn-default" type="button" data-role="trigger" :class="{'has-error': errors.has('form-2.ultimaParticipacion') }"  :disabled="has_competition == true">
                                                             <i  class="glyphicon glyphicon-calendar"></i>
                                                         </button>
                                                     </div>
@@ -381,7 +381,7 @@
                                                 :debounce="250"
                                                 :options="olas"
                                                 v-model="createAtleta.olaPreferida"
-                                                placeholder="Seleccione ola favorita" 
+                                                placeholder="Seleccione ola favorita"
                                                 label="name">
                                             </v-select>
                                             <div class="clearfix"></div>
@@ -391,7 +391,7 @@
                                             </span>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="col-xs-12 col-sm-4">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('form-2.logros') }" >
                                             <label for="">Logros</label>
@@ -408,7 +408,7 @@
                                                 :debounce="250"
                                                 :options="playas"
                                                 v-model="createAtleta.playaPractica"
-                                                placeholder="Seleccione Playa" 
+                                                placeholder="Seleccione Playa"
                                                 label="nombre">
                                             </v-select>
                                             <span class="help-block" for="playaPractica" v-bind:data-error="errors.first('form-2.playaPractica')">
@@ -435,19 +435,19 @@
                                     </div>
                                 </div>
                             </form>
-                            <!---#################################################################################--> 
-                            <!---#################################################################################--> 
+                            <!---#################################################################################-->
+                            <!---#################################################################################-->
                             <!---                  FORM JUEz                                 #####################-->
-                            <!-- #################################################################################--> 
-                            <!---#################################################################################--> 
-                            <form @submit.prevent="submitJuez('form-3')" action="" v-if="type.name == 'Juez'" data-vv-scope="form-3">    
+                            <!-- #################################################################################-->
+                            <!---#################################################################################-->
+                            <form @submit.prevent="submitJuez('form-3')" action="" v-if="type.name == 'Juez'" data-vv-scope="form-3">
                                 <div v-if="type.name == 'Juez'">
                                     <h3>Información del Juez</h3>
                                     <div class="col-xs-12 col-sm-12">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('form-2.descripcion') }" >
                                             <label for="">Descripcion del juez</label>
-                                            <textarea v-model="createJuez.descripcion" class="form-control" name="descripcion" rows="2"  data-vv-as="Descripcion del juez" v-validate="'required'"> 
-                                                
+                                            <textarea v-model="createJuez.descripcion" class="form-control" name="descripcion" rows="2"  data-vv-as="Descripcion del juez" v-validate="'required'">
+
                                             </textarea>
                                             <span class="help-block" for="descripcion" v-bind:data-error="errors.first('form-3.descripcion')">
                                                 {{ errors.first('form-3.descripcion') }}
@@ -459,10 +459,10 @@
                                         Agregar certificaciones:
                                     </h3>
                                     <div class="col-sm-12">
-                                        <form @submit.prevent="add_certificacion('form-4')" action="" data-vv-scope="form-4">    
+                                        <form @submit.prevent="add_certificacion('form-4')" action="" data-vv-scope="form-4">
 
                                             <div class="col-sm-5">
-                                                
+
                                                 <div class="col-xs-12">
                                                     <div class="fgroup">
                                                         <label for="">Titulo</label>
@@ -473,14 +473,14 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-12">
-                                                    
+
                                                     <div class="fgroup"  :class="{ 'has-error': errors.has('form-4.fecha') }">
                                                         <label for="">Fecha</label>
                                                         <dropdown class="form-group">
                                                             <div class="input-group">
                                                                 <input type="text" id="fecha" name="fecha" class="form-control" data-vv-as="Fecha" v-model="newCert.fecha" v-validate="'required|date_format:YYYY-MM-DD'" :class="{'datepicker':true,  'has-error': errors.has('form-4.fecha') }">
                                                                 <div class="input-group-btn">
-                                                                    <button class="btn btn-default" type="button" data-role="trigger" :class="{'has-error': errors.has('form-4.fecha') }" > 
+                                                                    <button class="btn btn-default" type="button" data-role="trigger" :class="{'has-error': errors.has('form-4.fecha') }" >
                                                                         <i  class="glyphicon glyphicon-calendar"></i>
                                                                     </button>
                                                                 </div>
@@ -528,7 +528,7 @@
                                                             <td>{{ props.row.lugar }}</td>
                                                             <td >
                                                                 <button type="button" class="margin btn btn-flat btn-sm btn-danger" @click="deleteCert(props.index)"><i aria-hidden="true" class="fa fa-trash-o"></i> Eliminar</button>
-                                                                
+
                                                             </td>
                                                           </template>
                                                     </vue-good-table>
@@ -546,19 +546,19 @@
                                     </div>
                                 </div>
                             </form>
-                            <!---#################################################################################--> 
-                            <!---#################################################################################--> 
+                            <!---#################################################################################-->
+                            <!---#################################################################################-->
                             <!---                  FORM Entrenador                                 #####################-->
-                            <!-- #################################################################################--> 
-                            <!---#################################################################################--> 
-                            <form @submit.prevent="submitEntrenador('form-5')" action="" v-if="type.name == 'Entrenador'" data-vv-scope="form-5">    
+                            <!-- #################################################################################-->
+                            <!---#################################################################################-->
+                            <form @submit.prevent="submitEntrenador('form-5')" action="" v-if="type.name == 'Entrenador'" data-vv-scope="form-5">
                                 <div v-if="type.name == 'Entrenador'">
                                     <h3>Información del Entrenador</h3>
                                     <div class="col-xs-12 col-sm-12">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('form-2.descripcion') }" >
                                             <label for="">Descripcion del Entrenador</label>
-                                            <textarea v-model="createEntrenador.descripcion" class="form-control" name="descripcion" rows="2"  data-vv-as="Descripcion del juez" v-validate="'required'"> 
-                                                
+                                            <textarea v-model="createEntrenador.descripcion" class="form-control" name="descripcion" rows="2"  data-vv-as="Descripcion del juez" v-validate="'required'">
+
                                             </textarea>
                                             <span class="help-block" for="descripcion" v-bind:data-error="errors.first('form-5.descripcion')">
                                                 {{ errors.first('form-5.descripcion') }}
@@ -575,12 +575,12 @@
                                     </div>
                                 </div>
                             </form>
-                            <!---#################################################################################--> 
-                            <!---#################################################################################--> 
+                            <!---#################################################################################-->
+                            <!---#################################################################################-->
                             <!---                  FORM Miembro Junta                                 #####################-->
-                            <!-- #################################################################################--> 
-                            <!---#################################################################################--> 
-                            <form @submit.prevent="submitMiembroJunta('form-6')" action="" v-if="type.name == 'Miembro Junta'" data-vv-scope="form-6">    
+                            <!-- #################################################################################-->
+                            <!---#################################################################################-->
+                            <form @submit.prevent="submitMiembroJunta('form-6')" action="" v-if="type.name == 'Miembro Junta'" data-vv-scope="form-6">
                                 <div v-if="type.name == 'Miembro Junta'">
                                     <h3>Información del Miembro Junta</h3>
                                     <div class="col-xs-12 col-sm-6">
@@ -590,7 +590,7 @@
                                                 :debounce="250"
                                                 :options="jerarquia"
                                                 v-model="createMiembroJunta.nivelJerarquia"
-                                                placeholder="Seleccione la jerarquia" 
+                                                placeholder="Seleccione la jerarquia"
                                                 label="name">
                                             </v-select>
                                             <span class="help-block" for="type" v-bind:data-error="errors.first('form-6.nivelJerarquia')">
@@ -655,7 +655,7 @@
                     "sabeLeer": false,
                     "tieneLesion": false,
                     "ladoPie": true,
-                    
+
                 },
                 type:{name: 'Juez'},
                 type: null,
@@ -689,7 +689,7 @@
                     {name: 'Sindico'},
 
                 ],
-                
+
                 idiomas:[
                     {name: 'Español'},
                     {name: 'Ingles'},
@@ -746,7 +746,7 @@
                 if ( val!= null ){
                     $.each(this.creaCert, function(index, val) {
                         val.juezId = this.juez
-                        console.log(val) 
+                        console.log(val)
 
                         //certificacionController.create(this, val)
                     });
@@ -775,7 +775,7 @@
                     "sabeLeer": false,
                     "tieneLesion": false,
                     "ladoPie": true,
-                    
+
                 },
                 this.type = null,
                 this.datosPersona = true
@@ -834,7 +834,6 @@
                 this.$validator.validateAll(scope).then(success => {
                     if (success) {
                         let persona = this.createPersona
-                        persona.id = 0
                         let entrenador = {
                             "id": 0,
                             "descripcion": this.createEntrenador.descripcion,
@@ -849,7 +848,7 @@
                         this.showAlert = true
                         this.errMsg = "Por favor complete el formulario"
                     }
-                    
+
                 });
 
             },
@@ -859,7 +858,6 @@
                 this.$validator.validateAll(scope).then(success => {
                     if (success) {
                         let persona = this.createPersona
-                        persona.id = 0
                         let miembroJunta = {
                             "id": 0,
                             "nivelJerarquia": this.createMiembroJunta.nivelJerarquia.name,
@@ -874,7 +872,7 @@
                         this.showAlert = true
                         this.errMsg = "Por favor complete el formulario"
                     }
-                    
+
                 });
 
             },
@@ -884,7 +882,6 @@
                 this.$validator.validateAll(scope).then(success => {
                     if (success) {
                         let persona = this.createPersona
-                        persona.id = 0
                         let juez = {
                             "id": 0,
                             "descripcion": this.createJuez.descripcion,
@@ -898,7 +895,7 @@
                         this.showAlert = true
                         this.errMsg = "Por favor complete el formulario"
                     }
-                    
+
                 });
 
             },
@@ -922,7 +919,6 @@
                        olaPreferida = this.createAtleta.olaPreferida.name
                        playaPractica = this.createAtleta.playaPractica.nombre
                        let persona = this.createPersona
-                       persona.id = 0
                        let atleta = {
                           "aniosPracticando": this.createAtleta.aniosPracticando == undefined ? 0 : parseInt(this.createAtleta.aniosPracticando),
                           "compitioFechas": this.createAtleta.compitioFechas == false ? 0 : 1,
@@ -962,7 +958,7 @@
             fetchData() {
                 playasController.index(this)
             },
-            
+
         }
 
     }
