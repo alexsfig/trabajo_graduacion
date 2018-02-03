@@ -2,11 +2,11 @@
     <div>
         <section class="content-header">
             <h1>
-                Miembros de Junta Directiva
+                Atletas
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li>Manejo de Miembros de Junta Directiva</li>
+                <li>Manejo de Atletas</li>
             </ol>
         </section>
         <section class="content" >
@@ -14,7 +14,7 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Manejo de Miembros de Junta Directiva</h3>
+                            <h3 class="box-title">Manejo de Atletas</h3>
                         </div>
                        
                         <div class="box-body">
@@ -30,27 +30,27 @@
                                 <vue-good-table
                                   title="Dynamic Table"
                                   :columns="columns"
-                                  :rows="juntamiembros"
+                                  :rows="atletas"
                                   :globalSearch="true"
                                   :paginate="true"
                                   styleClass="table table-striped table-condensed">
                                   <template slot="table-row" scope="props">
-                                    <td>{{ props.row.personaId.nombre}}</td> 
-                                    <td>{{ props.row.personaId.apellido}}</td> 
-                                    <td>{{ props.row.personaId.fechaNacimiento}}</td> 
-                                     <td>{{ props.row.personaId.dui}}</td> 
-                                     <td>{{ props.row.personaId.nit}}</td>
-                                     <td>{{ props.row.personaId.direccion}}</td>
-                                     <td>{{ props.row.personaId.telefono}}</td>
-                                     <td>{{ props.row.personaId.correo}}</td>
+                                    <td>{{props.row.personaId.nombre}}</td> 
+                                    <td>{{props.row.personaId.apellido}}</td> 
+                                     <td>{{ props.row.aniosPracticando}}</td> 
+                                     <td>{{ props.row.playaPractica}}</td> 
+                                     <td>{{ props.row.ladoPie}}</td>
+                                     <td>{{ props.row.olaPreferida}}</td>
+                                     <td>{{ props.row.logros}}</td>
+                                     <td>{{ props.row.rutinaConstancia}}</td>
                                       <td>{{ props.row.personaId.sexo}}</td>
-                                      <td>{{ props.row.nivelJerarquia}}</td>
+                                      <td>{{ props.row.edadInicio}}</td>
                                    
                                    
                                     <td>
-                                        <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="openModal=true, retrieveData(props.row.id)" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar</button>
+                                        <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="retrieveData(props.row.id, props.row)" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar</button>
                                         
-                                        <button type="button" class="margin btn btn-sm btn-flat btn-danger" @click="clickHandler(props.row.id, miembrojunta)" ><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
+                                        <button type="button" class="margin btn btn-sm btn-flat btn-danger" @click="clickHandler(props.row.id, atleta, props.row.personaId.nombre)" ><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
                                     </td>
                                   </template>
                                 </vue-good-table>
@@ -60,7 +60,7 @@
                     </div>    
                 </div>
             </div>
-            <modaljuntamiembros :methodSubmit="methodSubmit"  :title="'Actualizar'" :buttonMsg="'Actualizar'" :openModal="openModal" :miembrojunta="miembrojunta" v-on:openChange="isChange"></modaljuntamiembros>
+       <!--     <modalentrenadores :methodSubmit="methodSubmit"  :title="'Actualizar'" :buttonMsg="'Actualizar'" :openModal="openModal" :entrenador="entrenador" v-on:openChange="isChange"></modalentrenadores> -->
          
             
 
@@ -69,12 +69,12 @@
 </template>
 
 <script>
-    import juntamiembrosController from '../../controllers/juntamiembros.js'
+    import atletasController from '../../controllers/atletas.js'
+    import ModalEntrenadores from './subcomponents/ModalEntrenadores' 
    
-    import ModalJuntaMiembros from './subcomponents/ModalJuntaMiembros' 
    
     export default {
-        name: 'juntamiembros',
+        name: 'atletas',
         data() {
             return {
                 columns: [
@@ -90,43 +90,43 @@
                     },
 
                     {
-                      label: 'Fecha de Nacimiento',
-                      field: 'fechaNacimiento',
+                      label: 'Años Practicando',
+                      field: 'aniosPracticando',
                       filterable: true,
                     },
                      {
-                      label: 'Dui',
-                      field: 'dui',
+                      label: 'Playa Practica',
+                      field: 'playaPractica',
                       filterable: true,
                     },
                     {
-                      label: 'Nit',
-                      field: 'nit',
+                      label: 'Lado de Pie',
+                      field: 'ladoPie',
                       filterable: true,
                     },
                     {
-                      label: 'Direccion',
-                      field: 'direccion',
+                      label: 'Ola Preferida',
+                      field: 'olaPreferida',
                       filterable: true,
                     },
                     {
-                      label: 'Telefono',
-                      field: 'telefono',
+                      label: 'Logros',
+                      field: 'logros',
                       filterable: true,
                     },
                     {
-                      label: 'Correo',
-                      field: 'correo',
+                      label: 'Rutina Constancia',
+                      field: 'rutinaConstancia',
                       filterable: true,
                     },
                     {
                       label: 'Sexo',
-                      field: 'sexo',
+                      field: 'personaId.sexo',
                       filterable: true,
                     },
                     {
-                      label: 'Nivel de Jerarquia',
-                      field: 'nivelJerarquia',
+                      label: 'Edad Inicio',
+                      field: 'edadInicio',
                       filterable: true,
                     },
                     
@@ -146,17 +146,17 @@
                 isLogin: false,
                 // We need to initialize the component with any
                 // properties that will be used in it
-                juntamiembros: [],
-                miembrojunta: {}
+                atletas: [],
+                atleta: {}
                 
 
             
             }
         },
-        components:{
-            "modaljuntamiembros": ModalJuntaMiembros
+       components:{
+            "modalentrenadores": ModalEntrenadores
             
-        },
+        }, 
         created() {
             this.fetchData()
         },
@@ -164,26 +164,26 @@
             '$route': 'fetchData'
         },
         methods: {
-            clickHandler(id, miembrojunta) {
+            clickHandler(id, atleta, nombre) {
                 let swal = this.$swal
                 let context = this
                 swal({
                     title: 'Estas Seguro?',
-                    html: 'No podras recuperar la informacion del miembro <b>' + miembrojunta.nivelJerarquia + '</b>',
+                    html: 'No podras recuperar la informacion del atleta <b>' + nombre + '</b>',
                     type: 'error',
                     showCancelButton: true,
                     confirmButtonText: 'Si, Eliminar!',
                     cancelButtonText: 'No, Mantener'
                 }).then(
                     function() {
-                        juntamiembrosController.delete(context, id, swal)
+                        atletasController.delete(context, id, swal)
                     }, 
                     function(dismiss) {
                       // dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
                       if (dismiss === 'cancel') {
                         swal(
                           'Cancelado',
-                          'El miembro no se elimino',
+                          'El Atleta no se elimino',
                           'error'
                         )
                       }
@@ -200,14 +200,16 @@
             },
             dismissCallback (msg) {
                 this.openModal =false
-                juntamiembrosController.index(this)
+                atletasController.index(this)
                 this.fetchData()
             },
             fetchData() {
-                juntamiembrosController.index(this)
+                atletasController.index(this)
             },
-            retrieveData(id) {
-                juntamiembrosController.retrieve(this, id)
+            retrieveData(id, atleta) {
+                atletasController.retrieve(this, id)
+                this.$router.push({name: 'AtletasShow', params: { id: id, atleta:atleta}}); 
+              
             },
         }
 

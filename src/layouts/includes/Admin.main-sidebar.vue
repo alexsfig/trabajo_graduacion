@@ -104,6 +104,11 @@
 		                    </router-link>
 		                </li> 
 		                <li>
+		                    <router-link to="/admin/atletas">
+		                        <i class="fa fa-male" aria-hidden="true"></i> <span>Manejo de Atletas</span>
+		                    </router-link>
+		                </li> 
+		                <li>
 		                    <router-link to="/admin/juntamiembros/">
 		                        <i class="fa fa-sitemap" aria-hidden="true"></i> <span>Manejo Miembros</span>
 		                    </router-link>
@@ -126,6 +131,29 @@
 		              
 		            </ul>
 		        </li>
+
+
+		        <li class="treeview">
+		            <router-link to="#">
+		                <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+		                <span>Competencias</span>
+		                <span class="pull-right-container">
+		                    <i class="fa fa-angle-left pull-right"></i>
+		                </span>                    
+		            </router-link>
+		            <ul class="treeview-menu">
+		                <li>
+		                    <router-link to="/admin/categorias/">
+		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Manejo de Categorias</span>
+		                    </router-link>
+		                </li>
+		                <li>
+		                    <router-link to="/admin/categorias/create">
+		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Agregar Categorias</span>
+		                    </router-link>
+		                </li>
+		            </ul>
+		        </li>
 				
 				
 				
@@ -139,6 +167,10 @@
 		                <i class="fa fa-user-plus" aria-hidden="true"></i> <span>Roles</span>
 		            </router-link>
 		        </li>
+
+
+
+
 		        <!-- <li class="treeview">
 		            <router-link to="#">
 		                <i class="fa fa-tasks" aria-hidden="true"></i>

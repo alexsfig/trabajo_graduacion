@@ -2,11 +2,11 @@
     <div>
         <section class="content-header">
             <h1>
-                Miembros de Junta Directiva
+                Categorias
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li>Manejo de Miembros de Junta Directiva</li>
+                <li>Manejo de Categorias</li>
             </ol>
         </section>
         <section class="content" >
@@ -14,43 +14,36 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Manejo de Miembros de Junta Directiva</h3>
+                            <h3 class="box-title">Manejo de Categorias</h3>
                         </div>
                        
                         <div class="box-body">
                             
-                         <!--   <div class="box-action">
-                                <router-link to="/admin/juntamiembros/create" class="btn btn-default btn-flat">
-                                    <i class="fa fa-plus"></i> Nuevo Miembro
+                            <div class="box-action">
+                                <router-link to="/admin/categorias/create" class="btn btn-default btn-flat">
+                                    <i class="fa fa-plus"></i> Nueva Categoria
                                 </router-link>
-                            </div> -->
+                            </div>
 
                             <div class="table-responsive">
                               
                                 <vue-good-table
                                   title="Dynamic Table"
                                   :columns="columns"
-                                  :rows="juntamiembros"
+                                  :rows="categorias"
                                   :globalSearch="true"
                                   :paginate="true"
                                   styleClass="table table-striped table-condensed">
                                   <template slot="table-row" scope="props">
-                                    <td>{{ props.row.personaId.nombre}}</td> 
-                                    <td>{{ props.row.personaId.apellido}}</td> 
-                                    <td>{{ props.row.personaId.fechaNacimiento}}</td> 
-                                     <td>{{ props.row.personaId.dui}}</td> 
-                                     <td>{{ props.row.personaId.nit}}</td>
-                                     <td>{{ props.row.personaId.direccion}}</td>
-                                     <td>{{ props.row.personaId.telefono}}</td>
-                                     <td>{{ props.row.personaId.correo}}</td>
-                                      <td>{{ props.row.personaId.sexo}}</td>
-                                      <td>{{ props.row.nivelJerarquia}}</td>
-                                   
-                                   
+                                    <td>{{ props.row.nombreCategoria }}</td>
+                                    <td>{{ props.row.edadMin}}</td>
+                                    <td>{{ props.row.edadMax}}</td>
+                                    <td>{{ props.row.descripcionCategoria}}</td>
+                                    <td>{{ props.row.sexo}}</td>
                                     <td>
                                         <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="openModal=true, retrieveData(props.row.id)" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar</button>
                                         
-                                        <button type="button" class="margin btn btn-sm btn-flat btn-danger" @click="clickHandler(props.row.id, miembrojunta)" ><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
+                                        <button type="button" class="margin btn btn-sm btn-flat btn-danger" @click="clickHandler(props.row.id, categoria, props.row.nombreCategoria)" ><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
                                     </td>
                                   </template>
                                 </vue-good-table>
@@ -60,7 +53,7 @@
                     </div>    
                 </div>
             </div>
-            <modaljuntamiembros :methodSubmit="methodSubmit"  :title="'Actualizar'" :buttonMsg="'Actualizar'" :openModal="openModal" :miembrojunta="miembrojunta" v-on:openChange="isChange"></modaljuntamiembros>
+            <modalCategorias :methodSubmit="methodSubmit"  :title="'Actualizar Categoria'" :buttonMsg="'Actualizar'" :openModal="openModal" :categoria="categoria" v-on:openChange="isChange"></modalCategorias> 
          
             
 
@@ -69,54 +62,33 @@
 </template>
 
 <script>
-    import juntamiembrosController from '../../controllers/juntamiembros.js'
+    import categoriasController from '../../controllers/categorias.js'
    
-    import ModalJuntaMiembros from './subcomponents/ModalJuntaMiembros' 
+    import ModalCategorias from './subcomponents/ModalCategorias'
    
     export default {
-        name: 'juntamiembros',
+        name: 'categorias',
         data() {
             return {
                 columns: [
                     {
-                      label: 'Nombre',
-                      field: 'personaId.nombre',
+                      label: 'Nombre Categoria',
+                      field: 'nombreCategoria',
                       filterable: true,
                     },
                     {
-                      label: 'Apellido',
-                      field: 'personaId.apellido',
-                      filterable: true,
+                      label: 'Edad Minima',
+                      field: 'edadMin',
+                     filterable: true,
                     },
-
                     {
-                      label: 'Fecha de Nacimiento',
-                      field: 'fechaNacimiento',
-                      filterable: true,
-                    },
-                     {
-                      label: 'Dui',
-                      field: 'dui',
+                      label: 'Edad Maxima',
+                      field: 'edadMax',
                       filterable: true,
                     },
                     {
-                      label: 'Nit',
-                      field: 'nit',
-                      filterable: true,
-                    },
-                    {
-                      label: 'Direccion',
-                      field: 'direccion',
-                      filterable: true,
-                    },
-                    {
-                      label: 'Telefono',
-                      field: 'telefono',
-                      filterable: true,
-                    },
-                    {
-                      label: 'Correo',
-                      field: 'correo',
+                      label: 'Descripcion',
+                      field: 'descripcionCategoria',
                       filterable: true,
                     },
                     {
@@ -124,12 +96,6 @@
                       field: 'sexo',
                       filterable: true,
                     },
-                    {
-                      label: 'Nivel de Jerarquia',
-                      field: 'nivelJerarquia',
-                      filterable: true,
-                    },
-                    
                      {
                       label: 'Accion',
                       field: '',
@@ -146,15 +112,15 @@
                 isLogin: false,
                 // We need to initialize the component with any
                 // properties that will be used in it
-                juntamiembros: [],
-                miembrojunta: {}
+                categorias: [],
+                categoria: {}
                 
 
             
             }
         },
         components:{
-            "modaljuntamiembros": ModalJuntaMiembros
+            "modalCategorias": ModalCategorias
             
         },
         created() {
@@ -164,26 +130,26 @@
             '$route': 'fetchData'
         },
         methods: {
-            clickHandler(id, miembrojunta) {
+            clickHandler(id, categoria, nombre) {
                 let swal = this.$swal
                 let context = this
                 swal({
                     title: 'Estas Seguro?',
-                    html: 'No podras recuperar la informacion del miembro <b>' + miembrojunta.nivelJerarquia + '</b>',
+                    html: 'No podras recuperar la informacion de la Categoria <b>' + nombre + '</b>',
                     type: 'error',
                     showCancelButton: true,
                     confirmButtonText: 'Si, Eliminar!',
                     cancelButtonText: 'No, Mantener'
                 }).then(
                     function() {
-                        juntamiembrosController.delete(context, id, swal)
+                        categoriasController.delete(context, id, swal)
                     }, 
                     function(dismiss) {
                       // dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
                       if (dismiss === 'cancel') {
                         swal(
                           'Cancelado',
-                          'El miembro no se elimino',
+                          'La Categoria no se elimino',
                           'error'
                         )
                       }
@@ -200,14 +166,14 @@
             },
             dismissCallback (msg) {
                 this.openModal =false
-                juntamiembrosController.index(this)
+                categoriasController.index(this)
                 this.fetchData()
             },
             fetchData() {
-                juntamiembrosController.index(this)
+                categoriasController.index(this)
             },
             retrieveData(id) {
-                juntamiembrosController.retrieve(this, id)
+                categoriasController.retrieve(this, id)
             },
         }
 

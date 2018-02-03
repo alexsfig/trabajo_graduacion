@@ -5,7 +5,7 @@ import {HTTP} from '../common_class/http.js';
 import {router} from '../router/index.js'
 import moment from 'moment'
 // define base url to Employees
-const JUECES = 'juez/'
+const CATEGORIAS = 'categoria/'
 
 
 
@@ -19,18 +19,17 @@ export default {
         
         Method to create users, pass object Users
     */
-   /* create(context, noticias){
+   create(context, categorias){
         context.showAlert = false 
          context.showSuccess = false 
-          noticias.id=0;
-          noticias.usuarioId= 1;
-          //noticias.fechaInicio = moment(noticias.fechaInicio).format('YYYY-MM-DD');
-        HTTP.post(NOTICIAS, noticias)
+          categorias.id=0;
+         
+        HTTP.post(CATEGORIAS, categorias)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
                     context.showSuccess = true
-                    context.successMsg = "Noticia Creada"
-                    context.createNoticias = {}
+                    context.successMsg = "Categoria Creada"
+                    context.createCategorias = {}
                     context.errors.clear()
                 }
             })
@@ -40,22 +39,22 @@ export default {
                     context.errMsg = err.response.data
                 }
             })
-    }, */
+    }, 
     /* 
         Method to update user, pass context, object Users and user id
     */
    
-    update(context, jueces){
+    update(context, categorias){
         context.showAlert = false 
         context.showSuccess = false 
-        HTTP.put(JUECES, jueces)
+        HTTP.put(CATEGORIAS, categorias)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
                     var id = resp.data.id
                     context.showAlert = false 
                 }
                 context.showSuccess = true
-                context.successMsg = "Juez Actualizado"
+                context.successMsg = "Categoria Actualizada"
             })
             .catch((err) => {
                 context.showAlert = true
@@ -72,9 +71,9 @@ export default {
         Method to get user, pass only the context, id will be taken from url
     */
     show(context){
-        HTTP.get(JUECES + context.$route.params.id+'/')
+        HTTP.get(CATEGORIAS + context.$route.params.id+'/')
             .then((resp) => {
-                context.juez = resp.data
+                context.categoria = resp.data
 
 
             })
@@ -86,9 +85,9 @@ export default {
         Method to display all users, pass only the context
     */
    index(context){
-        HTTP.get(JUECES)
+        HTTP.get(CATEGORIAS)
             .then((resp) => {
-                context.jueces = resp.data
+                context.categorias = resp.data
                 console.log(resp.data)
             })
             .catch((err) => {
@@ -99,10 +98,10 @@ export default {
         Method to retrieve user, pass the context and user id, use this method when you need to edit user
     */
     retrieve(context, id){
-        HTTP.get(JUECES + id)
+        HTTP.get(CATEGORIAS + id)
             .then((resp) => {
                 console.log(resp)
-                context.juez = resp.data;
+                context.categoria = resp.data;
             })
             .catch((err) => {
               console.log(err)
@@ -112,14 +111,13 @@ export default {
         Method to delete user, pass the context and user id, use this method when you need to delete user
     */
     delete(context, id, swal) {
-        HTTP.delete(JUECES + id)
+        HTTP.delete(CATEGORIAS + id)
             .then((resp) => {
                 console.log(resp);
-                swal("Deleted!", "El juez ha sido eliminado", "success")
+                swal("Deleted!", "La Categoria ha sido eliminada", "success")
                 context.fetchData();
             })
-            .catch((err) => {   
-                          
+            .catch((err) => {               
                 swal("Oh snap!", "Ocurrio un error.", "error")
             }) 
     } 
