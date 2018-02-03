@@ -31,9 +31,7 @@
                             
                          
                           <form @submit.prevent="validateMethod" role="form">
-                                <div class="col-xs-12 text-left">
-                                        <button type="button" @click="volverAtletas" class="btn btn-flat btn-sm btn-warning margin "><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Regresar a Manejo de Atletas</button>
-                                    </div>
+                                
                                
                                     <h3>Información del Atleta: {{this.$route.params.atleta.personaId.nombre}}</h3>
                                     <div class="col-xs-12 col-sm-4">
@@ -78,7 +76,7 @@
                                             <label for="">Sabe Escribir</label>
                                             <br>
                                             <span class="pull-right">
-                                                <toggle-button   v-model="atleta.sabeEscribir"   :width="130" :height="35" id="changed-font" :labels="{checked: 'Si', unchecked: 'No'}" :color="{checked: '#37b53c', unchecked: '#f55d5d'}"/>
+                                                <toggle-button :sync="true"  v-model="atleta.sabeEscribir"   :width="130" :height="35" id="changed-font" :labels="{checked: 'Si', unchecked: 'No'}" :color="{checked: '#37b53c', unchecked: '#f55d5d'}"/>
                                             </span>
                                             <span class="help-block" for="sabeEscribir" v-bind:data-error="errors.first('sabeEscribir')">
                                                 {{ errors.first('sabeEscribir') }}
@@ -90,7 +88,8 @@
                                             <label for="">Sabe Leer</label>
                                             <br>
                                             <span class="pull-right">
-                                                <toggle-button  v-model="atleta.sabeFirmar"  :width="130" :height="35" id="changed-font" :labels="{checked: 'Si', unchecked: 'No'}" :color="{checked: '#37b53c', unchecked: '#f55d5d'}"/>
+                                                <toggle-button :sync="true" v-model="atleta.sabeLeer"  :width="130" :height="35" id="changed-font"  :labels="{checked: 'Si', unchecked: 'No'}" :color="{checked: '#37b53c', unchecked: '#f55d5d'}"/>
+
                                             </span>
                                             <span class="help-block" for="sabeFirmar" v-bind:data-error="errors.first('sabeFirmar')">
                                                 {{ errors.first('sabeFirmar') }}
@@ -102,7 +101,7 @@
                                             <label for="">Sabe Firmar</label>
                                             <br>
                                             <span class="pull-right">
-                                                <toggle-button  v-model="atleta.sabeLeer"  :value="true" :width="130" :height="35" id="changed-font" :labels="{checked: 'Si', unchecked: 'No'}" :color="{checked: '#37b53c', unchecked: '#f55d5d'}"/>
+                                                <toggle-button :sync="true" v-model="atleta.sabeFirmar"  :value="true" :width="130" :height="35" id="changed-font" :labels="{checked: 'Si', unchecked: 'No'}" :color="{checked: '#37b53c', unchecked: '#f55d5d'}"/>
                                             </span>
                                             <span class="help-block" for="sabeLeer" v-bind:data-error="errors.first('sabeLeer')">
                                                 {{ errors.first('sabeLeer') }}
@@ -146,7 +145,7 @@
                                             <label for="">Tiene Lesion</label>
                                             <br>
                                             <span class="pull-right">
-                                                <toggle-button  v-model="atleta.tieneLesion"  :value="true" :width="130" :height="35" id="changed-font" :labels="{checked: 'Si', unchecked: 'No'}" :color="{checked: '#37b53c', unchecked: '#f55d5d'}" @change="onChangeLesion"/>
+                                                <toggle-button :sync="true"  v-model="atleta.tieneLesion"  :value="true" :width="130" :height="35" id="changed-font" :labels="{checked: 'Si', unchecked: 'No'}" :color="{checked: '#37b53c', unchecked: '#f55d5d'}" @change="onChangeLesion"/>
                                             </span>
                                             <span class="help-block" for="tieneLesion" v-bind:data-error="errors.first('tieneLesion')">
                                                 {{ errors.first('tieneLesion') }}
@@ -168,7 +167,7 @@
                                             <label for="">Ha competido en fechas</label>
                                             <br>
                                             <span class="pull-right">
-                                                <toggle-button  v-model="atleta.compitioFechas"  :value="true" :width="130" :height="35" id="changed-font" :labels="{checked: 'Si', unchecked: 'No'}" :color="{checked: '#37b53c', unchecked: '#f55d5d'}" @change="onChangeCompetition"/>
+                                                <toggle-button :sync="true"  v-model="atleta.compitioFechas"  :value="true" :width="130" :height="35" id="changed-font" :labels="{checked: 'Si', unchecked: 'No'}" :color="{checked: '#37b53c', unchecked: '#f55d5d'}" @change="onChangeCompetition"/>
                                             </span>
                                             <span class="help-block" for="compitioFechas" v-bind:data-error="errors.first('compitioFechas')">
                                                 {{ errors.first('compitioFechas') }}
@@ -225,7 +224,7 @@
                                             <label for="">Lado del Pie</label>
                                             <br>
                                             <span class="pull-right">
-                                                <toggle-button  v-model="atleta.ladoPie"  :value="true" :width="130" :height="35" id="changed-font" :labels="{checked: 'Izquierdo', unchecked: 'Derecho'}" :color="{checked: '#37b53c', unchecked: '#545bb3'}"/>
+                                                <toggle-button :sync="true"  v-model="atleta.ladoPie" :width="130" :height="35" id="changed-font" :labels="{checked: 'Izquierdo', unchecked: 'Derecho'}" :color="{checked: '#37b53c', unchecked: '#545bb3'}"/>
                                             </span>
                                             <span class="help-block" for="ladoPie" v-bind:data-error="errors.first('ladoPie')">
                                                 {{ errors.first('ladoPie') }}
@@ -363,6 +362,7 @@
                     {name: 'Miembro de Junta'},
 
                 ],
+                atletaUpdate:{},
                 idiomas:[
                     {name: 'Español'},
                     {name: 'Ingles'},
@@ -423,9 +423,28 @@
             this.atleta.tieneLesion = ( val.tieneLesion == 1 ? true : false)
             this.atleta.sabeFirmar = ( val.sabeFirmar == 1 ? true : false)
             this.atleta.compitioFechas =( val.compitioFechas == 1 ? true : false)
-            this.atleta.ladoPie =( val.ladoPie == 1 ? true : false)
-           
-             },
+            this.atleta.ladoPie =( val.ladoPie == "Izquierda" ? true : false)
+            this.atleta.idiomas = val.idiomas.replace(/\s/g, "")
+            this.atleta.idiomas = val.idiomas.split(",")
+            var idiomas = val.idiomas
+            var newArry = []
+            for (var i = idiomas.length - 1; i >= 0; i--) {
+                if (idiomas[i] != "") {
+                    newArry.push({
+                            name: idiomas[i]
+                    });
+                }
+            }
+            this.atleta.idiomas = newArry
+
+            this.atleta.olaPreferida = val.olaPreferida.replace(/\s/g, "")
+            var olaPreferida = val.olaPreferida
+            this.atleta.olaPreferida = {name: olaPreferida}
+            
+            var playaPractica = val.playaPractica
+            this.atleta.playaPractica = {nombre: playaPractica}
+
+        },
 
         },
         methods: {           
@@ -490,7 +509,43 @@
                 this.showSuccess = false
                 this.$validator.validateAll().then(success => {
                     if (success) {
-                        atletasController.update(this, this.atleta)
+                        let ladoPie, playaPractica, idiomas = '', olaPreferida;
+                       for (var i = this.atleta.idiomas.length - 1; i >= 0; i--) {
+                           idiomas = idiomas + ', ' + this.atleta.idiomas[i].name
+                       }
+                       if (this.atleta.ladoPie ==true) {
+                            ladoPie = 'Izquierda'
+                       }
+                       else{
+                            ladoPie = "Derecha"
+                       }
+                       olaPreferida = this.atleta.olaPreferida.name
+                       playaPractica = this.atleta.playaPractica.nombre
+                       let persona = this.createPersona
+                       let atleta = {
+                          "aniosPracticando": this.atleta.aniosPracticando == undefined ? 0 : parseInt(this.atleta.aniosPracticando),
+                          "compitioFechas": this.atleta.compitioFechas == false ? 0 : 1,
+                          "cuantasFechas": this.atleta.cuantasFechas == undefined ? 0 : parseInt(this.atleta.cuantasFechas),
+                          "descripcionLesion": this.atleta.descripcionLesion == undefined ? '' : this.atleta.descripcionLesion,
+                          "edadInicio": this.atleta.edadInicio == undefined ? 0 : parseInt(this.atleta.edadInicio),
+                          "id": this.atleta.id,
+                          "idiomas": idiomas == undefined ? '' : idiomas,
+                          "ladoPie": ladoPie == undefined ? '' :ladoPie,
+                          "logros": this.atleta.logros == undefined ? '' : this.atleta.logros,
+                          "nivelAcademico": this.atleta.nivelAcademico == undefined ? '' : this.atleta.nivelAcademico,
+                          "olaPreferida": olaPreferida == undefined ? '' : olaPreferida,
+                          "otrosEstudios": this.atleta.otrosEstudios == undefined ? '' : this.atleta.otrosEstudios,
+                          "personaId": this.atleta.personaId,
+                          "playaPractica": playaPractica == undefined ? '' : playaPractica,
+                          "rutinaConstancia": this.atleta.rutinaConstancia == undefined ? '' : this.atleta.rutinaConstancia,
+                          "sabeEscribir": this.atleta.sabeEscribir == false ? 0 : 1,
+                          "sabeFirmar": this.atleta.sabeFirmar == false ? 0 : 1,
+                          "sabeLeer": this.atleta.sabeLeer == false ? 0 : 1,
+                          "tieneLesion": this.atleta.tieneLesion == false ? 0 : 1,
+                          "uanioCursado": this.atleta.uanioCursado == undefined ? '' : this.atleta.uanioCursado,
+                          "ultimaParticipacion": this.atleta.ultimaParticipacion == undefined ? '' : this.atleta.ultimaParticipacion
+                        }
+                        atletasController.update(this, atleta)
                     }
                     else{
                         this.errMsg= 'Error revisa el formulario'

@@ -2,11 +2,11 @@
     <div>
         <section class="content-header">
             <h1>
-                Categorias
+                Escuelas
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li>Manejo de Categorias</li>
+                <li>Manejo de Escuelas</li>
             </ol>
         </section>
         <section class="content" >
@@ -14,38 +14,30 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Manejo de Categorias</h3>
+                            <h3 class="box-title">Manejo de Escuelas</h3>
                         </div>
                        
                         <div class="box-body">
                             
-                            <div class="box-action">
-                                <router-link to="/admin/categorias/create" class="btn btn-default btn-flat">
-                                    <i class="fa fa-plus"></i> Nueva Categoria
-                                </router-link>
-                            </div>
-
+                        
                             <div class="table-responsive">
                               
                                 <vue-good-table
                                   title="Dynamic Table"
                                   :columns="columns"
-                                  :rows="categorias"
+                                  :rows="escuelas"
                                   :globalSearch="true"
                                   :paginate="true"
                                   styleClass="table table-striped table-condensed">
                                   <template slot="table-row" scope="props">
-                                    <td>{{ props.row.nombreCategoria }}</td>
-                                    <td>{{ props.row.edadMin}}</td>
-                                    <td>{{ props.row.edadMax}}</td>
-                                    <td>{{ props.row.descripcionCategoria}}</td>
-                                    <td>{{ 
-                                      (props.row.sexo == 'F') ? 'Femenino' : ((props.row.sexo == 'M') ? 'Masculino' : 'Mixto')
-                                    }}</td>
+                                    <td>{{ props.row.entidadId.nombre }}</td>
+                                    <td>{{ props.row.fundacion}}</td>
+                                    <td>{{ props.row.playaId.nombre}}</td>
+                                    <td>{{ props.row.entrenadorId.personaId.nombre}}</td>
                                     <td>
                                         <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="openModal=true, retrieveData(props.row.id)" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar</button>
                                         
-                                        <button type="button" class="margin btn btn-sm btn-flat btn-danger" @click="clickHandler(props.row.id, categoria, props.row.nombreCategoria)" ><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
+                                        <button type="button" class="margin btn btn-sm btn-flat btn-danger" @click="clickHandler(props.row.id, escuela, props.row.entidadId.nombre)" ><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
                                     </td>
                                   </template>
                                 </vue-good-table>
@@ -55,7 +47,8 @@
                     </div>    
                 </div>
             </div>
-            <modalCategorias :methodSubmit="methodSubmit"  :title="'Actualizar Categoria'" :buttonMsg="'Actualizar'" :openModal="openModal" :categoria="categoria" v-on:openChange="isChange"></modalCategorias> 
+           <modalEscuelas :methodSubmit="methodSubmit"  :title="'Actualizar Escuela'" :buttonMsg="'Actualizar'" :openModal="openModal" 
+            :escuela="escuela" v-on:openChange="isChange" ></modalEscuelas>
          
             
 
@@ -64,38 +57,33 @@
 </template>
 
 <script>
-    import categoriasController from '../../controllers/categorias.js'
+    import escuelasController from '../../controllers/escuelas.js'
    
-    import ModalCategorias from './subcomponents/ModalCategorias'
+    import ModalEscuelas from './subcomponents/ModalEscuelas'
    
     export default {
-        name: 'categorias',
+        name: 'escuelas',
         data() {
             return {
                 columns: [
                     {
-                      label: 'Nombre Categoria',
-                      field: 'nombreCategoria',
+                      label: 'Nombre',
+                      field: 'entidadId.nombre',
                       filterable: true,
                     },
                     {
-                      label: 'Edad Minima',
-                      field: 'edadMin',
+                      label: 'Fundacion',
+                      field: 'fundacion',
                      filterable: true,
                     },
                     {
-                      label: 'Edad Maxima',
-                      field: 'edadMax',
+                      label: 'Nombre Playa',
+                      field: 'playaId.nombre',
                       filterable: true,
                     },
                     {
-                      label: 'Descripcion',
-                      field: 'descripcionCategoria',
-                      filterable: true,
-                    },
-                    {
-                      label: 'Sexo',
-                      field: this.fnSexo,
+                      label: 'Entrenador',
+                      field: 'entrenadorId.personaId.nombre',
                       filterable: true,
                     },
                      {
@@ -114,15 +102,15 @@
                 isLogin: false,
                 // We need to initialize the component with any
                 // properties that will be used in it
-                categorias: [],
-                categoria: {}
+                escuelas: [],
+                escuela: {}
                 
 
             
             }
         },
         components:{
-            "modalCategorias": ModalCategorias
+            "modalEscuelas": ModalEscuelas
             
         },
         created() {
@@ -132,41 +120,26 @@
             '$route': 'fetchData'
         },
         methods: {
-
-            fnSexo(rowObj)
-            {
-              let sexo;
-              if(rowObj.sexo == 'F')
-                return 'Femenino'
-              else if(rowObj.sexo == 'M')
-                return 'Masculino'
-              else if (rowObj.sexo == 'X')
-                return 'Mixto'
-             
-
-            }, 
-
-
-            clickHandler(id, categoria, nombre) {
+            clickHandler(id, escuela, nombre) {
                 let swal = this.$swal
                 let context = this
                 swal({
                     title: 'Estas Seguro?',
-                    html: 'No podras recuperar la informacion de la Categoria <b>' + nombre + '</b>',
+                    html: 'No podras recuperar la informacion de la escuela <b>' + nombre + '</b>',
                     type: 'error',
                     showCancelButton: true,
                     confirmButtonText: 'Si, Eliminar!',
                     cancelButtonText: 'No, Mantener'
                 }).then(
                     function() {
-                        categoriasController.delete(context, id, swal)
+                        escuelasController.delete(context, id, swal)
                     }, 
                     function(dismiss) {
                       // dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
                       if (dismiss === 'cancel') {
                         swal(
                           'Cancelado',
-                          'La Categoria no se elimino',
+                          'La escuela no se elimino',
                           'error'
                         )
                       }
@@ -183,14 +156,14 @@
             },
             dismissCallback (msg) {
                 this.openModal =false
-                categoriasController.index(this)
+                escuelasController.index(this)
                 this.fetchData()
             },
             fetchData() {
-                categoriasController.index(this)
+                escuelasController.index(this)
             },
             retrieveData(id) {
-                categoriasController.retrieve(this, id)
+                escuelasController.retrieve(this, id)
             },
         }
 

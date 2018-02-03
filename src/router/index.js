@@ -40,6 +40,10 @@ import CategoriasCreate from '@/components/categorias/Create'
 import CategoriasShow from '@/components/categorias/Show'
 import CategoriasIndex from '@/components/categorias/Index'
 
+import EscuelasCreate from '@/components/escuelas/Create'
+import EscuelasShow from '@/components/escuelas/Show'
+import EscuelasIndex from '@/components/escuelas/Index'
+
 
 // Import base templates
 import AdminTemplate from '@/layouts/Admin'
@@ -220,6 +224,21 @@ export default new Router({
           path: 'categorias/:id',
           name: 'CategoriasShow',
           component: CategoriasShow
+        },
+        {
+          path: 'escuelas',
+          name: 'EscuelasIndex',
+          component: EscuelasIndex
+        },
+        {
+          path: 'escuelas/create',
+          name: 'EscuelasCreate',
+          component: EscuelasCreate
+        },
+        {
+          path: 'escuelas/:id',
+          name: 'EscuelasShow',
+          component: EscuelasShow
         }
       ]
     },

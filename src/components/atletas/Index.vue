@@ -43,7 +43,9 @@
                                      <td>{{ props.row.olaPreferida}}</td>
                                      <td>{{ props.row.logros}}</td>
                                      <td>{{ props.row.rutinaConstancia}}</td>
-                                      <td>{{ props.row.personaId.sexo}}</td>
+                                    <td>{{ 
+                                      (props.row.personaId.sexo == 'F' || props.row.personaId.sexo == 'f') ? 'Femenino' : 'Masculino'
+                                    }}</td>
                                       <td>{{ props.row.edadInicio}}</td>
                                    
                                    
