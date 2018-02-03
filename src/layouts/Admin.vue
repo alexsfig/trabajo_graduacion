@@ -1,16 +1,17 @@
 <template>
     <div class="wrapper">
-        
+
         <header class="main-header">
             <main-header></main-header>
         </header>
-        
+
         <aside class="main-sidebar">
             <main-sidebar></main-sidebar>
         </aside>
-        
+
         <div class="content-wrapper">
-            <router-view/></router-view>
+            <router-view/>
+          </router-view>
         </div>
 
         <footer class="main-footer">
@@ -19,7 +20,7 @@
             </div>
             <strong>Copyright &copy; 2014-2016 <a href="#">SWELL</a>.</strong> All rights reserved.
         </footer>
-        
+
         <!-- <LoginForm></LoginForm> -->
     </div>
 </template>
@@ -27,7 +28,7 @@
 <script>
     import mainHeader from './includes/Admin.main-header.vue'
     import mainSidebar from './includes/Admin.main-sidebar.vue'
-    
+
     export default {
         name: 'app',
         components: {
@@ -40,18 +41,18 @@
         },
         methods: {
             resize() {
-                window.dispatchEvent(new Event('resize'));                
+                window.dispatchEvent(new Event('resize'));
             },
             ready() {
-                
+
                 $(".sidebar-menu > li").each(function(i) {
                     var li_parent = $(this);
 
-                    if (li_parent.hasClass("treeview")) 
+                    if (li_parent.hasClass("treeview"))
                     {
                         li_parent.find(".treeview-menu > li > a").each(function() {
-                            if ($(this).hasClass("router-link-exact-active")) 
-                            {                                
+                            if ($(this).hasClass("router-link-exact-active"))
+                            {
                                 $(this).parent().addClass("active");
                                 $(this).parent().parent().parent().addClass("active menu-open");
                                 $(this).parent().parent().slideDown();
@@ -70,14 +71,14 @@
                 FastClick.attach(document.body);
 
                 $(document).on("click", ".sidebar-menu > li > a", function(event) {
-                    
+
                     var _this = $(this);
 
                     $(".sidebar-menu li").removeClass("active menu-open");
                     $(".treeview-menu").hide();
 
                     _this.parent().addClass("active");
-                   
+
                    if (_this.parent().hasClass("treeview")) {
 
                         if (_this.parent().find(".treeview-menu").is(":visible")) {
@@ -94,14 +95,14 @@
             }
         }
     }
-    
-    
+
+
     import '../assets/bower_components/jquery/jquery.min.js';
     import '../assets/bower_components/bootstrap/js/bootstrap.min.js';
     import '../assets/bower_components/fastclick/fastclick.js';
     import '../assets/bower_components/AdminLTE/adminlte.min.js';
 
-    
+
 
 </script>
 

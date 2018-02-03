@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper">
-        <div id="login">            
+        <div id="login">
             <router-view/>
         </div>
     </div>
@@ -19,4 +19,3 @@
 @import '../assets/bower_components/AdminLTE/AdminLTE.min.css';
 
 </style>
-

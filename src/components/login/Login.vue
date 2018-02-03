@@ -41,7 +41,7 @@
 	            <div class="row">
 	                <div class="col-xs-12 text-right">
 	                    <button type="submit" name="action" class="btn btn-primary btn-flat">Iniciar Sesión</button>
-	                </div>	                
+	                </div>
 	            </div>
 	        </form>
 
@@ -67,7 +67,7 @@ export default {
 		validateBeforeSubmit() {
 			this.$validator.validateAll().then((result) => {
 
-				if (result) 
+				if (result)
 				{
 					var credentials = {
 						usuario: this.email,
@@ -88,5 +88,8 @@ export default {
 </script>
 
 <style lang="css">
+  .login-box, .register-box{
+		margin-top: 20px;
+	}  
 	.has-error { color: #dd4b39 !important }
 </style>

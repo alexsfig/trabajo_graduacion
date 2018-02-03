@@ -2,13 +2,13 @@
 	<div class="wrapper-sidebar">
 		<!-- sidebar: style can be found in sidebar.less -->
 		<section class="sidebar">
-		    
+
 		    <!-- Sidebar user panel -->
 		    <div class="user-panel">
 		        <div class="pull-left image">
 		            <img src="../../assets/images/logo3.png" class="img-circle" alt="User Image">
 		        </div>
-		        
+
 		        <div class="pull-left info">
 		            <p>{{usuario}}</p>
 		            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
@@ -30,11 +30,11 @@
 
 		    <!-- sidebar menu: : style can be found in sidebar.less -->
 		    <ul class="sidebar-menu" data-widget="tree">
-		        
+
 		        <li class="header">Navegación principal</li>
 
 		        <li>
-		            <router-link to="#">
+		            <router-link to="/admin/dashboard">
 		                <i class="fa fa-tachometer" aria-hidden="true"></i> <span>Dashboard</span>
 		            </router-link>
 		        </li>
@@ -44,7 +44,7 @@
 		                <span>Usuarios</span>
 		                <span class="pull-right-container">
 		                    <i class="fa fa-angle-left pull-right"></i>
-		                </span>                    
+		                </span>
 		            </router-link>
 		            <ul class="treeview-menu">
 		                <li>
@@ -59,14 +59,14 @@
 		                </li>
 		            </ul>
 		        </li>
-				
+
 				 <li class="treeview">
 		            <router-link to="#">
 		                <i class="fa fa-newspaper-o" aria-hidden="true"></i>
 		                <span>Noticias</span>
 		                <span class="pull-right-container">
 		                    <i class="fa fa-angle-left pull-right"></i>
-		                </span>                    
+		                </span>
 		            </router-link>
 		            <ul class="treeview-menu">
 		                <li>
@@ -81,7 +81,7 @@
 		                </li>
 		            </ul>
 		        </li>
-				
+
 
 				<li class="treeview">
 		            <router-link to="#">
@@ -89,7 +89,7 @@
 		                <span>Perfiles Personales</span>
 		                <span class="pull-right-container">
 		                    <i class="fa fa-angle-left pull-right"></i>
-		                </span>                    
+		                </span>
 		            </router-link>
 		            <ul class="treeview-menu">
 
@@ -97,12 +97,12 @@
 		                    <router-link to="/admin/persona/create">
 		                        <i class="fa fa-male" aria-hidden="true"></i> <span>Agregar Persona</span>
 		                    </router-link>
-		                </li> 
+		                </li>
 		                <li>
 		                    <router-link to="/admin/persona">
 		                        <i class="fa fa-address-book-o" aria-hidden="true"></i> <span>Manejo de Personas</span>
 		                    </router-link>
-		                </li> 
+		                </li>
 		                <li>
 		                    <router-link to="/admin/juntamiembros/">
 		                        <i class="fa fa-sitemap" aria-hidden="true"></i> <span>Manejo Miembros</span>
@@ -123,12 +123,12 @@
 		                        <i class="fa fa-gavel" aria-hidden="true"></i> <span>Manejo de Jueces</span>
 		                    </router-link>
 		                </li>
-		              
+
 		            </ul>
 		        </li>
-				
-				
-				
+
+
+
 		        <li>
 		            <router-link to="/admin/playas">
 		                <i class="fa fa-pagelines" aria-hidden="true"></i> <span>Playas</span>
@@ -145,7 +145,7 @@
 		                <span>Duties & Areas</span>
 		                <span class="pull-right-container">
 		                    <i class="fa fa-angle-left pull-right"></i>
-		                </span>                    
+		                </span>
 		            </router-link>
 		            <ul class="treeview-menu">
 		                <li>
@@ -195,7 +195,7 @@
 
 
 export default {
-  
+
     computed: {
              usuario() {
                  return localStorage.getItem('usuario');
