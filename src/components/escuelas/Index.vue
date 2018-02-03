@@ -29,15 +29,15 @@
                                   :globalSearch="true"
                                   :paginate="true"
                                   styleClass="table table-striped table-condensed">
-                                  <template slot="table-row" slot-scope="props">
+                                  <template slot="table-row" scope="props">
                                     <td>{{ props.row.entidadId.nombre }}</td>
                                     <td>{{ props.row.fundacion}}</td>
-                                    <td>{{ props.row.playaId}}</td>
-                                    <td>{{ props.row.entrenadorId}}</td>
+                                    <td>{{ props.row.playaId.nombre}}</td>
+                                    <td>{{ props.row.entrenadorId.personaId.nombre}}</td>
                                     <td>
                                         <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="openModal=true, retrieveData(props.row.id)" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar</button>
                                         
-                                        <button type="button" class="margin btn btn-sm btn-flat btn-danger" @click="clickHandler(props.row.id, escuela)" ><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
+                                        <button type="button" class="margin btn btn-sm btn-flat btn-danger" @click="clickHandler(props.row.id, club, props.row.entidadId.nombre)" ><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
                                     </td>
                                   </template>
                                 </vue-good-table>
@@ -47,7 +47,7 @@
                     </div>    
                 </div>
             </div>
-            <modalEscuelas :methodSubmit="methodSubmit"  :title="'Actualizar Escuela'" :buttonMsg="'Actualizar'" :openModal="openModal" :noticia="noticia" v-on:openChange="isChange"></modalEscuelas>
+            <modalEscuelas :methodSubmit="methodSubmit"  :title="'Actualizar Escuela'" :buttonMsg="'Actualizar'" :openModal="openModal" :escuela="escuela" v-on:openChange="isChange"></modalEscuelas>
          
             
 
@@ -58,7 +58,7 @@
 <script>
     import escuelasController from '../../controllers/escuelas.js'
    
-    import ModalNoticias from './subcomponents/ModalEscuelas'
+    import ModalEscuelas from './subcomponents/ModalEscuelas'
    
     export default {
         name: 'escuelas',
@@ -66,7 +66,7 @@
             return {
                 columns: [
                     {
-                      label: 'nombre',
+                      label: 'Nombre',
                       field: 'entidadId.nombre',
                       filterable: true,
                     },
@@ -76,8 +76,8 @@
                      filterable: true,
                     },
                     {
-                      label: 'Nombre playa',
-                      field: 'playaPractica',
+                      label: 'Nombre Playa',
+                      field: 'playaId.nombre',
                       filterable: true,
                     },
                     {
@@ -109,7 +109,7 @@
             }
         },
         components:{
-            "modalNoticias": ModalNoticias
+            "modalEscuelas": ModalEscuelas
             
         },
         created() {
@@ -119,26 +119,26 @@
             '$route': 'fetchData'
         },
         methods: {
-            clickHandler(id, noticia) {
+            clickHandler(id, escuela, nombre) {
                 let swal = this.$swal
                 let context = this
                 swal({
                     title: 'Estas Seguro?',
-                    html: 'No podras recuperar la informacion de la Noticia <b>' + noticia.nombre + '</b>',
+                    html: 'No podras recuperar la informacion de la Escuela <b>' + nombre + '</b>',
                     type: 'error',
                     showCancelButton: true,
                     confirmButtonText: 'Si, Eliminar!',
                     cancelButtonText: 'No, Mantener'
                 }).then(
                     function() {
-                        noticiasController.delete(context, id, swal)
+                        EscuelasController.delete(context, id, swal)
                     }, 
                     function(dismiss) {
                       // dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
                       if (dismiss === 'cancel') {
                         swal(
                           'Cancelado',
-                          'La Noticia no se elimino',
+                          'La Escuela no se elimino',
                           'error'
                         )
                       }

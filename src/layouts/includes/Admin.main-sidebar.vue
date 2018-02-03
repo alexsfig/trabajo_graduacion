@@ -139,7 +139,7 @@
 
 
 		                <li>
-		                    <router-link to="/admin/escuelas/index">
+		                    <router-link to="/admin/escuelas/">
 		                        <i class="fa fa-address-book-o" aria-hidden="true"></i> <span>Manejo de Escuelas</span>
 		                    </router-link>
 		                </li> 
