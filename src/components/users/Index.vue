@@ -18,7 +18,7 @@
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
-                            
+
                             <div class="box-action">
                                 <router-link to="/admin/users/create" class="btn btn-default btn-flat">
                                     <i class="fa fa-plus"></i> Agregar nuevo
@@ -34,7 +34,7 @@
                                   :globalSearch="true"
                                   :paginate="true"
                                   styleClass="table table-striped table-condensed">
-                                  <template slot="table-row" slot-scope="props">
+                                  <template slot="table-row" scope="props">
                                     <td>{{ props.row.usuario }}</td>
                                     <td>{{ props.row.rolId.descripcion}}</td>
                                     <td>
@@ -47,12 +47,12 @@
 
                             </div>
                         </div>
-                    </div>    
+                    </div>
                 </div>
             </div>
             <modalUser :methodSubmit="methodSubmit" :title="'Actualizar Usuario'" :buttonMsg="'Actualizar'" :openModal="openModal" :usuario="usuario" v-on:openChange="isChange"></modalUser>
             <modalUserPassword :methodSubmit="methodSubmit" :title="'Actualizar Contraseña'" :buttonMsg="'Actualizar'" :openModal="openModalPassword" :usuario="usuario" v-on:openChange="isChange"></modalUserPassword>
-            
+
 
         </section>
     </div>
@@ -85,7 +85,7 @@
                 ],
                 methodSubmit: 'update',
                 buttonMsg: "Actualizar",
-                users: [],   
+                users: [],
                 openModal: false,
                 openModalPassword: false,
                 errMsg:  '',
@@ -121,7 +121,7 @@
                 }).then(
                     function() {
                         usersController.delete(context, id, swal)
-                    }, 
+                    },
                     function(dismiss) {
                       // dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
                       if (dismiss === 'cancel') {
@@ -140,8 +140,8 @@
                 this.fetchData()
             },
             showCallback () {
-                this.showAlert = false 
-                this.showSuccess = false 
+                this.showAlert = false
+                this.showSuccess = false
             },
             dismissCallback (msg) {
                 this.openModal =false

@@ -69,6 +69,11 @@ export default new Router({
       meta: { requiresAuth: true },
       children: [
         {
+          path: '',
+          name: 'Dashboard',
+          component: Dashboard
+        },
+        {
           path: 'dashboard',
           name: 'Dashboard',
           component: Dashboard
