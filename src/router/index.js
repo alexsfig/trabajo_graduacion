@@ -2,8 +2,10 @@ import Vue from 'vue'
 import Router from 'vue-router'
 // Import components to use in view
 //import HelloWorld from '@/components/HelloWorld'
+import Error404 from '@/layouts/Error'
 import Login from '@/components/login/Login'
 import Playas from '@/components/playas/Index'
+import Dashboard from '@/components/dashboard/Index'
 import UsersCreate from '@/components/users/Create'
 import UsersShow from '@/components/users/Show'
 import UsersIndex from '@/components/users/Index'
@@ -41,6 +43,10 @@ export default new Router({
   routes: [
     // Load login views
     {
+      path: '/404',
+      component: Error404
+    },
+    {
       path: '/login',
       component: LoginTemplate,
       children:[
@@ -48,6 +54,11 @@ export default new Router({
           path: '',
           name: 'Login',
           component: Login
+        },
+        {
+          path: '404',
+          name: 'Error404',
+          component: Error404
         }
       ]
     },
@@ -57,6 +68,11 @@ export default new Router({
       component: AdminTemplate,
       meta: { requiresAuth: true },
       children: [
+        {
+          path: 'dashboard',
+          name: 'Dashboard',
+          component: Dashboard
+        },
         {
           path: 'playas',
           name: 'Playas',
@@ -163,7 +179,6 @@ export default new Router({
           component: JuecesShow
         }
       ]
-    },	
+    },
   ]
 })
-
