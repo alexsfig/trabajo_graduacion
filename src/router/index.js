@@ -32,6 +32,14 @@ import JuecesCreate from '@/components/jueces/Create'
 import JuecesShow from '@/components/jueces/Show'
 import JuecesIndex from '@/components/jueces/Index'
 
+import AtletasCreate from '@/components/atletas/Create'
+import AtletasShow from '@/components/atletas/Show'
+import AtletasIndex from '@/components/atletas/Index'
+
+import CategoriasCreate from '@/components/categorias/Create'
+import CategoriasShow from '@/components/categorias/Show'
+import CategoriasIndex from '@/components/categorias/Index'
+
 
 // Import base templates
 import AdminTemplate from '@/layouts/Admin'
@@ -182,6 +190,36 @@ export default new Router({
           path: 'jueces/:id',
           name: 'JuecesShow',
           component: JuecesShow
+        },
+        {
+          path: 'atletas/create',
+          name: 'AtletasCreate',
+          component: AtletasCreate
+        },
+        {
+          path: 'atletas',
+          name: 'AtletasIndex',
+          component: AtletasIndex
+        },
+        {
+          path: 'atletas/:id',
+          name: 'AtletasShow',
+          component: AtletasShow
+        },
+        {
+          path: 'categorias/create',
+          name: 'CategoriasCreate',
+          component: CategoriasCreate
+        },
+        {
+          path: 'categorias',
+          name: 'CategoriasIndex',
+          component: CategoriasIndex
+        },
+        {
+          path: 'categorias/:id',
+          name: 'CategoriasShow',
+          component: CategoriasShow
         }
       ]
     },
