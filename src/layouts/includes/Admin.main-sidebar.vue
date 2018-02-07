@@ -161,7 +161,7 @@
 		            <router-link to="#">
 		                <i class="fa fa-user-plus" aria-hidden="true"></i> <span>Roles</span>
 		            </router-link>
-		        </li:
+		        </li>
 		    </ul>
 
 		</section>

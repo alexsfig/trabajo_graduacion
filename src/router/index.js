@@ -48,6 +48,7 @@ import LoginTemplate from '@/layouts/Login'
 Vue.use(Router)
 export default new Router({
   mode: 'history',
+  base: process.env.BASE_ROUTE,
   routes: [
     // Load login views
     {

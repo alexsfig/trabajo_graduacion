@@ -1,6 +1,6 @@
 import axios from 'axios';
 // Define custom base url to connect to API
-const BASE_URL = "http://alexsfig.com/fesasurf_api";
+const BASE_URL = process.env.BASE_URL;
 axios.interceptors.response.use(function (response) {
     console.log(response)
     // Do something with response data
@@ -9,7 +9,7 @@ axios.interceptors.response.use(function (response) {
     // Do something with response error
     return Promise.reject(error);
   });
-// Create Base connection 
+// Create Base connection
 export const HTTP = axios.create({
     baseURL: BASE_URL,
     headers: {
@@ -17,7 +17,7 @@ export const HTTP = axios.create({
         // Pass access token in each request
         'authorization': localStorage.authorization
     },
-    // Add validation to status request, used in promises 
+    // Add validation to status request, used in promises
     validateStatus: function (status) {
         return status >= 200 && status < 300;
       },
