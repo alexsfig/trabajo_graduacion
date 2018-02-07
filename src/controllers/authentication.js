@@ -26,8 +26,8 @@ export default {
                 window.location.replace(param); 
 
             }else{
-                //context.$router.push('/login') 
-                window.location.replace('/admin'); 
+                context.$router.push({name: 'Dashboard'})
+//                window.location.replace('/admin'); 
                   
             }
         })
