@@ -11,6 +11,9 @@ import VueGoodTable from 'vue-good-table'
 /* eslint-disable no-new */
 import VeeValidate, { Validator } from 'vee-validate';
 import VueMask from 'v-mask'
+import VueFormWizard from 'vue-form-wizard'
+import 'vue-form-wizard/dist/vue-form-wizard.min.css'
+Vue.use(VueFormWizard)
 Vue.use(VueMask);
 Vue.use(VueGoodTable)
 
