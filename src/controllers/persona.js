@@ -1,6 +1,8 @@
 // Import classes to use in methods
 // Base class connection
 import {HTTP} from '../common_class/http.js';
+import {UPLOAD} from '../common_class/http.js';
+
 // Use router
 import {router} from '../router/index.js'
 import moment from 'moment'
@@ -20,14 +22,35 @@ export default {
     createAtleta(context, atleta){
         context.showAlert = false
         context.showSuccess = false
-        HTTP.post('atleta', atleta)
+        const formData = new FormData()
+        let root_path = "persona"
+        let filename = context.filename
+        formData.append('avatar', context.avatar)
+        formData.append('filename', context.filename)
+        formData.append('id', "atleta")
+        formData.append('root_path', root_path)
+        this.upload_avatar(context, formData, root_path)
+
+        UPLOAD.post('upload_avatar', formData)
             .then((resp) => {
-                if (resp.status>= 200 && resp.status <=300){
-                    context.showSuccess = true
-                    context.successMsg = "Persona creada exitosamente"
-                    context.fetchData()
-                    context.resetForm()
-                }
+              HTTP.post('atleta', atleta)
+                  .then((resp) => {
+                      if (resp.status>= 200 && resp.status <=300){
+
+
+                          context.showSuccess = true
+                          context.successMsg = "Persona creada exitosamente"
+                          context.fetchData()
+                          context.resetForm()
+
+                      }
+                  })
+                  .catch((err) => {
+                      if (err.response) {
+                          context.showAlert = true
+                          context.errMsg = err.response.data
+                      }
+                  })
             })
             .catch((err) => {
                 if (err.response) {
@@ -35,6 +58,7 @@ export default {
                     context.errMsg = err.response.data
                 }
             })
+
     },
     createJuez(context, juez){
         context.showAlert = false
@@ -58,27 +82,21 @@ export default {
     createEntrenador(context, entrenador){
         context.showAlert = false
         context.showSuccess = false
-
-                            HTTP.post('entrenador', entrenador)
-                            .then((resp) => {
-                                if (resp.status>= 200 && resp.status <=300){
-                                    context.showSuccess = true
-                                    context.successMsg = "Persona creada exitosamente"
-                                    context.fetchData()
-                                    context.resetForm()
-                                }
-                            })
-                            .catch((err) => {
-                                if (err.response) {
-                                    context.showAlert = true
-                                    context.errMsg = err.response.data
-                                }
-                            })
-
-            //
-
-
-
+            HTTP.post('entrenador', entrenador)
+            .then((resp) => {
+                if (resp.status>= 200 && resp.status <=300){
+                    context.showSuccess = true
+                    context.successMsg = "Persona creada exitosamente"
+                    context.fetchData()
+                    context.resetForm()
+                }
+            })
+            .catch((err) => {
+                if (err.response) {
+                    context.showAlert = true
+                    context.errMsg = err.response.data
+                }
+            })
     },
     createMiembroJunta(context, miembroJunta){
         context.showAlert = false
@@ -177,6 +195,17 @@ export default {
             })
             .catch((err) => {
                 swal("Oh snap!", "Ocurrio un error.", "error")
+            })
+    },
+    upload_avatar(context, formData, root_path){
+        UPLOAD.post('upload_avatar', formData)
+            .then((resp) => {
+            })
+            .catch((err) => {
+                if (err.response) {
+                    context.showAlert = true
+                    context.errMsg = err.response.data
+                }
             })
     }
 
