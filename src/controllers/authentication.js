@@ -37,9 +37,6 @@ export default {
         })
     },
     signOut(context){
-        localStorage.removeItem('authorization');
-        localStorage.removeItem('iduser');
-        localStorage.removeItem('usuario');
         context.$router.push({name: 'Login'})
         //window.location.replace('/login');
     }
