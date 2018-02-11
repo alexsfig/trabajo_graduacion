@@ -178,7 +178,7 @@ export default {
                 }
             }
             else{
-                imgAsset = '/static/img/src/assets/images/'+ img
+                imgAsset = process.env.BASE_ROUTE + '/static/img/src/assets/images/'+ img
 
             }
             return imgAsset
