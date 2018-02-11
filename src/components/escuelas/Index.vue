@@ -2,7 +2,7 @@
     <div>
         <section class="content-header">
             <h1>
-               Escuelas
+                Escuelas
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -19,7 +19,7 @@
                        
                         <div class="box-body">
                             
-
+                        
                             <div class="table-responsive">
                               
                                 <vue-good-table
@@ -37,7 +37,7 @@
                                     <td>
                                         <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="openModal=true, retrieveData(props.row.id)" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar</button>
                                         
-                                        <button type="button" class="margin btn btn-sm btn-flat btn-danger" @click="clickHandler(props.row.id, club, props.row.entidadId.nombre)" ><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
+                                        <button type="button" class="margin btn btn-sm btn-flat btn-danger" @click="clickHandler(props.row.id, escuela, props.row.entidadId.nombre)" ><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
                                     </td>
                                   </template>
                                 </vue-good-table>
@@ -47,7 +47,8 @@
                     </div>    
                 </div>
             </div>
-            <modalEscuelas :methodSubmit="methodSubmit"  :title="'Actualizar Escuela'" :buttonMsg="'Actualizar'" :openModal="openModal" :escuela="escuela" v-on:openChange="isChange"></modalEscuelas>
+           <modalEscuelas :methodSubmit="methodSubmit"  :title="'Actualizar Escuela'" :buttonMsg="'Actualizar'" :openModal="openModal" 
+            :escuela="escuela" v-on:openChange="isChange" ></modalEscuelas>
          
             
 
@@ -124,21 +125,21 @@
                 let context = this
                 swal({
                     title: 'Estas Seguro?',
-                    html: 'No podras recuperar la informacion de la Escuela <b>' + nombre + '</b>',
+                    html: 'No podras recuperar la informacion de la escuela <b>' + nombre + '</b>',
                     type: 'error',
                     showCancelButton: true,
                     confirmButtonText: 'Si, Eliminar!',
                     cancelButtonText: 'No, Mantener'
                 }).then(
                     function() {
-                        EscuelasController.delete(context, id, swal)
+                        escuelasController.delete(context, id, swal)
                     }, 
                     function(dismiss) {
                       // dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
                       if (dismiss === 'cancel') {
                         swal(
                           'Cancelado',
-                          'La Escuela no se elimino',
+                          'La escuela no se elimino',
                           'error'
                         )
                       }

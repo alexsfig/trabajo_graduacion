@@ -35,6 +35,10 @@ import EscuelasCreate from '@/components/escuelas/Create'
 import EscuelasShow from '@/components/escuelas/Show'
 import EscuelasIndex from '@/components/escuelas/Index'
 
+import PatrocinadoresCreate from '@/components/patrocinador/Create'
+import PatrocinadoresShow from '@/components/patrocinador/Show'
+import PatrocinadoresIndex from '@/components/patrocinador/Index'
+
 
 // Import base templates
 import AdminTemplate from '@/layouts/Admin'
@@ -181,6 +185,21 @@ export default new Router({
           path: 'escuelas/:id',
           name: 'EscuelasShow',
           component: EscuelasShow
+        },
+         {
+          path: 'patrocinador',
+          name: 'PatrocinadoresIndex',
+          component: PatrocinadoresIndex
+        },
+        {
+          path: 'patrocinador/create',
+          name: 'PatrocinadoresCreate',
+          component: PatrocinadoresCreate
+        },
+        {
+          path: 'patrocinador/:id',
+          name: 'PatrocinadoresShow',
+          component: PatrocinadoresShow
         }
       ]
     },	

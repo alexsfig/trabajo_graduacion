@@ -5,7 +5,7 @@ import {HTTP} from '../common_class/http.js';
 import {router} from '../router/index.js'
 import moment from 'moment'
 // define base url to Employees
-const ESCUELAS = 'escuelas/'
+const ESCUELAS = 'escuela/'
 
 
 

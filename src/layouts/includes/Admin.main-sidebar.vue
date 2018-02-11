@@ -143,6 +143,11 @@
 		                        <i class="fa fa-address-book-o" aria-hidden="true"></i> <span>Manejo de Escuelas</span>
 		                    </router-link>
 		                </li> 
+		                  <li>
+		                    <router-link to="/admin/patrocinador/">
+		                        <i class="fa fa-address-book-o" aria-hidden="true"></i> <span>Manejo de Patrocinadores</span>
+		                    </router-link>
+		                </li> 
 		                		            	 <li>
 		                    <router-link to="/admin/escuelas/show">
 		                        <i class="fa fa-male" aria-hidden="true"></i> <span>Mostrar Escuelas</span>
