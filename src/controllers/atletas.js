@@ -66,6 +66,16 @@ export default {
               console.log(err)
             })
     },
+    edit(context){
+        HTTP.get(ATLETAS + context.$route.params.id+'/edit')
+            .then((resp) => {
+                context.atleta = resp.data
+
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+    },
     /*
         Method to display all users, pass only the context
     */

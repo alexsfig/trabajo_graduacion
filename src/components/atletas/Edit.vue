@@ -579,9 +579,6 @@ export default {
                 this.has_competition = true
             }
         },
-
-
-
         isChange() {
             this.openModal = false
             this.fetchData()

@@ -34,6 +34,7 @@ import JuecesIndex from '@/components/jueces/Index'
 
 import AtletasCreate from '@/components/atletas/Create'
 import AtletasEdit from '@/components/atletas/Edit'
+import AtletasShow from '@/components/atletas/Show'
 import AtletasIndex from '@/components/atletas/Index'
 
 import CategoriasCreate from '@/components/categorias/Create'
@@ -207,9 +208,14 @@ export default new Router({
           component: AtletasIndex
         },
         {
-          path: 'atletas/:id',
+          path: 'atletas/:id/edit',
           name: 'AtletasEdit',
           component: AtletasEdit
+        },
+        {
+          path: 'atletas/:id',
+          name: 'AtletasShow',
+          component: AtletasShow
         },
         {
           path: 'categorias/create',

@@ -37,20 +37,20 @@
 
                             <vue-good-table :columns="columns" :rows="atletas" :globalSearch="true" :paginate="true" styleClass="table table-striped table-condensed">
                                 <template slot="table-row" scope="props">
-                                    <td><img class="custom-img img-responsive img-circle" v-bind:src="getImg(props.row.rutaFoto)" alt="User profile picture"></td>
+                                    <td style="width: 100px"><img class="custom-img img-responsive img-circle" v-bind:src="getImg(props.row.rutaFoto)" alt="User profile picture"></td>
                                     <td>{{props.row.personaId.nombre}}</td>
                                     <td>{{props.row.personaId.apellido}}</td>
                                     <td>{{ props.row.aniosPracticando}}</td>
                                     <td>{{ props.row.playaPractica}}</td>
                                     <td>{{ props.row.ladoPie}}</td>
                                     <td>{{ props.row.olaPreferida}}</td>
-                                    <td>{{ props.row.logros}}</td>
-                                    <td>{{ props.row.rutinaConstancia}}</td>
+                                    <!-- <td>{{ props.row.logros}}</td>
+                                    <td>{{ props.row.rutinaConstancia}}</td> -->
                                     <td>{{ (props.row.personaId.sexo == 'F' || props.row.personaId.sexo == 'f') ? 'Femenino' : 'Masculino' }}</td>
                                     <td>{{ props.row.edadInicio}}</td>
                                     <td>
                                         <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="retrieveData(props.row.id, props.row)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar</button>
-
+                                        <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="profile(props.row.id, props.row)"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Ver Perfil</button>
                                         <button type="button" class="margin btn btn-sm btn-flat btn-danger" @click="clickHandler(props.row.id, atleta, props.row.personaId.nombre)"><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
                                     </td>
                                 </template>
@@ -112,15 +112,17 @@ export default {
                     label: 'Ola Preferida',
                     field: 'olaPreferida',
                     filterable: true,
-                }, {
-                    label: 'Logros',
-                    field: 'logros',
-                    filterable: true,
-                }, {
-                    label: 'Rutina Constancia',
-                    field: 'rutinaConstancia',
-                    filterable: true,
-                }, {
+                },
+                // {
+                //     label: 'Logros',
+                //     field: 'logros',
+                //     filterable: true,
+                // }, {
+                //     label: 'Rutina Constancia',
+                //     field: 'rutinaConstancia',
+                //     filterable: true,
+                // },
+                {
                     label: 'Sexo',
                     field: 'personaId.sexo',
                     filterable: true,
@@ -230,6 +232,14 @@ export default {
                 params: {
                     id: id,
                     atleta: atleta
+                }
+            });
+        },
+        profile(id) {
+            this.$router.push({
+                name: 'AtletasShow',
+                params: {
+                    id: id
                 }
             });
 
