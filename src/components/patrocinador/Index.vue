@@ -34,6 +34,7 @@
                                     <td>{{ props.row.entidadId.nombre }}</td>
                                     <td>{{ props.row.esPersona}}</td>
                                     <td>{{ props.row.activo}}</td>
+                                    
                                     <td>
                                         <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="openModal=true, retrieveData(props.row.id)" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar</button>
                                         
