@@ -34,7 +34,7 @@ router.beforeEach((to, from, next) => {
 
         if (localStorage.authorization == null) {
           next({
-            path: process.env.BASE_ROUTE + '/login',
+            path: '/login',
             query: { redirect: to.fullPath }
           })
         } else {
@@ -45,7 +45,7 @@ router.beforeEach((to, from, next) => {
                 .catch((err) => {
                   localStorage.removeItem('authorization')
                     next({
-                        path: process.env.BASE_ROUTE + '/login',
+                        path: '/login',
                         query: {
                             redirect: to.fullPath
                         }
