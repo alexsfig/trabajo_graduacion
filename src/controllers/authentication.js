@@ -1,7 +1,7 @@
 // Import classes to use in methods
 // Base class connection
 import {HTTP} from '../common_class/http.js';
-// Use router 
+// Use router
 import {router} from '../router/index.js'
 // Define URL to authenticate
 const LOGIN_URL = 'login'
@@ -22,13 +22,13 @@ export default {
             localStorage.setItem('usuario', params.usuario)
             let param = unescape(location.search.split('redirect=')[1])
             if (param !== "undefined") {
-                // context.$router.push(param) 
-                window.location.replace(param); 
+                // context.$router.push(param)
+                window.location.replace(param);
 
             }else{
                 context.$router.push({name: 'Dashboard'})
-//                window.location.replace('/admin'); 
-                  
+//                window.location.replace('/admin');
+
             }
         })
         .catch((err) => {
@@ -37,10 +37,11 @@ export default {
         })
     },
     signOut(context){
-        localStorage.removeItem('access_token');
-        //context.$router.push('/login')
-        window.location.replace('/login');
+        localStorage.removeItem('authorization');
+        localStorage.removeItem('iduser');
+        localStorage.removeItem('usuario');
+        context.$router.push({name: 'Login'})
+        //window.location.replace('/login');
     }
 
 }
-    
