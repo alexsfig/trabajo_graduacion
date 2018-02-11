@@ -1,6 +1,7 @@
 // Import classes to use in methods
 // Base class connection
 import {HTTP} from '../common_class/http.js';
+import {UPLOAD} from '../common_class/http.js';
 
 // Use router
 import {router} from '../router/index.js'
@@ -8,25 +9,33 @@ import moment from 'moment'
 // define base url to Employees
 const ATLETAS = 'atleta/'
 
-
-
-
 export default {
     /*
         Use context to update vars dinamyc
-    */
-
-    /*
         Method to update user, pass context, object Users and user id
-    */
-
-    /*
         Method to update user, pass context, object Users and user id
     */
 
     update(context, atletas){
         context.showAlert = false
         context.showSuccess = false
+        if (context.changePhoto == true) {
+            const formData = new FormData()
+            let filename =  atletas.rutaFoto.replace(/^.*[\\\/]/, '').replace(/\.[^/.]+$/, "")
+            let root_path = "persona"
+            formData.append('avatar', context.avatar)
+            formData.append('filename', filename )
+            formData.append('id', "atleta")
+            formData.append('root_path', root_path)
+            UPLOAD.post('upload_avatar', formData)
+                .then((resp) => {})
+                .catch((err) => {
+                    if (err.response) {
+                        context.showAlert = true
+                        context.errMsg = err.response.data
+                    }
+                })
+        }
         HTTP.put(ATLETAS, atletas)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
@@ -34,15 +43,12 @@ export default {
                     context.showAlert = false
                 }
                 context.showSuccess = true
-                context.successMsg = "Entrenador Actualizado"
+                context.successMsg = "Atleta Actualizado"
             })
             .catch((err) => {
                 context.showAlert = true
-                console.log(err)
                 if (err.response) {
                     context.errMsg = err.response.data
-                    console.log(err.response.data);
-                    console.log(err.response);
                     context.showAlert = true
                 }
             })
