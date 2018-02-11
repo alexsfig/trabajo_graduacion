@@ -118,11 +118,7 @@
 		                        <i class="fa fa-binoculars" aria-hidden="true"></i> <span>Manejo Entrenadores</span>
 		                    </router-link>
 		                </li>
-		                <li>
-		                    <router-link to="/admin/clubes/">
-		                        <i class="fa fa-university" aria-hidden="true"></i> <span>Manejo de Clubes</span>
-		                    </router-link>
-		                </li>
+		                
 		                 <li>
 		                    <router-link to="/admin/jueces/">
 		                        <i class="fa fa-gavel" aria-hidden="true"></i> <span>Manejo de Jueces</span>
@@ -131,6 +127,30 @@
 
 		            </ul>
 		        </li>
+
+
+                <li class="treeview">
+		            <router-link to="#">
+		                <i class="fa fa-university" aria-hidden="true"></i>
+		                <span>Entidades</span>
+		                <span class="pull-right-container">
+		                    <i class="fa fa-angle-left pull-right"></i>
+		                </span>
+		            </router-link>
+		            <ul class="treeview-menu">
+		                <li>
+		                    <router-link to="/admin/clubes/">
+		                        <i class="fa fa-university" aria-hidden="true"></i> <span>Manejo de Clubes</span>
+		                    </router-link>
+		                </li>
+		                <li>
+		                    <router-link to="/admin/escuelas/">
+		                        <i class="fa fa-university" aria-hidden="true"></i> <span>Manejo de Escuelas</span>
+		                    </router-link>
+		                </li>
+		            </ul>
+		        </li>
+
 		        <li class="treeview">
 		            <router-link to="#">
 		                <i class="fa fa-newspaper-o" aria-hidden="true"></i>

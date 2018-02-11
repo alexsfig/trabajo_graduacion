@@ -33,12 +33,16 @@ import JuecesShow from '@/components/jueces/Show'
 import JuecesIndex from '@/components/jueces/Index'
 
 import AtletasCreate from '@/components/atletas/Create'
-import AtletasShow from '@/components/atletas/Show'
+import AtletasEdit from '@/components/atletas/Edit'
 import AtletasIndex from '@/components/atletas/Index'
 
 import CategoriasCreate from '@/components/categorias/Create'
 import CategoriasShow from '@/components/categorias/Show'
 import CategoriasIndex from '@/components/categorias/Index'
+
+import EscuelasCreate from '@/components/escuelas/Create'
+import EscuelasShow from '@/components/escuelas/Show'
+import EscuelasIndex from '@/components/escuelas/Index'
 
 
 // Import base templates
@@ -204,8 +208,8 @@ export default new Router({
         },
         {
           path: 'atletas/:id',
-          name: 'AtletasShow',
-          component: AtletasShow
+          name: 'AtletasEdit',
+          component: AtletasEdit
         },
         {
           path: 'categorias/create',
@@ -221,6 +225,21 @@ export default new Router({
           path: 'categorias/:id',
           name: 'CategoriasShow',
           component: CategoriasShow
+        },
+        {
+          path: 'escuelas',
+          name: 'EscuelasIndex',
+          component: EscuelasIndex
+        },
+        {
+          path: 'escuelas/create',
+          name: 'EscuelasCreate',
+          component: EscuelasCreate
+        },
+        {
+          path: 'escuelas/:id',
+          name: 'EscuelasShow',
+          component: EscuelasShow
         }
       ]
     },

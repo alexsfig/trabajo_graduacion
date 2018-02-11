@@ -33,12 +33,11 @@
                                     <i class="fa fa-plus"></i> Nuevo Miembro
                                 </router-link>
                             </div> -->
-
                         <div class="table-responsive">
 
                             <vue-good-table :columns="columns" :rows="atletas" :globalSearch="true" :paginate="true" styleClass="table table-striped table-condensed">
                                 <template slot="table-row" scope="props">
-                                    <td><img class="custom-img img-responsive img-circle" v-bind:src="getImg(props.row.personaId.rutaFoto)" alt="User profile picture"></td>
+                                    <td><img class="custom-img img-responsive img-circle" v-bind:src="getImg(props.row.rutaFoto)" alt="User profile picture"></td>
                                     <td>{{props.row.personaId.nombre}}</td>
                                     <td>{{props.row.personaId.apellido}}</td>
                                     <td>{{ props.row.aniosPracticando}}</td>
@@ -47,7 +46,7 @@
                                     <td>{{ props.row.olaPreferida}}</td>
                                     <td>{{ props.row.logros}}</td>
                                     <td>{{ props.row.rutinaConstancia}}</td>
-                                    <td>{{ props.row.personaId.sexo}}</td>
+                                    <td>{{ (props.row.personaId.sexo == 'F' || props.row.personaId.sexo == 'f') ? 'Femenino' : 'Masculino' }}</td>
                                     <td>{{ props.row.edadInicio}}</td>
                                     <td>
                                         <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="retrieveData(props.row.id, props.row)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar</button>
@@ -167,7 +166,6 @@ export default {
     methods: {
         getImg(img) {
             var imgAsset = "", imgResource = img
-
             //imgAsset = "http://104.131.164.244/insense-web/src/assets/images/"+ img
             if(process.env.NODE_ENV == "development"){
                 try{
@@ -181,7 +179,6 @@ export default {
                 imgAsset = '/static/img/src/assets/images/'+ img
 
             }
-
             return imgAsset
         },
         clickHandler(id, atleta, nombre) {
@@ -229,7 +226,7 @@ export default {
         retrieveData(id, atleta) {
             atletasController.retrieve(this, id)
             this.$router.push({
-                name: 'AtletasShow',
+                name: 'AtletasEdit',
                 params: {
                     id: id,
                     atleta: atleta
