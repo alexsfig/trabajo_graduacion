@@ -5,7 +5,7 @@
             <ol class="breadcrumb">
                 
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><router-link to="/admin/noticias">Categorias</router-link></li>
+                <li><router-link to="/admin/categorias">Categorias</router-link></li>
                 <li class="active">Agregar Categorias</li>
             </ol>
         </section>
@@ -196,9 +196,12 @@
                 this.showSuccess = false
                 this.$validator.validateAll().then(success => {
                     if (success) {
-                       
+
                        this.createCategorias.sexo = this.createCategorias.sexo.name == undefined ? '' : this.createCategorias.sexo.name
                         categorias.create(this, this.createCategorias)
+                       
+                         
+
                     }
                     else{
                         this.showAlert = true

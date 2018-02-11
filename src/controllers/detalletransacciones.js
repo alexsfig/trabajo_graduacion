@@ -5,7 +5,7 @@ import {HTTP} from '../common_class/http.js';
 import {router} from '../router/index.js'
 import moment from 'moment'
 // define base url to Employees
-const PLAYAS = 'playa/'
+const DETALLETRANSACCIONES = 'detalleTransaccion/'
 
 
 export default {
@@ -80,9 +80,9 @@ export default {
         Method to display all PLAYAS, pass only the context
     */
     index(context){
-        HTTP.get(PLAYAS)
+        HTTP.get(DETALLETRANSACCIONES)
             .then((resp) => {
-                context.playas = resp.data
+                context.detalletransacciones = resp.data
                 console.log(resp.data)
             })
             .catch((err) => {

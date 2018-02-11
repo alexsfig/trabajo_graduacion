@@ -34,7 +34,7 @@ export default {
                     context.showAlert = false
                 }
                 context.showSuccess = true
-                context.successMsg = "Entrenador Actualizado"
+                context.successMsg = "Atleta Actualizado"
             })
             .catch((err) => {
                 context.showAlert = true

@@ -81,7 +81,7 @@
                     </div>    
                 </div>
             </div>  
-            <modalPlaya :methodSubmit="methodSubmit" :title="'Actualizar Usuario'" :buttonMsg="'Actualizar'" :openModal="openModal" :playa="playa" v-on:openChange="isChange"></modalPlaya>    
+            <modalPlaya :methodSubmit="methodSubmit" :title="'Actualizar Playa'" :buttonMsg="'Actualizar'" :openModal="openModal" :playa="playa" v-on:openChange="isChange"></modalPlaya>    
         </section>
     </div>
 </template>

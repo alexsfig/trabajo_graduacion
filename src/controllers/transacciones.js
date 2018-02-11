@@ -5,7 +5,7 @@ import {HTTP} from '../common_class/http.js';
 import {router} from '../router/index.js'
 import moment from 'moment'
 // define base url to Employees
-const PLAYAS = 'playa/'
+const TRANSACCIONES = 'transaccion/'
 
 
 export default {
@@ -17,14 +17,20 @@ export default {
         
         Method to create PLAYAS, pass object Users
     */
-    create(context, playa){
+    create(context, transaccion){
         context.showAlert = false 
         context.showSuccess = false 
-        HTTP.post(PLAYAS, playa)
+        
+
+
+        transaccion.id= 0;
+        transaccion.usuarioId= 1;
+       transaccion.patrocinadorId=1;
+        HTTP.post(TRANSACCIONES, transaccion)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
                     context.showSuccess = true
-                    context.successMsg = "Playa Creada"
+                    context.successMsg = "Transaccion Creada"
                     context.fetchData()
                     context.reset()
                 }

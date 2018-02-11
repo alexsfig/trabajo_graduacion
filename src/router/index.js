@@ -44,6 +44,17 @@ import EscuelasCreate from '@/components/escuelas/Create'
 import EscuelasShow from '@/components/escuelas/Show'
 import EscuelasIndex from '@/components/escuelas/Index'
 
+import FormapagosCreate from '@/components/formapagos/Create'
+import FormapagosShow from '@/components/formapagos/Show'
+import FormapagosIndex from '@/components/formapagos/Index'
+
+import CuentasCreate from '@/components/cuentas/Create'
+import CuentasShow from '@/components/cuentas/Show'
+import CuentasIndex from '@/components/cuentas/Index'
+
+import TransaccionesCreate from '@/components/transacciones/Create'
+import TransaccionesShow from '@/components/transacciones/Show'
+import TransaccionesIndex from '@/components/transacciones/Index'
 
 // Import base templates
 import AdminTemplate from '@/layouts/Admin'
@@ -239,6 +250,51 @@ export default new Router({
           path: 'escuelas/:id',
           name: 'EscuelasShow',
           component: EscuelasShow
+        },
+        {
+          path: 'formapagos',
+          name: 'FormapagosIndex',
+          component: FormapagosIndex
+        },
+        {
+          path: 'formapagos/create',
+          name: 'FormapagosCreate',
+          component: FormapagosCreate
+        },
+        {
+          path: 'formapagos/:id',
+          name: 'FormapagosShow',
+          component: FormapagosShow
+        },
+        {
+          path: 'cuentas',
+          name: 'CuentasIndex',
+          component: CuentasIndex
+        },
+        {
+          path: 'cuentas/create',
+          name: 'CuentasCreate',
+          component: CuentasCreate
+        },
+        {
+          path: 'cuentas/:id',
+          name: 'CuentasShow',
+          component: CuentasShow
+        },
+         {
+          path: 'transacciones',
+          name: 'TransaccionesIndex',
+          component: TransaccionesIndex
+        },
+        {
+          path: 'transacciones/create',
+          name: 'TransaccionesCreate',
+          component: TransaccionesCreate
+        },
+        {
+          path: 'transaccciones/:id',
+          name: 'TransaccionesShow',
+          component: TransaccionesShow
         }
       ]
     },

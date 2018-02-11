@@ -5,7 +5,9 @@ import {HTTP} from '../common_class/http.js';
 import {router} from '../router/index.js'
 import moment from 'moment'
 // define base url to Employees
-const PLAYAS = 'playa/'
+const FORMAPAGOS = 'formaPago/'
+
+
 
 
 export default {
@@ -15,18 +17,20 @@ export default {
     /* 
         Use the context to redirect after succeded and update var to use in view
         
-        Method to create PLAYAS, pass object Users
+        Method to create users, pass object Users
     */
-    create(context, playa){
+    create(context, formapagos){
         context.showAlert = false 
-        context.showSuccess = false 
-        HTTP.post(PLAYAS, playa)
+         context.showSuccess = false 
+          formapagos.id= 0;
+         
+        HTTP.post(FORMAPAGOS, formapagos)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
                     context.showSuccess = true
-                    context.successMsg = "Playa Creada"
-                    context.fetchData()
-                    context.reset()
+                    context.successMsg = "Forma de Pago Creada"
+                    context.createFormapagos = {}
+                    context.errors.clear()
                 }
             })
             .catch((err) => {
@@ -35,22 +39,22 @@ export default {
                     context.errMsg = err.response.data
                 }
             })
-    },
+    }, 
     /* 
         Method to update user, pass context, object Users and user id
     */
-    
-    update(context, user){
+   
+    update(context, formapagos){
         context.showAlert = false 
         context.showSuccess = false 
-        HTTP.put(PLAYAS, user)
+        HTTP.put(FORMAPAGOS, formapagos)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
                     var id = resp.data.id
                     context.showAlert = false 
                 }
                 context.showSuccess = true
-                context.successMsg = "Playa Actualizada"
+                context.successMsg = "Forma de Pago Actualizada"
             })
             .catch((err) => {
                 context.showAlert = true
@@ -62,27 +66,28 @@ export default {
                     context.showAlert = true 
                 }
             })
-    },
+    }, 
     /* 
         Method to get user, pass only the context, id will be taken from url
     */
     show(context){
-        HTTP.get(PLAYAS + context.$route.params.id+'/')
+        HTTP.get(FORMAPAGOS + context.$route.params.id+'/')
             .then((resp) => {
-                context.user = resp.data
+                context.formapago = resp.data
+
 
             })
             .catch((err) => {
               console.log(err)
             })
-    },
+    },  
     /* 
-        Method to display all PLAYAS, pass only the context
+        Method to display all users, pass only the context
     */
-    index(context){
-        HTTP.get(PLAYAS)
+   index(context){
+        HTTP.get(FORMAPAGOS)
             .then((resp) => {
-                context.playas = resp.data
+                context.formapagos = resp.data
                 console.log(resp.data)
             })
             .catch((err) => {
@@ -93,29 +98,29 @@ export default {
         Method to retrieve user, pass the context and user id, use this method when you need to edit user
     */
     retrieve(context, id){
-        HTTP.get(PLAYAS + id)
+        HTTP.get(FORMAPAGOS + id)
             .then((resp) => {
                 console.log(resp)
-                context.playa = resp.data;
+                context.formapago = resp.data;
             })
             .catch((err) => {
               console.log(err)
             })
-    },
+    }, 
     /* 
         Method to delete user, pass the context and user id, use this method when you need to delete user
     */
     delete(context, id, swal) {
-        HTTP.delete(PLAYAS + id)
+        HTTP.delete(FORMAPAGOS + id)
             .then((resp) => {
                 console.log(resp);
-                swal("Deleted!", "La playa ha sido eliminada", "success")
+                swal("Deleted!", "La Forma de Pago ha sido eliminada", "success")
                 context.fetchData();
             })
             .catch((err) => {               
                 swal("Oh snap!", "Ocurrio un error.", "error")
-            })
-    }
+            }) 
+    } 
     
 
 }

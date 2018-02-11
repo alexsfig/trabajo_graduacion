@@ -151,6 +151,37 @@
 		            </ul>
 		        </li>
 
+
+		         <li class="treeview">
+		            <router-link to="#">
+		                <i class="fa fa-balance-scale" aria-hidden="true"></i>
+		                <span>Finanzas</span>
+		                <span class="pull-right-container">
+		                    <i class="fa fa-angle-left pull-right"></i>
+		                </span>
+		            </router-link>
+		            <ul class="treeview-menu">
+		                <li>
+		                    <router-link to="/admin/formapagos/">
+		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Formas de Pago</span>
+		                    </router-link>
+		                </li>
+
+		                <li>
+		                    <router-link to="/admin/cuentas/">
+		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Cuentas</span>
+		                    </router-link>
+		                </li>
+
+		                <li>
+		                    <router-link to="/admin/transacciones/create">
+		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Registar Transaccion</span>
+		                    </router-link>
+		                </li>
+		               
+		            </ul>
+		        </li>
+
 		        <li class="treeview">
 		            <router-link to="#">
 		                <i class="fa fa-newspaper-o" aria-hidden="true"></i>
