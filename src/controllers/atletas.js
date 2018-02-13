@@ -10,6 +10,47 @@ import moment from 'moment'
 const ATLETAS = 'atleta/'
 
 export default {
+    create(context, atleta){
+        context.showAlert = false
+        context.showSuccess = false
+        const formData = new FormData()
+        let root_path = "persona"
+        let filename = context.filename
+        formData.append('avatar', context.avatar)
+        formData.append('filename', context.filename)
+        formData.append('id', "atleta")
+        formData.append('root_path', root_path)
+        this.upload_avatar(context, formData, root_path)
+
+        UPLOAD.post('upload_avatar', formData)
+            .then((resp) => {
+              HTTP.post('atleta', atleta)
+                  .then((resp) => {
+                      if (resp.status>= 200 && resp.status <=300){
+                          context.showSuccess = true
+                          context.successMsg = "Persona creada exitosamente"
+                          context.fetchData()
+                          context.resetForm()
+
+                      }
+                  })
+                  .catch((err) => {
+                      if (err.response) {
+                          context.showAlert = true
+                          context.errMsg = err.response.data
+                      }
+                  })
+            })
+            .catch((err) => {
+                if (err.response) {
+                    context.showAlert = true
+                    context.errMsg = err.response.data
+                }
+            })
+
+    },
+
+
     /*
         Use context to update vars dinamyc
         Method to update user, pass context, object Users and user id
@@ -89,6 +130,7 @@ export default {
               console.log(err)
             })
     },
+
 
     /*
         Method to retrieve user, pass the context and user id, use this method when you need to edit user

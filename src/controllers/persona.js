@@ -177,7 +177,7 @@ export default {
         HTTP.get(PERSONA + id)
             .then((resp) => {
                 console.log(resp)
-                context.atleta = resp.data;
+                context.persona = resp.data;
             })
             .catch((err) => {
               console.log(err)

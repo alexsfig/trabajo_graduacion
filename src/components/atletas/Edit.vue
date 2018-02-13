@@ -45,7 +45,7 @@
                         </div>
                         <div class="col-md-12">
                             <h3>
-                                Editar Información de Atleta: {{ atleta.personaId.nombre + " " + atleta.personaId.apellido}}
+                                Editar Información de Atleta: {{ atleta.personaId.nombre  + " " + atleta.personaId.apellido}}
                             </h3>
                         </div>
                         <div class="col-md-12">
@@ -366,7 +366,13 @@ export default {
             // We need to initialize the component with any
             // properties that will be used in it
             atletas: [],
-            atleta: {},
+            atleta: {
+                personaId: {
+                    nombre: '',
+                    apellido: ''
+                },
+                idiomas: null
+            },
 
             atletaUpdate: {},
             idiomas: [{
@@ -621,10 +627,19 @@ export default {
             this.$validator.validateAll().then(success => {
                 if (success) {
                     let ladoPie, playaPractica, idiomas = '',
-                        olaPreferida;
-                    for (var i = this.atleta.idiomas.length - 1; i >= 0; i--) {
-                        idiomas = idiomas + ', ' + this.atleta.idiomas[i].name
+                        olaPreferida, idiomasArr = [];
+                    for (var i = this.createAtleta.idiomas.length - 1; i >= 0; i--) {
+                        idiomasArr.push(this.createAtleta.idiomas[i].name)
                     }
+                    idiomas = idiomasArr.toString();
+
+                    if (this.createAtleta.ladoPie == true) {
+                        ladoPie = 'Izquierda'
+                    } else {
+                        ladoPie = "Derecha"
+                    }
+                    olaPreferida = this.createAtleta.olaPreferida.name
+                    playaPractica = this.createAtleta.playaPractica.nombre
                     if (this.atleta.ladoPie == true) {
                         ladoPie = 'Izquierda'
                     } else {

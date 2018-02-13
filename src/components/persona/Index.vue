@@ -39,6 +39,20 @@
                                     <td class="nowrap">{{ props.row.nombre }}</td>
                                     <td>{{ props.row.apellido }}</td>
                                     <td>{{ props.row.correo }}</td>
+                                    <td>
+                                        <i :class=" props.row.atletaId == null ? 'text-red fa fa-times-circle-o':'fa fa-check-square-o text-info' "></i>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-primary-outline" :title="props.row.atletaId == null? 'Crear':'Editar'"dat-toggle="tooltip" @click="(props.row.atletaId == null?  _atleta(0, props.row) : _atleta(props.row.atletaId.id, props.row))"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>
+                                    <td>
+                                        <i :class=" props.row.miembroJuntaId == null ? 'text-red fa fa-times-circle-o':'fa fa-check-square-o text-info' "></i>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-primary-outline" :title="props.row.miembroJuntaId == null? 'Crear':'Editar'"dat-toggle="tooltip" @click="(props.row.miembroJuntaId == null?  _miembro(0, props.row) : _miembro(props.row.miembroJuntaId.id, props.row))"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>
+                                    <td>
+                                        <i :class=" props.row.juezId == null ? 'text-red fa fa-times-circle-o':'fa fa-check-square-o text-info' "></i>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-primary-outline" :title="props.row.juezId == null? 'Crear':'Editar'"dat-toggle="tooltip" @click="(props.row.juezId == null?  _juez(0, props.row) : _juez(props.row.juezId.id, props.row))"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>
+                                    <td>
+                                        <i :class=" props.row.entrenadorId == null ? 'text-red fa fa-times-circle-o':'fa fa-check-square-o text-info' "></i>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-primary-outline" :title="props.row.entrenadorId == null? 'Crear':'Editar'"dat-toggle="tooltip" @click="(props.row.entrenadorId == null?  _entrenador(0, props.row) : _entrenador(props.row.entrenadorId.id, props.row))"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>
+
+
                                     <td class="nowrap">
                                         <button type="button" class="margin btn btn-flat btn-sm btn-primary" @click="openModal=true, retrieveData(props.row.id)"><i aria-hidden="true" class="fa fa-pencil-square-o"></i> Actualizar</button>
                                         <button type="button" class="margin btn btn-flat btn-sm btn-danger" @click="deletePersona(props.row.id, props.row.nombre)"><i aria-hidden="true" class="fa fa-trash-o"></i> Eliminar</button>
@@ -83,8 +97,27 @@
                         field: "correo",
                     },
                     {
-                        label: "Action"
-                    }
+                        label: "Atleta",
+                        field: "atletaId",
+                    },
+                    {
+                        label: "Miembro",
+                        field: "miembroJuntaId",
+                    },
+                    {
+                        label: "Juez",
+                        field: "juezId",
+                    },
+                    {
+                        label: "Entrenador",
+                        field: "entrenadorId",
+                    },
+                    {
+                        label: "Opciones",
+                        field: "",
+                    },
+
+
                 ]
             }
         },
@@ -94,6 +127,73 @@
         methods:{
             fetchData(){
                 personaController.index(this)
+            },
+            _atleta(val, row){
+                let context = this;
+                let swal = this.$swal;
+                let config1  = {}, config2  = {}, config3 = {}
+
+                if ( val != 0 ){
+                    config1 = {
+                        title: 'Editar?',
+                        html: 'Deseas editar la informacion de atleta de la persona <b>&laquo;' + row.nombre + '&raquo</b>',
+                        type: 'success',
+                        showCancelButton: true,
+                        confirmButtonText: 'Si!',
+                        cancelButtonText: 'No!'
+                    }
+                    config2 = "No se modifico la informacion"
+                    config3 = {
+                        name: 'AtletasEdit',
+                        params: {
+                            id: row.atletaId.id,
+
+                        }
+                    }
+                }
+                else{
+                    config1 = {
+                        title: 'Crear?',
+                        html: 'Deseas crear la informacion de atleta de la persona <b>&laquo;' + row.nombre + '&raquo</b>',
+                        type: 'success',
+                        showCancelButton: true,
+                        confirmButtonText: 'Si!',
+                        cancelButtonText: 'No!'
+                    }
+                    config2 = "No se creo la informacion"
+                    config3 = {
+                        name: 'AtletasCreate',
+                        params: {
+                            id: row.id,
+
+                        }
+                    }
+                }
+
+
+                this.$swal(config1)
+                .then(function() {
+                    context.$router.push(
+                        config3
+                    );
+                },function(dismiss) {
+                    if (dismiss === 'cancel') {
+                        swal(
+                          'Cancelado',
+                          config2,
+                          'error'
+                        )
+                    }
+                })
+            },
+            _juez(val){
+                alert(val)
+            },
+            _miembro(val){
+                alert(val)
+            },
+            _entrenador(val){
+                alert(val)
             },
             deletePersona(id, nombre) {
                 let context = this;
@@ -120,3 +220,9 @@
         }
     }
 </script>
+<style >
+    .btn.btn-primary-outline{
+        background-color: transparent;
+        color: navy;
+    }
+</style>

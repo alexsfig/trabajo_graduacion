@@ -198,7 +198,7 @@ export default new Router({
           component: JuecesShow
         },
         {
-          path: 'atletas/create',
+          path: 'atletas/create/:id',
           name: 'AtletasCreate',
           component: AtletasCreate
         },
