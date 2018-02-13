@@ -56,6 +56,10 @@ import TransaccionesCreate from '@/components/transacciones/Create'
 import TransaccionesShow from '@/components/transacciones/Show'
 import TransaccionesIndex from '@/components/transacciones/Index'
 
+import PatrocinadoresCreate from '@/components/patrocinador/Create'
+import PatrocinadoresShow from '@/components/patrocinador/Show'
+import PatrocinadoresIndex from '@/components/patrocinador/Index'
+
 // Import base templates
 import AdminTemplate from '@/layouts/Admin'
 import LoginTemplate from '@/layouts/Login'
@@ -295,6 +299,21 @@ export default new Router({
           path: 'transaccciones/:id',
           name: 'TransaccionesShow',
           component: TransaccionesShow
+        },
+         {
+          path: 'patrocinadores',
+          name: 'PatrocinadoresIndex',
+          component: PatrocinadoresIndex
+        },
+        {
+          path: 'patrocinadores/create',
+          name: 'PatrocinadoresCreate',
+          component: PatrocinadoresCreate
+        },
+        {
+          path: 'patrocinadores/:id',
+          name: 'PatrocinadoresShow',
+          component: PatrocinadoresShow
         }
       ]
     },

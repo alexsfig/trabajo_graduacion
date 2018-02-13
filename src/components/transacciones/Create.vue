@@ -32,7 +32,7 @@
                             <form @submit.prevent="submit"  role="form"> 
                                 <div class="box-body">
                                 
-                                    <div class="col-xs-12 col-sm-4">
+                                    <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup"  :class="{ 'has-error': errors.has('tipo') }">
                                             <label for="">Tipo Transaccion</label>
                                             <v-select
@@ -53,7 +53,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-xs-12 col-sm-4">
+                                    <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup"  :class="{ 'has-error': errors.has('tipoDocumento') }">
                                             <label for="">Tipo Documento</label>
                                             <v-select
@@ -72,7 +72,7 @@
                                     </div>
 
 
-                                    <div class="col-xs-12 col-sm-4">
+                                    <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('monto') }" >
                                             <label for="">Monto</label>
                                             <input type="number" id="monto" name="monto" min=0  data-vv-as="Monto de la Transaccion" class="form-control" v-model="createTransacciones.monto" v-validate="'required'" step="0.01" >
@@ -84,7 +84,7 @@
  
                                                                     
                                    
-                                    <div class="col-xs-12 col-sm-4">
+                                    <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('formaPagoId') }" >
                                             <label for="">Forma de Pago</label>
                                             <v-select
@@ -102,16 +102,16 @@
                                         </div>
                                     </div> 
 
-
+                                    <!--
                                      <div class="col-xs-12 col-sm-4">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('¨patrocinadorId') }" >
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('patrocinadorId') }" >
                                             <label for="">Patrocinador</label>
                                             <v-select
                                                 :debounce="250"
                                                 :options="patrocinadores"
                                                 v-model="createTransacciones.patrocinadorId"
                                                 placeholder="Seleccione el Patrocinador"
-                                                label="id">
+                                                label="personaId">
                                             </v-select>
                                              <div class="clearfix"></div>
                                             <input type="hidden" name="patrocinadorId" value="" data-vv-as="Patrocinador"  v-model="createTransacciones.patrocinadorId" v-validate="'required'">
@@ -119,9 +119,24 @@
                                                 {{ errors.first('patrocinadorId') }}
                                             </span>
                                         </div>
+                                    </div>  -->
+                                    <div class="col-xs-12 col-sm-6">
+                                    <div class="fgroup" :class="{ 'has-error': errors.has('patrocinadorId') }" >
+                                   <label for=""> Patrocinador</label> 
+                                    <select v-model="createTransacciones.patrocinadorId" id="patrocinadorId" name="patrocinadorId" v-validate="'required'" data-vv-as="Patrocinador" class="form-control selectpicker bs-select"
+                                    >
+                                  
+                                     <option v-for="patrocinadores in patrocinadores" :value="patrocinadores.id">
+                                         {{ patrocinadores.personaId.nombre }}
+                                     </option>   
+
+
+                                    </select>
+                                    <span class="help-block" for="patrocinadorId" v-bind:data-error="errors.first('patrocinadorId')">
+                                                {{ errors.first('patrocinadorId') }}
+                                            </span>
+                                       </div>
                                     </div> 
-
-
                                     
 
                                 
@@ -145,6 +160,7 @@
     import transacciones from '../../controllers/transacciones.js'
     import vSelect from "vue-select"
     import formapagos from '../../controllers/formapagos.js'
+    import patrocinadores from '../../controllers/patrocinador.js'
     
     
     
@@ -161,6 +177,8 @@
                 isLogin: false,
                 createTransacciones: {},
                 formapagos: [],
+                patrocinadores: [],
+               
 
                  tipodocumentos: [
                     {name: 'Factura'},
@@ -179,7 +197,7 @@
                 ],
 
               
-                
+              
                 
 
             }
@@ -201,8 +219,12 @@
         methods: {
 
 
+
+
+
             fetchData() {
-                formapagos.index(this)
+                formapagos.index(this),
+                patrocinadores.index(this)
             }, 
 
                   
@@ -219,6 +241,8 @@
 
                         tipoDocumento = this.createTransacciones.tipoDocumento.name
                         tipo = this.createTransacciones.tipo.name
+                        
+
 
                         this.createTransacciones.tipo = tipo == undefined ? '' : tipo
                         this.createTransacciones.tipoDocumento = tipoDocumento == undefined ? '' : tipoDocumento

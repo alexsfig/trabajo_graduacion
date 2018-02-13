@@ -5,7 +5,9 @@ import {HTTP} from '../common_class/http.js';
 import {router} from '../router/index.js'
 import moment from 'moment'
 // define base url to Employees
-const TRANSACCIONES = 'transaccion/'
+const PATROCINADORES = 'patrocinador/'
+
+
 
 
 export default {
@@ -15,25 +17,25 @@ export default {
     /* 
         Use the context to redirect after succeded and update var to use in view
         
-        Method to create PLAYAS, pass object Users
+        Method to create users, pass object Users
     */
-    create(context, transaccion){
+    create(context, patrocinador){
         context.showAlert = false 
-        context.showSuccess = false 
-        
-
-
-        transaccion.id= 0;
-        transaccion.usuarioId= parseInt(localStorage.getItem('iduser'));
-       //transaccion.patrocinadorId=1;
-        HTTP.post(TRANSACCIONES, transaccion)
+         context.showSuccess = false 
+          patrocinadores.id= 0;
+           console.log(localStorage.getItem('entidadId'));
+          patrocinadores.entidadId= parseInt(localStorage.getItem('entidadId'));
+           console.log(localStorage.getItem('playaId'));
+          patrocinadores.playaId= parseInt(localStorage.getItem('playaId'));
+           console.log(localStorage.getItem('entrenadorId'));
+          patrocinadores.entrenadorId= parseInt(localStorage.getItem('entrenadorId'));
+          //noticias.fechaInicio = moment(noticias.fechaInicio).format('YYYY-MM-DD');
+        HTTP.post(PATROCINADORES, patrocinadores)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
                     context.showSuccess = true
-                    context.successMsg = "Transaccion Creada"
-                    //context.fetchData()
-                    //context.reset()
-                    context.createTransacciones = {}
+                    context.successMsg = "Escuela Creada"
+                    context.createEscuelas = {}
                     context.errors.clear()
                 }
             })
@@ -43,22 +45,22 @@ export default {
                     context.errMsg = err.response.data
                 }
             })
-    },
+    }, 
     /* 
         Method to update user, pass context, object Users and user id
     */
-    
-    update(context, user){
+   
+    update(context, patrocinadores){
         context.showAlert = false 
         context.showSuccess = false 
-        HTTP.put(PLAYAS, user)
+        HTTP.put(PATROCINADORES, patrocinadores)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
                     var id = resp.data.id
                     context.showAlert = false 
                 }
                 context.showSuccess = true
-                context.successMsg = "Playa Actualizada"
+                context.successMsg = "Patrocinador actualizado"
             })
             .catch((err) => {
                 context.showAlert = true
@@ -70,60 +72,62 @@ export default {
                     context.showAlert = true 
                 }
             })
-    },
+    }, 
     /* 
         Method to get user, pass only the context, id will be taken from url
     */
     show(context){
-        HTTP.get(PLAYAS + context.$route.params.id+'/')
+        HTTP.get(PATROCINADORES + context.$route.params.id+'/')
             .then((resp) => {
-                context.user = resp.data
+                context.patrocinador = resp.data
+
 
             })
             .catch((err) => {
               console.log(err)
             })
-    },
+    },  
     /* 
-        Method to display all PLAYAS, pass only the context
+        Method to display all users, pass only the context
     */
-    index(context){
-        HTTP.get(PLAYAS)
+   index(context){
+        HTTP.get(PATROCINADORES)
             .then((resp) => {
-                context.playas = resp.data
+                context.patrocinadores = resp.data
                 console.log(resp.data)
             })
             .catch((err) => {
               console.log(err)
             })
     },
-    /* 
+
+     /* 
         Method to retrieve user, pass the context and user id, use this method when you need to edit user
     */
     retrieve(context, id){
-        HTTP.get(PLAYAS + id)
+        HTTP.get(PATROCINADORES + id)
             .then((resp) => {
                 console.log(resp)
-                context.playa = resp.data;
+                context.patrocinador = resp.data;
             })
             .catch((err) => {
               console.log(err)
             })
-    },
+    }, 
     /* 
         Method to delete user, pass the context and user id, use this method when you need to delete user
     */
     delete(context, id, swal) {
-        HTTP.delete(PLAYAS + id)
+        HTTP.delete(PATROCINADORES + id)
             .then((resp) => {
                 console.log(resp);
-                swal("Deleted!", "La playa ha sido eliminada", "success")
+                swal("Deleted!", "El patrocinador ha sido eliminado", "success")
                 context.fetchData();
             })
             .catch((err) => {               
                 swal("Oh snap!", "Ocurrio un error.", "error")
-            })
-    }
+            }) 
+    } 
     
 
 }

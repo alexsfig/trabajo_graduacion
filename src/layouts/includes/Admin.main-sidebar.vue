@@ -162,6 +162,12 @@
 		            </router-link>
 		            <ul class="treeview-menu">
 		                <li>
+		                    <router-link to="/admin/patrocinadores/">
+		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Patrocinadores</span>
+		                    </router-link>
+		                </li>
+
+		                <li>
 		                    <router-link to="/admin/formapagos/">
 		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Formas de Pago</span>
 		                    </router-link>
