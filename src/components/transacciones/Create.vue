@@ -127,7 +127,9 @@
                                     >
                                   
                                      <option v-for="patrocinadores in patrocinadores" :value="patrocinadores.id">
-                                         {{ patrocinadores.personaId.nombre }}
+                                        <!-- {{ patrocinadores.personaId.nombre }}-->
+                            {{patrocinadores.esPersona==1 ? patrocinadores.personaId.nombre :patrocinadores.entidadId.nombre}}
+                                    
                                      </option>   
 
 

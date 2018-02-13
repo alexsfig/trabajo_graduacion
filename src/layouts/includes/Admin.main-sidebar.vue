@@ -181,7 +181,7 @@
 
 		                <li>
 		                    <router-link to="/admin/transacciones/create">
-		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Registar Transaccion</span>
+		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Registrar Transaccion</span>
 		                    </router-link>
 		                </li>
 		               
