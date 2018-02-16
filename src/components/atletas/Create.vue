@@ -511,16 +511,41 @@ export default {
             this.atleta.olaPreferida = {
                 name: olaPreferida
             }
-
+            this.atleta.idiomas = val.idiomas.replace(/\s/g, "")
+            this.atleta.idiomas = val.idiomas.split(",")
+            var idiomas = val.idiomas
+            var newArry = []
+            for (var i = idiomas.length - 1; i >= 0; i--) {
+                if (idiomas[i] != "") {
+                    newArry.push({
+                        name: idiomas[i]
+                    });
+                }
+            }
             var playaPractica = val.playaPractica
             this.atleta.playaPractica = {
                 nombre: playaPractica
             }
 
         },
+        persona(val){
+            if (val.atletaId != null) {
+                this.atleta = val.atletaId
+
+            }
+        }
 
     },
     methods: {
+        _redirectTo(id){
+            this.$router.push({
+               name: 'AtletasShow',
+               params: {
+                   id: id,
+               }
+           });
+        },
+
         first_step() {
             return new Promise((resolve, reject) => {
                 this.$validator.validateAll('form-2-1').then(success => {
@@ -553,7 +578,7 @@ export default {
                     }
                     else{
                         this.showAlert = true
-                        this.errMsg = "Please complete all required fields"
+                        this.errMsg = "Todos los campos son requeridos"
                         reject(true)
                     }
                 });
@@ -650,7 +675,15 @@ export default {
                         "uanioCursado": this.atleta.uanioCursado == undefined ? '' : this.atleta.uanioCursado,
                         "ultimaParticipacion": this.atleta.ultimaParticipacion == undefined ? '' : this.atleta.ultimaParticipacion
                     }
-                    atletasController.update(this, atleta)
+                    if(this.persona.atletaId == null){
+                        atleta.id = 0;
+                        atletasController.create(this, atleta)
+                    }
+                    else{
+                        atleta.id =  this.persona.atletaId.id
+                        atletasController.update(this, atleta)
+
+                    }
                 } else {
                     this.errMsg = 'Error revisa el formulario'
                     this.showAlert = true
