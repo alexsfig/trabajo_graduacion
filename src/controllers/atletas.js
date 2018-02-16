@@ -26,13 +26,9 @@ export default {
             .then((resp) => {
               HTTP.post('atleta', atleta)
                   .then((resp) => {
-                      if (resp.status>= 200 && resp.status <=300){
-                          context.showSuccess = true
-                          context.successMsg = "Persona creada exitosamente"
-                          context.fetchData()
-                          context.resetForm()
+                      context.showSuccess = true
+                      context.successMsg = "Atleta creado exitosamente"
 
-                      }
                   })
                   .catch((err) => {
                       if (err.response) {
@@ -158,6 +154,17 @@ export default {
             })
             .catch((err) => {
                 swal("Oh snap!", "Ocurrio un error.", "error")
+            })
+    },
+    upload_avatar(context, formData, root_path){
+        UPLOAD.post('upload_avatar', formData)
+            .then((resp) => {
+            })
+            .catch((err) => {
+                if (err.response) {
+                    context.showAlert = true
+                    context.errMsg = err.response.data
+                }
             })
     }
 
