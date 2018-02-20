@@ -602,9 +602,9 @@
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('form-6.nivelJerarquia') }">
                                             <label for="">Nivel Jerarquia</label>
-                                            <v-select :debounce="250" :options="jerarquia" v-model="createMiembroJunta.nivelJerarquia" placeholder="Seleccione la jerarquia" label="name">
+                                            <v-select :debounce="250" :options="jerarquia" v-model="createMiembroJunta.nivelJerarquia" placeholder="Seleccione la jerarquia" >
                                             </v-select>
-                                            <input v-model="createMiembroJunta.nivelJerarquia" name="nivelJerarquia"  data-vv-as="Nivel Jerarquia" v-validate="'required'">
+                                            <input  v-model="createMiembroJunta.nivelJerarquia" name="nivelJerarquia"  data-vv-as="nivelJerarquia" v-validate="'required'">
                                             <span class="help-block" for="type" v-bind:data-error="errors.first('form-6.nivelJerarquia')">
                                                     {{ errors.first('form-6.nivelJerarquia') }}
                                                 </span>
@@ -940,13 +940,14 @@ export default {
                 if (success) {
                     let persona = this.createPersona
                     let entrenador = {
-                        "descripcion": this.createEntrenador.descripcion,
-                        "personaId": persona,
+                        "descripcion": this.createEntrenador.descripcion
 
                     }
+                    persona.entrenador=entrenador;
                     this.entrenador = entrenador
-                    personaController.createEntrenador(this, entrenador)
-                    console.log(entrenador)
+                    personaController.createEntrenador(this, persona)
+                      console.log("////////////////////////")
+                    console.log(persona)
                 } else {
                     this.showAlert = true
                     this.errMsg = "Por favor complete el formulario"
@@ -962,12 +963,14 @@ export default {
                 if (success) {
                     let persona = this.createPersona
                     let miembroJunta = {
-                        "nivelJerarquia": this.createMiembroJunta.nivelJerarquia.name,
-                        "personaId": persona,
+                        "nivelJerarquia": this.createMiembroJunta.nivelJerarquia.name
+                       
 
                     }
+                    persona.miembroJunta=miembroJunta;
+
                     this.miembroJunta = miembroJunta
-                    personaController.createMiembroJunta(this, miembroJunta)
+                    personaController.createMiembroJunta(this, persona)
                     console.log(miembroJunta)
                 } else {
                     this.showAlert = true
@@ -985,10 +988,12 @@ export default {
                     let persona = this.createPersona
                     let juez = {
                         "descripcion": this.createJuez.descripcion,
-                        "personaId": persona,
+                         "certificacionList":this.creaCert
+                        //"personaId": persona,
                     }
+                    persona.juez=juez;
                     this.juez = juez
-                    personaController.createJuez(this, juez)
+                    personaController.createJuez(this, persona)
                     console.log(juez)
                 } else {
                     this.showAlert = true
@@ -1021,7 +1026,7 @@ export default {
                     playaPractica = this.createAtleta.playaPractica.nombre
                     let persona = this.createPersona
                     let atleta = {
-                        id: 0,
+                     
                         "ruta_foto": this.createAtleta.ruta_foto,
                         "aniosPracticando": this.createAtleta.aniosPracticando == undefined ? 0 : parseInt(this.createAtleta.aniosPracticando),
                         "compitioFechas": this.createAtleta.compitioFechas == false ? 0 : 1,
@@ -1034,7 +1039,7 @@ export default {
                         "nivelAcademico": this.createAtleta.nivelAcademico == undefined ? '' : this.createAtleta.nivelAcademico,
                         "olaPreferida": olaPreferida == undefined ? '' : olaPreferida,
                         "otrosEstudios": this.createAtleta.otrosEstudios == undefined ? '' : this.createAtleta.otrosEstudios,
-                        "personaId": persona,
+                       // "personaId": persona,
                         "playaPractica": playaPractica == undefined ? '' : playaPractica,
                         "rutinaConstancia": this.createAtleta.rutinaConstancia == undefined ? '' : this.createAtleta.rutinaConstancia,
                         "sabeEscribir": this.createAtleta.sabeEscribir == false ? 0 : 1,
@@ -1044,7 +1049,8 @@ export default {
                         "uanioCursado": this.createAtleta.uanioCursado == undefined ? '' : this.createAtleta.uanioCursado,
                         "ultimaParticipacion": this.createAtleta.ultimaParticipacion == undefined ? '' : this.createAtleta.ultimaParticipacion
                     }
-                    personaController.createAtleta(this, atleta)
+                    persona.atleta=atleta;
+                    personaController.createAtleta(this, persona)
                     console.log(atleta)
                 } else {
                     this.showAlert = true

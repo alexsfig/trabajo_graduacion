@@ -115,6 +115,7 @@ export default {
         '$route': 'fetchData',
         persona: function(val, oldVal) {
             this.openModalInside = this.openModal
+            this.persona=val;
             this.updateMiembrojunta = val.miembroJuntaId
             this.title2 =  "Actualizar Jerarquia"
             if (this.updateMiembrojunta == null) {
@@ -155,6 +156,8 @@ export default {
                 this.showSuccess = false
                 this.$validator.validateAll().then(success => {
                     if (success) {
+                        console.log("la persona" );
+                        console.log(this.persona)
                         let  miembroJunta = {}
                         miembroJunta.nivelJerarquia =  this.updateMiembrojunta.nivelJerarquia.name
                         miembroJunta.personaId = this.persona
@@ -163,8 +166,8 @@ export default {
                         delete miembroJunta.personaId.juezId
                         delete miembroJunta.personaId.miembroJuntaId
                         delete miembroJunta.personaId.usuarioList
-                        if(this.persona.miembroJuntaId == null){
-                            miembroJunta.id = 0;
+                        if(  this.title2 !=  "Actualizar Jerarquia"){
+                        
                             juntamiembros.create(this, miembroJunta)
                         }
                         else{

@@ -14,6 +14,8 @@ export default {
     */
     authenticate(context, params){
         context.showAlert = false;
+
+        console.log(params)
         HTTP.post(LOGIN_URL, params )
         .then((resp) => {
             // Use localStorage to save access token, to use in each request

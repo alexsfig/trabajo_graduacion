@@ -170,6 +170,26 @@
 		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Agregar Categorias</span>
 		                    </router-link>
 		                </li>
+
+						  	   <li>
+		                    <router-link to="/admin/fechas/">
+		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Manejo de Fechas</span>
+		                    </router-link>
+		                </li>
+		                <li>
+		                    <router-link to="/admin/fechas/form">
+		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Agregar Fecha</span>
+		                    </router-link>
+		                </li> <li>
+		                    <router-link to="/admin/circuitos/">
+		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Manejo de Circuitos</span>
+		                    </router-link>
+		                </li>
+		                <li>
+		                    <router-link to="/admin/circuitos/form">
+		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Agregar Circuito</span>
+		                    </router-link>
+		                </li>
 		            </ul>
 		        </li>
 		        <li>
@@ -182,7 +202,78 @@
 		                <i class="fa fa-user-plus" aria-hidden="true"></i> <span>Roles</span>
 		            </router-link>
 		        </li>
+	
+	
+		     
+		     
+
+					 <li class="treeview">
+		            <router-link to="#">
+		                <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+		                <span>Finanzas</span>
+		                <span class="pull-right-container">
+		                    <i class="fa fa-angle-left pull-right"></i>
+		                </span>
+		            </router-link>
+		            <ul class="treeview-menu">
+		                <li>
+		                    <router-link to="/admin/cuentas/">
+		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Manejo de Cuentas</span>
+		                    </router-link>
+		                </li>
+		                <li>
+		                    <router-link to="/admin/cuentas/form">
+		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Agregar Cuenta</span>
+		                    </router-link>
+		                </li>
+
+						  <li>
+		                    <router-link to="/admin/tipoTransaccions/">
+		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Manejo de Tipos de transacciones</span>
+		                    </router-link>
+		                </li>
+		                <li>
+		                    <router-link to="/admin/tipoTransaccions/form">
+		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Agregar Tipos de transaccione</span>
+		                    </router-link>
+		                </li>
+						  <li>
+		                    <router-link to="/admin/formaPagos/">
+		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Manejo de Formas de pago </span>
+		                    </router-link>
+		                </li>
+		                <li>
+		                    <router-link to="/admin/formaPagos/form">
+		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Agregar Formas de pago </span>
+		                    </router-link>
+		                </li>
+						  <li>
+		                    <router-link to="/admin/patrocinadors/">
+		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Manejo de Patrocinadores</span>
+		                    </router-link>
+		                </li>
+		                <li>
+		                    <router-link to="/admin/patrocinadors/form">
+		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Agregar Patrocinadores</span>
+		                    </router-link>
+		                </li>
+						<li>
+		                    <router-link to="/admin/transaccion/">
+		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Manejo de transacciones</span>
+		                    </router-link>
+		                </li>
+		                <li>
+		                    <router-link to="/admin/transaccions/form">
+		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Agregar transaccion</span>
+		                    </router-link>
+		                </li>
+		            </ul>
+		        </li>
+	
+	
+	
 		    </ul>
+
 
 		</section>
 	</div>

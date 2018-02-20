@@ -79,7 +79,7 @@
 
 <script>
 import atletasController from '../../controllers/atletas.js'
-
+import moment from "moment"
 export default {
     name: "ShowAtleta",
     data: () => ({

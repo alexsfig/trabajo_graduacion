@@ -50,6 +50,30 @@ import EscuelasIndex from '@/components/escuelas/Index'
 import AdminTemplate from '@/layouts/Admin'
 import LoginTemplate from '@/layouts/Login'
 
+
+import FechasIndex from '@/components/fechas/Index'
+import FechasForm from '@/components/fechas/Form'
+import CircuitosForm from '@/components/circuitos/Form'
+import CircuitosIndex from '@/components/circuitos/Index'
+import AgregarAtleta from '@/components/circuitos/AgregarAtleta'
+// Import base templates
+
+import CuentasForm from '@/components/cuenta/Form'
+import CuentasIndex from '@/components/cuenta/Index'
+
+import TipoTransaccionForm from '@/components/tipotransaccion/Form'
+import TipoTransaccionIndex from '@/components/tipotransaccion/Index'
+
+import FormaPagoForm from '@/components/formaPago/Form'
+import FormaPagoIndex from '@/components/formaPago/Index'
+
+import PatrocinadorForm from '@/components/patrocinadores/Form'
+import PatrocinadorIndex from '@/components/patrocinadores/Index'
+
+
+import TransaccionForm from '@/components/transaccion/Form'
+import TransaccionIndex from '@/components/transaccion/Index'
+
 Vue.use(Router)
 export default new Router({
   mode: 'history',
@@ -246,6 +270,116 @@ export default new Router({
           path: 'escuelas/:id',
           name: 'EscuelasShow',
           component: EscuelasShow
+        }, {
+          path: 'fechas',
+          name: 'fechasIndex',
+          component: FechasIndex
+        }
+        , 
+        {
+          path: 'fechas/form',
+          name: 'fechasCreate',
+          component: FechasForm
+        },
+        {
+          path: 'fechas/form/:id',
+          name: 'fechasEdit',
+          component: FechasForm
+        },
+        {
+          path: 'circuitos',
+          name: 'circuitosIndex',
+          component: CircuitosIndex
+        },
+        {
+          path: 'circuitos/form',
+          name: 'circuitosCreate',
+          component: CircuitosForm
+        },
+        {
+          path: 'circuitos/form/:id',
+          name: 'circuitosEdit',
+          component: CircuitosForm
+        },
+        {
+          path: 'circuitos/agregarAtleta/:id',
+          name: 'circuitosAgregarAtleta',
+          component: AgregarAtleta
+        },
+        {
+          path: 'cuentas',
+          name: 'cuentasIndex',
+          component: CuentasIndex
+        },
+        {
+          path: 'cuentas/form',
+          name: 'cuentasCreate',
+          component: CuentasForm
+        },
+        {
+          path: 'cuentas/form/:id',
+          name: 'cuentasEdit',
+          component: CuentasForm
+        }
+,
+        {
+          path: 'tipoTransaccions',
+          name: 'tipoTransaccionIndex',
+          component: TipoTransaccionIndex
+        },
+        {
+          path: 'tipoTransaccions/form',
+          name: 'tipoTransaccionCreate',
+          component: TipoTransaccionForm
+        },
+        {
+          path: 'tipoTransaccions/form/:id',
+          name: 'tipoTransaccionsEdit',
+          component: TipoTransaccionForm
+        }, {
+          path: 'formaPagos',
+          name: 'formaPagoIndex',
+          component: FormaPagoIndex
+        },
+        {
+          path: 'formaPagos/form',
+          name: 'formaPagoCreate',
+          component: FormaPagoForm
+        },
+        {
+          path: 'formaPagos/form/:id',
+          name: 'formaPagosEdit',
+          component: FormaPagoForm
+        },
+        {
+          path: 'patrocinadors',
+          name: 'patrocinadorIndex',
+          component: PatrocinadorIndex
+        },
+        {
+          path: 'patrocinadors/form',
+          name: 'patrocinadorCreate',
+          component: PatrocinadorForm
+        },
+        {
+          path: 'patrocinadors/form/:id',
+          name: 'patrocinadorsEdit',
+          component: PatrocinadorForm
+        },
+        {
+          path: 'transaccion',
+          name: 'transaccionIndex',
+          component: TransaccionIndex
+        },
+        {
+          path: 'transaccions/form',
+          name: 'transaccionCreate',
+          component: TransaccionForm
+        },
+        {
+          path: 'transaccions/form/:id',
+          name: 'transaccionsEdit',
+          component: TransaccionForm
         }
       ]
     },

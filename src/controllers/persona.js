@@ -33,7 +33,9 @@ export default {
 
         UPLOAD.post('upload_avatar', formData)
             .then((resp) => {
-              HTTP.post('atleta', atleta)
+                console.log("estoy en crear personaasljjsll")
+                console.log(atleta)
+              HTTP.post('persona', atleta)
                   .then((resp) => {
                       if (resp.status>= 200 && resp.status <=300){
 
@@ -63,7 +65,7 @@ export default {
     createJuez(context, juez){
         context.showAlert = false
         context.showSuccess = false
-        HTTP.post('juez', juez)
+        HTTP.post('persona', juez)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
                     context.showSuccess = true
@@ -82,7 +84,17 @@ export default {
     createEntrenador(context, entrenador){
         context.showAlert = false
         context.showSuccess = false
-            HTTP.post('entrenador', entrenador)
+    /*let temp=entrenador;
+
+   
+    let obj =temp.personaId;
+
+
+    obj.entrenador=entrenador;
+    console.log("locuraas");
+console.log(obj);
+        */
+            HTTP.post('persona', entrenador)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
                     context.showSuccess = true
@@ -101,7 +113,7 @@ export default {
     createMiembroJunta(context, miembroJunta){
         context.showAlert = false
         context.showSuccess = false
-        HTTP.post('miembroJunta', miembroJunta)
+        HTTP.post('persona', miembroJunta)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
                     context.showSuccess = true

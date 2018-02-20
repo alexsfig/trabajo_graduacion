@@ -40,31 +40,31 @@
                                     <td>{{ props.row.apellido }}</td>
                                     <td>{{ props.row.correo }}</td>
                                     <td>
-                                        <i :class=" props.row.atletaId == null ? 'text-red fa fa-times-circle-o':'fa fa-check-square-o text-info' "></i>
+                                        <i :class=" props.row.atleta == null ? 'text-red fa fa-times-circle-o':'fa fa-check-square-o text-info' "></i>
                                         &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <button class="btn btn-primary-outline" :title="props.row.atletaId == null? 'Crear':'Editar'"dat-toggle="tooltip" @click="(props.row.atletaId == null?  _atleta(0, props.row) : _atleta(props.row.atletaId.id, props.row))">
-                                            <i class="fa" :class="props.row.atletaId == null? 'fa-plus':'fa-pencil-square'"  aria-hidden="true"></i>
+                                        <button class="btn btn-primary-outline" :title="props.row.atleta == null? 'Crear':'Editar'"dat-toggle="tooltip" @click="(props.row.atleta == null?  _atleta(0, props.row) : _atleta(props.row.atleta.id, props.row))">
+                                            <i class="fa" :class="props.row.atleta == null? 'fa-plus':'fa-pencil-square'"  aria-hidden="true"></i>
                                         </button>
                                     </td>
                                     <td>
-                                        <i :class=" props.row.miembroJuntaId == null ? 'text-red fa fa-times-circle-o':'fa fa-check-square-o text-info' "></i>
+                                        <i :class=" props.row.miembroJunta == null ? 'text-red fa fa-times-circle-o':'fa fa-check-square-o text-info' "></i>
                                         &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <button class="btn btn-primary-outline" :title="props.row.miembroJuntaId == null? 'Crear':'Editar'"dat-toggle="tooltip" @click="openModal2=true, retrieveData(props.row.id),(props.row.miembroJuntaId == null?  _miembro(0, props.row) : _miembro(props.row.miembroJuntaId.id, props.row))">
-                                            <i class="fa" :class="props.row.miembroJuntaId == null? 'fa-plus':'fa-pencil-square'" aria-hidden="true"></i>
+                                        <button class="btn btn-primary-outline" :title="props.row.miembroJunta == null? 'Crear':'Editar'"dat-toggle="tooltip" @click="openModal2=true, retrieveData(props.row.id),(props.row.miembroJunta == null?  _miembro(0, props.row) : _miembro(props.row.miembroJunta.id, props.row))">
+                                            <i class="fa" :class="props.row.miembroJunta == null? 'fa-plus':'fa-pencil-square'" aria-hidden="true"></i>
                                         </button>
                                     </td>
                                     <td>
-                                        <i :class=" props.row.juezId == null ? 'text-red fa fa-times-circle-o':'fa fa-check-square-o text-info' "></i>
+                                        <i :class=" props.row.juez == null ? 'text-red fa fa-times-circle-o':'fa fa-check-square-o text-info' "></i>
                                         &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <button class="btn btn-primary-outline" :title="props.row.juezId == null? 'Crear':'Editar'"dat-toggle="tooltip" @click="(props.row.juezId == null?  _juez(0, props.row) : _juez(props.row.juezId.id, props.row))">
-                                            <i class="fa" :class="props.row.juezId == null? 'fa-plus':'fa-pencil-square'" aria-hidden="true"></i>
+                                        <button class="btn btn-primary-outline" :title="props.row.juez == null? 'Crear':'Editar'"dat-toggle="tooltip" @click="(props.row.juez == null?  _juez(0, props.row) : _juez(props.row.juez.id, props.row))">
+                                            <i class="fa" :class="props.row.juez == null? 'fa-plus':'fa-pencil-square'" aria-hidden="true"></i>
                                         </button>
                                     </td>
                                     <td>
-                                        <i :class=" props.row.entrenadorId == null ? 'text-red fa fa-times-circle-o':'fa fa-check-square-o text-info' "></i>
+                                        <i :class=" props.row.entrenador == null ? 'text-red fa fa-times-circle-o':'fa fa-check-square-o text-info' "></i>
                                         &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <button class="btn btn-primary-outline" :title="props.row.entrenadorId == null? 'Crear':'Editar'"dat-toggle="tooltip" @click="(props.row.entrenadorId == null?  _entrenador(0, props.row) : _entrenador(props.row.entrenadorId.id, props.row))">
-                                            <i class="fa" :class="props.row.entrenadorId == null? 'fa-plus':'fa-pencil-square'" aria-hidden="true"></i>
+                                        <button class="btn btn-primary-outline" :title="props.row.entrenador == null? 'Crear':'Editar'"dat-toggle="tooltip" @click="(props.row.entrenador == null?  _entrenador(0, props.row) : _entrenador(props.row.entrenador.id, props.row))">
+                                            <i class="fa" :class="props.row.entrenador == null? 'fa-plus':'fa-pencil-square'" aria-hidden="true"></i>
                                         </button>
                                     </td>
                                     <td class="nowrap">
@@ -124,19 +124,19 @@
                     },
                     {
                         label: "Atleta",
-                        field: "atletaId",
+                        field: "atleta",
                     },
                     {
                         label: "Miembro",
-                        field: "miembroJuntaId",
+                        field: "miembroJunta",
                     },
                     {
                         label: "Juez",
-                        field: "juezId",
+                        field: "juez",
                     },
                     {
                         label: "Entrenador",
-                        field: "entrenadorId",
+                        field: "entrenador",
                     },
                     {
                         label: "Opciones",
@@ -175,7 +175,7 @@
                     config3 = {
                         name: 'AtletasEdit',
                         params: {
-                            id: row.atletaId.id,
+                            id: row.atleta.id,
 
                         }
                     }

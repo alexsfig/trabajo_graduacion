@@ -73,6 +73,8 @@ export default {
                     }
                 })
         }
+
+        
         HTTP.put(ATLETAS, atletas)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
