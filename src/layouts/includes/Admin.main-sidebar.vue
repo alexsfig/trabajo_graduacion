@@ -207,6 +207,12 @@
 		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Agregar Categorias</span>
 		                    </router-link>
 		                </li>
+                         <li>
+		                    <router-link to="/admin/rondas/create">
+		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>generacion ronda 1 </span>
+		                    </router-link>
+		                </li>
+
 		            </ul>
 		        </li>
 		        <li>

@@ -56,9 +56,17 @@ import TransaccionesCreate from '@/components/transacciones/Create'
 import TransaccionesShow from '@/components/transacciones/Show'
 import TransaccionesIndex from '@/components/transacciones/Index'
 
+import DetalleTransaccionesCreate from '@/components/detalletransacciones/Create'
+import DetalleTransaccionesShow from '@/components/detalletransacciones/Show'
+import DetalleTransaccionesIndex from '@/components/detalletransacciones/Index'
+
 import PatrocinadoresCreate from '@/components/patrocinador/Create'
 import PatrocinadoresShow from '@/components/patrocinador/Show'
 import PatrocinadoresIndex from '@/components/patrocinador/Index'
+
+import RondasCreate from '@/components/rondas/Create'
+import RondasShow from '@/components/rondas/Show'
+import RondasIndex from '@/components/rondas/Index'
 
 // Import base templates
 import AdminTemplate from '@/layouts/Admin'
@@ -314,7 +322,39 @@ export default new Router({
           path: 'patrocinadores/:id',
           name: 'PatrocinadoresShow',
           component: PatrocinadoresShow
-        }
+        },
+         {
+          path: 'detalletransacciones',
+          name: 'DetalleTransaccionesIndex',
+          component: DetalleTransaccionesIndex
+        },
+        {
+          path: 'detalletransacciones/create',
+          name: 'PatrocinadoresCreate',
+          component: DetalleTransaccionesCreate
+        },
+        {
+          path: 'detalletransacciones/:id',
+          name: 'PatrocinadoresShow',
+          component: DetalleTransaccionesShow
+        },
+
+        {
+          path: 'rondas',
+          name: 'RondasIndex',
+          component: RondasIndex
+        },
+        {
+          path: 'rondas/create',
+          name: 'RondasCreate',
+          component: RondasCreate
+        },
+        {
+          path: 'rondas/:id',
+          name: 'RondasShow',
+          component: RondasShow
+        },
+
       ]
     },
   ]

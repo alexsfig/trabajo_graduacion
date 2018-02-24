@@ -17,14 +17,14 @@ export default {
         
         Method to create PLAYAS, pass object Users
     */
-    create(context, playa){
+    create(context, detalletransacciones){
         context.showAlert = false 
         context.showSuccess = false 
-        HTTP.post(PLAYAS, playa)
+        HTTP.post(DETALLETRANSACCIONES, detalletransacciones)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
                     context.showSuccess = true
-                    context.successMsg = "Playa Creada"
+                    context.successMsg = "Detalle de Transaccion Creado"
                     context.fetchData()
                     context.reset()
                 }
