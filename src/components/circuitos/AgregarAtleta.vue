@@ -38,7 +38,7 @@
                             <form @submit.prevent="submit"  role="form"> 
            <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup"  :class="{ 'has-error': errors.has('atleta') }">
-                                            <label for="atleta">Fecha</label>
+                                            <label for="atleta">Atleta</label>
                                             <v-select
                                                 :debounce="250"
                                                 :options="atletas"
@@ -51,15 +51,17 @@
                                             <span class="help-block" for="atleta" v-bind:data-error="errors.first('atleta')">
                                                 {{ errors.first('atleta') }}
                                             </span>
+                                              <button type="submit"  class="btn btn-flat btn-sm btn-primary">Agregar</button> 
                                         </div>
+                                        
                                     </div>
-                                        <button type="submit"  class="btn btn-flat btn-sm btn-primary">Agregar</button> 
+                                      
                             </form> 
                              <!--   <router-link to="/admin/circuitos/form" class="btn btn-default btn-flat">
                                     <i class="fa fa-plus"></i> Nueva Circuito
                                 </router-link>-->
                             </div>
-                         <vue-good-table :columns="columns" :rows="circuito.atletasCircuitoList" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
+                         <vue-good-table :columns="columns" :rows="atletaCircuitos" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
                                 <template slot="table-row" scope="props"> 
                                        <td>{{props.row.atletaId.personaId.nombre}}</td> 
                                    
@@ -103,7 +105,8 @@
                 datos:[],
                 atletaCircuito:{},
                 atletas:[],
-                atleta:{},
+                atletaCircuitos:[],
+                atleta:null,
                 showAlert: false,
                 showSuccess: false,
                 methodSubmit: 'editar',
@@ -151,7 +154,8 @@
         methods:{
             fetchData(){
                // circuitosController.index(this)
-                 circuitosController.retrieve(this,this.id)
+               atletaCircuitoController.indexByCircuito(this,this.id);
+                circuitosController.retrieve(this,this.id)
                  atletaController.index(this)
 /*
   for (let i of this.atletas) {

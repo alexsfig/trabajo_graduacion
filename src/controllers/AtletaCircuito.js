@@ -76,6 +76,17 @@ export default {
               console.log(err)
             })
     },
+    indexByCircuito(context,id){
+        HTTP.get("/atletaCircuito/byCircuito/"+id)
+            .then((resp) => {
+                console.log(resp.data)
+                context.atletaCircuitos = resp.data
+              
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+    },
 
     /*
         Method to retrieve user, pass the context and user id, use this method when you need to edit user
