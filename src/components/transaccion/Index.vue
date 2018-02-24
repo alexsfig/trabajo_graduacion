@@ -41,12 +41,12 @@
                             <vue-good-table :columns="columns" :rows="transaccions" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
                                 <template slot="table-row" scope="props">
 <td>{{ props.row.fecha }}</td>
-<td>{{ props.row.patrocinadorId.nombre }}</td>
+<td>{{ props.row.patrocinadorId?props.row.patrocinadorId.nombre:"N/A" }}</td>
 <td>{{ props.row.formaPagoId.nombre }}</td>
 <td>{{ props.row.monto }}</td>
 <td>{{ props.row.comprobante }}</td>
-<td>{{ props.row.referencia }}</td>
-<td>{{ props.row.descripcion }}</td>
+
+
 <td>{{ props.row.cuentaId.nombre }}</td>
 <td>{{ props.row.tipoTransaccionId.nombre }}</td>                                    <td class="nowrap">
  <router-link :to="{ name: 'transaccionsEdit', params: { id: props.row.id }}">
@@ -100,13 +100,8 @@
                     }, {
                         label: "Comprobante",
                         field: "comprobante",
-                    }, {
-                        label: "Referencia",
-                        field: "referencia",
-                    }, {
-                        label: "Descripcion",
-                        field: "descripcion",
-                    }, {
+                    }
+                    , {
                         label: "Cuenta",
                         field: "nombre",
                     }, {
