@@ -42,28 +42,28 @@
                                     <td>
                                         <i :class=" props.row.atleta == null ? 'text-red fa fa-times-circle-o':'fa fa-check-square-o text-info' "></i>
                                         &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <button class="btn btn-primary-outline" :title="props.row.atleta == null? 'Crear':'Editar'"dat-toggle="tooltip" @click="(props.row.atleta == null?  _atleta(0, props.row) : _atleta(props.row.atleta.id, props.row))">
+                                        <button class="btn btn-primary-outline" :title="props.row.atleta == null? 'Crear':'Editar'" dat-toggle="tooltip" @click="(props.row.atleta == null?  _atleta(0, props.row) : _atleta(props.row.atleta.id, props.row))">
                                             <i class="fa" :class="props.row.atleta == null? 'fa-plus':'fa-pencil-square'"  aria-hidden="true"></i>
                                         </button>
                                     </td>
                                     <td>
                                         <i :class=" props.row.miembroJunta == null ? 'text-red fa fa-times-circle-o':'fa fa-check-square-o text-info' "></i>
                                         &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <button class="btn btn-primary-outline" :title="props.row.miembroJunta == null? 'Crear':'Editar'"dat-toggle="tooltip" @click="openModal2=true, retrieveData(props.row.id),(props.row.miembroJunta == null?  _miembro(0, props.row) : _miembro(props.row.miembroJunta.id, props.row))">
+                                        <button class="btn btn-primary-outline" :title="props.row.miembroJunta == null? 'Crear':'Editar'" dat-toggle="tooltip" @click="(props.row.miembroJunta == null?  _miembro(0, props.row) : _miembro(props.row.miembroJunta.id, props.row))">
                                             <i class="fa" :class="props.row.miembroJunta == null? 'fa-plus':'fa-pencil-square'" aria-hidden="true"></i>
                                         </button>
                                     </td>
                                     <td>
                                         <i :class=" props.row.juez == null ? 'text-red fa fa-times-circle-o':'fa fa-check-square-o text-info' "></i>
                                         &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <button class="btn btn-primary-outline" :title="props.row.juez == null? 'Crear':'Editar'"dat-toggle="tooltip" @click="(props.row.juez == null?  _juez(0, props.row) : _juez(props.row.juez.id, props.row))">
+                                        <button class="btn btn-primary-outline" :title="props.row.juez == null? 'Crear':'Editar'" dat-toggle="tooltip" @click="(props.row.juez == null?  _juez(0, props.row) : _juez(props.row.juez.id, props.row))">
                                             <i class="fa" :class="props.row.juez == null? 'fa-plus':'fa-pencil-square'" aria-hidden="true"></i>
                                         </button>
                                     </td>
                                     <td>
                                         <i :class=" props.row.entrenador == null ? 'text-red fa fa-times-circle-o':'fa fa-check-square-o text-info' "></i>
                                         &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <button class="btn btn-primary-outline" :title="props.row.entrenador == null? 'Crear':'Editar'"dat-toggle="tooltip" @click="(props.row.entrenador == null?  _entrenador(0, props.row) : _entrenador(props.row.entrenador.id, props.row))">
+                                        <button class="btn btn-primary-outline" :title="props.row.entrenador == null? 'Crear':'Editar'" dat-toggle="tooltip" @click="(props.row.entrenador == null?  _entrenador(0, props.row) : _entrenador(props.row.entrenador.id, props.row))">
                                             <i class="fa" :class="props.row.entrenador == null? 'fa-plus':'fa-pencil-square'" aria-hidden="true"></i>
                                         </button>
                                     </td>
@@ -80,13 +80,16 @@
             </div>
             <ModalPersona :methodSubmit="methodSubmit"  :title="'Actualizar'" :buttonMsg="'Actualizar'" :openModal="openModal" :persona="persona" v-on:openChange="isChange"></ModalPersona>
             <ModalJuntaMiembros :methodSubmit="methodSubmit"  :title="'Actualizar'" :buttonMsg="'Actualizar'" :id="persona.id" :openModal="openModal2" :persona="persona" v-on:openChange="isChange"></ModalJuntaMiembros>
+         <ModalEntrenadores :methodSubmit="methodSubmit"  :title="'Actualizar'" :buttonMsg="'Actualizar'" :id="persona.id" :openModal="openModal3" :persona="persona" v-on:openChange="isChange"></ModalEntrenadores>
+
+       
         </section>
     </div>
 </template>
 <script>
     import ModalJuntaMiembros from '../juntamiembros/subcomponents/ModalJuntaMiembrosCrear'
     import ModalPersona from './subcomponents/ModalPersona'
-
+    import ModalEntrenadores from '../entrenadores/subcomponents/ModalEntrenadoresCrear'
     import users from '../../controllers/users.js'
     import playasController from '../../controllers/playas.js'
     import personaController from '../../controllers/persona.js'
@@ -97,6 +100,7 @@
         components:{
             "ModalPersona": ModalPersona,
             "ModalJuntaMiembros": ModalJuntaMiembros,
+            "ModalEntrenadores":ModalEntrenadores
         },
         data() {
             return {
@@ -109,6 +113,7 @@
                 // control de modales
                 openModal: false,
                 openModal2: false,
+                 openModal3: false,
                 columns: [
                     {
                         label: "Nombre",
@@ -217,8 +222,8 @@
                 alert(val)
             },
             _miembro(val,row){
-                this.openModal2=true
-                this.retrieveData(row.id)
+                this.openModal2=true;
+                this.retrieveData(row.id);
                 if (val = 0) {
 
                 }
@@ -226,8 +231,10 @@
 
                 }
             },
-            _entrenador(val){
-                alert(val)
+            _entrenador(val,row){
+                   this.openModal3=true;
+                this.retrieveData(row.id);
+              //alert(val)
             },
             deletePersona(id, nombre) {
                 let context = this;
@@ -253,6 +260,8 @@
             },
             isChange () {
                 this.openModal = false
+                 this.openModal2 =false
+                      this.openModal3 =false
                 this.fetchData()
             },
             showCallback () {
@@ -261,6 +270,8 @@
             },
             dismissCallback (msg) {
                 this.openModal =false
+                   this.openModal2 =false
+                      this.openModal3 =false
                 juntamiembrosController.index(this)
                 this.fetchData()
             },

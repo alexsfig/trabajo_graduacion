@@ -75,7 +75,7 @@ export default {
         }
 
         
-        HTTP.put(ATLETAS, atletas)
+        HTTP.put("persona", atletas)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
                     var id = resp.data.id
@@ -121,8 +121,13 @@ export default {
    index(context){
         HTTP.get(ATLETAS)
             .then((resp) => {
+                console.log("gsgjhksl");
                 context.atletas = resp.data
                 console.log(resp.data)
+                for (let i of  context.atletas) {
+                    console.log("nombre:"+ i.nombre)
+                    console.log("Entrada:"+i.personaId.nombre+","+i.personaId.apellido)
+                    i.nombre=i.personaId.nombre+","+i.personaId.apellido;}
             })
             .catch((err) => {
               console.log(err)

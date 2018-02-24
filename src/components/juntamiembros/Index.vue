@@ -60,7 +60,12 @@
                     </div>    
                 </div>
             </div>
-            <modaljuntamiembros :methodSubmit="methodSubmit"  :title="'Actualizar'" :buttonMsg="'Actualizar'" :openModal="openModal" :miembrojunta="miembrojunta" v-on:openChange="isChange"></modaljuntamiembros>
+            <modaljuntamiembros 
+            :methodSubmit="methodSubmit"  
+            :title="'Actualizar'" :buttonMsg="'Actualizar'"
+             :openModal="openModal" 
+             :miembrojunta="miembrojunta" 
+             v-on:openChange="isChange"></modaljuntamiembros>
          
             
 

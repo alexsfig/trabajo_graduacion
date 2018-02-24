@@ -5,7 +5,7 @@ import {HTTP} from '../common_class/http.js';
 import {router} from '../router/index.js'
 import moment from 'moment'
 // define base url to Employees
-const CLUBES = 'club/'
+const ESCUELAS = 'club/'
 
 
 
@@ -19,19 +19,23 @@ export default {
         
         Method to create users, pass object Users
     */
-    create(context, noticias){
+    create(context, clubs){
         context.showAlert = false 
          context.showSuccess = false 
-          noticias.id= 0;
-           console.log(localStorage.getItem('iduser'));
-          noticias.usuarioId= parseInt(localStorage.getItem('iduser'));
-          //noticias.fechaInicio = moment(noticias.fechaInicio).format('YYYY-MM-DD');
-        HTTP.post(NOTICIAS, noticias)
+          //clubs.id= 0;
+          /* console.log(localStorage.getItem('entidadId'));
+          clubs.entidadId= parseInt(localStorage.getItem('entidadId'));
+           console.log(localStorage.getItem('playaId'));
+          clubs.playaId= parseInt(localStorage.getItem('playaId'));
+           console.log(localStorage.getItem('entrenadorId'));
+          clubs.entrenadorId= parseInt(localStorage.getItem('entrenadorId'));
+          //noticias.fechaInicio = moment(noticias.fechaInicio).format('YYYY-MM-DD');*/
+        HTTP.post(ESCUELAS, clubs)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
                     context.showSuccess = true
-                    context.successMsg = "Noticia Creada"
-                    context.createNoticias = {}
+                    context.successMsg = "Club Creada"
+                    context.createClubs = {}
                     context.errors.clear()
                 }
             })
@@ -46,17 +50,17 @@ export default {
         Method to update user, pass context, object Users and user id
     */
    
-    update(context, clubes){
+    update(context, clubs){
         context.showAlert = false 
         context.showSuccess = false 
-        HTTP.put(CLUBES, clubes)
+        HTTP.put(ESCUELAS, clubs)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
                     var id = resp.data.id
                     context.showAlert = false 
                 }
                 context.showSuccess = true
-                context.successMsg = "Club Actualizado"
+                context.successMsg = "Club actualizada"
             })
             .catch((err) => {
                 context.showAlert = true
@@ -73,9 +77,9 @@ export default {
         Method to get user, pass only the context, id will be taken from url
     */
     show(context){
-        HTTP.get(NOTICIAS + context.$route.params.id+'/')
+        HTTP.get(ESCUELAS + context.$route.params.id+'/')
             .then((resp) => {
-                context.noticia = resp.data
+                context.club = resp.data
 
 
             })
@@ -87,10 +91,14 @@ export default {
         Method to display all users, pass only the context
     */
    index(context){
-        HTTP.get(CLUBES)
+        HTTP.get(ESCUELAS)
             .then((resp) => {
-                context.clubes = resp.data
+                context.clubs = resp.data
                 console.log(resp.data)
+                for (let i of  context.clubs) {
+                    i.entrenadorId.nombre=i.entrenadorId.personaId.nombre+"," +i.entrenadorId.personaId.apellido;
+
+                }
             })
             .catch((err) => {
               console.log(err)
@@ -100,10 +108,11 @@ export default {
         Method to retrieve user, pass the context and user id, use this method when you need to edit user
     */
     retrieve(context, id){
-        HTTP.get(CLUBES + id)
+        HTTP.get(ESCUELAS + id)
             .then((resp) => {
                 console.log(resp)
                 context.club = resp.data;
+                context.club.entrenadorId.nombre= context.club.entrenadorId.personaId.nombre+"," + context.club.entrenadorId.personaId.apellido;
             })
             .catch((err) => {
               console.log(err)
@@ -113,10 +122,10 @@ export default {
         Method to delete user, pass the context and user id, use this method when you need to delete user
     */
     delete(context, id, swal) {
-        HTTP.delete(CLUBES + id)
+        HTTP.delete(ESCUELAS + id)
             .then((resp) => {
                 console.log(resp);
-                swal("Deleted!", "El club ha sido eliminado", "success")
+                swal("Deleted!", "La Club ha sido eliminada", "success")
                 context.fetchData();
             })
             .catch((err) => {               

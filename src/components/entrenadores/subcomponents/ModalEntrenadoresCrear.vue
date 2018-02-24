@@ -1,6 +1,6 @@
 <template>
 <div>
-    <modal :size="'md'" :title="title2" :footer="false" id="modal-demo-2" ref="modal2" v-model="openModalInside" @show="showCallback" @hide="dismissCallback">
+    <modal :size="'md'" :title="title2" :footer="false" id="modal-demo-3" ref="modal3" v-model="openModalInside" @show="showCallback" @hide="dismissCallback">
         <div class="wrapper-alert">
             <alert type="danger" :closable="true" v-if="showAlert" @close="showAlert=false">
                 <h4><i class="icon fa fa-ban"></i> Error!</h4>
@@ -15,17 +15,16 @@
 
             <form @submit.prevent="validateMethod" role="form">
                 <div class="box-body">
-                    <div class="col-xs-12 col-sm-12">
-                        <div class="fgroup" :class="{ 'has-error': errors.has('nivelJerarquia') }">
-                            <label for="">Nivel Jerarquia</label>
-                            <v-select :debounce="250" :options="jerarquia" v-model="updateMiembrojunta.nivelJerarquia" placeholder="Seleccione la jerarquia" label="name">
-                            </v-select>
-                            <input type="hidden" value="" v-model="updateMiembrojunta.nivelJerarquia" name="nivelJerarquia"  data-vv-as="Nivel Jerarquia" v-validate="'required'">
-                            <span class="help-block" for="type" v-bind:data-error="errors.first('nivelJerarquia')">
-                                {{ errors.first('nivelJerarquia') }}
-                            </span>
+                        <div class="col-xs-12 col-sm-6">
+                            <div class="fgroup" :class="{ 'has-error': errors.has('descripcion') }" >
+                                <label for="">Descripcion</label>
+                                <input type="text" id="descripcion" name="descripcion" data-vv-as="Descripcion" class="form-control" 
+                                v-model="updateEntrenador.descripcion" v-validate="'required'" >
+                                <span class="help-block" for="descripcion" v-bind:data-error="errors.first('descripcion')">
+                                    {{ errors.first('descripcion') }}
+                                </span>
+                            </div>
                         </div>
-                    </div>
                 </div>
                 <div class="box-footer">
                     <div class="col-xs-12 text-right">
@@ -45,12 +44,12 @@
 
 import users from '../../../controllers/users.js'
 import roles from '../../../controllers/roles.js'
-import juntamiembros from '../../../controllers/juntamiembros.js'
+import entrenadores from '../../../controllers/entrenadores.js'
 import moment from 'moment'
 import vSelect from "vue-select"
 
 export default {
-    name: 'ActualizarMiembroJunta',
+    name: 'ActualizarEntrenador',
     props: [
 
         "title",
@@ -58,7 +57,7 @@ export default {
         "buttonMsg",
         "methodSubmit",
         "openModal",
-        "miembrojunta",
+        "entrenador",
         "persona"
 
     ],
@@ -78,32 +77,13 @@ export default {
             show: false,
             showAlert: false,
             showSuccess: false,
-            updateMiembrojunta: {
+            updateEntrenador: {
                 personaId: ' '
             },
             openModalInside: false,
             roles: [],
             rol_edit: null,
-            jerarquia: [
-                {
-                    name: 'Presidente'
-                },
-                {
-                    name: 'Vice Presidente'
-                },
-                {
-                    name: 'Secretario'
-                },
-                {
-                    name: 'Tesorero'
-                },
-                {
-                    name: 'Vocal'
-                },
-                {
-                    name: 'Sindico'
-                },
-            ],
+         
             title2:'',
 
         }
@@ -115,14 +95,14 @@ export default {
         '$route': 'fetchData',
         persona: function(val, oldVal) {
             this.openModalInside = this.openModal
-            this.persona=val;
-            this.updateMiembrojunta = val.miembroJuntaId
-            this.title2 =  "Actualizar Jerarquia"
-            if (this.updateMiembrojunta == null) {
-                this.updateMiembrojunta = {
-                    nivelJerarquia: null
-                }
-                this.title2 =  "Crear Jerarquia"
+          
+            this.updateEntrenador = val.entrenador
+            this.title2 =  "Actualizar Entrenador"
+         //   this.buttonMsg="Actualizar"
+            if (this.updateEntrenador == null) {
+               this.updateEntrenador={};
+                this.title2 =  "Crear Entrenador"
+            //      this.buttonMsg="Crear"
             }
 
 
@@ -158,29 +138,23 @@ export default {
                     if (success) {
                         console.log("la persona" );
                         console.log(this.persona)
-                     /*   let  miembroJunta = {}*/
-                //  this.miembroJunta.nivelJerarquia =  this.updateMiembrojunta.nivelJerarquia.name
-                      /*  miembroJunta.personaId = this.persona
+                       /* let  miembroJunta = {}
+                        miembroJunta.nivelJerarquia =  this.updateMiembrojunta.nivelJerarquia.name
+                        miembroJunta.personaId = this.persona
                         delete miembroJunta.personaId.entrenadorId
                         delete miembroJunta.personaId.atletaId
                         delete miembroJunta.personaId.juezId
                         delete miembroJunta.personaId.miembroJuntaId
                         delete miembroJunta.personaId.usuarioList*/
-                     //   this.persona.miembroJunta=
-                        if(  this.title2 !=  "Actualizar Jerarquia"){
-                        const request={
-                           nivelJerarquia:this.miembroJunta.nivelJerarquia,
-                           id:this.miembroJunta.nivelJerarquia}
-                          this.persona.miembroJunta=request;
-                            juntamiembros.create(this, persona)
+                        if(  this.title2 !=  "Actualizar Entrenador"){
+                        this.persona.entrenador=this.updateEntrenador;
+                            entrenadores.create(this, this.persona)
                         }
                         else{
                           //  miembroJunta.id =  this.persona.miembroJuntaId.id
-                            const request={
-                          nivelJerarquia:this.miembroJunta.nivelJerarquia,
-                          }
-                          this.persona.miembroJunta=request;
-                            juntamiembros.update(this, persona)
+                                                  this.persona.entrenador=this.updateEntrenador;
+
+                            entrenadores.update(this, this.persona)
                         }
                     } else {
                         this.errMsg = 'Error revisa el formulario'

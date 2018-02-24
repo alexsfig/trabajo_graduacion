@@ -22,14 +22,14 @@ export default {
     create(context, escuelas){
         context.showAlert = false 
          context.showSuccess = false 
-          escuelas.id= 0;
-           console.log(localStorage.getItem('entidadId'));
+          //escuelas.id= 0;
+          /* console.log(localStorage.getItem('entidadId'));
           escuelas.entidadId= parseInt(localStorage.getItem('entidadId'));
            console.log(localStorage.getItem('playaId'));
           escuelas.playaId= parseInt(localStorage.getItem('playaId'));
            console.log(localStorage.getItem('entrenadorId'));
           escuelas.entrenadorId= parseInt(localStorage.getItem('entrenadorId'));
-          //noticias.fechaInicio = moment(noticias.fechaInicio).format('YYYY-MM-DD');
+          //noticias.fechaInicio = moment(noticias.fechaInicio).format('YYYY-MM-DD');*/
         HTTP.post(ESCUELAS, escuelas)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
@@ -95,6 +95,10 @@ export default {
             .then((resp) => {
                 context.escuelas = resp.data
                 console.log(resp.data)
+                for (let i of  context.escuelas) {
+                    i.entrenadorId.nombre=i.entrenadorId.personaId.nombre+"," +i.entrenadorId.personaId.apellido;
+
+                }
             })
             .catch((err) => {
               console.log(err)
@@ -108,6 +112,7 @@ export default {
             .then((resp) => {
                 console.log(resp)
                 context.escuela = resp.data;
+                context.escuela.entrenadorId.nombre= context.escuela.entrenadorId.personaId.nombre+"," + context.escuela.entrenadorId.personaId.apellido;
             })
             .catch((err) => {
               console.log(err)

@@ -41,9 +41,6 @@ import CategoriasCreate from '@/components/categorias/Create'
 import CategoriasShow from '@/components/categorias/Show'
 import CategoriasIndex from '@/components/categorias/Index'
 
-import EscuelasCreate from '@/components/escuelas/Create'
-import EscuelasShow from '@/components/escuelas/Show'
-import EscuelasIndex from '@/components/escuelas/Index'
 
 
 // Import base templates
@@ -73,7 +70,12 @@ import PatrocinadorIndex from '@/components/patrocinadores/Index'
 
 import TransaccionForm from '@/components/transaccion/Form'
 import TransaccionIndex from '@/components/transaccion/Index'
+import EscuelasForm from '@/components/escuelas/Form'
+import EscuelasIndex from '@/components/escuelas/Index'
 
+import ClubsForm from '@/components/clubes/Form'
+import ClubsIndex from '@/components/clubes/Index'
+import JuezsForm from '@/components/jueces/Edit'
 Vue.use(Router)
 export default new Router({
   mode: 'history',
@@ -191,21 +193,7 @@ export default new Router({
           name: 'EntrenadoresShow',
           component: EntrenadoresShow
         },
-         {
-          path: 'clubes/create',
-          name: 'ClubesCreate',
-          component: ClubesCreate
-        },
-        {
-          path: 'clubes',
-          name: 'ClubesIndex',
-          component: ClubesIndex
-        },
-        {
-          path: 'clubes/:id',
-          name: 'ClubesShow',
-          component: ClubesShow
-        },
+        
          {
           path: 'jueces/create',
           name: 'JuecesCreate',
@@ -264,12 +252,12 @@ export default new Router({
         {
           path: 'escuelas/create',
           name: 'EscuelasCreate',
-          component: EscuelasCreate
+          component: EscuelasForm
         },
         {
-          path: 'escuelas/:id',
+          path: 'escuelas/form/:id',
           name: 'EscuelasShow',
-          component: EscuelasShow
+          component: EscuelasForm
         }, {
           path: 'fechas',
           name: 'fechasIndex',
@@ -380,6 +368,43 @@ export default new Router({
           path: 'transaccions/form/:id',
           name: 'transaccionsEdit',
           component: TransaccionForm
+        }
+        ,
+        {
+          path: 'escuela',
+          name: 'escuelasIndex',
+          component: EscuelasIndex
+        },
+        {
+          path: 'escuelas/form',
+          name: 'escuelasreate',
+          component: EscuelasForm
+        },
+        {
+          path: 'escuelas/form/:id',
+          name: 'escuelasEdit',
+          component: EscuelasForm
+        }
+        ,
+        {
+          path: 'club',
+          name: 'clubsIndex',
+          component: ClubsIndex
+        },
+        {
+          path: 'clubs/form',
+          name: 'clubscreate',
+          component: ClubsForm
+        },
+        {
+          path: 'clubs/form/:id',
+          name: 'clubsEdit',
+          component: ClubsForm
+        },
+        {
+          path: 'editjuez',
+          name: 'juezEdit',
+          component: JuezsForm
         }
       ]
     },

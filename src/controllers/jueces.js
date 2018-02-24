@@ -48,7 +48,7 @@ export default {
     update(context, jueces){
         context.showAlert = false 
         context.showSuccess = false 
-        HTTP.put(JUECES, jueces)
+        HTTP.put("persona", jueces)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
                     var id = resp.data.id

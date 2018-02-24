@@ -139,7 +139,7 @@
 		            </router-link>
 		            <ul class="treeview-menu">
 		                <li>
-		                    <router-link to="/admin/clubes/">
+		                    <router-link to="/admin/club/">
 		                        <i class="fa fa-university" aria-hidden="true"></i> <span>Manejo de Clubes</span>
 		                    </router-link>
 		                </li>

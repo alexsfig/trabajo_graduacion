@@ -22,24 +22,11 @@ export default {
     create(context, miembroJunta){
         context.showAlert = false
         context.showSuccess = false
-        miembroJunta.personaId.fechaNacimiento = moment(miembroJunta.personaId.fechaNacimiento ).format('YYYY-MM-DD');
-       if (miembroJunta.personaId.atleta)
-        miembroJunta.personaId.atleta={id:miembroJunta.personaId.atleta.id};
-       
-        if (miembroJunta.personaId.entrenador)
-        miembroJunta.personaId.entrenador={id:miembroJunta.personaId.entrenador.id};
-
-        if (miembroJunta.personaId.juez)
-        miembroJunta.personaId.juez={id:miembroJunta.personaId.juez.id};
-
-        if (miembroJunta.personaId.miembroJunta)
-        miembroJunta.personaId.miembroJunta={id:miembroJunta.personaId.miembroJunta.id};
-       
-/* if (miembroJunta.personaId.entrenador)
+     /*
         miembroJunta.personaId.entrenador=null;
         miembroJunta.personaId.juez=null;
         miembroJunta.personaId.miembroJunta=null;*/
-        HTTP.post(JUNTAMIEMBROS, miembroJunta)
+        HTTP.post('persona', miembroJunta)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
                     context.showSuccess = true
@@ -62,9 +49,10 @@ export default {
     update(context, juntamiembros){
         context.showAlert = false
         context.showSuccess = false
-        HTTP.put(JUNTAMIEMBROS, juntamiembros)
+        console.log('lorenzo paso por aqui ');
+        HTTP.put('persona', juntamiembros)
             .then((resp) => {
-                if (resp.status>= 200 && resp.status <=300){
+                if (resp.status>= 200 && resp.status <=304){
                     var id = resp.data.id
                     context.showAlert = false
                 }

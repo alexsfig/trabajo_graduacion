@@ -126,10 +126,12 @@
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('form-1.tipo') }">
                                             <label for="">Tipo</label>
-                                            <v-select :debounce="250" :options="positions" v-model="type" placeholder="Seleccione el tipo" label="name">
+                                            <v-select :debounce="250" :options="positions" v-model="type" 
+                                            placeholder="Seleccione el tipo" label="name">
                                             </v-select>
                                             <div class="clearfix"></div>
-                                            <input type="hidden" name="tipo" value="" data-vv-as="Tipo" v-model="type" v-validate="'required'">
+                                            <input type="hidden" name="tipo" value="" 
+                                            data-vv-as="Tipo" v-model="type" v-validate="'required'">
                                             <span class="help-block" for="tipo" v-bind:data-error="errors.first('form-1.tipo')">
                                                     {{ errors.first('form-1.tipo') }}
                                                 </span>
@@ -602,7 +604,8 @@
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('form-6.nivelJerarquia') }">
                                             <label for="">Nivel Jerarquia</label>
-                                            <v-select :debounce="250" :options="jerarquia" v-model="createMiembroJunta.nivelJerarquia" placeholder="Seleccione la jerarquia" >
+                                            <v-select :debounce="250" :options="jerarquia"
+                                             v-model="createMiembroJunta.nivelJerarquia" placeholder="Seleccione la jerarquia" label="name">
                                             </v-select>
                                             <input  v-model="createMiembroJunta.nivelJerarquia" name="nivelJerarquia"  data-vv-as="nivelJerarquia" v-validate="'required'">
                                             <span class="help-block" for="type" v-bind:data-error="errors.first('form-6.nivelJerarquia')">

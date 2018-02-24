@@ -20,7 +20,7 @@
                     <div class="col-xs-12 col-sm-6">
                         <div class="fgroup" :class="{ 'has-error': errors.has('nombre') }">
                             <label for="">Nombre</label>
-                            <input type="text" id="nombre" name="nombre" data-vv-as="Nombre" class="form-control" v-model="updateMiembrojunta.personaId.nombre" v-validate="'required'">
+                            <input type="text" id="nombre" name="nombre" data-vv-as="Nombre" class="form-control" v-model="persona.nombre" v-validate="'required'">
                             <span class="help-block" for="nombre" v-bind:data-error="errors.first('nombre')">
                                     {{ errors.first('nombre') }}
                                 </span>
@@ -29,7 +29,7 @@
                     <div class="col-xs-12 col-sm-6">
                         <div class="fgroup" :class="{ 'has-error': errors.has('apellido') }">
                             <label for="">Apellido</label>
-                            <input type="text" id="apellido" name="apellido" data-vv-as="Apellido" class="form-control" v-model="updateMiembrojunta.personaId.apellido" v-validate="'required'">
+                            <input type="text" id="apellido" name="apellido" data-vv-as="Apellido" class="form-control" v-model="persona.apellido" v-validate="'required'">
                             <span class="help-block" for="apellido" v-bind:data-error="errors.first('apellido')">
                                     {{ errors.first('apellido') }}
                                 </span>
@@ -39,7 +39,7 @@
                     <div class="col-xs-12 col-sm-6">
                         <div class="fgroup" :class="{ 'has-error': errors.has('fechaNacimiento') }">
                             <label for="">Fecha de Nacimiento</label>
-                            <input type="date" id="fechaNacimiento" name="fechaNacimiento" data-vv-as="Fecha de Nacimiento" class="form-control" v-model="updateMiembrojunta.personaId.fechaNacimiento" v-validate="'required'">
+                            <input type="date" id="fechaNacimiento" name="fechaNacimiento" data-vv-as="Fecha de Nacimiento" class="form-control" v-model="persona.fechaNacimiento" v-validate="'required'">
                             <span class="help-block" for="fechaNacimiento" v-bind:data-error="errors.first('fechaNacimiento')">
                                     {{ errors.first('fechaNacimiento') }}
                                 </span>
@@ -49,7 +49,7 @@
                     <div class="col-xs-12 col-sm-6">
                         <div class="fgroup" :class="{ 'has-error': errors.has('dui') }">
                             <label for="">Dui</label>
-                            <input type="text" id="dui" name="dui" data-vv-as="Dui" class="form-control" v-model="updateMiembrojunta.personaId.dui" v-validate="'required'">
+                            <input type="text" id="dui" name="dui" data-vv-as="Dui" class="form-control" v-model="persona.dui" v-validate="'required'">
                             <span class="help-block" for="dui" v-bind:data-error="errors.first('dui')">
                                     {{ errors.first('dui') }}
                                 </span>
@@ -59,7 +59,7 @@
                     <div class="col-xs-12 col-sm-6">
                         <div class="fgroup" :class="{ 'has-error': errors.has('nit') }">
                             <label for="">Nit</label>
-                            <input type="text" id="nit" name="nit" data-vv-as="Nit" class="form-control" v-model="updateMiembrojunta.personaId.nit" v-validate="'required'">
+                            <input type="text" id="nit" name="nit" data-vv-as="Nit" class="form-control" v-model="persona.nit" v-validate="'required'">
                             <span class="help-block" for="nit" v-bind:data-error="errors.first('nit')">
                                     {{ errors.first('nit') }}
                                 </span>
@@ -69,7 +69,7 @@
                     <div class="col-xs-12 col-sm-6">
                         <div class="fgroup" :class="{ 'has-error': errors.has('direccion') }">
                             <label for="">Direccion</label>
-                            <input type="text" id="direccion" name="direccion" data-vv-as="Direccion" class="form-control" v-model="updateMiembrojunta.personaId.direccion" v-validate="'required'">
+                            <input type="text" id="direccion" name="direccion" data-vv-as="Direccion" class="form-control" v-model="persona.direccion" v-validate="'required'">
                             <span class="help-block" for="nit" v-bind:data-error="errors.first('direccion')">
                                     {{ errors.first('direccion') }}
                                 </span>
@@ -79,7 +79,7 @@
                     <div class="col-xs-12 col-sm-6">
                         <div class="fgroup" :class="{ 'has-error': errors.has('telefono') }">
                             <label for="">Telefono</label>
-                            <input type="text" id="telefono" name="telefono" data-vv-as="Telefono" class="form-control" v-model="updateMiembrojunta.personaId.telefono" v-validate="'required'">
+                            <input type="text" id="telefono" name="telefono" data-vv-as="Telefono" class="form-control" v-model="persona.telefono" v-validate="'required'">
                             <span class="help-block" for="nit" v-bind:data-error="errors.first('telefono')">
                                     {{ errors.first('telefono') }}
                                 </span>
@@ -89,7 +89,7 @@
                     <div class="col-xs-12 col-sm-6">
                         <div class="fgroup" :class="{ 'has-error': errors.has('correo') }">
                             <label for="">Correo</label>
-                            <input type="text" id="correo" name="correo" data-vv-as="Correo" class="form-control" v-model="updateMiembrojunta.personaId.correo" v-validate="'required'">
+                            <input type="text" id="correo" name="correo" data-vv-as="Correo" class="form-control" v-model="persona.correo" v-validate="'required'">
                             <span class="help-block" for="nit" v-bind:data-error="errors.first('correo')">
                                 {{ errors.first('correo') }}
                             </span>
@@ -177,6 +177,7 @@ export default {
             updateMiembrojunta: {
                 personaId: ' '
             },
+            persona:{},
             openModalInside: false,
             roles: [],
             rol_edit: null,
@@ -207,11 +208,16 @@ export default {
         vSelect
     },
     watch: {
+
         '$route': 'fetchData',
         miembrojunta: function(val, oldVal) {
-            this.openModalInside = this.openModal
-            this.updateMiembrojunta = this.miembrojunta
-
+            console.log("entre all watbo")
+            this.openModalInside = this.openModal;
+            this.updateMiembrojunta = this.miembrojunta;
+            this.persona=this.miembrojunta.personaId;
+            this.updateMiembrojunta.personaId=null;
+            if(this.miembrojunta.nivelJerarquia)
+            this.updateMiembrojunta.nivelJerarquia.name=this.miembrojunta.nivelJerarquia;
         }
     },
     methods: {
@@ -240,8 +246,26 @@ export default {
                 this.showAlert = false
                 this.showSuccess = false
                 this.$validator.validateAll().then(success => {
+
                     if (success) {
-                        juntamiembros.update(this, this.updateMiembrojunta)
+                        console.log('Estpy Actualizabndo un miembro de junta ');
+                     /*     const miembro=this.updateMiembrojunta;
+                    let persona=miembro.personaId;
+                      
+                           console.log(this.updateMiembrojunta)
+                        miembro.nivelJerarquia=miembro.nivelJerarquia.name;
+                       miembro.personaId=null;
+                        console.log(this.updateMiembrojunta)
+                        persona.miembroJunta=miembro;*/
+                        const miembro={
+id:this.updateMiembrojunta.id,
+nivelJerarquia:this.updateMiembrojunta.nivelJerarquia.name
+
+                        }
+                        this.persona.miembroJunta=miembro
+                        juntamiembros.update(this, this.persona)
+                    
+                      //     this.openModalInside=false; 
                     } else {
                         this.errMsg = 'Error revisa el formulario'
                         this.showAlert = true

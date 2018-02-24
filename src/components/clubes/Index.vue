@@ -1,176 +1,155 @@
 <template>
     <div>
         <section class="content-header">
-            <h1>
-                Clubes
-            </h1>
+            <h1>Clubs</h1>
+
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li>Manejo de Clubes</li>
+                <li>Manejo de Clubs </li>
             </ol>
         </section>
         <section class="content" >
+
             <div class="row">
                 <div class="col-xs-12">
-                    <div class="box">
-                        <div class="box-header">
-                            <h3 class="box-title">Manejo de Clubes</h3>
-                        </div>
-                       
-                        <div class="box-body">
-                            
-                        
-                            <div class="table-responsive">
-                              
-                                <vue-good-table
-                                  title="Dynamic Table"
-                                  :columns="columns"
-                                  :rows="clubes"
-                                  :globalSearch="true"
-                                  :paginate="true"
-                                  styleClass="table table-striped table-condensed">
-                                  <template slot="table-row" scope="props">
-                                    <td>{{ props.row.entidadId.nombre }}</td>
-                                    <td>{{ props.row.fundacion}}</td>
-                                    <td>{{ props.row.playaId.nombre}}</td>
-                                    <td>{{ props.row.entrenadorId.personaId.nombre}}</td>
-                                    <td>
-                                        <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="openModal=true, retrieveData(props.row.id)" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar</button>
-                                        
-                                        <button type="button" class="margin btn btn-sm btn-flat btn-danger" @click="clickHandler(props.row.id, club, props.row.entidadId.nombre)" ><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
-                                    </td>
-                                  </template>
-                                </vue-good-table>
-
-                            </div>
-                        </div>
-                    </div>    
+                    <div class="wrapper-alert">
+                        <alert type="danger" :closable="true" v-if="showAlert" @close="showAlert=false">
+                            <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                            <p>{{ errMsg }}</p>
+                        </alert>
+                        <alert type="success" :closable="true" v-if="showSuccess" @close="showSuccess=false">
+                            <h4><i class="icon fa fa-check"></i> Success!</h4>
+                            <p>{{ successMsg }}</p>
+                        </alert>
+                    </div>
                 </div>
             </div>
-            <modalClubes :methodSubmit="methodSubmit"  :title="'Actualizar Club'" :buttonMsg="'Actualizar'" :openModal="openModal" 
-            :club="club" v-on:openChange="isChange" ></modalClubes>
-         
-            
 
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Manejo de clubs </h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+      <div class="box-action">
+                                <router-link to="/admin/clubs/form" class="btn btn-default btn-flat">
+                                    <i class="fa fa-plus"></i> Nueva Club
+                                </router-link>
+                            </div>
+                            <vue-good-table :columns="columns" :rows="clubs" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
+                                <template slot="table-row" scope="props">
+<td>{{ props.row.nombre }}</td>
+<td>{{ props.row.fundacion }}</td>
+<td>{{ props.row.correo }}</td>
+<td>{{ props.row.celular }}</td>
+<td>{{ props.row.direccion }}</td>
+<td>{{ props.row.celular }}</td>
+<td>{{ props.row.representante }}</td>
+<td>{{ props.row.telefonoFijo }}</td>
+<td>{{ props.row.playaId.nombre }}</td>
+<td>{{ props.row.entrenadorId.nombre }}</td>                                    <td class="nowrap">
+ <router-link :to="{ name: 'clubsEdit', params: { id: props.row.id }}">
+                                        <button type="button" class="margin btn btn-flat btn-sm btn-primary"
+                                       ><i aria-hidden="true"
+                                         class="fa fa-pencil-square-o"></i> Actualizar</button>
+                                        </router-link>                                        <button type="button" class="margin btn btn-flat btn-sm btn-danger" 
+                                        @click="deleteClub(props.row.id, props.row.nombre)"><i aria-hidden="true" 
+                                        class="fa fa-trash-o"></i> Eliminar</button>
+                                
+                                    </td>
+                                  </template>
+                            </vue-good-table>
+
+                        </div>
+                    </div>
+    |                </div>
+            </div>
+           <!-- <modalPlaya :methodSubmit="methodSubmit" :title="'Actualizar Usuario'" :buttonMsg="'Actualizar'" :openModal="openModal" :playa="playa" v-on:openChange="isChange"></modalPlaya> -->
         </section>
     </div>
 </template>
-
 <script>
-    import clubesController from '../../controllers/clubes.js'
-   
-    import ModalClubes from './subcomponents/ModalClubes'
-   
+  
+    import clubsController from '../../controllers/clubes.js';
+     import vSelect from "vue-select"
+    import moment from "moment"
     export default {
-        name: 'clubes',
+        name: 'Clubs',
         data() {
             return {
-                columns: [
-                    {
-                      label: 'Nombre',
-                      field: 'entidadId.nombre',
-                      filterable: true,
-                    },
-                    {
-                      label: 'Fundacion',
-                      field: 'fundacion',
-                     filterable: true,
-                    },
-                    {
-                      label: 'Nombre Playa',
-                      field: 'playaId.nombre',
-                      filterable: true,
-                    },
-                    {
-                      label: 'Entrenador',
-                      field: 'entrenadorId.personaId.nombre',
-                      filterable: true,
-                    },
-                     {
-                      label: 'Accion',
-                      field: '',
-                      filterable: true,
-                    }
-                ],
-                methodSubmit: 'update',
-                buttonMsg: "Actualizar",
-               
-                openModal: false,
-                
-                errMsg:  '',
-                success: false,
-                isLogin: false,
-                // We need to initialize the component with any
-                // properties that will be used in it
-                clubes: [],
-                club: {}
-                
-
-            
+                clubs: [],
+                showAlert: false,
+                showSuccess: false,
+                methodSubmit: 'editar',
+                openModal: false ,
+ columns: [ 
+ {
+                        label: "Nombre",
+                        field: "nombre",
+                    }, {
+                        label: "Fundacion",
+                        field: "fundacion",
+                    }, {
+                        label: "Correo",
+                        field: "correo",
+                    }, {
+                        label: "Celular",
+                        field: "celular",
+                    }, {
+                        label: "Direccion",
+                        field: "direccion",
+                    }, {
+                        label: "Celular",
+                        field: "celular",
+                    }, {
+                        label: "Representante",
+                        field: "representante",
+                    }, {
+                        label: "Telefon Fijo",
+                        field: "telefonoFijo",
+                    }, {
+                        label: "Playa",
+                        field: "playa",
+                    }, {
+                        label: "Entrenador",
+                        field: "entrenador",
+                    },{
+                        label: "Acciones",
+                        field: "",
+                    }]
             }
         },
-        components:{
-            "modalClubes": ModalClubes
-            
-        },
-        created() {
+        created(){
             this.fetchData()
         },
-        watch: {
-            '$route': 'fetchData'
-        },
-        methods: {
-            clickHandler(id, club, nombre) {
-                let swal = this.$swal
-                let context = this
-                swal({
+        methods:{
+            fetchData(){
+                clubsController.index(this)
+            },
+            deleteClub(id, nombre) {
+                let context = this;
+                let swal = this.$swal;
+                this.$swal({
                     title: 'Estas Seguro?',
-                    html: 'No podras recuperar la informacion del club <b>' + nombre + '</b>',
+                    html: 'No podras recuperar la informacion de la club <b>&laquo;' + nombre + '&raquo</b><br>y toda la informacion relacion al mismo ya no sera accesible',
                     type: 'error',
                     showCancelButton: true,
                     confirmButtonText: 'Si, Eliminar!',
                     cancelButtonText: 'No, Mantener'
-                }).then(
-                    function() {
-                        clubesController.delete(context, id, swal)
-                    }, 
-                    function(dismiss) {
-                      // dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
-                      if (dismiss === 'cancel') {
+                }).then(function() {
+                    clubsController.delete(context, id, swal);
+                },function(dismiss) {
+                    if (dismiss === 'cancel') {
                         swal(
                           'Cancelado',
-                          'El club no se elimino',
+                          'La club no se elimino',
                           'error'
                         )
-                      }
                     }
-                )
-            },
-            isChange () {
-                this.openModal = false
-                this.fetchData()
-            },
-            showCallback () {
-                this.showAlert = false 
-                this.showSuccess = false 
-            },
-            dismissCallback (msg) {
-                this.openModal =false
-                clubesController.index(this)
-                this.fetchData()
-            },
-            fetchData() {
-                clubesController.index(this)
-            },
-            retrieveData(id) {
-                clubesController.retrieve(this, id)
+                })
             },
         }
-
     }
 </script>
-<style scoped>
-.active {
-  width: 100%;
-}
-</style>

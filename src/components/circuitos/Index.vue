@@ -43,7 +43,11 @@
 <td>{{ props.row.nombre }}</td>
 <td>{{ props.row.descripcion }}</td>
 <td>{{ props.row.fechaId.nombre }}</td>
-<td>{{ props.row.categoriaId.nombre }}</td>                                    <td class="nowrap">
+<td>{{ props.row.categoriaId.nombreCategoria }}</td>                
+<td>{{ props.row.estado }}</td>      
+
+
+                    <td class="nowrap">
  <router-link :to="{ name: 'circuitosEdit', params: { id: props.row.id }}">
                                         <button type="button" class="margin btn btn-flat btn-sm btn-primary"
                                        ><i aria-hidden="true"
@@ -91,6 +95,10 @@
                     }, {
                         label: "Categoria",
                         field: "categoriaId.nombre",
+                    },
+                    {
+                        label: "Estado",
+                        field: "estado",
                     },
                      {
                       label: 'Acciones',

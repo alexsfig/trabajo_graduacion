@@ -44,11 +44,36 @@ export default {
     /* 
         Method to update user, pass context, object Users and user id
     */
+    create(context, miembroJunta){
+        context.showAlert = false
+        context.showSuccess = false
+      
    
+        
+        HTTP.post('persona', miembroJunta)
+            .then((resp) => {
+                if (resp.status>= 200 && resp.status <=300){
+                    context.showSuccess = true
+                    context.successMsg = "Entrenador Creado"
+                    context.createNoticias = {}
+                    context.errors.clear()
+                }
+            })
+            .catch((err) => {
+                if (err.response) {
+                    context.showAlert = true
+                    context.errMsg = err.response.data
+                }
+            })
+    },
+    /*
+        Method to update user, pass context, object Users and user id
+    */
+
     update(context, entrenadores){
         context.showAlert = false 
         context.showSuccess = false 
-        HTTP.put(ENTRENADORES, entrenadores)
+        HTTP.put('persona', entrenadores)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
                     var id = resp.data.id
@@ -88,8 +113,18 @@ export default {
    index(context){
         HTTP.get(ENTRENADORES)
             .then((resp) => {
+
+                console.log("nombre: kdks")
                 context.entrenadores = resp.data
                 console.log(resp.data)
+                
+
+                for (let i of  context.entrenadores) {
+                    console.log("nombre:"+ i.nombre)
+                    console.log("Entrada:"+i.personaId.nombre+","+i.personaId.apellido)
+                    i.nombre=i.personaId.nombre+","+i.personaId.apellido;
+                
+            }
             })
             .catch((err) => {
               console.log(err)

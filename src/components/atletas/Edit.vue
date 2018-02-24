@@ -628,18 +628,11 @@ export default {
                 if (success) {
                     let ladoPie, playaPractica, idiomas = '',
                         olaPreferida, idiomasArr = [];
-                    for (var i = this.createAtleta.idiomas.length - 1; i >= 0; i--) {
-                        idiomasArr.push(this.createAtleta.idiomas[i].name)
+                    for (var i = this.atleta.idiomas.length - 1; i >= 0; i--) {
+                        idiomasArr.push(this.atleta.idiomas[i].name)
                     }
                     idiomas = idiomasArr.toString();
 
-                    if (this.createAtleta.ladoPie == true) {
-                        ladoPie = 'Izquierda'
-                    } else {
-                        ladoPie = "Derecha"
-                    }
-                    olaPreferida = this.createAtleta.olaPreferida.name
-                    playaPractica = this.createAtleta.playaPractica.nombre
                     if (this.atleta.ladoPie == true) {
                         ladoPie = 'Izquierda'
                     } else {
@@ -647,7 +640,14 @@ export default {
                     }
                     olaPreferida = this.atleta.olaPreferida.name
                     playaPractica = this.atleta.playaPractica.nombre
-                    let persona = this.createPersona
+                    if (this.atleta.ladoPie == true) {
+                        ladoPie = 'Izquierda'
+                    } else {
+                        ladoPie = "Derecha"
+                    }
+                    olaPreferida = this.atleta.olaPreferida.name
+                    playaPractica = this.atleta.playaPractica.nombre
+                    let persona = this.atleta.personaId;
                     let atleta = {
                         "rutaFoto": this.atleta.rutaFoto,
                         "aniosPracticando": this.atleta.aniosPracticando == undefined ? 0 : parseInt(this.atleta.aniosPracticando),
@@ -662,7 +662,7 @@ export default {
                         "nivelAcademico": this.atleta.nivelAcademico == undefined ? '' : this.atleta.nivelAcademico,
                         "olaPreferida": olaPreferida == undefined ? '' : olaPreferida,
                         "otrosEstudios": this.atleta.otrosEstudios == undefined ? '' : this.atleta.otrosEstudios,
-                        "personaId": this.atleta.personaId,
+                      //  "personaId": this.atleta.personaId,
                         "playaPractica": playaPractica == undefined ? '' : playaPractica,
                         "rutinaConstancia": this.atleta.rutinaConstancia == undefined ? '' : this.atleta.rutinaConstancia,
                         "sabeEscribir": this.atleta.sabeEscribir == false ? 0 : 1,
@@ -672,7 +672,8 @@ export default {
                         "uanioCursado": this.atleta.uanioCursado == undefined ? '' : this.atleta.uanioCursado,
                         "ultimaParticipacion": this.atleta.ultimaParticipacion == undefined ? '' : this.atleta.ultimaParticipacion
                     }
-                    atletasController.update(this, atleta)
+     persona.atleta=atleta;
+     atletasController.update(this, persona)
                 } else {
                     this.errMsg = 'Error revisa el formulario'
                     this.showAlert = true
