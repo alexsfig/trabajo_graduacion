@@ -55,6 +55,20 @@
                                         </router-link>                                        <button type="button" class="margin btn btn-flat btn-sm btn-danger" 
                                         @click="deleteCircuito(props.row.id, props.row.nombre)"><i aria-hidden="true" 
                                         class="fa fa-trash-o"></i> Eliminar</button>
+
+                                       
+
+                                         <button type="button" class="btn btn-flat btn-sm btn-warning margin" 
+                                        @click="agregarAtletas(props.row.id, props.row)"><i aria-hidden="true" 
+                                        class="fa fa-check-square"></i> Agregar Atletas</button>
+
+                                         <button type="button" class="btn btn-flat btn-sm btn-warning margin" 
+                                        @click="agregarJueces(props.row.id, props.row)"><i aria-hidden="true" 
+                                        class="fa fa-check-square"></i> Agregar Jueces</button>
+
+                                         <button type="button" class="margin btn btn-flat btn-sm btn-success" 
+                                        @click="llamaPrimeraRonda(props.row.id, props.row)"><i aria-hidden="true" 
+                                        class="fa fa-flag-checkered"></i> Iniciar Circuito</button>
                                 
                                     </td>
                                   </template>
@@ -112,6 +126,18 @@
             this.fetchData()
         },
         methods:{
+
+           agregarAtletas(id, circuito) {
+            circuitosController.retrieve(this, id)
+            this.$router.push({
+                name: 'circuitosAgregarAtleta',
+                params: {
+                    id: id,
+                    circuito: circuito
+                }
+            });
+            },
+
             fetchData(){
                 circuitosController.index(this)
             },
