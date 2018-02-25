@@ -29,7 +29,7 @@
                 <div class="col-lg-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Maanejo de fechas </h3>
+                            <h3 class="box-title">Manejo de fechas </h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -59,6 +59,10 @@
                                         <button type="button" class="margin btn btn-flat btn-sm btn-danger" 
                                         @click="deleteFecha(props.row.id, props.row.nombre)"><i aria-hidden="true" 
                                         class="fa fa-trash-o"></i> Eliminar</button>
+
+                                         <button type="button" class="margin btn btn-flat btn-sm btn-success" 
+                                        @click="filtrarcircuitos(props.row.id, props.row)"><i aria-hidden="true" 
+                                        class="fa fa-trophy"></i> Circuitos en Fecha</button>
                                 
                                     </td>
                                   </template>
@@ -106,7 +110,7 @@
                         field: "playaId.nombre",
                     },
                      {
-                        label: "Playa",
+                        label: "Acciones",
                         field: "playaId.id",
                     },
                      {
@@ -124,6 +128,18 @@
             fetchData(){
                 fechasController.index(this)
             },
+
+             filtrarcircuitos(id, fecha) {
+            fechasController.retrieve(this, id)
+            this.$router.push({
+                name: 'circuitosIndexByFecha',
+                params: {
+                    id: id,
+                    fecha: fecha
+                }
+            });
+            },
+
             deleteFecha(id, nombre) {
                 let context = this;
                 let swal = this.$swal;

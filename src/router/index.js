@@ -52,6 +52,7 @@ import FechasIndex from '@/components/fechas/Index'
 import FechasForm from '@/components/fechas/Form'
 import CircuitosForm from '@/components/circuitos/Form'
 import CircuitosIndex from '@/components/circuitos/Index'
+import CircuitosIndexByFecha from '@/components/circuitos/IndexByFecha'
 import AgregarAtleta from '@/components/circuitos/AgregarAtleta'
 
 import NuevaRonda from '@/components/circuitos/NuevaRonda'
@@ -84,6 +85,12 @@ import JuezsForm from '@/components/jueces/Edit'
 import RondaIndex from '@/components/rondas/Index'
 
 import HeatIndex from '@/components/heat/Index'
+
+import PatrocinadorAtletaCreate from '@/components/patrocinador_atleta/Create'
+import PatrocinadorAtletaEdit from '@/components/patrocinador_atleta/Edit'
+import PatrocinadorAtletaShow from '@/components/patrocinador_atleta/Show'
+import PatrocinadorAtletaIndex from '@/components/patrocinador_atleta/Index'
+
 Vue.use(Router)
 export default new Router({
   mode: 'history',
@@ -287,6 +294,12 @@ export default new Router({
           name: 'circuitosIndex',
           component: CircuitosIndex
         },
+
+        {
+          path: 'circuitofecha/:id',
+          name: 'circuitosIndexByFecha',
+          component: CircuitosIndexByFecha
+        },
         {
           path: 'circuitos/form',
           name: 'circuitosCreate',
@@ -430,6 +443,30 @@ export default new Router({
           name: 'juezEdit',
           component: JuezsForm
         },
+
+        
+        {
+          path: 'patrocinadoratleta/create',
+          name: 'PatrocinadorAtletaCreate',
+          component: PatrocinadorAtletaCreate
+        },
+        {
+          path: 'patrocinadoratleta',
+          name: 'PatrocinadorAtletaIndex',
+          component: PatrocinadorAtletaIndex
+        },
+        {
+          path: 'patrocinadoratleta/:id/edit',
+          name: 'PatrocinadorAtletaEdit',
+          component: PatrocinadorAtletaEdit
+        },
+        {
+          path: 'patrocinadoratleta/:id',
+          name: 'PatrocinadorAtletaShow',
+          component: PatrocinadorAtletaShow
+        },
+
+
         {
           path: 'heat/:id',
           name: 'heat',

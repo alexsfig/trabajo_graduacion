@@ -125,6 +125,12 @@
 		                    </router-link>
 		                </li>
 
+		                 <li>
+		                    <router-link to="/admin/patrocinadoratleta">
+		                        <i class="fa fa-male" aria-hidden="true"></i> <span>Patrocinadores Atletas</span>
+		                    </router-link>
+		                </li>
+
 		            </ul>
 		        </li>
 
