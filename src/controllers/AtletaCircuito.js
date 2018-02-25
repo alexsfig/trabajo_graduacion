@@ -88,6 +88,60 @@ export default {
             })
     },
 
+
+   getheat(context,id){
+        
+    const color = ['Amarillo', 'Rojo', 'Azul', 'Verde']
+
+
+        HTTP.get("/atletaCircuito/byCircuito/"+id)
+            .then((resp) => {
+
+    
+                console.log(resp.data)
+                let atletaCircuitos = resp.data
+
+            let n= Math.trunc(Object.keys(atletaCircuitos).length/4)
+
+            
+           if(Object.keys(atletaCircuitos).length%4!=0)
+              n=n+1;
+       let heat=[];
+       for (let i=0;i<n;i++) {
+        heat[i]=[];
+       }
+       let aux=0;
+       let aux2=0;
+       let autoincrement =1;
+
+    for (let i of  atletaCircuitos) {
+        i.color = color[aux2]
+        i.autoincrement = autoincrement;
+          autoincrement++;
+        
+        heat[aux].push(i);
+        aux++;
+        if(aux==n){
+        aux=0;
+        aux2++;
+      
+}
+
+
+
+    }
+    context.listheat=heat;
+
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+    },
+
+
+
+    
+
     /*
         Method to retrieve user, pass the context and user id, use this method when you need to edit user
     */

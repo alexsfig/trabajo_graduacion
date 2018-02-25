@@ -67,7 +67,7 @@
                                         class="fa fa-check-square"></i> Agregar Jueces</button>
 
                                          <button type="button" class="margin btn btn-flat btn-sm btn-success" 
-                                        @click="llamaPrimeraRonda(props.row.id, props.row)"><i aria-hidden="true" 
+                                        @click="llamaRonda(props.row.id, props.row)"><i aria-hidden="true" 
                                         class="fa fa-flag-checkered"></i> Iniciar Circuito</button>
                                 
                                     </td>
@@ -131,6 +131,17 @@
             circuitosController.retrieve(this, id)
             this.$router.push({
                 name: 'circuitosAgregarAtleta',
+                params: {
+                    id: id,
+                    circuito: circuito
+                }
+            });
+            },
+
+             llamaRonda(id, circuito) {
+            circuitosController.retrieve(this, id)
+            this.$router.push({
+                name: 'circuitosNuevaRonda',
                 params: {
                     id: id,
                     circuito: circuito
