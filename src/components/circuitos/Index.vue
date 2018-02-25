@@ -138,6 +138,18 @@
             });
             },
 
+
+          agregarJueces(id, circuito) {
+            circuitosController.retrieve(this, id)
+            this.$router.push({
+                name: 'circuitosAgregarJuez',
+                params: {
+                    id: id,
+                    circuito: circuito
+                }
+            });
+            },
+
              llamaRonda(id, circuito) {
             circuitosController.retrieve(this, id)
             this.$router.push({
