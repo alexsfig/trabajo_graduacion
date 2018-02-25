@@ -26,7 +26,19 @@ export default {
               console.log(err)
             })
     }
+     ,
      
+    retrieve(context, id){
+        HTTP.get("heat/"+ id)
+            .then((resp) => {
+                console.log(resp)
+                context.heat = resp.data;
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+
+    },
 
 
 }

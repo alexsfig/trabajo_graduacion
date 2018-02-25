@@ -91,6 +91,8 @@ import PatrocinadorAtletaEdit from '@/components/patrocinador_atleta/Edit'
 import PatrocinadorAtletaShow from '@/components/patrocinador_atleta/Show'
 import PatrocinadorAtletaIndex from '@/components/patrocinador_atleta/Index'
 
+import HeatInit from '@/components/heat/Iniciar'
+
 Vue.use(Router)
 export default new Router({
   mode: 'history',
@@ -472,7 +474,12 @@ export default new Router({
           name: 'heat',
           component: HeatIndex
         }
-        
+        ,
+        {
+          path: 'heatinit/:id',
+          name: 'heat',
+          component: HeatInit
+        }
       ]
     },
   ]
