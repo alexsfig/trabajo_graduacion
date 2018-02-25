@@ -103,11 +103,11 @@ export default {
     
                 console.log(resp.data)
                 let atletaCircuitos = resp.data
+             let total=Object.keys(atletaCircuitos).length;
+            let n= Math.trunc(total/4)
 
-            let n= Math.trunc(Object.keys(atletaCircuitos).length/4)
-
-            
-           if(Object.keys(atletaCircuitos).length%4!=0)
+            context.totalAtletas=total;
+           if(total%4!=0)
               n=n+1;
        let heat=[];
        for (let i=0;i<n;i++) {
@@ -118,8 +118,9 @@ export default {
        let autoincrement =1;
 
     for (let i of  atletaCircuitos) {
+    
         i.color = color[aux2]
-        i.autoincrement = autoincrement;
+        i.numeroHeat = autoincrement;
           autoincrement++;
         
         heat[aux].push(i);

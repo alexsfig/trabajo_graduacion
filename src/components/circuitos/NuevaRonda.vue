@@ -34,12 +34,14 @@
                        
                        
                                
-
-
+    <form @submit.prevent="submit"  role="form"> 
+ <button type="button" class="margin btn btn-flat btn-sm btn-success" 
+                                        @click="submit()"><i aria-hidden="true" 
+                                        class="fa fa-check"></i>Crear </button>
 <div v-for="value in listheat">
  <div class="box-body">
         
- <h4 class="box-title"> <b> Heat {{value[0].autoincrement}} </b> </h4> 
+ <h4 class="box-title"> <b> Heat {{value[0].numeroHeat}} </b> </h4> 
        
 
         <vue-good-table :columns="columns" :rows="value" :paginate="true" :globalSearch="false" globalSearchPlaceholder="Search"  styleClass="table table-striped table-condensed">
@@ -63,18 +65,23 @@
         </div>
 
                         </div>
+    </form>
                     </div>
-    |                </div>
+                   
+                  </div>
             </div>
+        
            <!-- <modalPlaya :methodSubmit="methodSubmit" :title="'Actualizar Usuario'" :buttonMsg="'Actualizar'" :openModal="openModal" :playa="playa" v-on:openChange="isChange"></modalPlaya> -->
         </section>
     </div>
+
 </template>
 <script>
   
     import circuitosController from '../../controllers/circuitos.js';
     import atletaController from '../../controllers/atletas.js';
     import atletaCircuitoController  from '../../controllers/AtletaCircuito.js';
+    import rondasController  from '../../controllers/rondas.js';
     import vSelect from "vue-select"
     import moment from "moment"
     export default {
@@ -87,6 +94,7 @@
                 atletas:[],
                 atletaCircuitos:[],
                 listheat:[],
+                totalAtletas:0,
                 atleta:null,
                 showAlert: false,
                 showSuccess: false,
@@ -158,14 +166,17 @@
                     if (success) {
                  
                     
-                        this.atletaCircuito.circuitoId=this.circuito;
+                       /* this.atletaCircuito.circuitoId=this.circuito;
                         this.atletaCircuito.atletaId=this.atleta;
                         this.atletaCircuito.estado=0;
 
                         console.log(JSON.stringify(  
                         this.atletaCircuito));
                         atletaCircuitoController.create(this,this.atletaCircuito)
-                        
+                        */
+
+                        rondasController.create(this,this.listheat);
+
                      
                     }
                     else{
