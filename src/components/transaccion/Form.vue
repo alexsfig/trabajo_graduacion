@@ -75,12 +75,12 @@
                                                 :debounce="250"
                                                 :options="comprobante"
                                                 
-                                                v-model="transaccion.comprobante"
+                                                v-model="comprobantev"
                                            
                                                 placeholder="Seleccione la jerarquia"
                                                 >
                                             </v-select>  
-             <input type="hidden" name="comprobante" value="" data-vv-as="comprobante"  v-model="comprobante" v-validate="'required'">
+             <input type="hidden" name="comprobante" value="" data-vv-as="comprobante"  v-model="comprobantev" v-validate="'required'">
                          
                                             
                                             
@@ -191,92 +191,95 @@
     </div>
 </template>
 
-<script>  import transaccionsController from '../../controllers/transacciones.js'
-  import vSelect from "vue-select" 
-  import patrocinadoresController from '../../controllers/patrocinadores.js'
-  import atletasController from '../../controllers/atletas.js'
-  import formaPagosController from '../../controllers/formaPagos.js'
-  import cuentasController from '../../controllers/cuentas.js'
-  import tipoTransacionsController from '../../controllers/tipoTransaccions.js'
+<script>
+import transaccionsController from "../../controllers/transacciones.js";
+import vSelect from "vue-select";
+import patrocinadoresController from "../../controllers/patrocinadores.js";
+import atletasController from "../../controllers/atletas.js";
+import formaPagosController from "../../controllers/formaPagos.js";
+import cuentasController from "../../controllers/cuentas.js";
+import tipoTransacionsController from "../../controllers/tipoTransaccions.js";
 export default {
-        name: 'Transaccion',
-        data() {
-            return {
-                errMsg:  '',
-                errorMsg: '',
-                showAlert: false,
-                showSuccess: false,
-                successMsg: "",
-id: '',
-                errMsg: "",
-                enapatro:false,
-                     enaatle:false,
-                isLogin: false,
-                   comprobante:[
-                    {label: 'Factura',value:'Factura'},
-                    {label: 'Recibo',value:'Recibo'},
-                    {label: 'Voucher',value:'Voucher'}
+  name: "Transaccion",
+  data() {
+    return {
+      errMsg: "",
+      errorMsg: "",
+      showAlert: false,
+      showSuccess: false,
+      successMsg: "",
+      id: "",
+      errMsg: "",
+      enapatro: false,
+      enaatle: false,
+      isLogin: false,
+      comprobante: [
+        { label: "Factura", value: "Factura" },
+        { label: "Recibo", value: "Recibo" },
+        { label: "Voucher", value: "Voucher" }
+      ],
+      comprobantev:null,      transaccion: {},
 
-                ],
-transaccion:{},patrocinadors:[],atletas:[],formaPagos:[],cuentas:[],tipoTransaccions:[]}
-        },
-        components:{
-            vSelect
-        },
-        created(){
-                this.id = this.$route.params.id;
-                if(this.id)
-                transaccion.fecha=new Date();
-                transaccionsController.retrieve(this,this.id);
-                console.log("id:"+this.id);
-                patrocinadoresController.index(this) 
-atletasController.index(this) 
-formaPagosController.index(this) 
-cuentasController.index(this) 
-tipoTransacionsController.index(this) 
+      patrocinadors: [],
+      atletas: [],
+      formaPagos: [],
+      cuentas: [],
+      tipoTransaccions: []
+    };
   },
-        methods: {
-        changedValue(){
-
-this.enaatle=false;
-this.enapatro=false;
- console.log("ejemplo hhhhhhhhhhh")
- if(this.transaccion.tipoTransaccionId){
- if(this.transaccion.tipoTransaccionId.tipo){
- if(this.transaccion.tipoTransaccionId.asociar){}
-
-this.enapatro=true;
- }
-  
-  else{
- if(this.transaccion.tipoTransaccionId.asociar){
-
-                    this.enaatle=true;
-
-
- }}
- }
-        },
-            submit() {
-                this.showAlert = false
-                this.showSuccess = false
-                this.$validator.validateAll().then(success => {
-                    if (success) {
-                     console.log("Error en el servicio")
-                     if(!this.id)
-                        transaccionsController.create(this, this.transaccion)
-                        else
-                        transaccionsController.update(this,this.transaccion)
-                    }
-                    else{
-                          console.log("Error enn el formulario")
-                        this.showAlert = true
-                        this.errMsg = "Form error"
-                    }
-                });
-            }
-        }
-
+  components: {
+    vSelect
+  },
+  created() {
+    this.id = this.$route.params.id;
+    if (this.id) {
+      transaccionsController.retrieve(this, this.id);
+      this.comprobantev.label = this.transaccion.comprobante;
     }
+    //this.transaccion.fecha=new Date();
+
+    console.log("id:" + this.id);
+    patrocinadoresController.index(this);
+    atletasController.index(this);
+    formaPagosController.index(this);
+    cuentasController.index(this);
+    tipoTransacionsController.index(this);
+  },
+  methods: {
+    changedValue() {
+      this.enaatle = false;
+      this.enapatro = false;
+      console.log("ejemplo hhhhhhhhhhh");
+      if (this.transaccion.tipoTransaccionId) {
+        if (this.transaccion.tipoTransaccionId.tipo) {
+          if (this.transaccion.tipoTransaccionId.asociar) {
+          }
+
+          this.enapatro = true;
+        } else {
+          if (this.transaccion.tipoTransaccionId.asociar) {
+            this.enaatle = true;
+          }
+        }
+      }
+    },
+    submit() {
+      this.showAlert = false;
+      this.showSuccess = false;
+      this.$validator.validateAll().then(success => {
+        if (success) {
+          console.log("Error en el servicio");
+          this.transaccion.comprobante = this.comprobantev.label;
+          if (!this.id) transaccionsController.create(this, this.transaccion);
+          else transaccionsController.update(this, this.transaccion);
+        } else {
+          console.log("Error enn el formulario");
+          this.showAlert = true;
+          this.errMsg = "Form error";
+        }
+      });
+    }
+  }
+};
 </script>
 <style scoped>

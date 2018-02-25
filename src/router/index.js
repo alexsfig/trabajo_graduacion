@@ -53,7 +53,11 @@ import FechasForm from '@/components/fechas/Form'
 import CircuitosForm from '@/components/circuitos/Form'
 import CircuitosIndex from '@/components/circuitos/Index'
 import AgregarAtleta from '@/components/circuitos/AgregarAtleta'
+<<<<<<< HEAD
 import NuevaRonda from '@/components/circuitos/NuevaRonda'
+=======
+import AgregarJuez from'@/components/circuitos/AgregarJuez'
+>>>>>>> d826c6e43851d7f2b0c8f5c71f6c776328ace9b6
 // Import base templates
 
 import CuentasForm from '@/components/cuenta/Form'
@@ -299,6 +303,11 @@ export default new Router({
           path: 'circuitos/nuevaronda/:id',
           name: 'circuitosNuevaRonda',
           component: NuevaRonda
+        },
+        {
+          path: 'circuitos/agregarJuez/:id',
+          name: 'circuitosAgregarJuez',
+          component: AgregarJuez
         },
         {
           path: 'cuentas',

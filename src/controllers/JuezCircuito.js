@@ -7,7 +7,7 @@ import {HTTP} from '../common_class/http.js';
 import {router} from '../router/index.js'
 import moment from 'moment'
 // define base url to Employees
-const FECHAS = 'atletaCircuito/'
+const FECHAS = 'juezCircuito/'
 
 
 
@@ -25,10 +25,10 @@ export default {
         Method to update user, pass context, object Users and user id
     */
 
-    update(context, atletaCircuitos){
+    update(context, juezCircuitos){
         context.showAlert = false
         context.showSuccess = false
-        HTTP.put(FECHAS, atletaCircuitos)
+        HTTP.put(FECHAS, juezCircuitos)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
                     var id = resp.data.id
@@ -54,7 +54,7 @@ export default {
     show(context){
         HTTP.get(FECHAS + context.$route.params.id+'/')
             .then((resp) => {
-                context.atletaCircuito = resp.data
+                context.juezCircuito = resp.data
 
             })
             .catch((err) => {
@@ -69,7 +69,7 @@ export default {
         HTTP.get(FECHAS)
             .then((resp) => {
                 console.log(resp.data)
-                context.atletaCircuitos = resp.data
+                context.juezCircuitos = resp.data
               
             })
             .catch((err) => {
@@ -77,104 +77,17 @@ export default {
             })
     },
     indexByCircuito(context,id){
-        HTTP.get("/atletaCircuito/byCircuito/"+id)
+        HTTP.get("/juezCircuito/byCircuito/"+id)
             .then((resp) => {
                 console.log(resp.data)
-                context.atletaCircuitos = resp.data
+                context.juezCircuitos = resp.data
               
             })
             .catch((err) => {
               console.log(err)
             })
     },
-    getheat(context,id){
-        
-        console.log("************************************")
-        HTTP.get("/atletaCircuito/byCircuito/"+id)
-            .then((resp) => {
 
-    
-                console.log(resp.data)
-                let atletaCircuitos = resp.data
-
-            let n= Math.trunc(Object.keys(atletaCircuitos).length/4)
-
-            console.log("************************************")
-           if(Object.keys(atletaCircuitos).length%4!=0)
-              n=n+1;
-       let heat=[];
-       for (let i=0;i<n;i++) {
-        heat[i]=[];
-       }
-       let aux=0;
-
-    for (let i of  atletaCircuitos) {
-        heat[aux].push(i);
-        aux++;
-        if(aux==n)
-        aux=0;
-
-
-<<<<<<< HEAD
-
-   getheat(context,id){
-        
-    const color = ['Amarillo', 'Rojo', 'Azul', 'Verde']
-
-
-        HTTP.get("/atletaCircuito/byCircuito/"+id)
-            .then((resp) => {
-
-    
-                console.log(resp.data)
-                let atletaCircuitos = resp.data
-
-            let n= Math.trunc(Object.keys(atletaCircuitos).length/4)
-
-            
-           if(Object.keys(atletaCircuitos).length%4!=0)
-              n=n+1;
-       let heat=[];
-       for (let i=0;i<n;i++) {
-        heat[i]=[];
-       }
-       let aux=0;
-       let aux2=0;
-       let autoincrement =1;
-
-    for (let i of  atletaCircuitos) {
-        i.color = color[aux2]
-        i.autoincrement = autoincrement;
-          autoincrement++;
-        
-        heat[aux].push(i);
-        aux++;
-        if(aux==n){
-        aux=0;
-        aux2++;
-      
-}
-
-
-
-=======
->>>>>>> d826c6e43851d7f2b0c8f5c71f6c776328ace9b6
-    }
-    context.listheat=heat;
-
-            })
-            .catch((err) => {
-              console.log(err)
-            })
-    },
-<<<<<<< HEAD
-
-
-
-    
-
-=======
->>>>>>> d826c6e43851d7f2b0c8f5c71f6c776328ace9b6
     /*
         Method to retrieve user, pass the context and user id, use this method when you need to edit user
     */
@@ -182,7 +95,7 @@ export default {
         HTTP.get(FECHAS + id)
             .then((resp) => {
                 console.log(resp)
-                context.atletaCircuito = resp.data;
+                context.juezCircuito = resp.data;
             })
             .catch((err) => {
               console.log(err)
@@ -196,23 +109,23 @@ export default {
         HTTP.delete(FECHAS + id)
             .then((resp) => {
                 console.log(resp);
-                swal("Deleted!", "El AtletaCircuito ha sido eliminado", "success")
+                swal("Deleted!", "El JuezCircuito ha sido eliminado", "success")
                 context.fetchData();
             })
             .catch((err) => {
                 swal("Oh snap!", "Ocurrio un error.", "error")
             })
     }, 
-    create(context, atletaCircuito){
+    create(context, juezCircuito){
         context.showAlert = false
         context.showSuccess = false
-        atletaCircuito.circuitoId={id:   atletaCircuito.circuitoId.id}
-        atletaCircuito.atletaId={id:   atletaCircuito.atletaId.id}
-                            HTTP.post(FECHAS, atletaCircuito)
+        juezCircuito.circuitoId={id:   juezCircuito.circuitoId.id}
+        juezCircuito.juezId={id:   juezCircuito.juezId.id}
+                            HTTP.post(FECHAS, juezCircuito)
                             .then((resp) => {
                                 if (resp.status>= 200 && resp.status <=300){
                                     context.showSuccess = true
-                                    context.successMsg = "Se agrego correctamente el atleta al circuito"
+                                    context.successMsg = "Se agrego correctamente el juez al circuito"
                                     context.fetchData()
                                     context.resetForm()
                                 }

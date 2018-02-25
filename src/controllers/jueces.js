@@ -90,11 +90,28 @@ export default {
             .then((resp) => {
                 context.jueces = resp.data
                 console.log(resp.data)
+                for (let i of  context.jueces) {
+                    console.log("nombre:"+ i.nombre)
+                    console.log("Entrada:"+i.personaId.nombre+","+i.personaId.apellido)
+                    i.nombre=i.personaId.nombre+","+i.personaId.apellido;}
             })
             .catch((err) => {
               console.log(err)
             })
     },
+
+    getRoles(context){
+        HTTP.get("rolJuez")
+            .then((resp) => {
+                context.juecesRoles = resp.data
+                console.log(resp.data)
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+    },
+
+
     /* 
         Method to retrieve user, pass the context and user id, use this method when you need to edit user
     */
