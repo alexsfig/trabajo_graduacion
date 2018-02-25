@@ -77,6 +77,18 @@ export default {
             })
     },
 
+    byFecha(context,id){
+        HTTP.get("circuito/byFecha/"+id)
+            .then((resp) => {
+                console.log(resp.data)
+                context.circuitos = resp.data
+              
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+    },
+    
     /*
         Method to retrieve user, pass the context and user id, use this method when you need to edit user
     */

@@ -78,6 +78,19 @@ export default {
               console.log(err)
             })
     }
+
+    ,
+
+    retrieve(context, id){
+        HTTP.get("ronda/" + id)
+            .then((resp) => {
+                console.log(resp)
+                context.ronda = resp.data;
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+    }
      
 
 
