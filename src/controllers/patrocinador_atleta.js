@@ -35,7 +35,7 @@ export default {
                     context.showAlert = false
                 }
                 context.showSuccess = true
-                context.successMsg = "atrocinador Actualizado"
+                context.successMsg = "Patrocinio Actualizado"
             })
             .catch((err) => {
                 context.showAlert = true
@@ -104,11 +104,11 @@ export default {
         HTTP.delete(PATROCINADOR_ATLETA + id)
             .then((resp) => {
                 console.log(resp);
-                swal("Deleted!", "El Patrocinador ha sido eliminado", "success")
+                swal("Deleted!", "El Patrocinio ha sido eliminado", "success")
                 context.fetchData();
             })
             .catch((err) => {
-                swal("Oh snap!", "Ocurrio un error.", "error")
+                swal("No se Puede Eliminar!", "Es posible que este Patrocinio ya este Asociado.", "error")
             })
     }, 
     create(context, patrocinadoratleta){
@@ -119,7 +119,7 @@ export default {
                             .then((resp) => {
                                 if (resp.status>= 200 && resp.status <=300){
                                     context.showSuccess = true
-                                    context.successMsg = "Patrocinador creada exitosamente"
+                                    context.successMsg = "Patrocinio creado exitosamente"
                                     context.fetchData()
                                     context.resetForm()
                                 }

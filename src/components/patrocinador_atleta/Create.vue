@@ -5,7 +5,7 @@
             <ol class="breadcrumb">
                 
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><router-link to="/admin/noticias">Patrocinador Atleta</router-link></li>
+                <li><router-link to="/admin/patrocinadoratleta">Patrocinio Atletas</router-link></li>
                 <li class="active">Nuevo Patrocinio</li>
             </ol>
         </section>
@@ -34,8 +34,8 @@
 
                         <div class="col-xs-12 col-sm-6">
                             <div class="fgroup" :class="{ 'has-error': errors.has('tiempoPatrocinio') }" >
-                                <label for="">Tiempo Patrocinio</label>
-                                <input type="text" id="tiempoPatrocinio" name="tiempoPatrocinio" data-vv-as="Tiempo Patrocinio" class="form-control" 
+                                <label for="">Tiempo Patrocinio (Años)</label>
+                                <input type="number" min='0' max='100' id="tiempoPatrocinio" name="tiempoPatrocinio" data-vv-as="Tiempo de Patrocinio" class="form-control" 
                                 v-model="createPatrocinadorAtleta.tiempoPatrocinio" v-validate="'required'" >
                                 <span class="help-block" for="tiempoPatrocinio" v-bind:data-error="errors.first('tiempoPatrocinio')">
                                     {{ errors.first('tiempoPatrocinio') }}
@@ -55,7 +55,7 @@
                                                 label="nombre">
                                             </v-select>
                                             <div class="clearfix"></div>
-                                            <input type="hidden" id="atletaId" name="atletaId" data-vv-as="atletaId " class="form-control" v-model="createPatrocinadorAtleta.atletaId" v-validate="'required'" >
+                                            <input type="hidden" id="atletaId" name="atletaId" data-vv-as="Atleta " class="form-control" v-model="createPatrocinadorAtleta.atletaId" v-validate="'required'" >
                                             <span class="help-block" for="atletaId" v-bind:data-error="errors.first('atletaId')">
                                                 {{ errors.first('atletaId') }}
                                             </span>
@@ -73,7 +73,7 @@
                                                 label="nombre">
                                             </v-select>
                                             <div class="clearfix"></div>
-                                            <input type="hidden" id="patrocinadorId" name="patrocinadorId" data-vv-as="patrocinadorId " class="form-control" v-model="createPatrocinadorAtleta.patrocinadorId" v-validate="'required'" >
+                                            <input type="hidden" id="patrocinadorId" name="patrocinadorId" data-vv-as="Patrocinador " class="form-control" v-model="createPatrocinadorAtleta.patrocinadorId" v-validate="'required'" >
                                             <span class="help-block" for="patrocinadorId" v-bind:data-error="errors.first('patrocinadorId')">
                                                 {{ errors.first('patrocinadorId') }}
                                             </span>
@@ -164,7 +164,7 @@
                     if (success) {
                        
                        //his.createCategorias.sexo = this.createCategorias.sexo.name == undefined ? '' : this.createCategorias.sexo.name
-                        patrocinadorAtleta.create(this, this.createPatrocinadorAtleta)
+                       patrocinadorAtleta.create(this, this.createPatrocinadorAtleta)
                     }
                     else{
                         this.showAlert = true
