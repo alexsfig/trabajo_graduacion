@@ -1,12 +1,12 @@
 <template>
     <div>
         <section class="content-header">
-            <h1>Patrocinadors</h1>
+            <h1>Patrocinadores</h1>
             <ol class="breadcrumb">
                 
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><router-link to="/admin/patrocinadors">Patrocinadors</router-link></li>
-                <li class="active">Formulario de  Patrocinadors</li>
+                <li><router-link to="/admin/patrocinadors">Patrocinadores</router-link></li>
+                <li class="active">Formulario de  Patrocinadores</li>
 
 
             </ol>
@@ -27,7 +27,7 @@
                     <div class="box">
                         <div class="box-header">
                             <h3 class="box-title" v-if="!id">Agregar  Patrocinador</h3>
-                             <h3 class="box-title" v-if="id">Editar  Patrocinadors</h3>
+                             <h3 class="box-title" v-if="id">Editar  Patrocinador</h3>
                         </div>
                         
                         <div class="box-body">
@@ -88,13 +88,12 @@
                                                <v-select
                                                 :debounce="250"
                                                 :options="tipo"
-                                                :input-value="name"
                                                 v-model="patrocinador.tipo"
                                            
-                                                placeholder="Seleccione la jerarquia"
-                                                label="name">
+                                                placeholder="Seleccione el Tipo"
+                                                label="label">
                                             </v-select>  
-             <input type="hidden" name="tipo" value="" data-vv-as="tipo"  v-model="tipo" v-validate="'required'">
+                        <input type="hidden" name="tipo" value="" data-vv-as="tipo"  v-model="patrocinador.tipo" v-validate="'required'">
 
                                             <span class="help-block" for="tipo" v-bind:data-error="errors.first('tipo')">
                                                 {{ errors.first('tipo') }}
@@ -149,6 +148,8 @@ patrocinador:{}}
                 if(this.id)
                 patrocinadorsController.retrieve(this,this.id);
                 console.log("id:"+this.id);  },
+
+        
         methods: {
         
             submit() {
@@ -157,7 +158,8 @@ patrocinador:{}}
                 this.$validator.validateAll().then(success => {
                     if (success) {
                      console.log("Error en el servicio")
-                     if(!this.id)
+                      this.patrocinador.tipo = this.patrocinador.tipo.label == undefined ? this.patrocinador.tipo : this.patrocinador.tipo.label
+                     if(!this.id)                       
                         patrocinadorsController.create(this, this.patrocinador)
                         else
                         patrocinadorsController.update(this,this.patrocinador)

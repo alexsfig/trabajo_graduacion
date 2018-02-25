@@ -35,7 +35,7 @@ export default {
                     context.showAlert = false
                 }
                 context.showSuccess = true
-                context.successMsg = "Cuenta Actualizado"
+                context.successMsg = "Cuenta Actualizada"
             })
             .catch((err) => {
                 context.showAlert = true
@@ -103,7 +103,7 @@ export default {
         HTTP.delete(CUENTAS + id)
             .then((resp) => {
                 console.log(resp);
-                swal("Deleted!", "El Cuenta ha sido eliminado", "success")
+                swal("Deleted!", "La Cuenta ha sido eliminada", "success")
                 context.fetchData();
             })
             .catch((err) => {

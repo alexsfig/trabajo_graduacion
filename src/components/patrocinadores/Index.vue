@@ -1,11 +1,11 @@
 <template>
     <div>
         <section class="content-header">
-            <h1>Patrocinadors</h1>
+            <h1>Patrocinadores</h1>
 
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li>Manejo de Patrocinadors </li>
+                <li>Manejo de Patrocinadores </li>
             </ol>
         </section>
         <section class="content" >
@@ -29,13 +29,13 @@
                 <div class="col-lg-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Manejo de patrocinadors </h3>
+                            <h3 class="box-title">Manejo de patrocinadores </h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
       <div class="box-action">
                                 <router-link to="/admin/patrocinadors/form" class="btn btn-default btn-flat">
-                                    <i class="fa fa-plus"></i> Nueva Patrocinador
+                                    <i class="fa fa-plus"></i> Nuevo Patrocinador
                                 </router-link>
                             </div>
                             <vue-good-table :columns="columns" :rows="patrocinadors" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
@@ -117,7 +117,7 @@
                 let swal = this.$swal;
                 this.$swal({
                     title: 'Estas Seguro?',
-                    html: 'No podras recuperar la informacion de la patrocinador <b>&laquo;' + nombre + '&raquo</b><br>y toda la informacion relacion al mismo ya no sera accesible',
+                    html: 'No podras recuperar la informacion del patrocinador <b>&laquo;' + nombre + '&raquo</b><br>y toda la informacion con relacion al mismo ya no sera accesible',
                     type: 'error',
                     showCancelButton: true,
                     confirmButtonText: 'Si, Eliminar!',

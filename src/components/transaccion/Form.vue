@@ -1,12 +1,12 @@
 <template>
     <div>
         <section class="content-header">
-            <h1>Transaccions</h1>
+            <h1>Transacciones</h1>
             <ol class="breadcrumb">
                 
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><router-link to="/admin/transaccions">Transaccions</router-link></li>
-                <li class="active">Formulario de  Transaccions</li>
+                <li><router-link to="/admin/transaccion/">Transacciones</router-link></li>
+                <li class="active">Formulario de  Transacciones</li>
 
 
             </ol>
@@ -27,7 +27,7 @@
                     <div class="box">
                         <div class="box-header">
                             <h3 class="box-title" v-if="!id">Agregar  Transaccion</h3>
-                             <h3 class="box-title" v-if="id">Editar  Transaccions</h3>
+                             <h3 class="box-title" v-if="id">Editar  Transaccion</h3>
                         </div>
                         
                         <div class="box-body">
@@ -49,7 +49,7 @@
                                                 :debounce="250"
                                                 :options="formaPagos"
                                                 v-model="transaccion.formaPagoId"
-                                                placeholder="Escoja una formaPagoId" 
+                                                placeholder="Escoja una Forma de Pago" 
                                                 label="nombre">
                                             </v-select>
                                             <div class="clearfix"></div>
@@ -61,8 +61,8 @@
                                     </div> <div class="col-xs-12 col-sm-6">
                          <div class="fgroup" :class="{ 'has-error': errors.has('monto') }" >
                                             <label for="">Monto</label>
-                                            <input type="number" id="monto" name="monto" data-vv-as="monto" class="form-control"
-											v-model="transaccion.monto" v-validate="'required|min_value:0.01'" >
+                                            <input type="number" id="monto" name="monto" data-vv-as="monto" min="0" class="form-control"
+											v-model="transaccion.monto" v-validate="'required|min_value:0.01'"  step="0.01">
                                             <span class="help-block" for="monto" v-bind:data-error="errors.first('monto')">
                                                 {{ errors.first('monto') }}
                                             </span>      </div>
@@ -75,12 +75,13 @@
                                                 :debounce="250"
                                                 :options="comprobante"
                                                 
-                                                v-model="comprobantev"
+                                                v-model="transaccion.comprobante"
                                            
-                                                placeholder="Seleccione la jerarquia"
+                                                placeholder="Seleccione un Comprobante"
+                                                label="label"
                                                 >
                                             </v-select>  
-             <input type="hidden" name="comprobante" value="" data-vv-as="comprobante"  v-model="comprobantev" v-validate="'required'">
+             <input type="hidden" name="comprobante" value="" data-vv-as="comprobante"  v-model="transaccion.comprobante" v-validate="'required'">
                          
                                             
                                             
@@ -113,8 +114,8 @@
                                                 :debounce="250"
                                                 :options="cuentas"
                                                 v-model="transaccion.cuentaId"
-                                                placeholder="Escoja una cuentaId" 
-                                                label="nombrem">
+                                                placeholder="Escoja una Cuenta" 
+                                                label="nombre">
                                             </v-select>
                                             <div class="clearfix"></div>
                                             <input type="hidden" name="cuentaId" value="" data-vv-as="cuentaId"  v-model="transaccion.cuentaId" v-validate="'required'">
@@ -129,7 +130,7 @@
                                                 :debounce="250"
                                                 :options="tipoTransaccions"
                                                 v-model="transaccion.tipoTransaccionId"
-                                                placeholder="Escoja una tipoTransaccionId" 
+                                                placeholder="Escoja un Tipo de Transaccion" 
                                                 label="nombre" @input="changedValue">
                                             </v-select>
                                             <div class="clearfix"></div>
@@ -146,7 +147,7 @@
                                                 :debounce="250"
                                                 :options="patrocinadors"
                                                 v-model="transaccion.patrocinadorId"
-                                                placeholder="Escoja una patrocinadorId" 
+                                                placeholder="Escoja un Patrocinador" 
                                                 label="nombre">
                                             </v-select>
                                             <div class="clearfix"></div>
@@ -162,7 +163,7 @@
                                                 :debounce="250"
                                                 :options="atletas"
                                                 v-model="transaccion.atletaId"
-                                                placeholder="Escoja una atletaId" 
+                                                placeholder="Escoja un Atleta" 
                                                 label="nombre">
                                             </v-select>
                                             <div class="clearfix"></div>
@@ -218,7 +219,8 @@ export default {
         { label: "Recibo", value: "Recibo" },
         { label: "Voucher", value: "Voucher" }
       ],
-      comprobantev:null,      transaccion: {},
+     // comprobantev:null,      
+     transaccion: {},
 
       patrocinadors: [],
       atletas: [],
@@ -234,7 +236,7 @@ export default {
     this.id = this.$route.params.id;
     if (this.id) {
       transaccionsController.retrieve(this, this.id);
-      this.comprobantev.label = this.transaccion.comprobante;
+      //this.comprobantev.value = this.transaccion.comprobante;
     }
     //this.transaccion.fecha=new Date();
 
@@ -268,8 +270,9 @@ export default {
       this.showSuccess = false;
       this.$validator.validateAll().then(success => {
         if (success) {
-          console.log("Error en el servicio");
-          this.transaccion.comprobante = this.comprobantev.label;
+         
+          //this.transaccion.comprobante = this.comprobantev.label;
+          this.transaccion.comprobante = this.transaccion.comprobante.label == undefined ? this.transaccion.comprobante : this.transaccion.comprobante.label
           if (!this.id) transaccionsController.create(this, this.transaccion);
           else transaccionsController.update(this, this.transaccion);
         } else {

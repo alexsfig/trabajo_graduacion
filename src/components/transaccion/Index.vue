@@ -1,11 +1,11 @@
 <template>
     <div>
         <section class="content-header">
-            <h1>Transaccions</h1>
+            <h1>Transacciones</h1>
 
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li>Manejo de Transaccions </li>
+                <li>Manejo de Transacciones </li>
             </ol>
         </section>
         <section class="content" >
@@ -29,7 +29,7 @@
                 <div class="col-lg-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Manejo de transaccions </h3>
+                            <h3 class="box-title">Manejo de transacciones </h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">

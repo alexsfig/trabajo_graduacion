@@ -35,7 +35,7 @@ export default {
                     context.showAlert = false
                 }
                 context.showSuccess = true
-                context.successMsg = "FormaPago Actualizado"
+                context.successMsg = "Forma de Pago Actualizada"
             })
             .catch((err) => {
                 context.showAlert = true
@@ -98,7 +98,7 @@ export default {
         HTTP.delete(FORMAPAGO + id)
             .then((resp) => {
                 console.log(resp);
-                swal("Deleted!", "El FormaPago ha sido eliminado", "success")
+                swal("Deleted!", "La Forma de Pago ha sido eliminada", "success")
                 context.fetchData();
             })
             .catch((err) => {
@@ -113,7 +113,7 @@ export default {
                             .then((resp) => {
                                 if (resp.status>= 200 && resp.status <=300){
                                     context.showSuccess = true
-                                    context.successMsg = "FormaPago creada exitosamente"
+                                    context.successMsg = "Forma de Pago creada exitosamente"
                                     context.fetchData()
                                     context.resetForm()
                                 }

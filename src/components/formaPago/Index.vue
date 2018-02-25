@@ -1,11 +1,11 @@
 <template>
     <div>
         <section class="content-header">
-            <h1>FormaPagos</h1>
+            <h1>Formas de Pago</h1>
 
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li>Manejo de FormaPagos </li>
+                <li>Manejo de Formas de Pago </li>
             </ol>
         </section>
         <section class="content" >
@@ -29,13 +29,13 @@
                 <div class="col-lg-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Manejo de formaPagos </h3>
+                            <h3 class="box-title">Manejo de Forma de Pago </h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
       <div class="box-action">
                                 <router-link to="/admin/formaPagos/form" class="btn btn-default btn-flat">
-                                    <i class="fa fa-plus"></i> Nueva FormaPago
+                                    <i class="fa fa-plus"></i> Nueva Forma de Pago
                                 </router-link>
                             </div>
                             <vue-good-table :columns="columns" :rows="formaPagos" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
@@ -101,7 +101,7 @@
                 let swal = this.$swal;
                 this.$swal({
                     title: 'Estas Seguro?',
-                    html: 'No podras recuperar la informacion de la formaPago <b>&laquo;' + nombre + '&raquo</b><br>y toda la informacion relacion al mismo ya no sera accesible',
+                    html: 'No podras recuperar la informacion de la Forma de Pago <b>&laquo;' + nombre + '&raquo</b><br>y toda la informacion relacionada a la misma ya no sera accesible',
                     type: 'error',
                     showCancelButton: true,
                     confirmButtonText: 'Si, Eliminar!',
@@ -112,7 +112,7 @@
                     if (dismiss === 'cancel') {
                         swal(
                           'Cancelado',
-                          'La formaPago no se elimino',
+                          'La Forma de Pago no se elimino',
                           'error'
                         )
                     }

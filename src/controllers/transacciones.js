@@ -35,7 +35,7 @@ export default {
                     context.showAlert = false
                 }
                 context.showSuccess = true
-                context.successMsg = "Transaccion Actualizado"
+                context.successMsg = "Transaccion Actualizada"
             })
             .catch((err) => {
                 context.showAlert = true
@@ -84,7 +84,13 @@ export default {
         HTTP.get(TIPOTRANSACCION + id)
             .then((resp) => {
                 console.log(resp)
+                
+                
+                
+                
                 context.transaccion = resp.data;
+                context.transaccion.atletaId.nombre=context.transaccion.atletaId.personaId.nombre+","+context.transaccion.atletaId.personaId.apellido;
+                console.log("hey:::"+context.transaccion.atletaId.nombre)
             })
             .catch((err) => {
               console.log(err)
@@ -98,7 +104,7 @@ export default {
         HTTP.delete(TIPOTRANSACCION + id)
             .then((resp) => {
                 console.log(resp);
-                swal("Deleted!", "El Transaccion ha sido eliminado", "success")
+                swal("Deleted!", "La Transaccion ha sido eliminada", "success")
                 context.fetchData();
             })
             .catch((err) => {
@@ -108,7 +114,10 @@ export default {
     create(context, transaccion){
         context.showAlert = false
         context.showSuccess = false
-
+        if( transaccion.atletaId)
+        transaccion.atletaId={id:transaccion.atletaId.id,nombre:transaccion.atletaId.nombre}
+        if( transaccion.patrocinadorId)
+         transaccion.patrocinadorId={id:transaccion.patrocinadorId.id,nombre:transaccion.patrocinadorId.nombre}
                             HTTP.post(TIPOTRANSACCION, transaccion)
                             .then((resp) => {
                                 if (resp.status>= 200 && resp.status <=300){

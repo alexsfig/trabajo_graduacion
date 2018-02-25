@@ -35,7 +35,7 @@ export default {
                     context.showAlert = false
                 }
                 context.showSuccess = true
-                context.successMsg = "atrocinador Actualizado"
+                context.successMsg = "Patrocinador Actualizado"
             })
             .catch((err) => {
                 context.showAlert = true
@@ -102,7 +102,7 @@ export default {
                 context.fetchData();
             })
             .catch((err) => {
-                swal("Oh snap!", "Ocurrio un error.", "error")
+                swal("No se puede Eliminar!", "Es posible que el patrocinador ya este asociado.", "error")
             })
     }, 
     create(context, patrocinador){
@@ -113,7 +113,7 @@ export default {
                             .then((resp) => {
                                 if (resp.status>= 200 && resp.status <=300){
                                     context.showSuccess = true
-                                    context.successMsg = "Patrocinador creada exitosamente"
+                                    context.successMsg = "Patrocinador creado exitosamente"
                                     context.fetchData()
                                     context.resetForm()
                                 }

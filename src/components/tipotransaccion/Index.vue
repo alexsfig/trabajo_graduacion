@@ -1,11 +1,11 @@
 <template>
     <div>
         <section class="content-header">
-            <h1>TipoTransaccions</h1>
+            <h1>Tipo Transacciones</h1>
 
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li>Manejo de TipoTransaccions </li>
+                <li>Manejo de Tipo Transacciones </li>
             </ol>
         </section>
         <section class="content" >
@@ -29,20 +29,20 @@
                 <div class="col-lg-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Manejo de tipoTransaccions </h3>
+                            <h3 class="box-title">Manejo de Tipo Transacciones </h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
       <div class="box-action">
                                 <router-link to="/admin/tipoTransaccions/form" class="btn btn-default btn-flat">
-                                    <i class="fa fa-plus"></i> Nueva TipoTransaccion
+                                    <i class="fa fa-plus"></i> Nuevo Tipo de Transaccion
                                 </router-link>
                             </div>
                             <vue-good-table :columns="columns" :rows="tipoTransaccions" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
                                 <template slot="table-row" scope="props">
 <td>{{ props.row.nombre }}</td>
 <td>{{ props.row.descripcion }}</td>
-<td>{{ props.row.tipo }}</td>                                    <td class="nowrap">
+<td>{{ props.row.tipoNombre }}</td>                                    <td class="nowrap">
  <router-link :to="{ name: 'tipoTransaccionsEdit', params: { id: props.row.id }}">
                                         <button type="button" class="margin btn btn-flat btn-sm btn-primary"
                                        ><i aria-hidden="true"
@@ -105,7 +105,7 @@
                 let swal = this.$swal;
                 this.$swal({
                     title: 'Estas Seguro?',
-                    html: 'No podras recuperar la informacion de la tipoTransaccion <b>&laquo;' + nombre + '&raquo</b><br>y toda la informacion relacion al mismo ya no sera accesible',
+                    html: 'No podras recuperar la informacion de tipo Transaccion <b>&laquo;' + nombre + '&raquo</b><br>y toda la informacion relacion al mismo ya no sera accesible',
                     type: 'error',
                     showCancelButton: true,
                     confirmButtonText: 'Si, Eliminar!',

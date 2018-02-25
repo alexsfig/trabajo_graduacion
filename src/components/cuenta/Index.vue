@@ -79,13 +79,13 @@
                 openModal: false ,
  columns: [ 
  {
-                        label: "Nombre",
+                        label: "Nombre Cuenta",
                         field: "nombre",
                     }, {
-                        label: "Descripcion",
+                        label: "Descripcion Cuenta",
                         field: "descripcion",
                     }, {
-                        label: "Monto",
+                        label: "Monto Actual ($)",
                         field: "monto",
                     },
                      {

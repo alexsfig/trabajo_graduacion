@@ -1,12 +1,12 @@
 <template>
     <div>
         <section class="content-header">
-            <h1>TipoTransaccions</h1>
+            <h1>Tipo de Transaccion</h1>
             <ol class="breadcrumb">
                 
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><router-link to="/admin/tipoTransaccions">TipoTransaccions</router-link></li>
-                <li class="active">Formulario de  TipoTransaccions</li>
+                <li><router-link to="/admin/tipoTransaccions">Tipo de Transaccion</router-link></li>
+                <li class="active">Formulario Tipo de Transaccion</li>
 
 
             </ol>
@@ -26,8 +26,8 @@
                     </div>
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title" v-if="!id">Agregar  TipoTransaccion</h3>
-                             <h3 class="box-title" v-if="id">Editar  TipoTransaccions</h3>
+                            <h3 class="box-title" v-if="!id">Agregar  Tipo de Transaccion</h3>
+                             <h3 class="box-title" v-if="id">Editar Tipo de Transaccion</h3>
                         </div>
                         
                         <div class="box-body">
@@ -55,7 +55,7 @@
                          <div class="fgroup" :class="{ 'has-error': errors.has('tipo') }" >
                                             <label for="">Tipo</label>
                                                <span class="pull-right">
-                                                <toggle-button  v-model="tipoTransaccion.tipo" 
+                                                <toggle-button  v-model="tipoTransaccion.tipo" :sync="true"  
                                                  :value="tipoTransaccion.tipo" :width="130" :height="35" 
                                                  id="changed-font" :labels="{checked: 'Ingreso', unchecked: 'Gasto'}" :color="{checked: '#37b53c', unchecked: '#545bb3'}"/>
                                             </span>
@@ -69,7 +69,7 @@
                          <div class="fgroup" :class="{ 'has-error': errors.has('asociar') }" >
                                             <label for="" >Asociar a</label>
                                                <span class="pull-right">
-                                                <toggle-button  v-model="tipoTransaccion.asociar" 
+                                                <toggle-button  v-model="tipoTransaccion.asociar" :sync="true"  
                                                  :value="tipoTransaccion.asociar" :width="130" :height="35" 
                                                  id="changed-font" :labels="{checked: 'Asociar', unchecked: 'No Asociar'}" :color="{checked: '#37b53c', unchecked: '#545bb3'}"/>
                                             </span>
@@ -111,7 +111,8 @@ export default {
 id: '',
                 errMsg: "",
                 isLogin: false,
-tipoTransaccion:{}}
+tipoTransaccion:{}
+,  }
         },
         components:{
             vSelect
@@ -121,8 +122,25 @@ tipoTransaccion:{}}
                 if(this.id)
                 tipoTransaccionsController.retrieve(this,this.id);
                 console.log("id:"+this.id);  },
+
+
+
+       watch: {
+            '$route': 'fetchData',
+            tipoTransaccion: function(val, oldVal){
+            //this.atleta = this.$route.params.atleta 
+            //this.atleta = this.atleta 
+           
+            this.tipoTransaccion.tipo = ( val.tipo == 1 ? true : false)
+            this.tipoTransaccion.asociar = ( val.asociar == 1? true : false)
+            
+           }
+        },      
+
+
         methods: {
-        
+            
+
             submit() {
                 this.showAlert = false
                 this.showSuccess = false

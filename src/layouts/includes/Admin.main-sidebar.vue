@@ -229,12 +229,12 @@
 
 						  <li>
 		                    <router-link to="/admin/tipoTransaccions/">
-		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Manejo de Tipos de transacciones</span>
+		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Manejo Tipos de Transaccion</span>
 		                    </router-link>
 		                </li>
 		                <li>
 		                    <router-link to="/admin/tipoTransaccions/form">
-		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Agregar Tipos de transaccione</span>
+		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Agregar Tipo de Transaccion</span>
 		                    </router-link>
 		                </li>
 						  <li>

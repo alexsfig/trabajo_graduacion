@@ -35,7 +35,7 @@ export default {
                     context.showAlert = false
                 }
                 context.showSuccess = true
-                context.successMsg = "TipoTransaccion Actualizado"
+                context.successMsg = "Tipo de Transaccion Actualizado"
             })
             .catch((err) => {
                 context.showAlert = true
@@ -70,6 +70,14 @@ export default {
             .then((resp) => {
                 console.log(resp.data)
                 context.tipoTransaccions = resp.data
+                 for (let i of  context.tipoTransaccions) {
+
+
+                i.tipoNombre=i.tipo?'Ingreso':'Gasto'
+
+
+
+                 }
               
             })
             .catch((err) => {
@@ -98,11 +106,11 @@ export default {
         HTTP.delete(TIPOTRANSACCION + id)
             .then((resp) => {
                 console.log(resp);
-                swal("Deleted!", "El TipoTransaccion ha sido eliminado", "success")
+                swal("Deleted!", "El Tipo de Transaccion ha sido eliminado", "success")
                 context.fetchData();
             })
             .catch((err) => {
-                swal("Oh snap!", "Ocurrio un error.", "error")
+                swal("No se Puede Eliminar!", "Es posible que este tipo de transaccion ya este asociado.", "error")
             })
     }, 
     create(context, tipoTransaccion){
@@ -113,7 +121,7 @@ export default {
                             .then((resp) => {
                                 if (resp.status>= 200 && resp.status <=300){
                                     context.showSuccess = true
-                                    context.successMsg = "TipoTransaccion creada exitosamente"
+                                    context.successMsg = "Tipo de Transaccion creado exitosamente"
                                     context.fetchData()
                                     context.resetForm()
                                 }

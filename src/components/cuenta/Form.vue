@@ -35,14 +35,14 @@
                             <form @submit.prevent="submit"  role="form"> 
                                 <div class="box-body"> <div class="col-xs-12 col-sm-6">
                          <div class="fgroup" :class="{ 'has-error': errors.has('nombre') }" >
-                                            <label for="">Nombre</label>
+                                            <label for="">Nombre Cuenta</label>
                                             <input type="text" id="nombre" name="nombre" data-vv-as="nombre" class="form-control"
 											v-model="cuenta.nombre" v-validate="'required'" >
                                             <span class="help-block" for="nombre" v-bind:data-error="errors.first('nombre')">
                                                 {{ errors.first('nombre') }}
                                             </span>      </div>
                                     </div>
- <div class="col-xs-12 col-sm-6">
+ <!--<div class="col-xs-12 col-sm-6">
                          <div class="fgroup" :class="{ 'has-error': errors.has('descripcion') }" >
                                             <label for="">Descripcion</label>
                                             <input type="text" id="descripcion" name="descripcion" data-vv-as="descripcion" class="form-control"
@@ -50,13 +50,31 @@
                                             <span class="help-block" for="descripcion" v-bind:data-error="errors.first('descripcion')">
                                                 {{ errors.first('descripcion') }}
                                             </span>      </div>
-                                    </div>
+                                    </div> -->
+
+
+ <div class="col-xs-12 col-sm-6">
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('descripcion') }" >
+                                            <label for="">Descripcion Cuenta</label>
+                                            <textarea rows="4" cols="50" id="descripcion" name="descripcion" data-vv-as="descripcion" class="form-control" v-model="cuenta.descripcion" v-validate="'required'"> </textarea>                                      
+
+
+                                            
+                                            <span class="help-block" for="descripcion" v-bind:data-error="errors.first('descripcion')">
+                                                {{ errors.first('descripcion') }}
+                                            </span>
+
+                                            </div> 
+                                             </div> 
+
+
+
  <div class="col-xs-12 col-sm-6">
                          <div class="fgroup" :class="{ 'has-error': errors.has('monto') }" >
-                                            <label for="">Monto</label>
-                                            <input type="number" id="monto" name="monto" data-vv-as="monto" class="form-control"
+                                            <label for="">Monto Actual ($)</label>
+                                            <input type="number" id="monto" name="monto" step="0.01" data-vv-as="monto" class="form-control"
 											v-model="cuenta.monto" v-validate="'required'" >
-                                            <span class="help-block" for="monto" v-bind:data-error="errors.first('monto')">
+                                            <span class="help-block" for="monto" v-bind:data-error="errors.first('monto')" >
                                                 {{ errors.first('monto') }}
                                             </span>      </div>
                                     </div>

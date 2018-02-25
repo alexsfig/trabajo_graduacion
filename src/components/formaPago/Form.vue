@@ -1,12 +1,12 @@
 <template>
     <div>
         <section class="content-header">
-            <h1>FormaPagos</h1>
+            <h1>Formas de Pago</h1>
             <ol class="breadcrumb">
                 
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><router-link to="/admin/formaPagos">FormaPagos</router-link></li>
-                <li class="active">Formulario de  FormaPagos</li>
+                <li><router-link to="/admin/formaPagos">Formas de Pago</router-link></li>
+                <li class="active">Formulario de Forma de Pago</li>
 
 
             </ol>
@@ -26,8 +26,8 @@
                     </div>
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title" v-if="!id">Agregar  FormaPago</h3>
-                             <h3 class="box-title" v-if="id">Editar  FormaPagos</h3>
+                            <h3 class="box-title" v-if="!id">Agregar Forma de Pago</h3>
+                             <h3 class="box-title" v-if="id">Editar Forma de Pago</h3>
                         </div>
                         
                         <div class="box-body">

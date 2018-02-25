@@ -60,11 +60,11 @@
 
                                          <button type="button" class="btn btn-flat btn-sm btn-warning margin" 
                                         @click="agregarAtletas(props.row.id, props.row)"><i aria-hidden="true" 
-                                        class="fa fa-check-square"></i> Agregar Atletas</button>
+                                        class="fa fa-male"></i> Agregar Atletas</button>
 
                                          <button type="button" class="btn btn-flat btn-sm btn-warning margin" 
                                         @click="agregarJueces(props.row.id, props.row)"><i aria-hidden="true" 
-                                        class="fa fa-check-square"></i> Agregar Jueces</button>
+                                        class="fa fa-gavel"></i> Agregar Jueces</button>
 
                                          <button type="button" class="margin btn btn-flat btn-sm btn-success" 
                                         @click="llamaRonda(props.row.id, props.row)"><i aria-hidden="true" 
