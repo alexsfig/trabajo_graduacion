@@ -1,6 +1,6 @@
 .DS_Store
 node_modules/
-src/assets/images/persona/
+src/assets/images/fotos/
 
 dist/
 npm-debug.log*
