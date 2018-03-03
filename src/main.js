@@ -13,10 +13,11 @@ import VeeValidate, { Validator } from 'vee-validate';
 import VueMask from 'v-mask'
 import VueFormWizard from 'vue-form-wizard'
 import 'vue-form-wizard/dist/vue-form-wizard.min.css'
+import VTooltip from 'v-tooltip'
 Vue.use(VueFormWizard)
 Vue.use(VueMask);
 Vue.use(VueGoodTable)
-
+Vue.use(VTooltip)
 import ToggleButton from 'vue-js-toggle-button'
 Vue.use(ToggleButton)
 

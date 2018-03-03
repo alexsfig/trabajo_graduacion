@@ -62,7 +62,7 @@
                         <div class="col-xs-12 col-sm-6">
                             <div class="fgroup" :class="{ 'has-error': errors.has('nit') }" >
                                 <label for="">Nit</label>
-                                <input type="text" id="nit" name="nit" data-vv-as="Nit" class="form-control" v-model="persona.personaId.nit" v-validate="'required'" >
+                                <input type="text" id="nit" name="nit" data-vv-as="Nit" class="form-control" v-model="updateEntrenador.personaId.nit" v-validate="'required'" >
                                 <span class="help-block" for="nit" v-bind:data-error="errors.first('nit')">
                                     {{ errors.first('nit') }}
                                 </span>
@@ -72,7 +72,7 @@
                          <div class="col-xs-12 col-sm-6">
                             <div class="fgroup" :class="{ 'has-error': errors.has('direccion') }" >
                                 <label for="">Direccion</label>
-                                <input type="text" id="direccion" name="direccion" data-vv-as="Direccion" class="form-control" v-model="persona.personaId.direccion" v-validate="'required'" >
+                                <input type="text" id="direccion" name="direccion" data-vv-as="Direccion" class="form-control" v-model="updateEntrenador.personaId.direccion" v-validate="'required'" >
                                 <span class="help-block" for="nit" v-bind:data-error="errors.first('direccion')">
                                     {{ errors.first('direccion') }}
                                 </span>
@@ -82,7 +82,7 @@
                         <div class="col-xs-12 col-sm-6">
                             <div class="fgroup" :class="{ 'has-error': errors.has('telefono') }" >
                                 <label for="">Telefono</label>
-                                <input type="text" id="telefono" name="telefono" data-vv-as="Telefono" class="form-control" v-model="persona.personaId.telefono" v-validate="'required'" >
+                                <input type="text" id="telefono" name="telefono" data-vv-as="Telefono" class="form-control" v-model="updateEntrenador.personaId.telefono" v-validate="'required'" >
                                 <span class="help-block" for="nit" v-bind:data-error="errors.first('telefono')">
                                     {{ errors.first('telefono') }}
                                 </span>
@@ -92,7 +92,7 @@
                          <div class="col-xs-12 col-sm-6">
                             <div class="fgroup" :class="{ 'has-error': errors.has('correo') }" >
                                 <label for="">Correo</label>
-                                <input type="text" id="correo" name="correo" data-vv-as="Correo" class="form-control" v-model="persona.personaId.correo" v-validate="'required'" >
+                                <input type="text" id="correo" name="correo" data-vv-as="Correo" class="form-control" v-model="updateEntrenador.personaId.correo" v-validate="'required'" >
                                 <span class="help-block" for="nit" v-bind:data-error="errors.first('correo')">
                                     {{ errors.first('correo') }}
                                 </span>
@@ -102,7 +102,7 @@
                         <div class="col-xs-12 col-sm-6">
                             <div class="fgroup" :class="{ 'has-error': errors.has('descripcion') }" >
                                 <label for="">Descripcion</label>
-                                <input type="text" id="descripcion" name="descripcion" data-vv-as="Descripcion" class="form-control" v-model="persona.descripcion" v-validate="'required'" >
+                                <input type="text" id="descripcion" name="descripcion" data-vv-as="Descripcion" class="form-control" v-model="updateEntrenador.descripcion" v-validate="'required'" >
                                 <span class="help-block" for="descripcion" v-bind:data-error="errors.first('descripcion')">
                                     {{ errors.first('descripcion') }}
                                 </span>
@@ -158,7 +158,7 @@
                 show: false,
                 showAlert: false,
                 showSuccess: false,
-                persona: {personaId:' '},
+                persona: {},
                 openModalInside: false,
                 roles: [],
                 rol_edit: null
@@ -173,7 +173,7 @@
             entrenador: function(val, oldVal){
                 this.openModalInside = this.openModal
                 this.updateEntrenador = this.entrenador
-                
+              
             }
         },
         methods:{
@@ -205,7 +205,7 @@
                 this.showSuccess = false
                 this.$validator.validateAll().then(success => {
                     if (success) {
-                        entrenadores.update(this, this.updateEntrenador)
+                        entrenadores.update2(this, this.updateEntrenador)
                     }
                     else{
                         this.errMsg= 'Error revisa el formulario'

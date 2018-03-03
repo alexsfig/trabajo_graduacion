@@ -74,7 +74,7 @@ export default {
                 })
         }
 
-        
+        atletas.rutaFoto=atletas;
         HTTP.put("persona", atletas)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){

@@ -50,13 +50,30 @@
                                        <td>{{props.row.atletaId.personaId.nombre}}</td>                                   
                                        <td>{{props.row.atletaId.personaId.apellido}}</td> 
                                        <td>{{ props.row.atletaId.aniosPracticando}}</td> 
-                                      <td>{{ props.row.color}}</td>                         
+                                      <td>{{ props.row.color}}</td>    
+                                         <td>{{ props.row.selected}}</td>                       
                                          <td class="nowrap">
                                         
-                                        <button type="button" class="margin btn btn-flat btn-sm btn-warning" 
-                                        @click="deleteCircuito(props.row.id, props.row.atletaId.personaId.nombre+','+props.row.atletaId.personaId.apellido)"><i aria-hidden="true" 
+                                        
+                                        
+                                        <div v-if="!changeAtleta">
+                                        <button type="button" v-if="!props.row.selected" class="margin btn btn-flat btn-sm btn-warning" 
+                                        @click="cambioInit(props.row)"><i aria-hidden="true" 
                                         class="fa fa-retweet"></i> Re-Asignar</button>
-                                
+                                        </div>
+
+                                        <div v-if="changeAtleta">
+                                   
+                                   
+                                      <button type="button" v-if="!props.row.selected" class="margin btn btn-flat btn-sm btn-success" 
+                                        @click="cambioRealizar(props.row)"><i aria-hidden="true" 
+                                        class="fa fa-retweet"></i> cambiar</button>
+
+ <button type="button" v-if="props.row.selected" class="margin btn btn-flat btn-sm btn-danger" 
+                                        @click="cambioCancelar(props.row)"><i aria-hidden="true" 
+                                        class="fa fa-retweet"></i> Cancelar</button>
+
+                                        </div>
                                     </td>
                                   </template>
                             </vue-good-table>
@@ -90,6 +107,7 @@
             return {
                 circuito: {atletasCircuitoList:[],fechaId:{}},
                 datos:[],
+                aux:null,
                 atletaCircuito:{},
                 atletas:[],
                 atletaCircuitos:[],
@@ -100,6 +118,7 @@
                 showSuccess: false,
                 methodSubmit: 'editar',
                 openModal: false ,
+                 changeAtleta: false ,
                 id:'',
                 columns: [ 
  
@@ -124,7 +143,11 @@
                       field: 'color',
                       filterable: false
                     },
-                   
+                   {
+                      label: 'ssss',
+                      field: 'color',
+                      filterable: false
+                    },
                      {
                       label: 'Accion',
                       field: '',
@@ -156,8 +179,34 @@
 }*/
             },
 
-           
+               cambioInit(row) {
 
+//row.personaId.apellido="jdksks";
+
+row.selected=true;
+this.changeAtleta=true;
+this.aux=row;
+
+               },
+    cambioRealizar(row) {
+
+//row.personaId.apellido="jdksks";
+let aux2=row.atletaId;
+row.atletaId=this.aux.atletaId;
+this.aux.atletaId=aux2;
+row.selected=false;
+this.aux.selected=false;
+this.changeAtleta=false;
+
+
+               },
+
+               cambioCancelar(row){
+
+row.selected=false;
+this.changeAtleta=false;
+                   
+               },
                   submit() {
                 this.showAlert = false
                 this.showSuccess = false

@@ -34,11 +34,11 @@
                         <!-- /.box-header -->
                         <div class="box-body">
                                 
-                            <div class="box-action">
-                                <router-link to="/admin/rondas/form" class="btn btn-default btn-flat">
-                                    <i class="fa fa-plus"></i> Nueva Ronda
-                                </router-link>
-                            </div>
+                           <router-link v-if="nuevoHabilitar" :to="{ name: 'circuitosNuevaRonda', params: { id: id }}">
+                                        <button type="button" class="margin btn btn-flat btn-sm btn-primary"
+                                       ><i aria-hidden="true"
+                                         class="fa fa-pencil-square-o"></i> Nueva Ronda </button>
+                                        </router-link>      
 
                             <vue-good-table :columns="columns" :rows="rondas" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
                                 <template slot="table-row" scope="props">
@@ -48,13 +48,13 @@
                                  
                                     <td>{{ props.row.numero }}</td>
                                     <td>{{ props.row.atletasRonda }}</td>
-                                  
+                                   <td>{{ props.row.estado }}</td>
                                   
                                     <td class="nowrap">
-                                        <router-link :to="{ name: 'rondasEdit', params: { id: props.row.id }}">
+                                        <router-link :to="{ name: 'heat', params: { id: props.row.id }}">
                                         <button type="button" class="margin btn btn-flat btn-sm btn-primary"
                                        ><i aria-hidden="true"
-                                         class="fa fa-pencil-square-o"></i> Actualizar</button>
+                                         class="fa fa-pencil-square-o"></i> Gestionar</button>
                                         </router-link>
                                         <button type="button" class="margin btn btn-flat btn-sm btn-danger" 
                                         @click="deleteRonda(props.row.id, props.row.nombre)"><i aria-hidden="true" 
@@ -73,78 +73,101 @@
     </div>
 </template>
 <script>
-  
-    import rondasController from '../../controllers/rondas.js';
-        import circuitoController from '../../controllers/circuitos.js';
-     import vSelect from "vue-select"
-    import moment from "moment"
-    export default {
-        name: 'Rondas',
-        data() {
-            return {
-                rondas: [],
-                showAlert: false,
-                showSuccess: false,
-                methodSubmit: 'editar',
-                openModal: false,
-                circuito:{},
-                id:'',
-                columns: [
-                    {
-                        label: "Id",
-                        field: "id",
-                    },
-         
-                    {
-                        label: "Numero",
-                        field: "numero",
-                    },
-                    {
-                        label: "Numero de Atletas",
-                        field: "atletasRonda",
-                    }
+import rondasController from "../../controllers/rondas.js";
+import circuitoController from "../../controllers/circuitos.js";
+import vSelect from "vue-select";
+import moment from "moment";
+export default {
+  name: "Rondas",
+  data() {
+    return {
+      rondas: [],
+      showAlert: false,
+      showSuccess: false,
+      methodSubmit: "editar",
+      openModal: false,
+      circuito: {fechaId:{}},
+      nuevoHabilitar:false,
+      id: "",
+      columns: [
+        {
+          label: "Id",
+          field: "id"
+        },
 
-                   
-                     ,
-                     {
-                      label: '',
-                      field: '',
-                      filterable: true,
-                    }
-                ]
-            }
+        {
+          label: "Numero",
+          field: "numero"
         },
-        created(){
-            this.fetchData()
+        {
+          label: "Numero de Atletas",
+          field: "atletasRonda"
         },
-        methods:{
-            fetchData(){
-                this.id=this.$route.params.id;
-                rondasController.byCircuito (this,this.id);
-                circuitoController.retrieve(this,this.id);
-            },
-            deleteRonda(id, nombre) {
-                let context = this;
-                let swal = this.$swal;
-                this.$swal({
-                    title: 'Estas Seguro?',
-                    html: 'No podras recuperar la informacion de la ronda <b>&laquo;' + nombre + '&raquo</b><br>y toda la informacion relacion al mismo ya no sera accesible',
-                    type: 'error',
-                    showCancelButton: true,
-                    confirmButtonText: 'Si, Eliminar!',
-                    cancelButtonText: 'No, Mantener'
-                }).then(function() {
-                    rondasController.delete(context, id, swal);
-                },function(dismiss) {
-                    if (dismiss === 'cancel') {
-                        swal(
-                          'Cancelado',
-                          'La ronda no se elimino',
-                          'error'
-                        )
-                    }
-                })
-            },
+        {
+          label: "Estado",
+          field: "estado"
+        },
+
+        {
+          label: "",
+          field: "",
+          filterable: true
         }
+      ]
+    };
+  },
+  created() {
+    this.fetchData();
+  },
+  watch:{
+rondas:function(val){
+    this.nuevoHabilitar=true;
+       if(val)
+       {
+      for(let i of val )
+{
+if(i.estado=="No iniciada"||i.estado=="En progreso")
+    this.nuevoHabilitar=false;
+
+}
+       }
+   /* else
+    this.nuevoHabilitar=true;*/
+}
+ 
+
+
+  },
+  methods: {
+    fetchData() {
+      this.id = this.$route.params.id;
+      rondasController.byCircuito(this, this.id);
+      circuitoController.retrieve(this, this.id);
+    },
+    deleteRonda(id, nombre) {
+      let context = this;
+      let swal = this.$swal;
+      this.$swal({
+        title: "Estas Seguro?",
+        html:
+          "No podras recuperar la informacion de la ronda <b>&laquo;" +
+          nombre +
+          "&raquo</b><br>y toda la informacion relacion al mismo ya no sera accesible",
+        type: "error",
+        showCancelButton: true,
+        confirmButtonText: "Si, Eliminar!",
+        cancelButtonText: "No, Mantener"
+      }).then(
+        function() {
+          rondasController.delete(context, id, swal);
+        },
+        function(dismiss) {
+          if (dismiss === "cancel") {
+            swal("Cancelado", "La ronda no se elimino", "error");
+          }
+        }
+      );
     }
+  }
+};
 </script>

@@ -96,20 +96,24 @@ export default {
         atleta: function(val, oldVal) {
             //this.atleta = this.$route.params.atleta
             //this.atleta = this.atleta
-            let img = this.atleta.rutaFoto
+            let img =this.atleta.id+"/"+ this.atleta.rutaFoto;
+            
             let imgAsset = null
-            if(process.env.NODE_ENV == "development"){
+           if(process.env.NODE_ENV == "development"){
                 try{
-                    imgAsset = require('@/assets/images/'+ img)
+                    imgAsset = require('@/assets/images/fotos/'+ this.atleta.id+"/avatar.png")
                 }
                 catch(er){
+                    console.log("eurecaaaaaakjlaasjisjhdhgds")
                     imgAsset = require('@/assets/images/default_avatar.png')
                 }
             }
             else{
-                imgAsset = process.env.BASE_ROUTE + '/static/img/src/assets/images/'+ img
+               imgAsset = process.env.BASE_ROUTE + '/static/img/src/assets/images/'+ img
 
             }
+
+           //imgAsset = process.env.BASE_ROUTE + '/static/img/src/assets/images/'+ img
             this.avatar =  imgAsset
         }
     },

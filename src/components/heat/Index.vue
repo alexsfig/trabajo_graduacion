@@ -52,14 +52,12 @@
                                       <td>{{ props.row.natletas }}</td>
                                         <td>{{ props.row.natletas }}</td>
                                     <td class="nowrap">
-                                        <router-link :to="{ name: 'heatsEdit', params: { id: props.row.id }}">
+                                        <router-link v-if="props.row.estado=='Por iniciar'" :to="{ name: 'heatInit', params: { id: props.row.id }}">
                                         <button type="button" class="margin btn btn-flat btn-sm btn-primary"
                                        ><i aria-hidden="true"
-                                         class="fa fa-pencil-square-o"></i> Actualizar</button>
+                                         class="fa fa-pencil-square-o"></i> Iniciar</button>
                                         </router-link>
-                                        <button type="button" class="margin btn btn-flat btn-sm btn-danger" 
-                                        @click="deleteHeat(props.row.id, props.row.nombre)"><i aria-hidden="true" 
-                                        class="fa fa-trash-o"></i> Eliminar</button>
+                                  
                                 
                                     </td>
                                   </template>

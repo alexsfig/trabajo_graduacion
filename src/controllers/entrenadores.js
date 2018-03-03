@@ -93,6 +93,37 @@ export default {
                 }
             })
     }, 
+    update2(context, entrenadores){
+        context.showAlert = false 
+        context.showSuccess = false 
+        console.log(JSON.stringify(entrenadores.personaId))
+        let request={
+        id:entrenadores.id,
+       // personaId:{id:entrenadores.personaId.id}
+        descripcion:entrenadores.descripcion,
+        personaId:{id:entrenadores.personaId.id}
+
+        }
+        HTTP.put(ENTRENADORES, request)
+            .then((resp) => {
+                if (resp.status>= 200 && resp.status <=300){
+                    var id = resp.data.id
+                    context.showAlert = false 
+                }
+                context.showSuccess = true
+                context.successMsg = "Entrenador Actualizado"
+            })
+            .catch((err) => {
+                context.showAlert = true
+                console.log(err)
+                if (err.response) {
+                    context.errMsg = err.response.data
+                    console.log(err.response.data);
+                    console.log(err.response);
+                    context.showAlert = true 
+                }
+            })
+    }, 
     /* 
         Method to get user, pass only the context, id will be taken from url
     */
