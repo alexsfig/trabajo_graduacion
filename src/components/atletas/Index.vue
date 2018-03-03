@@ -37,7 +37,7 @@
 
                             <vue-good-table :columns="columns" :rows="atletas" :globalSearch="true" :paginate="true" styleClass="table table-striped table-condensed">
                                 <template slot="table-row" scope="props">
-                                    <td style="width: 100px"><img class="custom-img img-responsive img-circle" v-bind:src="getImg(props.row.rutaFoto)" alt="User profile picture"></td>
+                                    <td style=""><img class="custom-img img-responsive img-circle" v-bind:src="getImg(props.row.id)" alt="User profile picture"></td>
                                     <td>{{props.row.personaId.nombre}}</td>
                                     <td>{{props.row.personaId.apellido}}</td>
                                     <td>{{ props.row.aniosPracticando}}</td>
@@ -167,18 +167,18 @@ export default {
     },
     methods: {
         getImg(img) {
-            var imgAsset = "", imgResource = img
-            //imgAsset = "http://104.131.164.244/insense-web/src/assets/images/"+ img
-            if(process.env.NODE_ENV == "development"){
+            let imgAsset = null
+           if(process.env.NODE_ENV == "development"){
                 try{
-                    imgAsset = require('@/assets/images/'+ img)
+                    imgAsset = require('@/assets/images/fotos/'+ img+"/avatar.png")
                 }
                 catch(er){
+                    console.log("eurecaaaaaakjlaasjisjhdhgds")
                     imgAsset = require('@/assets/images/default_avatar.png')
                 }
             }
             else{
-                imgAsset = process.env.BASE_ROUTE + '/static/img/src/assets/images/'+ img
+               imgAsset = process.env.BASE_ROUTE + '/static/img/src/assets/images/'+ img
 
             }
             return imgAsset
