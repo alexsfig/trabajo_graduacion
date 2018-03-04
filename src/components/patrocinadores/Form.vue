@@ -3,15 +3,15 @@
         <section class="content-header">
             <h1>Patrocinadores</h1>
             <ol class="breadcrumb">
-                
+
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><router-link to="/admin/patrocinadors">Patrocinadores</router-link></li>
-                <li class="active">Formulario de  Patrocinadores</li>
-
-
+                <li>
+                    <router-link to="/admin/patrocinadors">Patrocinadores</router-link>
+                </li>
+                <li class="active">Formulario de Patrocinadores</li>
             </ol>
         </section>
-       <section class="content">
+        <section class="content">
             <div class="row">
                 <div class="col-xs-12">
                     <div class="wrapper-alert">
@@ -27,83 +27,76 @@
                     <div class="box">
                         <div class="box-header">
                             <h3 class="box-title" v-if="!id">Agregar  Patrocinador</h3>
-                             <h3 class="box-title" v-if="id">Editar  Patrocinador</h3>
+                            <h3 class="box-title" v-if="id">Editar  Patrocinador</h3>
                         </div>
-                        
                         <div class="box-body">
-        
-                            <form @submit.prevent="submit"  role="form"> 
-                                <div class="box-body"> <div class="col-xs-12 col-sm-6">
-                         <div class="fgroup" :class="{ 'has-error': errors.has('nombre') }" >
+                            <form @submit.prevent="submit" role="form">
+                                <div class="box-body">
+                                    <div class="col-xs-12 col-sm-6">
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('nombre') }">
                                             <label for="">Nombre</label>
-                                            <input type="text" id="nombre" name="nombre" data-vv-as="nombre" class="form-control"
-											v-model="patrocinador.nombre" v-validate="'required'" >
+                                            <input type="text" id="nombre" name="nombre" data-vv-as="nombre" class="form-control" v-model="patrocinador.nombre" v-validate="'required'">
                                             <span class="help-block" for="nombre" v-bind:data-error="errors.first('nombre')">
                                                 {{ errors.first('nombre') }}
-                                            </span>      </div>
+                                            </span>
+                                        </div>
                                     </div>
- <div class="col-xs-12 col-sm-6">
-                         <div class="fgroup" :class="{ 'has-error': errors.has('nit') }" >
+                                    <div class="col-xs-12 col-sm-6">
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('nit') }">
                                             <label for="">Nit</label>
-                                         <masked-input mask="1111-111111-111-1" 
-                                        placeholder="####-######-###-#" name="nit"  data-vv-as="nit" class="form-control" 
-                                        v-model="patrocinador.nit" v-validate="'required'"/>
-
-                                      
+                                            <masked-input mask="1111-111111-111-1" placeholder="####-######-###-#" name="nit" data-vv-as="nit" class="form-control" v-model="patrocinador.nit" v-validate="'required'" />
                                             <span class="help-block" for="nit" v-bind:data-error="errors.first('nit')">
                                                 {{ errors.first('nit') }}
-                                            </span>      </div>
+                                            </span>
+                                        </div>
                                     </div>
-
- <div class="col-xs-12 col-sm-6">
-                         <div class="fgroup" :class="{ 'has-error': errors.has('telefono') }" >
+                                    <div class="clearfix"></div>
+                                    <div class="col-xs-12 col-sm-6">
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('telefono') }">
                                             <label for="">Telefono</label>
-                                            <input type="text" id="telefono" name="telefono" data-vv-as="telefono" class="form-control"
-											v-model="patrocinador.telefono" v-validate="'required'" >
+                                            <input type="text" id="telefono" name="telefono" data-vv-as="telefono" class="form-control" v-model="patrocinador.telefono" v-validate="'required'">
                                             <span class="help-block" for="telefono" v-bind:data-error="errors.first('telefono')">
                                                 {{ errors.first('telefono') }}
-                                            </span>      </div>
+                                            </span>
+                                        </div>
                                     </div>
- <div class="col-xs-12 col-sm-6">
-                         <div class="fgroup" :class="{ 'has-error': errors.has('correo') }" >
+                                    <div class="col-xs-12 col-sm-6">
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('correo') }">
                                             <label for="">Correo</label>
-                                            <input type="email" id="correo" name="correo" data-vv-as="correo" class="form-control"
-											v-model="patrocinador.correo" v-validate="'required|email'" >
+                                            <input type="email" id="correo" name="correo" data-vv-as="correo" class="form-control" v-model="patrocinador.correo" v-validate="'required|email'">
                                             <span class="help-block" for="correo" v-bind:data-error="errors.first('correo')">
                                                 {{ errors.first('correo') }}
-                                            </span>      </div>
+                                            </span>
+                                        </div>
                                     </div>
- <div class="col-xs-12 col-sm-6">
-                         <div class="fgroup" :class="{ 'has-error': errors.has('direccion') }" >
-                                            <label for="">Direccion</label>
-                                            <input type="text" id="direccion" name="direccion" data-vv-as="direccion" class="form-control"
-											v-model="patrocinador.direccion" v-validate="'required'" >
-                                            <span class="help-block" for="direccion" v-bind:data-error="errors.first('direccion')">
-                                                {{ errors.first('direccion') }}
-                                            </span>      </div>
-                                    </div>
-                                     <div class="col-xs-12 col-sm-6">
-                         <div class="fgroup" :class="{ 'has-error': errors.has('tipo') }" >
+                                    <div class="clearfix"></div>
+                                    <div class="col-xs-12 col-sm-6">
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('tipo') }">
                                             <label for="">Tipo</label>
-                                               <v-select
-                                                :debounce="250"
-                                                :options="tipo"
-                                                v-model="patrocinador.tipo"
-                                           
-                                                placeholder="Seleccione el Tipo"
-                                                label="label">
-                                            </v-select>  
-                        <input type="hidden" name="tipo" value="" data-vv-as="tipo"  v-model="patrocinador.tipo" v-validate="'required'">
-
+                                            <v-select :debounce="250" :options="tipo" v-model="patrocinador.tipo" placeholder="Seleccione el Tipo" label="label">
+                                            </v-select>
+                                            <input type="hidden" name="tipo" value="" data-vv-as="tipo" v-model="patrocinador.tipo" v-validate="'required'">
                                             <span class="help-block" for="tipo" v-bind:data-error="errors.first('tipo')">
                                                 {{ errors.first('tipo') }}
-                                            </span>      </div>
+                                            </span>
+                                        </div>
                                     </div>
-  </div>
+                                    <div class="col-xs-12 col-sm-6">
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('direccion') }">
+                                            <label for="">Direccion</label>
+                                            <textarea id="direccion" name="direccion" data-vv-as="Dirección" class="form-control" v-model="patrocinador.direccion" v-validate="'required'" rows="3"></textarea>
+                                            <!-- <input type="text" id="direccion" name="direccion" data-vv-as="direccion" class="form-control" v-model="patrocinador.direccion" v-validate="'required'"> -->
+                                            <span class="help-block" for="direccion" v-bind:data-error="errors.first('direccion')">
+                                                {{ errors.first('direccion') }}
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                </div>
                                 <div class="box-footer">
                                     <div class="col-xs-12 text-right">
-                                        <button type="submit"  v-if="!id" class="btn btn-flat btn-sm btn-primary">Agregar</button>
-                                            <button type="submit" v-if="id" class="btn btn-flat btn-sm btn-primary">Editar</button>
+                                        <button type="submit" v-if="!id" class="btn btn-flat btn-sm btn-primary">Agregar</button>
+                                        <button type="submit" v-if="id" class="btn btn-flat btn-sm btn-primary">Editar</button>
 
                                     </div>
                                 </div>
@@ -115,64 +108,72 @@
             </div>
         </section>
     </div>
+
 </template>
 
-<script>  import patrocinadorsController from '../../controllers/patrocinadores.js'
-  import vSelect from "vue-select" 
+<script>
+
+  import patrocinadorsController from '../../controllers/patrocinadores.js'
+  import vSelect from "vue-select"
   import masked from "vue-masked-input"
-export default {
-        name: 'Patrocinador',
-        data() {
-            return {
-                errMsg:  '',
-                errorMsg: '',
-                showAlert: false,
-                showSuccess: false,
-                successMsg: "",
-id: '',
-                errMsg: "",
-                isLogin: false,
-                 tipo:[
-                    {label: 'Persona Juridica',value:'Persona Juridica'},
-                    {label: 'Persona Natural',value:'Persona Natural'}
+  export default {
+      name: 'Patrocinador',
+      data() {
+          return {
+              errMsg: '',
+              errorMsg: '',
+              showAlert: false,
+              showSuccess: false,
+              successMsg: "",
+              id: '',
+              errMsg: "",
+              isLogin: false,
+              tipo: [{
+                      label: 'Persona Juridica',
+                      value: 'Persona Juridica'
+                  }, {
+                      label: 'Persona Natural',
+                      value: 'Persona Natural'
+                  }
 
-                ],
-patrocinador:{}}
-        },
-        components:{
-            vSelect,
-            'masked-input': masked
-        },
-        created(){
-                this.id = this.$route.params.id;
-                if(this.id)
-                patrocinadorsController.retrieve(this,this.id);
-                console.log("id:"+this.id);  },
+              ],
+              patrocinador: {}
+          }
+      },
+      components: {
+          vSelect,
+          'masked-input': masked
+      },
+      created() {
+          this.id = this.$route.params.id;
+          if (this.id)
+              patrocinadorsController.retrieve(this, this.id);
+          console.log("id:" + this.id);
+      },
 
-        
-        methods: {
-        
-            submit() {
-                this.showAlert = false
-                this.showSuccess = false
-                this.$validator.validateAll().then(success => {
-                    if (success) {
-                     console.log("Error en el servicio")
+
+      methods: {
+
+          submit() {
+              this.showAlert = false
+              this.showSuccess = false
+              this.$validator.validateAll().then(success => {
+                  if (success) {
+                      console.log("Error en el servicio")
                       this.patrocinador.tipo = this.patrocinador.tipo.label == undefined ? this.patrocinador.tipo : this.patrocinador.tipo.label
-                     if(!this.id)                       
-                        patrocinadorsController.create(this, this.patrocinador)
-                        else
-                        patrocinadorsController.update(this,this.patrocinador)
-                    }
-                    else{
-                          console.log("Error enn el formulario")
-                        this.showAlert = true
-                        this.errMsg = "Form error"
-                    }
-                });
-            }
-        }
+                      if (!this.id)
+                          patrocinadorsController.create(this, this.patrocinador)
+                      else
+                          patrocinadorsController.update(this, this.patrocinador)
+                  } else {
+                      console.log("Error enn el formulario")
+                      this.showAlert = true
+                      this.errMsg = "Form error"
+                  }
+              });
+          }
+      }
 
-    }
+  }
+
 </script>
-<style scoped>

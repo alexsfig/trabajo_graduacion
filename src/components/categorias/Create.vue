@@ -3,13 +3,13 @@
         <section class="content-header">
             <h1>Categorias</h1>
             <ol class="breadcrumb">
-                
+
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li><router-link to="/admin/noticias">Categorias</router-link></li>
                 <li class="active">Agregar Categorias</li>
             </ol>
         </section>
-       <section class="content">
+        <section class="content">
             <div class="row">
                 <div class="col-xs-12">
                     <div class="wrapper-alert">
@@ -26,10 +26,10 @@
                         <div class="box-header">
                             <h3 class="box-title">Agregar Categorias</h3>
                         </div>
-                        
+
                         <div class="box-body">
-        
-                            <form @submit.prevent="submit"  role="form"> 
+
+                            <form @submit.prevent="submit"  role="form">
                                 <div class="box-body">
 
                                     <div class="col-xs-12 col-sm-6">
@@ -41,7 +41,24 @@
                                             </span>
                                         </div>
                                     </div>
-
+                                    <div class="col-xs-12 col-sm-6">
+                                        <div class="fgroup"  :class="{ 'has-error': errors.has('sexo') }">
+                                            <label for="">Sexo</label>
+                                            <v-select
+                                                :debounce="250"
+                                                :options="sexo"
+                                                v-model="createCategorias.sexo"
+                                                placeholder="Seleccione el genero"
+                                                label="nombre">
+                                            </v-select>
+                                            <div class="clearfix"></div>
+                                            <input type="hidden" name="sexo" value="" data-vv-as="sexo"  v-model="createCategorias.sexo" v-validate="'required'">
+                                            <span class="help-block" for="sexo" v-bind:data-error="errors.first('sexo')">
+                                                {{ errors.first('sexo') }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('edadMin') }" >
                                             <label for="">Edad Minima</label>
@@ -61,19 +78,19 @@
                                             </span>
                                         </div>
                                     </div>
-
+                                    <div class="clearfix"></div>
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('descripcionCategoria') }" >
                                             <label for="">Descripcion</label>
-                                            <textarea rows="4" cols="50" id="descripcionCategoria" name="descripcionCategoria" data-vv-as="Descripcion de la categoria" class="form-control" v-model="createCategorias.descripcionCategoria" v-validate="'required'"> </textarea>                                      
+                                            <textarea rows="4" cols="50" id="descripcionCategoria" name="descripcionCategoria" data-vv-as="Descripcion de la categoria" class="form-control" v-model="createCategorias.descripcionCategoria" v-validate="'required'"> </textarea>
 
 
-                                            
+
                                             <span class="help-block" for="descripcionCategoria" v-bind:data-error="errors.first('descripcionCategoria')">
                                                 {{ errors.first('descripcionCategoria') }}
                                             </span>
                                         </div>
-                                    </div> 
+                                    </div>
 
                                       <!--<div class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('descripcionCategoria') }" >
@@ -85,7 +102,7 @@
                                         </div>
                                     </div> -->
 
-                                   
+
                                    <!-- <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('sexo') }" >
                                             <label for="">Sexo</label>
@@ -108,31 +125,14 @@
                                             </span>
                                         </div>
                                     </div>  -->
-                                        <div class="col-xs-12 col-sm-4">
-                                        <div class="fgroup"  :class="{ 'has-error': errors.has('sexo') }">
-                                            <label for="">Sexo</label>
-                                            <v-select
-                                                :debounce="250"
-                                                :options="sexo"
-                                                v-model="createCategorias.sexo"
-                                                placeholder="Seleccione el genero" 
-                                                label="nombre">
-                                            </v-select>
-                                            <div class="clearfix"></div>
-                                            <input type="hidden" name="sexo" value="" data-vv-as="sexo"  v-model="createCategorias.sexo" v-validate="'required'">
-                                            <span class="help-block" for="sexo" v-bind:data-error="errors.first('sexo')">
-                                                {{ errors.first('sexo') }}
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="clearfix"></div>                        
-                                  
-                                      
-                                    
+
+
+
+
                                 </div>
                                 <div class="box-footer">
                                     <div class="col-xs-12 text-right">
-                                        <button type="submit" class="btn btn-flat btn-sm btn-primary">Agregar Nueva</button>
+                                        <button type="submit" class="btn btn-flat btn-sm btn-primary">Agregar Categoria</button>
                                     </div>
                                 </div>
 
@@ -148,9 +148,9 @@
 <script>
     import categorias from '../../controllers/categorias.js'
     import vSelect from "vue-select"
-    
-    
-    
+
+
+
     export default {
         name: 'Categorias',
         data() {
@@ -162,41 +162,44 @@
                 successMsg: "",
                 errMsg: "",
                 isLogin: false,
-                createCategorias: {},
+                createCategorias: {
+                    edadMax: null,
+                    edadMin: null
+                },
 
                 sexo:[
                     {name: 'M', nombre:'Masculino'},
                     {name: 'F', nombre:'Femenino'},
                     {name: 'X', nombre:'Mixto'}
-                   
-                   
+
+
                 ]
 
-              
-                
-                
+
+
+
 
             }
         },
         components:{
-            
-          
+
+
            vSelect
-            
-            
-        }, 
-       
-        
+
+
+        },
+
+
         methods: {
 
-                  
-            
+
+
             submit() {
                 this.showAlert = false
                 this.showSuccess = false
                 this.$validator.validateAll().then(success => {
                     if (success) {
-                       
+
                        this.createCategorias.sexo = this.createCategorias.sexo.name == undefined ? '' : this.createCategorias.sexo.name
                         categorias.create(this, this.createCategorias)
                     }

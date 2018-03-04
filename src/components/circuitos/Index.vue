@@ -33,43 +33,40 @@
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
-      <div class="box-action">
+                            <div class="box-action">
                                 <router-link to="/admin/circuitos/form" class="btn btn-default btn-flat">
                                     <i class="fa fa-plus"></i> Nueva Circuito
                                 </router-link>
                             </div>
                             <vue-good-table :columns="columns" :rows="circuitos" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
                                 <template slot="table-row" scope="props">
-<td>{{ props.row.nombre }}</td>
-<td>{{ props.row.descripcion }}</td>
-<td>{{ props.row.fechaId.nombre }}</td>
-<td>{{ props.row.categoriaId.nombreCategoria }}</td>                
-<td>{{ props.row.estado }}</td>      
+                                    <td>{{ props.row.nombre }}</td>
+                                    <td>{{ props.row.descripcion }}</td>
+                                    <td>{{ props.row.fechaId.nombre }}</td>
+                                    <td>{{ props.row.categoriaId.nombreCategoria }}</td>
+                                    <td>{{ props.row.estado }}</td>
 
 
-                    <td class="nowrap">
- <router-link :to="{ name: 'circuitosEdit', params: { id: props.row.id }}">
-                                        <button type="button" class="margin btn btn-flat btn-sm btn-primary"
-                                       ><i aria-hidden="true"
-                                         class="fa fa-pencil-square-o"></i> Actualizar</button>
-                                        </router-link>                                        <button type="button" class="margin btn btn-flat btn-sm btn-danger" 
-                                        @click="deleteCircuito(props.row.id, props.row.nombre)"><i aria-hidden="true" 
-                                        class="fa fa-trash-o"></i> Eliminar</button>
-
-                                       
-
-                                         <button type="button" class="btn btn-flat btn-sm btn-warning margin" 
-                                        @click="agregarAtletas(props.row.id, props.row)"><i aria-hidden="true" 
-                                        class="fa fa-male"></i> Agregar Atletas</button>
-
-                                         <button type="button" class="btn btn-flat btn-sm btn-warning margin" 
-                                        @click="agregarJueces(props.row.id, props.row)"><i aria-hidden="true" 
-                                        class="fa fa-gavel"></i> Agregar Jueces</button>
-
-                                         <button type="button" class="margin btn btn-flat btn-sm btn-success" 
-                                        @click="llamaRonda(props.row.id, props.row)"><i aria-hidden="true" 
-                                        class="fa fa-flag-checkered"></i> Iniciar Circuito</button>
-                                
+                                    <td class="nowrap">
+                                        <router-link tag="button" :to="{ name: 'circuitosEdit', params: { id: props.row.id }}" class="margin btn btn-flat btn-sm btn-primary">
+                                            <i aria-hidden="true" class="fa fa-pencil-square-o"></i> Actualizar
+                                       </router-link>
+                                        <button type="button" class="margin btn btn-flat btn-sm btn-danger"
+                                            @click="deleteCircuito(props.row.id, props.row.nombre)"><i aria-hidden="true"
+                                            class="fa fa-trash-o"></i> Eliminar
+                                        </button>
+                                        <button type="button" class="margin btn btn-flat btn-sm bg-navy margin"
+                                            @click="agregarAtletas(props.row.id, props.row)"><i aria-hidden="true"
+                                            class="fa fa-male"></i> Agregar Atletas
+                                        </button>
+                                        <button type="button" class="margin btn btn-flat btn-sm bg-navy margin"
+                                            @click="agregarJueces(props.row.id, props.row)"><i aria-hidden="true"
+                                            class="fa fa-gavel"></i> Agregar Jueces
+                                        </button>
+                                        <button type="button" class="margin btn btn-flat btn-sm btn-success"
+                                            @click="llamaRonda(props.row.id, props.row)"><i aria-hidden="true"
+                                            class="fa fa-flag-checkered"></i> Iniciar Circuito
+                                        </button>
                                     </td>
                                   </template>
                             </vue-good-table>
@@ -83,7 +80,7 @@
     </div>
 </template>
 <script>
-  
+
     import circuitosController from '../../controllers/circuitos.js';
      import vSelect from "vue-select"
     import moment from "moment"
@@ -96,8 +93,8 @@
                 showSuccess: false,
                 methodSubmit: 'editar',
                 openModal: false ,
- columns: [ 
- {
+                columns: [
+                    {
                         label: "Nombre",
                         field: "nombre",
                     }, {
@@ -189,3 +186,14 @@
         }
     }
 </script>
+<style scoped>
+.dropdown-menu {
+    z-index: 1007;
+}
+
+</style>
+<style media="screen">
+.good-table.responsive, .responsive {
+    overflow-y: hidden;
+}
+</style>
