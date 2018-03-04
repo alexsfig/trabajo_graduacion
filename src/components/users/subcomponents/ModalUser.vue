@@ -13,7 +13,7 @@
             </div>
             <div class="box box-primary">
             
-                <label>Usuario {{ updateUser.usuario }}</label>
+                <label>Usuario {{ updateUser.contrasena }}</label>
                 <form @submit.prevent="validateMethod" role="form"> 
                     <div class="box-body">
                         <input type="hidden" v-model="id">
@@ -34,7 +34,7 @@
                                     :options="roles"
                                     v-model="updateUser.rolId"
                                     placeholder="Rol Usuario" 
-                                    label="nombre">
+                                    label="nombre" @input="changedValue">
                                 </v-select>
                                 <div class="clearfix"></div>
                                 <input type="hidden" name="rol_edit" value="" data-vv-as="Position Employee"  v-model="updateUser.rolId" v-validate="'required'">
@@ -43,6 +43,25 @@
                                 </span>
                             </div>
                         </div>
+
+
+                        <div class="col-xs-12 col-sm-6" v-if="enapatro">
+                                        <div class="fgroup"  :class="{ 'has-error': errors.has('personaId') }">
+                                            <label for="">Juez Asociado</label>
+                                            <v-select
+                                                :debounce="250"
+                                                :options="jueces"
+                                                v-model="personaId"
+                                                placeholder="Juez Asociado" 
+                                                label="nombre">
+                                            </v-select>
+                                            <div class="clearfix"></div>
+                                            <input type="hidden" name="personaId" value="" data-vv-as="Juez Asociado"  v-model="personaId" v-validate="'required'">
+                                            <span class="help-block" for="personaId" v-bind:data-error="errors.first('personaId')">
+                                                {{ errors.first('personaId') }}
+                                            </span>
+                                        </div>
+                                    </div>      
                         
                     </div>    
                     <div class="box-footer">
@@ -62,6 +81,7 @@
     import roles from '../../../controllers/roles.js'
     import moment from 'moment'
     import vSelect from "vue-select"
+    import juecesController from '../../../controllers/jueces.js'
 
     export default {
         name: 'Employee',
@@ -69,7 +89,6 @@
             "usuario",
             "title",
             "usuario",
-            "contrasena",
             "id",
             "buttonMsg",
             "methodSubmit",
@@ -80,6 +99,7 @@
         },
         created(){
             this.retrieveRoles()
+            juecesController.index(this)
         },
         data() {
             return {
@@ -94,7 +114,9 @@
                 updateUser: {},
                 openModalInside: false,
                 roles: [],
-                rol_edit: null
+                rol_edit: null,
+                personaId : null,
+                enapatro  : null
             }
         },
         components:{
@@ -105,10 +127,32 @@
             usuario: function(val, oldVal){
                 this.openModalInside = this.openModal
                 this.updateUser = this.usuario
-                this.updateUser.rolId = this.usuario.rolId
+                this.updateUser.rolId = this.usuario.rolId   
+
+
+                if(this.updateUser.rolId.descripcion=="Juez"){
+                for(let i of this.jueces)
+                    if(i.personaId.id==this.usuario.personaId.id )
+            this.personaId=i;      }
+
+                
+               
             }
         },
         methods:{
+
+               changedValue() {
+    
+      this.enapatro = false;
+      if(this.updateUser.rolId){
+         console.log(this.updateUser.rolId)
+if(this.updateUser.rolId.descripcion=='Juez'){
+ this.enapatro = true;
+  console.log("fffffffffffffffff hhhhhhhhhhh");
+
+}    }  },
+
+
             showCallback () {
             },
             dismissCallback (msg) {
@@ -137,7 +181,15 @@
                 this.showSuccess = false
                 this.$validator.validateAll().then(success => {
                     if (success) {
-                        users.update(this, this.updateUser)
+
+                        
+                        
+                        
+                        
+                        
+                         if(this.updateUser.rolId.descripcion=="Juez")
+                         this.updateUser.personaId = {id:this.personaId.personaId.id}
+                         users.update(this, this.updateUser)
                         this.errors.clear()
                     }
                     else{

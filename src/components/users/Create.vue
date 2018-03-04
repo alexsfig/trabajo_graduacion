@@ -41,7 +41,9 @@
                                             </span>
                                         </div>
                                     </div>
-                                    <div class="col-xs-12 col-sm-6">
+                                   
+
+                                         <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup"  :class="{ 'has-error': errors.has('rol_edit') }">
                                             <label for="">Position</label>
                                             <v-select
@@ -49,7 +51,7 @@
                                                 :options="roles"
                                                 v-model="createUser.rolId"
                                                 placeholder="Rol Usuario" 
-                                                label="nombre">
+                                                label="nombre" @input="changedValue">
                                             </v-select>
                                             <div class="clearfix"></div>
                                             <input type="hidden" name="rol_edit" value="" data-vv-as="Position Employee"  v-model="createUser.rolId" v-validate="'required'">
@@ -58,7 +60,9 @@
                                             </span>
                                         </div>
                                     </div>
-                                    <div class="clearfix"></div>
+
+
+                                   <div class="clearfix"></div>
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('password') }">
                                             <label for="">Contraseña</label>
@@ -78,7 +82,26 @@
                                             </span>
 
                                         </div>
-                                    </div>         
+                                    </div>   
+
+
+                                        <div class="col-xs-12 col-sm-6" v-if="enapatro">
+                                        <div class="fgroup"  :class="{ 'has-error': errors.has('personaId') }">
+                                            <label for="">Juez Asociado</label>
+                                            <v-select
+                                                :debounce="250"
+                                                :options="jueces"
+                                                v-model="personaId"
+                                                placeholder="Juez Asociado" 
+                                                label="nombre">
+                                            </v-select>
+                                            <div class="clearfix"></div>
+                                            <input type="hidden" name="personaId" value="" data-vv-as="Juez Asociado"  v-model="personaId" v-validate="'required'">
+                                            <span class="help-block" for="personaId" v-bind:data-error="errors.first('personaId')">
+                                                {{ errors.first('personaId') }}
+                                            </span>
+                                        </div>
+                                    </div>      
                                     
                                 </div>
                                 <div class="box-footer">
@@ -100,6 +123,7 @@
     import users from '../../controllers/users.js'
     import roles from '../../controllers/roles.js'
     import vSelect from "vue-select"
+    import juecesController from '../../controllers/jueces.js'
     export default {
         name: 'Usuarios',
         data() {
@@ -114,6 +138,9 @@
                 createUser: {},
                 confirm_password: "",
                 roles: [],
+                jueces: [],
+                personaId : null,
+                enapatro  : null
 
             }
         },
@@ -122,8 +149,31 @@
         },
         created(){
             this.retrieveRoles()
+            this.fetchData()
         },
         methods: {
+
+
+            changedValue() {
+    
+      this.enapatro = false;
+      if(this.createUser.rolId){
+         console.log(this.createUser.rolId)
+if(this.createUser.rolId.descripcion=='Juez'){
+ this.enapatro = true;
+  console.log("fffffffffffffffff hhhhhhhhhhh");
+
+}
+
+
+      }
+      console.log("ejemplo hhhhhhhhhhh");
+     },
+
+            fetchData() {
+                juecesController.index(this)
+            },
+
             retrieveRoles(){
                 roles.index(this)
             },
@@ -132,7 +182,8 @@
                 this.showSuccess = false
                 this.$validator.validateAll().then(success => {
                     if (success) {
-                      
+                         if(this.createUser.rolId.descripcion=="Juez")
+                      this.createUser.personaId = {id:this.personaId.personaId.id}
                         users.create(this, this.createUser)
                     }
                     else{

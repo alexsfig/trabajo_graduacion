@@ -13,7 +13,7 @@
         </div>
         <div class="box box-primary">
 
-            <label>Nivel de Jerarquia: {{ updateMiembrojunta.nivelJerarquia}}</label>
+            <label>Nivel de Jerarquia: {{ updateMiembrojunta.nivelJerarquia.name}}</label>
             <form @submit.prevent="validateMethod" role="form">
                 <div class="box-body">
                     <input type="hidden" v-model="id">
@@ -49,7 +49,7 @@
                     <div class="col-xs-12 col-sm-6">
                         <div class="fgroup" :class="{ 'has-error': errors.has('dui') }">
                             <label for="">Dui</label>
-                            <input type="text" id="dui" name="dui" data-vv-as="Dui" class="form-control" v-model="persona.dui" v-validate="'required'">
+                            <input type="text" id="dui" name="dui" v-mask="'########-#'" data-vv-as="Dui" class="form-control" v-model="persona.dui" v-validate="'required'">
                             <span class="help-block" for="dui" v-bind:data-error="errors.first('dui')">
                                     {{ errors.first('dui') }}
                                 </span>
@@ -59,7 +59,7 @@
                     <div class="col-xs-12 col-sm-6">
                         <div class="fgroup" :class="{ 'has-error': errors.has('nit') }">
                             <label for="">Nit</label>
-                            <input type="text" id="nit" name="nit" data-vv-as="Nit" class="form-control" v-model="persona.nit" v-validate="'required'">
+                            <input type="text" id="nit" name="nit" data-vv-as="Nit" v-mask="'####-######-###-#'" class="form-control" v-model="persona.nit" v-validate="'required'">
                             <span class="help-block" for="nit" v-bind:data-error="errors.first('nit')">
                                     {{ errors.first('nit') }}
                                 </span>
@@ -79,7 +79,9 @@
                     <div class="col-xs-12 col-sm-6">
                         <div class="fgroup" :class="{ 'has-error': errors.has('telefono') }">
                             <label for="">Telefono</label>
-                            <input type="text" id="telefono" name="telefono" data-vv-as="Telefono" class="form-control" v-model="persona.telefono" v-validate="'required'">
+                           <input type="text" id="telefono" v-mask="'####-####'" name="telefono" data-vv-as="Telefono" class="form-control" v-model="persona.telefono" v-validate="'required'"> 
+
+                          
                             <span class="help-block" for="nit" v-bind:data-error="errors.first('telefono')">
                                     {{ errors.first('telefono') }}
                                 </span>
@@ -89,24 +91,54 @@
                     <div class="col-xs-12 col-sm-6">
                         <div class="fgroup" :class="{ 'has-error': errors.has('correo') }">
                             <label for="">Correo</label>
-                            <input type="text" id="correo" name="correo" data-vv-as="Correo" class="form-control" v-model="persona.correo" v-validate="'required'">
+                            <input type="mail" id="correo" name="correo" data-vv-as="Correo" class="form-control" v-model="persona.correo" v-validate="'required|email'">
                             <span class="help-block" for="nit" v-bind:data-error="errors.first('correo')">
                                 {{ errors.first('correo') }}
                             </span>
                         </div>
                     </div>
+
+
+                   <div class="col-xs-12 col-sm-6">
+                                        <div class="fgroup"  :class="{ 'has-error': errors.has('sexo') }">
+                                            <label for="">Sexo</label>
+                                            <v-select
+                                                :debounce="250"
+                                                :options="sexo"
+                                                v-model="persona.sexo"
+                                                placeholder="Seleccione el genero" 
+                                                label="nombre" >
+                                            </v-select>
+                                            <div class="clearfix"></div>
+                                            <input type="hidden" name="sexo" value="" data-vv-as="sexo"  v-model="persona.sexo" v-validate="'required'">
+                                            <span class="help-block" for="sexo" v-bind:data-error="errors.first('sexo')">
+                                                {{ errors.first('sexo') }}
+                                            </span>
+                                        </div>
+                                    </div>
+
+
+
                     <div class="col-xs-12 col-sm-6">
-                        <div class="col-xs-12 col-sm-6">
-                            <div class="fgroup" :class="{ 'has-error': errors.has('form-6.nivelJerarquia') }">
+                       
+                            <div class="fgroup" :class="{ 'has-error': errors.has('nivelJerarquia') }">
                                 <label for="">Nivel Jerarquia</label>
                                 <v-select :debounce="250" :options="jerarquia" v-model="updateMiembrojunta.nivelJerarquia" placeholder="Seleccione la jerarquia" label="name">
                                 </v-select>
-                                <span class="help-block" for="type" v-bind:data-error="errors.first('form-6.nivelJerarquia')">
-                                        {{ errors.first('form-6.nivelJerarquia') }}
+                                <div class="clearfix"></div>
+                             <input type="hidden" name="nivelJerarquia" value="" data-vv-as="jerarquia"  v-model="updateMiembrojunta.nivelJerarquia" v-validate="'required'">
+                                <span class="help-block" for="nivelJerarquia" v-bind:data-error="errors.first('nivelJerarquia')">
+                                        {{ errors.first('nivelJerarquia') }}
                                     </span>
                             </div>
-                        </div>
-                    </div>
+                      
+                    </div>  
+
+
+
+                
+
+
                 </div>
                 <div class="box-footer">
                     <div class="col-xs-12 text-right">
@@ -158,6 +190,9 @@ export default {
         },
 
     ],
+
+    
+
     computed: {
 
     },
@@ -175,7 +210,7 @@ export default {
             showAlert: false,
             showSuccess: false,
             updateMiembrojunta: {
-                personaId: ' '
+                personaId: {}
             },
             persona:{},
             openModalInside: false,
@@ -202,6 +237,13 @@ export default {
                 },
             ],
 
+             sexo:[
+                    {name: 'M', nombre:'Masculino'},
+                    {name: 'F', nombre:'Femenino'}                    
+                   
+                   
+                ], 
+
         }
     },
     components: {
@@ -216,8 +258,22 @@ export default {
             this.updateMiembrojunta = this.miembrojunta;
             this.persona=this.miembrojunta.personaId;
             this.updateMiembrojunta.personaId=null;
-            if(this.miembrojunta.nivelJerarquia)
-            this.updateMiembrojunta.nivelJerarquia.name=this.miembrojunta.nivelJerarquia;
+            if(this.miembrojunta.nivelJerarquia){
+                for(let i of this.jerarquia)
+                    if(i.name==this.miembrojunta.nivelJerarquia)
+            this.updateMiembrojunta.nivelJerarquia=i;
+
+
+        if(typeof this.persona.sexo != 'object' ){
+                    let nombre = this.persona.sexo == 'M' ? 'Masculino' : 'Femenino'
+                    let name = this.persona.sexo 
+                    this.persona.sexo = this.persona.sexo.replace(/\s/g, "")
+                    this.persona.sexo = {name: name, nombre: nombre}   
+                }
+
+
+}
+
         }
     },
     methods: {
@@ -248,7 +304,7 @@ export default {
                 this.$validator.validateAll().then(success => {
 
                     if (success) {
-                        console.log('Estpy Actualizabndo un miembro de junta ');
+                        console.log('Estoy Actualizando un miembro de junta ');
                      /*     const miembro=this.updateMiembrojunta;
                     let persona=miembro.personaId;
                       
@@ -257,14 +313,34 @@ export default {
                        miembro.personaId=null;
                         console.log(this.updateMiembrojunta)
                         persona.miembroJunta=miembro;*/
+
+                        
+                        let jer= this.updateMiembrojunta.nivelJerarquia.name == undefined ? this.updateMiembrojunta.nivelJerarquia : this.updateMiembrojunta.nivelJerarquia.name
+
+                       
+console.log("value:" + jer)
                         const miembro={
 id:this.updateMiembrojunta.id,
-nivelJerarquia:this.updateMiembrojunta.nivelJerarquia.name
+nivelJerarquia:jer
+
 
                         }
                         this.persona.miembroJunta=miembro
+
+                        this.persona.sexo = this.persona.sexo.name == undefined ? '' : this.persona.sexo.name
+
                         juntamiembros.update(this, this.persona)
+
+                        
+
+                        
+
+
+
+                       
                     
+
+
                       //     this.openModalInside=false; 
                     } else {
                         this.errMsg = 'Error revisa el formulario'

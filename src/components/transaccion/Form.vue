@@ -60,7 +60,7 @@
                                         </div>
                                     </div> <div class="col-xs-12 col-sm-6">
                          <div class="fgroup" :class="{ 'has-error': errors.has('monto') }" >
-                                            <label for="">Monto</label>
+                                            <label for="">Monto ($)</label>
                                             <input type="number" id="monto" name="monto" data-vv-as="monto" min="0" class="form-control"
 											v-model="transaccion.monto" v-validate="'required|min_value:0.01'"  step="0.01">
                                             <span class="help-block" for="monto" v-bind:data-error="errors.first('monto')">

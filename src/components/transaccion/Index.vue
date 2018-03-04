@@ -95,7 +95,7 @@
                         label: "Forma de pago",
                         field: "formaPago.nombre",
                     }, {
-                        label: "Monto",
+                        label: "Monto ($)",
                         field: "monto",
                     }, {
                         label: "Comprobante",

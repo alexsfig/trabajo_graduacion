@@ -43,14 +43,14 @@
                                      <td>{{ props.row.personaId.direccion}}</td>
                                      <td>{{ props.row.personaId.telefono}}</td>
                                      <td>{{ props.row.personaId.correo}}</td>
-                                      <td>{{ props.row.personaId.sexo}}</td>
+                                      <td>{{ (props.row.personaId.sexo == 'F') ? 'Femenino' : ((props.row.personaId.sexo == 'M') ? 'Masculino' : 'Mixto')}}</td>
                                       <td>{{ props.row.descripcion}}</td>
                                    
                                    
                                     <td>
                                         <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="openModal=true, retrieveData(props.row.id)" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar</button>
                                         
-                                        <button type="button" class="margin btn btn-sm btn-flat btn-danger" @click="clickHandler(props.row.id, entrenador)" ><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
+                                        <button type="button" class="margin btn btn-sm btn-flat btn-danger" @click="clickHandler(props.row.id, entrenador, props.row.personaId.nombre)" ><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
                                     </td>
                                   </template>
                                 </vue-good-table>
@@ -164,12 +164,12 @@
             '$route': 'fetchData'
         },
         methods: {
-            clickHandler(id, entrenador) {
+            clickHandler(id, entrenador, nombre) {
                 let swal = this.$swal
                 let context = this
                 swal({
                     title: 'Estas Seguro?',
-                    html: 'No podras recuperar la informacion del entrenador <b>' + entrenador.descripcion + '</b>',
+                    html: 'No podras recuperar la informacion del entrenador <b>' + nombre + '</b>',
                     type: 'error',
                     showCancelButton: true,
                     confirmButtonText: 'Si, Eliminar!',

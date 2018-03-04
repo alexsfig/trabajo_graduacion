@@ -1,11 +1,11 @@
 <template>
     <div>
         <section class="content-header">
-            <h1>Playas</h1>
+            <h1>Manejo de Personas</h1>
 
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li>Manejo de Playas </li>
+                <li>Manejo de Personas </li>
             </ol>
         </section>
         <section class="content" >

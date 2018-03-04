@@ -607,7 +607,9 @@
                                             <v-select :debounce="250" :options="jerarquia"
                                              v-model="createMiembroJunta.nivelJerarquia" placeholder="Seleccione la jerarquia" label="name">
                                             </v-select>
-                                            <input  v-model="createMiembroJunta.nivelJerarquia" name="nivelJerarquia"  data-vv-as="nivelJerarquia" v-validate="'required'">
+                                            <!--<input  v-model="createMiembroJunta.nivelJerarquia" name="nivelJerarquia"  data-vv-as="nivelJerarquia" v-validate="'required'"> -->
+                                             <div class="clearfix"></div>
+                                           <input type="hidden" name="nivelJerarquia" value="" data-vv-as="jerarquia"  v-model="createMiembroJunta.nivelJerarquia" v-validate="'required'">
                                             <span class="help-block" for="type" v-bind:data-error="errors.first('form-6.nivelJerarquia')">
                                                     {{ errors.first('form-6.nivelJerarquia') }}
                                                 </span>

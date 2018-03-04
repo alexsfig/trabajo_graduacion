@@ -43,7 +43,7 @@
                                      <td>{{ props.row.personaId.direccion}}</td>
                                      <td>{{ props.row.personaId.telefono}}</td>
                                      <td>{{ props.row.personaId.correo}}</td>
-                                      <td>{{ props.row.personaId.sexo}}</td>
+                                      <td>{{ (props.row.personaId.sexo == 'F') ? 'Femenino' : ((props.row.personaId.sexo == 'M') ? 'Masculino' : 'Mixto')}}</td>
                                       <td>{{ props.row.descripcion}}</td>
                                    
                                    

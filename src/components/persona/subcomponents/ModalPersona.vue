@@ -48,7 +48,7 @@
                     <div class="col-xs-12 col-sm-6">
                         <div class="fgroup" :class="{ 'has-error': errors.has('dui') }">
                             <label for="">Dui</label>
-                            <input type="text" id="dui" name="dui" data-vv-as="Dui" class="form-control" v-model="updatePersona.dui" v-validate="'required'">
+                            <input type="text" id="dui" name="dui" data-vv-as="Dui" v-mask="'########-#'" class="form-control" v-model="updatePersona.dui" v-validate="'required'">
                             <span class="help-block" for="dui" v-bind:data-error="errors.first('dui')">
                                     {{ errors.first('dui') }}
                                 </span>
@@ -58,7 +58,7 @@
                     <div class="col-xs-12 col-sm-6">
                         <div class="fgroup" :class="{ 'has-error': errors.has('nit') }">
                             <label for="">Nit</label>
-                            <input type="text" id="nit" name="nit" data-vv-as="Nit" class="form-control" v-model="updatePersona.nit" v-validate="'required'">
+                            <input type="text" id="nit" name="nit" data-vv-as="Nit" class="form-control" v-mask="'####-######-###-#'" v-model="updatePersona.nit" v-validate="'required'">
                             <span class="help-block" for="nit" v-bind:data-error="errors.first('nit')">
                                     {{ errors.first('nit') }}
                                 </span>
@@ -78,7 +78,7 @@
                     <div class="col-xs-12 col-sm-6">
                         <div class="fgroup" :class="{ 'has-error': errors.has('telefono') }">
                             <label for="">Telefono</label>
-                            <input type="text" id="telefono" name="telefono" data-vv-as="Telefono" class="form-control" v-model="updatePersona.telefono" v-validate="'required'">
+                            <input type="text" id="telefono" name="telefono" data-vv-as="Telefono" v-mask="'####-####'" class="form-control" v-model="updatePersona.telefono" v-validate="'required'">
                             <span class="help-block" for="nit" v-bind:data-error="errors.first('telefono')">
                                     {{ errors.first('telefono') }}
                                 </span>
@@ -88,12 +88,34 @@
                     <div class="col-xs-12 col-sm-6">
                         <div class="fgroup" :class="{ 'has-error': errors.has('correo') }">
                             <label for="">Correo</label>
-                            <input type="text" id="correo" name="correo" data-vv-as="Correo" class="form-control" v-model="updatePersona.correo" v-validate="'required'">
+                            <input type="mail" id="correo" name="correo" data-vv-as="Correo" class="form-control" v-model="updatePersona.correo" v-validate="'required|email'">
                             <span class="help-block" for="nit" v-bind:data-error="errors.first('correo')">
                                 {{ errors.first('correo') }}
                             </span>
                         </div>
                     </div>
+
+
+                      <div class="col-xs-12 col-sm-6">
+                                        <div class="fgroup"  :class="{ 'has-error': errors.has('sexo') }">
+                                            <label for="">Sexo</label>
+                                            <v-select
+                                                :debounce="250"
+                                                :options="sexo"
+                                                v-model="updatePersona.sexo"
+                                                placeholder="Seleccione el genero" 
+                                                label="nombre" >
+                                            </v-select>
+                                            <div class="clearfix"></div>
+                                            <input type="hidden" name="sexo" value="" data-vv-as="sexo"  v-model="updatePersona.sexo" v-validate="'required'">
+                                            <span class="help-block" for="sexo" v-bind:data-error="errors.first('sexo')">
+                                                {{ errors.first('sexo') }}
+                                            </span>
+                                        </div>
+                                    </div>
+
+
+
                 </div>
                 <div class="box-footer">
                     <div class="col-xs-12 text-right">
@@ -151,7 +173,14 @@ export default {
             },
             openModalInside: false,
             roles: [],
-            rol_edit: null
+            rol_edit: null,
+
+             sexo:[
+                    {name: 'M', nombre:'Masculino'},
+                    {name: 'F', nombre:'Femenino'}                    
+                   
+                   
+                ]
 
         }
     },
@@ -163,6 +192,14 @@ export default {
         persona: function(val, oldVal) {
             this.openModalInside = this.openModal
             this.updatePersona = this.persona
+
+
+             if(typeof this.updatePersona.sexo != 'object' ){
+                    let nombre = this.updatePersona.sexo == 'M' ? 'Masculino' : 'Femenino'
+                    let name = this.updatePersona.sexo 
+                    this.updatePersona.sexo = this.updatePersona.sexo.replace(/\s/g, "")
+                    this.updatePersona.sexo = {name: name, nombre: nombre}   
+                }
 
         }
     },
@@ -200,6 +237,7 @@ export default {
                         delete this.updatePersona.juezId
                         delete this.updatePersona.miembroJuntaId
                         delete this.updatePersona.usuarioList
+                        this.updatePersona.sexo = this.updatePersona.sexo.name == undefined ? '' : this.updatePersona.sexo.name
                         personas.update(this, this.updatePersona)
                     } else {
                         this.errMsg = 'Error revisa el formulario'

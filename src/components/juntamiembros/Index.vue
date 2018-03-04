@@ -43,14 +43,14 @@
                                      <td>{{ props.row.personaId.direccion}}</td>
                                      <td>{{ props.row.personaId.telefono}}</td>
                                      <td>{{ props.row.personaId.correo}}</td>
-                                      <td>{{ props.row.personaId.sexo}}</td>
+                                      <td>{{ (props.row.personaId.sexo == 'F') ? 'Femenino' : ((props.row.personaId.sexo == 'M') ? 'Masculino' : 'Mixto')}}</td>
                                       <td>{{ props.row.nivelJerarquia}}</td>
                                    
                                    
                                     <td>
                                         <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="openModal=true, retrieveData(props.row.id)" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar</button>
                                         
-                                        <button type="button" class="margin btn btn-sm btn-flat btn-danger" @click="clickHandler(props.row.id, miembrojunta)" ><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
+                                        <button type="button" class="margin btn btn-sm btn-flat btn-danger" @click="clickHandler(props.row.id, miembrojunta, props.row.nivelJerarquia)" ><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
                                     </td>
                                   </template>
                                 </vue-good-table>
@@ -169,12 +169,12 @@
             '$route': 'fetchData'
         },
         methods: {
-            clickHandler(id, miembrojunta) {
+            clickHandler(id, miembrojunta, nombre) {
                 let swal = this.$swal
                 let context = this
                 swal({
                     title: 'Estas Seguro?',
-                    html: 'No podras recuperar la informacion del miembro <b>' + miembrojunta.nivelJerarquia + '</b>',
+                    html: 'No podras recuperar la informacion del miembro <b>' + nombre + '</b>',
                     type: 'error',
                     showCancelButton: true,
                     confirmButtonText: 'Si, Eliminar!',
