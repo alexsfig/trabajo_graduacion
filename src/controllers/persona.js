@@ -212,9 +212,9 @@ console.log(obj);
                 resp.data.nombre=persona.nombre;
                 resp.data.apellido=persona.apellido;
                 resp.data.correo=persona.correo;
-                resp.data.telefono=persona.apellido;
+                resp.data.telefono=persona.telefono;
                 resp.data.dui=persona.dui;
-                resp.data.nit=persona.apellido;
+                resp.data.nit=persona.nit;
                 resp.data.fechaNacimiento=persona.fechaNacimiento;
                 resp.data.direccion=persona.direccion;
                 this.update(context,resp.data)
