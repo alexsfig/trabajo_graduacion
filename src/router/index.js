@@ -93,7 +93,7 @@ import PatrocinadorAtletaIndex from '@/components/patrocinador_atleta/Index'
 
 import HeatInit from '@/components/heat/Iniciar'
 import CalificarInit from '@/components/heat/Calificar'
-
+import VerResultadosInit from '@/components/heat/VerResultados'
 Vue.use(Router)
 export default new Router({
   mode: 'history',
@@ -496,6 +496,11 @@ export default new Router({
           name: 'CalificarHeat',
           component: CalificarInit
         }
+,{
+  path: 'heat/resultado/:id',
+  name: 'ResultadoHeat',
+  component: VerResultadosInit
+}
 
 
         

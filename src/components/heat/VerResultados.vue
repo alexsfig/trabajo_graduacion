@@ -43,8 +43,11 @@
                  
 
 
+<div v-for="value in juecesHeat">
+Nombre de juez{{value}}
 
-                            <vue-good-table :columns="columns" :rows="atletasHeat" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
+<br/><br/><br/><br/>
+                           <vue-good-table :columns="columns" :rows="value.puntuacionList" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
                                 <template slot="table-row" scope="props">
                                    <td v-if="props.row.color=='Amarillo'" style="background-color:yellow;">{{ props.row.color }}</td>  
                                   
@@ -65,17 +68,10 @@
                                                        <td>{{props.row.puntuacionList[8]?props.row.puntuacionList[8][1]:0.0}}</td>
                                                           <td>{{props.row.puntuacionList[9]?props.row.puntuacionList[9][1]:0.0}}</td>
 
-                                                          <td>0.0</td>
-                                    <td class="nowrap">
-                                      <div>
-                                        <button v-if="!props.row.puntuacionList[9]" type="button" class="margin btn btn-flat btn-sm btn-success" 
-                                        @click="agregarNota(props.row)"><i aria-hidden="true" 
-                                        class="fa fa-at"></i> Agregar Ola</button>
-                                      </div>
-                                    </td>
+                                  
                                   </template>
                             </vue-good-table>
-
+</div>
                         </div>
                     </div>
                    </div>
@@ -100,6 +96,8 @@ import heatsController from "../../controllers/heats.js";
 import rondaController from "../../controllers/rondas.js";
 import juezCircuitoController from "../../controllers/JuezCircuito.js";
 import atletasHeatController from "../../controllers/atletaHeat";
+import juecesHeatController from "../../controllers/juezHeat.js";
+
 import vSelect from "vue-select";
 import moment from "moment";
 export default {
@@ -118,6 +116,8 @@ export default {
       id: "",
       atletasHeat: [],
       atletaHeat: {},
+      juecesHeat:[],
+       juecesHeat2:[],
       juezHeat: { id: 1 },
       ronda: "",
       columns: [
@@ -166,16 +166,6 @@ export default {
         {
           label: "Ola 10",
           field: "o10"
-        },
-        {
-          label: "Promedio",
-          field: "o10"
-        },
-
-        {
-          label: "Acciones",
-          field: "",
-          filterable: true
         }
       ]
     };
@@ -188,7 +178,19 @@ export default {
   },
   watch: {
     heat: function(val) {
+
       juezCircuitoController.indexByCircuito(this, val.rondaId.circuitoId.id);
+    },
+      juecesHeat: function(val) {
+    /*let  n=0;
+    if( val)
+        for (let i of  this.juecesHeat) {
+   console.log("*************************")
+                  this.juecesHeat2.push( atletasHeatController.byHeatAndJuez2(i,this.id,i.id,n));
+                     console.log("*********************´´´´****")
+         console.log(this.juecesHeat2)            
+                    n=n+1;
+                }*/
     }
   },
   methods: {
@@ -198,7 +200,7 @@ export default {
     fetchData() {
       this.id = this.$route.params.id;
 
-      atletasHeatController.byHeat(this, this.id);
+      juecesHeatController.byHeat(this, this.id);
       heatsController.retrieve(this, this.id);
 
       //   a.retrieve(this,this.id);

@@ -20,7 +20,7 @@ export default {
         Method to update user, pass context, object Users and user id
     */
 
-    /*
+    /*2
         Method to update user, pass context, object Users and user id
     */
 
@@ -35,6 +35,36 @@ export default {
               console.log(err)
             })
     },
+    
+
+    byHeatAndJuez(context,idheat,idJuez){
+        HTTP.get("atletaHeat/byHeatAndJuez/"+idheat+"/"+idJuez)
+            .then((resp) => {
+                console.log(resp.data)
+                context.atletasHeat = resp.data
+               
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+    },
+    byHeatAndJuez2(val,idheat,idJuez,n){
+        HTTP.get("atletaHeat/byHeatAndJuez/"+idheat+"/"+idJuez)
+            .then((resp) => {
+
+                console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&  "+Number(n))
+                console.log(resp.data)
+                val.atletasHeatList= resp.data;
+                console.log("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy")
+                console.log( JSON.stringify(val))
+                return resp.data;
+
+
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+    }
 
 
 }

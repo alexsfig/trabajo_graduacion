@@ -50,7 +50,12 @@
                                        <td>{{props.row.atletaId.personaId.nombre}}</td>                                   
                                        <td>{{props.row.atletaId.personaId.apellido}}</td> 
                                        <td>{{ props.row.atletaId.aniosPracticando}}</td> 
-                                      <td>{{ props.row.color}}</td>    
+                                     <td v-if="props.row.color=='Amarillo'" style="background-color:yellow;">{{ props.row.color }}</td>  
+                                  
+                          <td   v-if="props.row.color=='Azul'"  style="background-color:#0F7AD5;">{{ props.row.color }}</td>  
+                                 <td  v-if="props.row.color=='Verde'"  style="background-color:Green;">{{ props.row.color }}</td>      
+                                  <td  v-if="props.row.color=='Rojo'"  style="background-color:Red;">{{ props.row.color }}</td>       
+           
                                          <td>{{ props.row.selected}}</td>                       
                                          <td class="nowrap">
                                         

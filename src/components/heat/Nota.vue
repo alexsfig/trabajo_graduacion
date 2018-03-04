@@ -126,7 +126,7 @@ export default {
                     if (success) {
                         let puntuacion={
                           atletasHeatId:{id:this.atletaHeat.id},
-                          juecesHeatId:{id:1},
+                          juecesHeatId:{id:42},
                           nota:this.nota
   
                         }

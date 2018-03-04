@@ -243,8 +243,11 @@
                 this.showSuccess = false
                 this.$validator.validateAll().then(success => {
                     if (success) {
+
                         this.updateEntrenador.personaId.sexo = this.updateEntrenador.personaId.sexo.name == undefined ? '' : this.updateEntrenador.personaId.sexo.name
                    personaController.patch(this,this.updateEntrenador.personaId)
+       //   personaController.patch(this,this.updateEntrenador.personaId)
+
               
                         
                         entrenadores.update2(this, this.updateEntrenador)

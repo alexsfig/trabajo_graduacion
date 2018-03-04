@@ -48,7 +48,7 @@
                                 <template slot="table-row" scope="props">
                                    <td v-if="props.row.color=='Amarillo'" style="background-color:yellow;">{{ props.row.color }}</td>  
                                   
-                          <td  v-tooltip="'tdfddsdssss'" v-if="props.row.color=='Azul'"  style="background-color:#0F7AD5;">{{ props.row.color }}</td>  
+                          <td   v-if="props.row.color=='Azul'"  style="background-color:#0F7AD5;">{{ props.row.color }}</td>  
                                  <td  v-if="props.row.color=='Verde'"  style="background-color:Green;">{{ props.row.color }}</td>      
                                   <td  v-if="props.row.color=='Rojo'"  style="background-color:Red;">{{ props.row.color }}</td>       
            
@@ -202,7 +202,8 @@ export default {
     fetchData() {
       this.id = this.$route.params.id;
 
-      atletasHeatController.byHeat(this, this.id);
+             
+      atletasHeatController.byHeatAndJuez(this, this.id,42);
       heatsController.retrieve(this, this.id);
 
       //   a.retrieve(this,this.id);
