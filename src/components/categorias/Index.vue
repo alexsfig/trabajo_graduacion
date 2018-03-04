@@ -16,9 +16,9 @@
                         <div class="box-header">
                             <h3 class="box-title">Manejo de Categorias</h3>
                         </div>
-                       
+
                         <div class="box-body">
-                            
+
                             <div class="box-action">
                                 <router-link to="/admin/categorias/create" class="btn btn-default btn-flat">
                                     <i class="fa fa-plus"></i> Nueva Categoria
@@ -26,9 +26,9 @@
                             </div>
 
                             <div class="table-responsive">
-                              
+
                                 <vue-good-table
-                                  title="Dynamic Table"
+                                  title="Categorias"
                                   :columns="columns"
                                   :rows="categorias"
                                   :globalSearch="true"
@@ -39,12 +39,12 @@
                                     <td>{{ props.row.edadMin}}</td>
                                     <td>{{ props.row.edadMax}}</td>
                                     <td>{{ props.row.descripcionCategoria}}</td>
-                                    <td>{{ 
+                                    <td>{{
                                       (props.row.sexo == 'F') ? 'Femenino' : ((props.row.sexo == 'M') ? 'Masculino' : 'Mixto')
                                     }}</td>
                                     <td>
                                         <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="openModal=true, retrieveData(props.row.id)" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar</button>
-                                        
+
                                         <button type="button" class="margin btn btn-sm btn-flat btn-danger" @click="clickHandler(props.row.id, categoria, props.row.nombreCategoria)" ><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
                                     </td>
                                   </template>
@@ -52,12 +52,12 @@
 
                             </div>
                         </div>
-                    </div>    
+                    </div>
                 </div>
             </div>
-            <modalCategorias :methodSubmit="methodSubmit"  :title="'Actualizar Categoria'" :buttonMsg="'Actualizar'" :openModal="openModal" :categoria="categoria" v-on:openChange="isChange"></modalCategorias> 
-         
-            
+            <modalCategorias :methodSubmit="methodSubmit"  :title="'Actualizar Categoria'" :buttonMsg="'Actualizar'" :openModal="openModal" :categoria="categoria" v-on:openChange="isChange"></modalCategorias>
+
+
 
         </section>
     </div>
@@ -65,9 +65,9 @@
 
 <script>
     import categoriasController from '../../controllers/categorias.js'
-   
+
     import ModalCategorias from './subcomponents/ModalCategorias'
-   
+
     export default {
         name: 'categorias',
         data() {
@@ -106,9 +106,9 @@
                 ],
                 methodSubmit: 'update',
                 buttonMsg: "Actualizar",
-               
+
                 openModal: false,
-                
+
                 errMsg:  '',
                 success: false,
                 isLogin: false,
@@ -116,14 +116,14 @@
                 // properties that will be used in it
                 categorias: [],
                 categoria: {}
-                
 
-            
+
+
             }
         },
         components:{
             "modalCategorias": ModalCategorias
-            
+
         },
         created() {
             this.fetchData()
@@ -142,9 +142,9 @@
                 return 'Masculino'
               else if (rowObj.sexo == 'X')
                 return 'Mixto'
-             
 
-            }, 
+
+            },
 
 
             clickHandler(id, categoria, nombre) {
@@ -160,7 +160,7 @@
                 }).then(
                     function() {
                         categoriasController.delete(context, id, swal)
-                    }, 
+                    },
                     function(dismiss) {
                       // dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
                       if (dismiss === 'cancel') {
@@ -178,8 +178,8 @@
                 this.fetchData()
             },
             showCallback () {
-                this.showAlert = false 
-                this.showSuccess = false 
+                this.showAlert = false
+                this.showSuccess = false
             },
             dismissCallback (msg) {
                 this.openModal =false
