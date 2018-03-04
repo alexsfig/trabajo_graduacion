@@ -150,7 +150,7 @@
              llamaRonda(id, circuito) {
             circuitosController.retrieve(this, id)
             this.$router.push({
-                name: 'circuitosNuevaRonda',
+                name: 'rondaIndex',
                 params: {
                     id: id,
                     circuito: circuito

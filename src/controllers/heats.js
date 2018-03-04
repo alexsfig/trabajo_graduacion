@@ -40,5 +40,37 @@ export default {
 
     },
 
+    update(context, heat){
+        console.log("Entre y dio true")
+        context.showAlert = false 
+        context.showSuccess = false 
+        let req={
+         id:heat.id,
+         rondaId:{id:heat.rondaId.id},
+         estado:heat.estado,
+         numero:heat.numero
 
+
+
+        }
+        HTTP.put("heat/", req)
+            .then((resp) => {
+                if (resp.status>= 200 && resp.status <=300){
+                    var id = resp.data.id
+                    context.showAlert = false 
+                }
+               // context.showSuccess = true
+               // context.successMsg = "Noticia Actualizada"
+            })
+            .catch((err) => {
+                context.showAlert = true
+                console.log(err)
+                if (err.response) {
+                    context.errMsg = err.response.data
+                    console.log(err.response.data);
+                    console.log(err.response);
+                    context.showAlert = true 
+                }
+            })
+    }
 }

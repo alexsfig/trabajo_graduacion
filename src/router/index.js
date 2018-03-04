@@ -92,6 +92,7 @@ import PatrocinadorAtletaShow from '@/components/patrocinador_atleta/Show'
 import PatrocinadorAtletaIndex from '@/components/patrocinador_atleta/Index'
 
 import HeatInit from '@/components/heat/Iniciar'
+import CalificarInit from '@/components/heat/Calificar'
 
 Vue.use(Router)
 export default new Router({
@@ -445,7 +446,17 @@ export default new Router({
           name: 'juezEdit',
           component: JuezsForm
         },
+        {
+          path: 'editjuez/:id',
+          name: 'juezEdit',
+          component: JuezsForm
+        },
 
+        {
+          path: 'editjuez/:id/:id2',
+          name: 'juezEdit',
+          component: JuezsForm
+        },
         
         {
           path: 'patrocinadoratleta/create',
@@ -477,9 +488,17 @@ export default new Router({
         ,
         {
           path: 'heatinit/:id',
-          name: 'heat',
+          name: 'heatInit',
           component: HeatInit
+        },
+        {
+          path: 'heat/calificar/:id',
+          name: 'CalificarHeat',
+          component: CalificarInit
         }
+
+
+        
       ]
     },
   ]

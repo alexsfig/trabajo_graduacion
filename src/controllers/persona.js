@@ -27,40 +27,50 @@ export default {
         let filename = context.filename
         formData.append('avatar', context.avatar)
         formData.append('filename', context.filename)
-        formData.append('id', "atleta")
-        formData.append('root_path', root_path)
-        this.upload_avatar(context, formData, root_path)
-
-        UPLOAD.post('upload_avatar', formData)
-            .then((resp) => {
-                console.log("estoy en crear personaasljjsll")
-                console.log(atleta)
-              HTTP.post('persona', atleta)
-                  .then((resp) => {
-                      if (resp.status>= 200 && resp.status <=300){
+        
+        formData.append('root_path', "C:\\data\\images")
+       // this.upload_avatar(context, formData, root_path)
+       HTTP.post('persona', atleta)
+       .then((resp) => {
+           if (resp.status>= 200 && resp.status <=300){
 
 
-                          context.showSuccess = true
-                          context.successMsg = "Persona creada exitosamente"
-                          context.fetchData()
-                          context.resetForm()
+               context.showSuccess = true
+               context.successMsg = "Persona creada exitosamente333"
+              console.log(resp);
+              formData.append('id', resp.data.atleta.id)
+              console.log("********************");
+              // upload_avatar(context, formData, root_path);
+                console.log("************///********");
+               UPLOAD.post('upload_avatar', formData)
 
-                      }
-                  })
-                  .catch((err) => {
-                      if (err.response) {
-                          context.showAlert = true
-                          context.errMsg = err.response.data
-                      }
-                  })
-            })
-            .catch((err) => {
-                if (err.response) {
-                    context.showAlert = true
-                    context.errMsg = err.response.data
-                }
-            })
 
+               .then((resp) => {
+                   console.log("estoy en crear personaasljjsll")
+                   console.log(atleta)
+            
+               })
+               .catch((err) => {
+                   if (err.response) {
+                    console.log("estoy en crear personaasljjsllt32y9329y23y9329")
+                       context.showAlert = true
+                       context.errMsg = err.response.data
+                   }
+               })
+   
+               
+               context.fetchData()
+               context.resetForm()
+               console.log("Saliendo");
+           }
+       })
+       .catch((err) => {
+           if (err.response) {
+               context.showAlert = true
+               context.errMsg = err.response.data
+           }
+       })
+    
     },
     createJuez(context, juez){
         context.showAlert = false
@@ -190,6 +200,24 @@ console.log(obj);
             .then((resp) => {
                 console.log(resp)
                 context.persona = resp.data;
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+    },
+
+    patch(context, persona){
+        HTTP.get(PERSONA + persona.id)
+            .then((resp) => {
+                resp.data.nombre=persona.nombre;
+                resp.data.apellido=persona.apellido;
+                resp.data.correo=persona.correo;
+                resp.data.telefono=persona.telefono;
+                resp.data.dui=persona.dui;
+                resp.data.nit=persona.nit;
+                resp.data.fechaNacimiento=persona.fechaNacimiento;
+                resp.data.direccion=persona.direccion;
+                this.update(context,resp.data)
             })
             .catch((err) => {
               console.log(err)

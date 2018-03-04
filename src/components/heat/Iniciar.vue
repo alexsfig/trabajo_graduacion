@@ -29,15 +29,15 @@
                 <div class="col-lg-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Manejo del heat  {{heat.numero}}   de la ronda {{heat.rondaId.numero}} </h3>
-                                         <button type="button" style="float:right" class="margin btn btn-flat btn-sm btn-success" 
-                                        @click="juezLider=null"><i aria-hidden="true" 
+                            <h3 class="box-title">Manejo del heat  {{heat.numero}}   de la ronda {{heat.rondaId.numero}}  Estado {{heat.estado}}</h3>
+                                         <button :disabled="!juezLider" type="button" style="float:right" class="margin btn btn-flat btn-sm btn-success" 
+                                        @click="iniciarHeat()"><i aria-hidden="true" 
                                         class="fa fa-check"></i> Iniciar heat </button>
                         </div>
 
      
                         <!-- /.box-header -->
-                        <div class="box-body">
+                        <div class="box-body" v-if="heat.estado!='Iniciado'" >
                             
 
 <div v-if="juezLider" >
@@ -50,7 +50,14 @@
                                         @click="juezLider=null"><i aria-hidden="true" 
                                         class="fa fa-retweet"></i> Cambiar</button>
 
-     </div>                           
+
+     </div>           
+
+     <div v-if="!juezLider" >
+
+                                        
+<h3>Seleccione un lider </h3>
+     </div>                  
 
 
 
@@ -78,96 +85,114 @@
                     </div>
     |                </div>
             </div>
+
+             <div class="box-body" v-if="heat.estado=='Iniciado'" >
+                <h1>Este heat ya fui iniciado     </h1>
+             </div>
            <!-- <modalPlaya :methodSubmit="methodSubmit" :title="'Actualizar Usuario'" :buttonMsg="'Actualizar'" :openModal="openModal" :playa="playa" v-on:openChange="isChange"></modalPlaya> -->
         </section>
     </div>
 </template>
 <script>
-  
-    import heatsController from '../../controllers/heats.js';
-        import rondaController from '../../controllers/rondas.js';
-        import juezCircuitoController from '../../controllers/JuezCircuito.js';
-     import vSelect from "vue-select"
-    import moment from "moment"
-    export default {
-        name: 'Heats',
-        data() {
-            return {
-                heats: [],
-                showAlert: false,
-                showSuccess: false,
-                methodSubmit: 'editar',
-                openModal: false,
-                circuito:{},
-                juezLider:null,
-                heat:{},
-                juezCircuitos:[],
-                id:'',
+import heatsController from "../../controllers/heats.js";
+import rondaController from "../../controllers/rondas.js";
+import juezCircuitoController from "../../controllers/JuezCircuito.js";
+import juezHeatController from "../../controllers/juezHeat.js";
+import vSelect from "vue-select";
+import moment from "moment";
+export default {
+  name: "Heats",
+  data() {
+    return {
+      heats: [],
+      showAlert: false,
+      showSuccess: false,
+      methodSubmit: "editar",
+      openModal: false,
+      circuito: {},
+      juezLider: null,
+      heat: { rondaId: {} },
+      juezCircuitos: [],
+      id: "",
 
-                ronda:'',
-                columns: [
-                   
-         
-                        {
-                        label: "Nombre",
-                        field: "nombre",
-                    },
-          
-                    {
-                        label: "Rol",
-                        field: "rol",
-                    }
+      ronda: "",
+      columns: [
+        {
+          label: "Nombre",
+          field: "nombre"
+        },
 
-                   
-                     ,
-                     {
-                      label: 'Acciones',
-                      field: '',
-                      filterable: true,
-                    }
-                ]
-            }
+        {
+          label: "Rol",
+          field: "rol"
         },
-        created(){
-            this.fetchData()
-        },
-          watch: {
-            heat:  function (val) {juezCircuitoController.indexByCircuito(this,val.rondaId.circuitoId.id)}
-        },
-        methods:{
-        ponerLider(lider){
-this.juezLider=lider;
 
-        },
-            fetchData(){
-                this.id=this.$route.params.id;
-                heatsController.retrieve(this,this.id);
-
-                
-             //   a.retrieve(this,this.id);
-            },
-            deleteHeat(id, nombre) {
-                let context = this;
-                let swal = this.$swal;
-                this.$swal({
-                    title: 'Estas Seguro?',
-                    html: 'No podras recuperar la informacion de la heat <b>&laquo;' + nombre + '&raquo</b><br>y toda la informacion relacion al mismo ya no sera accesible',
-                    type: 'error',
-                    showCancelButton: true,
-                    confirmButtonText: 'Si, Eliminar!',
-                    cancelButtonText: 'No, Mantener'
-                }).then(function() {
-                    heatsController.delete(context, id, swal);
-                },function(dismiss) {
-                    if (dismiss === 'cancel') {
-                        swal(
-                          'Cancelado',
-                          'La heat no se elimino',
-                          'error'
-                        )
-                    }
-                })
-            },
+        {
+          label: "Acciones",
+          field: "",
+          filterable: true
         }
+      ]
+    };
+  },
+  created() {
+    this.fetchData();
+  },
+  watch: {
+    heat: function(val) {
+      juezCircuitoController.indexByCircuito(this, val.rondaId.circuitoId.id);
     }
+  },
+  methods: {
+    ponerLider(lider) {
+      this.juezLider = lider;
+    },
+    fetchData() {
+      this.id = this.$route.params.id;
+      heatsController.retrieve(this, this.id);
+
+      //   a.retrieve(this,this.id);
+    },
+    iniciarHeat() {
+      let rol;
+      for (let i of this.juezCircuitos) {
+        if (i.id != this.juezLider.id) rol = i.rolJuezId.rol;
+        else rol = "Lider";
+        let request = {
+          heatId: { id: this.heat.id },
+
+          juezCircuitoId: { id: i.id },
+          rol: rol
+        };
+        juezHeatController.create(this, request);
+      }
+      this.heat.estado="Iniciado";
+      heatsController.update(this,this.heat)
+    },
+    deleteHeat(id, nombre) {
+      let context = this;
+      let swal = this.$swal;
+      this.$swal({
+        title: "Estas Seguro?",
+        html:
+          "No podras recuperar la informacion de la heat <b>&laquo;" +
+          nombre +
+          "&raquo</b><br>y toda la informacion relacion al mismo ya no sera accesible",
+        type: "error",
+        showCancelButton: true,
+        confirmButtonText: "Si, Eliminar!",
+        cancelButtonText: "No, Mantener"
+      }).then(
+        function() {
+          heatsController.delete(context, id, swal);
+        },
+        function(dismiss) {
+          if (dismiss === "cancel") {
+            swal("Cancelado", "La heat no se elimino", "error");
+          }
+        }
+      );
+    }
+  }
+};
 </script>

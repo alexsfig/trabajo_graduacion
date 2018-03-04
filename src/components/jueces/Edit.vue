@@ -38,6 +38,11 @@
 
 
                                     <h3>Información del Juez</h3>
+
+                                    <div v-if="id2">
+
+                                        mostrar datos personallesdddddddd**********************************************
+                                    </div>
                                     <div class="col-xs-12 col-sm-12">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('form-3.descripcion') }">
                                             <label for="">Descripcion del juez</label>
@@ -181,6 +186,7 @@ export default {
       errMsg: "",
       isLogin: false,
       juez: {},
+      id2:null,
         columns: [{
                 label: "titulo",
                 field: "titulo",
@@ -200,6 +206,7 @@ export default {
   },
   created() {
     this.id = this.$route.params.id;
+     this.id2 = this.$route.params.id2;
     if (this.id) juecesController.retrieve(this, this.id);
     console.log("id:" + this.id);
   },

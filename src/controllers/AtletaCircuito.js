@@ -120,6 +120,7 @@ export default {
     for (let i of  atletaCircuitos) {
     
         i.color = color[aux2]
+        i.selected=false;
         i.numeroHeat = autoincrement;
           autoincrement++;
         
