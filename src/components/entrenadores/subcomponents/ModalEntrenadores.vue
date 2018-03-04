@@ -127,6 +127,7 @@
     import users from '../../../controllers/users.js'
     import roles from '../../../controllers/roles.js'
     import entrenadores from '../../../controllers/entrenadores.js'
+    import personaController from '../../../controllers/persona.js'
     import moment from 'moment'
     import vSelect from "vue-select"
 
@@ -205,7 +206,11 @@
                 this.showSuccess = false
                 this.$validator.validateAll().then(success => {
                     if (success) {
+                   personaController.patch(this,this.updateEntrenador.personaId)
+              
+
                         entrenadores.update2(this, this.updateEntrenador)
+                    
                     }
                     else{
                         this.errMsg= 'Error revisa el formulario'

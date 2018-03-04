@@ -205,6 +205,24 @@ console.log(obj);
               console.log(err)
             })
     },
+
+    patch(context, persona){
+        HTTP.get(PERSONA + persona.id)
+            .then((resp) => {
+                resp.data.nombre=persona.nombre;
+                resp.data.apellido=persona.apellido;
+                resp.data.correo=persona.correo;
+                resp.data.telefono=persona.apellido;
+                resp.data.dui=persona.dui;
+                resp.data.nit=persona.apellido;
+                resp.data.fechaNacimiento=persona.fechaNacimiento;
+                resp.data.direccion=persona.direccion;
+                this.update(context,resp.data)
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+    },
     /*
         Method to delete user, pass the context and user id, use this method when you need to delete user
     */
