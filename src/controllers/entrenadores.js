@@ -100,8 +100,8 @@ export default {
         let request={
         id:entrenadores.id,
        // personaId:{id:entrenadores.personaId.id}
-        descripcion:entrenadores.descripcion,
-        personaId:{id:entrenadores.personaId.id}
+        descripcion:entrenadores.descripcion
+      //  personaId:{id:entrenadores.personaId.id}
 
         }
         HTTP.put(ENTRENADORES, request)
