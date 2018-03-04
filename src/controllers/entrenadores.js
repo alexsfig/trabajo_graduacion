@@ -4,6 +4,7 @@ import {HTTP} from '../common_class/http.js';
 // Use router 
 import {router} from '../router/index.js'
 import moment from 'moment'
+import personaController from './persona.js'
 // define base url to Employees
 const ENTRENADORES = 'entrenador/'
 
@@ -107,6 +108,7 @@ export default {
         HTTP.put(ENTRENADORES, request)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
+                    personaController.patch(context,entrenadores.personaId)
                     var id = resp.data.id
                     context.showAlert = false 
                 }

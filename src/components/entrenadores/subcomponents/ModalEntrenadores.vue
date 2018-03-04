@@ -206,7 +206,7 @@
                 this.showSuccess = false
                 this.$validator.validateAll().then(success => {
                     if (success) {
-                   personaController.patch(this,this.updateEntrenador.personaId)
+                //   personaController.patch(this,this.updateEntrenador.personaId)
               
 
                         entrenadores.update2(this, this.updateEntrenador)

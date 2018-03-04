@@ -6,6 +6,7 @@ import {UPLOAD} from '../common_class/http.js';
 // Use router
 import {router} from '../router/index.js'
 import moment from 'moment'
+
 // define base url to Employees
 const ATLETAS = 'atleta/'
 
