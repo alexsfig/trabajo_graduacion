@@ -100,8 +100,8 @@
                                         <div class="fgroup" :class="{ 'has-error': errors.has('descripcion') }" >
                                             <label for="">Descripcion</label>
                                             <textarea id="descripcion" name="descripcion" data-vv-as="Descripcion de la noticia" class="form-control" v-model="createNoticias.descripcion" v-validate="'required'" rows="3"></textarea>
-                                            <!-- <input type="text" id="descripcion" name="descripcion" data-vv-as="Descripcion de la noticia" class="form-control" v-model="createNoticias.descripcion" v-validate="'required'" >
-                                            <span class="help-block" for="descripcion" v-bind:data-error="errors.first('descripcion')"> -->
+                                            <!-- <input type="text" id="descripcion" name="descripcion" data-vv-as="Descripcion de la noticia" class="form-control" v-model="createNoticias.descripcion" v-validate="'required'" > -->
+                                            <span class="help-block" for="descripcion" v-bind:data-error="errors.first('descripcion')"> 
                                                 {{ errors.first('descripcion') }}
                                             </span>
 

@@ -57,7 +57,7 @@
               <div class="col-lg-3 col-xs-6">
                 <div class="small-box bg-red">
                   <div class="inner">
-                    <h3>{{ this.clubes.length}}</h3>
+                    <h3>{{ this.clubs.length + this.escuelas.length}}</h3>
                     <p>Escuelas/Club registrados</p>
                   </div>
                   <div class="icon">
@@ -123,6 +123,7 @@
   </template>
   <script>
     import clubesController from '../../controllers/clubes.js'
+    import escuelasController from '../../controllers/escuelas.js'
     import atletaController from '../../controllers/atletas.js'
     import JuecesController from '../../controllers/jueces.js'
     import entrenadoresController from '../../controllers/entrenadores.js'
@@ -131,6 +132,7 @@
         data() {
             return {
               clubes: [],
+              escuelas: [],
               atletas: [],
               jueces: [],
               entrenadores: [],
@@ -146,6 +148,7 @@
         methods: {
             fetchData() {
                 clubesController.index(this)
+                escuelasController.index(this)
                 JuecesController.index(this)
                 atletaController.index(this)
                 entrenadoresController.index(this)

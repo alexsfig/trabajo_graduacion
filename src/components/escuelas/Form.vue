@@ -27,7 +27,7 @@
                     <div class="box">
                         <div class="box-header">
                             <h3 class="box-title" v-if="!id">Agregar  Escuela</h3>
-                             <h3 class="box-title" v-if="id">Editar  Escuelas</h3>
+                             <h3 class="box-title" v-if="id">Editar  Escuela</h3>
                         </div>
                         
                         <div class="box-body">
@@ -42,93 +42,127 @@
                                                 {{ errors.first('nombre') }}
                                             </span>      </div>
                                     </div>
- <div class="col-xs-12 col-sm-6">
-                         <div class="fgroup" :class="{ 'has-error': errors.has('fundacion') }" >
+ <div class="col-xs-6 col-sm-6">
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('fundacion') }" >
                                             <label for="">Fundacion</label>
-                                            <input type="date" id="fundacion" name="fundacion" data-vv-as="fundacion" class="form-control"
-											v-model="escuela.fundacion" v-validate="'required'" >
+                                            <dropdown class="form-group">
+                                                <div class="input-group">
+                                                    <input placeholder="AAAA-MM-DD" type="text" id="fundacion" name="fundacion" class="form-control" data-vv-as="fecha de fundacion" v-model="escuela.fundacion" v-validate="'required|date_format:YYYY-MM-DD'" :class="{'datepicker':true,  'has-error': errors.has('fundacion') }">
+                                                    <div class="input-group-btn">
+                                                        <button class="btn btn-default" type="button" data-role="trigger" :class="{'has-error': errors.has('fundacion') }">
+                                                            <i class="glyphicon glyphicon-calendar"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <template slot="dropdown">
+                                                    <li>
+                                                        <date-picker class="date-picker" :language="'es'" v-model="escuela.fundacion" :today-btn="todayBtn" :clear-btn="clearBtn" :limit-from="limitFrom" :format="format" :week-starts-with="weekStartsWith" :limit-to="limitTo" :close-on-selected="closeOnSelected">
+                                                        </date-picker>
+                                                    </li>
+                                                </template>
+                                            </dropdown>
+
+                                           
                                             <span class="help-block" for="fundacion" v-bind:data-error="errors.first('fundacion')">
                                                 {{ errors.first('fundacion') }}
-                                            </span>      </div>
+                                            </span>
+                                        </div>
                                     </div>
  <div class="col-xs-12 col-sm-6">
                          <div class="fgroup" :class="{ 'has-error': errors.has('correo') }" >
-                                            <label for="">Correo</label>
+                                            <label for="">Correo Electronico</label>
                                             <input type="email" id="correo" name="correo" data-vv-as="correo" class="form-control"
 											v-model="escuela.correo" v-validate="'required|email'" >
                                             <span class="help-block" for="correo" v-bind:data-error="errors.first('correo')">
                                                 {{ errors.first('correo') }}
                                             </span>      </div>
                                     </div>
- <div class="col-xs-12 col-sm-6">
-                         <div class="fgroup" :class="{ 'has-error': errors.has('direccion') }" >
-                                            <label for="">Direccion</label>
-                                            <input type="text" id="direccion" name="direccion" data-vv-as="direccion" class="form-control"
-											v-model="escuela.direccion" v-validate="'required'" >
-                                            <span class="help-block" for="direccion" v-bind:data-error="errors.first('direccion')">
-                                                {{ errors.first('direccion') }}
-                                            </span>      </div>
-                                    </div>
- <div class="col-xs-12 col-sm-6">
-                         <div class="fgroup" :class="{ 'has-error': errors.has('celular') }" >
-                                            <label for="">Celular</label>
-                                            <input type="text" id="celular" name="celular" data-vv-as="celular" class="form-control"
-											v-model="escuela.celular" v-validate="'required'" >
-                                            <span class="help-block" for="celular" v-bind:data-error="errors.first('celular')">
-                                                {{ errors.first('celular') }}
-                                            </span>      </div>
-                                    </div>
- <div class="col-xs-12 col-sm-6">
+<div class="col-xs-12 col-sm-6">
                          <div class="fgroup" :class="{ 'has-error': errors.has('representante') }" >
                                             <label for="">Representante</label>
                                             <input type="text" id="representante" name="representante" data-vv-as="representante" class="form-control"
-											v-model="escuela.representante" v-validate="'required'" >
+                                            v-model="escuela.representante" v-validate="'required'" >
                                             <span class="help-block" for="representante" v-bind:data-error="errors.first('representante')">
                                                 {{ errors.first('representante') }}
                                             </span>      </div>
                                     </div>
- <div class="col-xs-12 col-sm-6">
-                         <div class="fgroup" :class="{ 'has-error': errors.has('telefonoFijo') }" >
-                                            <label for="">Telefon Fijo</label>
-                                            <input type="text" id="telefonoFijo" name="telefonoFijo" data-vv-as="telefonoFijo" class="form-control"
-											v-model="escuela.telefonoFijo" v-validate="'required'" >
-                                            <span class="help-block" for="telefonoFijo" v-bind:data-error="errors.first('telefonoFijo')">
-                                                {{ errors.first('telefonoFijo') }}
-                                            </span>      </div>
+
+
+<div class="col-xs-12 col-sm-6">
+                            <div class="fgroup" :class="{ 'has-error': errors.has('celular') }">
+                                            <label for="">Celular</label>
+                                            <masked-input mask="1111-1111" placeholder="####-####" id="celular" name="celular" data-vv-as="celular " class="form-control" v-model="escuela.celular" v-validate="'required'">
+                                            </masked-input>
+                                            <span class="help-block" for="celular" v-bind:data-error="errors.first('celular')">
+                                                    {{ errors.first('celular') }}
+                                                </span>
+                                        </div>
                                     </div>
-     <div class="col-xs-12 col-sm-6">
+
+
+<div class="col-xs-12 col-sm-6">
+                            <div class="fgroup" :class="{ 'has-error': errors.has('telefonoFijo') }">
+                                            <label for="">Telefono Fijo</label>
+                                            <masked-input mask="1111-1111" placeholder="####-####" id="telefonoFijo" name="telefonoFijo" data-vv-as="telefonoFijo " class="form-control" v-model="escuela.telefonoFijo" v-validate="'required'">
+                                            </masked-input>
+                                            <span class="help-block" for="telefonoFijo" v-bind:data-error="errors.first('telefonoFijo')">
+                                                    {{ errors.first('telefonoFijo') }}
+                                                </span>
+                                        </div>
+                                    </div>
+
+
+   <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup"  :class="{ 'has-error': errors.has('playaId') }">
                                             <label for="playaId">Playa</label>
                                             <v-select
                                                 :debounce="250"
                                                 :options="playas"
                                                 v-model="escuela.playaId"
-                                                placeholder="Escoja una playaId" 
+                                                placeholder="Escoja una playa" 
                                                 label="nombre">
                                             </v-select>
                                             <div class="clearfix"></div>
-                                            <input type="hidden" name="playaId" value="" data-vv-as="playaId"  v-model="escuela.playaId" v-validate="'required'">
+                                            <input type="hidden" name="playaId" value="" data-vv-as="playa"  v-model="escuela.playaId" v-validate="'required'">
                                             <span class="help-block" for="playaId" v-bind:data-error="errors.first('playaId')">
                                                 {{ errors.first('playaId') }}
                                             </span>
                                         </div>
-                                    </div>     <div class="col-xs-12 col-sm-6">
+                                    </div> 
+
+
+<div class="col-xs-12 col-sm-6">
                                         <div class="fgroup"  :class="{ 'has-error': errors.has('entrenadorId') }">
                                             <label for="entrenadorId">Entrenador</label>
                                             <v-select
                                                 :debounce="250"
                                                 :options="entrenadores"
                                                 v-model="escuela.entrenadorId"
-                                                placeholder="Escoja una entrenadorId" 
+                                                placeholder="Escoja una entrenador" 
                                                 label="nombre">
                                             </v-select>
                                             <div class="clearfix"></div>
-                                            <input  type="hidden" name="entrenadorId" value="" data-vv-as="entrenadorId"  v-model="escuela.entrenadorId" v-validate="'required'">
+                                            <input  type="hidden" name="entrenadorId" value="" data-vv-as="entrenador"  v-model="escuela.entrenadorId" v-validate="'required'">
                                             <span class="help-block" for="entrenadorId" v-bind:data-error="errors.first('entrenadorId')">
                                                 {{ errors.first('entrenadorId') }}
                                             </span>
                                         </div>
-                                    </div>  </div>
+                                    </div> 
+
+  <div class="col-xs-12 col-sm-12">
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('direccion') }" >
+                                            <label for="">Direccion</label>
+                                            <textarea id="direccion" name="direccion" data-vv-as="Direccion" class="form-control" v-model="escuela.direccion" v-validate="'required'" rows="3"></textarea>
+                                                {{ errors.first('club.direccion') }}
+                                            <span class="help-block" for="direccion" v-bind:data-error="errors.first('direccion')"> 
+                                                {{ errors.first('direccion') }}
+                                            </span>
+
+                                        </div>
+                                    </div>
+ 
+ 
+ </div>
                                 <div class="box-footer">
                                     <div class="col-xs-12 text-right">
                                         <button type="submit"  v-if="!id" class="btn btn-flat btn-sm btn-primary">Agregar</button>
@@ -150,6 +184,7 @@
   import vSelect from "vue-select" 
   import playasController from '../../controllers/playas.js'
   import entrenadoresController from '../../controllers/entrenadores.js'
+  import masked from "vue-masked-input"
 export default {
         name: 'Escuela',
         data() {
@@ -165,7 +200,8 @@ id: '',
 escuela:{},playas:[],entrenadores:[]}
         },
         components:{
-            vSelect
+            vSelect,
+            'masked-input': masked    
         },
         created(){
                 this.id = this.$route.params.id;

@@ -1,11 +1,11 @@
 <template>
     <div>
         <section class="content-header">
-            <h1>Clubs</h1>
+            <h1>Clubes</h1>
 
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li>Manejo de Clubs </li>
+                <li>Manejo de Clubes </li>
             </ol>
         </section>
         <section class="content" >
@@ -29,13 +29,13 @@
                 <div class="col-lg-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Manejo de clubs </h3>
+                            <h3 class="box-title">Manejo de clubes </h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
       <div class="box-action">
                                 <router-link to="/admin/clubs/form" class="btn btn-default btn-flat">
-                                    <i class="fa fa-plus"></i> Nueva Club
+                                    <i class="fa fa-plus"></i> Nuevo Club
                                 </router-link>
                             </div>
                             <vue-good-table :columns="columns" :rows="clubs" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
@@ -43,13 +43,12 @@
 <td>{{ props.row.nombre }}</td>
 <td>{{ props.row.fundacion }}</td>
 <td>{{ props.row.correo }}</td>
-<td>{{ props.row.celular }}</td>
-<td>{{ props.row.direccion }}</td>
-<td>{{ props.row.celular }}</td>
 <td>{{ props.row.representante }}</td>
+<td>{{ props.row.celular }}</td>
 <td>{{ props.row.telefonoFijo }}</td>
 <td>{{ props.row.playaId.nombre }}</td>
-<td>{{ props.row.entrenadorId.nombre }}</td>                                    <td class="nowrap">
+<td>{{ props.row.entrenadorId.nombre }}</td> 
+<td>{{ props.row.direccion }}</td>                                   <td class="nowrap">
  <router-link :to="{ name: 'clubsEdit', params: { id: props.row.id }}">
                                         <button type="button" class="margin btn btn-flat btn-sm btn-primary"
                                        ><i aria-hidden="true"
@@ -92,22 +91,16 @@
                         label: "Fundacion",
                         field: "fundacion",
                     }, {
-                        label: "Correo",
+                        label: "Correo Electronico",
                         field: "correo",
-                    }, {
-                        label: "Celular",
-                        field: "celular",
-                    }, {
-                        label: "Direccion",
-                        field: "direccion",
-                    }, {
-                        label: "Celular",
-                        field: "celular",
                     }, {
                         label: "Representante",
                         field: "representante",
+                    }, {                        
+                        label: "Celular",
+                        field: "celular",
                     }, {
-                        label: "Telefon Fijo",
+                        label: "Telefono Fijo",
                         field: "telefonoFijo",
                     }, {
                         label: "Playa",
@@ -115,6 +108,9 @@
                     }, {
                         label: "Entrenador",
                         field: "entrenador",
+                    },{
+                        label: "Direccion",
+                        field: "direccion",
                     },{
                         label: "Acciones",
                         field: "",
@@ -133,7 +129,7 @@
                 let swal = this.$swal;
                 this.$swal({
                     title: 'Estas Seguro?',
-                    html: 'No podras recuperar la informacion de la club <b>&laquo;' + nombre + '&raquo</b><br>y toda la informacion relacion al mismo ya no sera accesible',
+                    html: 'No podras recuperar la informacion del club <b>&laquo;' + nombre + '&raquo</b><br>y toda la informacion en relacion al mismo ya que no sera accesible',
                     type: 'error',
                     showCancelButton: true,
                     confirmButtonText: 'Si, Eliminar!',

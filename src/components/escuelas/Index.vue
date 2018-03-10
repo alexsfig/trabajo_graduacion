@@ -43,13 +43,14 @@
 <td>{{ props.row.nombre }}</td>
 <td>{{ props.row.fundacion }}</td>
 <td>{{ props.row.correo }}</td>
-<td>{{ props.row.celular }}</td>
-<td>{{ props.row.direccion }}</td>
-<td>{{ props.row.celular }}</td>
 <td>{{ props.row.representante }}</td>
+<td>{{ props.row.celular }}</td>
 <td>{{ props.row.telefonoFijo }}</td>
 <td>{{ props.row.playaId.nombre }}</td>
-<td>{{ props.row.entrenadorId.nombre }}</td>                                    <td class="nowrap">
+<td>{{ props.row.entrenadorId.nombre }}</td>  
+<td>{{ props.row.direccion }}</td>
+
+                                  <td class="nowrap">
  <router-link :to="{ name: 'escuelasEdit', params: { id: props.row.id }}">
                                         <button type="button" class="margin btn btn-flat btn-sm btn-primary"
                                        ><i aria-hidden="true"
@@ -92,30 +93,27 @@
                         label: "Fundacion",
                         field: "fundacion",
                     }, {
-                        label: "Correo",
+                        label: "Correo Electronico",
                         field: "correo",
-                    }, {
-                        label: "Celular",
-                        field: "celular",
-                    }, {
-                        label: "Direccion",
-                        field: "direccion",
-                    }, {
-                        label: "Celular",
-                        field: "celular",
                     }, {
                         label: "Representante",
                         field: "representante",
                     }, {
-                        label: "Telefon Fijo",
+                        label: "Celular",
+                        field: "celular",
+                    }, {
+                        label: "Telefono Fijo",
                         field: "telefonoFijo",
                     }, {
                         label: "Playa",
                         field: "playa",
-                    }, {
+                    },  {
                         label: "Entrenador",
                         field: "entrenador",
-                    },{
+                    },  {
+                        label: "Direccion",
+                        field: "direccion",
+                    }, {
                         label: "Acciones",
                         field: "",
                     }]
@@ -133,7 +131,7 @@
                 let swal = this.$swal;
                 this.$swal({
                     title: 'Estas Seguro?',
-                    html: 'No podras recuperar la informacion de la escuela <b>&laquo;' + nombre + '&raquo</b><br>y toda la informacion relacion al mismo ya no sera accesible',
+                    html: 'No podras recuperar la informacion de la escuela <b>&laquo;' + nombre + '&raquo</b><br>y toda la informacion en relacion a la misma ya que no sera accesible',
                     type: 'error',
                     showCancelButton: true,
                     confirmButtonText: 'Si, Eliminar!',

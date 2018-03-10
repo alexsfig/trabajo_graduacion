@@ -34,7 +34,7 @@ export default {
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
                     context.showSuccess = true
-                    context.successMsg = "Club Creada"
+                    context.successMsg = "Club Creado"
                     context.createClubs = {}
                     context.errors.clear()
                 }
@@ -60,7 +60,7 @@ export default {
                     context.showAlert = false 
                 }
                 context.showSuccess = true
-                context.successMsg = "Club actualizada"
+                context.successMsg = "Club actualizado"
             })
             .catch((err) => {
                 context.showAlert = true
@@ -125,7 +125,7 @@ export default {
         HTTP.delete(ESCUELAS + id)
             .then((resp) => {
                 console.log(resp);
-                swal("Deleted!", "La Club ha sido eliminada", "success")
+                swal("Deleted!", "La Club ha sido eliminado", "success")
                 context.fetchData();
             })
             .catch((err) => {               
