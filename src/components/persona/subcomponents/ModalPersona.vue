@@ -237,8 +237,19 @@ export default {
                         delete this.updatePersona.juezId
                         delete this.updatePersona.miembroJuntaId
                         delete this.updatePersona.usuarioList
-                        this.updatePersona.sexo = this.updatePersona.sexo.name == undefined ? '' : this.updatePersona.sexo.name
-                        personas.update(this, this.updatePersona)
+
+
+                          if( this.updatePersona.sexo=='Masculino'){
+                        this.updatePersona.sexo='M'
+                      }
+
+                       if( this.persona.sexo=='Femenino'){
+                        this.updatePersona.sexo='F'
+                      }
+
+
+                        this.updatePersona.sexo = this.updatePersona.sexo.name == undefined ? this.updatePersona.sexo : this.updatePersona.sexo.name
+                        personas.update2(this, this.updatePersona)
                     } else {
                         this.errMsg = 'Error revisa el formulario'
                         this.showAlert = true

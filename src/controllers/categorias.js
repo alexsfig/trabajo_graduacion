@@ -23,15 +23,40 @@ export default {
         context.showAlert = false 
          context.showSuccess = false 
           categorias.id=0;
+
+       if( parseInt(categorias.edadMin) < parseInt(categorias.edadMax))
+        {  
          
         HTTP.post(CATEGORIAS, categorias)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
                     context.showSuccess = true
                     context.successMsg = "Categoria Creada"
-                    context.createCategorias = {}
-                    context.errors.clear()
-                }
+                    //context.createCategorias = {}
+                    //context.errors.clear()
+
+                    if( categorias.sexo=='M'){
+                        context.createCategorias.sexo='Masculino'
+                      }
+
+                    if( categorias.sexo=='F'){
+                        context.createCategorias.sexo='Femenino'
+                      }
+
+                  if( categorias.sexo=='X'){
+                        context.createCategorias.sexo='Mixto'
+                      }
+                  
+
+                    context.fetchData()
+                    context.resetForm()                 
+                      
+
+           
+                     
+
+
+                     }
             })
             .catch((err) => {
                 if (err.response) {
@@ -39,6 +64,30 @@ export default {
                     context.errMsg = err.response.data
                 }
             })
+
+
+        }
+
+        else
+
+           {
+
+           context.showAlert = true
+           context.errMsg = "La Edad Minima de la Categoria no puede ser Mayor o Igual que la Edad Maxima"
+
+           if( categorias.sexo=='M'){
+                        context.createCategorias.sexo='Masculino'
+                      }
+
+           if( categorias.sexo=='F'){
+                        context.createCategorias.sexo='Femenino'
+                      }
+
+           if( categorias.sexo=='X'){
+                        context.createCategorias.sexo='Mixto'
+                      }
+
+           } 
     }, 
     /* 
         Method to update user, pass context, object Users and user id
@@ -47,6 +96,11 @@ export default {
     update(context, categorias){
         context.showAlert = false 
         context.showSuccess = false 
+
+         if( parseInt(categorias.edadMin) < parseInt(categorias.edadMax))
+        {  
+
+
         HTTP.put(CATEGORIAS, categorias)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
@@ -55,6 +109,21 @@ export default {
                 }
                 context.showSuccess = true
                 context.successMsg = "Categoria Actualizada"
+
+                 if( categorias.sexo=='M'){
+                        context.updateCategoria.sexo='Masculino'
+                      }
+
+                    if( categorias.sexo=='F'){
+                        context.updateCategoria.sexo='Femenino'
+                      }
+
+                  if( categorias.sexo=='X'){
+                        context.updateCategoria.sexo='Mixto'
+                      }
+
+                
+
             })
             .catch((err) => {
                 context.showAlert = true
@@ -66,6 +135,35 @@ export default {
                     context.showAlert = true 
                 }
             })
+
+           }
+
+        else
+
+           {
+
+           context.showAlert = true
+           context.errMsg = "La Edad Minima de la Categoria no puede ser Mayor o Igual que la Edad Maxima"
+
+
+
+                 if( categorias.sexo=='M'){
+                        context.updateCategoria.sexo='Masculino'
+                      }
+
+                    if( categorias.sexo=='F'){
+                        context.updateCategoria.sexo='Femenino'
+                      }
+
+                  if( categorias.sexo=='X'){
+                        context.updateCategoria.sexo='Mixto'
+                      }
+
+
+           } 
+
+
+
     }, 
     /* 
         Method to get user, pass only the context, id will be taken from url
@@ -118,7 +216,7 @@ export default {
                 context.fetchData();
             })
             .catch((err) => {               
-                swal("Oh snap!", "Ocurrio un error.", "error")
+                swal("No se puede Eliminar!", "Es posible que la categoria ya este asociada", "error")
             }) 
     } 
     

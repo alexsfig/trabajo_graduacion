@@ -56,6 +56,15 @@ export default {
                 }
                 context.showSuccess = true
                 context.successMsg = "Juez Actualizado"
+
+
+                if(  jueces.sexo=='M'){
+                        context.persona.sexo='Masculino'
+                      }
+
+                    if( jueces.sexo=='F'){
+                        context.persona.sexo='Femenino'
+                      }
             })
             .catch((err) => {
                 context.showAlert = true

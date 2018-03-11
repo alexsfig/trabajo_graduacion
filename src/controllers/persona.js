@@ -154,6 +154,44 @@ console.log(obj);
                 }
                 context.showSuccess = true
                 context.successMsg = "Persona Actualizada exitosamente"
+                
+            })
+            .catch((err) => {
+                context.showAlert = true
+                console.log(err)
+                if (err.response) {
+                    context.errMsg = err.response.data
+                    console.log(err.response.data);
+                    console.log(err.response);
+                    context.showAlert = true
+                }
+            })
+    },
+
+
+
+
+    update2(context, user){
+        context.showAlert = false
+        context.showSuccess = false
+        HTTP.put(PERSONA, user)
+            .then((resp) => {
+                if (resp.status>= 200 && resp.status <=300){
+                    var id = resp.data.id
+                    context.showAlert = false
+                }
+                context.showSuccess = true
+                context.successMsg = "Persona Actualizada exitosamente"
+
+                 if(  user.sexo=='M'){
+                        context.updatePersona.sexo='Masculino'
+                      }
+
+                    if( user.sexo=='F'){
+                        context.updatePersona.sexo='Femenino'
+                      }
+
+                
             })
             .catch((err) => {
                 context.showAlert = true

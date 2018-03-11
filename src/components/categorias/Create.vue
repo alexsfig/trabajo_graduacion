@@ -5,7 +5,7 @@
             <ol class="breadcrumb">
 
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><router-link to="/admin/noticias">Categorias</router-link></li>
+                <li><router-link to="/admin/categorias">Categorias</router-link></li>
                 <li class="active">Agregar Categorias</li>
             </ol>
         </section>
@@ -62,7 +62,7 @@
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('edadMin') }" >
                                             <label for="">Edad Minima</label>
-                                            <input type="number" id="edadMin" name="edadMin" min=0 max=100 data-vv-as="Edad Minima de la categoria" class="form-control" v-model="createCategorias.edadMin" v-validate="'required'" >
+                                            <input type="number" id="edadMin" name="edadMin" data-vv-as="Edad Minima de la categoria" class="form-control" v-model="createCategorias.edadMin" v-validate="'required|min_value:7|max_value:79'" >
                                             <span class="help-block" for="edadMin" v-bind:data-error="errors.first('edadMin')">
                                                 {{ errors.first('edadMin') }}
                                             </span>
@@ -72,7 +72,8 @@
                                      <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('edadMax') }" >
                                             <label for="">Edad Maxima</label>
-                                            <input type="number" id="edadMax" name="edadMax" min=0 max=100 data-vv-as="Edad Maxima de la categoria" class="form-control" v-model="createCategorias.edadMax" v-validate="'required'" >
+                                            <input type="number" id="edadMax" name="edadMax"  data-vv-as="Edad Maxima de la categoria" class="form-control" v-model="createCategorias.edadMax" v-validate="'required|min_value:7|max_value:79'" 
+                                            >
                                             <span class="help-block" for="edadMax" v-bind:data-error="errors.first('edadMax')">
                                                 {{ errors.first('edadMax') }}
                                             </span>
@@ -187,7 +188,10 @@
            vSelect
 
 
-        },
+        },    
+             
+             
+        
 
 
         methods: {
@@ -200,8 +204,29 @@
                 this.$validator.validateAll().then(success => {
                     if (success) {
 
-                       this.createCategorias.sexo = this.createCategorias.sexo.name == undefined ? '' : this.createCategorias.sexo.name
+
+                        if( this.createCategorias.sexo=='Masculino'){
+                        this.createCategorias.sexo='M'
+                      }
+
+                       if( this.createCategorias.sexo=='Femenino'){
+                        this.createCategorias.sexo='F'
+                      }
+
+                        if( this.createCategorias.sexo=='Mixto'){
+                        this.createCategorias.sexo='X'
+                      }
+
+
+                       this.createCategorias.sexo = this.createCategorias.sexo.name == undefined ? this.createCategorias.sexo : this.createCategorias.sexo.name
                         categorias.create(this, this.createCategorias)
+
+                      
+
+
+
+
+                      /* this.createCategorias.sexo.nombre =  this.createCategorias.sexo.name == 'M' ? this.createCategorias.sexo.nombre ='Masculino' : this.createdCategorias.sexo.name == 'F' ? this.createCategorias.sexo.nombre ='Femenino' : this.createCategorias.sexo.nombre = 'Mixto' */
                     }
                     else{
                         this.showAlert = true
