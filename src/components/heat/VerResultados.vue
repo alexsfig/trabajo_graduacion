@@ -1,7 +1,7 @@
 <template>
     <div>
         <section class="content-header">
-            <h1>Calificar  Heat </h1>
+            <h1>Resultados   Heat </h1>
 
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -29,10 +29,17 @@
                 <div class="col-lg-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Heat  {{heat.numero}}   de la ronda {{heat.rondaId.numero}} </h3>
-                                         <button :disabled="!juezLider" type="button" style="float:right" class="margin btn btn-flat btn-sm btn-success" 
-                                        @click="juezLider=null"><i aria-hidden="true" 
-                                        class="fa fa-check"></i> Finalizar heat </button>
+                          
+                            <h3 class="box-title">Heat  {{heat.numero}}   de la ronda {{heat.rondaId.numero}}                  </h3>
+                             estado :{{heat.estado}}
+                            categoria: {{heat.rondaId.circuitoId.categoriaId.nombreCategoria}}
+                                                <toggle-button  v-model="verTodo" :sync="true"
+                                                 :value="verTodo" :width="130" :height="35"
+                                                 id="changed-font" :labels="{checked: 'Ver todos ', unchecked: 'Solo Resumen'}" :color="{checked: '#37b53c', unchecked: '#545bb3'}"/>
+                                        <div v-if="resumen[0].listNotas[0].nota>0.0">
+                                         <button v-if="heat.estado=='Iniciado'" type="button" style="float:right" class="margin btn btn-flat btn-sm btn-success" 
+                                        @click="finalizar()"><i aria-hidden="true" 
+                                        class="fa fa-check"></i> Finalizar heat </button></div>
                         </div>
 
      
@@ -40,14 +47,17 @@
                         <div class="box-body">
 
 
-                 
+                                          
+                                         
+                                         
 
-
+<div v-if="verTodo">
 <div v-for="value in juecesHeat">
-Nombre de juez{{value}}
-
 <br/><br/><br/><br/>
-                           <vue-good-table :columns="columns" :rows="value.puntuacionList" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
+
+<h4>Notas Juez:{{value.persona.nombre}},{{value.persona.apellido}}</h4>
+
+                           <vue-good-table :columns="columns" :rows="value.puntuacionList" :paginate="true" :globalSearch="false" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
                                 <template slot="table-row" scope="props">
                                    <td v-if="props.row.color=='Amarillo'" style="background-color:yellow;">{{ props.row.color }}</td>  
                                   
@@ -71,7 +81,59 @@ Nombre de juez{{value}}
                                   
                                   </template>
                             </vue-good-table>
+
+
 </div>
+</div>
+<br/><br/><br/><br/><br/><br/>
+<h4>Resultados del heat</h4> 
+
+
+
+                                         <vue-good-table :columns="columnsResult" :rows="resumen" :paginate="true" :globalSearch="false" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
+                                <template slot="table-row" scope="props">
+                                   <td v-if="props.row.color=='Amarillo'" style="background-color:yellow;">{{ props.row.color }}</td>  
+                                  
+                          <td v-if="props.row.color=='Azul'"  style="background-color:#0F7AD5;">{{ props.row.color }}</td>  
+                                 <td  v-if="props.row.color=='Verde'"  style="background-color:Green;">{{ props.row.color }}</td>      
+                                  <td  v-if="props.row.color=='Rojo'"  style="background-color:Red;">{{ props.row.color }}</td>       
+               <td><router-link :to="{ name: 'AtletasShow', params: { id: props.row.atletaId }}">
+                  {{ props.row.nombre }},{{props.row.apellido}}</router-link></td>  
+            <td v-if="props.row.listNotas[0].mayor"   style="background-color:#D9EFD4;" >{{props.row.listNotas[0].nota}}</td>
+            <td v-if="!props.row.listNotas[0].mayor"   >{{props.row.listNotas[0].nota}}</td>
+
+               <td v-if="props.row.listNotas[1].mayor"   style="background-color:#D9EFD4;" >{{props.row.listNotas[1].nota}}</td>
+            <td v-if="!props.row.listNotas[1].mayor"   >{{props.row.listNotas[1].nota}}</td>
+
+              <td v-if="props.row.listNotas[2].mayor"   style="background-color:#D9EFD4;" >{{props.row.listNotas[2].nota}}</td>
+            <td v-if="!props.row.listNotas[2].mayor"   >{{props.row.listNotas[2].nota}}</td>
+
+                           <td v-if="props.row.listNotas[3].mayor"   style="background-color:#D9EFD4;" >{{props.row.listNotas[3].nota}}</td>
+            <td v-if="!props.row.listNotas[3].mayor"   >{{props.row.listNotas[3].nota}}</td>
+
+                           <td v-if="props.row.listNotas[4].mayor"   style="background-color:#D9EFD4;" >{{props.row.listNotas[4].nota}}</td>
+            <td v-if="!props.row.listNotas[4].mayor"   >{{props.row.listNotas[4].nota}}</td>
+
+                           <td v-if="props.row.listNotas[5].mayor"   style="background-color:#D9EFD4;" >{{props.row.listNotas[5].nota}}</td>
+            <td v-if="!props.row.listNotas[5].mayor"   >{{props.row.listNotas[5].nota}}</td>
+
+
+                         <td v-if="props.row.listNotas[6].mayor"   style="background-color:#D9EFD4;" >{{props.row.listNotas[6].nota}}</td>
+            <td v-if="!props.row.listNotas[6].mayor"   >{{props.row.listNotas[6].nota}}</td>
+
+                           <td v-if="props.row.listNotas[7].mayor"   style="background-color:#D9EFD4;" >{{props.row.listNotas[7].nota}}</td>
+            <td v-if="!props.row.listNotas[7].mayor"   >{{props.row.listNotas[7].nota}}</td>
+                    <td v-if="props.row.listNotas[8].mayor"   style="background-color:#D9EFD4;" >{{props.row.listNotas[8].nota}}</td>
+            <td v-if="!props.row.listNotas[8].mayor"   >{{props.row.listNotas[8].nota}}</td>
+             <td v-if="props.row.listNotas[9].mayor"   style="background-color:#D9EFD4;" >{{props.row.listNotas[9].nota}}</td>
+            <td v-if="!props.row.listNotas[9].mayor"   >{{props.row.listNotas[9].nota}}</td>
+       
+      <td  style="background-color:#D9EFD4;" >{{props.row.notaFinal}}</td>
+      
+            
+                                  
+                                  </template>
+                            </vue-good-table>
                         </div>
                     </div>
                    </div>
@@ -110,12 +172,14 @@ export default {
       methodSubmit: "editar",
       openModal: false,
       circuito: {},
+      verTodo:false,
       juezLider: null,
       heat: { rondaId: {} },
       juezCircuitos: [],
       id: "",
       atletasHeat: [],
       atletaHeat: {},
+       resumen: [],
       juecesHeat:[],
        juecesHeat2:[],
       juezHeat: { id: 1 },
@@ -125,6 +189,7 @@ export default {
           label: "Color",
           field: "color"
         },
+        
         {
           label: "Ola 1",
           field: "o1"
@@ -167,6 +232,61 @@ export default {
           label: "Ola 10",
           field: "o10"
         }
+      ],
+      columnsResult: [
+        {
+          label: "Color",
+          field: "color"
+        },  {
+          label: "Nombre",
+          field: "o1"
+        },
+        {
+          label: "Ola 1",
+          field: "o1"
+        },
+        {
+          label: "Ola 2",
+          field: "o2"
+        },
+        {
+          label: "Ola 3",
+          field: "o3"
+        },
+        {
+          label: "Ola 4",
+          field: "o4"
+        },
+
+        {
+          label: "Ola 5",
+          field: "o5"
+        },
+        {
+          label: "Ola 6",
+          field: "o6"
+        },
+        {
+          label: "Ola 7",
+          field: "o7"
+        },
+
+        {
+          label: "Ola 8",
+          field: "o8"
+        },
+        {
+          label: "Ola 9",
+          field: "o9"
+        },
+        {
+          label: "Ola 10",
+          field: "o10"
+        },
+           {
+          label: "Promedio",
+          field: "o10"
+        }
       ]
     };
   },
@@ -181,8 +301,24 @@ export default {
 
       juezCircuitoController.indexByCircuito(this, val.rondaId.circuitoId.id);
     },
-      juecesHeat: function(val) {
-    /*let  n=0;
+      /*juecesHeat: function(val) {
+  
+  /*console.log("TYYYYYRERERERYEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
+        console.log("Tamaño maximo "+this.juecesHeat.length)
+             console.log(JSON.stringify(this.juecesHeat[0]))
+ console.log(this.juecesHeat[0].puntuacionList) 
+this.juecesHeat[0].puntuacionList.array.forEach(element => {
+      console.log("Entre al resumen")
+  this.resumen.push({color:element.color})
+
+
+},
+
+
+
+);
+        
+    let  n=0;
     if( val)
         for (let i of  this.juecesHeat) {
    console.log("*************************")
@@ -190,8 +326,9 @@ export default {
                      console.log("*********************´´´´****")
          console.log(this.juecesHeat2)            
                     n=n+1;
-                }*/
-    }
+                }
+    },
+    */
   },
   methods: {
     ponerLider(lider) {
@@ -202,7 +339,7 @@ export default {
 
       juecesHeatController.byHeat(this, this.id);
       heatsController.retrieve(this, this.id);
-
+  heatsController.byResumen(this, this.id);
       //   a.retrieve(this,this.id);
     },
  showCallback () {
@@ -214,10 +351,40 @@ export default {
              
                 this.fetchData()
             },
-    agregarNota(row) {
-      this.atletaHeat=row;
-      console.log("putasss");
-      this.openModal = true;
+            calcularNota(a,r){
+let total=0;
+
+a.forEach(f=>{
+
+total=total+f;
+
+})
+console.log("total:"+total+ "  :"+Math.max.apply(null,a)+"  :"+Math.min.apply(null,a))
+if(r.total)
+r.total+=total;
+else
+r.total=total;
+return  (total-Math.max.apply(null,a)-Math.min.apply(null,a))/(a.length-2)
+            },
+    finalizar() {
+
+      heatsController.finalizar(this,this.id)
+     // if(this.resumen[0])
+   /*   if(this.resumen[0].tfinal.nota){
+            console.log("pujjktasss" +this.resumen[0].tfinal.nota);
+      }
+  else{
+this.showAlert=true;
+this.errMsg="El heat aun no tiene calificaciones "
+
+  }
+  else{
+
+this.showAlert=true;
+this.errMsg="El heat aun no tiene calificaciones "
+
+  }
+     */
     },
     isChange() {
       this.openModal = false;

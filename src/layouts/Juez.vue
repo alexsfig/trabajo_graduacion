@@ -26,8 +26,8 @@
 </template>
 
 <script>
-    import mainHeader from './includes/Admin.main-header.vue'
-    import mainSidebar from './includes/Admin.main-sidebar.vue'
+    import mainHeader from './includes/Juez.main-header.vue'
+    import mainSidebar from './includes/Juez.main-sidebar.vue'
 
     export default {
         name: 'app',

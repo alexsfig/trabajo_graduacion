@@ -27,7 +27,39 @@ export default {
             })
     }
      ,
-     
+     byResumen(context,id){
+        HTTP.get("heat/resumen/"+id)
+            .then((resp) => {
+                context.resumen = resp.data
+
+                console.log(resp.data)
+           /*     for (let i of  context.heats) {
+                i.natletas=Object.keys(i.atletasHeatList).length;
+          
+            
+            }*/
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+    },
+    finalizar(context,id){
+        HTTP.get("heat/finalizar/"+id)
+            .then((resp) => {
+                context.resumen = resp.data
+                context.showSuccess = true
+                context.successMsg = "Finalizado exitosamente"
+                console.log(resp.data)
+           /*     for (let i of  context.heats) {
+                i.natletas=Object.keys(i.atletasHeatList).length;
+          
+            
+            }*/
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+    },
     retrieve(context, id){
         HTTP.get("heat/"+ id)
             .then((resp) => {

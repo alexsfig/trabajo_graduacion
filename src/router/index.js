@@ -45,6 +45,7 @@ import CategoriasIndex from '@/components/categorias/Index'
 
 // Import base templates
 import AdminTemplate from '@/layouts/Admin'
+import JuezTemplate from '@/layouts/Juez'
 import LoginTemplate from '@/layouts/Login'
 
 
@@ -95,7 +96,7 @@ import HeatInit from '@/components/heat/Iniciar'
 import CalificarInit from '@/components/heat/Calificar'
 import VerResultadosInit from '@/components/heat/VerResultados'
 Vue.use(Router)
-export default new Router({
+ const router=new Router({
   mode: 'history',
   base: process.env.BASE_ROUTE,
   routes: [
@@ -124,7 +125,7 @@ export default new Router({
     {
       path: '/admin',
       component: AdminTemplate,
-      meta: { requiresAuth: true },
+      meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false},
       children: [
         {
           path: '',
@@ -506,5 +507,50 @@ export default new Router({
         
       ]
     },
-  ]
+    {
+      path: '/juez',
+      component: JuezTemplate,
+      meta: { requiresAuth: true ,adminAuth:false , juezAuth : true},
+      children: [
+        {
+          path: '',
+          name: 'Dashboard',
+          component: Dashboard
+        }]
+      
+      }   
+  ],
 })
+
+
+
+router.beforeEach((to, from, next) => {
+  if(to.meta.requiresAuth) {
+console.log("grim 1234");
+    console.log
+    const authUser = JSON.parse(window.localStorage.getItem('rol'))
+    if(!authUser ) {
+      next({name:'Login'})
+    }
+    else if(to.meta.adminAuth) {
+    const authUser = JSON.parse(window.localStorage.getItem('rol'))
+    if(authUser ==1 ) {
+      next()
+    }else {
+      next('/juez')
+    }
+  } else if(to.meta.juezAuth) {
+    const authUser = JSON.parse(window.localStorage.getItem('rol'))
+    if(authUser == 2) {
+      next()
+    }else {
+      console.log('Im in admin')
+      next('/admin')
+    }
+  }
+  }else {
+  next()
+  }
+})
+
+export default router;

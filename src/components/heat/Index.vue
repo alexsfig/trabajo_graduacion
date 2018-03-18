@@ -57,8 +57,13 @@
                                        ><i aria-hidden="true"
                                          class="fa fa-pencil-square-o"></i> Iniciar</button>
                                         </router-link>
-                                  
-                                
+                                   <div  v-if="props.row.estado!='En espera'">
+                                    <router-link v-if="props.row.estado!='Por iniciar'" :to="{ name: 'ResultadoHeat', params: { id: props.row.id }}">
+                                        <button type="button" class="margin btn btn-flat btn-sm btn-primary"
+                                       ><i aria-hidden="true"
+                                         class="fa fa-pencil-square-o"></i> Revisar</button>
+                                        </router-link>
+                                   </div>
                                     </td>
                                   </template>
                             </vue-good-table>

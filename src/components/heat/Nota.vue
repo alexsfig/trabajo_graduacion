@@ -54,7 +54,8 @@ export default {
         "buttonMsg",
         "openModal",
         "atletaHeat",
-        "juezHeat"
+        "juezHeat",
+        "idjuez"
 
     ],
     computed: {
@@ -126,7 +127,7 @@ export default {
                     if (success) {
                         let puntuacion={
                           atletasHeatId:{id:this.atletaHeat.id},
-                          juecesHeatId:{id:42},
+                          juecesHeatId:{id:this.idjuez},
                           nota:this.nota
   
                         }

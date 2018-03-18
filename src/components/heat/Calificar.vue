@@ -86,7 +86,7 @@
   :buttonMsg="'Actualizar'"
   :openModal="openModal" 
     :atletaHeat="atletaHeat" 
-
+:idjuez="idjuez" 
     v-on:openChange="isChange">
     </modalNota>
 
@@ -119,6 +119,7 @@ export default {
       heat: { rondaId: {} },
       juezCircuitos: [],
       id: "",
+      idjuez:'',
       atletasHeat: [],
       atletaHeat: {},
       juezHeat: { id: 1 },
@@ -201,9 +202,9 @@ export default {
     },
     fetchData() {
       this.id = this.$route.params.id;
-
+this.idjuez=42;
              
-      atletasHeatController.byHeatAndJuez(this, this.id,42);
+      atletasHeatController.byHeatAndJuez(this, this.id,this.idjuez);
       heatsController.retrieve(this, this.id);
 
       //   a.retrieve(this,this.id);
