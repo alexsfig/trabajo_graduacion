@@ -8,7 +8,6 @@ import {router} from '../router/index.js'
 import moment from 'moment'
 // define base url to Employees
 const TIPOTRANSACCION = 'transaccion/'
-const SEARCH = 'transaccion/search'
 
 
 
@@ -92,22 +91,6 @@ export default {
                 context.transaccion = resp.data;
                 context.transaccion.atletaId.nombre=context.transaccion.atletaId.personaId.nombre+","+context.transaccion.atletaId.personaId.apellido;
                 console.log("hey:::"+context.transaccion.atletaId.nombre)
-            })
-            .catch((err) => {
-              console.log(err)
-            })
-
-    },
-
-
-    reporte(context, id){
-        HTTP.get(SEARCH + id)
-            .then((resp) => {
-                console.log(resp)      
-                
-                               
-                context.searchs = resp.data;
-                
             })
             .catch((err) => {
               console.log(err)

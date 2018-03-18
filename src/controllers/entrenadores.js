@@ -114,6 +114,15 @@ export default {
                 }
                 context.showSuccess = true
                 context.successMsg = "Entrenador Actualizado"
+
+
+                 if(  entrenadores.personaId.sexo=='M'){
+                        context.updateEntrenador.personaId.sexo='Masculino'
+                      }
+
+                    if( entrenadores.personaId.sexo=='F'){
+                        context.updateEntrenador.personaId.sexo='Femenino'
+                      }
             })
             .catch((err) => {
                 context.showAlert = true

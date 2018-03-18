@@ -198,19 +198,7 @@
 		                </li>
 		            </ul>
 		        </li>
-		        <li>
-		            <router-link to="/admin/playas">
-		                <i class="fa fa-pagelines" aria-hidden="true"></i> <span>Playas</span>
-		            </router-link>
-		        </li>
-		        <li>
-		            <router-link to="#">
-		                <i class="fa fa-user-plus" aria-hidden="true"></i> <span>Roles</span>
-		            </router-link>
-		        </li>
-	
-	
-		     
+		            
 		     
 
 					 <li class="treeview">
@@ -227,54 +215,50 @@
 		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Manejo de Cuentas</span>
 		                    </router-link>
 		                </li>
-		                <li>
-		                    <router-link to="/admin/cuentas/form">
-		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Agregar Cuenta</span>
-		                    </router-link>
-		                </li>
-
+		               
 						  <li>
 		                    <router-link to="/admin/tipoTransaccions/">
 		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Manejo Tipos de Transaccion</span>
 		                    </router-link>
 		                </li>
-		                <li>
-		                    <router-link to="/admin/tipoTransaccions/form">
-		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Agregar Tipo de Transaccion</span>
-		                    </router-link>
-		                </li>
+		               
 						  <li>
 		                    <router-link to="/admin/formaPagos/">
 		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Manejo de Formas de pago </span>
 		                    </router-link>
 		                </li>
-		                <li>
-		                    <router-link to="/admin/formaPagos/form">
-		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Agregar Formas de pago </span>
-		                    </router-link>
-		                </li>
+		                
 						  <li>
 		                    <router-link to="/admin/patrocinadors/">
 		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Manejo de Patrocinadores</span>
 		                    </router-link>
 		                </li>
-		                <li>
-		                    <router-link to="/admin/patrocinadors/form">
-		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Agregar Patrocinadores</span>
-		                    </router-link>
-		                </li>
+		               
 						<li>
 		                    <router-link to="/admin/transaccion/">
 		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Manejo de transacciones</span>
 		                    </router-link>
 		                </li>
-		                <li>
-		                    <router-link to="/admin/transaccions/form">
-		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Agregar transaccion</span>
+		               
+		                 <li>
+		                    <router-link to="/admin/reportes/form">
+		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Reporte Financiero</span>
 		                    </router-link>
 		                </li>
 		            </ul>
 		        </li>
+
+
+		         <li>
+		            <router-link to="/admin/playas">
+		                <i class="fa fa-pagelines" aria-hidden="true"></i> <span>Playas</span>
+		            </router-link>
+		        </li>
+		       <!-- <li>
+		            <router-link to="#">
+		                <i class="fa fa-user-plus" aria-hidden="true"></i> <span>Roles</span>
+		            </router-link>
+		        </li> -->
 	
 	
 	

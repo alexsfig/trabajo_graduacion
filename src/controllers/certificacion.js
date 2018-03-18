@@ -25,6 +25,7 @@ export default {
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
                     context.errors.clear()
+                    context.fetchData();
                 }
             })
             .catch((err) => {
@@ -48,7 +49,7 @@ export default {
                     context.showAlert = false 
                 }
                 context.showSuccess = true
-                context.successMsg = "Certificacion Actualizado"
+                context.successMsg = "Certificacion Actualizada"
             })
             .catch((err) => {
                 context.showAlert = true
@@ -107,7 +108,7 @@ export default {
         HTTP.delete(CERTIFICACION + id)
             .then((resp) => {
                 console.log(resp);
-                swal("Deleted!", "El Certificacion ha sido eliminado", "success")
+                swal("Deleted!", "El Certificacion ha sido eliminada", "success")
                 context.fetchData();
             })
             .catch((err) => {               

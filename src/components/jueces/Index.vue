@@ -43,13 +43,18 @@
                                      <td>{{ props.row.personaId.direccion}}</td>
                                      <td>{{ props.row.personaId.telefono}}</td>
                                      <td>{{ props.row.personaId.correo}}</td>
-                                      <td>{{ (props.row.personaId.sexo == 'F') ? 'Femenino' : ((props.row.personaId.sexo == 'M') ? 'Masculino' : 'Mixto')}}</td>
+                                      <td>{{ (props.row.personaId.sexo == 'F') ? 'Femenino' : ((props.row.personaId.sexo == 'M') ? 'Masculino' : 'N/A')}}</td>
                                       <td>{{ props.row.descripcion}}</td>
                                    
                                    
                                     <td>
-                                        <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="openModal=true, retrieveData(props.row.id)" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar</button>
-                                        
+                                        <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="openModal=true, retrieveData(props.row.id)" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar Datos</button>
+
+                               <router-link :to="{ name: 'juezEdit', params: { id: props.row.id }}">
+                                        <button type="button" class="margin btn btn-flat btn-sm btn-primary"
+                                       ><i aria-hidden="true"
+                                         class="fa fa-certificate"></i> Certificaciones</button>
+                                        </router-link> 
                                         <button type="button" class="margin btn btn-sm btn-flat btn-danger" @click="clickHandler(props.row.id, juez, props.row.personaId.nombre)" ><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
                                     </td>
                                   </template>
@@ -164,6 +169,20 @@
             '$route': 'fetchData'
         },
         methods: {
+
+
+          certificaciones(id, juez) {
+            juecesController.retrieve(this, id)
+            this.$router.push({
+                name: 'juezEdit',
+                params: {
+                    id: id
+                   
+                }
+            });
+            },
+
+
             clickHandler(id, juez, nombre) {
                 let swal = this.$swal
                 let context = this

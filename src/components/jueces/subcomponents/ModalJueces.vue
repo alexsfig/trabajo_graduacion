@@ -251,7 +251,16 @@
                       }
 
 
-                      this.persona.sexo = this.persona.sexo.name == undefined ? '' : this.persona.sexo.name
+                          if( this.persona.sexo=='Masculino'){
+                        this.persona.sexo='M'
+                      }
+
+                       if( this.persona.sexo=='Femenino'){
+                        this.persona.sexo='F'
+                      }
+
+
+                      this.persona.sexo = this.persona.sexo.name == undefined ? this.persona.sexo  : this.persona.sexo.name
                       this.persona.juez=request;
                         jueces.update(this, this.persona)
                     }

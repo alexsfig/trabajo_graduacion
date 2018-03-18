@@ -1,11 +1,11 @@
 <template>
     <div>
         <section class="content-header">
-            <h1>Clubes</h1>
+            <h1>Transacciones</h1>
 
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li>Manejo de Clubes </li>
+                <li>Manejo de Transacciones </li>
             </ol>
         </section>
         <section class="content" >
@@ -29,32 +29,32 @@
                 <div class="col-lg-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Manejo de clubes </h3>
+                            <h3 class="box-title">Manejo de transacciones </h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
       <div class="box-action">
-                                <router-link to="/admin/clubs/form" class="btn btn-default btn-flat">
-                                    <i class="fa fa-plus"></i> Nuevo Club
+                                <router-link to="/admin/transaccions/form" class="btn btn-default btn-flat">
+                                    <i class="fa fa-plus"></i> Nueva Transaccion
                                 </router-link>
                             </div>
-                            <vue-good-table :columns="columns" :rows="clubs" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
+                            <vue-good-table :columns="columns" :rows="transaccions" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
                                 <template slot="table-row" scope="props">
-<td>{{ props.row.nombre }}</td>
-<td>{{ props.row.fundacion }}</td>
-<td>{{ props.row.correo }}</td>
-<td>{{ props.row.representante }}</td>
-<td>{{ props.row.celular }}</td>
-<td>{{ props.row.telefonoFijo }}</td>
-<td>{{ props.row.playaId.nombre }}</td>
-<td>{{ props.row.entrenadorId.nombre }}</td> 
-<td>{{ props.row.direccion }}</td>                                   <td class="nowrap">
- <router-link :to="{ name: 'clubsEdit', params: { id: props.row.id }}">
+<td>{{ props.row.fecha }}</td>
+<td>{{ props.row.patrocinadorId?props.row.patrocinadorId.nombre:"N/A" }}</td>
+<td>{{ props.row.formaPagoId.nombre }}</td>
+<td>{{ props.row.monto }}</td>
+<td>{{ props.row.comprobante }}</td>
+
+
+<td>{{ props.row.cuentaId.nombre }}</td>
+<td>{{ props.row.tipoTransaccionId.nombre }}</td>                                    <td class="nowrap">
+ <router-link :to="{ name: 'transaccionsEdit', params: { id: props.row.id }}">
                                         <button type="button" class="margin btn btn-flat btn-sm btn-primary"
                                        ><i aria-hidden="true"
                                          class="fa fa-pencil-square-o"></i> Actualizar</button>
                                         </router-link>                                        <button type="button" class="margin btn btn-flat btn-sm btn-danger" 
-                                        @click="deleteClub(props.row.id, props.row.nombre)"><i aria-hidden="true" 
+                                        @click="deleteTransaccion(props.row.id, props.row.descripcion)"><i aria-hidden="true" 
                                         class="fa fa-trash-o"></i> Eliminar</button>
                                 
                                     </td>
@@ -71,46 +71,42 @@
 </template>
 <script>
   
-    import clubsController from '../../controllers/clubes.js';
+    import transaccionsController from '../../controllers/transacciones.js';
      import vSelect from "vue-select"
     import moment from "moment"
     export default {
-        name: 'Clubs',
+        name: 'Transaccions',
         data() {
             return {
-                clubs: [],
+                transaccions: [],
                 showAlert: false,
                 showSuccess: false,
                 methodSubmit: 'editar',
                 openModal: false ,
  columns: [ 
  {
-                        label: "Nombre",
+                        label: "Fecha",
+                        field: "fecha",
+                    }, {
+                        label: "Patrocinador",
+                        field: "nombre",
+                    }
+                    , {
+                        label: "Forma de pago",
+                        field: "formaPago.nombre",
+                    }, {
+                        label: "Monto ($)",
+                        field: "monto",
+                    }, {
+                        label: "Comprobante",
+                        field: "comprobante",
+                    }
+                    , {
+                        label: "Cuenta",
                         field: "nombre",
                     }, {
-                        label: "Fundacion",
-                        field: "fundacion",
-                    }, {
-                        label: "Correo Electronico",
-                        field: "correo",
-                    }, {
-                        label: "Representante",
-                        field: "representante",
-                    }, {                        
-                        label: "Celular",
-                        field: "celular",
-                    }, {
-                        label: "Telefono Fijo",
-                        field: "telefonoFijo",
-                    }, {
-                        label: "Playa",
-                        field: "playa",
-                    }, {
-                        label: "Entrenador",
-                        field: "entrenador",
-                    },{
-                        label: "Direccion",
-                        field: "direccion",
+                        label: "Tipo de Transaccion",
+                        field: "tipoTransaccion",
                     },{
                         label: "Acciones",
                         field: "",
@@ -122,25 +118,25 @@
         },
         methods:{
             fetchData(){
-                clubsController.index(this)
+                transaccionsController.index(this)
             },
-            deleteClub(id, nombre) {
+            deleteTransaccion(id, nombre) {
                 let context = this;
                 let swal = this.$swal;
                 this.$swal({
                     title: 'Estas Seguro?',
-                    html: 'No podras recuperar la informacion del club <b>&laquo;' + nombre + '&raquo</b><br>y toda la informacion en relacion al mismo ya que no sera accesible',
+                    html: 'No podras recuperar la informacion de la transaccion <b>&laquo;' + nombre + '&raquo</b><br>y toda la informacion relacion al mismo ya no sera accesible',
                     type: 'error',
                     showCancelButton: true,
                     confirmButtonText: 'Si, Eliminar!',
                     cancelButtonText: 'No, Mantener'
                 }).then(function() {
-                    clubsController.delete(context, id, swal);
+                    transaccionsController.delete(context, id, swal);
                 },function(dismiss) {
                     if (dismiss === 'cancel') {
                         swal(
                           'Cancelado',
-                          'La club no se elimino',
+                          'La transaccion no se elimino',
                           'error'
                         )
                     }

@@ -244,7 +244,16 @@
                 this.$validator.validateAll().then(success => {
                     if (success) {
 
-                        this.updateEntrenador.personaId.sexo = this.updateEntrenador.personaId.sexo.name == undefined ? '' : this.updateEntrenador.personaId.sexo.name
+
+                         if( this.updateEntrenador.personaId.sexo=='Masculino'){
+                        this.updateEntrenador.personaId.sexo='M'
+                      }
+
+                       if( this.updateEntrenador.personaId.sexo=='Femenino'){
+                        this.updateEntrenador.personaId.sexo='F'
+                      }
+
+                        this.updateEntrenador.personaId.sexo = this.updateEntrenador.personaId.sexo.name == undefined ? this.updateEntrenador.personaId.sexo : this.updateEntrenador.personaId.sexo.name
                    personaController.patch(this,this.updateEntrenador.personaId)
        //   personaController.patch(this,this.updateEntrenador.personaId)
 

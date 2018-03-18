@@ -58,6 +58,17 @@ export default {
                 }
                 context.showSuccess = true
                 context.successMsg = "Miembro Actualizado"
+
+
+                 if(  juntamiembros.sexo=='M'){
+                        context.persona.sexo='Masculino'
+                      }
+
+                    if( juntamiembros.sexo=='F'){
+                        context.persona.sexo='Femenino'
+                      }
+
+                 
             })
             .catch((err) => {
                 context.showAlert = true
