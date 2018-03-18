@@ -82,6 +82,7 @@ import EscuelasIndex from '@/components/escuelas/Index'
 import ClubsForm from '@/components/clubes/Form'
 import ClubsIndex from '@/components/clubes/Index'
 import JuezsForm from '@/components/jueces/Edit'
+import CertiForm from '@/components/jueces/Form'
 import RondaIndex from '@/components/rondas/Index'
 
 import HeatIndex from '@/components/heat/Index'
@@ -94,6 +95,9 @@ import PatrocinadorAtletaIndex from '@/components/patrocinador_atleta/Index'
 import HeatInit from '@/components/heat/Iniciar'
 import CalificarInit from '@/components/heat/Calificar'
 import VerResultadosInit from '@/components/heat/VerResultados'
+
+import Reportes from '@/components/reportes/Form'
+
 Vue.use(Router)
 export default new Router({
   mode: 'history',
@@ -452,12 +456,12 @@ export default new Router({
           component: JuezsForm
         },
 
-        {
-          path: 'editjuez/:id/:id2',
-          name: 'juezEdit',
-          component: JuezsForm
+         {
+          path: 'certiForm/:id',
+          name: 'certiForm',
+          component: CertiForm
         },
-        
+             
         {
           path: 'patrocinadoratleta/create',
           name: 'PatrocinadorAtletaCreate',
@@ -477,6 +481,12 @@ export default new Router({
           path: 'patrocinadoratleta/:id',
           name: 'PatrocinadorAtletaShow',
           component: PatrocinadorAtletaShow
+        },
+
+        {
+          path: 'reportes/form',
+          name: 'Reportes',
+          component: Reportes
         },
 
 

@@ -198,6 +198,18 @@ export default {
         name: 'Club',
         data() {
             return {
+
+
+                clearBtn: true,
+                todayBtn: true,
+                closeOnSelected: true,
+                limitFrom: '',
+                limitTo: '',
+                format: 'yyyy-MM-dd',
+                weekStartsWith: 0,
+
+
+
                 errMsg:  '',
                 errorMsg: '',
                 showAlert: false,

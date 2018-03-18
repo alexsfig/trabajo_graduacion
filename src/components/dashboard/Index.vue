@@ -131,7 +131,7 @@
         name: 'clubes',
         data() {
             return {
-              clubes: [],
+              clubs: [],
               escuelas: [],
               atletas: [],
               jueces: [],
