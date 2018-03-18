@@ -200,7 +200,8 @@
 <td>{{ props.row.tipoTransaccionId.nombre }}</td>
 <td>{{ props.row.tipoTransaccionId.tipo==true?'Ingreso':'Gasto' }}</td>
 <td>{{ props.row.referencia }}</td>
-<td>{{ props.row.monto }}</td>
+<td v-if="!props.row.tipoTransaccionId.tipo" style="color:#FF0000"><b>{{ props.row.monto }}</b></td>
+<td v-if="props.row.tipoTransaccionId.tipo" style="color:green"><b>{{ props.row.monto }}</b></td>
 <td>{{ props.row.formaPagoId.nombre }}</td>
 <td>{{ props.row.comprobante }}</td>
 <td>{{ props.row.descripcion }}</td>
@@ -228,9 +229,14 @@
 
                                          <div class="col-xs-12 col-sm-2 ">
                                         <div class="fgroup" >
-                                            <label for="">Total = Ingresos - Gastos: {{total}}</label>
-                                            <input type="text" v-model="total" class="form-control" name="descripcion"   disabled/>
+                                            <label for="">Total = Ingresos - Gastos</label>
+                                          <b>  
+                                              <input v-if="total.includes('-')"  style="color:#FF0000" type="text" v-model="total" class="form-control" name="descripcion"   disabled/>
                                           
+ 
+                                              <input  v-if="!total.includes('-')"   style="color:green" type="text" v-model="total" class="form-control" name="descripcion"   disabled/>
+                                          
+                                          </b>
                                                                        
                                           </div>
                                     
@@ -392,7 +398,7 @@ export default {
       
   });
 
-  this.total= total.reduce(function(total, num){ return total + num }, 0);
+  this.total=  this.formatPrice(total.reduce(function(total, num){ return total + num }, 0));
   this.count = count.reduce(function(count, num){ return count + num }, 0);
 
 },
@@ -417,8 +423,13 @@ export default {
     methods: {
 
      roundToTwo(num) {    
-    return +(Math.round(num + "e+2")  + "e-2");
+    return formatPrice(+(Math.round(num + "e+2")  + "e-2"));
 },
+ formatPrice(value) {
+     
+        let val = (value/1).toFixed(2);
+        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    },
         changedValue() {
                 this.enaatle = false;
                 this.enapatro = false;

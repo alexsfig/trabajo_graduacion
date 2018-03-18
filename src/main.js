@@ -25,7 +25,7 @@ Vue.use(ToggleButton)
 import VueSweetAlert from 'vue-sweetalert'
 Vue.use(VueSweetAlert)
 Vue.use(uiv)
-
+Vue.use(round)
 Vue.config.productionTip = false
 
 router.beforeEach((to, from, next) => {
