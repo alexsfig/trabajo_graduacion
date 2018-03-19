@@ -30,7 +30,20 @@ export default {
            console.log(localStorage.getItem('entrenadorId'));
           clubs.entrenadorId= parseInt(localStorage.getItem('entrenadorId'));
           //noticias.fechaInicio = moment(noticias.fechaInicio).format('YYYY-MM-DD');*/
-        HTTP.post(ESCUELAS, clubs)
+
+          let request={
+              
+            celular:clubs.celular,
+            direccion:clubs.direccion,
+            correo:clubs.correo,
+            entrenadorId:{id:clubs.entrenadorId.id},
+            playaId:{id:clubs.playaId.id},
+            fundacion:clubs.fundacion,
+            nombre:clubs.nombre,
+            representante:clubs.representante,
+            telefonoFijo:clubs.telefonoFijo
+          }
+        HTTP.post(ESCUELAS, request)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
                     context.showSuccess = true
@@ -53,7 +66,19 @@ export default {
     update(context, clubs){
         context.showAlert = false 
         context.showSuccess = false 
-        HTTP.put(ESCUELAS, clubs)
+        let request={
+            id:clubs.id,
+            celular:clubs.celular,
+            direccion:clubs.direccion,
+            correo:clubs.correo,
+            entrenadorId:{id:clubs.entrenadorId.id},
+            playaId:{id:clubs.playaId.id},
+            fundacion:clubs.fundacion,
+            nombre:clubs.nombre,
+            representante:clubs.representante,
+            telefonoFijo:clubs.telefonoFijo
+          }
+        HTTP.put(ESCUELAS, request)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
                     var id = resp.data.id

@@ -30,7 +30,18 @@ export default {
            console.log(localStorage.getItem('entrenadorId'));
           escuelas.entrenadorId= parseInt(localStorage.getItem('entrenadorId'));
           //noticias.fechaInicio = moment(noticias.fechaInicio).format('YYYY-MM-DD');*/
-        HTTP.post(ESCUELAS, escuelas)
+          let request={
+            celular:escuelas.celular,
+            direccion:escuelas.direccion,
+            correo:escuelas.correo,
+            entrenadorId:{id:escuelas.entrenadorId.id},
+            playaId:{id:escuelas.playaId.id},
+            fundacion:escuelas.fundacion,
+            nombre:escuelas.nombre,
+            representante:escuelas.representante,
+            telefonoFijo:escuelas.telefonoFijo
+          }
+        HTTP.post(ESCUELAS, request)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
                     context.showSuccess = true
@@ -53,7 +64,19 @@ export default {
     update(context, escuelas){
         context.showAlert = false 
         context.showSuccess = false 
-        HTTP.put(ESCUELAS, escuelas)
+        let request={
+            id:escuelas.id,
+            celular:escuelas.celular,
+            direccion:escuelas.direccion,
+            correo:escuelas.correo,
+            entrenadorId:{id:escuelas.entrenadorId.id},
+            playaId:{id:escuelas.playaId.id},
+            fundacion:escuelas.fundacion,
+            nombre:escuelas.nombre,
+            representante:escuelas.representante,
+            telefonoFijo:escuelas.telefonoFijo
+          }
+        HTTP.put(ESCUELAS, request)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
                     var id = resp.data.id
