@@ -170,7 +170,7 @@
                                         <button type="submit" v-if="!id" class="btn btn-flat btn-sm btn-primary" ><i aria-hidden="true"
                                             class="fa fa-search"></i> Consultar</button>
                                          <button type="button" class="btn btn-flat btn-sm btn-primary" @click="reset()">  <i aria-hidden="true"  class="fa fa-eraser"></i>  Limpiar</button>
-                                        <button type="submit" v-if="!id" class="btn btn-flat btn-sm btn-primary"><i aria-hidden="true"  class="fa fa-file"></i> Generar Reporte</button>
+                                        <button type="button" v-if="!id" class="btn btn-flat btn-sm btn-primary" @click="createPDF()"> ><i aria-hidden="true"  class="fa fa-file"></i> Generar Reporte</button>
                                         <button type="submit" v-if="id" class="btn btn-flat btn-sm btn-primary">Editar</button>
 
                                     </div>
@@ -193,7 +193,7 @@
                         
                         <div class="box-body">
       
-                            <vue-good-table :columns="columns" :rows="searchs" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
+                            <vue-good-table  id="basic-table" :columns="columns" :rows="searchs" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
                                 <template slot="table-row" scope="props">
 <td>{{ props.row.fecha }}</td>
 <td>{{ props.row.cuentaId.nombre }}</td>
@@ -267,7 +267,6 @@
 </template>
 
 <script>
-
 import transaccionsController from "../../controllers/transacciones.js";
 import vSelect from "vue-select";
 import patrocinadoresController from "../../controllers/patrocinadores.js";
@@ -276,212 +275,287 @@ import formaPagosController from "../../controllers/formaPagos.js";
 import cuentasController from "../../controllers/cuentas.js";
 import tipoTransacionsController from "../../controllers/tipoTransaccions.js";
 
-
 export default {
-    name: "Transaccion",
-    data() {
-        return {
-            errMsg: "",
-            errorMsg: "",
-            showAlert: false,
-            showSuccess: false,
-            successMsg: "",
-            id: "",
-            errMsg: "",
-            enapatro: false,
-            enaatle: false,
-            isLogin: false,
-            naturaleza: [{
-                label: "Ingreso",
-                value: true
-            }, {
-                label: "Gasto",
-                value: false
-            }],
-            // comprobantev:null,
-            transaccion: {
-                fecha: null
-            },
-            searchs:[]
-            ,
+  name: "Transaccion",
+  data() {
+    return {
+      errMsg: "",
+      errorMsg: "",
+      showAlert: false,
+      showSuccess: false,
+      successMsg: "",
+      id: "",
+      errMsg: "",
+      enapatro: false,
+      enaatle: false,
+      isLogin: false,
+      naturaleza: [
+        {
+          label: "Ingreso",
+          value: true
+        },
+        {
+          label: "Gasto",
+          value: false
+        }
+      ],
+      // comprobantev:null,
+      transaccion: {
+        fecha: null
+      },
+      searchs: [],
+      patrocinadors: [],
+      atletas: [],
+      formaPagos: [],
+      cuentas: [],
+      tipoTransaccions: [],
+      limitTo: "",
+      limitFrom: "",
+      format: "yyyy-MM-dd",
+      weekStartsWith: 0,
+      clearBtn: true,
+      todayBtn: true,
+      total: "",
+      count: "",
+      closeOnSelected: true,
 
-            patrocinadors: [],
-            atletas: [],
-            formaPagos: [],
-            cuentas: [],
-            tipoTransaccions: [],
-            limitTo: '',
-            limitFrom: '',
-            format: 'yyyy-MM-dd',
-            weekStartsWith: 0,
-            clearBtn: true,
-            todayBtn: true,
-            total:'',
-            count:'',
-            closeOnSelected: true,
+      columns: [
+        {
+          label: "Fecha",
+          field: "fecha",
+          filterable: true
+        },
+        {
+          label: "Cuenta",
+          field: "cuentaId.nombre",
+          filterable: true
+        },
+        {
+          label: "Tipo de Transaccion",
+          field: "tipoTransaccionId.nombre",
+          filterable: true
+        },
+        {
+          label: "Concepto",
+          field: "tipoTransaccionId.tipo",
+          filterable: true
+        },
+        {
+          label: "Referencia",
+          field: "referencia",
+          filterable: true
+        },
+        {
+          label: "Monto($)",
+          field: "monto",
+          filterable: true
+        },
+        {
+          label: "Forma de Pago",
+          field: "formaPagoId.nombre",
+          filterable: true
+        },
+        {
+          label: "Comprobante",
+          field: "comprobante",
+          filterable: true
+        },
+        {
+          label: "Descripcion",
+          field: "descripcion",
+          filterable: true
+        }
+      ]
+    };
+  },
+  components: {
+    vSelect
+  },
 
-
-
-             columns: [
-                     {
-                      label: 'Fecha',
-                      field: 'fecha',
-                      filterable: true,
-                    },
-                    {
-                      label: 'Cuenta',
-                      field: 'cuentaId.nombre',
-                      filterable: true,
-                    },
-                    {
-                      label: 'Tipo de Transaccion',
-                      field: 'tipoTransaccionId.nombre',
-                      filterable: true,
-                    },
-                    {
-                      label: 'Concepto',
-                      field: 'tipoTransaccionId.tipo',
-                      filterable: true,
-                    },
-                    {
-                      label: 'Referencia',
-                      field: 'referencia',
-                      filterable: true,
-                    },
-                     {
-                      label: 'Monto($)',
-                      field: 'monto',
-                      filterable: true,
-                    },
-                    {
-                      label: 'Forma de Pago',
-                      field: 'formaPagoId.nombre',
-                      filterable: true,
-                    },
-                    {
-                      label: 'Comprobante',
-                      field: 'comprobante',
-                      filterable: true,
-                    },
-                    {
-                      label: 'Descripcion',
-                      field: 'descripcion',
-                     filterable: true,
-                    }
-                   
-                    
-                ]
-
-
-        };
-    },
-    components: {
-        vSelect
-    },
-
-    watch: {
+  watch: {
     showSuccess: function(val) {
-
       transaccionsController.retrieve(this, this.entrada);
     },
 
-    searchs: function(value){
+    searchs: function(value) {
+      let total = [];
+      let count = [];
 
-  let total = [];
-  let count = [];
+      console.log("Sumando");
 
-   console.log("Sumando");
+      Object.entries(value).forEach(([key, val]) => {
+        total.push(val.tipoTransaccionId.tipo ? val.monto : -val.monto); // the value of the current key.
+        count.push(1);
+      });
 
-  Object.entries(value).forEach(([key, val]) => {
-      total.push(val.tipoTransaccionId.tipo?val.monto:-val.monto) // the value of the current key.
-      count.push(1)
-      
-  });
-
-  this.total=  this.formatPrice(total.reduce(function(total, num){ return total + num }, 0));
-  this.count = count.reduce(function(count, num){ return count + num }, 0);
-
-},
-
-  },
-    created() {
-        this.id = this.$route.params.id;
-        if (this.id) {
-            transaccionsController.retrieve(this, this.id);
-            transaccionsController.retrieve(this, this.entrada);
-            //this.comprobantev.value = this.transaccion.comprobante;
-        }
-        //this.transaccion.fecha=new Date();
-
-        console.log("id:" + this.id);
-        patrocinadoresController.index(this);
-        atletasController.index(this);
-        formaPagosController.index(this);
-        cuentasController.index(this);
-        tipoTransacionsController.index(this);
-    },
-    methods: {
-
-     roundToTwo(num) {    
-    return formatPrice(+(Math.round(num + "e+2")  + "e-2"));
-},
- formatPrice(value) {
-     
-        let val = (value/1).toFixed(2);
-        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
-    },
-        changedValue() {
-                this.enaatle = false;
-                this.enapatro = false;
-                console.log("ejemplo hhhhhhhhhhh");
-                if (this.transaccion.tipoTransaccionId) {
-                    if (this.transaccion.tipoTransaccionId.tipo) {
-                        if (this.transaccion.tipoTransaccionId.asociar) {}
-
-                        this.enapatro = true;
-                    } else {
-                        if (this.transaccion.tipoTransaccionId.asociar) {
-                            this.enaatle = true;
-                        }
-                    }
-                }
-            },
-            submit() {
-                this.showAlert = false;
-                this.showSuccess = false;
-                this.$validator.validateAll().then(success => {
-                    if (success) {
-
-let entrada="?";
-entrada+="inicio="+this.transaccion.inicio;
-entrada+="&fin="+this.transaccion.fin;
-entrada+=this.transaccion.atletaId?"&atleta="+this.transaccion.atletaId.id:'';
-entrada+=this.transaccion.patrocinadorId?"&patrocinador="+this.transaccion.patrocinadorId.id:'';
-entrada+=this.transaccion.formaPagoId?"&formaPago="+this.transaccion.formaPagoId.id:'';
-entrada+=this.transaccion.cuentaId?"&cuenta="+this.transaccion.cuentaId.id:'';
-entrada+=this.transaccion.tipoTransaccionId?"&tipo="+this.transaccion.tipoTransaccionId.id:'';
-entrada+=this.transaccion.naturaleza?"&naturaleza="+this.transaccion.naturaleza.value:'';
-
-
-                       
-
-                  
-                   
-                       if (!this.id) transaccionsController.reporte(this, entrada);
-                        else transaccionsController.update(this, this.transaccion);
-                    } else {
-                        console.log("Error enn el formulario");
-                        this.showAlert = true;
-                        this.errMsg = "Form error";
-                    }
-                });
-            },
-
-            reset() {
-                this.transaccion = {}
-               
-            }
+      this.total = this.formatPrice(
+        total.reduce(function(total, num) {
+          return total + num;
+        }, 0)
+      );
+      this.count = count.reduce(function(count, num) {
+        return count + num;
+      }, 0);
     }
-};
+  },
+  created() {
+    this.id = this.$route.params.id;
+    if (this.id) {
+      transaccionsController.retrieve(this, this.id);
+      transaccionsController.retrieve(this, this.entrada);
+      //this.comprobantev.value = this.transaccion.comprobante;
+    }
+    //this.transaccion.fecha=new Date();
 
+    console.log("id:" + this.id);
+    patrocinadoresController.index(this);
+    atletasController.index(this);
+    formaPagosController.index(this);
+    cuentasController.index(this);
+    tipoTransacionsController.index(this);
+  },
+  methods: {
+    roundToTwo(num) {
+      return formatPrice(+(Math.round(num + "e+2") + "e-2"));
+    },
+    formatPrice(value) {
+      let val = (value / 1).toFixed(2);
+      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    },
+    changedValue() {
+      this.enaatle = false;
+      this.enapatro = false;
+      console.log("ejemplo hhhhhhhhhhh");
+      if (this.transaccion.tipoTransaccionId) {
+        if (this.transaccion.tipoTransaccionId.tipo) {
+          if (this.transaccion.tipoTransaccionId.asociar) {
+          }
+
+          this.enapatro = true;
+        } else {
+          if (this.transaccion.tipoTransaccionId.asociar) {
+            this.enaatle = true;
+          }
+        }
+      }
+    },
+    submit() {
+      this.showAlert = false;
+      this.showSuccess = false;
+      this.$validator.validateAll().then(success => {
+        if (success) {
+          let entrada = "?";
+          entrada += "inicio=" + this.transaccion.inicio;
+          entrada += "&fin=" + this.transaccion.fin;
+          entrada += this.transaccion.atletaId
+            ? "&atleta=" + this.transaccion.atletaId.id
+            : "";
+          entrada += this.transaccion.patrocinadorId
+            ? "&patrocinador=" + this.transaccion.patrocinadorId.id
+            : "";
+          entrada += this.transaccion.formaPagoId
+            ? "&formaPago=" + this.transaccion.formaPagoId.id
+            : "";
+          entrada += this.transaccion.cuentaId
+            ? "&cuenta=" + this.transaccion.cuentaId.id
+            : "";
+          entrada += this.transaccion.tipoTransaccionId
+            ? "&tipo=" + this.transaccion.tipoTransaccionId.id
+            : "";
+          entrada += this.transaccion.naturaleza
+            ? "&naturaleza=" + this.transaccion.naturaleza.value
+            : "";
+
+          if (!this.id) transaccionsController.reporte(this, entrada);
+          else transaccionsController.update(this, this.transaccion);
+        } else {
+          console.log("Error enn el formulario");
+          this.showAlert = true;
+          this.errMsg = "Form error";
+        }
+      });
+    },
+
+    reset() {
+      this.transaccion = {};
+      this.searchs = [];
+    },
+    createPDF2(){
+         let jsPDF = require("jspdf");
+      require("jspdf-autotable");
+    var doc = new jsPDF();
+    doc.text("From HTML", 14, 16);
+    var elem = document.getElementById("basic-table");
+    var res = doc.autoTableHtmlToJson(elem);
+    doc.autoTable(res.columns, res.data, {startY: 20});
+    return doc;
+},
+    createPDF() {
+
+                                
+let filas=[];
+for(let aux of this.searchs){
+let fila={
+fecha:aux.fecha,
+cuenta:aux.cuentaId.nombre,
+tipo:aux.tipoTransaccionId.tipo==true?'Ingreso':'Gasto',
+monto:aux.monto,
+forma:aux.formaPagoId.nombre
+
+}
+
+filas.push(fila)
+}
+      let jsPDF = require("jspdf");
+      require("jspdf-autotable");
+      var item = {
+        Name: "XYZ",
+        Age: "22",
+        Gender: "Male"
+      };
+      var doc = new jsPDF();
+      var columns = [
+
+        { title: "Fecha", dataKey: "fecha" },
+        { title: "Cuenta", dataKey: "cuenta" },
+        
+
+        { title: "Tipo", dataKey: "tipo" },
+        
+     
+        { title: "Forma", dataKey: "forma" },
+           { title: "Monto", dataKey: "monto" }
+      ];
+      var rows = [];
+      for (let row of this.searchs) {
+        rows.push(row);
+      }
+      doc.autoTable(columns, filas, {
+        styles: {
+          cellPadding: 5, // a number, array or object (see margin below)
+          fontSize: 10,
+          font: "helvetica", // helvetica, times, courier
+          lineColor: 200,
+          lineWidth: 0,
+          fontStyle: "normal", // normal, bold, italic, bolditalic
+          overflow: "ellipsize", // visible, hidden, ellipsize or linebreak
+          fillColor: false, // false for transparent or a color as described below
+          textColor: 20,
+          halign: "left", // left, center, right
+          valign: "middle", // top, middle, bottom
+          columnWidth: "auto" // 'auto', 'wrap' or a number
+        },
+        columnStyles: {
+          id: { fillColor: 255 }
+        },
+        margin: { top: 30 },
+        addPageContent: function(data) {
+          doc.text("<b>Reporte de Transacciones</b>", 10, 10);
+        }
+      });
+
+      doc.save("Test.pdf");
+    }
+  }
+};
 </script>
