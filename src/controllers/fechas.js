@@ -35,7 +35,7 @@ export default {
                     context.showAlert = false
                 }
                 context.showSuccess = true
-                context.successMsg = "Entrenador Actualizado"
+                context.successMsg = "Fecha Actualizada"
             })
             .catch((err) => {
                 context.showAlert = true
@@ -98,11 +98,11 @@ export default {
         HTTP.delete(FECHAS + id)
             .then((resp) => {
                 console.log(resp);
-                swal("Deleted!", "El Fecha ha sido eliminado", "success")
+                swal("Deleted!", "La Fecha ha sido eliminada", "success")
                 context.fetchData();
             })
             .catch((err) => {
-                swal("Oh snap!", "Ocurrio un error.", "error")
+                swal("No se puede Eliminar!", "Es posible que la Fecha contenga circuitos", "error")
             })
     }, 
     create(context, fecha){

@@ -59,11 +59,11 @@
 
                                        
 
-                                         <button type="button" class="btn btn-flat btn-sm btn-warning margin" 
+                                         <button type="button" class="margin btn btn-flat btn-sm bg-navy margin" 
                                         @click="agregarAtletas(props.row.id, props.row)"><i aria-hidden="true" 
                                         class="fa fa-male"></i> Agregar Atletas</button>
 
-                                         <button type="button" class="btn btn-flat btn-sm btn-warning margin" 
+                                         <button type="button" class="margin btn btn-flat btn-sm bg-navy margin" 
                                         @click="agregarJueces(props.row.id, props.row)"><i aria-hidden="true" 
                                         class="fa fa-gavel"></i> Agregar Jueces</button>
 

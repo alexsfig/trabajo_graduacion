@@ -37,8 +37,8 @@
 
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('nombre') }" >
-                                            <label for="">Fecha</label>
-                                            <input type="text" id="nombre" name="nombre" data-vv-as="Nombre de fecha" class="form-control" v-model="fecha.nombre" v-validate="'required'" >
+                                            <label for="">Nombre de Fecha</label>
+                                            <input type="text" id="nombre" name="nombre" data-vv-as="Nombre de Fecha" class="form-control" v-model="fecha.nombre" v-validate="'required'" >
                                             <span class="help-block" for="nombre" v-bind:data-error="errors.first('nombre')">
                                                 {{ errors.first('nombre') }}
                                             </span>
@@ -46,7 +46,7 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup"  :class="{ 'has-error': errors.has('playa') }">
-                                            <label for="playa">Playa</label>
+                                            <label for="playa">Playa de Realizazion</label>
                                             <v-select
                                                 :debounce="250"
                                                 :options="playas"
@@ -62,17 +62,36 @@
                                         </div>
                                     </div>
                                     <div class="clearfix"></div>
-                                    <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('fecha') }">
-                                            <label for="fecha">Fecha</label>
-                                            <input type="date" id="fecha" name="fecha" class="form-control" data-vv-as="Fecha"  v-model="fecha.fecha" v-validate="'required'" >
-                                            <span class="help-block" for="fecha" v-bind:data-error="errors.first('fecha')">
+
+
+                                     <div class="col-xs-12 col-sm-6">
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('fecha') }" >
+                                            <label for="">Inicio de Fecha</label>
+                                            <dropdown class="form-group">
+                                                <div class="input-group">
+                                                    <input placeholder="AAAA-MM-DD" type="text" id="fecha" name="fecha" class="form-control" data-vv-as="Inicio de Fecha" v-model="fecha.fecha" v-validate="'required|date_format:YYYY-MM-DD'" :class="{'datepicker':true,  'has-error': errors.has('fecha') }">
+                                                    <div class="input-group-btn">
+                                                        <button class="btn btn-default" type="button" data-role="trigger" :class="{'has-error': errors.has('fecha') }">
+                                                            <i class="glyphicon glyphicon-calendar"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <template slot="dropdown">
+                                                    <li>
+                                                        <date-picker class="date-picker" :language="'es'" v-model="fecha.fecha" :today-btn="todayBtn" :clear-btn="clearBtn" :limit-from="limitFrom" :format="format" :week-starts-with="weekStartsWith" :limit-to="limitTo" :close-on-selected="closeOnSelected">
+                                                        </date-picker>
+                                                    </li>
+                                                </template>
+                                            </dropdown>
+
+                                           
+                                            <span class="help-block" for="Fecha" v-bind:data-error="errors.first('fecha')">
                                                 {{ errors.first('fecha') }}
                                             </span>
-
                                         </div>
                                     </div>
-                                         
+
+                                
                                     
                                 </div>
                                 <div class="box-footer">
@@ -109,7 +128,15 @@
                 isLogin: false,
                 fecha: {},
                 playas: [],
-                id: ''
+                id: '',
+
+                  clearBtn: true,
+                todayBtn: true,
+                closeOnSelected: true,
+                limitFrom: '',
+                limitTo: '',
+                format: 'yyyy-MM-dd',
+                weekStartsWith: 0,
 
             }
         },

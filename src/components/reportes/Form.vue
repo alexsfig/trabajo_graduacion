@@ -1,13 +1,13 @@
 <template>
     <div>
         <section class="content-header">
-            <h1>Reporte Financiero</h1>
+            <h1>Resumen Financiero</h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li>
                     <router-link to="/admin/transaccion/">Transacciones</router-link>
                 </li>
-                <li class="active">Reporte Financiero</li>
+                <li class="active">Resumen Financiero</li>
             </ol>
         </section>
         <section class="content">
@@ -25,7 +25,7 @@
                     </div>
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title" v-if="!id">Parametros de Reporte  </h3>
+                            <h3 class="box-title" v-if="!id">Parametros de Resumen Financiero  </h3>
                             <h3 class="box-title" v-if="id">Editar  Transaccion</h3>
                         </div>
                         <div class="box-body">
@@ -96,8 +96,13 @@
                                             </v-select>
                                             <div class="clearfix"></div>
                                             <input type="hidden" name="formaPagoId" value="" data-vv-as="formaPagoId" v-model="transaccion.formaPagoId" >
+
+                                            <span class="help-block" for="formaPagoId" v-bind:data-error="errors.first('formaPagoId')">
+                                                {{ errors.first('formaPagoId') }}
+                                            </span>    
                                           
                                         </div>  
+
 
                                     </div> 
 
@@ -110,6 +115,10 @@
                                             </v-select>
                                             <div class="clearfix"></div>
                                             <input type="hidden" name="cuentaId" value="" data-vv-as="cuenta" v-model="transaccion.cuentaId"  >
+
+                                              <span class="help-block" for="cuentaId" v-bind:data-error="errors.first('cuentaId')">
+                                                {{ errors.first('cuentaId') }}
+                                            </span>   
                                             
                                         </div>
                                     </div>
@@ -121,6 +130,10 @@
                                             </v-select>
                                             <div class="clearfix"></div>
                                             <input type="hidden" name="tipoTransaccionId" value="" data-vv-as="tipo Transaccion" v-model="transaccion.tipoTransaccionId" >
+
+                                             <span class="help-block" for="tipoTransaccionId" v-bind:data-error="errors.first('tipoTransaccionId')">
+                                                {{ errors.first('tipoTransaccionId') }}
+                                            </span>   
                                            
                                         </div>
 
@@ -135,6 +148,10 @@
                                             </v-select>
                                              <div class="clearfix"></div>
                                             <input type="hidden" name="naturaleza" value="" data-vv-as="naturaleza" v-model="transaccion.naturaleza" >
+
+                                             <span class="help-block" for="naturaleza" v-bind:data-error="errors.first('naturaleza')">
+                                                {{ errors.first('naturaleza') }}
+                                            </span>   
                                            
                                         </div>
                                     </div>
@@ -149,6 +166,10 @@
                                             </v-select>
                                             <div class="clearfix"></div>
                                             <input type="hidden" name="patrocinadorId" value="" data-vv-as="patrocinadorId" v-model="transaccion.patrocinadorId" >
+
+                                            <span class="help-block" for="patrocinadorId" v-bind:data-error="errors.first('patrocinadorId')">
+                                                {{ errors.first('patrocinadorId') }}
+                                            </span>   
                                            
                                         </div>
                                     </div>
@@ -159,6 +180,10 @@
                                             </v-select>
                                             <div class="clearfix"></div>
                                             <input type="hidden" name="atletaId" value="" data-vv-as="atletaId" v-model="transaccion.atletaId" >
+
+                                            <span class="help-block" for="atletaId" v-bind:data-error="errors.first('atletaId')">
+                                                {{ errors.first('atletaId') }}
+                                            </span>  
                                             
                                         </div>
                                     </div>
@@ -170,7 +195,7 @@
                                         <button type="submit" v-if="!id" class="btn btn-flat btn-sm btn-primary" ><i aria-hidden="true"
                                             class="fa fa-search"></i> Consultar</button>
                                          <button type="button" class="btn btn-flat btn-sm btn-primary" @click="reset()">  <i aria-hidden="true"  class="fa fa-eraser"></i>  Limpiar</button>
-                                        <button type="button" v-if="!id" class="btn btn-flat btn-sm btn-primary" @click="createPDF()"> ><i aria-hidden="true"  class="fa fa-file"></i> Generar Reporte</button>
+                                        <button type="button" v-if="searchs.length>0" class="btn btn-flat btn-sm btn-primary" @click="createPDF(transaccion.inicio, transaccion.fin, total, count)"><i aria-hidden="true"  class="fa fa-file"></i> Generar Reporte</button>
                                         <button type="submit" v-if="id" class="btn btn-flat btn-sm btn-primary">Editar</button>
 
                                     </div>
@@ -188,7 +213,7 @@
                 <div class="col-lg-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Transacciones Involucradas </h3>
+                            <h3 class="box-title">Transacciones Registradas Desde: <b>{{transaccion.inicio}}</b> Hasta: <b>{{transaccion.fin}} </b></h3>
                         </div>
                         
                         <div class="box-body">
@@ -200,14 +225,15 @@
 <td>{{ props.row.tipoTransaccionId.nombre }}</td>
 <td>{{ props.row.tipoTransaccionId.tipo==true?'Ingreso':'Gasto' }}</td>
 <td>{{ props.row.referencia }}</td>
-<td v-if="!props.row.tipoTransaccionId.tipo" style="color:#FF0000"><b>{{ props.row.monto }}</b></td>
-<td v-if="props.row.tipoTransaccionId.tipo" style="color:green"><b>{{ props.row.monto }}</b></td>
+<td v-if="!props.row.tipoTransaccionId.tipo" style="color:#FF0000"><b>{{ roundToTwo(props.row.monto) }}</b></td>
+<td v-if="props.row.tipoTransaccionId.tipo" style="color:green"><b>{{roundToTwo( props.row.monto) }}</b></td>
 <td>{{ props.row.formaPagoId.nombre }}</td>
 <td>{{ props.row.comprobante }}</td>
 <td>{{ props.row.descripcion }}</td>
                                 
                                   </template>
                             </vue-good-table>
+
 
 
 
@@ -318,6 +344,8 @@ export default {
       total: "",
       count: "",
       closeOnSelected: true,
+ 
+   // base64Img :'',
 
       columns: [
         {
@@ -399,6 +427,11 @@ export default {
     }
   },
   created() {
+
+     /*   this.imgToBase64('logo2.png', function(base64) {
+            console.log("khsdjdswskjjskdkjsda imagen")
+    this.base64Img = base64; 
+});  */
     this.id = this.$route.params.id;
     if (this.id) {
       transaccionsController.retrieve(this, this.id);
@@ -416,11 +449,11 @@ export default {
   },
   methods: {
     roundToTwo(num) {
-      return formatPrice(+(Math.round(num + "e+2") + "e-2"));
+      return this.formatPrice(+(Math.round(num + "e+2") + "e-2"));
     },
     formatPrice(value) {
       let val = (value / 1).toFixed(2);
-      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     },
     changedValue() {
       this.enaatle = false;
@@ -480,33 +513,27 @@ export default {
       this.transaccion = {};
       this.searchs = [];
     },
-    createPDF2(){
-         let jsPDF = require("jspdf");
-      require("jspdf-autotable");
-    var doc = new jsPDF();
-    doc.text("From HTML", 14, 16);
-    var elem = document.getElementById("basic-table");
-    var res = doc.autoTableHtmlToJson(elem);
-    doc.autoTable(res.columns, res.data, {startY: 20});
-    return doc;
-},
-    createPDF() {
-
-                                
+    
+    createPDF(fechaini, fechafin, total, count) {                             
 let filas=[];
 for(let aux of this.searchs){
 let fila={
 fecha:aux.fecha,
 cuenta:aux.cuentaId.nombre,
-tipo:aux.tipoTransaccionId.tipo==true?'Ingreso':'Gasto',
-monto:aux.monto,
-forma:aux.formaPagoId.nombre
+tipo: aux.tipoTransaccionId.nombre,
+concepto:aux.tipoTransaccionId.tipo==true?'Ingreso':'Gasto',
+referencia:aux.referencia,
+monto:this.roundToTwo(aux.monto),
+forma:aux.formaPagoId.nombre,
+comprobante:aux.comprobante,
+descripcion:aux.descripcion
 
 }
 
 filas.push(fila)
 }
       let jsPDF = require("jspdf");
+      var totalPagesExp = "{total_pages_count_string}";
       require("jspdf-autotable");
       var item = {
         Name: "XYZ",
@@ -514,48 +541,118 @@ filas.push(fila)
         Gender: "Male"
       };
       var doc = new jsPDF();
+     
       var columns = [
 
         { title: "Fecha", dataKey: "fecha" },
         { title: "Cuenta", dataKey: "cuenta" },
+        { title: "Tipo de Transaccion", dataKey: "tipo" },
         
 
-        { title: "Tipo", dataKey: "tipo" },
+        { title: "Concepto", dataKey: "concepto" },
+        
+       
         
      
-        { title: "Forma", dataKey: "forma" },
-           { title: "Monto", dataKey: "monto" }
+        { title: "Forma de Pago", dataKey: "forma" },
+        { title: "Comprobante", dataKey: "comprobante" },
+         { title: "Monto($)", dataKey: "monto" }
+       
+           
       ];
       var rows = [];
       for (let row of this.searchs) {
         rows.push(row);
       }
-      doc.autoTable(columns, filas, {
-        styles: {
-          cellPadding: 5, // a number, array or object (see margin below)
-          fontSize: 10,
-          font: "helvetica", // helvetica, times, courier
-          lineColor: 200,
-          lineWidth: 0,
-          fontStyle: "normal", // normal, bold, italic, bolditalic
-          overflow: "ellipsize", // visible, hidden, ellipsize or linebreak
-          fillColor: false, // false for transparent or a color as described below
-          textColor: 20,
-          halign: "left", // left, center, right
-          valign: "middle", // top, middle, bottom
-          columnWidth: "auto" // 'auto', 'wrap' or a number
-        },
-        columnStyles: {
-          id: { fillColor: 255 }
-        },
-        margin: { top: 30 },
-        addPageContent: function(data) {
-          doc.text("<b>Reporte de Transacciones</b>", 10, 10);
-        }
-      });
 
-      doc.save("Test.pdf");
+      
+
+     // HEADER
+        doc.setFontSize(20);
+        doc.setTextColor(40);
+        doc.setFontStyle('normal');
+        /*if (this.base64Img) {
+            console.log("agregue una imgToBase64")
+            doc.addImage("", 'png', data.settings.margin.left, 15, 10, 10);
+        } */
+
+        doc.setFontStyle("bold"); 
+        doc.text("Federacion Salvadoreña de Surf", 10, 20);  
+        doc.text("Resumen Financiero", 10, 30);
+        doc.setFontStyle("normal"); 
+        doc.setFontSize(10);
+        doc.text("Transacciones Registradas Desde: ", 10, 40);
+        doc.setFontStyle("bold");          
+        doc.text(fechaini, 66, 40);
+        doc.setFontStyle("normal"); 
+        doc.text(" Hasta: ", 85, 40);
+        doc.setFontStyle("bold"); 
+        doc.text(fechafin, 97, 40);
+        doc.setFontStyle("normal");  
+
+
+
+      var pageContent = function (data) {
+        
+
+        // FOOTER
+
+        var str = "Pagina " + data.pageCount;
+        // Total page number plugin only available in jspdf v1.0+
+        if (typeof doc.putTotalPages === 'function') {
+            str = str + " de " + totalPagesExp;
+        }
+        doc.setFontSize(10);
+        doc.text(str, data.settings.margin.left, doc.internal.pageSize.height - 10);
+    };
+
+
+
+// You could either use a function similar to this or pre convert an image with for example http://dopiaza.org/tools/datauri
+// http://stackoverflow.com/questions/6150289/how-to-convert-image-into-base64-string-using-javascript
+
+
+
+
+      doc.autoTable(columns, filas, {
+          addPageContent: pageContent,
+         theme:'striped',
+        startY: 45/*, showHeader: 'firstPage'*/
+      });
+doc.setFontStyle("bold");      
+var linea='Total = Ingreso - Gastos:      '+total;
+var linea2='Numero de Transacciones:   '+count;
+       doc.text(linea, 130, doc.autoTable.previous.finalY + 10);
+       doc.text(linea2, 130, doc.autoTable.previous.finalY + 20);
+       //doc.text(this.count,  20, doc.autoTable.previous.finalY + 10);
+
+
+      if (typeof doc.putTotalPages === 'function') {
+        doc.putTotalPages(totalPagesExp);
     }
+
+      doc.save("Resumen_Financiero.pdf");
+    },
+
+  /*imgToBase64: function imgToBase64(url, callback) {
+    console.log("en el conver")
+    if (!window.FileReader) {
+        callback(null);
+        return;
+    }
+    var xhr = new XMLHttpRequest();
+    xhr.responseType = 'blob';
+    xhr.onload = function() {
+        var reader = new FileReader();
+        reader.onloadend = function() {
+            callback(reader.result.replace('text/xml', 'image/png'));
+        };
+        reader.readAsDataURL(xhr.response);
+    };
+    xhr.open('GET', url);
+    xhr.send();
+} */
+
   }
 };
 </script>

@@ -36,8 +36,8 @@
                                   styleClass="table table-striped table-condensed">
                                   <template slot="table-row" scope="props">
                                     <td>{{ props.row.nombreCategoria }}</td>
-                                    <td>{{ props.row.edadMin}}</td>
-                                    <td>{{ props.row.edadMax}}</td>
+                                    <td>{{ props.row.edadMin}} años</td>
+                                    <td>{{ props.row.edadMax}} años</td>
                                     <td>{{ props.row.descripcionCategoria}}</td>
                                     <td>{{
                                       (props.row.sexo == 'F') ? 'Femenino' : ((props.row.sexo == 'M') ? 'Masculino' : 'Mixto')

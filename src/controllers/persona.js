@@ -36,7 +36,7 @@ export default {
 
 
                context.showSuccess = true
-               context.successMsg = "Persona creada exitosamente333"
+               context.successMsg = "Persona creada exitosamente"
               console.log(resp);
               formData.append('id', resp.data.atleta.id)
               console.log("********************");

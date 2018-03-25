@@ -242,7 +242,7 @@
 		               
 		                 <li>
 		                    <router-link to="/admin/reportes/form">
-		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Reporte Financiero</span>
+		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Resumen Financiero</span>
 		                    </router-link>
 		                </li>
 		            </ul>
