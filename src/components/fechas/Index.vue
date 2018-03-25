@@ -97,16 +97,16 @@
                     },
                     
                     {
-                        label: "Nombre",
+                        label: "Nombre de Fecha",
                         field: "nombre",
                     },
                     {
-                        label: "Fecha",
+                        label: "Inicio de Fecha",
                         field: "fecha",
                     },
 
                      {
-                        label: "Playa",
+                        label: "Playa de Realizacion",
                         field: "playaId.nombre",
                     },
                      {

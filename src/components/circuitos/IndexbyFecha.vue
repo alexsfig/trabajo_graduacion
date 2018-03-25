@@ -35,7 +35,7 @@
                         <div class="box-body">
       <div class="box-action">
                                 <router-link to="/admin/circuitos/form" class="btn btn-default btn-flat">
-                                    <i class="fa fa-plus"></i> Nueva Circuito
+                                    <i class="fa fa-plus"></i> Nuevo Circuito
                                 </router-link>
 
                             </div>
@@ -69,18 +69,20 @@
 
                                          <button type="button" class="margin btn btn-flat btn-sm btn-success" 
                                         @click="llamaRonda(props.row.id, props.row)"><i aria-hidden="true" 
-                                        class="fa fa-flag-checkered"></i> Iniciar Circuito</button>
+                                        class="fa fa-flag-checkered"></i> Gestionar Circuito</button>
                                 
                                     </td>
                                   </template>
                             </vue-good-table>
-
+                             
+                             
+                             <div class="box-body">
                               
-                             <router-link to="/admin/fechas/" class="btn btn-default btn-flat">
+                             <router-link to="/admin/fechas/" class="btn btn-flat btn-sm btn-warning margin">
                                     <i class="fa fa-arrow-circle-left"></i>  Regresar a Fechas
                                 </router-link>
 
-                                 
+                                </div> 
 
                         </div>
 

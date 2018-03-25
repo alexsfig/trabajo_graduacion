@@ -85,8 +85,18 @@
 
 
                         </div>
+
+                          <div class="box-body">
+                              
+                             <router-link to="/admin/circuitos/" class="btn btn-flat btn-sm btn-warning margin">
+                                    <i class="fa fa-arrow-circle-left"></i>  Regresar a Circuitos
+                                </router-link>
+
+                                </div> 
+
+
                     </div>
-    |                </div>
+                   </div>
             </div>
            <!-- <modalPlaya :methodSubmit="methodSubmit" :title="'Actualizar Usuario'" :buttonMsg="'Actualizar'" :openModal="openModal" :playa="playa" v-on:openChange="isChange"></modalPlaya> -->
         </section>

@@ -35,7 +35,7 @@ export default {
                     context.showAlert = false
                 }
                 context.showSuccess = true
-                context.successMsg = "Entrenador Actualizado"
+                context.successMsg = "Circuito Actualizado"
             })
             .catch((err) => {
                 context.showAlert = true
@@ -114,7 +114,7 @@ export default {
                 context.fetchData();
             })
             .catch((err) => {
-                swal("Oh snap!", "Ocurrio un error.", "error")
+                swal("No se puede Eliminar!", "Es posible que el Circuito ya contenga Atletas y Jueces Asignados", "error")
             })
     }, 
     create(context, circuito){
@@ -127,7 +127,7 @@ export default {
                             .then((resp) => {
                                 if (resp.status>= 200 && resp.status <=300){
                                     context.showSuccess = true
-                                    context.successMsg = "Circuito creada exitosamente"
+                                    context.successMsg = "Circuito creado exitosamente"
                                     context.fetchData()
                                     context.resetForm()
                                 }
