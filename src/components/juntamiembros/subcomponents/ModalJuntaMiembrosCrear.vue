@@ -169,18 +169,19 @@ export default {
                      //   this.persona.miembroJunta=
                         if(  this.title2 !=  "Actualizar Jerarquia"){
                         const request={
-                           nivelJerarquia:this.miembroJunta.nivelJerarquia,
-                           id:this.miembroJunta.nivelJerarquia}
+                           nivelJerarquia:this.updateMiembrojunta.nivelJerarquia.name
+                          }
+                          this.persona.sexo=this.persona.sexo.name;
                           this.persona.miembroJunta=request;
-                            juntamiembros.create(this, persona)
+                            juntamiembros.update(this, this.persona)
                         }
                         else{
                           //  miembroJunta.id =  this.persona.miembroJuntaId.id
                             const request={
-                          nivelJerarquia:this.miembroJunta.nivelJerarquia,
+                          nivelJerarquia:this.miembroJunta.nivelJerarquia.name,
                           }
                           this.persona.miembroJunta=request;
-                            juntamiembros.update(this, persona)
+                            juntamiembros.update(this, this.persona)
                         }
                     } else {
                         this.errMsg = 'Error revisa el formulario'

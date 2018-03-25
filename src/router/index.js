@@ -83,6 +83,9 @@ import EscuelasIndex from '@/components/escuelas/Index'
 import ClubsForm from '@/components/clubes/Form'
 import ClubsIndex from '@/components/clubes/Index'
 import JuezsForm from '@/components/jueces/Edit'
+import JuezsAdd from '@/components/jueces/Add'
+
+
 import CertiForm from '@/components/jueces/Form'
 import RondaIndex from '@/components/rondas/Index'
 
@@ -445,16 +448,17 @@ Vue.use(Router)
           name: 'rondaIndex',
           component: RondaIndex
         }
-        ,
-        {
-          path: 'editjuez',
-          name: 'juezEdit',
-          component: JuezsForm
-        },
+      ,
         {
           path: 'editjuez/:id',
           name: 'juezEdit',
           component: JuezsForm
+        },
+
+        {
+          path: 'addjuez/:id',
+          name: 'juezAdd',
+          component: JuezsAdd
         },
 
          {

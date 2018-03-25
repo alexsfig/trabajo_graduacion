@@ -39,32 +39,41 @@
                                     <td class="nowrap">{{ props.row.nombre }}</td>
                                     <td>{{ props.row.apellido }}</td>
                                     <td>{{ props.row.correo }}</td>
-                                    <td>
-                                        <i :class=" props.row.atleta == null ? 'text-red fa fa-times-circle-o':'fa fa-check-square-o text-info' "></i>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <button class="btn btn-primary-outline" :title="props.row.atleta == null? 'Crear':'Editar'" dat-toggle="tooltip" @click="(props.row.atleta == null?  _atleta(0, props.row) : _atleta(props.row.atleta.id, props.row))">
-                                            <i class="fa" :class="props.row.atleta == null? 'fa-plus':'fa-pencil-square'"  aria-hidden="true"></i>
+                                    <td >
+                                       <!--! <i :class=" props.row.atleta == null ? 'text-red fa fa-times-circle-o':'fa fa-check-square-o text-info' "></i>-->
+                                    
+                                     <button class="btn btn-primary-outline" :title="props.row.atleta == null? 'Crear':'Eliminar'" dat-toggle="tooltip" @click="(props.row.atleta == null?  _atleta(0, props.row) : deleteAtleta(props.row.atleta.id,props.row.nombre+','+props.row.apellido))">
+                                            <i class="fa" :class="props.row.atleta == null? 'fa-plus':'text-red fa fa-times-circle-o'"  aria-hidden="true"></i>
                                         </button>
                                     </td>
                                     <td>
-                                        <i :class=" props.row.miembroJunta == null ? 'text-red fa fa-times-circle-o':'fa fa-check-square-o text-info' "></i>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <button class="btn btn-primary-outline" :title="props.row.miembroJunta == null? 'Crear':'Editar'" dat-toggle="tooltip" @click="(props.row.miembroJunta == null?  _miembro(0, props.row) : _miembro(props.row.miembroJunta.id, props.row))">
-                                            <i class="fa" :class="props.row.miembroJunta == null? 'fa-plus':'fa-pencil-square'" aria-hidden="true"></i>
+                                       <!-- <i :class=" props.row.miembroJunta == null ? 'text-red fa fa-times-circle-o':'fa fa-check-square-o text-info' "></i>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;-->
+                                        <button class="btn btn-primary-outline" :title="props.row.miembroJunta == null? 'Crear':'Eliminar'" dat-toggle="tooltip" @click="(props.row.miembroJunta == null?  _miembro(0, props.row) : deleteMiembro(props.row.miembroJunta.id,props.row.nombre+','+props.row.apellido))">
+                                            <i class="fa" :class="props.row.miembroJunta == null? 'fa-plus':'text-red fa fa-times-circle-o'" aria-hidden="true"></i>
                                         </button>
                                     </td>
                                     <td>
-                                        <i :class=" props.row.juez == null ? 'text-red fa fa-times-circle-o':'fa fa-check-square-o text-info' "></i>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <button class="btn btn-primary-outline" :title="props.row.juez == null? 'Crear':'Editar'" dat-toggle="tooltip" @click="(props.row.juez == null?  _juez(0, props.row) : _juez(props.row.juez.id, props.row))">
-                                            <i class="fa" :class="props.row.juez == null? 'fa-plus':'fa-pencil-square'" aria-hidden="true"></i>
+                                     <!--    <i :class=" props.row.juez == null ? 'text-red fa fa-times-circle-o':'fa fa-check-square-o text-info' "></i>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;-->
+<div v-if="!props.row.juez"> 
+                                         <router-link :to="{ name: 'juezAdd', params: { id: props.row.id }}">
+                                        <button type="button" :title="'Crear'"  class="btn btn-primary-outline" 
+                                       ><i aria-hidden="true" 
+                                         class="fa fa-plus"></i> </button>
+                                        </router-link>     
+</div>  
+                                        <div v-if="props.row.juez"> 
+                                        <button class="btn btn-primary-outline" :title="'Eliminar'" dat-toggle="tooltip" @click="deleteJuez(props.row.juez.id,props.row.nombre+','+props.row.apellido)">
+                                            <i class="fa" :class="props.row.juez == null? 'fa-plus':'text-red fa fa-times-circle-o'" aria-hidden="true"></i>
                                         </button>
+                                        </div>
                                     </td>
                                     <td>
-                                        <i :class=" props.row.entrenador == null ? 'text-red fa fa-times-circle-o':'fa fa-check-square-o text-info' "></i>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <button class="btn btn-primary-outline" :title="props.row.entrenador == null? 'Crear':'Editar'" dat-toggle="tooltip" @click="(props.row.entrenador == null?  _entrenador(0, props.row) : _entrenador(props.row.entrenador.id, props.row))">
-                                            <i class="fa" :class="props.row.entrenador == null? 'fa-plus':'fa-pencil-square'" aria-hidden="true"></i>
+                                     <!--    <i :class=" props.row.entrenador == null ? 'text-red fa fa-times-circle-o':'fa fa-check-square-o text-info' "></i>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;-->
+                                        <button class="btn btn-primary-outline" :title="props.row.entrenador == null? 'Crear':'Eliminar'" dat-toggle="tooltip" @click="(props.row.entrenador == null?  _entrenador(0, props.row) : deleteEntrenador(props.row.entrenador.id,props.row.nombre+','+props.row.apellido))">
+                                            <i class="fa" :class="props.row.entrenador == null? 'fa-plus':'text-red fa fa-times-circle-o'" aria-hidden="true"></i>
                                         </button>
                                     </td>
                                     <td class="nowrap">
@@ -87,201 +96,303 @@
     </div>
 </template>
 <script>
-    import ModalJuntaMiembros from '../juntamiembros/subcomponents/ModalJuntaMiembrosCrear'
-    import ModalPersona from './subcomponents/ModalPersona'
-    import ModalEntrenadores from '../entrenadores/subcomponents/ModalEntrenadoresCrear'
-    import users from '../../controllers/users.js'
-    import playasController from '../../controllers/playas.js'
-    import personaController from '../../controllers/persona.js'
-    import vSelect from "vue-select"
-    import moment from "moment"
-    export default {
-        name: 'Usuarios',
-        components:{
-            "ModalPersona": ModalPersona,
-            "ModalJuntaMiembros": ModalJuntaMiembros,
-            "ModalEntrenadores":ModalEntrenadores
+import ModalJuntaMiembros from "../juntamiembros/subcomponents/ModalJuntaMiembrosCrear";
+import ModalPersona from "./subcomponents/ModalPersona";
+import ModalEntrenadores from "../entrenadores/subcomponents/ModalEntrenadoresCrear";
+import users from "../../controllers/users.js";
+import playasController from "../../controllers/playas.js";
+import personaController from "../../controllers/persona.js";
+import atletaController from "../../controllers/atletas.js";
+import juezController from "../../controllers/jueces.js";
+
+import miembroController from "../../controllers/juntamiembros.js";
+
+import entrenadorController from "../../controllers/entrenadores.js";
+
+import vSelect from "vue-select";
+import moment from "moment";
+export default {
+  name: "Usuarios",
+  components: {
+    ModalPersona: ModalPersona,
+    ModalJuntaMiembros: ModalJuntaMiembros,
+    ModalEntrenadores: ModalEntrenadores
+  },
+  data() {
+    return {
+      personas: [],
+      persona: {},
+      miembroJunta: {},
+      showAlert: false,
+      showSuccess: false,
+      methodSubmit: "editar",
+      // control de modales
+      openModal: false,
+      openModal2: false,
+      openModal3: false,
+      columns: [
+        {
+          label: "Nombre",
+          field: "nombre"
         },
-        data() {
-            return {
-                personas: [],
-                persona: {},
-                miembroJunta: {},
-                showAlert: false,
-                showSuccess: false,
-                methodSubmit: 'editar',
-                // control de modales
-                openModal: false,
-                openModal2: false,
-                 openModal3: false,
-                columns: [
-                    {
-                        label: "Nombre",
-                        field: "nombre",
-                    },
-                    {
-                        label: "Apellido",
-                        field: "apellido",
-                    },
-                    {
-                        label: "Correo",
-                        field: "correo",
-                    },
-                    {
-                        label: "Atleta",
-                        field: "atleta",
-                    },
-                    {
-                        label: "Miembro",
-                        field: "miembroJunta",
-                    },
-                    {
-                        label: "Juez",
-                        field: "juez",
-                    },
-                    {
-                        label: "Entrenador",
-                        field: "entrenador",
-                    },
-                    {
-                        label: "Opciones",
-                        field: "",
-                    },
-
-
-                ]
-            }
+        {
+          label: "Apellido",
+          field: "apellido"
         },
-        created(){
-            this.fetchData()
+        {
+          label: "Correo",
+          field: "correo"
         },
-        methods:{
-            fetchData(){
-                personaController.index(this)
-            },
-            retrieveData(id){
-                personaController.retrieve(this,id)
-            },
-            _atleta(val, row){
-                let context = this;
-                let swal = this.$swal;
-                let config1  = {}, config2  = {}, config3 = {}
-
-                if ( val != 0 ){
-                    config1 = {
-                        title: 'Editar?',
-                        html: 'Deseas editar la informacion de atleta de la persona <b>&laquo;' + row.nombre + '&raquo</b>',
-                        type: 'success',
-                        showCancelButton: true,
-                        confirmButtonText: 'Si!',
-                        cancelButtonText: 'No!'
-                    }
-                    config2 = "No se modifico la informacion"
-                    config3 = {
-                        name: 'AtletasEdit',
-                        params: {
-                            id: row.atleta.id,
-
-                        }
-                    }
-                }
-                else{
-                    config1 = {
-                        title: 'Crear?',
-                        html: 'Deseas crear la informacion de atleta de la persona <b>&laquo;' + row.nombre + '&raquo</b>',
-                        type: 'success',
-                        showCancelButton: true,
-                        confirmButtonText: 'Si!',
-                        cancelButtonText: 'No!'
-                    }
-                    config2 = "No se creo la informacion"
-                    config3 = {
-                        name: 'AtletasCreate',
-                        params: {
-                            id: row.id,
-
-                        }
-                    }
-                }
-                this.$swal(config1)
-                .then(function() {
-                    context.$router.push(
-                        config3
-                    );
-                },function(dismiss) {
-                    if (dismiss === 'cancel') {
-                        swal(
-                          'Cancelado',
-                          config2,
-                          'error'
-                        )
-                    }
-                })
-            },
-            _juez(val){
-                alert(val)
-            },
-            _miembro(val,row){
-                this.openModal2=true;
-                this.retrieveData(row.id);
-                if (val = 0) {
-
-                }
-                else{
-
-                }
-            },
-            _entrenador(val,row){
-                   this.openModal3=true;
-                this.retrieveData(row.id);
-              //alert(val)
-            },
-            deletePersona(id, nombre) {
-                let context = this;
-                let swal = this.$swal;
-                this.$swal({
-                    title: 'Estas Seguro?',
-                    html: 'No podras recuperar la informacion de la persona <b>&laquo;' + nombre + '&raquo</b><br>y toda la informacion relacion al mismo ya no sera accesible',
-                    type: 'error',
-                    showCancelButton: true,
-                    confirmButtonText: 'Si, Eliminar!',
-                    cancelButtonText: 'No, Mantener'
-                }).then(function() {
-                    personaController.delete(context, id, swal);
-                },function(dismiss) {
-                    if (dismiss === 'cancel') {
-                        swal(
-                          'Cancelado',
-                          'La playa no se elimino',
-                          'error'
-                        )
-                    }
-                })
-            },
-            isChange () {
-                this.openModal = false
-                 this.openModal2 =false
-                      this.openModal3 =false
-                this.fetchData()
-            },
-            showCallback () {
-                this.showAlert = false
-                this.showSuccess = false
-            },
-            dismissCallback (msg) {
-                this.openModal =false
-                   this.openModal2 =false
-                      this.openModal3 =false
-                juntamiembrosController.index(this)
-                this.fetchData()
-            },
-
+        {
+          label: "Atleta",
+          field: "atleta"
+        },
+        {
+          label: "Miembro",
+          field: "miembroJunta"
+        },
+        {
+          label: "Juez",
+          field: "juez"
+        },
+        {
+          label: "Entrenador",
+          field: "entrenador"
+        },
+        {
+          label: "Opciones",
+          field: ""
         }
+      ]
+    };
+  },
+  created() {
+    this.fetchData();
+  },
+  methods: {
+    fetchData() {
+      personaController.index(this);
+    },
+    retrieveData(id) {
+      personaController.retrieve(this, id);
+    },
+    _atleta(val, row) {
+      let context = this;
+      let swal = this.$swal;
+      let config1 = {},
+        config2 = {},
+        config3 = {};
+
+      if (val != 0) {
+        config1 = {
+          title: "Editar?",
+          html:
+            "Deseas editar la informacion de atleta de la persona <b>&laquo;" +
+            row.nombre +
+            "&raquo</b>",
+          type: "success",
+          showCancelButton: true,
+          confirmButtonText: "Si!",
+          cancelButtonText: "No!"
+        };
+        config2 = "No se modifico la informacion";
+        config3 = {
+          name: "AtletasEdit",
+          params: {
+            id: row.atleta.id
+          }
+        };
+      } else {
+        config1 = {
+          title: "Crear?",
+          html:
+            "Deseas crear la informacion de atleta de la persona <b>&laquo;" +
+            row.nombre +
+            "&raquo</b>",
+          type: "success",
+          showCancelButton: true,
+          confirmButtonText: "Si!",
+          cancelButtonText: "No!"
+        };
+        config2 = "No se creo la informacion";
+        config3 = {
+          name: "AtletasCreate",
+          params: {
+            id: row.id
+          }
+        };
+      }
+      this.$swal(config1).then(
+        function() {
+          context.$router.push(config3);
+        },
+        function(dismiss) {
+          if (dismiss === "cancel") {
+            swal("Cancelado", config2, "error");
+          }
+        }
+      );
+    },
+    _juez(val) {
+      alert(val);
+    },
+    _miembro(val, row) {
+      this.openModal2 = true;
+      this.retrieveData(row.id);
+      if ((val = 0)) {
+      } else {
+      }
+    },
+    _entrenador(val, row) {
+      this.openModal3 = true;
+      this.retrieveData(row.id);
+      //alert(val)
+    },
+    deletePersona(id, nombre) {
+      let context = this;
+      let swal = this.$swal;
+      this.$swal({
+        title: "Estas Seguro?",
+        html:
+          "No podras recuperar la informacion de la persona <b>&laquo;" +
+          nombre +
+          "&raquo</b><br>y toda la informacion relacion al mismo ya no sera accesible",
+        type: "error",
+        showCancelButton: true,
+        confirmButtonText: "Si, Eliminar!",
+        cancelButtonText: "No, Mantener"
+      }).then(
+        function() {
+          personaController.delete(context, id, swal);
+        },
+        function(dismiss) {
+          if (dismiss === "cancel") {
+            swal("Cancelado", "La playa no se elimino", "error");
+          }
+        }
+      );
+    },
+    isChange() {
+      this.openModal = false;
+      this.openModal2 = false;
+      this.openModal3 = false;
+      this.fetchData();
+    },
+    showCallback() {
+      this.showAlert = false;
+      this.showSuccess = false;
+    },
+    dismissCallback(msg) {
+      this.openModal = false;
+      this.openModal2 = false;
+      this.openModal3 = false;
+      juntamiembrosController.index(this);
+      this.fetchData();
+    },
+    deleteAtleta(id, nombre) {
+      let context = this;
+      let swal = this.$swal;
+      this.$swal({
+        title: "Estas Seguro?",
+        html:
+          "No podras recuperar la informacion del atleta <b>&laquo;" +
+          nombre +
+          "&raquo</b><br>y toda la informacion relacion al mismo ya no sera accesible",
+        type: "error",
+        showCancelButton: true,
+        confirmButtonText: "Si, Eliminar!",
+        cancelButtonText: "No, Mantener"
+      }).then(
+        function() {
+          atletaController.delete(context, id, swal);
+        },
+        function(dismiss) {
+          if (dismiss === "cancel") {
+            swal("Cancelado", "El atleta no se elimino", "error");
+          }
+        }
+      );
+    },
+
+       deleteEntrenador(id, nombre) {
+      let context = this;
+      let swal = this.$swal;
+      this.$swal({
+        title: "Estas Seguro?",
+        html:
+          "No podras recuperar la informacion del entrenador <b>&laquo;" +
+          nombre +
+          "&raquo</b><br>y toda la informacion relacion al mismo ya no sera accesible",
+        type: "error",
+        showCancelButton: true,
+        confirmButtonText: "Si, Eliminar!",
+        cancelButtonText: "No, Mantener"
+      }).then(
+        function() {
+          entrenadorController.delete(context, id, swal);
+        },
+        function(dismiss) {
+          if (dismiss === "cancel") {
+            swal("Cancelado", "El entrenador no se elimino", "error");
+          }
+        }
+      );
+    },
+       deleteMiembro(id, nombre) {
+      let context = this;
+      let swal = this.$swal;
+      this.$swal({
+        title: "Estas Seguro?",
+        html:
+          "No podras recuperar la informacion del miembro de junta <b>&laquo;" +
+          nombre +
+          "&raquo</b><br>y toda la informacion relacion al mismo ya no sera accesible",
+        type: "error",
+        showCancelButton: true,
+        confirmButtonText: "Si, Eliminar!",
+        cancelButtonText: "No, Mantener"
+      }).then(
+        function() {
+          miembroController.delete(context, id, swal);
+        },
+        function(dismiss) {
+          if (dismiss === "cancel") {
+            swal("Cancelado", "El miembro de junta no se elimino", "error");
+          }
+        }
+      );
     }
+    ,
+       deleteJuez(id, nombre) {
+      let context = this;
+      let swal = this.$swal;
+      this.$swal({
+        title: "Estas Seguro?",
+        html:
+          "No podras recuperar la informacion del juez <b>&laquo;" +
+          nombre +
+          "&raquo</b><br>y toda la informacion relacion al mismo ya no sera accesible",
+        type: "error",
+        showCancelButton: true,
+        confirmButtonText: "Si, Eliminar!",
+        cancelButtonText: "No, Mantener"
+      }).then(
+        function() {
+          juezController.delete(context, id, swal);
+        },
+        function(dismiss) {
+          if (dismiss === "cancel") {
+            swal("Cancelado", "El juez no se elimino", "error");
+          }
+        }
+      );
+    }
+  }
+};
 </script>
 <style >
-    .btn.btn-primary-outline{
-        background-color: transparent;
-        color: navy;
-    }
+.btn.btn-primary-outline {
+  background-color: transparent;
+  color: navy;
+}
 </style>

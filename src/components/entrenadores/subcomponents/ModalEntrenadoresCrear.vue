@@ -136,6 +136,8 @@ export default {
                 this.showSuccess = false
                 this.$validator.validateAll().then(success => {
                     if (success) {
+                        
+                          this.persona.sexo=this.persona.sexo.name;
                         console.log("la persona" );
                         console.log(this.persona)
                        /* let  miembroJunta = {}

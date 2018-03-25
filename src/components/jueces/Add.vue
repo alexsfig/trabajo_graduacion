@@ -1,12 +1,12 @@
 <template>
     <div>
         <section class="content-header">
-            <h1>Certificaciones</h1>
+            <h1>Agregar como juez a {{persona.nombre}},{{persona.apellido}}</h1>
             <ol class="breadcrumb">
                 
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li><router-link to="/admin/jueces">Jueces</router-link></li>
-                <li class="active">Certificaciones</li>
+                <li class="active">Agregar como juez</li>
 
 
             </ol>
@@ -30,10 +30,10 @@
                              <h3 class="box-title" v-if="id"></h3>
 
 
-                              <router-link :to="{ name: 'JuecesIndex'}">
+                              <router-link :to="{ name: 'PersonaIndex'}">
                                         <button type="button" class="btn btn-flat btn-sm btn-warning margin"
                                        ><i aria-hidden="true"
-                                         class="fa fa-chevron-circle-left"></i> Regresar a Jueces</button>
+                                         class="fa fa-chevron-circle-left"></i> Regresar a personas</button>
                                         </router-link> 
 
                         </div>
@@ -50,7 +50,7 @@
                                     <div class="col-xs-12 col-sm-12">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('form-3.descripcion') }">
                                             <label for="">Descripcion del juez</label>
-                                            <textarea v-model="juez.descripcion" class="form-control" name="descripcion" rows="2" data-vv-as="Descripcion del juez" v-validate="'required'" disabled>
+                                            <textarea v-model="descripcion" class="form-control" name="descripcion" rows="2" data-vv-as="Descripcion del juez" v-validate="'required'" >
 
                                             </textarea>
                                             <span class="help-block" for="descripcion" v-bind:data-error="errors.first('form-3.descripcion')">
@@ -124,21 +124,16 @@
                                             </div>
                                             <div class="col-xs-7">
                                                 <div class="col-xs-12 ">
-                                                    <vue-good-table :columns="columns" :rows="juez.certificacionList" title="Certificaciones del juez" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
+                                                    <vue-good-table :columns="columns" :rows="listaCert" title="Certificaciones del juez" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
                                                         <template slot="table-row" scope="props">
                                                             <td class="nowrap">{{ props.row.titulo }}</td>
                                                             <td>{{ props.row.fecha }}</td>
                                                             <td>{{ props.row.lugar }}</td>
                                                             <td>
                                                               
-                                                               <router-link :to="{ name: 'certiForm', params: { id: props.row.id }}">
-                                                               <button type="button" class="margin btn btn-flat btn-sm btn-primary"
-                                                                ><i aria-hidden="true"
-                                                                class="fa fa-pencil-square-o"></i> Actualizar</button>
-                                                                 </router-link> 
+                                
 
-
-                                                                <button type="button" class="margin btn btn-flat btn-sm btn-danger" @click="deleteCert(props.row.id, props.row.titulo)"><i aria-hidden="true" class="fa fa-trash-o"></i> Eliminar</button>
+                                                                <button type="button" class="margin btn btn-flat btn-sm btn-danger" @click="deleteCert(props.index)"><i aria-hidden="true" class="fa fa-trash-o"></i> Eliminar</button>
 
                                                             </td>
                                                         </template>
@@ -147,6 +142,14 @@
                                                 <div class="clearfix"></div>
                                             </div>
                                         </form>
+                                           <div class="col-xs-12 col-sm-12 pull-right">
+                                        <div class="box-footer">
+                                            <div class="col-xs-12 text-right">
+                                             
+                                                <button type="submit" class="btn btn-flat btn-sm btn-primary">Guardar Juez </button>
+                                            </div>
+                                        </div>
+                                    </div>
                                     </div>
                                             
                                  
@@ -164,6 +167,7 @@
 
 <script>
 import juecesController from "../../controllers/jueces.js";
+import personaController from "../../controllers/persona";
 import certiController from "../../controllers/certificacion.js";
 import vSelect from "vue-select";
 export default {
@@ -178,8 +182,8 @@ export default {
       id: "",
       creaCert:[],
       newCert:{},
-
-
+      persona:{},
+descripcion:'',
 
       clearBtn: true,
       todayBtn: true,
@@ -188,7 +192,7 @@ export default {
       limitTo: '',
       format: 'yyyy-MM-dd',
       weekStartsWith: 0,
-          
+          listaCert:[],
       createPersona:{},
       errMsg: "",
       isLogin: false,
@@ -220,7 +224,7 @@ export default {
   created() {
     this.id = this.$route.params.id;
     
-    if (this.id) juecesController.retrieve(this, this.id);
+    if (this.id) personaController.retrieve(this, this.id);
     console.log("idfwfddwfdfwwwe:" + this.id);
   },
   
@@ -228,34 +232,7 @@ export default {
  
   methods: {
 
-   deleteCert(id, nombre) {
-                let swal = this.$swal
-                let context = this
-                swal({
-                    title: 'Estas Seguro?',
-                    html: 'No podras recuperar la certificacion <b>' + nombre + ' </b> del juez',
-                    type: 'error',
-                    showCancelButton: true,
-                    confirmButtonText: 'Si, Eliminar!',
-                    cancelButtonText: 'No, Mantener'
-                }).then(
-                    function() {
-                        certiController.delete(context, id, swal)
-                        
-                        
-                    }, 
-                    function(dismiss) {
-                      // dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
-                      if (dismiss === 'cancel') {
-                        swal(
-                          'Cancelado',
-                          'La Certificacion no se elimino',
-                          'error'
-                        )
-                      }
-                    }
-                )
-            },
+
 
    /*deleteCert(id) {
     console.log("id;"+id)
@@ -267,9 +244,18 @@ export default {
       this.showSuccess = false;
       this.$validator.validateAll().then(success => {
         if (success) {
-          console.log("Error en el servicio");
-          if (!this.id) juecesController.create(this, this.tipoTransaccion);
-          else juecesController.update(this, this.tipoTransaccion);
+
+            this.persona.juez={
+           descripcion:this.descripcion,
+           certificacionList:this.listaCert
+
+            }
+
+
+ personaController.update(this,this.persona)
+
+            
+      
         } else {
           console.log("Error enn el formulario");
           this.showAlert = true;
@@ -286,22 +272,22 @@ juecesController.retrieve(this, this.id);
 
 
 },
-    add_certificacion(scope) {
+  add_certificacion(scope) {
             this.$validator.validateAll(scope).then(success => {
                 if (success) {
-                    this.creaCert.push(this.newCert)
-                    this.newCert.juezId={id:this.juez.id}                    
-                    certiController.create(this, this.newCert)
+                    this.listaCert.push(this.newCert)
                     this.newCert = {
                         fecha: null,
                     }
-
-  juecesController.retrieve(this, this.id);
                 } else {
                     this.showAlert = true
                     this.errMsg = "Por favor complete el formulario"
                 }
             });
+        },
+        deleteCert(id) {
+            console.log("eliminar")
+            this.listaCert.splice(id, 1);
         }
   },  
 };
