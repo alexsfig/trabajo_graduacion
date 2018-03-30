@@ -49,7 +49,7 @@
 
                                     <div class="col-xs-12 col-sm-12">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('form-3.descripcion') }">
-                                            <label for="">Descripcion del juez {{juez}}</label>
+                                            <label for="">Descripcion del juez</label>
                                             <textarea v-model="juez.descripcion" class="form-control" name="descripcion" rows="2" data-vv-as="Descripcion del juez" v-validate="'required'" disabled>
 
                                             </textarea>
