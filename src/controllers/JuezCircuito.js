@@ -127,7 +127,9 @@ export default {
                                     context.showSuccess = true
                                     context.successMsg = "Se Agrego Correctamente el Juez al Circuito"
                                     context.fetchData()
-                                    context.resetForm()
+                                    context.juez=null;
+                                    context.juezRol=null;
+                                    context.restarerror()
                                 }
                             })
                             .catch((err) => {

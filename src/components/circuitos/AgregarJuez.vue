@@ -36,6 +36,7 @@
       <div class="box-action">
 
                             <form @submit.prevent="submit"  role="form"> 
+                                <div v-if="numjueces<8">
            <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup"  :class="{ 'has-error': errors.has('juez') }">
                                             <label for="juez">Juez</label>
@@ -73,7 +74,7 @@
                                         </div>
                                          
                                     </div>
-                                   
+                                    </div> 
                             </form> 
                              <!--   <router-link to="/admin/circuitos/form" class="btn btn-default btn-flat">
                                     <i class="fa fa-plus"></i> Nueva Circuito
@@ -108,8 +109,16 @@
                         </div>
 
                          <div class="box-body">
-                              
+                               
                               <div @click="volver()" class="btn btn-flat btn-sm btn-warning margin">
+                                    <i class="fa fa-arrow-circle-left" ></i> Regresar a Circuitos
+                                </div>
+
+                                </div>
+                                
+                                  <div class="box-body">
+                               
+                              <div @click="restarerror()" class="btn btn-flat btn-sm btn-warning margin">
                                     <i class="fa fa-arrow-circle-left" ></i> Regresar a Circuitos
                                 </div>
 
@@ -138,6 +147,7 @@
                 juezRol:null,
                 juezCircuito:{},
                 jueces:[],
+                numjueces:0,
                 juecesRoles:[],
                 juezCircuitos:[],
                 juez:null,
@@ -190,18 +200,36 @@
         }, components:{
             vSelect
         },
+        watch:{
+
+'juezCircuitos': 'calcularSize'
+
+
+        },
         created(){
               this.id = this.$route.params.id;
         
             this.fetchData()
         },
         methods:{
+            restarerror(){this.errors.clear()},
+            calcularSize(
+
+               
+            ){
+
+
+                this.numjueces= Object.keys(this.juezCircuitos).length;
+                console.log("tamañooooooo eexitoso" + this.numjueces)
+            },
+
             fetchData(){
                // circuitosController.index(this)
                juezCircuitoController.indexByCircuito(this,this.id);
                 circuitosController.retrieve(this,this.id)
-                 juezController.index(this)
+                 juezController.byCircuito(this,this.id)
                  juezController.getRoles(this)
+                  this.restarerror();
 /*
   for (let i of this.juezs) {
   i.nombre=i.personaId.nombre+","+i.personaId.apellido;
@@ -226,6 +254,7 @@
                         this.juezCircuito));
                         juezCircuitoController.create(this,this.juezCircuito)
                         
+                     
                      
                     }
                     else{

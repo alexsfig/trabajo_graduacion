@@ -134,6 +134,25 @@ export default {
               console.log(err)
             })
     }, 
+    byCircuito(context, id){
+        HTTP.get(JUECES+"byCircuito/" + id)
+            .then((resp) => {
+                console.log("putaaaaaaaaaaaa")
+                console.log(resp)
+                context.jueces = resp.data;
+
+                console.log(resp.data)
+                for (let i of  context.jueces) {
+                    console.log("nombre:"+ i.nombre)
+                    console.log("Entrada:"+i.personaId.nombre+","+i.personaId.apellido)
+                    i.nombre=i.personaId.nombre+","+i.personaId.apellido;}
+            }
+        )
+            .catch((err) => {
+              console.log(err)
+            })
+
+    },
     /* 
         Method to delete user, pass the context and user id, use this method when you need to delete user
     */
