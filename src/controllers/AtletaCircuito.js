@@ -181,9 +181,10 @@ export default {
                             .then((resp) => {
                                 if (resp.status>= 200 && resp.status <=300){
                                     context.showSuccess = true
+                                    context.atleta='55';
                                     context.successMsg = "Se Agrego Correctamente el Atleta al Circuito"
-                                    context.fetchData()
-                                    context.resetForm()
+                            //  context.$router.go()
+                                  //  contextvm.$forceUpdate();
                                 }
                             })
                             .catch((err) => {
