@@ -45,7 +45,7 @@
                                             </span> </div>
                                     </div>
 
-                                    <div class="col-xs-12 col-sm-6">
+                                    <div v-if="!id" class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('monto') }">
                                             <label for="">Monto Actual ($)</label>
                                             <input type="number" id="monto" name="monto" step="0.01" data-vv-as="monto" class="form-control" v-model="cuenta.monto" v-validate="'required'">
