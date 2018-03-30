@@ -13,7 +13,7 @@
             </div>
             <div class="box box-primary">
             
-                <label>Usuario {{ updateUser.contrasena }}</label>
+                <label>Usuarioss {{ usuario }}</label>
                 <form @submit.prevent="validateMethod" role="form"> 
                     <div class="box-body">
                         <input type="hidden" v-model="id">
@@ -128,7 +128,7 @@
                 this.openModalInside = this.openModal
                 this.updateUser = this.usuario
                 this.updateUser.rolId = this.usuario.rolId   
-
+             
 
                 if(this.updateUser.rolId.descripcion=="Juez"){
                 for(let i of this.jueces)

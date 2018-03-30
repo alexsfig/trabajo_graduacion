@@ -27,10 +27,15 @@ export default {
             let param = unescape(location.search.split('redirect=')[1])
             if (param !== "undefined") {
                 // context.$router.push(param)
+
                 window.location.replace(param);
 
             }else{
+                if( items[1]==1)
                 context.$router.push({name: 'Dashboard'})
+                if( items[1]==2)
+                context.$router.push({name: 'Dashboard2'})
+
 //                window.location.replace('/admin');
 
             }

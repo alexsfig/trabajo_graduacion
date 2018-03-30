@@ -541,7 +541,7 @@ Vue.use(Router)
       children: [
         {
           path: '',
-          name: 'Dashboard',
+          name: 'Dashboard2',
           component: Dashboard
         }]
       
@@ -552,8 +552,9 @@ Vue.use(Router)
 
 
 router.beforeEach((to, from, next) => {
+  console.log("grim 1234");
   if(to.meta.requiresAuth) {
-console.log("grim 1234");
+    console.log("requiere audit");
     console.log
     const authUser = JSON.parse(window.localStorage.getItem('rol'))
     if(!authUser ) {

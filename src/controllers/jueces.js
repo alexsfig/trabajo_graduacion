@@ -100,8 +100,8 @@ export default {
                 context.jueces = resp.data
                 console.log(resp.data)
                 for (let i of  context.jueces) {
-                    console.log("nombre:"+ i.nombre)
-                    console.log("Entrada:"+i.personaId.nombre+","+i.personaId.apellido)
+                   // console.log("nombre:"+ i.nombre)
+                  //  console.log("Entrada:"+i.personaId.nombre+","+i.personaId.apellido)
                     i.nombre=i.personaId.nombre+","+i.personaId.apellido;}
             })
             .catch((err) => {

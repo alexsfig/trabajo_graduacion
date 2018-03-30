@@ -162,8 +162,8 @@ export default {
                 
 
                 for (let i of  context.entrenadores) {
-                    console.log("nombre:"+ i.nombre)
-                    console.log("Entrada:"+i.personaId.nombre+","+i.personaId.apellido)
+                   // console.log("nombre:"+ i.nombre)
+                   // console.log("Entrada:"+i.personaId.nombre+","+i.personaId.apellido)
                     i.nombre=i.personaId.nombre+","+i.personaId.apellido;
                 
             }

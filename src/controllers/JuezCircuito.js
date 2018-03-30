@@ -129,7 +129,7 @@ export default {
                                     context.fetchData()
                                     context.juez=null;
                                     context.juezRol=null;
-                                    context.restarerror()
+                                   
                                 }
                             })
                             .catch((err) => {
