@@ -45,15 +45,24 @@
                                             </span> </div>
                                     </div>
 
-                                    <div v-if="!id" class="col-xs-12 col-sm-6">
+
+                                    
+
+                                      <div  class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('monto') }">
                                             <label for="">Monto Actual ($)</label>
-                                            <input type="number" id="monto" name="monto" step="0.01" data-vv-as="monto" class="form-control" v-model="cuenta.monto" v-validate="'required'">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">$</span>
+                                                <input :disabled="id" type="number" id="monto" name="monto" data-vv-as="Monto" min="0" class="form-control" v-model="cuenta.monto" v-validate="'required|min_value:0.01'" step="0.01">
+                                                    
+                                            </div>
                                             <span class="help-block" for="monto" v-bind:data-error="errors.first('monto')">
                                                 {{ errors.first('monto') }}
                                             </span>
                                         </div>
                                     </div>
+
+
                                     <div class="clearfix"></div>
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('descripcion') }">
