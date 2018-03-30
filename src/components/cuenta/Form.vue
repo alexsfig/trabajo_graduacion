@@ -50,7 +50,7 @@
 
                                       <div  class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('monto') }">
-                                            <label for="">Monto Inicial ($)</label>
+                                            <label for="">Monto Actual ($)</label>
                                             <div class="input-group">
                                                 <span class="input-group-addon">$</span>
                                                 <input type="number" id="monto" name="monto" data-vv-as="Monto" min="0" class="form-control" v-model="cuenta.monto" v-validate="'required|min_value:0.01'" step="0.01" disabled>

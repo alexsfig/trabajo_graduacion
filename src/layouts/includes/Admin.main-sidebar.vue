@@ -242,9 +242,21 @@
 		               
 		                 <li>
 		                    <router-link to="/admin/reportes/form">
-		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Resumen Financiero</span>
+		                        <i class="fa fa-circle-o" aria-hidden="true"></i><span>Resumen Finanzas General</span>
+		                    </router-link>
+		                </li>           
+		                <li>
+		                    <router-link to="/admin/reportes/formbyAtleta">
+		                        <i class="fa fa-circle-o" aria-hidden="true"></i><span>Resumen Finanzas Atletas</span>
 		                    </router-link>
 		                </li>
+
+		                  <li>
+		                    <router-link to="/admin/reportes/formbyPatrocinador">
+		                        <i class="fa fa-circle-o" aria-hidden="true"></i><span>Resumen Finanzas Patrocinios</span>
+		                    </router-link>
+		                </li>
+
 		            </ul>
 		        </li>
 

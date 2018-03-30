@@ -104,6 +104,8 @@ import CalificarInit from '@/components/heat/Calificar'
 import VerResultadosInit from '@/components/heat/VerResultados'
 
 import Reportes from '@/components/reportes/Form'
+import ReportesAtleta from '@/components/reportes/FormbyAtleta'
+import ReportesPatrocinador from '@/components/reportes/FormbyPatrocinador'
 
 Vue.use(Router)
  const router=new Router({
@@ -507,6 +509,17 @@ Vue.use(Router)
           component: Reportes
         },
 
+        {
+          path: 'reportes/formbyAtleta',
+          name: 'ReportesbyAtleta',
+          component: ReportesAtleta
+        },
+
+        {
+          path: 'reportes/formbyPatrocinador',
+          name: 'ReportesbyPatrocinador',
+          component: ReportesPatrocinador
+        },
 
         {
           path: 'heat/:id',

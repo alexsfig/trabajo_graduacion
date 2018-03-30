@@ -72,7 +72,7 @@
                     </div>
                     </div>
             </div>
-           <!-- <modalPlaya :methodSubmit="methodSubmit" :title="'Actualizar Usuario'" :buttonMsg="'Actualizar'" :openModal="openModal" :playa="playa" v-on:openChange="isChange"></modalPlaya> -->
+           
         </section>
     </div>
 </template>
@@ -94,39 +94,47 @@
  {
                         label: "Fecha",
                         field: "fecha",
+                        filterable: true,
                     } 
 
                     , {
                         label: "Cuenta",
                         field: "nombre",
+                        filterable: true,
                     }, 
                     
                     {
                         label: "Tipo de Transaccion",
                         field: "tipoTransaccion.nombre",
+                         filterable: true,
                     },
                     {
                         label: "Concepto",
                         field: "tipoTransaccion.tipo",
+                         filterable: true,
                     },
 
                     {
                         label: "Monto ($)",
                         field: "monto",
+                         filterable: true,
                     },
 
                     {
                         label: "Forma de pago",
                         field: "formaPago.nombre",
+                         filterable: true,
                     },  {
                         label: "Comprobante",
                         field: "comprobante",
+                         filterable: true,
                     }
                     , 
                     /*
                     {
                         label: "Patrocinador",
                         field: "nombre",
+                         filterable: true,
                     }
                     , */
 
