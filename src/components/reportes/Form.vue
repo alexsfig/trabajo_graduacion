@@ -577,17 +577,18 @@ filas.push(fila)
         } */
 
         doc.setFontStyle("bold"); 
-        doc.text("Federacion Salvadoreña de Surf", 10, 20);  
-        doc.text("Resumen Financiero", 10, 30);
+        doc.text("Federacion Salvadoreña de Surf", 53, 20);  
+        doc.setFontSize(13); 
+        doc.text("Resumen Financiero", 10, 35);
         doc.setFontStyle("normal"); 
         doc.setFontSize(10);
-        doc.text("Transacciones Registradas Desde: ", 10, 40);
+        doc.text("Transacciones Registradas Desde: ", 10, 45);
         doc.setFontStyle("bold");          
-        doc.text(fechaini, 66, 40);
+        doc.text(fechaini, 66, 45);
         doc.setFontStyle("normal"); 
-        doc.text(" Hasta: ", 85, 40);
+        doc.text(" Hasta: ", 85, 45);
         doc.setFontStyle("bold"); 
-        doc.text(fechafin, 97, 40);
+        doc.text(fechafin, 97, 45);
         doc.setFontStyle("normal");  
 
 
@@ -617,7 +618,7 @@ filas.push(fila)
       doc.autoTable(columns, filas, {
           addPageContent: pageContent,
          theme:'striped',
-        startY: 45/*, showHeader: 'firstPage'*/
+        startY: 50/*, showHeader: 'firstPage'*/
       });
 doc.setFontStyle("bold");      
 var linea='Total = Ingreso - Gastos:      '+total;

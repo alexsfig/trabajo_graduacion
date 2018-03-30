@@ -630,7 +630,7 @@ filas.push(fila)
         startY: 60/*, showHeader: 'firstPage'*/
       });
 doc.setFontStyle("bold");      
-var linea='Total Gastos:                     ($) '+total;
+var linea='Total Gastos:                 ($) '+total;
 var linea2='Numero de Transacciones:   '+count;
        doc.text(linea, 130, doc.autoTable.previous.finalY + 10);
        doc.text(linea2, 130, doc.autoTable.previous.finalY + 20);
@@ -641,7 +641,7 @@ var linea2='Numero de Transacciones:   '+count;
         doc.putTotalPages(totalPagesExp);
     }
 
-      doc.save("Resumen_Financiero.pdf");
+      doc.save("Resumen_Financiero_Atleta.pdf");
     },
 
   /*imgToBase64: function imgToBase64(url, callback) {
