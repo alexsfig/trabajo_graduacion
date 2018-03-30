@@ -29,7 +29,7 @@
                 <div class="col-lg-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Manejo de heats de la ronda {{ronda.numero}}</h3>
+                            <h3 class="box-title">Manejo de Heats de la Ronda <b>{{ronda.numero}}</b></h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -49,13 +49,13 @@
                                     <td>{{ props.row.numero }}</td>
                                     
                                          <td>{{ props.row.estado }}</td>
-                                      <td>{{ props.row.natletas }}</td>
-                                        <td>{{ props.row.natletas }}</td>
+                                      <td>{{ props.row.natletas }} atletas</td>
+                                        <td>{{ props.row.natletas }} jueces</td>
                                     <td class="nowrap">
                                         <router-link v-if="props.row.estado=='Por iniciar'" :to="{ name: 'heatInit', params: { id: props.row.id }}">
                                         <button type="button" class="margin btn btn-flat btn-sm btn-primary"
                                        ><i aria-hidden="true"
-                                         class="fa fa-pencil-square-o"></i> Iniciar</button>
+                                         class="fa fa-pencil-square-o"></i> Iniciar Heat</button>
                                         </router-link>
                                    <div  v-if="props.row.estado!='En espera'">
                                     <router-link v-if="props.row.estado!='Por iniciar'" :to="{ name: 'ResultadoHeat', params: { id: props.row.id }}">
@@ -69,8 +69,17 @@
                             </vue-good-table>
 
                         </div>
+
+                        <div class="box-body">
+                              
+                             <div @click="volver()" class="btn btn-flat btn-sm btn-warning margin">
+                                    <i class="fa fa-arrow-circle-left" ></i> Regresar a Rondas
+                                </div>
+
+                                </div> 
+
                     </div>
-    |                </div>
+                   </div>
             </div>
            <!-- <modalPlaya :methodSubmit="methodSubmit" :title="'Actualizar Usuario'" :buttonMsg="'Actualizar'" :openModal="openModal" :playa="playa" v-on:openChange="isChange"></modalPlaya> -->
         </section>
@@ -99,7 +108,7 @@
                    
          
                     {
-                        label: "Numero",
+                        label: "Numero de Heat",
                         field: "numero",
                     },
                         {
@@ -108,14 +117,14 @@
                     }
                      ,
                         {
-                        label: "Atletas",
+                        label: "Numero de Atletas",
                         field: "nAtletas",
                     }
 
                     ,
 
                         {
-                        label: "Jueces",
+                        label: "Numero de Jueces",
                         field: "jueces",
                     }
 
@@ -159,7 +168,16 @@
                         )
                     }
                 })
-            },
+            }, 
+
+              volver(){
+                console.log("entre")
+ window.history.length > 1
+        ? this.$router.go(-1)
+        : this.$router.push('/')
+    
+
+            }
         }
     }
 </script>

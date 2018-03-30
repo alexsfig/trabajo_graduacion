@@ -73,7 +73,7 @@
 
                                          <button type="button" class="margin btn btn-flat btn-sm btn-success" 
                                         @click="llamaRonda(props.row.id, props.row)"><i aria-hidden="true" 
-                                        class="fa fa-flag-checkered"></i> Gestionar Circuito</button>
+                                        class="fa fa-pencil-square-o"></i> Gestionar Circuito</button>
                                 
                                     </td>
                                   </template>
@@ -170,7 +170,7 @@
              llamaRonda(id, circuito) {
             circuitosController.retrieve(this, id)
             this.$router.push({
-                name: 'circuitosNuevaRonda',
+                name: 'rondaIndex',
                 params: {
                     id: id,
                     circuito: circuito

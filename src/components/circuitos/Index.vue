@@ -65,7 +65,7 @@
                                         </button>
                                         <button type="button" class="margin btn btn-flat btn-sm btn-success"
                                             @click="llamaRonda(props.row.id, props.row)"><i aria-hidden="true"
-                                            class="fa fa-flag-checkered"></i> Gestionar Circuito
+                                            class="fa fa-pencil-square-o"></i> Gestionar Circuito
                                         </button>
                                     </td>
                                   </template>

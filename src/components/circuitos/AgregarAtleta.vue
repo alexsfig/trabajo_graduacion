@@ -98,7 +98,7 @@
                           <div class="box-body">
                               
                              <div @click="volver()" class="btn btn-flat btn-sm btn-warning margin">
-                                    <i class="fa fa-arrow-circle-left" ></i> x Regresar a Circuitos
+                                    <i class="fa fa-arrow-circle-left" ></i> Regresar a Circuitos
                                 </div>
 
                                 </div> 
