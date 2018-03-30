@@ -102,7 +102,7 @@
                                             <label for="">Monto</label>
                                             <div class="input-group">
                                                 <span class="input-group-addon">$</span>
-                                                <input type="number" id="monto" name="monto" data-vv-as="Monto" min="0" class="form-control" v-model="transaccion.monto" v-validate="'required|min_value:0.01'" step="0.01">
+                                                <input type="number" id="monto" name="monto" data-vv-as="Monto" min="0.01" class="form-control" v-model="transaccion.monto" v-validate="'required|min_value:0.01'" step="0.01">
                                                     
                                             </div>
                                             <span class="help-block" for="monto" v-bind:data-error="errors.first('monto')">
@@ -194,6 +194,14 @@
 
                             </form>
                         </div>
+
+                         <div class="box-body">
+                              
+                             <div @click="volver()" class="btn btn-flat btn-sm btn-warning margin">
+                                    <i class="fa fa-arrow-circle-left" ></i> Regresar a Transacciones
+                                </div>
+
+                                </div> 
                     </div>
                 </div>
             </div>
@@ -312,6 +320,15 @@ export default {
                         this.errMsg = "Form error";
                     }
                 });
+            },
+
+            volver(){
+                console.log("entre")
+ window.history.length > 1
+        ? this.$router.go(-1)
+        : this.$router.push('/')
+    
+
             }
     }
 };

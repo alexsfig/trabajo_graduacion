@@ -90,8 +90,13 @@ export default {
                 
                 
                 context.transaccion = resp.data;
+
+                if(context.transaccion.atletaId)
                 context.transaccion.atletaId.nombre=context.transaccion.atletaId.personaId.nombre+","+context.transaccion.atletaId.personaId.apellido;
-                console.log("hey:::"+context.transaccion.atletaId.nombre)
+               
+  context.transaccion.cuentaId.nombrem= context.transaccion.cuentaId.nombre+"     ($"+ context.transaccion.cuentaId.monto+")";
+
+                console.log("heyeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee:::"+context.transaccion.cuentaId.nombrem)
             })
             .catch((err) => {
               console.log(err)

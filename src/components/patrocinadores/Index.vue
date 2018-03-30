@@ -38,6 +38,8 @@
                                     <i class="fa fa-plus"></i> Nuevo Patrocinador
                                 </router-link>
                             </div>
+                            </div>
+                            <div class="box-body">
                             <vue-good-table :columns="columns" :rows="patrocinadors" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
                                 <template slot="table-row" scope="props">
 <td>{{ props.row.nombre }}</td>
@@ -60,7 +62,7 @@
 
                         </div>
                     </div>
-    |                </div>
+                    </div>
             </div>
            <!-- <modalPlaya :methodSubmit="methodSubmit" :title="'Actualizar Usuario'" :buttonMsg="'Actualizar'" :openModal="openModal" :playa="playa" v-on:openChange="isChange"></modalPlaya> -->
         </section>
@@ -128,7 +130,7 @@
                     if (dismiss === 'cancel') {
                         swal(
                           'Cancelado',
-                          'La patrocinador no se elimino',
+                          'La Patrocinador no se elimino',
                           'error'
                         )
                     }

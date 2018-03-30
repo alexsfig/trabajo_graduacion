@@ -29,7 +29,7 @@
                 <div class="col-lg-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Manejo de cuentas </h3>
+                            <h3 class="box-title">Manejo de Cuentas </h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -38,11 +38,16 @@
                                     <i class="fa fa-plus"></i> Nueva Cuenta
                                 </router-link>
                             </div>
+                            </div>
+                            <div class="box-body">
+
                             <vue-good-table :columns="columns" :rows="cuentas" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
                                 <template slot="table-row" scope="props">
 <td>{{ props.row.nombre }}</td>
 <td>{{ props.row.descripcion }}</td>
-<td>{{ props.row.monto }}</td>                                    <td class="nowrap">
+<td v-if="props.row.monto<=0" style="color:#FF0000"><b>{{ roundToTwo(props.row.monto) }}</b></td>
+<td v-if="props.row.monto>0" style="color:green"><b>{{roundToTwo( props.row.monto) }}</b></td>
+                                  <td class="nowrap">
  <router-link :to="{ name: 'cuentasEdit', params: { id: props.row.id }}">
                                         <button type="button" class="margin btn btn-flat btn-sm btn-primary"
                                        ><i aria-hidden="true"
@@ -57,7 +62,7 @@
 
                         </div>
                     </div>
-    |                </div>
+                    </div>
             </div>
            <!-- <modalPlaya :methodSubmit="methodSubmit" :title="'Actualizar Usuario'" :buttonMsg="'Actualizar'" :openModal="openModal" :playa="playa" v-on:openChange="isChange"></modalPlaya> -->
         </section>
@@ -107,7 +112,7 @@
                 let swal = this.$swal;
                 this.$swal({
                     title: 'Estas Seguro?',
-                    html: 'No podras recuperar la informacion de la cuenta <b>&laquo;' + nombre + '&raquo</b><br>y toda la informacion relacion al mismo ya no sera accesible',
+                    html: 'No podras recuperar la informacion de la cuenta <b>&laquo;' + nombre + '&raquo</b><br>y toda la informacion en relacion a la misma ya no sera accesible',
                     type: 'error',
                     showCancelButton: true,
                     confirmButtonText: 'Si, Eliminar!',
@@ -118,12 +123,20 @@
                     if (dismiss === 'cancel') {
                         swal(
                           'Cancelado',
-                          'La cuenta no se elimino',
+                          'La Cuenta no se elimino',
                           'error'
                         )
                     }
                 })
             },
+
+            roundToTwo(num) {
+      return this.formatPrice(+(Math.round(num + "e+2") + "e-2"));
+    },
+    formatPrice(value) {
+      let val = (value / 1).toFixed(2);
+      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
         }
     }
 </script>

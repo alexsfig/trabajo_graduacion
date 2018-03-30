@@ -46,14 +46,14 @@
                                     </div>
 
 
-                                    
+                                    <!--  :disabled="id"    -->
 
                                       <div  class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('monto') }">
-                                            <label for="">Monto Actual ($)</label>
+                                            <label for="">Monto Inicial ($)</label>
                                             <div class="input-group">
                                                 <span class="input-group-addon">$</span>
-                                                <input :disabled="id" type="number" id="monto" name="monto" data-vv-as="Monto" min="0" class="form-control" v-model="cuenta.monto" v-validate="'required|min_value:0.01'" step="0.01">
+                                                <input type="number" id="monto" name="monto" data-vv-as="Monto" min="0" class="form-control" v-model="cuenta.monto" v-validate="'required|min_value:0.01'" step="0.01" disabled>
                                                     
                                             </div>
                                             <span class="help-block" for="monto" v-bind:data-error="errors.first('monto')">
@@ -76,14 +76,23 @@
                                 </div>
                                 <div class="box-footer">
                                     <div class="col-xs-12 text-right">
-                                        <button type="submit" v-if="!id" class="btn btn-flat btn-sm btn-primary">Agregar</button>
-                                        <button type="submit" v-if="id" class="btn btn-flat btn-sm btn-primary">Editar</button>
+                                        <button type="submit" v-if="!id" class="btn btn-flat btn-sm btn-primary">Agregar Cuenta</button>
+                                        <button type="submit" v-if="id" class="btn btn-flat btn-sm btn-primary">Editar Cuenta</button>
 
                                     </div>
                                 </div>
 
                             </form>
                         </div>
+
+                        <div class="box-body">
+                              
+                             <div @click="volver()" class="btn btn-flat btn-sm btn-warning margin">
+                                    <i class="fa fa-arrow-circle-left" ></i> Regresar a Cuentas
+                                </div>
+
+                                </div> 
+
                     </div>
                 </div>
             </div>
@@ -117,6 +126,8 @@
           this.id = this.$route.params.id;
           if (this.id)
               cuentasController.retrieve(this, this.id);
+            else
+              this.cuenta.monto="0.00";
           console.log("id:" + this.id);
       },
       methods: {
@@ -137,7 +148,15 @@
                       this.errMsg = "Form error"
                   }
               });
-          }
+          },
+            volver(){
+                console.log("entre")
+ window.history.length > 1
+        ? this.$router.go(-1)
+        : this.$router.push('/')
+    
+
+            }
       }
 
   }

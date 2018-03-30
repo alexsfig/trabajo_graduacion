@@ -236,7 +236,7 @@
 		               
 						<li>
 		                    <router-link to="/admin/transaccion/">
-		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Manejo de transacciones</span>
+		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Manejo de Transacciones</span>
 		                    </router-link>
 		                </li>
 		               
