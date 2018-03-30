@@ -6,7 +6,7 @@
 
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li>
-                    <router-link to="/admin/tipoTransaccions">Tipo de Transaccion</router-link>
+                    <router-link to="/admin/tipoTransaccions">Tipos de Transaccion</router-link>
                 </li>
                 <li class="active">Formulario Tipo de Transaccion</li>
             </ol>
@@ -45,7 +45,7 @@
                                     </div>
                                     <div class="col-xs-6 col-sm-4">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('tipo') }">
-                                            <label for="">Tipo</label>
+                                            <label for="">Concepto</label>
                                             <span class="pull-right">
                                                 <toggle-button  v-model="tipoTransaccion.tipo" :sync="true"
                                                  :value="tipoTransaccion.tipo" :width="130" :height="35"
@@ -92,6 +92,15 @@
 
                             </form>
                         </div>
+
+
+                         <div class="box-body">
+                              
+                             <div @click="volver()" class="btn btn-flat btn-sm btn-warning margin">
+                                    <i class="fa fa-arrow-circle-left" ></i> Regresar a Tipos de Transaccion
+                                </div>
+
+                                </div> 
                     </div>
                 </div>
             </div>
@@ -159,7 +168,16 @@
                       this.errMsg = "Form error"
                   }
               });
-          }
+          },
+
+          volver(){
+                console.log("entre")
+ window.history.length > 1
+        ? this.$router.go(-1)
+        : this.$router.push('/')
+    
+
+            }
       }
 
   }

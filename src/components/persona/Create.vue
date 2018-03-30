@@ -12,7 +12,7 @@
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li>
-                    <router-link to="/admin/users">Personas</router-link>
+                    <router-link to="/admin/persona">Personas</router-link>
                 </li>
                 <li class="active">Agregar Personas</li>
             </ol>

@@ -254,9 +254,9 @@ export default {
       this.$swal({
         title: "Estas Seguro?",
         html:
-          "No podras recuperar la informacion de la persona <b>&laquo;" +
+          "No podras recuperar la informacion de la Persona <b>&laquo;" +
           nombre +
-          "&raquo</b><br>y toda la informacion relacion al mismo ya no sera accesible",
+          "&raquo</b><br>y toda la informacion en relacion al mismo ya no sera accesible",
         type: "error",
         showCancelButton: true,
         confirmButtonText: "Si, Eliminar!",
@@ -267,7 +267,7 @@ export default {
         },
         function(dismiss) {
           if (dismiss === "cancel") {
-            swal("Cancelado", "La playa no se elimino", "error");
+            swal("Cancelado", "La Persona no se elimino", "error");
           }
         }
       );
@@ -295,9 +295,9 @@ export default {
       this.$swal({
         title: "Estas Seguro?",
         html:
-          "No podras recuperar la informacion del atleta <b>&laquo;" +
+          "No podras recuperar la informacion del Atleta <b>&laquo;" +
           nombre +
-          "&raquo</b><br>y toda la informacion relacion al mismo ya no sera accesible",
+          "&raquo</b><br>y toda la informacion en relacion al mismo ya no sera accesible",
         type: "error",
         showCancelButton: true,
         confirmButtonText: "Si, Eliminar!",
@@ -308,7 +308,7 @@ export default {
         },
         function(dismiss) {
           if (dismiss === "cancel") {
-            swal("Cancelado", "El atleta no se elimino", "error");
+            swal("Cancelado", "El Atleta no se elimino", "error");
           }
         }
       );

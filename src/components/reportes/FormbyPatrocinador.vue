@@ -1,13 +1,13 @@
 <template>
     <div>
         <section class="content-header">
-            <h1>Resumen Financiero General</h1>
+            <h1>Resumen Financiero por Patrocinador</h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li>
                     <router-link to="/admin/transaccion/">Transacciones</router-link>
                 </li>
-                <li class="active">Resumen Financiero General</li>
+                <li class="active">Resumen Financiero por Patrocinador</li>
             </ol>
         </section>
         <section class="content">
@@ -87,12 +87,12 @@
                                     </div>
 
 
-
+                                   <!--
 
                                     <div class="col-xs-12 col-sm-4">
                                      <div class="fgroup"> 
                                             <label for="formaPagoId">Forma de pago</label>
-                                            <v-select :debounce="250" :options="formaPagos" v-model="transaccion.formaPagoId" placeholder="Seleccione una Forma de Pago" label="nombre">
+                                            <v-select :debounce="250" :options="formaPagos" v-model="transaccion.formaPagoId" placeholder="Escoja una Forma de Pago" label="nombre">
                                             </v-select>
                                             <div class="clearfix"></div>
                                             <input type="hidden" name="formaPagoId" value="" data-vv-as="formaPagoId" v-model="transaccion.formaPagoId" >
@@ -111,7 +111,7 @@
                                     <div class="col-xs-12 col-sm-4">
                                         <div class="fgroup" >
                                             <label for="cuentaId">Cuenta</label>
-                                            <v-select :debounce="250" :options="cuentas" v-model="transaccion.cuentaId" placeholder="Seleccione una Cuenta" label="nombre">
+                                            <v-select :debounce="250" :options="cuentas" v-model="transaccion.cuentaId" placeholder="Escoja una Cuenta" label="nombre">
                                             </v-select>
                                             <div class="clearfix"></div>
                                             <input type="hidden" name="cuentaId" value="" data-vv-as="cuenta" v-model="transaccion.cuentaId"  >
@@ -126,7 +126,7 @@
                                     <div class="col-xs-12 col-sm-4">
                                         <div class="fgroup" >
                                             <label for="tipoTransaccionId">Tipo de Transaccion</label>
-                                            <v-select :debounce="250" :options="tipoTransaccions" v-model="transaccion.tipoTransaccionId" placeholder="Seleccione un Tipo de Transaccion" label="nombre" @input="changedValue">
+                                            <v-select :debounce="250" :options="tipoTransaccions" v-model="transaccion.tipoTransaccionId" placeholder="Escoja un Tipo de Transaccion" label="nombre" @input="changedValue">
                                             </v-select>
                                             <div class="clearfix"></div>
                                             <input type="hidden" name="tipoTransaccionId" value="" data-vv-as="tipo Transaccion" v-model="transaccion.tipoTransaccionId" >
@@ -156,16 +156,16 @@
                                         </div>
                                     </div>
                                    
-                                  
+                                  -->
                                    
 
-                                    <div class="col-xs-12 col-sm-4" >
-                                        <div class="fgroup" >
+                                    <div class="col-xs-12 col-sm-6" >
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('patrocinadorId') }">
                                             <label for="patrocinadorId">Patrocinador</label>
                                             <v-select :debounce="250" :options="patrocinadors" v-model="transaccion.patrocinadorId" placeholder="Seleccione un Patrocinador" label="nombre">
                                             </v-select>
                                             <div class="clearfix"></div>
-                                            <input type="hidden" name="patrocinadorId" value="" data-vv-as="patrocinadorId" v-model="transaccion.patrocinadorId" >
+                                            <input type="hidden" name="patrocinadorId" value="" data-vv-as="Patrocinador" v-model="transaccion.patrocinadorId" v-validate="'required'">
 
                                             <span class="help-block" for="patrocinadorId" v-bind:data-error="errors.first('patrocinadorId')">
                                                 {{ errors.first('patrocinadorId') }}
@@ -173,10 +173,12 @@
                                            
                                         </div>
                                     </div>
+
+                                    <!--
                                     <div class="col-xs-12 col-sm-4" >
                                         <div class="fgroup" >
                                             <label for="atletaId">Atleta</label>
-                                            <v-select :debounce="250" :options="atletas" v-model="transaccion.atletaId" placeholder="Seleccione un Atleta" label="nombre">
+                                            <v-select :debounce="250" :options="atletas" v-model="transaccion.atletaId" placeholder="Escoja un Atleta" label="nombre">
                                             </v-select>
                                             <div class="clearfix"></div>
                                             <input type="hidden" name="atletaId" value="" data-vv-as="atletaId" v-model="transaccion.atletaId" >
@@ -187,7 +189,7 @@
                                             
                                         </div>
                                     </div>
-
+                                     -->
                                 </div>
                                 <div class="box-footer">
                                     <div class="col-xs-12 text-right">
@@ -213,7 +215,7 @@
                 <div class="col-lg-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Transacciones Registradas Desde: <b>{{transaccion.inicio}}</b> Hasta: <b>{{transaccion.fin}} </b></h3>
+                            <h3 class="box-title">Transacciones Registradas por Patrocinador Desde: <b>{{transaccion.inicio}}</b> Hasta: <b>{{transaccion.fin}} </b></h3>
                         </div>
                         
                         <div class="box-body">
