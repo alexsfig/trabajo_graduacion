@@ -48,6 +48,31 @@ export default {
                 }
             })
     },
+
+
+    updatebyfecha(context, circuitos){
+        context.showAlert = false
+        context.showSuccess = false
+        HTTP.put(FECHAS, circuitos)
+            .then((resp) => {
+                if (resp.status>= 200 && resp.status <=300){
+                    var id = resp.data.id
+                    context.showAlert = false
+                }
+                context.showSuccess = true
+                context.successMsg = "Circuito Actualizado"
+            })
+            .catch((err) => {
+                context.showAlert = true
+                console.log(err)
+                if (err.response) {
+                    context.errMsg = err.response.data
+                    console.log(err.response.data);
+                    console.log(err.response);
+                    context.showAlert = true
+                }
+            })
+    },
     /*
         Method to get user, pass only the context, id will be taken from url
     */
@@ -121,9 +146,58 @@ export default {
         context.showAlert = false
         context.showSuccess = false
         circuito.id=0;
-        circuito.fechaId={id:circuito.fechaId.id}
-        circuito.categoriaId={id:circuito.categoriaId.id}
-                            HTTP.post(FECHAS, circuito)
+        //circuito.fechaId={id:circuito.fechaId.id}
+        //circuito.categoriaId={id:circuito.categoriaId.id}
+
+
+         let request={
+        fechaId:{id:circuito.fechaId.id},
+        categoriaId:{id:circuito.categoriaId.id},
+        nombre:circuito.nombre,
+        descripcion:circuito.descripcion,
+        estado: 'Abierta'
+
+          }
+
+
+                            HTTP.post(FECHAS, request)
+                            .then((resp) => {
+                                if (resp.status>= 200 && resp.status <=300){
+                                    context.showSuccess = true
+                                    context.successMsg = "Circuito creado exitosamente"
+                                    context.fetchData()
+                                    context.resetForm()
+                                }
+                            })
+                            .catch((err) => {
+                                if (err.response) {
+                                    context.showAlert = true
+                                    context.errMsg = err.response.data
+                                }
+                            })
+
+            //
+
+
+
+    }
+
+    , 
+    createbyfecha(context, circuito){
+        context.showAlert = false
+        context.showSuccess = false
+        circuito.id=0;
+   
+
+        let request={
+fechaId:{id:context.id},
+categoriaId:{id:circuito.categoriaId.id},
+nombre:circuito.nombre,
+descripcion:circuito.descripcion,
+        estado: 'Abierta'
+
+        }
+                            HTTP.post(FECHAS, request)
                             .then((resp) => {
                                 if (resp.status>= 200 && resp.status <=300){
                                     context.showSuccess = true

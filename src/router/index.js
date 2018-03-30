@@ -52,6 +52,9 @@ import LoginTemplate from '@/layouts/Login'
 import FechasIndex from '@/components/fechas/Index'
 import FechasForm from '@/components/fechas/Form'
 import CircuitosForm from '@/components/circuitos/Form'
+import CircuitosFormbyFecha from '@/components/circuitos/FormbyFecha'
+import CircuitosEditbyFecha from '@/components/circuitos/EditbyFecha'
+
 import CircuitosIndex from '@/components/circuitos/Index'
 import CircuitosIndexByFecha from '@/components/circuitos/IndexByFecha'
 import AgregarAtleta from '@/components/circuitos/AgregarAtleta'
@@ -317,6 +320,16 @@ Vue.use(Router)
           component: CircuitosForm
         },
         {
+          path: 'circuitos/formbyfecha/:id',
+          name: 'circuitosCreatebyfecha',
+          component: CircuitosFormbyFecha
+        },
+        {
+          path: 'circuitos/editbyfecha/:idcircuito/:idfecha',
+          name: 'circuitosEditbyfecha',
+          component: CircuitosEditbyFecha
+        },
+       {
           path: 'circuitos/form/:id',
           name: 'circuitosEdit',
           component: CircuitosForm
@@ -351,7 +364,7 @@ Vue.use(Router)
           name: 'cuentasEdit',
           component: CuentasForm
         }
-,
+        ,
         {
           path: 'tipoTransaccions',
           name: 'tipoTransaccionIndex',

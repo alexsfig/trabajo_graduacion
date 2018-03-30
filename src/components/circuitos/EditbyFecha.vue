@@ -6,7 +6,9 @@
 
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li>
-                    <router-link to="/admin/circuitos">Circuitos</router-link>
+                      <router-link :to="{ name: 'circuitosIndexByFecha', params: { id: this.id2 }}">
+                                       Circuitos
+                                        </router-link> 
                 </li>
                 <li class="active">Formulario de Circuitos</li>
 
@@ -57,18 +59,17 @@
                                     <div class="clearfix">
 
                                     </div>
-                                    <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('fechaId') }">
-                                            <label for="fechaId">Fecha</label>
-                                            <v-select :debounce="250" :options="fechas" v-model="circuito.fechaId" placeholder="Escoja una fecha" label="nombre">
-                                            </v-select>
-                                            <div class="clearfix"></div>
-                                            <input type="hidden" name="fechaId" value="" data-vv-as="fechaId" v-model="circuito.fechaId" v-validate="'required'">
-                                            <span class="help-block" for="fechaId" v-bind:data-error="errors.first('fechaId')">
-                                                {{ errors.first('fechaId') }}
+
+                                      <div class="col-xs-12 col-sm-6">
+                                        <div class="fgroup" >
+                                            <label for="">Fecha</label>
+                                            <input type="text" id="fecha.nombre" name="fecha.nombre" data-vv-as="fecha.nombre" class="form-control" v-model="fecha.nombre" v-validate="'required'" disabled>
+                                            <span class="help-block" for="fecha.nombre" v-bind:data-error="errors.first('fecha.nombre')">
+                                                {{ errors.first('fecha.nombre') }}
                                             </span>
                                         </div>
                                     </div>
+                                   
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('categoriaId') }">
                                             <label for="categoriaId">Categoria</label>
@@ -90,13 +91,14 @@
                                     </div>
                                 </div>
 
-                                 <div class="box-body">
-                              
-                             <router-link to="/admin/circuitos/" class="btn btn-flat btn-sm btn-warning margin">
-                                    <i class="fa fa-arrow-circle-left"></i>  Regresar a Circuitos
-                                </router-link>
+                                <div class="box-body">
+                                 <router-link :to="{ name: 'circuitosIndexByFecha', params: { id: this.id2 }}">
+                                        <button type="button" class="btn btn-flat btn-sm btn-warning margin"
+                                       ><i aria-hidden="true"
+                                         class="fa fa-arrow-circle-left"></i>  Regresar a Circuitos</button>
+                                        </router-link> 
 
-                                </div> 
+                                         </div>
 
                             </form>
                         </div>
@@ -123,11 +125,13 @@
               showAlert: false,
               showSuccess: false,
               successMsg: "",
-              id: '',
+              id: '',  
+              id2: '', 
+                          
               errMsg: "",
               isLogin: false,
               circuito: {},
-              fechas: [],
+              fecha: [],
               categorias: []
           }
       },
@@ -135,12 +139,15 @@
           vSelect
       },
       created() {
-          this.id = this.$route.params.id;
+          this.id = this.$route.params.idcircuito;
+          this.id2 = this.$route.params.idfecha;
           if (this.id)
               circuitosController.retrieve(this, this.id);
           console.log("id:" + this.id);
-          fechasController.index(this)
+          
           categoriasController.index(this)
+
+          fechasController.retrieve(this, this.id2)
       },
       methods: {
 

@@ -1,7 +1,7 @@
 <template>
     <div>
         <section class="content-header">
-            <h1>Circuitos</h1>
+            <h1>Inscripcion de Atletas</h1>
 
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -30,9 +30,9 @@
                 <div class="col-lg-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">atletas de inscritos en la fecha {{circuito.fechaId.nombre}}   del circuito {{circuito.nombre }}</h3>
+                            <h3 class="box-title">Atletas Inscritos en la Fecha: <b>{{circuito.fechaId.nombre}}</b>   del Circuito: <b>{{circuito.nombre }} </b></h3>
                         </div>
-                        <!-- /.box-header -->
+                       
                         <div class="box-body">
       <div class="box-action">
  
@@ -44,7 +44,7 @@
                                                 :debounce="250"
                                                 :options="atletas"
                                                 v-model="atleta"
-                                                placeholder="Escoja un atleta" 
+                                                placeholder="Selecciona un atleta" 
                                                 label="nombre">
                                             </v-select>
                                             <div class="clearfix"></div>
@@ -52,7 +52,8 @@
                                             <span class="help-block" for="atleta" v-bind:data-error="errors.first('atleta')">
                                                 {{ errors.first('atleta') }}
                                             </span>
-                                              <button type="submit"  class="btn btn-flat btn-sm btn-primary">Agregar</button> 
+                                              <button type="submit"  class="btn btn-flat btn-sm btn-primary"><i aria-hidden="true" 
+                                        class="fa fa-check-circle"></i>  Inscribir </button> 
                                         </div>
                                         
                                     </div>
@@ -62,13 +63,21 @@
                                     <i class="fa fa-plus"></i> Nueva Circuito
                                 </router-link>-->
                             </div>
+
+                              </div>
+                       
+                        <div class="box-body">
                          <vue-good-table :columns="columns" :rows="atletaCircuitos" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
                                 <template slot="table-row" scope="props"> 
                                        <td>{{props.row.atletaId.personaId.nombre}}</td> 
                                    
                                    <td>{{props.row.atletaId.personaId.apellido}}</td> 
                                      <td>{{ props.row.atletaId.aniosPracticando}}</td> 
-                                     <td>{{ props.row.atletaId.playaPractica}}</td>                         
+                                     <td>{{ props.row.atletaId.playaPractica}}</td>    
+                                     <td>{{ props.row.atletaId.ladoPie}}</td>   
+                                     <td>{{ props.row.atletaId.olaPreferida}}</td>   
+                                    <td> {{ _calculateAge( props.row.atletaId.personaId.fechaNacimiento)  }} años</td>
+                                      <td> {{ props.row.atletaId.personaId.sexo == 'F' ? 'Femenino' : 'Masculino' }}</td>                                
                                          <td class="nowrap">
                                  <!--    <router-link :to="{ name: 'circuitosEdit', params: { id: props.row.id }}">
                                         <button type="button" class="margin btn btn-flat btn-sm btn-primary"
@@ -77,7 +86,7 @@
                                         </router-link>               -->
                                         <button type="button" class="margin btn btn-flat btn-sm btn-danger" 
                                         @click="deleteCircuito(props.row.id, props.row.atletaId.personaId.nombre+','+props.row.atletaId.personaId.apellido)"><i aria-hidden="true" 
-                                        class="fa fa-trash-o"></i> Eliminar</button>
+                                        class="fa fa-times"></i> Dar de baja</button>
                                 
                                     </td>
                                   </template>
@@ -98,7 +107,7 @@
                     </div>
                    </div>
             </div>
-           <!-- <modalPlaya :methodSubmit="methodSubmit" :title="'Actualizar Usuario'" :buttonMsg="'Actualizar'" :openModal="openModal" :playa="playa" v-on:openChange="isChange"></modalPlaya> -->
+          
         </section>
     </div>
 </template>
@@ -144,11 +153,30 @@
                       filterable: true
                     },
                      {
-                      label: 'Playa Practica',
+                      label: 'Playa donde Practica',
                       field: 'playaPractica',
                       filterable: true
                     },
-                   
+                     {
+                      label: 'Lado del Pie',
+                      field: 'ladoPie',
+                      filterable: true
+                    },
+                      {
+                      label: 'Ola Preferida',
+                      field: 'olaPreferida',
+                      filterable: true
+                    },
+                     {
+                      label: 'Edad',
+                      field: 'fechaNacimiento',
+                      filterable: true
+                    },
+                    {
+                      label: 'Sexo',
+                      field: 'sexo',
+                      filterable: true
+                    },
                      {
                       label: 'Accion',
                       field: '',
@@ -211,7 +239,7 @@
                 let swal = this.$swal;
                 this.$swal({
                     title: 'Estas Seguro?',
-                    html: 'No podras recuperar la informacion de la circuito <b>&laquo;' + nombre + '&raquo</b><br>y toda la informacion relacion al mismo ya no sera accesible',
+                    html: 'No podras recuperar la informacion del Atleta <b>&laquo;' + nombre + '&raquo</b><br> en el Circuito y toda la informacion en relacion al mismo ya no sera accesible',
                     type: 'error',
                     showCancelButton: true,
                     confirmButtonText: 'Si, Eliminar!',
@@ -222,12 +250,23 @@
                     if (dismiss === 'cancel') {
                         swal(
                           'Cancelado',
-                          'La circuito no se elimino',
+                          'El Atleta en el Circuito no se dio de baja',
                           'error'
                         )
                     }
                 })
             },
+
+             _calculateAge(birthday) {
+            var today = new Date();
+            var birthDate = new Date(birthday);
+            var age = today.getFullYear() - birthDate.getFullYear();
+            var m = today.getMonth() - birthDate.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            return age;
+              }
         }
     }
 </script>

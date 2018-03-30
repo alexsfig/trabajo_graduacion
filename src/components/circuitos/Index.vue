@@ -55,11 +55,11 @@
                                             @click="deleteCircuito(props.row.id, props.row.nombre)"><i aria-hidden="true"
                                             class="fa fa-trash-o"></i> Eliminar
                                         </button>
-                                        <button type="button" class="margin btn btn-flat btn-sm bg-navy margin"
+                                        <button v-if="props.row.estado=='Abierta'" type="button" class="margin btn btn-flat btn-sm bg-navy margin"
                                             @click="agregarAtletas(props.row.id, props.row)"><i aria-hidden="true"
                                             class="fa fa-male"></i> Agregar Atletas
                                         </button>
-                                        <button type="button" class="margin btn btn-flat btn-sm bg-navy margin"
+                                        <button type="button" v-if="props.row.estado=='Abierta'" class="margin btn btn-flat btn-sm bg-navy margin"
                                             @click="agregarJueces(props.row.id, props.row)"><i aria-hidden="true"
                                             class="fa fa-gavel"></i> Agregar Jueces
                                         </button>

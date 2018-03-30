@@ -34,9 +34,13 @@
                         <!-- /.box-header -->
                         <div class="box-body">
       <div class="box-action">
-                                <router-link to="/admin/circuitos/form" class="btn btn-default btn-flat">
-                                    <i class="fa fa-plus"></i> Nuevo Circuito
-                                </router-link>
+                               
+                                  <router-link :to="{ name: 'circuitosCreatebyfecha', params: { id: this.$route.params.id }}">
+                                        <button type="button" class="btn btn-default btn-flat"
+                                       ><i aria-hidden="true"
+                                         class="fa fa-plus"></i>  Nuevo Circuito</button>
+                                        </router-link> 
+
 
                             </div>
                             <vue-good-table :columns="columns" :rows="circuitos" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
@@ -49,7 +53,7 @@
 
 
                     <td class="nowrap">
- <router-link :to="{ name: 'circuitosEdit', params: { id: props.row.id }}">
+ <router-link :to="{ name: 'circuitosEditbyfecha', params: { idcircuito: props.row.id, idfecha: props.row.fechaId.id }}">
                                         <button type="button" class="margin btn btn-flat btn-sm btn-primary"
                                        ><i aria-hidden="true"
                                          class="fa fa-pencil-square-o"></i> Actualizar</button>
@@ -91,7 +95,7 @@
                     </div>
                    </div>
             </div>
-           <!-- <modalPlaya :methodSubmit="methodSubmit" :title="'Actualizar Usuario'" :buttonMsg="'Actualizar'" :openModal="openModal" :playa="playa" v-on:openChange="isChange"></modalPlaya> -->
+           
         </section>
     </div>
 </template>
