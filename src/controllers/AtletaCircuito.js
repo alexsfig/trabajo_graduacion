@@ -183,6 +183,7 @@ export default {
                                     context.showSuccess = true
                                     context.atleta='55';
                                     context.successMsg = "Se Agrego Correctamente el Atleta al Circuito"
+                                    context.fetchData()
                             //  context.$router.go()
                                   //  contextvm.$forceUpdate();
                                 }

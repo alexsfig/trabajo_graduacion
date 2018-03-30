@@ -4,7 +4,7 @@ import {router} from '../router/index.js'
 import moment from 'moment'
 // define base url to Employees
 const RONDAS = 'ronda/'
-
+import Toasted from 'vue-toasted';
 
 export default {
 
@@ -90,6 +90,12 @@ export default {
                 if (resp.status>= 200 && resp.status <=300){
                     var id = resp.data.id
                     context.showAlert = false 
+                    context.$toasted.show("Heat Iniciado  con exito", { 
+                        theme: "primary", 
+                        position: "top-right", 
+                        duration : 5000
+                   });
+                  context.volver();
                 }
                // context.showSuccess = true
                // context.successMsg = "Noticia Actualizada"

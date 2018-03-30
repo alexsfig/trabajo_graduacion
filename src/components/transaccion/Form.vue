@@ -114,7 +114,9 @@
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('cuentaId') }">
                                             <label for="cuentaId">Cuenta</label>
-                                            <v-select :debounce="250" :options="cuentas" v-model="transaccion.cuentaId" placeholder="Seleccione una Cuenta" label="nombre">
+                                            <v-select :debounce="250" 
+                                            :options="cuentas" v-model="transaccion.cuentaId" 
+                                            placeholder="Seleccione una Cuenta" label="nombrem">
                                             </v-select>
                                             <div class="clearfix"></div>
                                             <input type="hidden" name="cuentaId" value="" data-vv-as="Cuenta" v-model="transaccion.cuentaId" v-validate="'required'" >
@@ -294,9 +296,16 @@ export default {
                     if (success) {
 
                         //this.transaccion.comprobante = this.comprobantev.label;
+
+                        if(this.transaccion.cuentaId.monto>this.transaccion.monto){
                         this.transaccion.comprobante = this.transaccion.comprobante.label == undefined ? this.transaccion.comprobante : this.transaccion.comprobante.label
                         if (!this.id) transaccionsController.create(this, this.transaccion);
-                        else transaccionsController.update(this, this.transaccion);
+                        else transaccionsController.update(this, this.transaccion);}
+                        else{
+
+ this.showAlert = true;
+                        this.errMsg = "La cuenta no tiene fondos suficientes";
+                        }
                     } else {
                         console.log("Error enn el formulario");
                         this.showAlert = true;

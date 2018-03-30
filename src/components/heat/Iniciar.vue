@@ -30,9 +30,10 @@
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <h3 class="box-title">Manejo del Heat  <b>{{heat.numero}}</b>  de la Ronda <b>{{heat.rondaId.numero}}</b>  Estado <b>{{heat.estado}}</b></h3>
+                                        <div v-if="juezLider">
                                          <button v-if="heat.estado='Por iniciar'" type="button" style="float:right" class="margin btn btn-flat btn-sm btn-success" 
                                         @click="iniciarHeat()"><i aria-hidden="true" 
-                                        class="fa fa-flag-checkered"></i> Iniciar heat </button>
+                                        class="fa fa-flag-checkered"></i> Iniciar heat </button></div>
                         </div>
 
      

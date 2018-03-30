@@ -14,7 +14,7 @@ export default {
         context.showSuccess = false 
 
         let request={};
-        request.circuitoId=context.circuito;
+        request.circuitoId={id:context.circuito.id};
 
 
         request.atletasRonda=context.totalAtletas;
