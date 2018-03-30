@@ -39,6 +39,7 @@
                             <form @submit.prevent="submit"  role="form"> 
            <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup"  :class="{ 'has-error': errors.has('atleta') }">
+                                          
                                             <label for="atleta">Atleta</label>
                                             <v-select
                                                 :debounce="250"
@@ -198,7 +199,7 @@
                atletaCircuitoController.indexByCircuito(this,this.id);
                        atletaCircuitoController.getheat(this,this.id);
                 circuitosController.retrieve(this,this.id)
-                 atletaController.index(this)
+                 atletaController.byCircuito(this, this.id)
 
                  console.log("son :"+Object.keys(this.atletaCircuitos).length)
 /*
