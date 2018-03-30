@@ -43,13 +43,9 @@
 		                </span>
 		            </router-link>
 		            <ul class="treeview-menu">
+		               
 		                <li>
-		                    <router-link to="/admin/users/">
-		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Manejo de usuarios</span>
-		                    </router-link>
-		                </li>
-		                <li>
-		                    <router-link to="/admin/users/create">
+		                    <router-link to="/juez/fechas/">
 		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Agregar usuario</span>
 		                    </router-link>
 		                </li>
