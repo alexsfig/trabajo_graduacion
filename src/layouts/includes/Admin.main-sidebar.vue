@@ -127,7 +127,7 @@
 
 		                 <li>
 		                    <router-link to="/admin/patrocinadoratleta">
-		                        <i class="fa fa-male" aria-hidden="true"></i> <span>Patrocinadores Atletas</span>
+		                        <i class="fa fa-male" aria-hidden="true"></i> <span>Patrocinio de Atletas</span>
 		                    </router-link>
 		                </li>
 
@@ -159,7 +159,7 @@
 
 		        <li class="treeview">
 		            <router-link to="#">
-		                <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+		                <i class="fa fa-flag-checkered" aria-hidden="true"></i>
 		                <span>Competencias</span>
 		                <span class="pull-right-container">
 		                    <i class="fa fa-angle-left pull-right"></i>
@@ -203,7 +203,7 @@
 
 					 <li class="treeview">
 		            <router-link to="#">
-		                <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+		                <i class="fa fa-balance-scale" aria-hidden="true"></i>
 		                <span>Finanzas</span>
 		                <span class="pull-right-container">
 		                    <i class="fa fa-angle-left pull-right"></i>

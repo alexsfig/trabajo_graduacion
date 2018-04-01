@@ -29,14 +29,14 @@
                 <div class="col-lg-3">
                     <div class="box box-success">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Crear</h3>
+                            <h3 class="box-title">Agregar Nueva</h3>
                         </div>
     
                         <form @submit.prevent="submit()"> 
                             <div class="box-body">
                                 <div class="fgroup" :class="{ 'has-error': errors.has('nombre') }" >
                                     <label for="nombre">Nombre</label>
-                                    <input type="text" id="nombre" name="nombre" data-vv-as="nombre" class="form-control" v-model="playasCreate.nombre" v-validate="'required'" />
+                                    <input type="text" id="nombre" name="nombre" data-vv-as="Nombre" class="form-control" v-model="playasCreate.nombre" v-validate="'required'" />
                                     <span class="help-block" for="nombre" v-bind:data-error="errors.first('nombre')">
                                         {{ errors.first('nombre') }}
                                     </span>
@@ -44,7 +44,7 @@
                             
                                 <div class="fgroup" :class="{ 'has-error': errors.has('ubicacion') }" >
                                     <label for="ubicacion">Ubicación</label>
-                                    <input id="ubicacion" name="ubicacion" rows="5" data-vv-as="ubicación" class="form-control" v-model="playasCreate.ubicacion" v-validate="'required'"/>
+                                    <input id="ubicacion" name="ubicacion" rows="5" data-vv-as="Ubicación" class="form-control" v-model="playasCreate.ubicacion" v-validate="'required'"/>
                                     <span class="help-block" for="ubicacion" v-bind:data-error="errors.first('ubicacion')">
                                         {{ errors.first('ubicacion') }}
                                     </span>
@@ -52,7 +52,7 @@
                             </div>
                             <div class="box-footer">
                                 <button type="button" class="pull-left btn btn-default btn-flat" @click="reset()">Limpiar</button>
-                                <button type="submit" class="pull-right btn btn-success btn-flat">Crear</button>
+                                <button type="submit" class="pull-right btn btn-success btn-flat">Agregar</button>
                             </div>
                         </form>
                     </div>
@@ -61,7 +61,7 @@
                 <div class="col-lg-9">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Management</h3>
+                            <h3 class="box-title">Listado de Playas</h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -81,7 +81,7 @@
                     </div>    
                 </div>
             </div>  
-            <modalPlaya :methodSubmit="methodSubmit" :title="'Actualizar Usuario'" :buttonMsg="'Actualizar'" :openModal="openModal" :playa="playa" v-on:openChange="isChange"></modalPlaya>    
+            <modalPlaya :methodSubmit="methodSubmit" :title="'Actualizar Playa'" :buttonMsg="'Actualizar'" :openModal="openModal" :playa="playa" v-on:openChange="isChange"></modalPlaya>    
         </section>
     </div>
 </template>
@@ -117,15 +117,15 @@
                 playa: {},
                 columns: [
                     {
-                        label: "nombre",
+                        label: "Nombre",
                         field: "nombre",
                     },
                     {
-                        label: "ubicacion",
+                        label: "Ubicación",
                         field: "ubicacion",
                     },
                     {
-                        label: "Action"
+                        label: "Acción"
                     }
                 ]
             }

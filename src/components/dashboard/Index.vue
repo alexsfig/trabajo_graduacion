@@ -75,19 +75,19 @@
                   <div class="box-header with-border">
                     <i style="color:#031328"class="fa fa-users"></i>
 
-                    <h3 class="box-title "><b>Interactuando con el sistema</b></h3>
+                    <h3 class="box-title "><b>Interactuando con el Sistema</b></h3>
                   </div>
                   <div class="box-body text-justify">
                     <div class="col-md-12">
-                      Usando el menu lateral, podra acceder a todas las opcionesque posee el sistema.
+                      Usando el menu lateral, podra acceder a todas las opciones que posee el sistema.
                       <br><br>
-                      Usted podra agregar <b> ATLETAS, JUECES, MIEMBROS DE JUNTA O ENTRENADORES</b> de forma facil y rapida .
+                      Usted podra agregar <b> ATLETAS, JUECES, MIEMBROS DE JUNTA O ENTRENADORES</b> de forma facil y rapida.
                       <br><br>
-                      Tambien podra llevar un registro de las <b>PLAYAS</b> donde se practica el surf, y donde se realizan las competencias.
+                      Tambien podra llevar un registro de las <b>PLAYAS</b> donde se practica el surf y donde se realizan las competencias.
                       <br><br>
                       Mediante el sistema se podran crear <b>NOTICIAS</b> las cuales podran ser accesadas desde el sitio web o de desde la aplicacion movil.
                       <br><br>
-                      El sistema permitira la creacion de <b>USUARIOS</b>, los cuales podran acceder al sistema, y poder realizar modifcaciones segun los permisos que se le hallan concedido
+                      El sistema permitira la creacion de <b>USUARIOS</b>, los cuales podran acceder al sistema, y poder realizar modifcaciones segun los permisos que se le halla concedido
                     </div>
 
                   </div>
@@ -98,7 +98,7 @@
                   <div class="box-header with-border">
                     <i style="color:#031328"class="fa fa-users"></i>
 
-                    <h3 class="box-title "><b>Automatizacion de procesos</b></h3>
+                    <h3 class="box-title "><b>Automatizacion de Procesos</b></h3>
                   </div>
                   <div class="box-body text-justify">
                     <div class="col-md-12">
@@ -106,9 +106,9 @@
                       <br><br>
                       Se podra definir las <b>CATEGORIAS</b> participantes, asi como los atletas por cada cetegoria
                       <br><br>
-                      El sistema sera el responsable de la asignacion de atletas para cada uno de los hits que se realicen, asi como la sumarizacion de puntos al final de cada hit.
+                      El sistema sera el responsable de la asignacion de atletas para cada uno de los heats que se realicen, asi como la sumarizacion de puntos al final de cada heat.
                       <br><br>
-                      Al final de cada <b>TORNEOS (FECHAS)</b> que se realice el sistema generara la tabla de puntuacones finales de cada <b>CATEGORIAS</b>
+                      Al final de cada <b>TORNEOS (FECHAS)</b> que se realice el sistema generara la tabla de puntuaciones finales de cada una de las <b>CATEGORIAS</b>
                     </div>
 
                   </div>

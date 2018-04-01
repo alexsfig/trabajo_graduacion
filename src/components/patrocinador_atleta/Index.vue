@@ -34,21 +34,26 @@
                                 </router-link>
                             </div>
 
+                            </div>
+
+                    <div class="box-body">
+
                         <div class="table-responsive">
 
                             <vue-good-table :columns="columns" :rows="patrocinadoresAtletas" :globalSearch="true" :paginate="true" styleClass="table table-striped table-condensed">
                                 <template slot="table-row" scope="props">
                                    
-                                    <td>{{props.row.tiempoPatrocinio}}</td>
+                                    
                                     <td>{{props.row.atletaId.personaId.nombre}} ,{{props.row.atletaId.personaId.apellido}}</td>
                                     <td>{{ props.row.patrocinadorId.nombre}}</td>
-                                    <td>
-                                        <!--<button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="retrieveData(props.row.id, props.row)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar</button>-->
+                                    <td>{{props.row.tiempoPatrocinio}} años </td>
+                                     <td>
+                                                                               
+                                        <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="profile(props.row.atletaId.id, props.row)"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Perfil  de Atleta Patrocinado</button>            
                                         
-                                        <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="profile(props.row.atletaId.id, props.row)"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Ver Perfil Atleta</button>
-            
-                                        <button type="button" class="margin btn btn-sm btn-flat btn-danger" @click="clickHandler(props.row.id, patrocinadorAtleta, props.row.atletaId.personaId.nombre)"><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
                                         <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="openModal=true, retrieveData(props.row.id)" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar Patrocinio</button>
+
+                                        <button type="button" class="margin btn btn-sm btn-flat btn-danger" @click="clickHandler(props.row.id, patrocinadorAtleta, props.row.atletaId.personaId.nombre)"><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
                                     </td>
                                 
                                 </template>
@@ -79,11 +84,7 @@ export default {
     data() {
         return {
         columns: [
-                {
-                    label: 'Tiempo Patrocinio (Años)',
-                    field: 'tiempoPatrocinio',
-                    filterable: true,
-                }, 
+                
                 {
                     label: 'Atleta Patrocinado',
                     field: 'atletaId.personaId.nombre',
@@ -93,6 +94,11 @@ export default {
                 {
                     label: 'Patrocinador',
                     field: 'patrocinadorId.nombre',
+                    filterable: true,
+                }, 
+                {
+                    label: 'Tiempo de Patrocinio',
+                    field: 'tiempoPatrocinio',
                     filterable: true,
                 }, 
                 {

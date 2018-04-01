@@ -13,7 +13,7 @@
             </div>
             <div class="box box-primary">
             
-                <label>Usuarioss {{ usuario }}</label>
+                <label>Usuario: {{ updateUser.usuario }}</label>
                 <form @submit.prevent="validateMethod" role="form"> 
                     <div class="box-body">
                         <input type="hidden" v-model="id">

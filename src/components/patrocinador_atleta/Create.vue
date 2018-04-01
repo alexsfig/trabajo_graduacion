@@ -32,17 +32,6 @@
                        <form @submit.prevent="submit"  role="form"> 
                         <div class="box-body">
 
-                        <div class="col-xs-12 col-sm-6">
-                            <div class="fgroup" :class="{ 'has-error': errors.has('tiempoPatrocinio') }" >
-                                <label for="">Tiempo Patrocinio (Años)</label>
-                                <input type="number" min='0' max='100' id="tiempoPatrocinio" name="tiempoPatrocinio" data-vv-as="Tiempo de Patrocinio" class="form-control" 
-                                v-model="createPatrocinadorAtleta.tiempoPatrocinio" v-validate="'required'" >
-                                <span class="help-block" for="tiempoPatrocinio" v-bind:data-error="errors.first('tiempoPatrocinio')">
-                                    {{ errors.first('tiempoPatrocinio') }}
-                                </span>
-                            </div>
-                        </div>
-
 
                         <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup"  :class="{ 'has-error': errors.has('atletaId') }">
@@ -81,11 +70,19 @@
                                     </div>
 
  
-
-
-                                   
+                            
+                        <div class="col-xs-12 col-sm-6">
+                            <div class="fgroup" :class="{ 'has-error': errors.has('tiempoPatrocinio') }" >
+                                <label for="">Tiempo de Patrocinio (Años)</label>
+                                <input type="number" min='0' max='100' id="tiempoPatrocinio" name="tiempoPatrocinio" data-vv-as="Tiempo de Patrocinio" class="form-control" 
+                                v-model="createPatrocinadorAtleta.tiempoPatrocinio" v-validate="'required|min_value:1|max_value:1000'" >
+                                <span class="help-block" for="tiempoPatrocinio" v-bind:data-error="errors.first('tiempoPatrocinio')">
+                                    {{ errors.first('tiempoPatrocinio') }}
+                                </span>
+                            </div>
+                        </div>                         
                                         
-                                    
+                               
 
 
 

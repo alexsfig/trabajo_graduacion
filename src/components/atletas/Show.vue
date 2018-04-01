@@ -2,10 +2,12 @@
     <div class="content">
         <div class="row">
             <div class="col-xs-12 text-left">
-                <router-link to="/admin/atletas" type="button" class="btn btn-flat btn-sm btn-warning margin ">
-                    <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
-                    Regresar a atletas
-                </router-link>
+                                              
+                             <div @click="volver()" class="btn btn-flat btn-sm btn-warning margin">
+                                    <i class="fa fa-arrow-circle-left" ></i> Regresar
+                                </div>
+
+                               
             </div>
             <div class="col-md-8 col-md-offset-2">
                 <div class="box box-primary">
@@ -130,7 +132,15 @@ export default {
        },
         fetchData() {
             atletasController.retrieve(this, this.$route.params.id)
-      }
+      },
+      volver(){
+                console.log("entre")
+ window.history.length > 1
+        ? this.$router.go(-1)
+        : this.$router.push('/')
+    
+
+            }
     }
 }
 
