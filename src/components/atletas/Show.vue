@@ -27,6 +27,9 @@
                                 <li class="list-group-item">
                                     <b>Edad que inicio</b> <a class="pull-right">{{ atleta.edadInicio }} años</a>
                                 </li>
+                                 <li class="list-group-item">
+                                    <b>Fechas que ha Competido</b> <a class="pull-right">{{ atleta.cuantasFechas }}</a>
+                                </li>
                                 <li class="list-group-item">
                                     <b>Ultima Participacion</b> <a class="pull-right">{{ atleta.ultimaParticipacion }}</a>
                                 </li>
@@ -65,9 +68,14 @@
                         <p class="text-muted">{{ atleta.rutinaConstancia }}</p>
                         <hr>
 
-                        <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
+                        <strong><i class="fa fa-file-text-o margin-r-5"></i> Nivel Academico</strong>
 
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+                        <p>{{ atleta.nivelAcademico }}</p>
+                         <hr>
+
+                        <strong><i class="fa fa-file-text-o margin-r-5"></i> Otros Estudios</strong>
+
+                        <p>{{ atleta.otrosEstudios }}</p>
                     </div>
                     <!-- /.box-body -->
                 </div>

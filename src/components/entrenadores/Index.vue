@@ -19,16 +19,11 @@
                        
                         <div class="box-body">
                             
-                         <!--   <div class="box-action">
-                                <router-link to="/admin/juntamiembros/create" class="btn btn-default btn-flat">
-                                    <i class="fa fa-plus"></i> Nuevo Miembro
-                                </router-link>
-                            </div> -->
-
+                         
                             <div class="table-responsive">
                               
                                 <vue-good-table
-                                  title="Dynamic Table"
+                                  title="Entrenadores Registrados"
                                   :columns="columns"
                                   :rows="entrenadores"
                                   :globalSearch="true"
@@ -125,7 +120,7 @@
                       filterable: true,
                     },
                     {
-                      label: 'Descripcion',
+                      label: 'Descripcion del Entrenador',
                       field: 'descripcion',
                       filterable: true,
                     },
@@ -169,7 +164,7 @@
                 let context = this
                 swal({
                     title: 'Estas Seguro?',
-                    html: 'No podras recuperar la informacion del entrenador <b>' + nombre + '</b>',
+                    html: 'No podras recuperar la informacion del Entrenador <b>' + nombre + '</b>',
                     type: 'error',
                     showCancelButton: true,
                     confirmButtonText: 'Si, Eliminar!',
@@ -183,7 +178,7 @@
                       if (dismiss === 'cancel') {
                         swal(
                           'Cancelado',
-                          'El entrenador no se elimino',
+                          'El Entrenador no se elimino',
                           'error'
                         )
                       }

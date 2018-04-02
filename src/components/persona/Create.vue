@@ -172,10 +172,10 @@
                         </div>
 
                         <div class="box-body" v-if="datosTipo">
-
+                             <div class="box-body">
                             <div class="col-xs-12 text-left">
                                 <button type="button" @click="returnToSelect" class="btn btn-flat btn-sm btn-warning margin "><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Regresar a Editar informacion de persona</button>
-                            </div>
+                            </div>   </div>
                             <!---#################################################################################-->
                             <!---#################################################################################-->
                             <!---                  FORM ATLETA                               #####################-->
@@ -189,7 +189,7 @@
                                             <div class="col-xs-12 col-sm-4">
                                                 <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.aniosPracticando') }">
                                                     <label for="">Años practicando</label>
-                                                    <input min="0" max="50" type="number" id="aniosPracticando" name="aniosPracticando" data-vv-as="Años practicando " class="form-control" v-model="createAtleta.aniosPracticando" v-validate="'required'">
+                                                    <input type="number" id="aniosPracticando" name="aniosPracticando" data-vv-as="Años practicando " class="form-control" v-model="createAtleta.aniosPracticando" v-validate="'required|min_value:0|max_value:79'">
                                                     <span class="help-block" for="aniosPracticando" v-bind:data-error="errors.first('form-2-1.aniosPracticando')">
                                                         {{ errors.first('form-2-1.aniosPracticando') }}
                                                     </span>
@@ -198,7 +198,7 @@
                                             <div class="col-xs-12 col-sm-4">
                                                 <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.edadInicio') }">
                                                     <label for="">Edad que inicio</label>
-                                                    <input type="number" min="5" max="50" id="edadInicio" name="edadInicio" data-vv-as="Edad que inicio " class="form-control" v-model="createAtleta.edadInicio" v-validate="'required'">
+                                                    <input type="number" id="edadInicio" name="edadInicio" data-vv-as="Edad que inicio " class="form-control" v-model="createAtleta.edadInicio" v-validate="'required|min_value:4|max_value:79'">
                                                     <span class="help-block" for="edadInicio" v-bind:data-error="errors.first('form-2-1.edadInicio')">
                                                               {{ errors.first('form-2-1.edadInicio') }}
                                                           </span>
@@ -326,7 +326,7 @@
                                                 <div class="fgroup" :class="{ 'has-error': errors.has('form-2-2.cuantasFechas') }">
                                                     <div class="fgroup" :class="{ 'has-error': errors.has('form-2-2.cuantasFechas') }">
                                                         <label for="">Fechas que ha competido</label>
-                                                        <input type="number" id="cuantasFechas" name="cuantasFechas" data-vv-as="Fechas que ha competido " class="form-control" v-model="createAtleta.cuantasFechas" v-validate="'required'" :disabled="has_competition == true">
+                                                        <input type="number" id="cuantasFechas" name="cuantasFechas" data-vv-as="Fechas que ha competido " class="form-control" v-model="createAtleta.cuantasFechas" v-validate="'required|min_value:1'" :disabled="has_competition == true">
                                                         <span class="help-block" for="cuantasFechas" v-bind:data-error="errors.first('form-2-2.cuantasFechas')">
                                                       {{ errors.first('form-2-2.cuantasFechas') }}
                                                   </span>
@@ -573,9 +573,9 @@
                                 <div v-if="type.name == 'Entrenador'">
                                     <h3>Información del Entrenador</h3>
                                     <div class="col-xs-12 col-sm-12">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('form-2.descripcion') }">
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('form-5.descripcion') }">
                                             <label for="">Descripcion del Entrenador</label>
-                                            <textarea v-model="createEntrenador.descripcion" class="form-control" name="descripcion" rows="2" data-vv-as="Descripcion del juez" v-validate="'required'">
+                                            <textarea v-model="createEntrenador.descripcion" class="form-control" name="descripcion" rows="2" data-vv-as="Descripcion del Entrenador" v-validate="'required'">
 
                                             </textarea>
                                             <span class="help-block" for="descripcion" v-bind:data-error="errors.first('form-5.descripcion')">
@@ -615,7 +615,7 @@
                                                 </span>
                                         </div>
                                     </div>
-                                    <div class="col-xs-12 col-sm-6 pull-right">
+                                    <div class="col-xs-12 col-sm-12 pull-right">
                                         <div class="box-footer">
                                             <div class="col-xs-12 text-right">
                                                 <button type="submit" class="btn btn-flat btn-sm btn-primary">Guardar Miembro Junta </button>

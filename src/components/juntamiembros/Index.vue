@@ -28,7 +28,7 @@
                             <div class="table-responsive">
                               
                                 <vue-good-table
-                                  title="Dynamic Table"
+                                  title="Miembros de Junta Registrados"
                                   :columns="columns"
                                   :rows="juntamiembros"
                                   :globalSearch="true"
