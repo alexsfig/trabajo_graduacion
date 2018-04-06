@@ -23,7 +23,7 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Patrocinadores de Atletas</h3>
+                        <h3 class="box-title">Listado de Patrocinios</h3>
                     </div>
 
                     <div class="box-body">
@@ -44,8 +44,9 @@
                                 <template slot="table-row" scope="props">
                                    
                                     
-                                    <td>{{props.row.atletaId.personaId.nombre}} ,{{props.row.atletaId.personaId.apellido}}</td>
+                                   
                                     <td>{{ props.row.patrocinadorId.nombre}}</td>
+                                     <td>{{props.row.atletaId.personaId.nombre}} ,{{props.row.atletaId.personaId.apellido}}</td>
                                     <td>{{props.row.tiempoPatrocinio}} años </td>
                                      <td>
                                                                                
@@ -53,7 +54,7 @@
                                         
                                         <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="openModal=true, retrieveData(props.row.id)" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar Patrocinio</button>
 
-                                        <button type="button" class="margin btn btn-sm btn-flat btn-danger" @click="clickHandler(props.row.id, patrocinadorAtleta, props.row.atletaId.personaId.nombre)"><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
+                                        <button type="button" class="margin btn btn-sm btn-flat btn-danger" @click="clickHandler(props.row.id, patrocinadorAtleta, props.row.patrocinadorId.nombre)"><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
                                     </td>
                                 
                                 </template>
@@ -84,6 +85,12 @@ export default {
     data() {
         return {
         columns: [
+
+                {
+                    label: 'Patrocinador',
+                    field: 'patrocinadorId.nombre',
+                    filterable: true,
+                }, 
                 
                 {
                     label: 'Atleta Patrocinado',
@@ -91,11 +98,7 @@ export default {
                     filterable: true,
                 },
 
-                {
-                    label: 'Patrocinador',
-                    field: 'patrocinadorId.nombre',
-                    filterable: true,
-                }, 
+                
                 {
                     label: 'Tiempo de Patrocinio',
                     field: 'tiempoPatrocinio',
@@ -157,7 +160,7 @@ export default {
             let context = this
             swal({
                 title: 'Estas Seguro?',
-                html: 'No podras recuperar la informacion del Patrocinio <b>' + nombre + '</b>',
+                html: 'No podras recuperar la informacion del Patrocinio de <b>' + nombre + '</b>',
                 type: 'error',
                 showCancelButton: true,
                 confirmButtonText: 'Si, Eliminar!',
