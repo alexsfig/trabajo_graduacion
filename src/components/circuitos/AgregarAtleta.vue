@@ -220,7 +220,7 @@
                     
                         this.atletaCircuito.circuitoId=this.circuito;
                         this.atletaCircuito.atletaId=this.atleta;
-                        this.atletaCircuito.estado=0;
+                        this.atletaCircuito.estado="Compitiendo";
 
                         console.log(JSON.stringify(  
                         this.atletaCircuito));

@@ -29,17 +29,24 @@
                 <div class="col-lg-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Manejo de Rondas del Circuito <b>{{this.circuito.nombre}}</b> para la Fecha <b>{{this.circuito.fechaId.nombre}} </b></h3>
+                            <h3 class="box-title">Manejo de Rondas del Circuito <b>{{this.circuito.nombre}},{{this.circuito.estado}}</b> para la Fecha <b>{{this.circuito.fechaId.nombre}} </b></h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
-                                
+                          <div  v-if="circuito.estado!='Calificado'">
                            <router-link v-if="nuevoHabilitar" :to="{ name: 'circuitosNuevaRonda', params: { id: id }}">
                                         <button type="button" class="margin btn btn-flat btn-sm btn-primary"
                                        ><i aria-hidden="true"
                                          class="fa fa-pencil-square-o"></i> Nueva Ronda </button>
                                         </router-link>   
-
+                          </div>
+                            <div  v-if="circuito.estado=='Calificado'">
+                             <router-link v-if="nuevoHabilitar" :to="{ name: 'circuitosNuevaRonda', params: { id: id }}">
+                                        <button type="button" class="margin btn btn-flat btn-sm btn-primary"
+                                       ><i aria-hidden="true"
+                                         class="fa fa-pencil-square-o"></i> Nueva Rondatte </button>
+                                        </router-link>   
+ </div>
                             </div>
                        
                         <div class="box-body">   

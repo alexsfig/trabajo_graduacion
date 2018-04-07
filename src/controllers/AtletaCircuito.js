@@ -88,8 +88,19 @@ export default {
             })
     },
   
-
-
+    indexByCircuitoClasificados(context,id){
+        HTTP.get("/atletaCircuito/byCircuitoClasificados/"+id)
+            .then((resp) => {
+                console.log(resp.data)
+                context.atletaCircuitos = resp.data
+              
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+    },
+  
+    
 
 
  getheat(context,id){  
@@ -97,7 +108,7 @@ export default {
     const color = ['Amarillo', 'Rojo', 'Azul', 'Verde']
 
 
-        HTTP.get("/atletaCircuito/byCircuito/"+id)
+        HTTP.get("/atletaCircuito/byCircuitoClasificados/"+id)
             .then((resp) => {
 
     

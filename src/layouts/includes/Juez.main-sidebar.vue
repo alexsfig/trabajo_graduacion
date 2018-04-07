@@ -37,7 +37,7 @@
 		        <li class="treeview">
 		            <router-link to="#">
 		                <i class="fa fa-users" aria-hidden="true"></i>
-		                <span>Usuarios</span>
+		                <span>Competencias</span>
 		                <span class="pull-right-container">
 		                    <i class="fa fa-angle-left pull-right"></i>
 		                </span>
@@ -45,8 +45,8 @@
 		            <ul class="treeview-menu">
 		               
 		                <li>
-		                    <router-link to="/juez/fechas/">
-		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Agregar usuario</span>
+		                    <router-link to="/juez/heat/">
+		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Ver Heat</span>
 		                    </router-link>
 		                </li>
 		            </ul>

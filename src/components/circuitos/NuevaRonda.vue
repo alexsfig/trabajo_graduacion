@@ -29,7 +29,7 @@
                 <div class="col-lg-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Generacion de Heats para Nueva Ronda</b></h3>
+                            <h3 class="box-title"><b>Generacion de Heats para Nueva Ronda</b></h3>
                         </div>
                         <div class="box-header with-border">
                             <h3 class="box-title">Atletas en la Fecha <b>{{circuito.fechaId.nombre}}</b>  del Circuito <b>{{circuito.nombre }} </b></h3>
@@ -191,7 +191,7 @@
         methods:{
             fetchData(){
                // circuitosController.index(this)
-               atletaCircuitoController.indexByCircuito(this,this.id);
+               atletaCircuitoController.indexByCircuitoClasificados(this,this.id);
                atletaCircuitoController.getheat(this,this.id);
                 circuitosController.retrieve(this,this.id)
                  atletaController.index(this)

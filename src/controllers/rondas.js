@@ -57,8 +57,14 @@ export default {
                 if (resp.status>= 200 && resp.status <=300){
                     context.showSuccess = true
                     context.successMsg = "Ronda Creada con exito Creada"
-                    context.fetchData()
-                    context.reset()
+                  //  context.fetchData()
+                   // context.reset()
+                    context.$toasted.show("Ronda creada   con exito", { 
+                        theme: "primary", 
+                        position: "top-right", 
+                        duration : 5000
+                   });
+                  context.volver();
                 }
             })
             .catch((err) => {
@@ -93,7 +99,26 @@ export default {
             .catch((err) => {
               console.log(err)
             })
-    }
+    },
+    finalizar(context, id, swal) {
+   let data=[];
+        context.heats.forEach(element => {
+            element.atletasHeatList.forEach(item => {
+
+
+             data.push(item.id+"-"+item.estado);
+            });
+        });
+        HTTP.post("heat/finishRonda/" + id,data)
+            .then((resp) => {
+                console.log(resp);
+                swal("Finalizada!", "La Ronda ha sido finalizada", "success")
+                context.fetchData();
+            })
+            .catch((err) => {
+                swal("Oh snap!", "Ocurrio un error.", "error")
+            })
+    }, 
      
 
 

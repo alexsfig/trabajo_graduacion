@@ -70,7 +70,9 @@ export default {
         "openModal",
         "atletaHeat",
         "juezHeat",
-        "idjuez"
+        "idjuez",
+        "nota",
+        "idnota"
 
     ],
     computed: {
@@ -96,7 +98,7 @@ export default {
             openModalInside: false,
             roles: [],
             rol_edit: null,
-            nota:'',
+            
          
             title2:'',
 
@@ -113,6 +115,7 @@ export default {
                 this.showSuccess = false
          console.log("Entresss")
                 this.openModalInside = true
+               
         }
     },
     methods: {
@@ -140,6 +143,7 @@ export default {
                 this.showSuccess = false
                 this.$validator.validateAll().then(success => {
                     if (success) {
+                        if(!this.idnota){
                         let puntuacion={
                           atletasHeatId:{id:this.atletaHeat.id},
                           juecesHeatId:{id:this.idjuez},
@@ -148,8 +152,21 @@ export default {
                         }
                        puntuacionController.create(this,puntuacion)
                        this.openModalInside=false
-                         this.nota='';
-                        console.log("Entre al modal morro")
+                       //  this.nota='';
+                        console.log("Entre al modal morro")}
+                        else{
+
+let puntuacion={
+    id:this.idnota,
+                          atletasHeatId:{id:this.atletaHeat.id},
+                          juecesHeatId:{id:this.idjuez},
+                          nota:this.nota
+  
+                        }
+                       puntuacionController.update(this,puntuacion)
+                       this.openModalInside=false
+
+                        }
                     } else {
                         this.errMsg = 'Error revisa el formulario'
                         this.showAlert = true

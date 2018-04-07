@@ -44,5 +44,27 @@ export default {
 
 
 
-    }
+    },
+    update(context, puntuacion){
+        HTTP.put(PUNTUACION, puntuacion)
+        .then((resp) => {
+            if (resp.status>= 200 && resp.status <=300){
+                context.showSuccess = true
+                context.successMsg = "Puntuacion  creada exitosamente"
+                context.fetchData()
+                context.resetForm()
+            }
+        })
+        .catch((err) => {
+            if (err.response) {
+                context.showAlert = true
+                context.errMsg = err.response.data
+            }
+        })
+
+//
+
+
+
+}
 }

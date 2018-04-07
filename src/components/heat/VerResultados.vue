@@ -32,7 +32,7 @@
                           
                             <h3 class="box-title">Heat  {{heat.numero}}   de la ronda {{heat.rondaId.numero}}                  </h3>
                              estado :{{heat.estado}}
-                            categoria: {{heat.rondaId.circuitoId.categoriaId.nombreCategoria}}
+                           <!-- categoria: {{heat.rondaId.circuitoId.categoriaId.nombreCategoria}}-->
                                                 <toggle-button  v-model="verTodo" :sync="true"
                                                  :value="verTodo" :width="130" :height="35"
                                                  id="changed-font" :labels="{checked: 'Ver todos ', unchecked: 'Solo Resumen'}" :color="{checked: '#37b53c', unchecked: '#545bb3'}"/>

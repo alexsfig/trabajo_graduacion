@@ -93,7 +93,8 @@ import CertiForm from '@/components/jueces/Form'
 import RondaIndex from '@/components/rondas/Index'
 
 import HeatIndex from '@/components/heat/Index'
-
+import RondaEnd from '@/components/rondas/End'
+import HeatJuez from '@/components/heat/IndexJuez'
 import PatrocinadorAtletaCreate from '@/components/patrocinador_atleta/Create'
 import PatrocinadorAtletaEdit from '@/components/patrocinador_atleta/Edit'
 import PatrocinadorAtletaShow from '@/components/patrocinador_atleta/Show'
@@ -345,6 +346,13 @@ Vue.use(Router)
           meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
 
+        {
+          path: 'ronda/end/:id',
+          name: 'rondaEnd',
+          component: RondaEnd,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
+        },
+        
         {
           path: 'circuitofecha/:id',
           name: 'circuitosIndexByFecha',
@@ -638,9 +646,15 @@ Vue.use(Router)
         },
 
         {
-          path: 'fechas',
-          name: 'fechasIndexJ',
-          component: FechasIndex,
+          path: 'heat',
+          name: 'HeatJ',
+          component: HeatJuez,
+          meta: { requiresAuth: true  ,adminAuth:false , juezAuth : true}
+        },
+        {
+          path: 'calificar/:id',
+          name: 'CalificarHeatJ',
+          component: CalificarInit,
           meta: { requiresAuth: true  ,adminAuth:false , juezAuth : true}
         }
       

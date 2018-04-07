@@ -27,6 +27,23 @@ export default {
             })
     }
      ,
+
+     byJuez(context,id){
+        HTTP.get("heat/byJuez/"+id)
+            .then((resp) => {
+                context.heats = resp.data
+
+                console.log(resp.data)
+                for (let i of  context.heats) {
+                i.natletas=Object.keys(i.atletasHeatList).length;
+          
+            
+            }
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+    },
      byResumen(context,id){
         HTTP.get("heat/resumen/"+id)
             .then((resp) => {
@@ -49,6 +66,7 @@ export default {
                 context.resumen = resp.data
                 context.showSuccess = true
                 context.successMsg = "Finalizado exitosamente"
+                context.fetchData()
                 console.log(resp.data)
            /*     for (let i of  context.heats) {
                 i.natletas=Object.keys(i.atletasHeatList).length;
@@ -71,7 +89,30 @@ export default {
             })
 
     },
+    endRonda(context, id){
+        HTTP.get("heat/endRonda/" + id)
+            .then((resp) => {
+                console.log(resp)
+                context.heats = resp.data
+                context.heats.forEach(element => {
+                    console.log("putittassss11")
+                    element.atletasHeatList.forEach(element2 => {
+                  console.log("putittassss")
+                  console.log(element2)
+                        if(element2.lugar>2)
+                        
+                        element2.estado='Eliminado'
 
+                        else
+                        element2.estado='Clasificado'
+                    });
+                });
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+    }
+ ,    
     update(context, heat){
         console.log("Entre y dio true")
         context.showAlert = false 
