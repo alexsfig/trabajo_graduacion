@@ -29,7 +29,7 @@
                 <div class="col-lg-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Manejo de circuitos </h3>
+                            <h3 class="box-title">Manejo de circuitos de la Fecha {{circuitos.fechaId.nombre}}</h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">

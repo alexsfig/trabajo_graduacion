@@ -7,7 +7,7 @@
                   </div>
                   <div class="col-md-4">
                     <h1 class="text-center">
-                        Bienvenidos a SWELL
+                        <i><b>Bienvenidos a SWELL</b></i>
                     </h1>
                   </div>
                   <div class="col-md-4">
@@ -18,19 +18,19 @@
               <img class="img-responsive" src="../../assets/images/background/Foto2.png" alt="">
             </div>
             <div class="row padd">
-              <div class="col-lg-3 col-xs-6">
+             <router-link to="/admin/atletas"> <div class="col-lg-2 col-xs-6">
                 <div class="small-box bg-blue">
                   <div class="inner">
                     <h3>{{ this.atletas.length}}</h3>
-                    <p>Atletas registrados</p>
-                  </div>
+                    <p>Atletas registrados</p> 
+                  </div>  
                   <div class="icon">
                     <i class="fa fa-users"></i>
-                  </div>
+                  </div> 
                   &nbsp;
-                </div>
-              </div>
-              <div class="col-lg-3 col-xs-6">
+                </div> 
+              </div> </router-link>
+               <router-link to="/admin/jueces"> <div class="col-lg-2 col-xs-6">
                 <div class="small-box bg-green">
                   <div class="inner">
                     <h3>{{ this.jueces.length}}</h3>
@@ -41,8 +41,8 @@
                   </div>
                   &nbsp;
                 </div>
-              </div>
-              <div class="col-lg-3 col-xs-6">
+              </div>  </router-link>
+              <router-link to="/admin/entrenadores"><div class="col-lg-2 col-xs-6">
                 <div class="small-box bg-yellow">
                   <div class="inner">
                     <h3>{{ this.entrenadores.length}}</h3>
@@ -53,8 +53,8 @@
                   </div>
                   &nbsp;
                 </div>
-              </div>
-              <div class="col-lg-3 col-xs-6">
+              </div> </router-link>
+               <router-link to="/admin/escuelas"><div class="col-lg-2 col-xs-6">
                 <div class="small-box bg-red">
                   <div class="inner">
                     <h3>{{ this.clubs.length + this.escuelas.length}}</h3>
@@ -65,9 +65,33 @@
                   </div>
                   &nbsp;
                 </div>
-              </div>
+              </div></router-link>
+              <router-link to="/admin/categorias"><div class="col-lg-2 col-xs-6">
+                <div class="small-box bg-aqua">
+                  <div class="inner">
+                    <h3>{{ this.categorias.length }}</h3>
+                    <p>Categorias registradas</p>
+                  </div>
+                  <div class="icon">
+                    <i class="fa fa-circle-o"></i>
+                  </div>
+                  &nbsp;
+                </div>
+              </div></router-link>
+               <router-link to="/admin/fechas"><div class="col-lg-2 col-xs-6">
+                <div class="small-box bg-orange">
+                  <div class="inner">
+                    <h3>{{ this.fechas.length }}</h3>
+                    <p>Fechas registradas</p>
+                  </div>
+                  <div class="icon">
+                    <i class="fa fa-flag-checkered"></i>
+                  </div>
+                  &nbsp;
+                </div>
+              </div></router-link>
 
-            </div>
+            </div> 
 
             <div class="row padd">
               <div class="col-md-6">
@@ -107,6 +131,8 @@
     import atletaController from '../../controllers/atletas.js'
     import JuecesController from '../../controllers/jueces.js'
     import entrenadoresController from '../../controllers/entrenadores.js'
+    import categoriasController from '../../controllers/categorias.js'
+    import fechasController from '../../controllers/fechas.js';
     export default {
         name: 'clubes',
         data() {
@@ -116,6 +142,8 @@
               atletas: [],
               jueces: [],
               entrenadores: [],
+               categorias: [],
+               fechas: [],
 
             }
         },
@@ -132,6 +160,8 @@
                 JuecesController.index(this)
                 atletaController.index(this)
                 entrenadoresController.index(this)
+                categoriasController.index(this)
+                fechasController.index(this)
             }
         }
 

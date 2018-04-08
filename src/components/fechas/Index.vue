@@ -44,11 +44,12 @@
                                 <template slot="table-row" scope="props">
                                   
                                   
-                                    <td class="nowrap">{{ props.row.id }}</td>
+                                    
                                  
                                     <td>{{ props.row.nombre }}</td>
+                                     <td>{{ props.row.playaId.nombre }}</td>
                                     <td>{{ props.row.fecha }}</td>
-                                   <td>{{ props.row.playaId.nombre }}</td>
+                                  
                                   
                                     <td class="nowrap">
                                         <router-link :to="{ name: 'fechasEdit', params: { id: props.row.id }}">
@@ -91,24 +92,22 @@
                 methodSubmit: 'editar',
                 openModal: false,
                 columns: [
-                    {
-                        label: "Id",
-                        field: "id",
-                    },
+                    
                     
                     {
                         label: "Nombre de Fecha",
                         field: "nombre",
+                    },
+                     {
+                        label: "Playa de Realizacion",
+                        field: "playaId.nombre",
                     },
                     {
                         label: "Inicio de Fecha",
                         field: "fecha",
                     },
 
-                     {
-                        label: "Playa de Realizacion",
-                        field: "playaId.nombre",
-                    },
+                    
                      {
                         label: "Acciones",
                         field: "playaId.id",

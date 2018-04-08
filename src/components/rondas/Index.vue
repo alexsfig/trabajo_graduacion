@@ -65,7 +65,7 @@
                                 <template slot="table-row" scope="props">
                                   
                                   
-                                    <td class="nowrap">{{ props.row.id }}</td>
+                                 
                                  
                                     <td>{{ props.row.numero }}</td>
                                     <td>{{ props.row.atletasRonda }}</td>
@@ -121,11 +121,7 @@ export default {
       nuevoHabilitar:false,
       id: "",
       columns: [
-        {
-          label: "Id",
-          field: "id"
-        },
-
+        
         {
           label: "Numero de Ronda",
           field: "numero"
