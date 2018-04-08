@@ -8,7 +8,7 @@ import {router} from '../router/index.js'
 import moment from 'moment'
 // define base url to Employees
 const FECHAS = 'circuito/'
-
+const puntoRanking=[0,1000,860,730,670,610,555,500,400,360,320,240];
 
 
 
@@ -218,6 +218,48 @@ descripcion:circuito.descripcion,
 
 
     }
+    ,
+
+    byRanking(context,id){
+        HTTP.get("circuito/rankingByCircuito/"+id)
+            .then((resp) => {
+                console.log(resp.data)
+                context.atletasranking = resp.data
+              let puesto=0;
+              let ronda=0,lugar=0;
+              context.atletasranking.forEach(element => {
+                  if(!(ronda==element.rondaId.id && lugar==element.lugar)){
+                    puesto++; 
+                  }
+                  ronda=element.rondaId.id;
+
+                  lugar=element.lugar;
+                  element.lugar=puesto;
+                  element.puntos=puntoRanking[puesto]?puntoRanking[puesto]:0;
+              });
+               
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+    },
+    finalizar(context,id){
+        HTTP.get("circuito/endCircuito/"+id)
+            .then((resp) => {
+                if (resp.status>= 200 && resp.status <=300){
+                    context.showSuccess = true
+                    context.successMsg = "Circuito cerrado exitosamente"
+                    context.fetchData()
+            
+                }
+            })
+            .catch((err) => {
+                if (err.response) {
+                    context.showAlert = true
+                    context.errMsg = err.response.data
+                }
+            })
+    },
 
 
 }

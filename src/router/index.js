@@ -54,7 +54,7 @@ import FechasForm from '@/components/fechas/Form'
 import CircuitosForm from '@/components/circuitos/Form'
 import CircuitosFormbyFecha from '@/components/circuitos/FormbyFecha'
 import CircuitosEditbyFecha from '@/components/circuitos/EditbyFecha'
-
+import CircuitosFinalizar from '@/components/circuitos/Finalizar'
 import CircuitosIndex from '@/components/circuitos/Index'
 import CircuitosIndexByFecha from '@/components/circuitos/IndexByFecha'
 import AgregarAtleta from '@/components/circuitos/AgregarAtleta'
@@ -627,6 +627,12 @@ Vue.use(Router)
   name: 'ResultadoHeat',
   component: VerResultadosInit,
   meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
+}
+,{
+path: 'circuito/finalizar/:id',
+name: 'CircuitosFinalizar',
+component: CircuitosFinalizar,
+meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
 }
 
 

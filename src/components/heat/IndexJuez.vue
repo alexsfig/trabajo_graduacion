@@ -39,7 +39,7 @@
                                     <i class="fa fa-plus"></i> Nueva Heat
                                 </router-link>
                             </div>-->
-
+    {{heats[0]}}
                             <vue-good-table :columns="columns" :rows="heats" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
                                 <template slot="table-row" scope="props">
                                   
@@ -55,7 +55,7 @@
                                         <router-link  :to="{ name: 'CalificarHeatJ', params: { id: props.row.id }}">
                                         <button type="button" class="margin btn btn-flat btn-sm btn-primary"
                                        ><i aria-hidden="true"
-                                         class="fa fa-pencil-square-o"></i> Iniciar Heat</button>
+                                         class="fa fa-pencil-square-o"></i> Calificar</button>
                                         </router-link>
                                  
                                     </td>
