@@ -30,8 +30,8 @@
                     <div class="box box-primary">
                         <div class="box-header with-border">
                           
-                            <h3 class="box-title">Heat  <b>{{heat.numero}}</b>   de la Ronda <b>{{heat.rondaId.numero}} </b>                
-                             estado: <b>{{heat.estado}} </b></h3>
+                            <h3 class="box-title">Heat  <b>{{heat.numero}}</b>   de la Ronda <b>{{heat.rondaId.numero}} </b>               
+                             estado: <b>{{heat.estado}} </b> del Circuito <b>{{heat.rondaId.circuitoId.nombre}}</b> </h3>
                               </div>
 
                                <div class="box-body">

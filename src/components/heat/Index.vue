@@ -29,9 +29,9 @@
                 <div class="col-lg-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Manejo de Heats de la Ronda <b>{{ronda.numero}}</b></h3>
+                            <h3 class="box-title">Manejo de Heats de la Ronda <b>{{ronda.numero}}</b> del Circuito <b>{{ronda.circuitoId?ronda.circuitoId.nombre:''}}</b> </h3>
 
-                                 
+                                                             
                                 <router-link   style="float:right" v-if="ronda.estado=='Calificada'" :to="{name:'rondaEnd',params:{id:ronda.id}}" class="btn btn-success btn-flat">
                                     Dar por finalizada               
                                 </router-link>
@@ -52,7 +52,7 @@
                                     
                                          <td>{{ props.row.estado }}</td>
                                       <td>{{ props.row.natletas }} atletas</td>
-                                        <td>{{ props.row.natletas }} jueces</td>
+                                        
                                     <td class="nowrap">
                                         <router-link v-if="props.row.estado=='Por iniciar'" :to="{ name: 'heatInit', params: { id: props.row.id }}">
                                         <button type="button" class="margin btn btn-flat btn-sm btn-primary"
@@ -123,12 +123,7 @@
                         field: "nAtletas",
                     }
 
-                    ,
-
-                        {
-                        label: "Numero de Jueces",
-                        field: "jueces",
-                    },
+                    ,                        
 {label: 'Acciones',
                       field: '',
                       filterable: true,}
