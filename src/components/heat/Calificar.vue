@@ -29,7 +29,7 @@
                 <div class="col-lg-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Heat  {{heat.numero}}   de la ronda {{heat.rondaId.numero}} </h3>
+                            <h3 class="box-title">Heat  <b>{{heat.numero}}</b>   de la ronda <b>{{heat.rondaId.numero}}</b> </h3>
                                         
                         </div>
 

@@ -30,8 +30,11 @@
                     <div class="box box-primary">
                         <div class="box-header with-border">
                           
-                            <h3 class="box-title">Heat  {{heat.numero}}   de la ronda {{heat.rondaId.numero}}                  </h3>
-                             estado :{{heat.estado}}
+                            <h3 class="box-title">Heat  <b>{{heat.numero}}</b>   de la Ronda <b>{{heat.rondaId.numero}} </b>                
+                             estado: <b>{{heat.estado}} </b></h3>
+                              </div>
+
+                               <div class="box-body">
                            <!-- categoria: {{heat.rondaId.circuitoId.categoriaId.nombreCategoria}}-->
                                                 <toggle-button  v-model="verTodo" :sync="true"
                                                  :value="verTodo" :width="130" :height="35"
@@ -40,11 +43,11 @@
                                          <button v-if="heat.estado=='Iniciado'" type="button" style="float:right" class="margin btn btn-flat btn-sm btn-success" 
                                         @click="finalizar()"><i aria-hidden="true" 
                                         class="fa fa-check"></i> Finalizar heat </button></div>
-                        </div>
+                        
 
      
                         <!-- /.box-header -->
-                        <div class="box-body">
+                       
 
 
                                           
@@ -55,7 +58,7 @@
 <div v-for="value in juecesHeat">
 <br/><br/><br/><br/>
 
-<h4>Notas Juez:{{value.persona.nombre}},{{value.persona.apellido}}</h4>
+<h4>Notas de Juez: <b>{{value.persona.nombre}}, {{value.persona.apellido}}</b></h4>
 
                            <vue-good-table :columns="columns" :rows="value.puntuacionList" :paginate="true" :globalSearch="false" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
                                 <template slot="table-row" scope="props">
@@ -86,7 +89,7 @@
 </div>
 </div>
 <br/><br/><br/><br/><br/><br/>
-<h4>Resultados del heat</h4> 
+<h4><b>Resultados del Heat</b></h4> 
 
 
 
@@ -135,6 +138,16 @@
                                   </template>
                             </vue-good-table>
                         </div>
+
+                       <div class="box-body">
+                              
+                              <div @click="volver()" class="btn btn-flat btn-sm btn-warning margin">
+                                    <i class="fa fa-arrow-circle-left" ></i> Regresar a Heats
+                                </div>
+
+                                </div> 
+
+
                     </div>
                    </div>
             </div>
@@ -414,7 +427,16 @@ this.errMsg="El heat aun no tiene calificaciones "
           }
         }
       );
-    }
+    },
+
+    volver(){
+                console.log("entre")
+ window.history.length > 1
+        ? this.$router.go(-1)
+        : this.$router.push('/')
+    
+
+            }
   }
 };
 </script>

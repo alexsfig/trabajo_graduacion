@@ -116,14 +116,7 @@
 
                                 </div>
                                 
-                                  <div class="box-body">
-                               
-                              <div @click="restarerror()" class="btn btn-flat btn-sm btn-warning margin">
-                                    <i class="fa fa-arrow-circle-left" ></i> Regresar a Circuitos
-                                </div>
-
-                                </div> 
-
+                                  
                     </div>
                    </div>
             </div>
