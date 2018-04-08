@@ -51,8 +51,8 @@
 <td>{{ props.row.nombre }}</td>
 <td>{{ props.row.descripcion }}</td>
 <td>{{ props.row.categoriaId.nombreCategoria }}</td>  
-<td>{{ props.row.numJueces }} ({{ props.row.numJuecesEval }} Evaluadores)</td>   
-<td>{{ props.row.numAtletas }} atletas</td>                  
+<td>{{ props.row.numJueces?props.row.numJueces+' ( '+props.row.numJuecesEval?props.row.numJuecesEval:'0'+' Evaluadores )':'0' }} </td>   
+<td>{{ props.row.numAtletas?props.row.numAtletas+' atletas':'0'}} </td>                  
 <td>{{ props.row.estado }}</td>      
 
 
