@@ -186,7 +186,11 @@
 		                    <router-link to="/admin/fechas/form">
 		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Agregar Fecha</span>
 		                    </router-link>
-		                </li> <li>
+		                </li> 
+
+		                <!--
+
+		                <li>
 		                    <router-link to="/admin/circuitos/">
 		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Manejo de Circuitos</span>
 		                    </router-link>
@@ -196,6 +200,8 @@
 		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Agregar Circuito</span>
 		                    </router-link>
 		                </li>
+
+		                -->
 		            </ul>
 		        </li>
 		            

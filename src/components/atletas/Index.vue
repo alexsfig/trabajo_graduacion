@@ -40,14 +40,15 @@
                                     <td style=""><img class="custom-img img-responsive img-circle" v-bind:src="getImg(props.row.id)" alt="User profile picture"></td>
                                     <td>{{props.row.personaId.nombre}}</td>
                                     <td>{{props.row.personaId.apellido}}</td>
-                                    <td>{{ props.row.aniosPracticando}}</td>
+                                     <td>{{ _calculateAge(props.row.personaId.fechaNacimiento)}} años</td>
+                                      <td>{{ (props.row.personaId.sexo == 'F' || props.row.personaId.sexo == 'f') ? 'Femenino' : 'Masculino' }}</td>
+                                    <td>{{ parseInt(props.row.aniosPracticando)}}</td>
                                     <td>{{ props.row.playaPractica}}</td>
                                     <td>{{ props.row.ladoPie}}</td>
                                     <td>{{ props.row.olaPreferida}}</td>
-                                    <!-- <td>{{ props.row.logros}}</td>
-                                    <td>{{ props.row.rutinaConstancia}}</td> -->
-                                    <td>{{ (props.row.personaId.sexo == 'F' || props.row.personaId.sexo == 'f') ? 'Femenino' : 'Masculino' }}</td>
-                                    <td>{{ props.row.edadInicio}}</td>
+                                    
+                                   
+                                   
                                     <td>
                                         <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="retrieveData(props.row.id, props.row)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar</button>
                                         <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="profile(props.row.id, props.row)"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Ver Perfil</button>
@@ -96,12 +97,27 @@ export default {
                     filterable: true,
                 },
 
+                 {
+                    label: 'Edad',
+                    field: 'personaId.fechaNacimiento',
+                    filterable: true,
+                },
+
+                {
+                    label: 'Sexo',
+                    field: 'personaId.sexo',
+                    filterable: true,
+                },
+
                 {
                     label: 'Años Practicando',
                     field: 'aniosPracticando',
+                    type: 'number',
+                  //  dateInputFormat: 'YYYY-MM-DD', // expects 2018-03-16
+                  //  dateOutputFormat: 'MMM Do YYYY', // outputs Mar 16th 2018
                     filterable: true,
                 }, {
-                    label: 'Playa Practica',
+                    label: 'Playa donde Practica',
                     field: 'playaPractica',
                     filterable: true,
                 }, {
@@ -113,25 +129,7 @@ export default {
                     field: 'olaPreferida',
                     filterable: true,
                 },
-                // {
-                //     label: 'Logros',
-                //     field: 'logros',
-                //     filterable: true,
-                // }, {
-                //     label: 'Rutina Constancia',
-                //     field: 'rutinaConstancia',
-                //     filterable: true,
-                // },
-                {
-                    label: 'Sexo',
-                    field: 'personaId.sexo',
-                    filterable: true,
-                }, {
-                    label: 'Edad Inicio',
-                    field: 'edadInicio',
-                    filterable: true,
-                },
-
+               
                 {
                     label: 'Accion',
                     field: '',
@@ -244,6 +242,17 @@ export default {
             });
 
         },
+
+        _calculateAge(birthday) {
+            var today = new Date();
+            var birthDate = new Date(birthday);
+            var age = today.getFullYear() - birthDate.getFullYear();
+            var m = today.getMonth() - birthDate.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            return age;
+       }
     }
 
 }

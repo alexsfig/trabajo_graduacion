@@ -63,11 +63,11 @@
 
                                        
 
-                                         <button type="button" class="margin btn btn-flat btn-sm bg-navy margin" 
+                                         <button type="button" v-if="props.row.estado=='Abierta'" class="margin btn btn-flat btn-sm bg-navy margin" 
                                         @click="agregarAtletas(props.row.id, props.row)"><i aria-hidden="true" 
                                         class="fa fa-male"></i> Agregar Atletas</button>
 
-                                         <button type="button" class="margin btn btn-flat btn-sm bg-navy margin" 
+                                         <button type="button" v-if="props.row.estado=='Abierta'" class="margin btn btn-flat btn-sm bg-navy margin" 
                                         @click="agregarJueces(props.row.id, props.row)"><i aria-hidden="true" 
                                         class="fa fa-gavel"></i> Agregar Jueces</button>
 
@@ -186,7 +186,7 @@
                 let swal = this.$swal;
                 this.$swal({
                     title: 'Estas Seguro?',
-                    html: 'No podras recuperar la informacion de la circuito <b>&laquo;' + nombre + '&raquo</b><br>y toda la informacion relacion al mismo ya no sera accesible',
+                    html: 'No podras recuperar la informacion del circuito <b>&laquo;' + nombre + '&raquo</b><br>y toda la informacion relacion al mismo ya no sera accesible',
                     type: 'error',
                     showCancelButton: true,
                     confirmButtonText: 'Si, Eliminar!',
