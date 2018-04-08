@@ -43,6 +43,7 @@
 
 
                             </div>
+
                             <vue-good-table :columns="columns" :rows="circuitos" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
                                 <template slot="table-row" scope="props">
 <td>{{ props.row.nombre }}</td>
