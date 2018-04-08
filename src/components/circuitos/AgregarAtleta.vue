@@ -216,8 +216,8 @@
 
                 this.$validator.validateAll().then(success => {
                     if (success) {
-                 
-                    
+                    if(this.atleta.id>0)
+                    {
                         this.atletaCircuito.circuitoId=this.circuito;
                         this.atletaCircuito.atletaId=this.atleta;
                         this.atletaCircuito.estado="Compitiendo";
@@ -225,8 +225,12 @@
                         console.log(JSON.stringify(  
                         this.atletaCircuito));
                         atletaCircuitoController.create(this,this.atletaCircuito)
-                        
-                     
+                    }
+                     else{
+
+                         this.showAlert = true
+                        this.errMsg = "Debe seleccionar un atleta"
+                     }
                     }
                     else{
                           console.log("Error enn el formulario")
