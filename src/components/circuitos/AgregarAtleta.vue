@@ -73,12 +73,13 @@
                                        <td>{{props.row.atletaId.personaId.nombre}}</td> 
                                    
                                    <td>{{props.row.atletaId.personaId.apellido}}</td> 
-                                     <td>{{ props.row.atletaId.aniosPracticando}}</td> 
+                                   <td> {{ _calculateAge( props.row.atletaId.personaId.fechaNacimiento)  }} años</td>
+                                    <td> {{ props.row.atletaId.personaId.sexo == 'F' ? 'Femenino' : 'Masculino' }}</td>
+                                     <td>{{ props.row.atletaId.aniosPracticando}} años</td> 
                                      <td>{{ props.row.atletaId.playaPractica}}</td>    
                                      <td>{{ props.row.atletaId.ladoPie}}</td>   
                                      <td>{{ props.row.atletaId.olaPreferida}}</td>   
-                                    <td> {{ _calculateAge( props.row.atletaId.personaId.fechaNacimiento)  }} años</td>
-                                      <td> {{ props.row.atletaId.personaId.sexo == 'F' ? 'Femenino' : 'Masculino' }}</td>                                
+                                                                    
                                          <td class="nowrap">
                                  <!--    <router-link :to="{ name: 'circuitosEdit', params: { id: props.row.id }}">
                                         <button type="button" class="margin btn btn-flat btn-sm btn-primary"
@@ -148,36 +149,39 @@
                       filterable: true
                     },
 
-                    {
-                      label: 'Años Practicando',
-                      field: 'aniosPracticando',
-                      filterable: true
-                    },
-                     {
-                      label: 'Playa donde Practica',
-                      field: 'playaPractica',
-                      filterable: true
-                    },
-                     {
-                      label: 'Lado del Pie',
-                      field: 'ladoPie',
-                      filterable: true
-                    },
-                      {
-                      label: 'Ola Preferida',
-                      field: 'olaPreferida',
-                      filterable: true
-                    },
                      {
                       label: 'Edad',
-                      field: 'fechaNacimiento',
+                      field: 'atletaId.personaId.fechaNacimiento',
                       filterable: true
                     },
                     {
                       label: 'Sexo',
-                      field: 'sexo',
+                      field: 'atletaId.sexo',
                       filterable: true
                     },
+
+                    {
+                      label: 'Años Practicando',
+                      field: 'atletaId.aniosPracticando',
+                      type: 'number',
+                      filterable: true
+                    },
+                     {
+                      label: 'Playa donde Practica',
+                      field: 'atletaId.playaPractica',
+                      filterable: true
+                    },
+                     {
+                      label: 'Lado del Pie',
+                      field: 'atletaId.ladoPie',
+                      filterable: true
+                    },
+                      {
+                      label: 'Ola Preferida',
+                      field: 'atletaId.olaPreferida',
+                      filterable: true
+                    },
+                    
                      {
                       label: 'Accion',
                       field: '',

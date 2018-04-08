@@ -29,7 +29,7 @@
                 <div class="col-lg-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Manejo de Rondas del Circuito <b>{{this.circuito.nombre}},{{this.circuito.estado}}</b> para la Fecha <b>{{this.circuito.fechaId.nombre}} </b></h3>
+                            <h3 class="box-title">Manejo de Rondas del Circuito <b>{{this.circuito.nombre}} </b>en Estado <b>{{this.circuito.estado}}</b> para la Fecha <b>{{this.circuito.fechaId.nombre}} </b></h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -117,7 +117,7 @@ export default {
         },
 
         {
-          label: "Numero",
+          label: "Numero de Ronda",
           field: "numero"
         },
         {

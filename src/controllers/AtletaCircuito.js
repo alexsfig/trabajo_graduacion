@@ -192,7 +192,7 @@ export default {
                             .then((resp) => {
                                 if (resp.status>= 200 && resp.status <=300){
                                     context.showSuccess = true
-                                    context.atleta={id:-1,nombre:'Selecione un  nuevo atleta'};
+                                    context.atleta={id:-1,nombre:'Seleciona un atleta'};
                                     context.successMsg = "Se Agrego Correctamente el Atleta al Circuito"
                                     context.fetchData()
                             //  context.$router.go()
