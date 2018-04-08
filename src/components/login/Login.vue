@@ -17,16 +17,16 @@
 	    <div class="login-box-body">
 	        <p class="login-box-msg">
 	        	<h3 class="text-center">
-	        		Inicio de Sesión
+	        		Inicio de Sesión 
 	        	</h3>
 	        </p>
 
 	        <form @submit.prevent="validateBeforeSubmit">
-	            <div class="form-group has-feedback" :class="{'has-error': errors.has('email') }">
-	                <input id="email" name="email" v-model="email" v-validate="'required'" type="text" placeholder="Correo" class="form-control">
-	                <span class="glyphicon glyphicon-envelope form-control-feedback" :class="{'has-error': errors.has('email') }"></span>
-	                <span class="help-block" v-show="errors.has('email')" for="email" v-bind:data-error="errors.first('email')">
-	                    {{ errors.first('email') }}
+	            <div class="form-group has-feedback" :class="{'has-error': errors.has('usuario') }">
+	                <input id="usuario" name="usuario" v-model="email" v-validate="'required'" type="text" placeholder="Usuario" class="form-control">
+	                <span class="glyphicon glyphicon-user form-control-feedback" :class="{'has-error': errors.has('usuario') }"></span>
+	                <span class="help-block" v-show="errors.has('usuario')" for="email" v-bind:data-error="errors.first('usuario')">
+	                    {{ errors.first('usuario') }}
 	                </span>
 	            </div>
 
