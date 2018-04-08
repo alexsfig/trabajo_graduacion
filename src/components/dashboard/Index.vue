@@ -22,7 +22,7 @@
                 <div class="small-box bg-blue">
                   <div class="inner">
                     <h3>{{ this.atletas.length}}</h3>
-                    <p>Atletas registrados</p> 
+                     <p>Atletas registrados</p> 
                   </div>  
                   <div class="icon">
                     <i class="fa fa-users"></i>
