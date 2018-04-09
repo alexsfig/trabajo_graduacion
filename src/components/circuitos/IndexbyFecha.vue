@@ -92,9 +92,7 @@
 
                                 </div> 
 
-                        </div>
-
-                 
+                        </div>              
 
                     </div>
                    </div>
@@ -108,6 +106,7 @@
     import circuitosController from '../../controllers/circuitos.js';
     import fechasController from '../../controllers/fechas.js';
      import vSelect from "vue-select"
+
     import moment from "moment"
     export default {
         name: 'CircuitosByFecha',
