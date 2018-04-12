@@ -50,7 +50,7 @@ export default {
                     context.showAlert = false 
                 }
                 context.showSuccess = true
-                context.successMsg = "Usuario Actualizado"
+                context.successMsg = "Playa Actualizada"
             })
             .catch((err) => {
                 context.showAlert = true
@@ -109,11 +109,11 @@ export default {
         HTTP.delete(PLAYAS + id)
             .then((resp) => {
                 console.log(resp);
-                swal("Deleted!", "El usuario ha sido eliminado", "success")
+                swal("Deleted!", "La Playa ha sido Eliminada", "success")
                 context.fetchData();
             })
             .catch((err) => {               
-                swal("Oh snap!", "Ocurrio un error.", "error")
+                swal("No se puede Eliminar!", "Es posible que la Playa ya este asociada", "error")
             })
     }
     

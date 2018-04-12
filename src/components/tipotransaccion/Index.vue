@@ -1,11 +1,11 @@
 <template>
     <div>
         <section class="content-header">
-            <h1>Tipo Transacciones</h1>
+            <h1>Tipos de Transaccion</h1>
 
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li>Manejo de Tipo Transacciones </li>
+                <li>Manejo de Tipos de Transaccion </li>
             </ol>
         </section>
         <section class="content" >
@@ -29,7 +29,7 @@
                 <div class="col-lg-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Manejo de Tipo Transacciones </h3>
+                            <h3 class="box-title">Manejo de Tipos de Transaccion </h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -38,6 +38,9 @@
                                     <i class="fa fa-plus"></i> Nuevo Tipo de Transaccion
                                 </router-link>
                             </div>
+                            </div>
+                             <div class="box-body">
+
                             <vue-good-table :columns="columns" :rows="tipoTransaccions" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
                                 <template slot="table-row" scope="props">
 <td>{{ props.row.nombre }}</td>
@@ -57,7 +60,7 @@
 
                         </div>
                     </div>
-    |                </div>
+                    </div>
             </div>
            <!-- <modalPlaya :methodSubmit="methodSubmit" :title="'Actualizar Usuario'" :buttonMsg="'Actualizar'" :openModal="openModal" :playa="playa" v-on:openChange="isChange"></modalPlaya> -->
         </section>
@@ -85,7 +88,7 @@
                         label: "Descripcion",
                         field: "descripcion",
                     }, {
-                        label: "Tipo",
+                        label: "Concepto",
                         field: "tipo",
                     },{
                         label: "Acciones",
@@ -105,7 +108,7 @@
                 let swal = this.$swal;
                 this.$swal({
                     title: 'Estas Seguro?',
-                    html: 'No podras recuperar la informacion de tipo Transaccion <b>&laquo;' + nombre + '&raquo</b><br>y toda la informacion relacion al mismo ya no sera accesible',
+                    html: 'No podras recuperar la informacion de Tipo Transaccion <b>&laquo;' + nombre + '&raquo</b><br>y toda la informacion en relacion al mismo ya no sera accesible',
                     type: 'error',
                     showCancelButton: true,
                     confirmButtonText: 'Si, Eliminar!',

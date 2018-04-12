@@ -35,7 +35,7 @@
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('nombre') }">
                                             <label for="">Nombre</label>
-                                            <input type="text" id="nombre" name="nombre" data-vv-as="nombre" class="form-control" v-model="patrocinador.nombre" v-validate="'required'">
+                                            <input type="text" id="nombre" name="nombre" data-vv-as="Nombre" class="form-control" v-model="patrocinador.nombre" v-validate="'required'">
                                             <span class="help-block" for="nombre" v-bind:data-error="errors.first('nombre')">
                                                 {{ errors.first('nombre') }}
                                             </span>
@@ -44,17 +44,26 @@
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('nit') }">
                                             <label for="">Nit</label>
-                                            <masked-input mask="1111-111111-111-1" placeholder="####-######-###-#" name="nit" data-vv-as="nit" class="form-control" v-model="patrocinador.nit" v-validate="'required'" />
+                                            <masked-input mask="1111-111111-111-1" placeholder="####-######-###-#" name="nit" data-vv-as="Nit" class="form-control" v-model="patrocinador.nit" v-validate="'required'" />
                                             <span class="help-block" for="nit" v-bind:data-error="errors.first('nit')">
                                                 {{ errors.first('nit') }}
                                             </span>
                                         </div>
                                     </div>
                                     <div class="clearfix"></div>
-                                    <div class="col-xs-12 col-sm-6">
+                                    <!--<div class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('telefono') }">
                                             <label for="">Telefono</label>
-                                            <input type="text" id="telefono" name="telefono" data-vv-as="telefono" class="form-control" v-model="patrocinador.telefono" v-validate="'required'">
+                                            <input type="text" id="telefono" name="telefono" data-vv-as="Telefono" class="form-control" v-model="patrocinador.telefono" v-validate="'required'">
+                                            <span class="help-block" for="telefono" v-bind:data-error="errors.first('telefono')">
+                                                {{ errors.first('telefono') }}
+                                            </span>
+                                        </div>
+                                    </div> -->
+                                     <div class="col-xs-12 col-sm-6">
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('telefono') }">
+                                            <label for="">Telefono</label>
+                                          <masked-input mask="1111-1111" placeholder="####-####" name="telefono" data-vv-as="Telefono" class="form-control" v-model="patrocinador.telefono" v-validate="'required'"/>
                                             <span class="help-block" for="telefono" v-bind:data-error="errors.first('telefono')">
                                                 {{ errors.first('telefono') }}
                                             </span>
@@ -63,7 +72,7 @@
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('correo') }">
                                             <label for="">Correo</label>
-                                            <input type="email" id="correo" name="correo" data-vv-as="correo" class="form-control" v-model="patrocinador.correo" v-validate="'required|email'">
+                                            <input type="email" id="correo" name="correo" data-vv-as="Correo" class="form-control" v-model="patrocinador.correo" v-validate="'required|email'">
                                             <span class="help-block" for="correo" v-bind:data-error="errors.first('correo')">
                                                 {{ errors.first('correo') }}
                                             </span>
@@ -75,7 +84,7 @@
                                             <label for="">Tipo</label>
                                             <v-select :debounce="250" :options="tipo" v-model="patrocinador.tipo" placeholder="Seleccione el Tipo" label="label">
                                             </v-select>
-                                            <input type="hidden" name="tipo" value="" data-vv-as="tipo" v-model="patrocinador.tipo" v-validate="'required'">
+                                            <input type="hidden" name="tipo" value="" data-vv-as="Tipo" v-model="patrocinador.tipo" v-validate="'required'">
                                             <span class="help-block" for="tipo" v-bind:data-error="errors.first('tipo')">
                                                 {{ errors.first('tipo') }}
                                             </span>
@@ -103,6 +112,14 @@
 
                             </form>
                         </div>
+                          <div class="box-body">
+                              
+                             <div @click="volver()" class="btn btn-flat btn-sm btn-warning margin">
+                                    <i class="fa fa-arrow-circle-left" ></i> Regresar a Patrocinadores
+                                </div>
+
+                                </div> 
+
                     </div>
                 </div>
             </div>
@@ -171,7 +188,15 @@
                       this.errMsg = "Form error"
                   }
               });
-          }
+          },
+          volver(){
+                console.log("entre")
+ window.history.length > 1
+        ? this.$router.go(-1)
+        : this.$router.push('/')
+    
+
+            }
       }
 
   }

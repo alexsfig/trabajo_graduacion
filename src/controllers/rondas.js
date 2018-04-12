@@ -14,33 +14,36 @@ export default {
         context.showSuccess = false 
 
         let request={};
-        request.circuitoId=context.circuito;
+        request.circuitoId={id:context.circuito.id};
+
+
         request.atletasRonda=context.totalAtletas;
         request.numero=1;
         let heatlist=[];
   
 
-
+      let num=1;
         for (let i of  heats) {
            
            let heat={};
-            heat.numero=i[0].numeroHeat;
+            heat.numero=num;
+            heat.estado="estado"
            // c//onsole.log("numero de heat:::::::" +i[0].numeroHeat)
             heat.atletas=i;
            // console.log(heat.atletas[0])
             if( heat.atletas[0])
-            heat.atletas[0]={id:heat.atletas[0].id,color:heat.atletas[0].color};
+            heat.atletas[0]={id:heat.atletas[0].id,color:heat.atletas[0].color,estado:0};
             if( heat.atletas[1])
-            heat.atletas[1]={id:heat.atletas[1].id,color:heat.atletas[1].color};
+            heat.atletas[1]={id:heat.atletas[1].id,color:heat.atletas[1].color,estado:0};
             if( heat.atletas[2])
-            heat.atletas[2]={id:heat.atletas[2].id,color:heat.atletas[2].color};
+            heat.atletas[2]={id:heat.atletas[2].id,color:heat.atletas[2].color,estado:0};
             if( heat.atletas[3])
-            heat.atletas[3]={id:heat.atletas[3].id,color:heat.atletas[3].color};
+            heat.atletas[3]={id:heat.atletas[3].id,color:heat.atletas[3].color,estado:0};
 
 
             heatlist.push(heat)
 
-
+            num++;
         }
        request.heatList=heatlist;
   
@@ -54,8 +57,14 @@ export default {
                 if (resp.status>= 200 && resp.status <=300){
                     context.showSuccess = true
                     context.successMsg = "Ronda Creada con exito Creada"
-                    context.fetchData()
-                    context.reset()
+                  //  context.fetchData()
+                   // context.reset()
+                    context.$toasted.show("Ronda creada   con exito", { 
+                        theme: "primary", 
+                        position: "top-right", 
+                        duration : 5000
+                   });
+                  context.volver();
                 }
             })
             .catch((err) => {
@@ -90,7 +99,26 @@ export default {
             .catch((err) => {
               console.log(err)
             })
-    }
+    },
+    finalizar(context, id, swal) {
+   let data=[];
+        context.heats.forEach(element => {
+            element.atletasHeatList.forEach(item => {
+
+
+             data.push(item.id+"-"+item.estado);
+            });
+        });
+        HTTP.post("heat/finishRonda/" + id,data)
+            .then((resp) => {
+                console.log(resp);
+                swal("Finalizada!", "La Ronda ha sido finalizada", "success")
+                context.fetchData();
+            })
+            .catch((err) => {
+                swal("Oh snap!", "Ocurrio un error.", "error")
+            })
+    }, 
      
 
 

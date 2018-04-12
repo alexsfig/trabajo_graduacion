@@ -28,7 +28,7 @@
                             <div class="table-responsive">
                               
                                 <vue-good-table
-                                  title="Dynamic Table"
+                                  title="Jueces Registrados"
                                   :columns="columns"
                                   :rows="jueces"
                                   :globalSearch="true"
@@ -130,7 +130,7 @@
                       filterable: true,
                     },
                     {
-                      label: 'Descripcion',
+                      label: 'Descripcion del Juez',
                       field: 'descripcion',
                       filterable: true,
                     },
@@ -188,7 +188,7 @@
                 let context = this
                 swal({
                     title: 'Estas Seguro?',
-                    html: 'No podras recuperar la informacion del juez <b>' + nombre + '</b>',
+                    html: 'No podras recuperar la informacion del Juez <b>' + nombre + '</b>',
                     type: 'error',
                     showCancelButton: true,
                     confirmButtonText: 'Si, Eliminar!',
@@ -202,7 +202,7 @@
                       if (dismiss === 'cancel') {
                         swal(
                           'Cancelado',
-                          'El juez no se elimino',
+                          'El Juez no se elimino',
                           'error'
                         )
                       }

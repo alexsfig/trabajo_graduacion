@@ -8,7 +8,7 @@ import {router} from '../router/index.js'
 import moment from 'moment'
 // define base url to Employees
 const FECHAS = 'circuito/'
-
+const puntoRanking=[0,1000,860,730,670,610,555,500,400,360,320,240];
 
 
 
@@ -26,6 +26,31 @@ export default {
     */
 
     update(context, circuitos){
+        context.showAlert = false
+        context.showSuccess = false
+        HTTP.put(FECHAS, circuitos)
+            .then((resp) => {
+                if (resp.status>= 200 && resp.status <=300){
+                    var id = resp.data.id
+                    context.showAlert = false
+                }
+                context.showSuccess = true
+                context.successMsg = "Circuito Actualizado"
+            })
+            .catch((err) => {
+                context.showAlert = true
+                console.log(err)
+                if (err.response) {
+                    context.errMsg = err.response.data
+                    console.log(err.response.data);
+                    console.log(err.response);
+                    context.showAlert = true
+                }
+            })
+    },
+
+
+    updatebyfecha(context, circuitos){
         context.showAlert = false
         context.showSuccess = false
         HTTP.put(FECHAS, circuitos)
@@ -121,9 +146,21 @@ export default {
         context.showAlert = false
         context.showSuccess = false
         circuito.id=0;
-        circuito.fechaId={id:circuito.fechaId.id}
-        circuito.categoriaId={id:circuito.categoriaId.id}
-                            HTTP.post(FECHAS, circuito)
+        //circuito.fechaId={id:circuito.fechaId.id}
+        //circuito.categoriaId={id:circuito.categoriaId.id}
+
+
+         let request={
+        fechaId:{id:circuito.fechaId.id},
+        categoriaId:{id:circuito.categoriaId.id},
+        nombre:circuito.nombre,
+        descripcion:circuito.descripcion,
+        estado: 'Abierta'
+
+          }
+
+
+                            HTTP.post(FECHAS, request)
                             .then((resp) => {
                                 if (resp.status>= 200 && resp.status <=300){
                                     context.showSuccess = true
@@ -144,6 +181,85 @@ export default {
 
 
     }
+
+    , 
+    createbyfecha(context, circuito){
+        context.showAlert = false
+        context.showSuccess = false
+        circuito.id=0;
+   
+
+        let request={
+fechaId:{id:context.id},
+categoriaId:{id:circuito.categoriaId.id},
+nombre:circuito.nombre,
+descripcion:circuito.descripcion,
+        estado: 'Abierta'
+
+        }
+                            HTTP.post(FECHAS, request)
+                            .then((resp) => {
+                                if (resp.status>= 200 && resp.status <=300){
+                                    context.showSuccess = true
+                                    context.successMsg = "Circuito creado exitosamente"
+                                    context.fetchData()
+                                    context.resetForm()
+                                }
+                            })
+                            .catch((err) => {
+                                if (err.response) {
+                                    context.showAlert = true
+                                    context.errMsg = err.response.data
+                                }
+                            })
+
+            //
+
+
+
+    }
+    ,
+
+    byRanking(context,id){
+        HTTP.get("circuito/rankingByCircuito/"+id)
+            .then((resp) => {
+                console.log(resp.data)
+                context.atletasranking = resp.data
+              let puesto=0;
+              let ronda=0,lugar=0;
+              context.atletasranking.forEach(element => {
+                  if(!(ronda==element.rondaId.id && lugar==element.lugar)){
+                    puesto++; 
+                  }
+                  ronda=element.rondaId.id;
+
+                  lugar=element.lugar;
+                  element.lugar=puesto;
+                  element.puntos=puntoRanking[puesto]?puntoRanking[puesto]:0;
+              });
+               
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+    },
+    finalizar(context,id){
+        HTTP.get("circuito/endCircuito/"+id)
+            .then((resp) => {
+                if (resp.status>= 200 && resp.status <=300){
+                    context.showSuccess = true
+                    context.successMsg = "Circuito cerrado exitosamente"
+                    context.fetchData()
+            
+                }
+            })
+            .catch((err) => {
+                if (err.response) {
+                    context.showAlert = true
+                    context.errMsg = err.response.data
+                }
+            })
+    },
 
 
 }

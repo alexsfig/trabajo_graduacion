@@ -126,8 +126,8 @@ export default {
                 context.atletas = resp.data
                 console.log(resp.data)
                 for (let i of  context.atletas) {
-                    console.log("nombre:"+ i.nombre)
-                    console.log("Entrada:"+i.personaId.nombre+","+i.personaId.apellido)
+                 //   console.log("nombre:"+ i.nombre)
+                  //  console.log("Entrada:"+i.personaId.nombre+","+i.personaId.apellido)
                     i.nombre=i.personaId.nombre+","+i.personaId.apellido;}
             })
             .catch((err) => {
@@ -145,6 +145,25 @@ export default {
                 console.log(resp)
                 context.atleta = resp.data;
             })
+            .catch((err) => {
+              console.log(err)
+            })
+
+    },
+    byCircuito(context, id){
+        HTTP.get(ATLETAS+"byCircuito/" + id)
+            .then((resp) => {
+                console.log("putaaaaaaaaaaaa")
+                console.log(resp)
+                context.atletas = resp.data;
+
+                for (let i of  context.atletas) {
+                  //  console.log("nombre:"+ i.nombre)
+                  //  console.log("Entrada:"+i.personaId.nombre+","+i.personaId.apellido)
+                    i.nombre=i.personaId.nombre+","+i.personaId.apellido;}
+            
+            }
+        )
             .catch((err) => {
               console.log(err)
             })

@@ -1,13 +1,13 @@
 <template>
     <div>
         <section class="content-header">
-            <h1>Resumen Financiero General</h1>
+            <h1>Resumen Financiero por Patrocinador</h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li>
                     <router-link to="/admin/transaccion/">Transacciones</router-link>
                 </li>
-                <li class="active">Resumen Financiero General</li>
+                <li class="active">Resumen Financiero por Patrocinador</li>
             </ol>
         </section>
         <section class="content">
@@ -25,7 +25,7 @@
                     </div>
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title" v-if="!id">Parametros de Resumen Financiero  </h3>
+                            <h3 class="box-title" v-if="!id">Parametros de Resumen Financiero </h3>
                             <h3 class="box-title" v-if="id">Editar  Transaccion</h3>
                         </div>
                         <div class="box-body">
@@ -87,12 +87,12 @@
                                     </div>
 
 
-
+                                   <!--
 
                                     <div class="col-xs-12 col-sm-4">
                                      <div class="fgroup"> 
                                             <label for="formaPagoId">Forma de pago</label>
-                                            <v-select :debounce="250" :options="formaPagos" v-model="transaccion.formaPagoId" placeholder="Seleccione una Forma de Pago" label="nombre">
+                                            <v-select :debounce="250" :options="formaPagos" v-model="transaccion.formaPagoId" placeholder="Escoja una Forma de Pago" label="nombre">
                                             </v-select>
                                             <div class="clearfix"></div>
                                             <input type="hidden" name="formaPagoId" value="" data-vv-as="formaPagoId" v-model="transaccion.formaPagoId" >
@@ -111,7 +111,7 @@
                                     <div class="col-xs-12 col-sm-4">
                                         <div class="fgroup" >
                                             <label for="cuentaId">Cuenta</label>
-                                            <v-select :debounce="250" :options="cuentas" v-model="transaccion.cuentaId" placeholder="Seleccione una Cuenta" label="nombre">
+                                            <v-select :debounce="250" :options="cuentas" v-model="transaccion.cuentaId" placeholder="Escoja una Cuenta" label="nombre">
                                             </v-select>
                                             <div class="clearfix"></div>
                                             <input type="hidden" name="cuentaId" value="" data-vv-as="cuenta" v-model="transaccion.cuentaId"  >
@@ -126,7 +126,7 @@
                                     <div class="col-xs-12 col-sm-4">
                                         <div class="fgroup" >
                                             <label for="tipoTransaccionId">Tipo de Transaccion</label>
-                                            <v-select :debounce="250" :options="tipoTransaccions" v-model="transaccion.tipoTransaccionId" placeholder="Seleccione un Tipo de Transaccion" label="nombre" @input="changedValue">
+                                            <v-select :debounce="250" :options="tipoTransaccions" v-model="transaccion.tipoTransaccionId" placeholder="Escoja un Tipo de Transaccion" label="nombre" @input="changedValue">
                                             </v-select>
                                             <div class="clearfix"></div>
                                             <input type="hidden" name="tipoTransaccionId" value="" data-vv-as="tipo Transaccion" v-model="transaccion.tipoTransaccionId" >
@@ -156,16 +156,16 @@
                                         </div>
                                     </div>
                                    
-                                  
+                                  -->
                                    
 
-                                    <div class="col-xs-12 col-sm-4" >
-                                        <div class="fgroup" >
+                                    <div class="col-xs-12 col-sm-6" >
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('patrocinadorId') }">
                                             <label for="patrocinadorId">Patrocinador</label>
                                             <v-select :debounce="250" :options="patrocinadors" v-model="transaccion.patrocinadorId" placeholder="Seleccione un Patrocinador" label="nombre">
                                             </v-select>
                                             <div class="clearfix"></div>
-                                            <input type="hidden" name="patrocinadorId" value="" data-vv-as="patrocinadorId" v-model="transaccion.patrocinadorId" >
+                                            <input type="hidden" name="patrocinadorId" value="" data-vv-as="Patrocinador" v-model="transaccion.patrocinadorId" v-validate="'required'">
 
                                             <span class="help-block" for="patrocinadorId" v-bind:data-error="errors.first('patrocinadorId')">
                                                 {{ errors.first('patrocinadorId') }}
@@ -173,10 +173,12 @@
                                            
                                         </div>
                                     </div>
+
+                                    <!--
                                     <div class="col-xs-12 col-sm-4" >
                                         <div class="fgroup" >
                                             <label for="atletaId">Atleta</label>
-                                            <v-select :debounce="250" :options="atletas" v-model="transaccion.atletaId" placeholder="Seleccione un Atleta" label="nombre">
+                                            <v-select :debounce="250" :options="atletas" v-model="transaccion.atletaId" placeholder="Escoja un Atleta" label="nombre">
                                             </v-select>
                                             <div class="clearfix"></div>
                                             <input type="hidden" name="atletaId" value="" data-vv-as="atletaId" v-model="transaccion.atletaId" >
@@ -187,7 +189,7 @@
                                             
                                         </div>
                                     </div>
-
+                                     -->
                                 </div>
                                 <div class="box-footer">
                                     <div class="col-xs-12 text-right">
@@ -195,7 +197,7 @@
                                         <button type="submit" v-if="!id" class="btn btn-flat btn-sm btn-primary" ><i aria-hidden="true"
                                             class="fa fa-search"></i> Consultar</button>
                                          <button type="button" class="btn btn-flat btn-sm btn-primary" @click="reset()">  <i aria-hidden="true"  class="fa fa-eraser"></i>  Limpiar</button>
-                                        <button type="button" v-if="searchs.length>0" class="btn btn-flat btn-sm btn-primary" @click="createPDF(transaccion.inicio, transaccion.fin, total, count)"><i aria-hidden="true"  class="fa fa-file"></i> Generar Reporte</button>
+                                        <button type="button" v-if="searchs.length>0" class="btn btn-flat btn-sm btn-primary" @click="createPDF(transaccion.inicio, transaccion.fin, total, count,transaccion.patrocinadorId.nombre)"><i aria-hidden="true"  class="fa fa-file"></i> Generar Reporte</button>
                                         <button type="submit" v-if="id" class="btn btn-flat btn-sm btn-primary">Editar</button>
 
                                     </div>
@@ -214,6 +216,11 @@
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <h3 class="box-title">Transacciones Registradas Desde: <b>{{transaccion.inicio}}</b> Hasta: <b>{{transaccion.fin}} </b></h3>
+                        </div>
+
+                         <div class="box-header with-border">
+                            <h3 class="box-title">Patrocinador: <b>{{transaccion.patrocinadorId?transaccion.patrocinadorId.nombre:""}}</b> </h3>
+                            
                         </div>
                         
                         <div class="box-body">
@@ -255,12 +262,12 @@
 
                                          <div class="col-xs-12 col-sm-2 ">
                                         <div class="fgroup" >
-                                            <label for="">Total = Ingresos - Gastos</label>
+                                            <label for="">Total Ingresos:</label>
                                           <b>  
-                                              <input v-if="total.includes('-')"  style="color:#FF0000" type="text" v-model="total" class="form-control" name="descripcion"   disabled/>
+                                              
                                           
  
-                                              <input  v-if="!total.includes('-')"   style="color:green" type="text" v-model="total" class="form-control" name="descripcion"   disabled/>
+                                              <input style="color:green" type="text" v-model="total" class="form-control" name="descripcion"   disabled/>
                                           
                                           </b>
                                                                        
@@ -412,7 +419,7 @@ export default {
       console.log("Sumando");
 
       Object.entries(value).forEach(([key, val]) => {
-        total.push(val.tipoTransaccionId.tipo ? val.monto : -val.monto); // the value of the current key.
+        total.push(val.monto); // the value of the current key.
         count.push(1);
       });
 
@@ -514,7 +521,7 @@ export default {
       this.searchs = [];
     },
     
-    createPDF(fechaini, fechafin, total, count) {                             
+    createPDF(fechaini, fechafin, total, count, patrocinador) {                             
 let filas=[];
 for(let aux of this.searchs){
 let fila={
@@ -579,7 +586,7 @@ filas.push(fila)
         doc.setFontStyle("bold"); 
         doc.text("Federacion Salvadoreña de Surf", 53, 20);  
         doc.setFontSize(13); 
-        doc.text("Resumen Financiero", 10, 35);
+        doc.text("Resumen Financiero por Patrocinador", 10, 35);
         doc.setFontStyle("normal"); 
         doc.setFontSize(10);
         doc.text("Transacciones Registradas Desde: ", 10, 45);
@@ -589,7 +596,12 @@ filas.push(fila)
         doc.text(" Hasta: ", 85, 45);
         doc.setFontStyle("bold"); 
         doc.text(fechafin, 97, 45);
-        doc.setFontStyle("normal");  
+
+        doc.setFontStyle("normal"); 
+        doc.text("Patrocinador:", 10, 55);
+        doc.setFontStyle("bold"); 
+        doc.text(patrocinador, 33, 55);
+        doc.setFontStyle("normal");   
 
 
 
@@ -618,10 +630,10 @@ filas.push(fila)
       doc.autoTable(columns, filas, {
           addPageContent: pageContent,
          theme:'striped',
-        startY: 50/*, showHeader: 'firstPage'*/
+        startY: 60/*, showHeader: 'firstPage'*/
       });
 doc.setFontStyle("bold");      
-var linea='Total = Ingreso - Gastos:      '+total;
+var linea='Total Ingresos:               ($) '+total;
 var linea2='Numero de Transacciones:   '+count;
        doc.text(linea, 130, doc.autoTable.previous.finalY + 10);
        doc.text(linea2, 130, doc.autoTable.previous.finalY + 20);
@@ -632,7 +644,7 @@ var linea2='Numero de Transacciones:   '+count;
         doc.putTotalPages(totalPagesExp);
     }
 
-      doc.save("Resumen_Financiero.pdf");
+      doc.save("Resumen_Financiero_Patrocinador.pdf");
     },
 
   /*imgToBase64: function imgToBase64(url, callback) {

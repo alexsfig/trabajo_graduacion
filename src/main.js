@@ -15,6 +15,17 @@ import VueFormWizard from 'vue-form-wizard'
 import 'vue-form-wizard/dist/vue-form-wizard.min.css'
 import VTooltip from 'v-tooltip'
 import round from 'vue-round-filter';
+import Toasted from 'vue-toasted';
+import * as VueGoogleMaps from 'vue2-google-maps';
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyAFYSv_yqSmtTp97GULOGPfxdemGSR1hhA',
+    libraries: 'places', // This is required if you use the Autocomplete plugin
+    // OR: libraries: 'places,drawing'
+    // OR: libraries: 'places,drawing,visualization'
+    // (as you require)
+  }
+})
 Vue.use(VueFormWizard)
 Vue.use(VueMask);
 Vue.use(VueGoodTable)
@@ -27,7 +38,7 @@ Vue.use(VueSweetAlert)
 Vue.use(uiv)
 Vue.use(round)
 Vue.config.productionTip = false
-
+Vue.use(Toasted)
 router.beforeEach((to, from, next) => {
 
     if (to.matched.some(record => record.meta.requiresAuth)) {

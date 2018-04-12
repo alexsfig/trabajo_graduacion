@@ -72,7 +72,7 @@ export default {
                 context.cuentas = resp.data
                 for (let i of  context.cuentas) {
 
-              i.nombrem=i.nombre+"($"+i.monto+")";
+              i.nombrem=i.nombre+"     ($"+i.monto+")";
 
 
                 }

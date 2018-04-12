@@ -27,11 +27,18 @@ export default {
             let param = unescape(location.search.split('redirect=')[1])
             if (param !== "undefined") {
                 // context.$router.push(param)
+
                 window.location.replace(process.env.BASE_ROUTE + param);
 
             }else{
                 // ⁄context.$router.push({name: 'Dashboard'})
-                window.location.replace(process.env.BASE_ROUTE +'/admin');
+
+                if( items[1]==1)
+                  window.location.replace(process.env.BASE_ROUTE +'/admin');
+                if( items[1]==2)
+                  window.location.replace(process.env.BASE_ROUTE +'/juez');
+
+//                window.location.replace('/admin');
 
             }
         })

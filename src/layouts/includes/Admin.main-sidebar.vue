@@ -35,7 +35,7 @@
 
 		        <li>
 		            <router-link to="/admin/dashboard">
-		                <i class="fa fa-tachometer" aria-hidden="true"></i> <span>Dashboard</span>
+		                <i class="fa fa-tachometer" aria-hidden="true"></i> <span>Inicio</span>
 		            </router-link>
 		        </li>
 		        <li class="treeview">
@@ -127,7 +127,7 @@
 
 		                 <li>
 		                    <router-link to="/admin/patrocinadoratleta">
-		                        <i class="fa fa-male" aria-hidden="true"></i> <span>Patrocinadores Atletas</span>
+		                        <i class="fa fa-male" aria-hidden="true"></i> <span>Patrocinio de Atletas</span>
 		                    </router-link>
 		                </li>
 
@@ -159,7 +159,7 @@
 
 		        <li class="treeview">
 		            <router-link to="#">
-		                <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+		                <i class="fa fa-flag-checkered" aria-hidden="true"></i>
 		                <span>Competencias</span>
 		                <span class="pull-right-container">
 		                    <i class="fa fa-angle-left pull-right"></i>
@@ -186,7 +186,11 @@
 		                    <router-link to="/admin/fechas/form">
 		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Agregar Fecha</span>
 		                    </router-link>
-		                </li> <li>
+		                </li> 
+
+		                <!--
+
+		                <li>
 		                    <router-link to="/admin/circuitos/">
 		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Manejo de Circuitos</span>
 		                    </router-link>
@@ -196,6 +200,8 @@
 		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Agregar Circuito</span>
 		                    </router-link>
 		                </li>
+
+		                -->
 		            </ul>
 		        </li>
 		            
@@ -203,7 +209,7 @@
 
 					 <li class="treeview">
 		            <router-link to="#">
-		                <i class="fa fa-newspaper-o" aria-hidden="true"></i>
+		                <i class="fa fa-balance-scale" aria-hidden="true"></i>
 		                <span>Finanzas</span>
 		                <span class="pull-right-container">
 		                    <i class="fa fa-angle-left pull-right"></i>
@@ -236,15 +242,27 @@
 		               
 						<li>
 		                    <router-link to="/admin/transaccion/">
-		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Manejo de transacciones</span>
+		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Manejo de Transacciones</span>
 		                    </router-link>
 		                </li>
 		               
 		                 <li>
 		                    <router-link to="/admin/reportes/form">
-		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Resumen Financiero</span>
+		                        <i class="fa fa-circle-o" aria-hidden="true"></i><span>Resumen Finanzas General</span>
+		                    </router-link>
+		                </li>           
+		                <li>
+		                    <router-link to="/admin/reportes/formbyAtleta">
+		                        <i class="fa fa-circle-o" aria-hidden="true"></i><span>Resumen Finanzas Atletas</span>
 		                    </router-link>
 		                </li>
+
+		                  <li>
+		                    <router-link to="/admin/reportes/formbyPatrocinador">
+		                        <i class="fa fa-circle-o" aria-hidden="true"></i><span>Resumen Finanzas Patrocinios</span>
+		                    </router-link>
+		                </li>
+
 		            </ul>
 		        </li>
 

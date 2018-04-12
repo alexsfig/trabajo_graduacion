@@ -28,7 +28,15 @@ export default {
     update(context, patrocinador_atleta){
         context.showAlert = false
         context.showSuccess = false
-        HTTP.put(PATROCINADOR_ATLETA, patrocinador_atleta)
+         let request={
+              
+            id:patrocinador_atleta.id,
+            tiempoPatrocinio:patrocinador_atleta.tiempoPatrocinio,
+            patrocinadorId:{id:patrocinador_atleta.patrocinadorId.id},
+            atletaId:{id:patrocinador_atleta.atletaId.id}
+            
+          }
+        HTTP.put(PATROCINADOR_ATLETA, request)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
                     var id = resp.data.id
@@ -115,7 +123,17 @@ export default {
         context.showAlert = false
         context.showSuccess = false
         patrocinadoratleta.id=0;
-                            HTTP.post(PATROCINADOR_ATLETA, patrocinadoratleta)
+
+
+        let request={
+              
+            id:patrocinadoratleta.id,
+            tiempoPatrocinio:patrocinadoratleta.tiempoPatrocinio,
+            patrocinadorId:{id:patrocinadoratleta.patrocinadorId.id},
+            atletaId:{id:patrocinadoratleta.atletaId.id}
+            
+          }
+                            HTTP.post(PATROCINADOR_ATLETA, request)
                             .then((resp) => {
                                 if (resp.status>= 200 && resp.status <=300){
                                     context.showSuccess = true

@@ -1,7 +1,7 @@
 <template>
     <div>
         <section class="content-header">
-            <h1>Cuentas</h1>
+            <h1>Ranking Circuito</h1>
 
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -9,7 +9,12 @@
             </ol>
         </section>
         <section class="content" >
+  
 
+
+
+
+ 
             <div class="row">
                 <div class="col-xs-12">
                     <div class="wrapper-alert">
@@ -29,24 +34,26 @@
                 <div class="col-lg-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Manejo de Cuentas </h3>
+                            <h3 class="box-title">Puntuaciones finales</h3>
                         </div>
+                              <button @click="asignar()"  v-if="circuito.estado=='Calificado'" class="btn btn-flat btn-sm btn-primary"><i aria-hidden="true" 
+                                        class="fa fa-check-circle"></i> Asignar Puntuaciones </button> 
                         <!-- /.box-header -->
                         <div class="box-body">
-      <div class="box-action">
-                                <router-link to="/admin/cuentas/form" class="btn btn-default btn-flat">
-                                    <i class="fa fa-plus"></i> Nueva Cuenta
-                                </router-link>
-                            </div>
+    
                             </div>
                             <div class="box-body">
-
-                            <vue-good-table :columns="columns" :rows="cuentas" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
+{{circuito}}
+<!--<iframe width="600" height="450" frameborder="0" style="border:0"
+src="https://www.google.com/maps/embed/v1/place?q=san%20salvador%20&key=AIzaSyCNn7bkHEwBaqj_G343JmzQmGUrSCqqT0M" allowfullscreen></iframe>-->
+                            <vue-good-table :columns="columns" :rows="atletasranking" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
                                 <template slot="table-row" scope="props">
-<td>{{ props.row.nombre }}</td>
-<td>{{ props.row.descripcion }}</td>
+
+<td>{{ props.row.lugar }}</td>
+<td>{{ props.row.atletasCircuitoId.atletaId.personaId.nombre }},{{ props.row.atletasCircuitoId.atletaId.personaId.apellido }}</td>
+<td>{{ props.row.puntos }}</td>
 <td v-if="props.row.monto<=0" style="color:#FF0000"><b>{{ roundToTwo(props.row.monto) }}</b></td>
-<td v-if="props.row.monto>0" style="color:green"><b>{{roundToTwo( props.row.monto) }}</b></td>
+<!--<td v-if="props.row.monto>0" style="color:green"><b>{{roundToTwo( props.row.monto) }}</b></td>
                                   <td class="nowrap">
  <router-link :to="{ name: 'cuentasEdit', params: { id: props.row.id }}">
                                         <button type="button" class="margin btn btn-flat btn-sm btn-primary"
@@ -56,7 +63,7 @@
                                         @click="deleteCuenta(props.row.id, props.row.nombre)"><i aria-hidden="true" 
                                         class="fa fa-trash-o"></i> Eliminar</button>
                                 
-                                    </td>
+                                    </td>-->
                                   </template>
                             </vue-good-table>
 
@@ -64,38 +71,39 @@
                     </div>
                     </div>
             </div>
-           <!-- <modalPlaya :methodSubmit="methodSubmit" :title="'Actualizar Usuario'" :buttonMsg="'Actualizar'" :openModal="openModal" :playa="playa" v-on:openChange="isChange"></modalPlaya> -->
+         
+ 
+        
         </section>
     </div>
 </template>
 <script>
   
-    import cuentasController from '../../controllers/cuentas.js';
+    import circuitoController from '../../controllers/circuitos.js';
      import vSelect from "vue-select"
     import moment from "moment"
     export default {
         name: 'Cuentas',
         data() {
             return {
-                cuentas: [],
+            
                 showAlert: false,
                 showSuccess: false,
                 methodSubmit: 'editar',
                 openModal: false ,
+                circuito:'',
+                atletasranking:[],
+                id:'',
  columns: [ 
  {
-                        label: "Nombre Cuenta",
+                        label: "Lugar",
                         field: "nombre",
                     }, {
-                        label: "Descripcion Cuenta",
+                        label: "Atleta",
                         field: "descripcion",
                     }, {
-                        label: "Monto Actual ($)",
+                        label: "Puntos",
                         field: "monto",
-                    },
-                     {
-                        label: "Acciones",
-                        field: "",
                     }
                     ]
             }
@@ -105,38 +113,18 @@
         },
         methods:{
             fetchData(){
-                cuentasController.index(this)
-            },
-            deleteCuenta(id, nombre) {
-                let context = this;
-                let swal = this.$swal;
-                this.$swal({
-                    title: 'Estas Seguro?',
-                    html: 'No podras recuperar la informacion de la cuenta <b>&laquo;' + nombre + '&raquo</b><br>y toda la informacion en relacion a la misma ya no sera accesible',
-                    type: 'error',
-                    showCancelButton: true,
-                    confirmButtonText: 'Si, Eliminar!',
-                    cancelButtonText: 'No, Mantener'
-                }).then(function() {
-                    cuentasController.delete(context, id, swal);
-                },function(dismiss) {
-                    if (dismiss === 'cancel') {
-                        swal(
-                          'Cancelado',
-                          'La Cuenta no se elimino',
-                          'error'
-                        )
-                    }
-                })
+                  this.id = this.$route.params.id;
+                circuitoController.byRanking(this,this.id)
+
+                 circuitoController.retrieve(this,this.id)
             },
 
-            roundToTwo(num) {
-      return this.formatPrice(+(Math.round(num + "e+2") + "e-2"));
-    },
-    formatPrice(value) {
-      let val = (value / 1).toFixed(2);
-      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
+            asignar(){
+
+
+              circuitoController.finalizar(this,this.id);
+            }
+            
         }
     }
 </script>

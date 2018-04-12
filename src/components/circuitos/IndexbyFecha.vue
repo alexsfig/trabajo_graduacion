@@ -29,27 +29,35 @@
                 <div class="col-lg-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Manejo de circuitos </h3>
+                            <h3 class="box-title">Manejo de Circuitos de la Fecha <b>{{fecha.nombre}}</b></h3>
+
+
+
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
       <div class="box-action">
-                                <router-link to="/admin/circuitos/form" class="btn btn-default btn-flat">
-                                    <i class="fa fa-plus"></i> Nuevo Circuito
-                                </router-link>
+                               
+                                  <router-link :to="{ name: 'circuitosCreatebyfecha', params: { id: this.$route.params.id }}">
+                                        <button type="button" class="btn btn-default btn-flat"
+                                       ><i aria-hidden="true"
+                                         class="fa fa-plus"></i>  Nuevo Circuito</button>
+                                        </router-link> 
+
 
                             </div>
                             <vue-good-table :columns="columns" :rows="circuitos" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
                                 <template slot="table-row" scope="props">
 <td>{{ props.row.nombre }}</td>
 <td>{{ props.row.descripcion }}</td>
-<td>{{ props.row.fechaId.nombre }}</td>
-<td>{{ props.row.categoriaId.nombreCategoria }}</td>                
+<td>{{ props.row.categoriaId.nombreCategoria }}</td>  
+<td>{{ props.row.numJueces?props.row.numJueces+' ( '+props.row.numJuecesEval?props.row.numJuecesEval:'0'+' Evaluadores )':'0' }} </td>   
+<td>{{ props.row.numAtletas?props.row.numAtletas+' atletas':'0'}} </td>                  
 <td>{{ props.row.estado }}</td>      
 
 
                     <td class="nowrap">
- <router-link :to="{ name: 'circuitosEdit', params: { id: props.row.id }}">
+ <router-link :to="{ name: 'circuitosEditbyfecha', params: { idcircuito: props.row.id, idfecha: props.row.fechaId.id }}">
                                         <button type="button" class="margin btn btn-flat btn-sm btn-primary"
                                        ><i aria-hidden="true"
                                          class="fa fa-pencil-square-o"></i> Actualizar</button>
@@ -59,17 +67,17 @@
 
                                        
 
-                                         <button type="button" class="margin btn btn-flat btn-sm bg-navy margin" 
+                                         <button type="button" v-if="props.row.estado=='Abierta'" class="margin btn btn-flat btn-sm bg-navy margin" 
                                         @click="agregarAtletas(props.row.id, props.row)"><i aria-hidden="true" 
                                         class="fa fa-male"></i> Agregar Atletas</button>
 
-                                         <button type="button" class="margin btn btn-flat btn-sm bg-navy margin" 
+                                         <button type="button" v-if="props.row.estado=='Abierta'" class="margin btn btn-flat btn-sm bg-navy margin" 
                                         @click="agregarJueces(props.row.id, props.row)"><i aria-hidden="true" 
                                         class="fa fa-gavel"></i> Agregar Jueces</button>
 
                                          <button type="button" class="margin btn btn-flat btn-sm btn-success" 
                                         @click="llamaRonda(props.row.id, props.row)"><i aria-hidden="true" 
-                                        class="fa fa-flag-checkered"></i> Gestionar Circuito</button>
+                                        class="fa fa-pencil-square-o"></i> Gestionar Circuito</button>
                                 
                                     </td>
                                   </template>
@@ -84,27 +92,28 @@
 
                                 </div> 
 
-                        </div>
-
-                 
+                        </div>              
 
                     </div>
                    </div>
             </div>
-           <!-- <modalPlaya :methodSubmit="methodSubmit" :title="'Actualizar Usuario'" :buttonMsg="'Actualizar'" :openModal="openModal" :playa="playa" v-on:openChange="isChange"></modalPlaya> -->
+           
         </section>
     </div>
 </template>
 <script>
   
     import circuitosController from '../../controllers/circuitos.js';
+    import fechasController from '../../controllers/fechas.js';
      import vSelect from "vue-select"
+
     import moment from "moment"
     export default {
         name: 'CircuitosByFecha',
         data() {
             return {
                 circuitos: [],
+                fecha:[],
                 showAlert: false,
                 showSuccess: false,
                 methodSubmit: 'editar',
@@ -117,11 +126,16 @@
                         label: "Descripcion",
                         field: "descripcion",
                     }, {
-                        label: "Fecha",
-                        field: "fechaId.nombre",
-                    }, {
                         label: "Categoria",
                         field: "categoriaId.nombre",
+                    },
+                    {
+                        label: "Numero de Jueces",
+                        field: "numAtletas",
+                    },
+                    {
+                        label: "Numero de Atletas",
+                        field: "numAtletas",
                     },
                     {
                         label: "Estado",
@@ -166,7 +180,7 @@
              llamaRonda(id, circuito) {
             circuitosController.retrieve(this, id)
             this.$router.push({
-                name: 'circuitosNuevaRonda',
+                name: 'rondaIndex',
                 params: {
                     id: id,
                     circuito: circuito
@@ -176,13 +190,15 @@
 
             fetchData(){
                 circuitosController.byFecha(this, this.$route.params.id)
+                fechasController.retrieve(this, this.$route.params.id)
+
             },
             deleteCircuito(id, nombre) {
                 let context = this;
                 let swal = this.$swal;
                 this.$swal({
                     title: 'Estas Seguro?',
-                    html: 'No podras recuperar la informacion de la circuito <b>&laquo;' + nombre + '&raquo</b><br>y toda la informacion relacion al mismo ya no sera accesible',
+                    html: 'No podras recuperar la informacion del circuito <b>&laquo;' + nombre + '&raquo</b><br>y toda la informacion relacion al mismo ya no sera accesible',
                     type: 'error',
                     showCancelButton: true,
                     confirmButtonText: 'Si, Eliminar!',

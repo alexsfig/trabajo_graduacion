@@ -11,39 +11,7 @@ const JUECES = 'juez/'
 
 
 export default {
-    /*
-        Use context to update vars dinamyc
-    */
-    /* 
-        Use the context to redirect after succeded and update var to use in view
-        
-        Method to create users, pass object Users
-    */
-   /* create(context, noticias){
-        context.showAlert = false 
-         context.showSuccess = false 
-          noticias.id=0;
-          noticias.usuarioId= 1;
-          //noticias.fechaInicio = moment(noticias.fechaInicio).format('YYYY-MM-DD');
-        HTTP.post(NOTICIAS, noticias)
-            .then((resp) => {
-                if (resp.status>= 200 && resp.status <=300){
-                    context.showSuccess = true
-                    context.successMsg = "Noticia Creada"
-                    context.createNoticias = {}
-                    context.errors.clear()
-                }
-            })
-            .catch((err) => {
-                if (err.response) {
-                    context.showAlert = true
-                    context.errMsg = err.response.data
-                }
-            })
-    }, */
-    /* 
-        Method to update user, pass context, object Users and user id
-    */
+    
    
     update(context, jueces){
         context.showAlert = false 
@@ -100,8 +68,8 @@ export default {
                 context.jueces = resp.data
                 console.log(resp.data)
                 for (let i of  context.jueces) {
-                    console.log("nombre:"+ i.nombre)
-                    console.log("Entrada:"+i.personaId.nombre+","+i.personaId.apellido)
+                   // console.log("nombre:"+ i.nombre)
+                  //  console.log("Entrada:"+i.personaId.nombre+","+i.personaId.apellido)
                     i.nombre=i.personaId.nombre+","+i.personaId.apellido;}
             })
             .catch((err) => {
@@ -134,6 +102,25 @@ export default {
               console.log(err)
             })
     }, 
+    byCircuito(context, id){
+        HTTP.get(JUECES+"byCircuito/" + id)
+            .then((resp) => {
+                
+                console.log(resp)
+                context.jueces = resp.data;
+
+                console.log(resp.data)
+                for (let i of  context.jueces) {
+                    console.log("nombre:"+ i.nombre)
+                    console.log("Entrada:"+i.personaId.nombre+","+i.personaId.apellido)
+                    i.nombre=i.personaId.nombre+","+i.personaId.apellido;}
+            }
+        )
+            .catch((err) => {
+              console.log(err)
+            })
+
+    },
     /* 
         Method to delete user, pass the context and user id, use this method when you need to delete user
     */
@@ -141,12 +128,12 @@ export default {
         HTTP.delete(JUECES + id)
             .then((resp) => {
                 console.log(resp);
-                swal("Deleted!", "El juez ha sido eliminado", "success")
+                swal("Deleted!", "El Juez ha sido eliminado", "success")
                 context.fetchData();
             })
             .catch((err) => {   
                           
-                swal("Oh snap!", "Ocurrio un error.", "error")
+                swal("No se puede Eliminar!", "Es posible que el Juez este asociado.", "error")
             }) 
     },
      

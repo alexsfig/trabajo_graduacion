@@ -32,35 +32,8 @@
                        <form @submit.prevent="submit"  role="form"> 
                         <div class="box-body">
 
-                        <div class="col-xs-12 col-sm-6">
-                            <div class="fgroup" :class="{ 'has-error': errors.has('tiempoPatrocinio') }" >
-                                <label for="">Tiempo Patrocinio (Años)</label>
-                                <input type="number" min='0' max='100' id="tiempoPatrocinio" name="tiempoPatrocinio" data-vv-as="Tiempo de Patrocinio" class="form-control" 
-                                v-model="createPatrocinadorAtleta.tiempoPatrocinio" v-validate="'required'" >
-                                <span class="help-block" for="tiempoPatrocinio" v-bind:data-error="errors.first('tiempoPatrocinio')">
-                                    {{ errors.first('tiempoPatrocinio') }}
-                                </span>
-                            </div>
-                        </div>
 
-
-                        <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup"  :class="{ 'has-error': errors.has('atletaId') }">
-                                            <label for="">Atleta Patrocinado</label>
-                                            <v-select
-                                                :debounce="250"
-                                                :options="atletas"
-                                                v-model="createPatrocinadorAtleta.atletaId"
-                                                placeholder="Seleccione un Atleta"
-                                                label="nombre">
-                                            </v-select>
-                                            <div class="clearfix"></div>
-                                            <input type="hidden" id="atletaId" name="atletaId" data-vv-as="Atleta " class="form-control" v-model="createPatrocinadorAtleta.atletaId" v-validate="'required'" >
-                                            <span class="help-block" for="atletaId" v-bind:data-error="errors.first('atletaId')">
-                                                {{ errors.first('atletaId') }}
-                                            </span>
-                                        </div>
-                                    </div>
+                        
 
                             <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup"  :class="{ 'has-error': errors.has('patrocinadorId') }">
@@ -80,12 +53,38 @@
                                         </div>
                                     </div>
 
+                                    <div class="col-xs-12 col-sm-6">
+                                        <div class="fgroup"  :class="{ 'has-error': errors.has('atletaId') }">
+                                            <label for="">Atleta Patrocinado</label>
+                                            <v-select
+                                                :debounce="250"
+                                                :options="atletas"
+                                                v-model="createPatrocinadorAtleta.atletaId"
+                                                placeholder="Seleccione un Atleta"
+                                                label="nombre">
+                                            </v-select>
+                                            <div class="clearfix"></div>
+                                            <input type="hidden" id="atletaId" name="atletaId" data-vv-as="Atleta " class="form-control" v-model="createPatrocinadorAtleta.atletaId" v-validate="'required'" >
+                                            <span class="help-block" for="atletaId" v-bind:data-error="errors.first('atletaId')">
+                                                {{ errors.first('atletaId') }}
+                                            </span>
+                                        </div>
+                                    </div>
+
  
-
-
-                                   
+                            
+                        <div class="col-xs-12 col-sm-6">
+                            <div class="fgroup" :class="{ 'has-error': errors.has('tiempoPatrocinio') }" >
+                                <label for="">Tiempo de Patrocinio (Años)</label>
+                                <input type="number" id="tiempoPatrocinio" name="tiempoPatrocinio" data-vv-as="Tiempo de Patrocinio" class="form-control" 
+                                v-model="createPatrocinadorAtleta.tiempoPatrocinio" v-validate="'required|min_value:1|max_value:1000'" >
+                                <span class="help-block" for="tiempoPatrocinio" v-bind:data-error="errors.first('tiempoPatrocinio')">
+                                    {{ errors.first('tiempoPatrocinio') }}
+                                </span>
+                            </div>
+                        </div>                         
                                         
-                                    
+                               
 
 
 

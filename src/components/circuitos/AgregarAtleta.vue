@@ -1,7 +1,7 @@
 <template>
     <div>
         <section class="content-header">
-            <h1>Circuitos</h1>
+            <h1>Inscripcion de Atletas</h1>
 
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -30,21 +30,22 @@
                 <div class="col-lg-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">atletas de inscritos en la fecha {{circuito.fechaId.nombre}}   del circuito {{circuito.nombre }}</h3>
+                            <h3 class="box-title">Atletas Inscritos en la Fecha: <b>{{circuito.fechaId.nombre}}</b>   del Circuito: <b>{{circuito.nombre }} </b></h3>
                         </div>
-                        <!-- /.box-header -->
+                       
                         <div class="box-body">
       <div class="box-action">
  
                             <form @submit.prevent="submit"  role="form"> 
            <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup"  :class="{ 'has-error': errors.has('atleta') }">
+                                          
                                             <label for="atleta">Atleta</label>
                                             <v-select
                                                 :debounce="250"
                                                 :options="atletas"
                                                 v-model="atleta"
-                                                placeholder="Escoja un atleta" 
+                                                placeholder="Selecciona un atleta" 
                                                 label="nombre">
                                             </v-select>
                                             <div class="clearfix"></div>
@@ -52,7 +53,8 @@
                                             <span class="help-block" for="atleta" v-bind:data-error="errors.first('atleta')">
                                                 {{ errors.first('atleta') }}
                                             </span>
-                                              <button type="submit"  class="btn btn-flat btn-sm btn-primary">Agregar</button> 
+                                              <button type="submit"  class="btn btn-flat btn-sm btn-primary"><i aria-hidden="true" 
+                                        class="fa fa-check-circle"></i>  Inscribir </button> 
                                         </div>
                                         
                                     </div>
@@ -62,13 +64,22 @@
                                     <i class="fa fa-plus"></i> Nueva Circuito
                                 </router-link>-->
                             </div>
+
+                              </div>
+                       
+                        <div class="box-body">
                          <vue-good-table :columns="columns" :rows="atletaCircuitos" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
                                 <template slot="table-row" scope="props"> 
                                        <td>{{props.row.atletaId.personaId.nombre}}</td> 
                                    
                                    <td>{{props.row.atletaId.personaId.apellido}}</td> 
-                                     <td>{{ props.row.atletaId.aniosPracticando}}</td> 
-                                     <td>{{ props.row.atletaId.playaPractica}}</td>                         
+                                   <td> {{ _calculateAge( props.row.atletaId.personaId.fechaNacimiento)  }} años</td>
+                                    <td> {{ props.row.atletaId.personaId.sexo == 'F' ? 'Femenino' : 'Masculino' }}</td>
+                                     <td>{{ props.row.atletaId.aniosPracticando}} años</td> 
+                                     <td>{{ props.row.atletaId.playaPractica}}</td>    
+                                     <td>{{ props.row.atletaId.ladoPie}}</td>   
+                                     <td>{{ props.row.atletaId.olaPreferida}}</td>   
+                                                                    
                                          <td class="nowrap">
                                  <!--    <router-link :to="{ name: 'circuitosEdit', params: { id: props.row.id }}">
                                         <button type="button" class="margin btn btn-flat btn-sm btn-primary"
@@ -77,7 +88,7 @@
                                         </router-link>               -->
                                         <button type="button" class="margin btn btn-flat btn-sm btn-danger" 
                                         @click="deleteCircuito(props.row.id, props.row.atletaId.personaId.nombre+','+props.row.atletaId.personaId.apellido)"><i aria-hidden="true" 
-                                        class="fa fa-trash-o"></i> Eliminar</button>
+                                        class="fa fa-times"></i> Dar de baja</button>
                                 
                                     </td>
                                   </template>
@@ -88,9 +99,9 @@
 
                           <div class="box-body">
                               
-                             <router-link to="/admin/circuitos/" class="btn btn-flat btn-sm btn-warning margin">
-                                    <i class="fa fa-arrow-circle-left"></i>  Regresar a Circuitos
-                                </router-link>
+                             <div @click="volver()" class="btn btn-flat btn-sm btn-warning margin">
+                                    <i class="fa fa-arrow-circle-left" ></i> Regresar a Circuitos
+                                </div>
 
                                 </div> 
 
@@ -98,7 +109,7 @@
                     </div>
                    </div>
             </div>
-           <!-- <modalPlaya :methodSubmit="methodSubmit" :title="'Actualizar Usuario'" :buttonMsg="'Actualizar'" :openModal="openModal" :playa="playa" v-on:openChange="isChange"></modalPlaya> -->
+          
         </section>
     </div>
 </template>
@@ -138,17 +149,39 @@
                       filterable: true
                     },
 
+                     {
+                      label: 'Edad',
+                      field: 'atletaId.personaId.fechaNacimiento',
+                      filterable: true
+                    },
+                    {
+                      label: 'Sexo',
+                      field: 'atletaId.sexo',
+                      filterable: true
+                    },
+
                     {
                       label: 'Años Practicando',
-                      field: 'aniosPracticando',
+                      field: 'atletaId.aniosPracticando',
+                      type: 'number',
                       filterable: true
                     },
                      {
-                      label: 'Playa Practica',
-                      field: 'playaPractica',
+                      label: 'Playa donde Practica',
+                      field: 'atletaId.playaPractica',
                       filterable: true
                     },
-                   
+                     {
+                      label: 'Lado del Pie',
+                      field: 'atletaId.ladoPie',
+                      filterable: true
+                    },
+                      {
+                      label: 'Ola Preferida',
+                      field: 'atletaId.olaPreferida',
+                      filterable: true
+                    },
+                    
                      {
                       label: 'Accion',
                       field: '',
@@ -170,7 +203,7 @@
                atletaCircuitoController.indexByCircuito(this,this.id);
                        atletaCircuitoController.getheat(this,this.id);
                 circuitosController.retrieve(this,this.id)
-                 atletaController.index(this)
+                 atletaController.byCircuito(this, this.id)
 
                  console.log("son :"+Object.keys(this.atletaCircuitos).length)
 /*
@@ -187,17 +220,21 @@
 
                 this.$validator.validateAll().then(success => {
                     if (success) {
-                 
-                    
+                    if(this.atleta.id>0)
+                    {
                         this.atletaCircuito.circuitoId=this.circuito;
                         this.atletaCircuito.atletaId=this.atleta;
-                        this.atletaCircuito.estado=0;
+                        this.atletaCircuito.estado="Compitiendo";
 
                         console.log(JSON.stringify(  
                         this.atletaCircuito));
                         atletaCircuitoController.create(this,this.atletaCircuito)
-                        
-                     
+                    }
+                     else{
+
+                         this.showAlert = true
+                        this.errMsg = "Debe seleccionar un atleta"
+                     }
                     }
                     else{
                           console.log("Error enn el formulario")
@@ -211,7 +248,7 @@
                 let swal = this.$swal;
                 this.$swal({
                     title: 'Estas Seguro?',
-                    html: 'No podras recuperar la informacion de la circuito <b>&laquo;' + nombre + '&raquo</b><br>y toda la informacion relacion al mismo ya no sera accesible',
+                    html: 'No podras recuperar la informacion del Atleta <b>&laquo;' + nombre + '&raquo</b><br> en el Circuito y toda la informacion en relacion al mismo ya no sera accesible',
                     type: 'error',
                     showCancelButton: true,
                     confirmButtonText: 'Si, Eliminar!',
@@ -222,12 +259,31 @@
                     if (dismiss === 'cancel') {
                         swal(
                           'Cancelado',
-                          'La circuito no se elimino',
+                          'El Atleta en el Circuito no se dio de baja',
                           'error'
                         )
                     }
                 })
             },
+            volver(){
+                console.log("entre")
+ window.history.length > 1
+        ? this.$router.go(-1)
+        : this.$router.push('/')
+    
+
+            }
+,
+             _calculateAge(birthday) {
+            var today = new Date();
+            var birthDate = new Date(birthday);
+            var age = today.getFullYear() - birthDate.getFullYear();
+            var m = today.getMonth() - birthDate.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            return age;
+              }
         }
     }
 </script>

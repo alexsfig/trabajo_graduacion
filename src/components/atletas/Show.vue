@@ -2,10 +2,12 @@
     <div class="content">
         <div class="row">
             <div class="col-xs-12 text-left">
-                <router-link to="/admin/atletas" type="button" class="btn btn-flat btn-sm btn-warning margin ">
-                    <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
-                    Regresar a atletas
-                </router-link>
+                                              
+                             <div @click="volver()" class="btn btn-flat btn-sm btn-warning margin">
+                                    <i class="fa fa-arrow-circle-left" ></i> Regresar
+                                </div>
+
+                               
             </div>
             <div class="col-md-8 col-md-offset-2">
                 <div class="box box-primary">
@@ -24,6 +26,9 @@
                                 </li>
                                 <li class="list-group-item">
                                     <b>Edad que inicio</b> <a class="pull-right">{{ atleta.edadInicio }} años</a>
+                                </li>
+                                 <li class="list-group-item">
+                                    <b>Fechas que ha Competido</b> <a class="pull-right">{{ atleta.cuantasFechas }}</a>
                                 </li>
                                 <li class="list-group-item">
                                     <b>Ultima Participacion</b> <a class="pull-right">{{ atleta.ultimaParticipacion }}</a>
@@ -63,9 +68,14 @@
                         <p class="text-muted">{{ atleta.rutinaConstancia }}</p>
                         <hr>
 
-                        <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
+                        <strong><i class="fa fa-file-text-o margin-r-5"></i> Nivel Academico</strong>
 
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+                        <p>{{ atleta.nivelAcademico }}</p>
+                         <hr>
+
+                        <strong><i class="fa fa-file-text-o margin-r-5"></i> Otros Estudios</strong>
+
+                        <p>{{ atleta.otrosEstudios }}</p>
                     </div>
                     <!-- /.box-body -->
                 </div>
@@ -130,7 +140,15 @@ export default {
        },
         fetchData() {
             atletasController.retrieve(this, this.$route.params.id)
-      }
+      },
+      volver(){
+                console.log("entre")
+ window.history.length > 1
+        ? this.$router.go(-1)
+        : this.$router.push('/')
+    
+
+            }
     }
 }
 

@@ -29,19 +29,17 @@
                 <div class="col-lg-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Manejo de Heats de la Ronda <b>{{ronda.numero}}</b> del Circuito <b>{{ronda.circuitoId?ronda.circuitoId.nombre:''}}</b> </h3>
-
-                                                             
-                                <router-link   style="float:right" v-if="ronda.estado=='Calificada'" :to="{name:'rondaEnd',params:{id:ronda.id}}" class="btn btn-success btn-flat">
-                                    Dar por finalizada               
-                                </router-link>
-                            
+                            <h3 class="box-title">Manejo de Heats de la Ronda <b>Grim</b></h3>
                         </div>
-                        
                         <!-- /.box-header -->
                         <div class="box-body">
-                           
-
+                                
+                          <!--  <div class="box-action">
+                                <router-link to="/admin/heats/form" class="btn btn-default btn-flat">
+                                    <i class="fa fa-plus"></i> Nueva Heat
+                                </router-link>
+                            </div>-->
+    {{heats[0]}}
                             <vue-good-table :columns="columns" :rows="heats" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
                                 <template slot="table-row" scope="props">
                                   
@@ -52,20 +50,14 @@
                                     
                                          <td>{{ props.row.estado }}</td>
                                       <td>{{ props.row.natletas }} atletas</td>
-                                        
+                                        <td>{{ props.row.natletas }} jueces</td>
                                     <td class="nowrap">
-                                        <router-link v-if="props.row.estado=='Por iniciar'" :to="{ name: 'heatInit', params: { id: props.row.id }}">
+                                        <router-link  :to="{ name: 'CalificarHeatJ', params: { id: props.row.id }}">
                                         <button type="button" class="margin btn btn-flat btn-sm btn-primary"
                                        ><i aria-hidden="true"
-                                         class="fa fa-pencil-square-o"></i> Iniciar Heat</button>
+                                         class="fa fa-pencil-square-o"></i> Calificar</button>
                                         </router-link>
-                                   <div  v-if="props.row.estado!='En espera'">
-                                    <router-link v-if="props.row.estado!='Por iniciar'" :to="{ name: 'ResultadoHeat', params: { id: props.row.id }}">
-                                        <button type="button" class="margin btn btn-flat btn-sm btn-primary"
-                                       ><i aria-hidden="true"
-                                         class="fa fa-pencil-square-o"></i> Revisar</button>
-                                        </router-link>
-                                   </div>
+                                 
                                     </td>
                                   </template>
                             </vue-good-table>
@@ -91,6 +83,7 @@
   
     import heatsController from '../../controllers/heats.js';
         import rondaController from '../../controllers/rondas.js';
+         import usuarioController from '../../controllers/users.js';
      import vSelect from "vue-select"
     import moment from "moment"
     export default {
@@ -98,6 +91,7 @@
         data() {
             return {
                 heats: [],
+                usuario:{},
                 showAlert: false,
                 showSuccess: false,
                 methodSubmit: 'editar',
@@ -123,26 +117,46 @@
                         field: "nAtletas",
                     }
 
-                    ,                        
-{label: 'Acciones',
-                      field: '',
-                      filterable: true,}
+                    ,
+
+                        {
+                        label: "Numero de Jueces",
+                        field: "jueces",
+                    }
+
                    
-                     
-                    
+                     ,
+                     {
+                      label: 'Acciones',
+                      field: '',
+                      filterable: true,
+                    }
                 ]
             }
         },
-        
+        watch:{
+        "usuario":"getHeat"
+        },
         created(){
             this.fetchData()
         },
         methods:{
-           
+            getHeat(){
+                console.log("entres al fectdata:"+this.usuario.id)
+                 if(this.usuario.personaId)
+                if(this.usuario.personaId.juez){
+
+                     localStorage.setItem('juezid', this.usuario.personaId.juez.id)
+                 heatsController.byJuez (this,this.usuario.personaId.juez.id);
+                 
+                 }
+            },
             fetchData(){
-                this.id=this.$route.params.id;
-                heatsController.byRonda (this,this.id);
-                rondaController.retrieve(this,this.id);
+                usuarioController.retrieve(this, localStorage.getItem('iduser'))
+            //    this.id=localStorage.getItem('rol');
+              //  console.log("juez:"+localStorage.getItem('rol'))
+             //   heatsController.byJuez (this,this.id);
+            //    rondaController.retrieve(this,this.id);
             },
             deleteHeat(id, nombre) {
                 let context = this;

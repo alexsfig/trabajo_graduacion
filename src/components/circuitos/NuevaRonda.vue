@@ -29,7 +29,10 @@
                 <div class="col-lg-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Atletas inscritos en la Fecha <b>{{circuito.fechaId.nombre}}</b>  del Circuito <b>{{circuito.nombre }} </b></h3>
+                            <h3 class="box-title"><b>Generacion de Heats para Nueva Ronda</b></h3>
+                        </div>
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Atletas en la Fecha <b>{{circuito.fechaId.nombre}}</b>  del Circuito <b>{{circuito.nombre }} </b></h3>
                         </div>
                        
                        
@@ -37,7 +40,7 @@
     <form @submit.prevent="submit"  role="form"> 
  <button type="button" class="margin btn btn-flat btn-sm btn-success" 
                                         @click="submit()"><i aria-hidden="true" 
-                                        class="fa fa-check"></i>Crear </button>
+                                        class="fa fa-check"></i> Crear Ronda</button>
 <div v-for="value in listheat">
  <div class="box-body">
         
@@ -49,14 +52,16 @@
                                 <template slot="table-row" scope="props"> 
                                        <td>{{props.row.atletaId.personaId.nombre}}</td>                                   
                                        <td>{{props.row.atletaId.personaId.apellido}}</td> 
-                                       <td>{{ props.row.atletaId.aniosPracticando}}</td> 
+                                       <td>{{ props.row.atletaId.aniosPracticando}} años</td> 
+                                        <td>{{ props.row.atletaId.ladoPie}}</td>  
+                                          <td>{{ props.row.atletaId.olaPreferida}}</td>   
                                      <td v-if="props.row.color=='Amarillo'" style="background-color:yellow;">{{ props.row.color }}</td>  
                                   
                           <td   v-if="props.row.color=='Azul'"  style="background-color:#0F7AD5;">{{ props.row.color }}</td>  
                                  <td  v-if="props.row.color=='Verde'"  style="background-color:Green;">{{ props.row.color }}</td>      
                                   <td  v-if="props.row.color=='Rojo'"  style="background-color:Red;">{{ props.row.color }}</td>       
            
-                                         <td>{{ props.row.selected}}</td>                       
+                                                             
                                          <td class="nowrap">
                                         
                                         
@@ -86,8 +91,18 @@
 
         </div>
 
+       
+
                         </div>
     </form>
+
+     <div class="box-body">
+                              
+                             <div @click="volver()" class="btn btn-flat btn-sm btn-warning margin">
+                                    <i class="fa fa-arrow-circle-left" ></i> Regresar a Rondas
+                                </div>
+
+                                </div> 
                     </div>
                    
                   </div>
@@ -143,19 +158,24 @@
                       field: 'aniosPracticando',
                       filterable: false
                     },
-                     {
-                      label: 'Color',
-                      field: 'color',
+                   {
+                      label: 'Lado de Pie',
+                      field: 'ladoPie',
                       filterable: false
                     },
-                   {
-                      label: 'ssss',
-                      field: 'color',
+                      {
+                      label: 'Ola Preferida',
+                      field: 'olaPreferida',
                       filterable: false
                     },
                      {
                       label: 'Accion',
                       field: '',
+                      filterable: false
+                    },
+                     {
+                      label: 'Color',
+                      field: 'color',
                       filterable: false
                     }
                     ]
@@ -171,7 +191,7 @@
         methods:{
             fetchData(){
                // circuitosController.index(this)
-               atletaCircuitoController.indexByCircuito(this,this.id);
+               atletaCircuitoController.indexByCircuitoClasificados(this,this.id);
                atletaCircuitoController.getheat(this,this.id);
                 circuitosController.retrieve(this,this.id)
                  atletaController.index(this)
@@ -262,6 +282,15 @@ this.changeAtleta=false;
                     }
                 })
             },
+
+            volver(){
+                console.log("entre")
+ window.history.length > 1
+        ? this.$router.go(-1)
+        : this.$router.push('/')
+    
+
+            }
         }
     }
 </script>

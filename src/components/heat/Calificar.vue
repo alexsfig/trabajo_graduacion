@@ -29,10 +29,8 @@
                 <div class="col-lg-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Heat  {{heat.numero}}   de la ronda {{heat.rondaId.numero}} </h3>
-                                         <button :disabled="!juezLider" type="button" style="float:right" class="margin btn btn-flat btn-sm btn-success" 
-                                        @click="juezLider=null"><i aria-hidden="true" 
-                                        class="fa fa-check"></i> Finalizar heat </button>
+                            <h3 class="box-title">Heat  <b>{{heat.numero}}</b>   de la ronda <b>{{heat.rondaId.numero}}</b> </h3>
+                                        
                         </div>
 
      
@@ -53,19 +51,18 @@
                                   <td  v-if="props.row.color=='Rojo'"  style="background-color:Red;">{{ props.row.color }}</td>       
            
            
-            <td  v-tooltip="'tdfddsdssss'" @click="agregarNota(props.row)">{{props.row.puntuacionList[0]?props.row.puntuacionList[0][1]:0.0}}</td>
-                                    <td>{{props.row.puntuacionList[1]?props.row.puntuacionList[1][1]:0.0}}</td>
-                                     <td>{{props.row.puntuacionList[2]?props.row.puntuacionList[2][1]:0.0}}</td>
+            <td  :title="props.row.puntuacionList[0]?'Editar':''" @click="agregarNota2(props.row,props.row.puntuacionList[0]?props.row.puntuacionList[0]:null)">{{props.row.puntuacionList[0]?props.row.puntuacionList[0][1]:0.0}}</td>
+                                         <td  :title="props.row.puntuacionList[1]?'Editar':''" @click="agregarNota2(props.row,props.row.puntuacionList[1]?props.row.puntuacionList[1]:null)">{{props.row.puntuacionList[1]?props.row.puntuacionList[1][1]:0.0}}</td>
+                                        <td  :title="props.row.puntuacionList[2]?'Editar':''" @click="agregarNota2(props.row,props.row.puntuacionList[2]?props.row.puntuacionList[2]:[])">{{props.row.puntuacionList[2]?props.row.puntuacionList[2][1]:0.0}}</td>
                                      
-                                        <td>{{props.row.puntuacionList[3]?props.row.puntuacionList[3][1]:0.0}}</td>
-                                           <td>{{props.row.puntuacionList[4]?props.row.puntuacionList[4][1]:0.0}}</td>
-                                              <td>{{props.row.puntuacionList[5]?props.row.puntuacionList[5][1]:0.0}}</td>
-                                                 <td>{{props.row.puntuacionList[6]?props.row.puntuacionList[6][1]:0.0}}</td>
-                                                    <td>{{props.row.puntuacionList[7]?props.row.puntuacionList[7][1]:0.0}}</td>
-                                                       <td>{{props.row.puntuacionList[8]?props.row.puntuacionList[8][1]:0.0}}</td>
-                                                          <td>{{props.row.puntuacionList[9]?props.row.puntuacionList[9][1]:0.0}}</td>
+                                             <td  :title="props.row.puntuacionList[3]?'Editar':''" @click="agregarNota2(props.row,props.row.puntuacionList[3]?props.row.puntuacionList[3]:null)">{{props.row.puntuacionList[3]?props.row.puntuacionList[3][1]:0.0}}</td>
+                                                <td  :title="props.row.puntuacionList[4]?'Editar':''" @click="agregarNota2(props.row,props.row.puntuacionList[4]?props.row.puntuacionList[4]:null)">{{props.row.puntuacionList[4]?props.row.puntuacionList[4][1]:0.0}}</td>
+                                                  <td  :title="props.row.puntuacionList[5]?'Editar':''" @click="agregarNota2(props.row,props.row.puntuacionList[5]?props.row.puntuacionList[5]:null)">{{props.row.puntuacionList[5]?props.row.puntuacionList[5][1]:0.0}}</td>
+                                                      <td  :title="props.row.puntuacionList[6]?'Editar':''" @click="agregarNota2(props.row,props.row.puntuacionList[6]?props.row.puntuacionList[6]:null)">{{props.row.puntuacionList[6]?props.row.puntuacionList[6][1]:0.0}}</td>
+                                                        <td  :title="props.row.puntuacionList[7]?'Editar':''" @click="agregarNota2(props.row,props.row.puntuacionList[7]?props.row.puntuacionList[7]:null)">{{props.row.puntuacionList[7]?props.row.puntuacionList[7][1]:0.0}}</td>
+                                                            <td  :title="props.row.puntuacionList[8]?'Editar':''" @click="agregarNota2(props.row,props.row.puntuacionList[8]?props.row.puntuacionList[8]:null)">{{props.row.puntuacionList[8]?props.row.puntuacionList[8][1]:0.0}}</td>
+                                                               <td  :title="props.row.puntuacionList[9]?'Editar':''" @click="agregarNota2(props.row,props.row.puntuacionList[9]?props.row.puntuacionList[9]:null)">{{props.row.puntuacionList[9]?props.row.puntuacionList[9][1]:0.0}}</td>
 
-                                                          <td>0.0</td>
                                     <td class="nowrap">
                                       <div>
                                         <button v-if="!props.row.puntuacionList[9]" type="button" class="margin btn btn-flat btn-sm btn-success" 
@@ -87,7 +84,11 @@
   :openModal="openModal" 
     :atletaHeat="atletaHeat" 
 :idjuez="idjuez" 
-    v-on:openChange="isChange">
+    v-on:openChange="isChange"
+    :nota="nota"
+    :idnota="idnota"
+    >
+    
     </modalNota>
 
            <!-- <modalPlaya :methodSubmit="methodSubmit" :title="'Actualizar Usuario'" :buttonMsg="'Actualizar'" :openModal="openModal" :playa="playa" v-on:openChange="isChange"></modalPlaya> -->
@@ -120,6 +121,8 @@ export default {
       juezCircuitos: [],
       id: "",
       idjuez:'',
+      idnota:null,
+      nota:'',
       atletasHeat: [],
       atletaHeat: {},
       juezHeat: { id: 1 },
@@ -171,10 +174,8 @@ export default {
           label: "Ola 10",
           field: "o10"
         },
-        {
-          label: "Promedio",
-          field: "o10"
-        },
+        
+
 
         {
           label: "Acciones",
@@ -202,7 +203,7 @@ export default {
     },
     fetchData() {
       this.id = this.$route.params.id;
-this.idjuez=42;
+this.idjuez=localStorage.getItem('juezid');
              
       atletasHeatController.byHeatAndJuez(this, this.id,this.idjuez);
       heatsController.retrieve(this, this.id);
@@ -219,9 +220,24 @@ this.idjuez=42;
                 this.fetchData()
             },
     agregarNota(row) {
+          console.log("putasss");
+           this.nota='';
       this.atletaHeat=row;
       console.log("putasss");
       this.openModal = true;
+    },
+      agregarNota2(row,cal) {
+        if(cal!=null){
+          this.idnota=cal[0];
+        this.nota=cal[1];
+          this.atletaHeat=row;
+      console.log("putasss");
+      this.openModal = true;
+        
+        }
+       
+      
+    
     },
     isChange() {
       this.openModal = false;

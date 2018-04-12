@@ -35,20 +35,27 @@
                         <div class="box-body">
       <div class="box-action">
                                 <router-link to="/admin/transaccions/form" class="btn btn-default btn-flat">
-                                    <i class="fa fa-plus"></i> Nueva Transaccion
+                                    <i class="fa fa-plus"></i> Registrar Nueva Transaccion
                                 </router-link>
                             </div>
+                            </div>
+                            <div class="box-body">
                             <vue-good-table :columns="columns" :rows="transaccions" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
                                 <template slot="table-row" scope="props">
 <td>{{ props.row.fecha }}</td>
-<td>{{ props.row.patrocinadorId?props.row.patrocinadorId.nombre:"N/A" }}</td>
-<td>{{ props.row.formaPagoId.nombre }}</td>
-<td>{{ props.row.monto }}</td>
-<td>{{ props.row.comprobante }}</td>
-
-
 <td>{{ props.row.cuentaId.nombre }}</td>
-<td>{{ props.row.tipoTransaccionId.nombre }}</td>                                    <td class="nowrap">
+<td>{{ props.row.tipoTransaccionId.nombre }}</td> 
+<td>{{ props.row.tipoTransaccionId.tipo==true?'Ingreso':'Gasto' }}</td> 
+<td v-if="!props.row.tipoTransaccionId.tipo" style="color:#FF0000"><b>{{ roundToTwo(props.row.monto) }}</b></td>
+<td v-if="props.row.tipoTransaccionId.tipo" style="color:green"><b>{{roundToTwo( props.row.monto) }}</b></td>
+<td>{{ props.row.formaPagoId.nombre }}</td>
+<td>{{ props.row.comprobante }}</td>
+<!--<td>{{ props.row.patrocinadorId?props.row.patrocinadorId.nombre:"N/A" }}</td> -->
+
+
+
+
+                                    <td class="nowrap">
  <router-link :to="{ name: 'transaccionsEdit', params: { id: props.row.id }}">
                                         <button type="button" class="margin btn btn-flat btn-sm btn-primary"
                                        ><i aria-hidden="true"
@@ -63,9 +70,9 @@
 
                         </div>
                     </div>
-    |                </div>
+                    </div>
             </div>
-           <!-- <modalPlaya :methodSubmit="methodSubmit" :title="'Actualizar Usuario'" :buttonMsg="'Actualizar'" :openModal="openModal" :playa="playa" v-on:openChange="isChange"></modalPlaya> -->
+           
         </section>
     </div>
 </template>
@@ -87,27 +94,51 @@
  {
                         label: "Fecha",
                         field: "fecha",
-                    }, {
-                        label: "Patrocinador",
-                        field: "nombre",
-                    }
-                    , {
-                        label: "Forma de pago",
-                        field: "formaPago.nombre",
-                    }, {
-                        label: "Monto ($)",
-                        field: "monto",
-                    }, {
-                        label: "Comprobante",
-                        field: "comprobante",
-                    }
+                        filterable: true,
+                    } 
+
                     , {
                         label: "Cuenta",
                         field: "nombre",
-                    }, {
+                        filterable: true,
+                    }, 
+                    
+                    {
                         label: "Tipo de Transaccion",
-                        field: "tipoTransaccion",
-                    },{
+                        field: "tipoTransaccion.nombre",
+                         filterable: true,
+                    },
+                    {
+                        label: "Concepto",
+                        field: "tipoTransaccion.tipo",
+                         filterable: true,
+                    },
+
+                    {
+                        label: "Monto ($)",
+                        field: "monto",
+                         filterable: true,
+                    },
+
+                    {
+                        label: "Forma de pago",
+                        field: "formaPago.nombre",
+                         filterable: true,
+                    },  {
+                        label: "Comprobante",
+                        field: "comprobante",
+                         filterable: true,
+                    }
+                    , 
+                    /*
+                    {
+                        label: "Patrocinador",
+                        field: "nombre",
+                         filterable: true,
+                    }
+                    , */
+
+                    {
                         label: "Acciones",
                         field: "",
                     }]
@@ -142,6 +173,14 @@
                     }
                 })
             },
+
+            roundToTwo(num) {
+      return this.formatPrice(+(Math.round(num + "e+2") + "e-2"));
+    },
+    formatPrice(value) {
+      let val = (value / 1).toFixed(2);
+      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
         }
     }
 </script>

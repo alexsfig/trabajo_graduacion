@@ -52,6 +52,9 @@ import LoginTemplate from '@/layouts/Login'
 import FechasIndex from '@/components/fechas/Index'
 import FechasForm from '@/components/fechas/Form'
 import CircuitosForm from '@/components/circuitos/Form'
+import CircuitosFormbyFecha from '@/components/circuitos/FormbyFecha'
+import CircuitosEditbyFecha from '@/components/circuitos/EditbyFecha'
+import CircuitosFinalizar from '@/components/circuitos/Finalizar'
 import CircuitosIndex from '@/components/circuitos/Index'
 import CircuitosIndexByFecha from '@/components/circuitos/IndexbyFecha'
 import AgregarAtleta from '@/components/circuitos/AgregarAtleta'
@@ -90,7 +93,8 @@ import CertiForm from '@/components/jueces/Form'
 import RondaIndex from '@/components/rondas/Index'
 
 import HeatIndex from '@/components/heat/Index'
-
+import RondaEnd from '@/components/rondas/End'
+import HeatJuez from '@/components/heat/IndexJuez'
 import PatrocinadorAtletaCreate from '@/components/patrocinador_atleta/Create'
 import PatrocinadorAtletaEdit from '@/components/patrocinador_atleta/Edit'
 import PatrocinadorAtletaShow from '@/components/patrocinador_atleta/Show'
@@ -101,6 +105,8 @@ import CalificarInit from '@/components/heat/Calificar'
 import VerResultadosInit from '@/components/heat/VerResultados'
 
 import Reportes from '@/components/reportes/Form'
+import ReportesAtleta from '@/components/reportes/FormbyAtleta'
+import ReportesPatrocinador from '@/components/reportes/FormbyPatrocinador'
 
 Vue.use(Router)
  const router=new Router({
@@ -134,387 +140,499 @@ Vue.use(Router)
       component: AdminTemplate,
       meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false},
       children: [
-        {
+      /*  {
           path: '',
           name: 'Dashboard',
-          component: Dashboard
-        },
+          component: Dashboard,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
+        },*/
         {
           path: 'dashboard',
           name: 'Dashboard',
-          component: Dashboard
+          component: Dashboard,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'playas',
           name: 'Playas',
-          component: Playas
+          component: Playas,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'persona',
           name: 'PersonaIndex',
-          component: PersonaIndex
+          component: PersonaIndex,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'persona/create',
           name: 'PersonaCreate',
-          component: PersonaCreate
+          component: PersonaCreate,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'users/create',
           name: 'UsersCreate',
-          component: UsersCreate
+          component: UsersCreate,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'users',
           name: 'UsersIndex',
-          component: UsersIndex
+          component: UsersIndex,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'users/:id',
           name: 'UsersShow',
-          component: UsersShow
+          component: UsersShow,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'noticias/create',
           name: 'NoticiasCreate',
-          component: NoticiasCreate
+          component: NoticiasCreate,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'noticias',
           name: 'NoticiasIndex',
-          component: NoticiasIndex
+          component: NoticiasIndex,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'noticias/:id',
           name: 'NoticiasShow',
-          component: NoticiasShow
+          component: NoticiasShow,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'juntamiembros/create',
           name: 'JuntamiembrosCreate',
-          component: JuntamiembrosCreate
+          component: JuntamiembrosCreate,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'juntamiembros',
           name: 'JuntamiembrosIndex',
-          component: JuntamiembrosIndex
+          component: JuntamiembrosIndex,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'juntamiembros/:id',
           name: 'JuntamiembrosShow',
-          component: JuntamiembrosShow
+          component: JuntamiembrosShow,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'entrenadores/create',
           name: 'EntrenadoresCreate',
-          component: EntrenadoresCreate
+          component: EntrenadoresCreate,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'entrenadores',
           name: 'EntrenadoresIndex',
-          component: EntrenadoresIndex
+          component: EntrenadoresIndex,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'entrenadores/:id',
           name: 'EntrenadoresShow',
-          component: EntrenadoresShow
+          component: EntrenadoresShow,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
 
          {
           path: 'jueces/create',
           name: 'JuecesCreate',
-          component: JuecesCreate
+          component: JuecesCreate,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'jueces',
           name: 'JuecesIndex',
-          component: JuecesIndex
+          component: JuecesIndex,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'jueces/:id',
           name: 'JuecesShow',
-          component: JuecesShow
+          component: JuecesShow,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'atletas/create/:id',
           name: 'AtletasCreate',
-          component: AtletasCreate
+          component: AtletasCreate,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'atletas',
           name: 'AtletasIndex',
-          component: AtletasIndex
+          component: AtletasIndex,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'atletas/:id/edit',
           name: 'AtletasEdit',
-          component: AtletasEdit
+          component: AtletasEdit,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'atletas/:id',
           name: 'AtletasShow',
-          component: AtletasShow
+          component: AtletasShow,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'categorias/create',
           name: 'CategoriasCreate',
-          component: CategoriasCreate
+          component: CategoriasCreate,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'categorias',
           name: 'CategoriasIndex',
-          component: CategoriasIndex
+          component: CategoriasIndex,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'categorias/:id',
           name: 'CategoriasShow',
-          component: CategoriasShow
+          component: CategoriasShow,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'escuelas',
           name: 'EscuelasIndex',
-          component: EscuelasIndex
+          component: EscuelasIndex,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'escuelas/create',
           name: 'EscuelasCreate',
-          component: EscuelasForm
+          component: EscuelasForm,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'escuelas/form/:id',
           name: 'EscuelasShow',
-          component: EscuelasForm
+          component: EscuelasForm,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         }, {
           path: 'fechas',
           name: 'fechasIndex',
-          component: FechasIndex
+          component: FechasIndex,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         }
         ,
         {
           path: 'fechas/form',
           name: 'fechasCreate',
-          component: FechasForm
+          component: FechasForm,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'fechas/form/:id',
           name: 'fechasEdit',
-          component: FechasForm
+          component: FechasForm,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'circuitos',
           name: 'circuitosIndex',
-          component: CircuitosIndex
+          component: CircuitosIndex,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
+        },
+
+        {
+          path: 'ronda/end/:id',
+          name: 'rondaEnd',
+          component: RondaEnd,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
 
         {
           path: 'circuitofecha/:id',
           name: 'circuitosIndexByFecha',
-          component: CircuitosIndexByFecha
+          component: CircuitosIndexByFecha,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'circuitos/form',
           name: 'circuitosCreate',
-          component: CircuitosForm
+          component: CircuitosForm,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
+          path: 'circuitos/formbyfecha/:id',
+          name: 'circuitosCreatebyfecha',
+          component: CircuitosFormbyFecha,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
+        },
+        {
+          path: 'circuitos/editbyfecha/:idcircuito/:idfecha',
+          name: 'circuitosEditbyfecha',
+          component: CircuitosEditbyFecha,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
+        },
+       {
           path: 'circuitos/form/:id',
           name: 'circuitosEdit',
-          component: CircuitosForm
+          component: CircuitosForm,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'circuitos/agregarAtleta/:id',
           name: 'circuitosAgregarAtleta',
-          component: AgregarAtleta
+          component: AgregarAtleta,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
          {
           path: 'circuitos/nuevaronda/:id',
           name: 'circuitosNuevaRonda',
-          component: NuevaRonda
+          component: NuevaRonda,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'circuitos/agregarJuez/:id',
           name: 'circuitosAgregarJuez',
-          component: AgregarJuez
+          component: AgregarJuez,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'cuentas',
           name: 'cuentasIndex',
-          component: CuentasIndex
+          component: CuentasIndex,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'cuentas/form',
           name: 'cuentasCreate',
-          component: CuentasForm
+          component: CuentasForm,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'cuentas/form/:id',
           name: 'cuentasEdit',
-          component: CuentasForm
+          component: CuentasForm,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         }
-,
+        ,
         {
           path: 'tipoTransaccions',
           name: 'tipoTransaccionIndex',
-          component: TipoTransaccionIndex
+          component: TipoTransaccionIndex,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'tipoTransaccions/form',
           name: 'tipoTransaccionCreate',
-          component: TipoTransaccionForm
+          component: TipoTransaccionForm,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'tipoTransaccions/form/:id',
           name: 'tipoTransaccionsEdit',
-          component: TipoTransaccionForm
+          component: TipoTransaccionForm,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         }, {
           path: 'formaPagos',
           name: 'formaPagoIndex',
-          component: FormaPagoIndex
+          component: FormaPagoIndex,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'formaPagos/form',
           name: 'formaPagoCreate',
-          component: FormaPagoForm
+          component: FormaPagoForm,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'formaPagos/form/:id',
           name: 'formaPagosEdit',
-          component: FormaPagoForm
+          component: FormaPagoForm,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'patrocinadors',
           name: 'patrocinadorIndex',
-          component: PatrocinadorIndex
+          component: PatrocinadorIndex,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'patrocinadors/form',
           name: 'patrocinadorCreate',
-          component: PatrocinadorForm
+          component: PatrocinadorForm,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'patrocinadors/form/:id',
           name: 'patrocinadorsEdit',
-          component: PatrocinadorForm
+          component: PatrocinadorForm,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'transaccion',
           name: 'transaccionIndex',
-          component: TransaccionIndex
+          component: TransaccionIndex,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'transaccions/form',
           name: 'transaccionCreate',
-          component: TransaccionForm
+          component: TransaccionForm,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'transaccions/form/:id',
           name: 'transaccionsEdit',
-          component: TransaccionForm
+          component: TransaccionForm,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         }
         ,
         {
           path: 'escuela',
           name: 'escuelasIndex',
-          component: EscuelasIndex
+          component: EscuelasIndex,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'escuelas/form',
           name: 'escuelasreate',
-          component: EscuelasForm
+          component: EscuelasForm,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'escuelas/form/:id',
           name: 'escuelasEdit',
-          component: EscuelasForm
+          component: EscuelasForm,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         }
         ,
         {
           path: 'club',
           name: 'clubsIndex',
-          component: ClubsIndex
+          component: ClubsIndex,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'clubs/form',
           name: 'clubscreate',
-          component: ClubsForm
+          component: ClubsForm,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'clubs/form/:id',
           name: 'clubsEdit',
-          component: ClubsForm
+          component: ClubsForm,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'ronda/:id',
           name: 'rondaIndex',
-          component: RondaIndex
+          component: RondaIndex,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         }
       ,
         {
           path: 'editjuez/:id',
           name: 'juezEdit',
-          component: JuezsForm
+          component: JuezsForm,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
 
         {
           path: 'addjuez/:id',
           name: 'juezAdd',
-          component: JuezsAdd
+          component: JuezsAdd,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
 
          {
           path: 'certiForm/:id',
           name: 'certiForm',
-          component: CertiForm
+          component: CertiForm,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
 
         {
           path: 'patrocinadoratleta/create',
           name: 'PatrocinadorAtletaCreate',
-          component: PatrocinadorAtletaCreate
+          component: PatrocinadorAtletaCreate,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'patrocinadoratleta',
           name: 'PatrocinadorAtletaIndex',
-          component: PatrocinadorAtletaIndex
+          component: PatrocinadorAtletaIndex,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'patrocinadoratleta/:id/edit',
           name: 'PatrocinadorAtletaEdit',
-          component: PatrocinadorAtletaEdit
+          component: PatrocinadorAtletaEdit,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'patrocinadoratleta/:id',
           name: 'PatrocinadorAtletaShow',
-          component: PatrocinadorAtletaShow
+          component: PatrocinadorAtletaShow,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
 
         {
           path: 'reportes/form',
           name: 'Reportes',
-          component: Reportes
+          component: Reportes,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
 
+        {
+          path: 'reportes/formbyAtleta',
+          name: 'ReportesbyAtleta',
+          component: ReportesAtleta,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
+        },
+
+        {
+          path: 'reportes/formbyPatrocinador',
+          name: 'ReportesbyPatrocinador',
+          component: ReportesPatrocinador,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
+        },
 
         {
           path: 'heat/:id',
           name: 'heat',
-          component: HeatIndex
+          component: HeatIndex,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         }
         ,
         {
           path: 'heatinit/:id',
           name: 'heatInit',
-          component: HeatInit
+          component: HeatInit,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
           path: 'heat/calificar/:id',
           name: 'CalificarHeat',
-          component: CalificarInit
+          component: CalificarInit,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         }
 ,{
   path: 'heat/resultado/:id',
   name: 'ResultadoHeat',
-  component: VerResultadosInit
+  component: VerResultadosInit,
+  meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
+}
+,{
+path: 'circuito/finalizar/:id',
+name: 'CircuitosFinalizar',
+component: CircuitosFinalizar,
+meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
 }
 
 
@@ -528,19 +646,35 @@ Vue.use(Router)
       children: [
         {
           path: '',
-          name: 'Dashboard',
-          component: Dashboard
-        }]
 
-      }
+          name: 'Dashboard2',
+          component: Dashboard,
+          meta: { requiresAuth: true ,adminAuth:false , juezAuth : true}
+        },
+
+        {
+          path: 'heat',
+          name: 'HeatJ',
+          component: HeatJuez,
+          meta: { requiresAuth: true  ,adminAuth:false , juezAuth : true}
+        },
+        {
+          path: 'calificar/:id',
+          name: 'CalificarHeatJ',
+          component: CalificarInit,
+          meta: { requiresAuth: true  ,adminAuth:false , juezAuth : true}
+        }
+      ]
+    }
   ],
 })
 
 
 
 router.beforeEach((to, from, next) => {
+  //console.log(JSON.stringify(to));
   if(to.meta.requiresAuth) {
-console.log("grim 1234");
+    console.log("requiere audit");
     console.log
     const authUser = JSON.parse(window.localStorage.getItem('rol'))
     if(!authUser ) {

@@ -109,11 +109,11 @@ export default {
         HTTP.delete(FECHAS + id)
             .then((resp) => {
                 console.log(resp);
-                swal("Deleted!", "El JuezCircuito ha sido eliminado", "success")
+                swal("Deleted!", "El Juez ha sido dado de baja en el Circuito", "success")
                 context.fetchData();
             })
             .catch((err) => {
-                swal("Oh snap!", "Ocurrio un error.", "error")
+                swal("No se puede dar de baja!", "Es posible que el circuito ya haya iniciado", "error")
             })
     }, 
     create(context, juezCircuito){
@@ -125,9 +125,11 @@ export default {
                             .then((resp) => {
                                 if (resp.status>= 200 && resp.status <=300){
                                     context.showSuccess = true
-                                    context.successMsg = "Se agrego correctamente el juez al circuito"
+                                    context.successMsg = "Se Agrego Correctamente el Juez al Circuito"
                                     context.fetchData()
-                                    context.resetForm()
+                                    context.juez=null;
+                                    context.juezRol=null;
+                                   
                                 }
                             })
                             .catch((err) => {

@@ -15,7 +15,7 @@
 
             <form @submit.prevent="validateMethod" role="form">
                 <div class="box-body">
-                        <div class="col-xs-12 col-sm-6">
+                        <!--<div class="col-xs-12 col-sm-6">
                             <div class="fgroup" :class="{ 'has-error': errors.has('nota') }" >
                                 <label for="">Nota</label>
                                 <input type="text" id="nota" name="nota" data-vv-as="Nota" class="form-control" 
@@ -24,7 +24,22 @@
                                     {{ errors.first('nota') }}
                                 </span>
                             </div>
-                        </div>
+                        </div> -->
+
+
+                        <div class="col-xs-12 col-sm-6">
+                             <div class="fgroup" :class="{ 'has-error': errors.has('nota') }">
+                                <label for=""></label>
+                                     <div class="input-group">
+                                                <span class="input-group-addon"><b>Nota: </b></span>
+                                                <input type="number" id="nota" name="nota" data-vv-as="Nota" class="form-control" v-model="nota" v-validate="'required|min_value:0.01|max_value:10.00'" step="0.01">
+                                                    
+                                            </div>
+                                            <span class="help-block" for="nota" v-bind:data-error="errors.first('nota')">
+                                                {{ errors.first('nota') }}
+                                            </span>
+                                        </div>
+                                    </div>
                 </div>
                 <div class="box-footer">
                     <div class="col-xs-12 text-right">
@@ -55,7 +70,9 @@ export default {
         "openModal",
         "atletaHeat",
         "juezHeat",
-        "idjuez"
+        "idjuez",
+        "nota",
+        "idnota"
 
     ],
     computed: {
@@ -81,7 +98,7 @@ export default {
             openModalInside: false,
             roles: [],
             rol_edit: null,
-            nota:'',
+            
          
             title2:'',
 
@@ -98,6 +115,7 @@ export default {
                 this.showSuccess = false
          console.log("Entresss")
                 this.openModalInside = true
+               
         }
     },
     methods: {
@@ -125,6 +143,7 @@ export default {
                 this.showSuccess = false
                 this.$validator.validateAll().then(success => {
                     if (success) {
+                        if(!this.idnota){
                         let puntuacion={
                           atletasHeatId:{id:this.atletaHeat.id},
                           juecesHeatId:{id:this.idjuez},
@@ -133,8 +152,21 @@ export default {
                         }
                        puntuacionController.create(this,puntuacion)
                        this.openModalInside=false
-                         this.nota='';
-                        console.log("Entre al modal morro")
+                       //  this.nota='';
+                        console.log("Entre al modal morro")}
+                        else{
+
+let puntuacion={
+    id:this.idnota,
+                          atletasHeatId:{id:this.atletaHeat.id},
+                          juecesHeatId:{id:this.idjuez},
+                          nota:this.nota
+  
+                        }
+                       puntuacionController.update(this,puntuacion)
+                       this.openModalInside=false
+
+                        }
                     } else {
                         this.errMsg = 'Error revisa el formulario'
                         this.showAlert = true

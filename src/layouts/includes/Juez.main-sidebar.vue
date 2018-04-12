@@ -37,20 +37,16 @@
 		        <li class="treeview">
 		            <router-link to="#">
 		                <i class="fa fa-users" aria-hidden="true"></i>
-		                <span>Usuarios</span>
+		                <span>Competencias</span>
 		                <span class="pull-right-container">
 		                    <i class="fa fa-angle-left pull-right"></i>
 		                </span>
 		            </router-link>
 		            <ul class="treeview-menu">
+		               
 		                <li>
-		                    <router-link to="/admin/users/">
-		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Manejo de usuarios</span>
-		                    </router-link>
-		                </li>
-		                <li>
-		                    <router-link to="/admin/users/create">
-		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Agregar usuario</span>
+		                    <router-link to="/juez/heat/">
+		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Ver Heat</span>
 		                    </router-link>
 		                </li>
 		            </ul>

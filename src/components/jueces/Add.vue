@@ -48,13 +48,13 @@
                                    
 
                                     <div class="col-xs-12 col-sm-12">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('form-3.descripcion') }">
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('descripcion') }">
                                             <label for="">Descripcion del juez</label>
                                             <textarea v-model="descripcion" class="form-control" name="descripcion" rows="2" data-vv-as="Descripcion del juez" v-validate="'required'" >
 
                                             </textarea>
-                                            <span class="help-block" for="descripcion" v-bind:data-error="errors.first('form-3.descripcion')">
-                                                    {{ errors.first('form-3.descripcion') }}
+                                            <span class="help-block" for="descripcion" v-bind:data-error="errors.first('descripcion')">
+                                                    {{ errors.first('descripcion') }}
                                                 </span>
                                       
                                     </div>

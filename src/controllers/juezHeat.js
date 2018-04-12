@@ -8,7 +8,7 @@ import moment from 'moment'
 import mismo from './juezHeat'
 // define base url to Employees
 const JUECESHEAT = 'juecesHeat/'
-
+import Toasted from 'vue-toasted';
 
 
 
@@ -34,6 +34,7 @@ export default {
                                     context.successMsg = "Se agrego correctamente el juez al circuito"
                                     context.fetchData()
                                     context.resetForm()
+
                                 }
                             })
                             .catch((err) => {

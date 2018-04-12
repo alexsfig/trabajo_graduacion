@@ -29,22 +29,43 @@
                 <div class="col-lg-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Manejo de rondas del circuito {{this.circuito.nombre}} de la fecha {{this.circuito.fechaId.nombre}}</h3>
+                            <h3 class="box-title">Manejo de Rondas del Circuito <b>{{this.circuito.nombre}} </b>en Estado <b>{{this.circuito.estado}}</b> para la Fecha <b>{{this.circuito.fechaId.nombre}} </b></h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
-                                
+                           <div  v-if="circuito.estado!='Finalizado'">
+                          <div  v-if="circuito.estado!='Calificado'">
                            <router-link v-if="nuevoHabilitar" :to="{ name: 'circuitosNuevaRonda', params: { id: id }}">
                                         <button type="button" class="margin btn btn-flat btn-sm btn-primary"
                                        ><i aria-hidden="true"
                                          class="fa fa-pencil-square-o"></i> Nueva Ronda </button>
-                                        </router-link>      
+                                        </router-link>   
+                          </div></div>
+                            <div  v-if="circuito.estado=='Calificado'">
+                             <router-link v-if="nuevoHabilitar" :to="{ name: 'CircuitosFinalizar', params: { id: id }}">
+                                        <button type="button" class="margin btn btn-flat btn-sm btn-primary"
+                                       ><i aria-hidden="true"
+                                         class="fa fa-pencil-square-o"></i> Finalizar Circuito </button>
+                                        </router-link>   
+ </div>
+
+                     <div  v-if="circuito.estado=='Finalizado'">
+                             <router-link v-if="nuevoHabilitar" :to="{ name: 'CircuitosFinalizar', params: { id: id }}">
+                                        <button type="button" class="margin btn btn-flat btn-sm btn-primary"
+                                       ><i aria-hidden="true"
+                                         class="fa fa-pencil-square-o"></i> Ver Circuito </button>
+                                        </router-link>   
+ </div>
+
+                            </div>
+                       
+                        <div class="box-body">   
 
                             <vue-good-table :columns="columns" :rows="rondas" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
                                 <template slot="table-row" scope="props">
                                   
                                   
-                                    <td class="nowrap">{{ props.row.id }}</td>
+                                 
                                  
                                     <td>{{ props.row.numero }}</td>
                                     <td>{{ props.row.atletasRonda }}</td>
@@ -54,19 +75,29 @@
                                         <router-link :to="{ name: 'heat', params: { id: props.row.id }}">
                                         <button type="button" class="margin btn btn-flat btn-sm btn-primary"
                                        ><i aria-hidden="true"
-                                         class="fa fa-pencil-square-o"></i> Gestionar</button>
+                                         class="fa fa-pencil-square-o"></i> Gestionar Ronda</button>
                                         </router-link>
                                         <button type="button" class="margin btn btn-flat btn-sm btn-danger" 
-                                        @click="deleteRonda(props.row.id, props.row.nombre)"><i aria-hidden="true" 
-                                        class="fa fa-trash-o"></i> Eliminar</button>
+                                        @click="deleteRonda(props.row.id, props.row.numero)"><i aria-hidden="true" 
+                                        class="fa fa-trash-o"></i> Eliminar Ronda</button>
                                 
                                     </td>
                                   </template>
                             </vue-good-table>
 
                         </div>
+
+                         <div class="box-body">
+                              
+                              <div @click="volver()" class="btn btn-flat btn-sm btn-warning margin">
+                                    <i class="fa fa-arrow-circle-left" ></i> Regresar a Circuitos
+                                </div>
+
+                                </div> 
+
+
                     </div>
-    |                </div>
+                   </div>
             </div>
            <!-- <modalPlaya :methodSubmit="methodSubmit" :title="'Actualizar Usuario'" :buttonMsg="'Actualizar'" :openModal="openModal" :playa="playa" v-on:openChange="isChange"></modalPlaya> -->
         </section>
@@ -90,13 +121,9 @@ export default {
       nuevoHabilitar:false,
       id: "",
       columns: [
+        
         {
-          label: "Id",
-          field: "id"
-        },
-
-        {
-          label: "Numero",
+          label: "Numero de Ronda",
           field: "numero"
         },
         {
@@ -152,7 +179,7 @@ if(i.estado=="No iniciada"||i.estado=="En progreso")
         html:
           "No podras recuperar la informacion de la ronda <b>&laquo;" +
           nombre +
-          "&raquo</b><br>y toda la informacion relacion al mismo ya no sera accesible",
+          "&raquo</b><br>y toda la informacion relacion a la misma ya que no sera accesible",
         type: "error",
         showCancelButton: true,
         confirmButtonText: "Si, Eliminar!",
@@ -167,7 +194,17 @@ if(i.estado=="No iniciada"||i.estado=="En progreso")
           }
         }
       );
-    }
+    },
+
+    volver(){
+                console.log("entre")
+ window.history.length > 1
+        ? this.$router.go(-1)
+        : this.$router.push('/')
+    
+
+            }
+
   }
 };
 </script>

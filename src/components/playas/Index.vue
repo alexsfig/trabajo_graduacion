@@ -8,9 +8,12 @@
                 <li>Manejo de Playas </li>
             </ol>
         </section>
-        <section class="content" >
-            
-            <div class="row">
+
+
+
+        <section class="box-body">     
+
+        <div class="row">
                 <div class="col-xs-12">                    
                     <div class="wrapper-alert">
                         <alert type="danger" :closable="true" v-if="showAlert" @close="showAlert=false">
@@ -23,20 +26,53 @@
                         </alert>
                     </div>
                 </div>
-            </div>
+            </div>      
+        
+
+         <div class="col-lg-12">
+    <label>
+     </b>
+      <GmapAutocomplete @place_changed="setPlace">
+      </GmapAutocomplete>
+      <button @click="usePlace">Buscar Playa</button>
+    </label>
+    
+
+    <GmapMap style="width: 100%; height: 400px;" :zoom="1" :center="{lat: 0, lng: 0}">
+      <GmapMarker v-for="(marker, index) in markers"
+        :key="index"
+        :position="marker.position"
+        />
+      <GmapMarker
+        v-if="this.place"
+        label="★"
+        :position="{
+          lat: this.place.geometry.location.lat(),
+          lng: this.place.geometry.location.lng(),
+        }"
+        />
+    </GmapMap>
+  </div>
+
+  </section>
+
+
+        <section class="content" >
+            
+            
             
             <div class="row">
-                <div class="col-lg-3">
+                <div class="col-lg-6">
                     <div class="box box-success">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Crear</h3>
+                            <h3 class="box-title">Agregar Nueva Playa</h3>
                         </div>
     
                         <form @submit.prevent="submit()"> 
                             <div class="box-body">
                                 <div class="fgroup" :class="{ 'has-error': errors.has('nombre') }" >
                                     <label for="nombre">Nombre</label>
-                                    <input type="text" id="nombre" name="nombre" data-vv-as="nombre" class="form-control" v-model="playasCreate.nombre" v-validate="'required'" />
+                                    <input type="text" id="nombre" name="nombre" data-vv-as="Nombre" class="form-control" v-model="playasCreate.nombre" v-validate="'required'" />
                                     <span class="help-block" for="nombre" v-bind:data-error="errors.first('nombre')">
                                         {{ errors.first('nombre') }}
                                     </span>
@@ -44,7 +80,7 @@
                             
                                 <div class="fgroup" :class="{ 'has-error': errors.has('ubicacion') }" >
                                     <label for="ubicacion">Ubicación</label>
-                                    <input id="ubicacion" name="ubicacion" rows="5" data-vv-as="ubicación" class="form-control" v-model="playasCreate.ubicacion" v-validate="'required'"/>
+                                    <input id="ubicacion" name="ubicacion" rows="5" data-vv-as="Ubicación" class="form-control" v-model="playasCreate.ubicacion" v-validate="'required'"/>
                                     <span class="help-block" for="ubicacion" v-bind:data-error="errors.first('ubicacion')">
                                         {{ errors.first('ubicacion') }}
                                     </span>
@@ -52,22 +88,22 @@
                             </div>
                             <div class="box-footer">
                                 <button type="button" class="pull-left btn btn-default btn-flat" @click="reset()">Limpiar</button>
-                                <button type="submit" class="pull-right btn btn-success btn-flat">Crear</button>
+                                <button type="submit" class="pull-right btn btn-success btn-flat">Agregar</button>
                             </div>
                         </form>
                     </div>
                 </div>
 
-                <div class="col-lg-9">
+                <div class="col-lg-6">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Management</h3>
+                            <h3 class="box-title">Listado de Playas</h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
                             
-                            <vue-good-table :columns="columns" :rows="playas" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
-                                <template slot="table-row" scope="props">
+                            <vue-good-table :columns="columns" :rows="playas" :paginate="true" :globalSearch="true"  globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed"  >
+                                <template slot="table-row" scope="props"  >
                                     <td class="nowrap">{{ props.row.nombre }}</td>
                                     <td>{{ props.row.ubicacion }}</td>
                                     <td class="nowrap">
@@ -80,8 +116,17 @@
                         </div>
                     </div>    
                 </div>
+
+
+                
+
+                 
+
+
             </div>  
-            <modalPlaya :methodSubmit="methodSubmit" :title="'Actualizar Usuario'" :buttonMsg="'Actualizar'" :openModal="openModal" :playa="playa" v-on:openChange="isChange"></modalPlaya>    
+            <modalPlaya :methodSubmit="methodSubmit" :title="'Actualizar Playa'" :buttonMsg="'Actualizar'" :openModal="openModal" :playa="playa" v-on:openChange="isChange"></modalPlaya>  
+
+                                   
         </section>
     </div>
 </template>
@@ -96,6 +141,9 @@
         name: 'Playas',
         data() {
             return {
+                 markers: [],
+                 place: null,
+
                 errMsg:  '',
                 showAlert: false,
                 successMsg: '',
@@ -117,19 +165,21 @@
                 playa: {},
                 columns: [
                     {
-                        label: "nombre",
+                        label: "Nombre",
                         field: "nombre",
                     },
                     {
-                        label: "ubicacion",
+                        label: "Ubicación",
                         field: "ubicacion",
                     },
                     {
-                        label: "Action"
+                        label: "Acción"
                     }
                 ]
             }
         },
+         description: 'Autocomplete Example (#164)',
+
         components:{
             "modalPlaya": modalPlaya
         },
@@ -199,7 +249,33 @@
             reset() {
                 this.playasCreate = {}
                 this.$validator.reset();
+            },
+
+
+            setDescription(description) {
+            this.description = description;
+            },
+          setPlace(place) {
+            this.place = place
+
+            },
+          usePlace(place) {
+           if (this.place) {
+            console.log(this.place)
+          this.markers.push({
+            position: {
+            lat: this.place.geometry.location.lat(),
+            lng: this.place.geometry.location.lng(),
             }
+          })
+          this.place = null;
+         }
+       }
+     
+
+
+
+
         }
     }
 </script>

@@ -29,7 +29,7 @@
                 <div class="col-lg-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Manejo de circuitos </h3>
+                            <h3 class="box-title">Manejo de circuitos de la Fecha {{circuitos.fechaId.nombre}}</h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -55,17 +55,17 @@
                                             @click="deleteCircuito(props.row.id, props.row.nombre)"><i aria-hidden="true"
                                             class="fa fa-trash-o"></i> Eliminar
                                         </button>
-                                        <button type="button" class="margin btn btn-flat btn-sm bg-navy margin"
+                                        <button v-if="props.row.estado=='Abierta'" type="button" class="margin btn btn-flat btn-sm bg-navy margin"
                                             @click="agregarAtletas(props.row.id, props.row)"><i aria-hidden="true"
                                             class="fa fa-male"></i> Agregar Atletas
                                         </button>
-                                        <button type="button" class="margin btn btn-flat btn-sm bg-navy margin"
+                                        <button type="button" v-if="props.row.estado=='Abierta'" class="margin btn btn-flat btn-sm bg-navy margin"
                                             @click="agregarJueces(props.row.id, props.row)"><i aria-hidden="true"
                                             class="fa fa-gavel"></i> Agregar Jueces
                                         </button>
                                         <button type="button" class="margin btn btn-flat btn-sm btn-success"
                                             @click="llamaRonda(props.row.id, props.row)"><i aria-hidden="true"
-                                            class="fa fa-flag-checkered"></i> Gestionar Circuito
+                                            class="fa fa-pencil-square-o"></i> Gestionar Circuito
                                         </button>
                                     </td>
                                   </template>
@@ -73,7 +73,7 @@
 
                         </div>
                     </div>
-    |                </div>
+                    </div>
             </div>
            <!-- <modalPlaya :methodSubmit="methodSubmit" :title="'Actualizar Usuario'" :buttonMsg="'Actualizar'" :openModal="openModal" :playa="playa" v-on:openChange="isChange"></modalPlaya> -->
         </section>
@@ -166,7 +166,7 @@
                 let swal = this.$swal;
                 this.$swal({
                     title: 'Estas Seguro?',
-                    html: 'No podras recuperar la informacion de la circuito <b>&laquo;' + nombre + '&raquo</b><br>y toda la informacion relacion al mismo ya no sera accesible',
+                    html: 'No podras recuperar la informacion del circuito <b>&laquo;' + nombre + '&raquo</b><br>y toda la informacion relacion al mismo ya no sera accesible',
                     type: 'error',
                     showCancelButton: true,
                     confirmButtonText: 'Si, Eliminar!',
