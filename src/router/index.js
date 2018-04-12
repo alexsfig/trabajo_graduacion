@@ -53,7 +53,7 @@ import FechasIndex from '@/components/fechas/Index'
 import FechasForm from '@/components/fechas/Form'
 import CircuitosForm from '@/components/circuitos/Form'
 import CircuitosIndex from '@/components/circuitos/Index'
-import CircuitosIndexByFecha from '@/components/circuitos/IndexByFecha'
+import CircuitosIndexByFecha from '@/components/circuitos/IndexbyFecha'
 import AgregarAtleta from '@/components/circuitos/AgregarAtleta'
 
 import NuevaRonda from '@/components/circuitos/NuevaRonda'
@@ -219,7 +219,7 @@ Vue.use(Router)
           name: 'EntrenadoresShow',
           component: EntrenadoresShow
         },
-        
+
          {
           path: 'jueces/create',
           name: 'JuecesCreate',
@@ -289,7 +289,7 @@ Vue.use(Router)
           name: 'fechasIndex',
           component: FechasIndex
         }
-        , 
+        ,
         {
           path: 'fechas/form',
           name: 'fechasCreate',
@@ -466,7 +466,7 @@ Vue.use(Router)
           name: 'certiForm',
           component: CertiForm
         },
-             
+
         {
           path: 'patrocinadoratleta/create',
           name: 'PatrocinadorAtletaCreate',
@@ -518,7 +518,7 @@ Vue.use(Router)
 }
 
 
-        
+
       ]
     },
     {
@@ -531,8 +531,8 @@ Vue.use(Router)
           name: 'Dashboard',
           component: Dashboard
         }]
-      
-      }   
+
+      }
   ],
 })
 
