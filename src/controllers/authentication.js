@@ -27,11 +27,11 @@ export default {
             let param = unescape(location.search.split('redirect=')[1])
             if (param !== "undefined") {
                 // context.$router.push(param)
-                window.location.replace(param);
+                window.location.replace(process.env.BASE_ROUTE + param);
 
             }else{
-                context.$router.push({name: 'Dashboard'})
-//                window.location.replace('/admin');
+                // ⁄context.$router.push({name: 'Dashboard'})
+                window.location.replace(process.env.BASE_ROUTE +'/admin');
 
             }
         })
@@ -41,8 +41,8 @@ export default {
         })
     },
     signOut(context){
-        context.$router.push({name: 'Login'})
-        //window.location.replace('/login');
+        //context.$router.push({name: 'Login'})
+        window.location.replace(process.env.BASE_ROUTE + '/login');
     }
 
 }
