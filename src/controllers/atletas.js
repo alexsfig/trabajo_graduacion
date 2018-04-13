@@ -59,23 +59,24 @@ export default {
         context.showSuccess = false
         if (context.changePhoto == true) {
             const formData = new FormData()
-            let filename =  atletas.rutaFoto.replace(/^.*[\\\/]/, '').replace(/\.[^/.]+$/, "")
+            //let filename =  atletas.rutaFoto.replace(/^.*[\\\/]/, '').replace(/\.[^/.]+$/, "")fdd
             let root_path = "persona"
             formData.append('avatar', context.avatar)
-            formData.append('filename', filename )
-            formData.append('id', "atleta")
+            formData.append('filename', "filename" )
+            formData.append('id', context.atleta.id)
+
             formData.append('root_path', root_path)
             UPLOAD.post('upload_avatar', formData)
                 .then((resp) => {})
                 .catch((err) => {
                     if (err.response) {
                         context.showAlert = true
-                        context.errMsg = err.response.data
+                        context.errMsg =  "Eroor servicio"
                     }
                 })
         }
 
-        atletas.rutaFoto=atletas;
+       // atletas.rutaFoto=atletas;
         HTTP.put("persona", atletas)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
@@ -88,7 +89,7 @@ export default {
             .catch((err) => {
                 context.showAlert = true
                 if (err.response) {
-                    context.errMsg = err.response.data
+                    context.errMsg = "Eroor servicio"
                     context.showAlert = true
                 }
             })

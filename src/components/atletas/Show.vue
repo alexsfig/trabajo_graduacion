@@ -93,7 +93,8 @@ import moment from "moment"
 export default {
     name: "ShowAtleta",
     data: () => ({
-        atleta: null,
+        atleta: {personaId:{}},
+        atleta: {},
         avatar: null,
 
     }),
@@ -114,7 +115,7 @@ export default {
                     imgAsset = require('@/assets/images/fotos/'+ this.atleta.id+"/avatar.png")
                 }
                 catch(er){
-                    console.log("eurecaaaaaakjlaasjisjhdhgds")
+                   // console.log("eurecaaaaaakjlaasjisjhdhgds")
                     imgAsset = require('@/assets/images/default_avatar.png')
                 }
             }

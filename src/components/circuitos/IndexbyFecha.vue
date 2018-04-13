@@ -29,10 +29,7 @@
                 <div class="col-lg-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Manejo de Circuitos de la Fecha <b>{{fecha.nombre}}</b></h3>
-
-
-
+                            <h3 class="box-title">Manejo de circuitos </h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -46,14 +43,17 @@
 
 
                             </div>
+
                             <vue-good-table :columns="columns" :rows="circuitos" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
                                 <template slot="table-row" scope="props">
 <td>{{ props.row.nombre }}</td>
 <td>{{ props.row.descripcion }}</td>
-<td>{{ props.row.categoriaId.nombreCategoria }}</td>  
-<td>{{ props.row.numJueces }} ({{ props.row.numJuecesEval }} Evaluadores)</td>   
-<td>{{ props.row.numAtletas }} atletas</td>                  
+<td>{{ props.row.fechaId.nombre }}</td>
+<td>{{ props.row.categoriaId.nombreCategoria }}</td>                
 <td>{{ props.row.estado }}</td>      
+
+
+
 
 
                     <td class="nowrap">
@@ -106,7 +106,6 @@
 <script>
   
     import circuitosController from '../../controllers/circuitos.js';
-    import fechasController from '../../controllers/fechas.js';
      import vSelect from "vue-select"
     import moment from "moment"
     export default {
@@ -114,7 +113,6 @@
         data() {
             return {
                 circuitos: [],
-                fecha:[],
                 showAlert: false,
                 showSuccess: false,
                 methodSubmit: 'editar',
@@ -127,16 +125,11 @@
                         label: "Descripcion",
                         field: "descripcion",
                     }, {
+                        label: "Fecha",
+                        field: "fechaId.nombre",
+                    }, {
                         label: "Categoria",
                         field: "categoriaId.nombre",
-                    },
-                    {
-                        label: "Numero de Jueces",
-                        field: "numAtletas",
-                    },
-                    {
-                        label: "Numero de Atletas",
-                        field: "numAtletas",
                     },
                     {
                         label: "Estado",
@@ -191,8 +184,6 @@
 
             fetchData(){
                 circuitosController.byFecha(this, this.$route.params.id)
-                fechasController.retrieve(this, this.$route.params.id)
-
             },
             deleteCircuito(id, nombre) {
                 let context = this;

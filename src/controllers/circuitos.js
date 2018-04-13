@@ -145,7 +145,7 @@ export default {
     create(context, circuito){
         context.showAlert = false
         context.showSuccess = false
-        circuito.id=0;
+    
         //circuito.fechaId={id:circuito.fechaId.id}
         //circuito.categoriaId={id:circuito.categoriaId.id}
 
