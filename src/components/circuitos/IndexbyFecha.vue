@@ -35,12 +35,12 @@
                         <div class="box-body">
       <div class="box-action">
                                
-                                  <router-link :to="{ name: 'circuitosCreatebyfecha', params: { id: this.$route.params.id }}">
+                                 <!-- <router-link :to="{ name: 'circuitosCreatebyfecha', params: { id: this.$route.params.id }}">
                                         <button type="button" class="btn btn-default btn-flat"
                                        ><i aria-hidden="true"
                                          class="fa fa-plus"></i>  Nuevo Circuito</button>
                                         </router-link> 
-
+                                -->
 
                             </div>
 
@@ -51,8 +51,8 @@
 
 <td>{{ props.row.fechaId.nombre }}</td>
 <td>{{ props.row.categoriaId.nombreCategoria }}</td>                
-<td>{{ props.row.numJueces?props.row.numJueces+' ( '+props.row.numJuecesEval?props.row.numJuecesEval:'0'+' Evaluadores )':'0' }} </td>   
-<td>{{ props.row.numAtletas?props.row.numAtletas+' atletas':'0'}} </td>                  
+<td>{{ props.row.numJueces+' ( '+props.row.numJuecesEval+')'}} </td>   
+<td>{{ props.row.numAtletas}} </td>                  
 
 <td>{{ props.row.estado }}</td>      
 
@@ -80,7 +80,7 @@
                                         class="fa fa-gavel"></i> Agregar Jueces</button>
 
                                          <button type="button" 
-                                         v-if="props.row.numJuecesEval>4?props.row.numAtletas?true:false:false"
+                                         v-if="props.row.numJuecesEval>3?props.row.numAtletas>3?true:false:false"
                                          class="margin btn btn-flat btn-sm btn-success" 
                                         @click="llamaRonda(props.row.id, props.row)"><i aria-hidden="true" 
                                         class="fa fa-pencil-square-o"></i> Gestionar Circuito</button>
@@ -132,18 +132,20 @@
                     }, {
                         label: "Fecha",
                         field: "fechaId.nombre",
-                    }, {
-                        label: "Jueces",
+                    }, 
+                       {
+                        label: "Categoria",
+                        field: "categoriaId.nombre",
+                    },
+                    {
+                        label: "Jueces(Evaluadores)",
                         field: "categoriaId.nombre",
                     },
                      {
                         label: "Atletas",
                         field: "categoriaId.nombre",
                     },
-                     {
-                        label: "Categoria",
-                        field: "categoriaId.nombre",
-                    },
+                  
                     {
                         label: "Estado",
                         field: "estado",

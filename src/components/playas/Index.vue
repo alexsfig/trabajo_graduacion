@@ -30,11 +30,10 @@
         
 
          
-      
                          
 
       <GmapAutocomplete @place_changed="setPlace"  class="form-control" 
-       :options="{  componentRestrictions: {'country': ['SV']} }" > 
+       :options="{  componentRestrictions: {'country': ['SV']} }" :value="searchValue"  > 
       </GmapAutocomplete>       
 
      
@@ -64,7 +63,8 @@
                 <div class="col-lg-6">
                     <div class="box box-success">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Agregar Nueva Playa</h3>
+                            <h3 class="box-title">Agregar Nueva Playa 
+      {{searchValue}}</h3>
                         </div>
     
                         <form @submit.prevent="submit()"> 
@@ -164,6 +164,7 @@
                     nombre: '',
                     ubicacion: ''
                 },
+                searchValue:'',
                 methodSubmit: 'update',
                 buttonMsg: "Actualizar",
                 users: [],   
@@ -259,6 +260,7 @@
                 })
             },
             reset() {
+                this.searchValue=null;
                 this.playasCreate = {},
                 this.center.lat =13.491270679729123,
                 this.center.lng = -89.38300688171387,

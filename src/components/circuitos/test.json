@@ -1,5 +1,5 @@
-{
-    "Json": {
+
+ {
         "swagger": "2.0",
         "info": {
             "description": "Realiza las acciones permitidas para la gestión de paquetes Home.",
@@ -63,8 +63,8 @@
                             "name": "request",
                             "description": "request",
                             "required": true,
-                            "schema33": {
-                                "schema3": "#/definitions/ProvisioningOrderManagement"
+                            "schema": {
+                                "$ref": "#/definitions/ProvisioningOrderManagement"
                             }
                         },
                         {
@@ -85,7 +85,7 @@
                     "responses": {
                         "200": {
                             "description": "ok",
-                            "schema33": {
+                            "schema": {
                                 "type": "string"
                             }
                         },
@@ -112,8 +112,8 @@
                             "name": "request",
                             "description": "request",
                             "required": true,
-                            "schema33": {
-                                "schema3": "#/definitions/ProvisioningOrderManagement"
+                            "schema": {
+                                "$ref": "#/definitions/ProvisioningOrderManagement"
                             }
                         },
                         {
@@ -134,7 +134,7 @@
                     "responses": {
                         "200": {
                             "description": "ok",
-                            "schema33": {
+                            "schema": {
                                 "type": "string"
                             }
                         },
@@ -163,8 +163,8 @@
                             "name": "provisioningOrderManagement",
                             "description": "provisioningOrderManagement",
                             "required": true,
-                            "schema33": {
-                                "schema3": "#/definitions/ProvisioningOrderManagement"
+                            "schema": {
+                                "$ref": "#/definitions/ProvisioningOrderManagement"
                             }
                         },
                         {
@@ -185,8 +185,8 @@
                     "responses": {
                         "200": {
                             "description": "ok",
-                            "schema333": {
-                                "schema3": "#/definitions/ServiceResponse"
+                            "schema": {
+                                "$ref": "#/definitions/ServiceResponse"
                             }
                         },
                         "409": {
@@ -212,8 +212,8 @@
                             "name": "provisioningOrderManagement",
                             "description": "provisioningOrderManagement",
                             "required": true,
-                            "schema33": {
-                                "schema3": "#/definitions/ProvisioningOrderManagement"
+                            "schema": {
+                                "$ref": "#/definitions/ProvisioningOrderManagement"
                             }
                         },
                         {
@@ -234,8 +234,8 @@
                     "responses": {
                         "200": {
                             "description": "ok",
-                            "schema33": {
-                                "schema3": "#/definitions/ServiceResponse"
+                            "schema": {
+                                "$ref": "#/definitions/ServiceResponse"
                             }
                         },
                         "409": {
@@ -263,8 +263,8 @@
                             "name": "provisioningOrderManagement",
                             "description": "provisioningOrderManagement",
                             "required": true,
-                            "schema33": {
-                                "schema3": "#/definitions/ProvisioningOrderManagement"
+                            "schema": {
+                                "$ref": "#/definitions/ProvisioningOrderManagement"
                             }
                         },
                         {
@@ -285,7 +285,7 @@
                     "responses": {
                         "200": {
                             "description": "ok",
-                            "schema33": {
+                            "schema": {
                                 "type": "string"
                             }
                         },
@@ -312,8 +312,8 @@
                             "name": "provisioningOrderManagement",
                             "description": "provisioningOrderManagement",
                             "required": true,
-                            "schema33": {
-                                "schema3": "#/definitions/ProvisioningOrderManagement"
+                            "schema": {
+                                "$ref": "#/definitions/ProvisioningOrderManagement"
                             }
                         },
                         {
@@ -334,7 +334,7 @@
                     "responses": {
                         "200": {
                             "description": "ok",
-                            "schema33": {
+                            "schema": {
                                 "type": "string"
                             }
                         },
@@ -361,8 +361,8 @@
                             "name": "provisioningOrderManagement",
                             "description": "provisioningOrderManagement",
                             "required": true,
-                            "schema33": {
-                                "schema3": "#/definitions/ProvisioningOrderManagement"
+                            "schema": {
+                                "$ref": "#/definitions/ProvisioningOrderManagement"
                             }
                         },
                         {
@@ -383,7 +383,7 @@
                     "responses": {
                         "200": {
                             "description": "ok",
-                            "schema33": {
+                            "schema": {
                                 "type": "string"
                             }
                         },
@@ -412,8 +412,8 @@
                             "name": "request",
                             "description": "request",
                             "required": true,
-                            "schema33": {
-                                "schema3": "#/definitions/ProvisioningOrderManagement"
+                            "schema": {
+                                "$ref": "#/definitions/ProvisioningOrderManagement"
                             }
                         },
                         {
@@ -434,7 +434,7 @@
                     "responses": {
                         "200": {
                             "description": "ok",
-                            "schema33": {
+                            "schema": {
                                 "type": "string"
                             }
                         },
@@ -463,8 +463,8 @@
                             "name": "request",
                             "description": "request",
                             "required": true,
-                            "schema33": {
-                                "schema3": "#/definitions/ProvisioningOrderManagement"
+                            "schema": {
+                                "$ref": "#/definitions/ProvisioningOrderManagement"
                             }
                         },
                         {
@@ -485,7 +485,7 @@
                     "responses": {
                         "200": {
                             "description": "ok",
-                            "schema33": {
+                            "schema": {
                                 "type": "string"
                             }
                         },
@@ -512,8 +512,8 @@
                             "name": "request",
                             "description": "request",
                             "required": true,
-                            "schema33": {
-                                "schema3": "#/definitions/ProvisioningOrderManagement"
+                            "schema": {
+                                "$ref": "#/definitions/ProvisioningOrderManagement"
                             }
                         },
                         {
@@ -534,7 +534,7 @@
                     "responses": {
                         "200": {
                             "description": "ok",
-                            "schema33": {
+                            "schema": {
                                 "type": "string"
                             }
                         },
@@ -561,8 +561,8 @@
                             "name": "request",
                             "description": "request",
                             "required": true,
-                            "schema33": {
-                                "schema3": "#/definitions/ProvisioningOrderManagement"
+                            "schema": {
+                                "$ref": "#/definitions/ProvisioningOrderManagement"
                             }
                         },
                         {
@@ -583,7 +583,7 @@
                     "responses": {
                         "200": {
                             "description": "ok",
-                            "schema33": {
+                            "schema": {
                                 "type": "string"
                             }
                         },
@@ -632,8 +632,8 @@
                     "responses": {
                         "200": {
                             "description": "ok",
-                            "schema33": {
-                                "schema3": "#/definitions/ServiceResponse"
+                            "schema": {
+                                "$ref": "#/definitions/ServiceResponse"
                             }
                         },
                         "409": {
@@ -681,8 +681,8 @@
                     "responses": {
                         "200": {
                             "description": "ok",
-                            "schema33": {
-                                "schema3": "#/definitions/ServiceResponse"
+                            "schema": {
+                                "$ref": "#/definitions/ServiceResponse"
                             }
                         },
                         "409": {
@@ -732,7 +732,7 @@
                 "type": "object",
                 "properties": {
                     "additional-product-order": {
-                        "schema3": "#/definitions/AdditionalProductOrder"
+                        "$ref": "#/definitions/AdditionalProductOrder"
                     },
                     "asyncronic": {
                         "type": "string"
@@ -745,7 +745,7 @@
                         "format": "int32"
                     },
                     "customer-order": {
-                        "schema3": "#/definitions/CustomerOrder"
+                        "$ref": "#/definitions/CustomerOrder"
                     },
                     "deferred-date": {
                         "type": "string",
@@ -784,13 +784,13 @@
                         "type": "string"
                     },
                     "install-stb-order": {
-                        "schema3": "#/definitions/InstallStbOrder"
+                        "$ref": "#/definitions/InstallStbOrder"
                     },
                     "maintenance-order": {
-                        "schema3": "#/definitions/MaintenanceOrder"
+                        "$ref": "#/definitions/MaintenanceOrder"
                     },
                     "mgmt-stb-order": {
-                        "schema3": "#/definitions/MgmtStbOrder"
+                        "$ref": "#/definitions/MgmtStbOrder"
                     },
                     "module": {
                         "type": "integer",
@@ -883,4 +883,3 @@
             }
         }
     }
-}

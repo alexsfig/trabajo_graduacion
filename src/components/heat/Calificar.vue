@@ -220,10 +220,10 @@ this.idjuez=localStorage.getItem('juezid');
                 this.fetchData()
             },
     agregarNota(row) {
-          console.log("putasss");
+         
            this.nota='';
       this.atletaHeat=row;
-      console.log("putasss");
+
       this.openModal = true;
     },
       agregarNota2(row,cal) {
@@ -231,7 +231,7 @@ this.idjuez=localStorage.getItem('juezid');
           this.idnota=cal[0];
         this.nota=cal[1];
           this.atletaHeat=row;
-      console.log("putasss");
+   
       this.openModal = true;
         
         }
