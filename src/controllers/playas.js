@@ -17,16 +17,21 @@ export default {
         
         Method to create PLAYAS, pass object Users
     */
+
     create(context, playa){
         context.showAlert = false 
         context.showSuccess = false 
+
+       if( playa.nombre && playa.ubicacion) 
+        { 
+
         HTTP.post(PLAYAS, playa)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
                     context.showSuccess = true
-                    context.successMsg = "Playa Creada"
+                    context.successMsg = "Playa Agregada"
                     context.fetchData()
-                    context.reset()
+                    
                 }
             })
             .catch((err) => {
@@ -35,6 +40,18 @@ export default {
                     context.errMsg = err.response.data
                 }
             })
+
+
+        }
+        else
+        { 
+
+           context.showAlert = true
+           context.errMsg = "Introduzca una ubicación en el buscador del mapa para localizar una playa a agregar"
+
+        }
+
+
     },
     /* 
         Method to update user, pass context, object Users and user id
