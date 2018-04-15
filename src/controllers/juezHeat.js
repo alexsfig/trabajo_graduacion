@@ -207,5 +207,30 @@ export default {
             .catch((err) => {
               console.log(err)
             })
-    }
+    },
+
+    
+    findIdJuezHead(context, idheat,idjuez){
+      
+        HTTP.get("juecesHeat/byJuezAndHead/"+idheat+"/"+idjuez)
+        .then((resp) => {
+            if (resp.status>= 200 && resp.status <=300){
+          //      context.showSuccess = true
+             //   context.successMsg = "Se agrego correctamente el juez al circuito"
+                context.idjuezheat=resp.data;
+
+            }
+        })
+        .catch((err) => {
+            if (err.response) {
+                context.showAlert = true
+                context.errMsg = err.response.data
+            }
+        })
+
+//
+
+
+
+}
 }

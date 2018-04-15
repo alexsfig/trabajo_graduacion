@@ -83,7 +83,7 @@
   :buttonMsg="'Actualizar'"
   :openModal="openModal" 
     :atletaHeat="atletaHeat" 
-:idjuez="idjuez" 
+:idjuez="idjuezheat" 
     v-on:openChange="isChange"
     :nota="nota"
     :idnota="idnota"
@@ -100,6 +100,8 @@ import ModalNota from "./Nota";
 import heatsController from "../../controllers/heats.js";
 import rondaController from "../../controllers/rondas.js";
 import juezCircuitoController from "../../controllers/JuezCircuito.js";
+import juezHeatController from "../../controllers/juezHeat.js";
+
 import atletasHeatController from "../../controllers/atletaHeat";
 import vSelect from "vue-select";
 import moment from "moment";
@@ -123,6 +125,7 @@ export default {
       idjuez:'',
       idnota:null,
       nota:'',
+      idjuezheat:'',
       atletasHeat: [],
       atletaHeat: {},
       juezHeat: { id: 1 },
@@ -195,6 +198,10 @@ export default {
   watch: {
     heat: function(val) {
       juezCircuitoController.indexByCircuito(this, val.rondaId.circuitoId.id);
+    },
+    idjuezheat:function(val) {
+
+atletasHeatController.byHeatAndJuez(this, this.id,val);
     }
   },
   methods: {
@@ -205,9 +212,10 @@ export default {
       this.id = this.$route.params.id;
 this.idjuez=localStorage.getItem('juezid');
              
-      atletasHeatController.byHeatAndJuez(this, this.id,this.idjuez);
+      
       heatsController.retrieve(this, this.id);
-
+      juezHeatController.findIdJuezHead(this,this.id,this.idjuez)
+atletasHeatController.byHeatAndJuez(this, this.id,this.idjuezheat);
       //   a.retrieve(this,this.id);
     },
  showCallback () {
@@ -222,6 +230,7 @@ this.idjuez=localStorage.getItem('juezid');
     agregarNota(row) {
          
            this.nota='';
+           this.idnota='';
       this.atletaHeat=row;
 
       this.openModal = true;
