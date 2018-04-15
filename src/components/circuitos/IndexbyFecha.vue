@@ -48,8 +48,12 @@
                                 <template slot="table-row" scope="props">
 <td>{{ props.row.nombre }}</td>
 <td>{{ props.row.descripcion }}</td>
+
 <td>{{ props.row.fechaId.nombre }}</td>
 <td>{{ props.row.categoriaId.nombreCategoria }}</td>                
+<td>{{ props.row.numJueces?props.row.numJueces+' ( '+props.row.numJuecesEval?props.row.numJuecesEval:'0'+' Evaluadores )':'0' }} </td>   
+<td>{{ props.row.numAtletas?props.row.numAtletas+' atletas':'0'}} </td>                  
+
 <td>{{ props.row.estado }}</td>      
 
 
@@ -67,15 +71,17 @@
 
                                        
 
-                                         <button type="button" v-if="props.row.estado=='Abierta'" class="margin btn btn-flat btn-sm bg-navy margin" 
+                                         <button type="button" v-if="props.row.estado=='Creado'" class="margin btn btn-flat btn-sm bg-navy margin" 
                                         @click="agregarAtletas(props.row.id, props.row)"><i aria-hidden="true" 
                                         class="fa fa-male"></i> Agregar Atletas</button>
 
-                                         <button type="button" v-if="props.row.estado=='Abierta'" class="margin btn btn-flat btn-sm bg-navy margin" 
+                                         <button type="button" v-if="props.row.estado=='Creado'" class="margin btn btn-flat btn-sm bg-navy margin" 
                                         @click="agregarJueces(props.row.id, props.row)"><i aria-hidden="true" 
                                         class="fa fa-gavel"></i> Agregar Jueces</button>
 
-                                         <button type="button" class="margin btn btn-flat btn-sm btn-success" 
+                                         <button type="button" 
+                                         v-if="props.row.numJuecesEval>4?props.row.numAtletas?true:false:false"
+                                         class="margin btn btn-flat btn-sm btn-success" 
                                         @click="llamaRonda(props.row.id, props.row)"><i aria-hidden="true" 
                                         class="fa fa-pencil-square-o"></i> Gestionar Circuito</button>
                                 
@@ -92,9 +98,7 @@
 
                                 </div> 
 
-                        </div>
-
-                 
+                        </div>              
 
                     </div>
                    </div>
@@ -107,6 +111,7 @@
   
     import circuitosController from '../../controllers/circuitos.js';
      import vSelect from "vue-select"
+
     import moment from "moment"
     export default {
         name: 'CircuitosByFecha',
@@ -128,6 +133,14 @@
                         label: "Fecha",
                         field: "fechaId.nombre",
                     }, {
+                        label: "Jueces",
+                        field: "categoriaId.nombre",
+                    },
+                     {
+                        label: "Atletas",
+                        field: "categoriaId.nombre",
+                    },
+                     {
                         label: "Categoria",
                         field: "categoriaId.nombre",
                     },

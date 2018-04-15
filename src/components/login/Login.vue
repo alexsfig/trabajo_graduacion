@@ -78,7 +78,7 @@ export default {
 				else
 				{
 					this.showAlert = true;
-					this.errMsg = "Please, enter a valid credentials";
+					this.errMsg = "Por Favor, Ingrese Credenciales Validas";
 				}
 
 			});

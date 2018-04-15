@@ -140,12 +140,12 @@ Vue.use(Router)
       component: AdminTemplate,
       meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false},
       children: [
-        {
+      /*  {
           path: '',
           name: 'Dashboard',
           component: Dashboard,
           meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
-        },
+        },*/
         {
           path: 'dashboard',
           name: 'Dashboard',
