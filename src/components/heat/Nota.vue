@@ -160,12 +160,13 @@ let puntuacion={
     id:this.idnota,
                           atletasHeatId:{id:this.atletaHeat.id},
                           juecesHeatId:{id:this.idjuez},
-                          nota:this.nota
+                          nota:this.nota,
+                          numeroOla:this.numeroOla
   
                         }
                        puntuacionController.update(this,puntuacion)
                        this.openModalInside=false
-
+this.idnota='';
                         }
                     } else {
                         this.errMsg = 'Error revisa el formulario'
