@@ -28,7 +28,7 @@
                             <div class="table-responsive">
 
                                 <vue-good-table
-                                  title="Dynamic Table"
+                                  title="Listado"
                                   :columns="columns"
                                   :rows="users"
                                   :globalSearch="true"

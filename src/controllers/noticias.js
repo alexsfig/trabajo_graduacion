@@ -120,7 +120,7 @@ export default {
                 context.fetchData();
             })
             .catch((err) => {               
-                swal("Oh snap!", "Ocurrio un error.", "error")
+                swal("No se puede Eliminar!", "Es posible que la noticia ya este asociada.", "error")
             }) 
     } 
     
