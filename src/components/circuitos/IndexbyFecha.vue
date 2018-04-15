@@ -127,7 +127,7 @@
                         label: "Nombre",
                         field: "nombre",
                     }, {
-                        label: "Descripcion",
+                        label: "Descripción",
                         field: "descripcion",
                     }, {
                         label: "Fecha",

@@ -50,7 +50,7 @@
 		               
 		                <li>
 		                    <router-link to="/juez/heat/">
-		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Ver Heat</span>
+		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Ver Heats Asignados</span>
 		                    </router-link>
 		                </li>
 		            </ul>

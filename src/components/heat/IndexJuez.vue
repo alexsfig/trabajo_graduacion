@@ -1,7 +1,7 @@
 <template>
     <div>
         <section class="content-header">
-            <h1>Heats</h1>
+            <h1>Manejo de Heats</h1>
 
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -29,7 +29,7 @@
                 <div class="col-lg-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Manejo de Heats de la Ronda <b>Grim</b></h3>
+                            <h3 class="box-title">Heats Asignados a Calificar</b></h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -49,8 +49,11 @@
                                     <td>{{ props.row.numero }}</td>
                                     
                                          <td>{{ props.row.estado }}</td>
-                                      <td>{{ props.row.natletas }} atletas</td>
-                                        <td>{{ props.row.natletas }} jueces</td>
+                                          <td>{{ props.row.rondaId.numero }}</td>
+                                           <td>{{ props.row.rondaId.circuitoId.nombre }}</td>
+                                            <td>{{ props.row.rondaId.circuitoId.descripcion }}</td>
+                                      <td>{{ props.row.natletas }}</td>
+                                       
                                     <td class="nowrap">
                                         <router-link  :to="{ name: 'CalificarHeatJ', params: { id: props.row.id }}">
                                         <button type="button" class="margin btn btn-flat btn-sm btn-primary"
@@ -64,13 +67,7 @@
 
                         </div>
 
-                        <div class="box-body">
-                              
-                             <div @click="volver()" class="btn btn-flat btn-sm btn-warning margin">
-                                    <i class="fa fa-arrow-circle-left" ></i> Regresar a Rondas
-                                </div>
-
-                                </div> 
+                        
 
                     </div>
                    </div>
@@ -110,24 +107,26 @@
                         {
                         label: "Estado",
                         field: "estado",
-                    }
-                     ,
+                    },
+                    {
+                        label: "Numero de Ronda",
+                        field: "rondaId.numero",
+                    },
+                    {
+                        label: "Circuito",
+                        field: "rondaId.circuitoId.nombre",
+                    },     
+                    {
+                        label: "Descripción del Circuito",
+                        field: "rondaId.circuitoId.descripcion",
+                    },                
                         {
                         label: "Numero de Atletas",
                         field: "nAtletas",
-                    }
-
-                    ,
-
-                        {
-                        label: "Numero de Jueces",
-                        field: "jueces",
-                    }
-
-                   
+                    }                                    
                      ,
                      {
-                      label: 'Acciones',
+                      label: 'Acción',
                       field: '',
                       filterable: true,
                     }
@@ -179,15 +178,6 @@
                         )
                     }
                 })
-            }, 
-
-              volver(){
-                console.log("entre")
- window.history.length > 1
-        ? this.$router.go(-1)
-        : this.$router.push('/')
-    
-
             }
         }
     }

@@ -89,7 +89,7 @@
                       filterable: true,
                     },
                     {
-                      label: 'Descripcion',
+                      label: 'Descripción',
                       field: 'descripcionCategoria',
                       filterable: true,
                     },
@@ -99,7 +99,7 @@
                       filterable: true,
                     },
                      {
-                      label: 'Accion',
+                      label: 'Acción',
                       field: '',
                       filterable: true,
                     }

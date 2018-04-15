@@ -272,6 +272,12 @@
 		                <i class="fa fa-pagelines" aria-hidden="true"></i> <span>Playas</span>
 		            </router-link>
 		        </li>
+
+		         <li>
+		            <router-link to="/admin/calendario">
+		                <i class="fa fa-calendar" aria-hidden="true"></i> <span>Calendario</span>
+		            </router-link>
+		        </li>
 		       <!-- <li>
 		            <router-link to="#">
 		                <i class="fa fa-user-plus" aria-hidden="true"></i> <span>Roles</span>

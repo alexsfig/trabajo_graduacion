@@ -73,6 +73,7 @@ import TipoTransaccionIndex from '@/components/tipotransaccion/Index'
 
 import FormaPagoForm from '@/components/formaPago/Form'
 import FormaPagoIndex from '@/components/formaPago/Index'
+import CalendarioIndex from '@/components/calendario/Index'
 
 import PatrocinadorForm from '@/components/patrocinadores/Form'
 import PatrocinadorIndex from '@/components/patrocinadores/Index'
@@ -441,6 +442,12 @@ Vue.use(Router)
           path: 'formaPagos',
           name: 'formaPagoIndex',
           component: FormaPagoIndex,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
+        },
+        {
+          path: 'calendario',
+          name: 'calendarioIndex',
+          component: CalendarioIndex,
           meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {

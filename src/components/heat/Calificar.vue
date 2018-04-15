@@ -29,7 +29,11 @@
                 <div class="col-lg-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Heat  <b>{{heat.numero}}</b>   de la ronda <b>{{heat.rondaId.numero}}</b> </h3>
+                            <h3 class="box-title">Heat: <b>{{heat.numero}}</b>   de la Ronda: <b>{{heat.rondaId.numero}}</b> en el Circuito: <b>{{heat.rondaId.circuitoId?heat.rondaId.circuitoId.nombre:''}}</b></h3>
+                                        
+                        </div>
+                         <div class="box-header with-border">
+                            <h3 class="box-title">Descripción del Circuito: <b>{{heat.rondaId.circuitoId?heat.rondaId.circuitoId.descripcion:''}}</b></h3>
                                         
                         </div>
 
@@ -67,13 +71,20 @@
                                       <div>
                                         <button v-if="!props.row.puntuacionList[9]" type="button" class="margin btn btn-flat btn-sm btn-success" 
                                         @click="agregarNota(props.row)"><i aria-hidden="true" 
-                                        class="fa fa-at"></i> Agregar Ola</button>
+                                        class="fa fa-pencil-square-o"></i> Agregar Nota Ola</button>
                                       </div>
                                     </td>
                                   </template>
                             </vue-good-table>
 
                         </div>
+                        <div class="box-body">
+                              
+                             <div @click="volver()" class="btn btn-flat btn-sm btn-warning margin">
+                                    <i class="fa fa-arrow-circle-left" ></i> Regresar a Heats Asignados
+                                </div>
+
+                                </div> 
                     </div>
                    </div>
             </div>
@@ -178,7 +189,7 @@ export default {
 
 
         {
-          label: "Acciones",
+          label: "Acción",
           field: "",
           filterable: true
         }
@@ -267,7 +278,16 @@ this.idjuez=localStorage.getItem('juezid');
           }
         }
       );
-    }
+    }, 
+
+              volver(){
+                console.log("entre")
+ window.history.length > 1
+        ? this.$router.go(-1)
+        : this.$router.push('/')
+    
+
+            }
   }
 };
 </script>
