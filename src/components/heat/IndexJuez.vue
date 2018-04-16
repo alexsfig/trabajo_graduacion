@@ -39,7 +39,7 @@
                                     <i class="fa fa-plus"></i> Nueva Heat
                                 </router-link>
                             </div>-->
-    {{heats[0]}}
+   <!-- {{heats[0]}} -->
                             <vue-good-table :columns="columns" :rows="heats" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
                                 <template slot="table-row" scope="props">
                                   
@@ -52,7 +52,7 @@
                                           <td>{{ props.row.rondaId.numero }}</td>
                                            <td>{{ props.row.rondaId.circuitoId.nombre }}</td>
                                             <td>{{ props.row.rondaId.circuitoId.descripcion }}</td>
-                                      <td>{{ props.row.natletas }}</td>
+                                     
                                        
                                     <td class="nowrap">
                                         <router-link  :to="{ name: 'CalificarHeatJ', params: { id: props.row.id }}">
@@ -119,11 +119,7 @@
                     {
                         label: "Descripción del Circuito",
                         field: "rondaId.circuitoId.descripcion",
-                    },                
-                        {
-                        label: "Numero de Atletas",
-                        field: "nAtletas",
-                    }                                    
+                    }                                
                      ,
                      {
                       label: 'Acción',

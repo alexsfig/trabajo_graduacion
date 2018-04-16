@@ -9,6 +9,7 @@ import Dashboard from '@/components/dashboard/Index'
 import UsersCreate from '@/components/users/Create'
 import UsersShow from '@/components/users/Show'
 import UsersIndex from '@/components/users/Index'
+import UpdateUserJuez from '@/components/users/UpdateJuez'
 import PersonaIndex from '@/components/persona/Index'
 import PersonaCreate from '@/components/persona/Create'
 
@@ -669,9 +670,17 @@ meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
           name: 'CalificarHeatJ',
           component: CalificarInit,
           meta: { requiresAuth: true  ,adminAuth:false , juezAuth : true}
+        },
+        
+        {
+          path: 'userjuez',
+          name: 'UpdateUserJuez',
+          component:  UpdateUserJuez,
+          meta: { requiresAuth: true  ,adminAuth:false , juezAuth : true}
         }
+
       
-      
+     
       
       ]
       
