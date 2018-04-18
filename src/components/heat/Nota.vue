@@ -166,7 +166,7 @@ let puntuacion={
                         }
                        puntuacionController.update(this,puntuacion)
                        this.openModalInside=false
-this.idnota='';
+
                         }
                     } else {
                         this.errMsg = 'Error revisa el formulario'
