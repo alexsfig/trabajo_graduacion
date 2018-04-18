@@ -17,6 +17,10 @@ import VTooltip from 'v-tooltip'
 import round from 'vue-round-filter';
 import Toasted from 'vue-toasted';
 import * as VueGoogleMaps from 'vue2-google-maps';
+import VueI18n from 'vue-i18n' //needed for calendar locale
+import {messages} from 'vue-bootstrap4-calendar'; 
+
+Vue.use(VueI18n)
 Vue.use(VueGoogleMaps, {
   load: {
     key: 'AIzaSyDRuXnqROzf88kyefcZVSlhPkapyknqUTM',
@@ -97,6 +101,11 @@ const config = {
 
 Vue.use(VeeValidate, config);
 
+window.i18n = new VueI18n({
+    locale: 'en',
+    messages
+});
+
 
 /* eslint-disable no-new */
 new Vue({
@@ -107,6 +116,7 @@ new Vue({
   router,
   template: '<App/>',
   components: { App },
+  i18n,
   data: () => ({
     email: '',
     phone: ''

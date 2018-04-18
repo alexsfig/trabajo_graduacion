@@ -1,11 +1,11 @@
 <template>
     <div>
         <section class="content-header">
-            <h1>Formas de Pago</h1>
+            <h1></h1>
 
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li>Manejo de Formas de Pago </li>
+                <li>Calendario </li>
             </ol>
         </section>
         <section class="content" >
@@ -25,99 +25,89 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Manejo de Forma de Pago </h3>
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body">
-      <div class="box-action">
-                                <router-link to="/admin/formaPagos/form" class="btn btn-default btn-flat">
-                                    <i class="fa fa-plus"></i> Nueva Forma de Pago
-                                </router-link>
-                            </div>
-                            <vue-good-table :columns="columns" :rows="formaPagos" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
-                                <template slot="table-row" scope="props">
-<td>{{ props.row.nombre }}</td>
-<td>{{ props.row.descripcion }}</td>                                    <td class="nowrap">
- <router-link :to="{ name: 'formaPagosEdit', params: { id: props.row.id }}">
-                                        <button type="button" class="margin btn btn-flat btn-sm btn-primary"
-                                       ><i aria-hidden="true"
-                                         class="fa fa-pencil-square-o"></i> Actualizar</button>
-                                        </router-link>                                        <button type="button" class="margin btn btn-flat btn-sm btn-danger" 
-                                        @click="deleteFormaPago(props.row.id, props.row.nombre)"><i aria-hidden="true" 
-                                        class="fa fa-trash-o"></i> Eliminar</button>
-                                
-                                    </td>
-                                  </template>
-                            </vue-good-table>
+           aqui: {{events[1]}
 
-                        </div>
-                    </div>
-    |                </div>
-            </div>
-           <!-- <modalPlaya :methodSubmit="methodSubmit" :title="'Actualizar Usuario'" :buttonMsg="'Actualizar'" :openModal="openModal" :playa="playa" v-on:openChange="isChange"></modalPlaya> -->
+            <div id="app">
+        <calendar
+                :first-day="1"
+                :all-events="events"
+                :canAddEvent="false"
+                :canDeleteEvent="false"
+                @eventAdded="eventAdded"
+                @eventDeleted="eventDeleted"
+        ></calendar>
+    </div>
+
+           
+          
         </section>
     </div>
 </template>
 <script>
-  
-    import formaPagosController from '../../controllers/formaPagos.js';
+    import circuitosController from '../../controllers/circuitos.js';
+    import fechasController from '../../controllers/fechas.js';
+    import {Calendar} from 'vue-bootstrap4-calendar';
      import vSelect from "vue-select"
     import moment from "moment"
     export default {
-        name: 'FormaPagos',
+        name: 'Calendario',
         data() {
             return {
+                fechas: [],
+                events: [],
+                 circuitos: [],
                 formaPagos: [],
                 showAlert: false,
                 showSuccess: false,
                 methodSubmit: 'editar',
-                openModal: false ,
- columns: [ 
- {
-                        label: "Nombre",
-                        field: "nombre",
-                    }, {
-                        label: "Descripcion",
-                        field: "descripcion",
-                    },{
-                        label: "Acciones",
-                        field: "",
-                    }]
+                openModal: false 
+
             }
         },
+
+        components: {
+            Calendar
+        },
+
         created(){
             this.fetchData()
         },
         methods:{
+            eventAdded(event) {
+                this.events.push(event);
+            },
+            eventDeleted(event) {
+                this.events.splice(this.events.indexOf(event), 1);
+            },
             fetchData(){
-                formaPagosController.index(this)
-            },
-            deleteFormaPago(id, nombre) {
-                let context = this;
-                let swal = this.$swal;
-                this.$swal({
-                    title: 'Estas Seguro?',
-                    html: 'No podras recuperar la informacion de la Forma de Pago <b>&laquo;' + nombre + '&raquo</b><br>y toda la informacion relacionada a la misma ya no sera accesible',
-                    type: 'error',
-                    showCancelButton: true,
-                    confirmButtonText: 'Si, Eliminar!',
-                    cancelButtonText: 'No, Mantener'
-                }).then(function() {
-                    formaPagosController.delete(context, id, swal);
-                },function(dismiss) {
-                    if (dismiss === 'cancel') {
-                        swal(
-                          'Cancelado',
-                          'La Forma de Pago no se elimino',
-                          'error'
-                        )
-                    }
-                })
-            },
+                fechasController.index(this)
+                circuitosController.index(this)
+            }
+            
+        },
+         mounted() {
+            let me = this;
+            this.fechas.forEach(function(item) {
+                        me.events.push(item.id);
+                        me.events.push(item.nombre);
+                        me.events.push(item.fecha);
+                        me.events.push(item.playaId.nombre);
+                         });
+
+            /*          console.log(array);
+                setTimeout(function () {
+               me.events = [ // you can make ajax call here
+                    {
+                     id:1,
+                        title:'Event 1',
+                        description: 'Dummy Desc',
+                        color: 'card-danger card-inverse',
+                        date: new Date() 
+
+                     }
+                    
+                ];
+            }, 1000); */
         }
     }
 </script>
