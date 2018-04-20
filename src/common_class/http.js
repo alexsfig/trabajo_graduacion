@@ -10,9 +10,10 @@ const BASE_URL = "http://localhost:8080/";
 
 
 //const BASE_URL = process.env.BASE_URL;
+//const BASE_URL = process.env.BASE_URL;
 //const BASE_URL = "http://192.168.1.96:8080/";
 
-const UPLOAD_URL = process.env.UPLOAD_URL;
+const UPLOAD_URL = 'http://localhost:8080/';
 axios.interceptors.response.use(function (response) {
     console.log(response)
     // Do something with response data
@@ -40,7 +41,7 @@ export const UPLOAD = axios.create({
     headers: {
         'Content-Type': 'application/json',
         // Pass access token in each request
-        'x-access-token': localStorage.access_token
+        'authorization': localStorage.authorization
     },
     // Add validation to status request, used in promises
     validateStatus: function (status) {

@@ -165,21 +165,8 @@ export default {
     },
     methods: {
         getImg(img) {
-            let imgAsset = null
-           if(process.env.NODE_ENV == "development"){
-                try{
-                    imgAsset = require('@/assets/images/fotos/'+ img+"/avatar.png")
-                }
-                catch(er){
-                 //   console.log("eurecaaaaaakjlaasjisjhdhgds")
-                    imgAsset = require('@/assets/images/default_avatar.png')
-                }
-            }
-            else{
-               imgAsset = process.env.BASE_ROUTE + '/static/img/src/assets/images/'+ img
-
-            }
-            return imgAsset
+            
+            return "http://localhost:8080/upload/files/"+img+".png"
         },
         clickHandler(id, atleta, nombre) {
             let swal = this.$swal

@@ -113,7 +113,7 @@
                                                 </div>
                                                 <template slot="dropdown">
                                                     <li>
-                                                        <date-picker class="date-picker" :language="'es'" v-model="createPersona.fechaNacimiento" :today-btn="todayBtn" :clear-btn="clearBtn" :limit-from="limitFrom" :format="format" :week-starts-with="weekStartsWith" :limit-to="limitTo" :close-on-selected="closeOnSelected">
+                                                        <date-picker class="date-picker" :language="'es-MX'" v-model="createPersona.fechaNacimiento" :today-btn="todayBtn" :clear-btn="clearBtn" :limit-from="limitFrom" :format="format" :week-starts-with="weekStartsWith" :limit-to="limitTo" :close-on-selected="closeOnSelected">
                                                         </date-picker>
                                                     </li>
                                                 </template>
@@ -442,7 +442,7 @@
                                                                   <i class="fa fa-camera  "></i> Subir Foto de perfil
                                                                 </button>
                                                             </span>
-                                                            <my-upload field="img" @crop-success="cropSuccess" @crop-upload-success="cropUploadSuccess" @crop-upload-fail="cropUploadFail" v-model="showAvatar" :width="300" :height="300" :params="params" lang-type="en" :headers="headers" img-format="png">
+                                                            <my-upload field="img" @crop-success="cropSuccess" @crop-upload-success="cropUploadSuccess" @crop-upload-fail="cropUploadFail" v-model="showAvatar" :width="500" :height="500" :params="params" lang-type="es" :headers="headers" img-format="png">
                                                             </my-upload>
                                                             <input type="hidden" id="avatar" name="avatar" class="form-control" v-model="avatar" v-validate="'required'" :class="{'datepicker':true,  'has-error': errors.has('form-avatar.avatar') }">
                                                             <span class="help-block" for="avatar" v-bind:data-error="errors.first('form-avatar.avatar')">
