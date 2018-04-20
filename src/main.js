@@ -17,6 +17,10 @@ import VTooltip from 'v-tooltip'
 import round from 'vue-round-filter';
 import Toasted from 'vue-toasted';
 import * as VueGoogleMaps from 'vue2-google-maps';
+import FullCalendar from 'vue-full-calendar'
+import "fullcalendar/dist/fullcalendar.min.css";
+Vue.use(FullCalendar)
+Vue.config.productionTip = false;
 
 Vue.use(VueGoogleMaps, {
   load: {

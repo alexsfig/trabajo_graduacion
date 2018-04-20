@@ -8,6 +8,10 @@
                 <li>Calendario </li>
             </ol>
         </section>
+
+         <section class="content-header">
+            
+        </section>
         <section class="content" >
 
             <div class="row">
@@ -22,21 +26,38 @@
                             <p>{{ successMsg }}</p>
                         </alert>
                     </div>
-                </div>
-            </div>
+                  
+                   
+
+            
+                   <div class="box">
+                        
+
+                        <div class="box-body">
+
+                        <div class="col-xs-12">
+
+   <div id="calendario">
+    <full-calendar :config="config" :events="events"/>
+  </div>
+
+  </div>
+    </div>
+    </div>
+    </div>
+    </div>
 
 
            
-          
-        </section>
+        </section>    
     </div>
 </template>
 <script>
     import circuitosController from '../../controllers/circuitos.js';
     import fechasController from '../../controllers/fechas.js';
-    import {Calendar} from 'vue-bootstrap4-calendar';
     import vSelect from "vue-select"
     import moment from "moment"
+    import { FullCalendar } from 'vue-full-calendar'
 
     export default {
         name: 'Calendario',
@@ -47,10 +68,38 @@
                 showAlert: false,
                 showSuccess: false,
                 methodSubmit: 'editar',
-                openModal: false 
+                openModal: false ,
+
+
+
+                events: [
+                {
+                    title: 'test',
+                    allDay: true,
+                    start: moment(),
+                    end: moment().add(1, 'd'),
+                },
+                {
+                    title: 'another test',
+                    start: moment().add(2,'d'),
+                    end: moment().add(2, 'd').add(2, 'h'),
+                },
+            ],
+            config: {
+        defaultView: 'month',
+                eventRender: function(event, element) {
+            console.log(event)
+            }
+      }
 
             }
         },
+
+        components : {
+ 
+    FullCalendar
+  
+  },
 
         created(){
             this.fetchData()
@@ -62,6 +111,18 @@
                 circuitosController.index(this)
             }
             
-        }        
+        }
+        
     }
 </script>
+
+<style>
+    #calendario {
+        font-family: 'Avenir', Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-align: center;
+        color: #2c3e50;
+        margin-top: 60px;
+    }
+</style>
