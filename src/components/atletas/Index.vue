@@ -40,9 +40,9 @@
                                     <td style=""><img class="custom-img img-responsive img-circle" v-bind:src="getImg(props.row.id)" alt="User profile picture"></td>
                                     <td>{{props.row.personaId.nombre}}</td>
                                     <td>{{props.row.personaId.apellido}}</td>
-                                     <td>{{ _calculateAge(props.row.personaId.fechaNacimiento)}} años</td>
+                                     <td>{{_calculateAge(props.row.personaId.fechaNacimiento)?_calculateAge(props.row.personaId.fechaNacimiento)+' años':'No definida'}} </td>
                                       <td>{{ (props.row.personaId.sexo == 'F' || props.row.personaId.sexo == 'f') ? 'Femenino' : 'Masculino' }}</td>
-                                    <td>{{ parseInt(props.row.aniosPracticando)}} años</td>
+                                    <td>{{ props.row.aniosPracticando?parseInt(props.row.aniosPracticando)+' años':'Sin Experiencia' }}</td>
                                     <td>{{ props.row.playaPractica}}</td>
                                     <td>{{ props.row.ladoPie}}</td>
                                     <td>{{ props.row.olaPreferida}}</td>

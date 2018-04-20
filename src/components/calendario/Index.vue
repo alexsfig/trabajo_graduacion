@@ -25,18 +25,6 @@
                 </div>
             </div>
 
-           aqui: {{fechas}}
-
-            <div id="app">
-        <calendar
-                :first-day="1"
-                :all-events="events"
-                :canAddEvent="false"
-                :canDeleteEvent="false"
-
-              
-        ></calendar>
-    </div>
 
            
           
@@ -47,27 +35,22 @@
     import circuitosController from '../../controllers/circuitos.js';
     import fechasController from '../../controllers/fechas.js';
     import {Calendar} from 'vue-bootstrap4-calendar';
-     import vSelect from "vue-select"
+    import vSelect from "vue-select"
     import moment from "moment"
+
     export default {
         name: 'Calendario',
        
         data() {
             return {
                 fechas: [],
-                events: [],
-                 circuitos: [],
-                formaPagos: [],
+                circuitos: [],
                 showAlert: false,
                 showSuccess: false,
                 methodSubmit: 'editar',
                 openModal: false 
 
             }
-        },
-
-        components: {
-            Calendar
         },
 
         created(){
@@ -78,36 +61,13 @@
            "fechas":"mounted"
         },
         methods:{
-          
+           
             fetchData(){
                    console.log("entssre") 
                 fechasController.index(this)
                 circuitosController.index(this)
             },
             
-         mounted() {
-              console.log("entrell") 
-          
-            this.fechas.forEach(element => {
-                    console.log(element.fecha)
-    
-                  console.log("entre"+"*",element.fecha.substring(0,4),element.fecha.substring(5,7),element.fecha.substring(8,10))
-                  this.events.push(
-                            {id:element.id,
-                            title:element.nombre,
-                            description: 'Competencia ',
-                            color: 'card-danger card-inverse',
-                             date:new Date(element.fecha.substring(0,4),element.fecha.substring(5,7),element.fecha.substring(8,10))});
-            });
-             
-                        /*
-                            
-                            
-                            });});*/
-
-         
-        }
-            
-        }
+        }        
     }
 </script>
