@@ -36,7 +36,7 @@
                                 <!-- <img src="../../assets/images/logo4.png" class="img-circle" alt="User Image"> -->
                                 <i class="fa fa-user fa-4x"></i>
                                 <p> Usuario: {{usuario}}
-                                <small>Fesasurf Copyright © 2014-2016 SWELL</small>
+                                <small>Fesasurf Copyright © 2017-2018 SWELL</small>
                                 </p>
                             </li>
                             <!-- Menu Footer-->

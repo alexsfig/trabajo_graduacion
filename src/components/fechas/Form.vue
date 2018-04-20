@@ -46,7 +46,7 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup"  :class="{ 'has-error': errors.has('playa') }">
-                                            <label for="playa">Playa de Realizazion</label>
+                                            <label for="playa">Playa de Realización</label>
                                             <v-select
                                                 :debounce="250"
                                                 :options="playas"

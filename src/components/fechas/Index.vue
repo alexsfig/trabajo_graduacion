@@ -99,7 +99,7 @@
                         field: "nombre",
                     },
                      {
-                        label: "Playa de Realizacion",
+                        label: "Playa de Realización",
                         field: "playaId.nombre",
                     },
                     {

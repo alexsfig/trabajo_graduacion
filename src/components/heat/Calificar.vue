@@ -29,7 +29,11 @@
                 <div class="col-lg-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Heat  <b>{{heat.numero}}</b>   de la ronda <b>{{heat.rondaId.numero}}</b> </h3>
+                            <h3 class="box-title">Heat: <b>{{heat.numero}}</b>   de la Ronda: <b>{{heat.rondaId.numero}}</b> en el Circuito: <b>{{heat.rondaId.circuitoId?heat.rondaId.circuitoId.nombre:''}}</b></h3>
+                                        
+                        </div>
+                         <div class="box-header with-border">
+                            <h3 class="box-title">Descripción del Circuito: <b>{{heat.rondaId.circuitoId?heat.rondaId.circuitoId.descripcion:''}}</b></h3>
                                         
                         </div>
 
@@ -67,13 +71,20 @@
                                       <div>
                                         <button v-if="!props.row.puntuacionList[9]" type="button" class="margin btn btn-flat btn-sm btn-success" 
                                         @click="agregarNota(props.row)"><i aria-hidden="true" 
-                                        class="fa fa-at"></i> Agregar Ola</button>
+                                        class="fa fa-pencil-square-o"></i> Agregar Nota Ola</button>
                                       </div>
                                     </td>
                                   </template>
                             </vue-good-table>
 
                         </div>
+                        <div class="box-body">
+                              
+                             <div @click="volver()" class="btn btn-flat btn-sm btn-warning margin">
+                                    <i class="fa fa-arrow-circle-left" ></i> Regresar a Heats Asignados
+                                </div>
+
+                                </div> 
                     </div>
                    </div>
             </div>
@@ -83,7 +94,7 @@
   :buttonMsg="'Actualizar'"
   :openModal="openModal" 
     :atletaHeat="atletaHeat" 
-:idjuez="idjuez" 
+:idjuez="idjuezheat" 
     v-on:openChange="isChange"
     :nota="nota"
     :idnota="idnota"
@@ -100,6 +111,8 @@ import ModalNota from "./Nota";
 import heatsController from "../../controllers/heats.js";
 import rondaController from "../../controllers/rondas.js";
 import juezCircuitoController from "../../controllers/JuezCircuito.js";
+import juezHeatController from "../../controllers/juezHeat.js";
+
 import atletasHeatController from "../../controllers/atletaHeat";
 import vSelect from "vue-select";
 import moment from "moment";
@@ -123,6 +136,7 @@ export default {
       idjuez:'',
       idnota:null,
       nota:'',
+      idjuezheat:'',
       atletasHeat: [],
       atletaHeat: {},
       juezHeat: { id: 1 },
@@ -178,7 +192,7 @@ export default {
 
 
         {
-          label: "Acciones",
+          label: "Acción",
           field: "",
           filterable: true
         }
@@ -195,6 +209,10 @@ export default {
   watch: {
     heat: function(val) {
       juezCircuitoController.indexByCircuito(this, val.rondaId.circuitoId.id);
+    },
+    idjuezheat:function(val) {
+
+atletasHeatController.byHeatAndJuez(this, this.id,val);
     }
   },
   methods: {
@@ -205,9 +223,10 @@ export default {
       this.id = this.$route.params.id;
 this.idjuez=localStorage.getItem('juezid');
              
-      atletasHeatController.byHeatAndJuez(this, this.id,this.idjuez);
+      
       heatsController.retrieve(this, this.id);
-
+      juezHeatController.findIdJuezHead(this,this.id,this.idjuez)
+atletasHeatController.byHeatAndJuez(this, this.id,this.idjuezheat);
       //   a.retrieve(this,this.id);
     },
  showCallback () {
@@ -220,10 +239,11 @@ this.idjuez=localStorage.getItem('juezid');
                 this.fetchData()
             },
     agregarNota(row) {
-          console.log("putasss");
+         
            this.nota='';
+           this.idnota='';
       this.atletaHeat=row;
-      console.log("putasss");
+
       this.openModal = true;
     },
       agregarNota2(row,cal) {
@@ -231,7 +251,7 @@ this.idjuez=localStorage.getItem('juezid');
           this.idnota=cal[0];
         this.nota=cal[1];
           this.atletaHeat=row;
-      console.log("putasss");
+   
       this.openModal = true;
         
         }
@@ -267,7 +287,16 @@ this.idjuez=localStorage.getItem('juezid');
           }
         }
       );
-    }
+    }, 
+
+              volver(){
+                console.log("entre")
+ window.history.length > 1
+        ? this.$router.go(-1)
+        : this.$router.push('/')
+    
+
+            }
   }
 };
 </script>

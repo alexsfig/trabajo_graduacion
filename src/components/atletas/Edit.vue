@@ -487,7 +487,7 @@ export default {
             let imgAsset = null
             if(process.env.NODE_ENV == "development"){
                 try{
-                    imgAsset = require('@/assets/images/'+ img)
+                 imgAsset = require('@/assets/images/fotos/'+ this.atleta.id+"/avatar.png")
                 }
                 catch(er){
                     imgAsset = require('@/assets/images/default_avatar.png')

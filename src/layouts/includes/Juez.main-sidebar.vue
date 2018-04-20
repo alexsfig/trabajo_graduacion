@@ -32,11 +32,15 @@
 		    <ul class="sidebar-menu" data-widget="tree">
 
 		        <li class="header">Navegación principal</li>
-
+	        <li>
+		            <router-link to="/juez">
+		                <i class="fa fa-tachometer" aria-hidden="true"></i> <span>Inicio</span>
+		            </router-link>
+		        </li>
 		    
 		        <li class="treeview">
 		            <router-link to="#">
-		                <i class="fa fa-users" aria-hidden="true"></i>
+		                <i class="fa fa-flag-checkered" aria-hidden="true"></i>
 		                <span>Competencias</span>
 		                <span class="pull-right-container">
 		                    <i class="fa fa-angle-left pull-right"></i>
@@ -46,7 +50,26 @@
 		               
 		                <li>
 		                    <router-link to="/juez/heat/">
-		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Ver Heat</span>
+		                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i> <span>Heats Asignados</span>
+		                    </router-link>
+		                </li>
+		            </ul>
+		        </li>
+
+
+		        <li class="treeview">
+		            <router-link to="#">
+		                <i class="fa fa-user" aria-hidden="true"></i>
+		                <span>Usuario</span>
+		                <span class="pull-right-container">
+		                    <i class="fa fa-angle-left pull-right"></i>
+		                </span>
+		            </router-link>
+		            <ul class="treeview-menu">
+		               
+		                <li>
+		                    <router-link to="/juez/userjuez/">
+		                        <i class="fa fa-retweet" aria-hidden="true"></i> <span>Modificar Contraseña</span>
 		                    </router-link>
 		                </li>
 		            </ul>

@@ -29,34 +29,32 @@
             </div>      
         
 
-         <div class="col-lg-12">
-    <label>
-     </b>
-      <GmapAutocomplete @place_changed="setPlace">
-      </GmapAutocomplete>
-      <button @click="usePlace">Buscar Playa</button>
-    </label>
-    
+         
+                         
 
-    <GmapMap style="width: 100%; height: 400px;" :zoom="1" :center="{lat: 0, lng: 0}">
-      <GmapMarker v-for="(marker, index) in markers"
-        :key="index"
-        :position="marker.position"
-        />
+      <GmapAutocomplete @place_changed="setPlace"  class="form-control" 
+       :options="{  componentRestrictions: {'country': ['SV']} }" :value="searchValue"  > 
+      </GmapAutocomplete>       
+
+     
+
+    <GmapMap style="width: 100%; height: 400px " :zoom="this.center.zoom"  v-if="this.center" :center="{lat: this.center.lat, lng: this.center.lng}" >
+      
       <GmapMarker
         v-if="this.place"
         label="★"
         :position="{
           lat: this.place.geometry.location.lat(),
           lng: this.place.geometry.location.lng(),
+          nombre: this.place.name,
+          direccion: this.place.formatted_address
         }"
         />
     </GmapMap>
-  </div>
+
 
   </section>
-
-
+ 
         <section class="content" >
             
             
@@ -65,14 +63,15 @@
                 <div class="col-lg-6">
                     <div class="box box-success">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Agregar Nueva Playa</h3>
+                            <h3 class="box-title">Agregar Nueva Playa 
+      {{searchValue}}</h3>
                         </div>
     
                         <form @submit.prevent="submit()"> 
                             <div class="box-body">
                                 <div class="fgroup" :class="{ 'has-error': errors.has('nombre') }" >
                                     <label for="nombre">Nombre</label>
-                                    <input type="text" id="nombre" name="nombre" data-vv-as="Nombre" class="form-control" v-model="playasCreate.nombre" v-validate="'required'" />
+                                    <input type="text" id="nombre" name="nombre"  data-vv-as="Nombre" class="form-control" v-model="this.center.nombre" v-validate="'required'" disabled/>
                                     <span class="help-block" for="nombre" v-bind:data-error="errors.first('nombre')">
                                         {{ errors.first('nombre') }}
                                     </span>
@@ -80,7 +79,7 @@
                             
                                 <div class="fgroup" :class="{ 'has-error': errors.has('ubicacion') }" >
                                     <label for="ubicacion">Ubicación</label>
-                                    <input id="ubicacion" name="ubicacion" rows="5" data-vv-as="Ubicación" class="form-control" v-model="playasCreate.ubicacion" v-validate="'required'"/>
+                                    <input id="ubicacion" name="ubicacion" rows="5" data-vv-as="Ubicación" class="form-control" v-model="this.center.direccion" v-validate="'required'" disabled/>
                                     <span class="help-block" for="ubicacion" v-bind:data-error="errors.first('ubicacion')">
                                         {{ errors.first('ubicacion') }}
                                     </span>
@@ -144,6 +143,15 @@
                  markers: [],
                  place: null,
 
+                 center: {
+            lat: 13.491270679729123,
+            lng: -89.38300688171387,
+            zoom: 15,
+            nombre:'',
+            direccion:''
+
+        },
+
                 errMsg:  '',
                 showAlert: false,
                 successMsg: '',
@@ -156,6 +164,7 @@
                     nombre: '',
                     ubicacion: ''
                 },
+                searchValue:'',
                 methodSubmit: 'update',
                 buttonMsg: "Actualizar",
                 users: [],   
@@ -178,7 +187,7 @@
                 ]
             }
         },
-         description: 'Autocomplete Example (#164)',
+       
 
         components:{
             "modalPlaya": modalPlaya
@@ -190,7 +199,9 @@
             '$route': 'fetchData',
             'locationUpdate': function (val) {
                 this.modal_show = $.isEmptyObject(val) ? false : true;
+
             }
+
         },
         methods: {
             isChange () {
@@ -216,6 +227,8 @@
                 this.showSuccess = false
                 this.$validator.validateAll().then(success => {
                     if (success) {
+                        this.playasCreate.nombre=this.center.nombre?this.center.nombre:'';
+                        this.playasCreate.ubicacion=this.center.direccion?this.center.direccion:'';
                         playasController.create(this, this.playasCreate);                        
                     }
                     else {
@@ -247,28 +260,45 @@
                 })
             },
             reset() {
-                this.playasCreate = {}
-                this.$validator.reset();
+                this.searchValue=null;
+                this.playasCreate = {},
+                this.center.lat =13.491270679729123,
+                this.center.lng = -89.38300688171387,
+                this.center.zoom= 15,
+                this.center.nombre='',
+                this.center.direccion='',
+                this.errMsg=  '',
+                this.showAlert= false,
+                this.successMsg= '',
+                this.showSuccess= false,
+                this.$validator.reset()
+                
             },
 
 
-            setDescription(description) {
-            this.description = description;
-            },
+            
           setPlace(place) {
             this.place = place
+            this.center = {
+                lat: place.geometry.location.lat(),
+                lng: place.geometry.location.lng(),
+                zoom: 15,
+                nombre: place.name,
+                direccion: place.formatted_address
+            }
 
             },
           usePlace(place) {
            if (this.place) {
-            console.log(this.place)
-          this.markers.push({
-            position: {
+            
+            this.center = {
             lat: this.place.geometry.location.lat(),
             lng: this.place.geometry.location.lng(),
+                nombre: place.name,
+                direccion: place.formatted_address
             }
-          })
-          this.place = null;
+         
+          
          }
        }
      

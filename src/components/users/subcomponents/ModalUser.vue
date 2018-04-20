@@ -28,7 +28,7 @@
                         </div>
                         <div class="col-xs-12 col-sm-6">
                             <div class="fgroup"  :class="{ 'has-error': errors.has('rol_edit') }">
-                                <label for="">Position</label>
+                                <label for="">Rol</label>
                                 <v-select
                                     :debounce="250"
                                     :options="roles"

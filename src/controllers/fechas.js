@@ -108,7 +108,7 @@ export default {
     create(context, fecha){
         context.showAlert = false
         context.showSuccess = false
-        fecha.id=0;
+      //  fecha.id=0;
                             HTTP.post(FECHAS, fecha)
                             .then((resp) => {
                                 if (resp.status>= 200 && resp.status <=300){

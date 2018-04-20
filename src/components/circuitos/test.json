@@ -1,0 +1,885 @@
+
+ {
+        "swagger": "2.0",
+        "info": {
+            "description": "Realiza las acciones permitidas para la gestión de paquetes Home.",
+            "version": "1.0",
+            "title": "PTO Home - Verimatrix Service Swagger Documentation",
+            "termsOfService": "http://tigo.bo/terms.html",
+            "contact": {
+                "name": "High Tech Consulting El Salvador",
+                "url": "http://www.hightech-corp.com/"
+            },
+            "license": {
+                "name": "Apache License Version 2.0",
+                "url": "https://www.apache.org/licenses/LICENSE-2.0"
+            }
+        },
+        "host": "192.168.1.112:9001",
+        "basePath": "/production/verimatrix",
+        "tags": [
+            {
+                "name": "sequence-pto-home-controller",
+                "description": "Sequence Pto Home Controller"
+            },
+            {
+                "name": "install-stb-order-controller",
+                "description": "Install Stb Order Controller"
+            },
+            {
+                "name": "additional-product-order-controller",
+                "description": "Additional Product Order Controller"
+            },
+            {
+                "name": "mgmt-stb-order-controller",
+                "description": "Mgmt Stb Order Controller"
+            },
+            {
+                "name": "customer-order-controller",
+                "description": "Customer Order Controller"
+            },
+            {
+                "name": "maintenance-order-controller",
+                "description": "Maintenance Order Controller"
+            }
+        ],
+        "paths": {
+            "/installation/stb/": {
+                "post": {
+                    "tags": [
+                        "install-stb-order-controller"
+                    ],
+                    "summary": "Instalación STB.",
+                    "operationId": "createUsingPOST_2",
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "produces": [
+                        "*/*"
+                    ],
+                    "parameters": [
+                        {
+                            "in": "body",
+                            "name": "request",
+                            "description": "request",
+                            "required": true,
+                            "schema": {
+                                "$ref": "#/definitions/ProvisioningOrderManagement"
+                            }
+                        },
+                        {
+                            "name": "operation-reference-id",
+                            "in": "header",
+                            "required": true,
+                            "type": "string",
+                            "default": "12345678901234567890123456789012"
+                        },
+                        {
+                            "name": "until-last-sequence",
+                            "in": "header",
+                            "required": false,
+                            "type": "string",
+                            "default": "1"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "ok",
+                            "schema": {
+                                "type": "string"
+                            }
+                        },
+                        "409": {
+                            "description": "Exception"
+                        }
+                    }
+                },
+                "delete": {
+                    "tags": [
+                        "install-stb-order-controller"
+                    ],
+                    "summary": "Desinstalación STB.",
+                    "operationId": "deleteUsingDELETE_2",
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "produces": [
+                        "*/*"
+                    ],
+                    "parameters": [
+                        {
+                            "in": "body",
+                            "name": "request",
+                            "description": "request",
+                            "required": true,
+                            "schema": {
+                                "$ref": "#/definitions/ProvisioningOrderManagement"
+                            }
+                        },
+                        {
+                            "name": "operation-reference-id",
+                            "in": "header",
+                            "required": true,
+                            "type": "string",
+                            "default": "12345678901234567890123456789012"
+                        },
+                        {
+                            "name": "until-last-sequence",
+                            "in": "header",
+                            "required": false,
+                            "type": "string",
+                            "default": "1"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "ok",
+                            "schema": {
+                                "type": "string"
+                            }
+                        },
+                        "409": {
+                            "description": "Exception"
+                        }
+                    }
+                }
+            },
+            "/management/additional-product/": {
+                "post": {
+                    "tags": [
+                        "additional-product-order-controller"
+                    ],
+                    "summary": "Agregar un producto adicional.",
+                    "operationId": "createUsingPOST",
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "produces": [
+                        "*/*"
+                    ],
+                    "parameters": [
+                        {
+                            "in": "body",
+                            "name": "provisioningOrderManagement",
+                            "description": "provisioningOrderManagement",
+                            "required": true,
+                            "schema": {
+                                "$ref": "#/definitions/ProvisioningOrderManagement"
+                            }
+                        },
+                        {
+                            "name": "operation-reference-id",
+                            "in": "header",
+                            "required": true,
+                            "type": "string",
+                            "default": "12345678901234567890123456789012"
+                        },
+                        {
+                            "name": "until-last-sequence",
+                            "in": "header",
+                            "required": false,
+                            "type": "string",
+                            "default": "1"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "ok",
+                            "schema": {
+                                "$ref": "#/definitions/ServiceResponse"
+                            }
+                        },
+                        "409": {
+                            "description": "Exception"
+                        }
+                    }
+                },
+                "delete": {
+                    "tags": [
+                        "additional-product-order-controller"
+                    ],
+                    "summary": "Desinstalar un producto.",
+                    "operationId": "deleteUsingDELETE",
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "produces": [
+                        "*/*"
+                    ],
+                    "parameters": [
+                        {
+                            "in": "body",
+                            "name": "provisioningOrderManagement",
+                            "description": "provisioningOrderManagement",
+                            "required": true,
+                            "schema": {
+                                "$ref": "#/definitions/ProvisioningOrderManagement"
+                            }
+                        },
+                        {
+                            "name": "operation-reference-id",
+                            "in": "header",
+                            "required": true,
+                            "type": "string",
+                            "default": "12345678901234567890123456789012"
+                        },
+                        {
+                            "name": "until-last-sequence",
+                            "in": "header",
+                            "required": false,
+                            "type": "string",
+                            "default": "1"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "ok",
+                            "schema": {
+                                "$ref": "#/definitions/ServiceResponse"
+                            }
+                        },
+                        "409": {
+                            "description": "Exception"
+                        }
+                    }
+                }
+            },
+            "/management/customer/": {
+                "post": {
+                    "tags": [
+                        "customer-order-controller"
+                    ],
+                    "summary": "Dar de alta a un usuario en home.",
+                    "operationId": "createUsingPOST_1",
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "produces": [
+                        "*/*"
+                    ],
+                    "parameters": [
+                        {
+                            "in": "body",
+                            "name": "provisioningOrderManagement",
+                            "description": "provisioningOrderManagement",
+                            "required": true,
+                            "schema": {
+                                "$ref": "#/definitions/ProvisioningOrderManagement"
+                            }
+                        },
+                        {
+                            "name": "operation-reference-id",
+                            "in": "header",
+                            "required": true,
+                            "type": "string",
+                            "default": "12345678901234567890123456789012"
+                        },
+                        {
+                            "name": "until-last-sequence",
+                            "in": "header",
+                            "required": false,
+                            "type": "string",
+                            "default": "1"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "ok",
+                            "schema": {
+                                "type": "string"
+                            }
+                        },
+                        "409": {
+                            "description": "Exception"
+                        }
+                    }
+                },
+                "put": {
+                    "tags": [
+                        "customer-order-controller"
+                    ],
+                    "summary": "Actualizar un usuario en home.",
+                    "operationId": "updateUsingPUT",
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "produces": [
+                        "*/*"
+                    ],
+                    "parameters": [
+                        {
+                            "in": "body",
+                            "name": "provisioningOrderManagement",
+                            "description": "provisioningOrderManagement",
+                            "required": true,
+                            "schema": {
+                                "$ref": "#/definitions/ProvisioningOrderManagement"
+                            }
+                        },
+                        {
+                            "name": "operation-reference-id",
+                            "in": "header",
+                            "required": true,
+                            "type": "string",
+                            "default": "12345678901234567890123456789012"
+                        },
+                        {
+                            "name": "until-last-sequence",
+                            "in": "header",
+                            "required": false,
+                            "type": "string",
+                            "default": "1"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "ok",
+                            "schema": {
+                                "type": "string"
+                            }
+                        },
+                        "409": {
+                            "description": "Exception"
+                        }
+                    }
+                },
+                "delete": {
+                    "tags": [
+                        "customer-order-controller"
+                    ],
+                    "summary": "Dar de baja a un usuario en home.",
+                    "operationId": "deleteUsingDELETE_1",
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "produces": [
+                        "*/*"
+                    ],
+                    "parameters": [
+                        {
+                            "in": "body",
+                            "name": "provisioningOrderManagement",
+                            "description": "provisioningOrderManagement",
+                            "required": true,
+                            "schema": {
+                                "$ref": "#/definitions/ProvisioningOrderManagement"
+                            }
+                        },
+                        {
+                            "name": "operation-reference-id",
+                            "in": "header",
+                            "required": true,
+                            "type": "string",
+                            "default": "12345678901234567890123456789012"
+                        },
+                        {
+                            "name": "until-last-sequence",
+                            "in": "header",
+                            "required": false,
+                            "type": "string",
+                            "default": "1"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "ok",
+                            "schema": {
+                                "type": "string"
+                            }
+                        },
+                        "409": {
+                            "description": "Exception"
+                        }
+                    }
+                }
+            },
+            "/management/maintenance/": {
+                "post": {
+                    "tags": [
+                        "maintenance-order-controller"
+                    ],
+                    "summary": "Ejecuta mantenimiento de los STB refrescando su configuración",
+                    "operationId": "maintenanceUsingPOST",
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "produces": [
+                        "*/*"
+                    ],
+                    "parameters": [
+                        {
+                            "in": "body",
+                            "name": "request",
+                            "description": "request",
+                            "required": true,
+                            "schema": {
+                                "$ref": "#/definitions/ProvisioningOrderManagement"
+                            }
+                        },
+                        {
+                            "name": "operation-reference-id",
+                            "in": "header",
+                            "required": true,
+                            "type": "string",
+                            "default": "12345678901234567890123456789012"
+                        },
+                        {
+                            "name": "until-last-sequence",
+                            "in": "header",
+                            "required": false,
+                            "type": "string",
+                            "default": "1"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "ok",
+                            "schema": {
+                                "type": "string"
+                            }
+                        },
+                        "409": {
+                            "description": "Exception"
+                        }
+                    }
+                }
+            },
+            "/management/stb/": {
+                "post": {
+                    "tags": [
+                        "mgmt-stb-order-controller"
+                    ],
+                    "summary": "Creación espacio STB.",
+                    "operationId": "createUsingPOST_3",
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "produces": [
+                        "*/*"
+                    ],
+                    "parameters": [
+                        {
+                            "in": "body",
+                            "name": "request",
+                            "description": "request",
+                            "required": true,
+                            "schema": {
+                                "$ref": "#/definitions/ProvisioningOrderManagement"
+                            }
+                        },
+                        {
+                            "name": "operation-reference-id",
+                            "in": "header",
+                            "required": true,
+                            "type": "string",
+                            "default": "12345678901234567890123456789012"
+                        },
+                        {
+                            "name": "until-last-sequence",
+                            "in": "header",
+                            "required": false,
+                            "type": "string",
+                            "default": "1"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "ok",
+                            "schema": {
+                                "type": "string"
+                            }
+                        },
+                        "409": {
+                            "description": "Exception"
+                        }
+                    }
+                },
+                "put": {
+                    "tags": [
+                        "mgmt-stb-order-controller"
+                    ],
+                    "summary": "Modificación STB con activación.",
+                    "operationId": "changeUsingPUT",
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "produces": [
+                        "*/*"
+                    ],
+                    "parameters": [
+                        {
+                            "in": "body",
+                            "name": "request",
+                            "description": "request",
+                            "required": true,
+                            "schema": {
+                                "$ref": "#/definitions/ProvisioningOrderManagement"
+                            }
+                        },
+                        {
+                            "name": "operation-reference-id",
+                            "in": "header",
+                            "required": true,
+                            "type": "string",
+                            "default": "12345678901234567890123456789012"
+                        },
+                        {
+                            "name": "until-last-sequence",
+                            "in": "header",
+                            "required": false,
+                            "type": "string",
+                            "default": "1"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "ok",
+                            "schema": {
+                                "type": "string"
+                            }
+                        },
+                        "409": {
+                            "description": "Exception"
+                        }
+                    }
+                },
+                "delete": {
+                    "tags": [
+                        "mgmt-stb-order-controller"
+                    ],
+                    "summary": "Eliminación espacio STB y/o Suspensión espacio STB.",
+                    "operationId": "deleteUsingDELETE_3",
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "produces": [
+                        "*/*"
+                    ],
+                    "parameters": [
+                        {
+                            "in": "body",
+                            "name": "request",
+                            "description": "request",
+                            "required": true,
+                            "schema": {
+                                "$ref": "#/definitions/ProvisioningOrderManagement"
+                            }
+                        },
+                        {
+                            "name": "operation-reference-id",
+                            "in": "header",
+                            "required": true,
+                            "type": "string",
+                            "default": "12345678901234567890123456789012"
+                        },
+                        {
+                            "name": "until-last-sequence",
+                            "in": "header",
+                            "required": false,
+                            "type": "string",
+                            "default": "1"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "ok",
+                            "schema": {
+                                "type": "string"
+                            }
+                        },
+                        "409": {
+                            "description": "Exception"
+                        }
+                    }
+                }
+            },
+            "/sequence/validate/{entryCallerId}": {
+                "get": {
+                    "tags": [
+                        "sequence-pto-home-controller"
+                    ],
+                    "summary": "Retorna una secuencia del esquema PtoHomeCore.",
+                    "operationId": "validateSequenceUsingGET",
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "produces": [
+                        "*/*"
+                    ],
+                    "parameters": [
+                        {
+                            "name": "entryCallerId",
+                            "in": "path",
+                            "description": "entryCallerId",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "name": "operation-reference-id",
+                            "in": "header",
+                            "required": true,
+                            "type": "string",
+                            "default": "12345678901234567890123456789012"
+                        },
+                        {
+                            "name": "until-last-sequence",
+                            "in": "header",
+                            "required": false,
+                            "type": "string",
+                            "default": "1"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "ok",
+                            "schema": {
+                                "$ref": "#/definitions/ServiceResponse"
+                            }
+                        },
+                        "409": {
+                            "description": "Exception"
+                        }
+                    }
+                }
+            },
+            "/sequence/{sequenceName}": {
+                "get": {
+                    "tags": [
+                        "sequence-pto-home-controller"
+                    ],
+                    "summary": "Retorna una secuencia del esquema PtoHomeCore.",
+                    "operationId": "getSequenceUsingGET",
+                    "consumes": [
+                        "application/json"
+                    ],
+                    "produces": [
+                        "*/*"
+                    ],
+                    "parameters": [
+                        {
+                            "name": "sequenceName",
+                            "in": "path",
+                            "description": "sequenceName",
+                            "required": true,
+                            "type": "string"
+                        },
+                        {
+                            "name": "operation-reference-id",
+                            "in": "header",
+                            "required": true,
+                            "type": "string",
+                            "default": "12345678901234567890123456789012"
+                        },
+                        {
+                            "name": "until-last-sequence",
+                            "in": "header",
+                            "required": false,
+                            "type": "string",
+                            "default": "1"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "ok",
+                            "schema": {
+                                "$ref": "#/definitions/ServiceResponse"
+                            }
+                        },
+                        "409": {
+                            "description": "Exception"
+                        }
+                    }
+                }
+            }
+        },
+        "definitions": {
+            "InstallStbOrder": {
+                "type": "object",
+                "properties": {
+                    "send-to-controller": {
+                        "type": "boolean"
+                    },
+                    "smart-card": {
+                        "type": "string"
+                    },
+                    "stb-type-crm-id": {
+                        "type": "string"
+                    },
+                    "stb-unit-address": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ServiceResponse": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "entryCallerId": {
+                        "type": "string"
+                    },
+                    "isAsync": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ProvisioningOrderManagement": {
+                "type": "object",
+                "properties": {
+                    "additional-product-order": {
+                        "$ref": "#/definitions/AdditionalProductOrder"
+                    },
+                    "asyncronic": {
+                        "type": "string"
+                    },
+                    "cdata": {
+                        "type": "string"
+                    },
+                    "command": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "customer-order": {
+                        "$ref": "#/definitions/CustomerOrder"
+                    },
+                    "deferred-date": {
+                        "type": "string",
+                        "example": "dd-MM-yyyy HH:mm:ss"
+                    },
+                    "entry-caller-id": {
+                        "type": "string"
+                    },
+                    "id-client": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "id-company": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "id-product": {
+                        "type": "string"
+                    },
+                    "id-product-parent": {
+                        "type": "string"
+                    },
+                    "id-promoter": {
+                        "type": "string"
+                    },
+                    "id-sale": {
+                        "type": "string"
+                    },
+                    "id-sale-parent": {
+                        "type": "string"
+                    },
+                    "id-service": {
+                        "type": "string"
+                    },
+                    "id-service-parent": {
+                        "type": "string"
+                    },
+                    "install-stb-order": {
+                        "$ref": "#/definitions/InstallStbOrder"
+                    },
+                    "maintenance-order": {
+                        "$ref": "#/definitions/MaintenanceOrder"
+                    },
+                    "mgmt-stb-order": {
+                        "$ref": "#/definitions/MgmtStbOrder"
+                    },
+                    "module": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                }
+            },
+            "MaintenanceOrder": {
+                "type": "object",
+                "properties": {
+                    "order": {
+                        "type": "string"
+                    },
+                    "send-to-controller": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "MgmtStbOrder": {
+                "type": "object",
+                "properties": {
+                    "product-code": {
+                        "type": "string"
+                    },
+                    "send-to-controller": {
+                        "type": "boolean"
+                    },
+                    "stb-activation-code": {
+                        "type": "string"
+                    },
+                    "stb-activation-code-expiration": {
+                        "type": "string",
+                        "example": "dd-MM-yyyy HH:mm:ss"
+                    },
+                    "stb-config": {
+                        "type": "string"
+                    },
+                    "stb-controller-id": {
+                        "type": "string"
+                    },
+                    "stb-tag-id": {
+                        "type": "string"
+                    },
+                    "stb-time-zone": {
+                        "type": "string"
+                    }
+                }
+            },
+            "CustomerOrder": {
+                "type": "object",
+                "properties": {
+                    "billing-cycle-crm": {
+                        "type": "string"
+                    },
+                    "client-type": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "email-news": {
+                        "type": "string"
+                    },
+                    "name-client": {
+                        "type": "string"
+                    },
+                    "phone": {
+                        "type": "string"
+                    },
+                    "user-name": {
+                        "type": "string"
+                    },
+                    "user-password": {
+                        "type": "string"
+                    }
+                }
+            },
+            "AdditionalProductOrder": {
+                "type": "object",
+                "properties": {
+                    "product-code": {
+                        "type": "string"
+                    },
+                    "product-expiration": {
+                        "type": "string",
+                        "example": "dd-MM-yyyy HH:mm:ss"
+                    },
+                    "send-to-controller": {
+                        "type": "boolean"
+                    }
+                }
+            }
+        }
+    }

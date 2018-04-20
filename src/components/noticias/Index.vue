@@ -28,7 +28,7 @@
                             <div class="table-responsive">
                               
                                 <vue-good-table
-                                  title="Dynamic Table"
+                                  title="Listado"
                                   :columns="columns"
                                   :rows="noticias"
                                   :globalSearch="true"
@@ -72,12 +72,12 @@
             return {
                 columns: [
                     {
-                      label: 'Titulo',
+                      label: 'Título',
                       field: 'nombre',
                       filterable: true,
                     },
                     {
-                      label: 'Descripcion',
+                      label: 'Descripción',
                       field: 'descripcion',
                      filterable: true,
                     },
@@ -97,7 +97,7 @@
                       filterable: true,
                     },
                      {
-                      label: 'Accion',
+                      label: 'Acción',
                       field: '',
                       filterable: true,
                     }
@@ -135,7 +135,7 @@
                 let context = this
                 swal({
                     title: 'Estas Seguro?',
-                    html: 'No podras recuperar la informacion de la Noticia <b>' + noticia.nombre + '</b>',
+                    html: 'No podras recuperar la información de la Noticia: <b>' + noticia.nombre + '</b>',
                     type: 'error',
                     showCancelButton: true,
                     confirmButtonText: 'Si, Eliminar!',

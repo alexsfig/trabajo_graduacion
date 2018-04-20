@@ -9,6 +9,7 @@ import Dashboard from '@/components/dashboard/Index'
 import UsersCreate from '@/components/users/Create'
 import UsersShow from '@/components/users/Show'
 import UsersIndex from '@/components/users/Index'
+import UpdateUserJuez from '@/components/users/UpdateJuez'
 import PersonaIndex from '@/components/persona/Index'
 import PersonaCreate from '@/components/persona/Create'
 
@@ -73,6 +74,7 @@ import TipoTransaccionIndex from '@/components/tipotransaccion/Index'
 
 import FormaPagoForm from '@/components/formaPago/Form'
 import FormaPagoIndex from '@/components/formaPago/Index'
+import CalendarioIndex from '@/components/calendario/Index'
 
 import PatrocinadorForm from '@/components/patrocinadores/Form'
 import PatrocinadorIndex from '@/components/patrocinadores/Index'
@@ -444,6 +446,12 @@ Vue.use(Router)
           meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
+          path: 'calendario',
+          name: 'calendarioIndex',
+          component: CalendarioIndex,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
+        },
+        {
           path: 'formaPagos/form',
           name: 'formaPagoCreate',
           component: FormaPagoForm,
@@ -662,6 +670,13 @@ meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
           path: 'calificar/:id',
           name: 'CalificarHeatJ',
           component: CalificarInit,
+          meta: { requiresAuth: true  ,adminAuth:false , juezAuth : true}
+        },
+
+        {
+          path: 'userjuez',
+          name: 'UpdateUserJuez',
+          component:  UpdateUserJuez,
           meta: { requiresAuth: true  ,adminAuth:false , juezAuth : true}
         }
       ]

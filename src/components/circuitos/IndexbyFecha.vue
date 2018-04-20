@@ -29,31 +29,35 @@
                 <div class="col-lg-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Manejo de Circuitos de la Fecha <b>{{fecha.nombre}}</b></h3>
-
-
-
+                            <h3 class="box-title">Manejo de circuitos </h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
       <div class="box-action">
                                
-                                  <router-link :to="{ name: 'circuitosCreatebyfecha', params: { id: this.$route.params.id }}">
+                                 <!-- <router-link :to="{ name: 'circuitosCreatebyfecha', params: { id: this.$route.params.id }}">
                                         <button type="button" class="btn btn-default btn-flat"
                                        ><i aria-hidden="true"
                                          class="fa fa-plus"></i>  Nuevo Circuito</button>
                                         </router-link> 
-
+                                -->
 
                             </div>
+
                             <vue-good-table :columns="columns" :rows="circuitos" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
                                 <template slot="table-row" scope="props">
 <td>{{ props.row.nombre }}</td>
 <td>{{ props.row.descripcion }}</td>
-<td>{{ props.row.categoriaId.nombreCategoria }}</td>  
-<td>{{ props.row.numJueces?props.row.numJueces+' ( '+props.row.numJuecesEval?props.row.numJuecesEval:'0'+' Evaluadores )':'0' }} </td>   
-<td>{{ props.row.numAtletas?props.row.numAtletas+' atletas':'0'}} </td>                  
+
+<td>{{ props.row.fechaId.nombre }}</td>
+<td>{{ props.row.categoriaId.nombreCategoria }}</td>                
+<td>{{ props.row.numJueces+' ( '+props.row.numJuecesEval+')'}} </td>   
+<td>{{ props.row.numAtletas}} </td>                  
+
 <td>{{ props.row.estado }}</td>      
+
+
+
 
 
                     <td class="nowrap">
@@ -67,15 +71,17 @@
 
                                        
 
-                                         <button type="button" v-if="props.row.estado=='Abierta'" class="margin btn btn-flat btn-sm bg-navy margin" 
+                                         <button type="button" v-if="props.row.estado=='Creado'" class="margin btn btn-flat btn-sm bg-navy margin" 
                                         @click="agregarAtletas(props.row.id, props.row)"><i aria-hidden="true" 
                                         class="fa fa-male"></i> Agregar Atletas</button>
 
-                                         <button type="button" v-if="props.row.estado=='Abierta'" class="margin btn btn-flat btn-sm bg-navy margin" 
+                                         <button type="button" v-if="props.row.estado=='Creado'" class="margin btn btn-flat btn-sm bg-navy margin" 
                                         @click="agregarJueces(props.row.id, props.row)"><i aria-hidden="true" 
                                         class="fa fa-gavel"></i> Agregar Jueces</button>
 
-                                         <button type="button" class="margin btn btn-flat btn-sm btn-success" 
+                                         <button type="button" 
+                                         v-if="props.row.numJuecesEval>3?props.row.numAtletas>3?true:false:false"
+                                         class="margin btn btn-flat btn-sm btn-success" 
                                         @click="llamaRonda(props.row.id, props.row)"><i aria-hidden="true" 
                                         class="fa fa-pencil-square-o"></i> Gestionar Circuito</button>
                                 
@@ -104,7 +110,6 @@
 <script>
   
     import circuitosController from '../../controllers/circuitos.js';
-    import fechasController from '../../controllers/fechas.js';
      import vSelect from "vue-select"
 
     import moment from "moment"
@@ -113,7 +118,6 @@
         data() {
             return {
                 circuitos: [],
-                fecha:[],
                 showAlert: false,
                 showSuccess: false,
                 methodSubmit: 'editar',
@@ -123,20 +127,25 @@
                         label: "Nombre",
                         field: "nombre",
                     }, {
-                        label: "Descripcion",
+                        label: "Descripción",
                         field: "descripcion",
                     }, {
+                        label: "Fecha",
+                        field: "fechaId.nombre",
+                    }, 
+                       {
                         label: "Categoria",
                         field: "categoriaId.nombre",
                     },
                     {
-                        label: "Numero de Jueces",
-                        field: "numAtletas",
+                        label: "Jueces(Evaluadores)",
+                        field: "categoriaId.nombre",
                     },
-                    {
-                        label: "Numero de Atletas",
-                        field: "numAtletas",
+                     {
+                        label: "Atletas",
+                        field: "categoriaId.nombre",
                     },
+                  
                     {
                         label: "Estado",
                         field: "estado",
@@ -190,8 +199,6 @@
 
             fetchData(){
                 circuitosController.byFecha(this, this.$route.params.id)
-                fechasController.retrieve(this, this.$route.params.id)
-
             },
             deleteCircuito(id, nombre) {
                 let context = this;

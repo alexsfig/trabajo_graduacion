@@ -82,7 +82,7 @@
                                     <div class="clearfix"></div>
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('descripcionCategoria') }" >
-                                            <label for="">Descripcion</label>
+                                            <label for="">Descripción</label>
                                             <textarea rows="4" cols="50" id="descripcionCategoria" name="descripcionCategoria" data-vv-as="Descripcion de la categoria" class="form-control" v-model="createCategorias.descripcionCategoria" v-validate="'required'"> </textarea>
 
 

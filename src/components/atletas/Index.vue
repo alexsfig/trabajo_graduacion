@@ -171,7 +171,7 @@ export default {
                     imgAsset = require('@/assets/images/fotos/'+ img+"/avatar.png")
                 }
                 catch(er){
-                    console.log("eurecaaaaaakjlaasjisjhdhgds")
+                 //   console.log("eurecaaaaaakjlaasjisjhdhgds")
                     imgAsset = require('@/assets/images/default_avatar.png')
                 }
             }

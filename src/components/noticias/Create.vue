@@ -14,11 +14,11 @@
                 <div class="col-xs-12">
                     <div class="wrapper-alert">
                         <alert type="danger" :closable="true" v-if="showAlert" @close="showAlert=false">
-                            <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                            <h4><i class="icon fa fa-ban"></i> Error!</h4>
                             <p>{{ errMsg }}</p>
                         </alert>
                         <alert type="success" :closable="true" v-if="showSuccess" @close="showSuccess=false">
-                            <h4><i class="icon fa fa-check"></i> Success!</h4>
+                            <h4><i class="icon fa fa-check"></i> Exito!</h4>
                             <p>{{ successMsg }}</p>
                         </alert>
                     </div>
@@ -34,7 +34,7 @@
 
                                     <div class="col-xs-12 col-sm-4">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('nombre') }" >
-                                            <label for="">Titulo</label>
+                                            <label for="">Título</label>
                                             <input type="text" id="nombre" name="nombre" data-vv-as="Nombre de la noticia" class="form-control" v-model="createNoticias.nombre" v-validate="'required'" >
                                             <span class="help-block" for="nombre" v-bind:data-error="errors.first('nombre')">
                                                 {{ errors.first('nombre') }}
@@ -98,7 +98,7 @@
                                     <div class="clearfix"></div>
                                     <div class="col-xs-12 col-sm-12">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('descripcion') }" >
-                                            <label for="">Descripcion</label>
+                                            <label for="">Descripción</label>
                                             <textarea id="descripcion" name="descripcion" data-vv-as="Descripcion de la noticia" class="form-control" v-model="createNoticias.descripcion" v-validate="'required'" rows="3"></textarea>
                                             <!-- <input type="text" id="descripcion" name="descripcion" data-vv-as="Descripcion de la noticia" class="form-control" v-model="createNoticias.descripcion" v-validate="'required'" > -->
                                             <span class="help-block" for="descripcion" v-bind:data-error="errors.first('descripcion')"> 
@@ -172,7 +172,7 @@
                     }
                     else{
                         this.showAlert = true
-                        this.errMsg = "Form error"
+                        this.errMsg = "Error revisa el formulario"
                     }
                 });
             }
