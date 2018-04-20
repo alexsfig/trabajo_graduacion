@@ -19,10 +19,10 @@
                         <div class="col-sm-8 col-sm-offset-2">
                             <ul class="list-group list-group-unbordered">
                                 <li class="list-group-item">
-                                    <b>Edad</b> <a class="pull-right">{{ _calculateAge( atleta.personaId.fechaNacimiento) }} años</a>
+                                    <b>Edad</b> <a class="pull-right">{{ _calculateAge( atleta.personaId.fechaNacimiento)?_calculateAge( atleta.personaId.fechaNacimiento)+' años':'No definida' }} </a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Años practicando</b> <a class="pull-right">{{ atleta.aniosPracticando }} años</a>
+                                    <b>Años practicando</b> <a class="pull-right">{{ atleta.aniosPracticando?parseInt(atleta.aniosPracticando)+' años':'Sin Experiencia' }} </a>
                                 </li>
                                 <li class="list-group-item">
                                     <b>Edad que inicio</b> <a class="pull-right">{{ atleta.edadInicio }} años</a>
@@ -31,7 +31,7 @@
                                     <b>Fechas que ha Competido</b> <a class="pull-right">{{ atleta.cuantasFechas }}</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Ultima Participacion</b> <a class="pull-right">{{ atleta.ultimaParticipacion }}</a>
+                                    <b>Ultima Participacion</b> <a class="pull-right">{{ atleta.ultimaParticipacion?atleta.ultimaParticipacion:'Sin Participacion' }}</a>
                                 </li>
                                 <li class="list-group-item">
                                     <b>Ola Preferida</b> <a class="pull-right">{{ atleta.olaPreferida }}</a>
