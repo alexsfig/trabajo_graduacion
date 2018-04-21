@@ -42,7 +42,7 @@ import CategoriasCreate from '@/components/categorias/Create'
 import CategoriasShow from '@/components/categorias/Show'
 import CategoriasIndex from '@/components/categorias/Index'
 
-
+import Ranking from '@/components/ranking/Ranking'
 
 // Import base templates
 import AdminTemplate from '@/layouts/Admin'
@@ -594,6 +594,12 @@ Vue.use(Router)
           path: 'reportes/form',
           name: 'Reportes',
           component: Reportes,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
+        },
+        {
+          path: 'ranking',
+          name: 'Ranking',
+          component: Ranking,
           meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
 
