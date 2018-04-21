@@ -17,6 +17,10 @@ import VTooltip from 'v-tooltip'
 import round from 'vue-round-filter';
 import Toasted from 'vue-toasted';
 import * as VueGoogleMaps from 'vue2-google-maps';
+import FullCalendar from 'vue-full-calendar'
+import "fullcalendar/dist/fullcalendar.min.css";
+Vue.use(FullCalendar)
+Vue.config.productionTip = false;
 
 Vue.use(VueGoogleMaps, {
   load: {
@@ -67,6 +71,7 @@ router.beforeEach((to, from, next) => {
                 })
         }
       }
+      
   else {
     next() // make sure to always call next()!
   }
@@ -76,6 +81,7 @@ router.beforeEach((to, from, next) => {
     next();
   }
 })
+
 
 Vue.filter('formatDate', function(value) {
   if (value) {

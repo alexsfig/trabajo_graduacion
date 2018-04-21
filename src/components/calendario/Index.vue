@@ -6,7 +6,12 @@
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li>Calendario </li>
+                {{fechas}}
             </ol>
+        </section>
+
+         <section class="content-header">
+            
         </section>
         <section class="content" >
 
@@ -22,21 +27,38 @@
                             <p>{{ successMsg }}</p>
                         </alert>
                     </div>
-                </div>
-            </div>
+                  
+                   
+
+            
+                   <div class="box">
+                        
+
+                        <div class="box-body">
+
+                        <div class="col-xs-12">
+
+   <div id="calendario">
+    <full-calendar :config="config" :events="events"/>
+  </div>
+
+  </div>
+    </div>
+    </div>
+    </div>
+    </div>
 
 
            
-          
-        </section>
+        </section>    
     </div>
 </template>
 <script>
     import circuitosController from '../../controllers/circuitos.js';
     import fechasController from '../../controllers/fechas.js';
-    import {Calendar} from 'vue-bootstrap4-calendar';
     import vSelect from "vue-select"
     import moment from "moment"
+    import { FullCalendar } from 'vue-full-calendar'
 
     export default {
         name: 'Calendario',
@@ -48,10 +70,28 @@
                 showAlert: false,
                 showSuccess: false,
                 methodSubmit: 'editar',
-                openModal: false 
+                openModal: false ,
+
+
+
+                events: [
+             
+            ],
+            config: {
+        defaultView: 'month',
+                eventRender: function(event, element) {
+            console.log(event)
+            }
+      }
 
             }
         },
+
+        components : {
+ 
+    FullCalendar
+  
+  },
 
         created(){
             this.fetchData()
@@ -67,7 +107,40 @@
                 fechasController.index(this)
                 circuitosController.index(this)
             },
-            
-        }        
+            mounted()
+            {
+
+              console.log("entrell") 
+          
+            this.fechas.forEach(element => {
+                    console.log(element.fecha)
+    
+                  console.log("entre"+"*",element.fecha.substring(0,4),element.fecha.substring(5,7),element.fecha.substring(8,10))
+                  this.events.push(
+                            {
+
+                            title:element.nombre,
+                            start: moment(new Date(element.fecha.substring(0,4),element.fecha.substring(5,7),element.fecha.substring(8,10))),
+                    end: moment(new Date(element.fecha.substring(0,4),element.fecha.substring(5,7),element.fecha.substring(8,10))).add(1, 'd')
+                           // description: 'Competencia ',
+                           , color: 'red',
+                            // date:new Date(element.fecha.substring(0,4),element.fecha.substring(5,7),element.fecha.substring(8,10))});
+            });
+
+
+            });
+            }
+    }
     }
 </script>
+
+<style>
+    #calendario {
+        font-family: 'Avenir', Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-align: center;
+        color: #2c3e50;
+        margin-top: 60px;
+    }
+</style>
