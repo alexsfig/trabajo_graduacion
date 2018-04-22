@@ -34,6 +34,8 @@
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">Manejo de Atletas</h3>
+
+                      
                     </div>
 
                     <div class="box-body">
@@ -309,9 +311,9 @@
                                                               <i class="fa fa-camera  "></i> Subir Foto de perfil
                                                             </button>
                                                         </span>
-                                                        <my-upload field="img" @crop-success="cropSuccess" @crop-upload-success="cropUploadSuccess" @crop-upload-fail="cropUploadFail" v-model="showAvatar" :width="300" :height="300" :params="params" lang-type="en" :headers="headers" img-format="png">
+                                                        <my-upload  field="img" @crop-success="cropSuccess" @crop-upload-success="cropUploadSuccess" @crop-upload-fail="cropUploadFail" v-model="showAvatar" :width="300" :height="300" :params="params" lang-type="en" :headers="headers" img-format="png">
                                                         </my-upload>
-                                                        <input type="hidden" id="avatar" name="avatar" class="form-control" v-model="avatar" v-validate="'required'" :class="{'datepicker':true,  'has-error': errors.has('form-avatar.avatar') }">
+                                                       <!-- <input type="hidden" id="avatar" name="avatar" class="form-control" v-model="avatar" v-validate="'required'" :class="{'datepicker':true,  'has-error': errors.has('form-avatar.avatar') }">-->
                                                         <span class="help-block" for="avatar" v-bind:data-error="errors.first('form-avatar.avatar')">
                                                             {{ errors.first('form-avatar.avatar') }}
                                                         </span>
@@ -350,7 +352,8 @@ import playasController from '../../controllers/playas.js'
 import moment from "moment"
 import myUpload from 'vue-image-crop-upload';
 const default_avatar = require('@/assets/images/default_avatar.png')
-
+//const BASE_URL = process.env.BASE_URL;
+const BASE_URL = "http://192.168.1.96:8080/";
 export default {
     name: 'atletas',
     data() {
@@ -459,7 +462,7 @@ export default {
             }
         },
         avatar(val, oldVal){
-            let img = this.atleta.rutaFoto
+         /*   let img = this.atleta.rutaFoto
             let imgAsset = null
             if(process.env.NODE_ENV == "development"){
                 try{
@@ -471,8 +474,8 @@ export default {
             }
             else{
                 imgAsset = process.env.BASE_ROUTE + '/static/img/src/assets/images/'+ img
-            }
-            if(val !== imgAsset){
+            }*/
+            if(val ){
                 this.changePhoto =  true
             }
             else{
@@ -483,7 +486,7 @@ export default {
         atleta: function(val, oldVal) {
             //this.atleta = this.$route.params.atleta
             //this.atleta = this.atleta
-            let img = this.atleta.id
+          /*  let img = this.atleta.id
             let imgAsset = null
             if(process.env.NODE_ENV == "develsssopment"){
                 try{
@@ -494,11 +497,11 @@ export default {
                 }
             }
             else{
-                imgAsset ="C:\\Users\\grimaldi\\Documents\\images\\"+ this.atleta.id+".pgn"
+                imgAsset ="C:\\Users\\grimaldi\\Documents\\images\\"+ this.atleta.id+".png"
 
-            }
-            this.avatar =  imgAsset
-            this.copy_of_default_image = imgAsset
+            }*/
+            this.avatar =  this.getImg(this.atleta.id)
+            this.copy_of_default_image = this.getImg(this.atleta.id)
             this.atleta.sabeEscribir = (val.sabeEscribir == 1 ? true : false)
             this.atleta.sabeLeer = (val.sabeLeer == 1 ? true : false)
             this.atleta.tieneLesion = (val.tieneLesion == 1 ? true : false)
@@ -533,6 +536,10 @@ export default {
 
     },
     methods: {
+         getImg(img) {
+            
+            return BASE_URL+"upload/files/"+img+".png"
+        },
         first_step() {
             return new Promise((resolve, reject) => {
                 this.$validator.validateAll('form-2-1').then(success => {

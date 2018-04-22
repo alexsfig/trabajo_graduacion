@@ -6,7 +6,7 @@
                              <div @click="volver()" class="btn btn-flat btn-sm btn-warning margin">
                                     <i class="fa fa-arrow-circle-left" ></i> Regresar
                                 </div>
-          {{atleta}}
+         
                                
             </div>
             <div class="col-md-8 col-md-offset-2">
@@ -96,6 +96,9 @@
 <script>
 import atletasController from '../../controllers/atletas.js'
 import moment from "moment"
+
+//const BASE_URL = process.env.BASE_URL;
+const BASE_URL = "http://192.168.1.96:8080/";
 export default {
     name: "ShowAtleta",
     data: () => ({
@@ -131,7 +134,7 @@ export default {
             }
 
            //imgAsset = process.env.BASE_ROUTE + '/static/img/src/assets/images/'+ img
-            this.avatar =  imgAsset
+            this.avatar =   BASE_URL+"upload/files/"+this.atleta.id+".png"
         }
     },
     methods: {

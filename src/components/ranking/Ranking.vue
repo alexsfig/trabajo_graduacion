@@ -6,7 +6,7 @@
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li>Manejo de Circuitos </li>
-              {{categorias}}
+      
             </ol>
         </section>
         <section class="content" >
@@ -39,7 +39,7 @@
                             <form @submit.prevent="submit"  role="form"> 
            <div class="col-xs-12 col-sm-6">
 
-              ss {{categorias}}
+            
                                         <div class="fgroup"  :class="{ 'has-error': errors.has('categoria') }">
                                           
                                             <label for="categoria">Categoria</label>
@@ -72,18 +72,16 @@
                         <div class="box-body">
                          <vue-good-table  theme="nocturnal" :columns="columns" :rows="ranking" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
                                 <template slot="table-row" scope="props"> 
+    <td style=""><img class="custom-img img-responsive img-circle" v-bind:src="getImg(props.row.atleta)" alt="User profile picture"></td>
+
                                        <td>{{props.row.posicion}}</td> 
                                    <td>{{props.row.nombre}}</td> 
 
-<div v-for="value in props.row.puntuaciones">
-    <td>{{value.lugar}}</td> 
-                                  
-<td>{{value.puntuacion}}</td> 
-                                 </div>    
 
-<div>
-    ssdssewweewwewewe
-</div>    
+    <td v-for="value in props.row.puntuaciones">{{value.lugar+"° ("+value.puntuacion+")"}}</td> 
+                               
+
+  
 
 
 
@@ -103,7 +101,7 @@
 
                                 </div> 
 
-{{ranking}}
+
                     </div>
                    </div>
             </div>
@@ -112,146 +110,151 @@
     </div>
 </template>
 <script>
-  
-    import circuitosController from '../../controllers/circuitos.js';
-     import categoriaController from '../../controllers/categorias.js';
-        import rankingController from '../../controllers/ranking.js';
-      import  atletaCircuitoController  from '../../controllers/AtletaCircuito.js';
-     import vSelect from "vue-select"
-    import moment from "moment"
-    export default {
-        name: 'AgregarAtleta',
-        data() {
-            return {
-                circuito: {atletasCircuitoList:[],fechaId:{}},
-                datos:[],
-                atletaCircuito:{},
-                categorias:[],
-                atletaCircuitos:[],
-                listheat:[],
-                categoria:null,
-                showAlert: false,
-                showSuccess: false,
-                methodSubmit: 'editar',
-                openModal: false ,
-                id:'',
-                ranking:'',
- columns: [ 
- 
-                    ]
-            }
-        }, components:{
-            vSelect
+import circuitosController from "../../controllers/circuitos.js";
+import categoriaController from "../../controllers/categorias.js";
+import rankingController from "../../controllers/ranking.js";
+import atletaCircuitoController from "../../controllers/AtletaCircuito.js";
+import vSelect from "vue-select";
+import moment from "moment";
+
+//const BASE_URL = process.env.BASE_URL;
+const BASE_URL = "http://192.168.1.96:8080/";
+export default {
+  name: "AgregarAtleta",
+  data() {
+    return {
+      circuito: { atletasCircuitoList: [], fechaId: {} },
+      datos: [],
+      atletaCircuito: {},
+      categorias: [],
+      atletaCircuitos: [],
+      listheat: [],
+      categoria: null,
+      showAlert: false,
+      showSuccess: false,
+      methodSubmit: "editar",
+      openModal: false,
+      id: "",
+      ranking: "",
+      columns: []
+    };
+  },
+  components: {
+    vSelect
+  },
+  created() {
+    this.id = this.$route.params.id;
+
+    this.fetchData();
+  },
+  watch: {
+    ranking: "loadData"
+  },
+  methods: {
+      getImg(img) {
+            
+            return BASE_URL+"upload/files/"+img+".png"
         },
-        created(){
-              this.id = this.$route.params.id;
-        
-            this.fetchData()
-        },
-        watch:{
-'ranking':'loadData'
-        
-        },
-        methods:{
-            fetchData(){
-               // circuitosController.index(this)
-         /*      atletaCircuitoController.indexByCircuito(this,this.id);
+    fetchData() {
+      // circuitosController.index(this)
+      /*      atletaCircuitoController.indexByCircuito(this,this.id);
                        atletaCircuitoController.getheat(this,this.id);
                 circuitosController.retrieve(this,this.id)
                  atletaController.byCircuito(this, this.id)
 */
-                 console.log("son :"+Object.keys(this.atletaCircuitos).length)
-/*
+      console.log("son :" + Object.keys(this.atletaCircuitos).length);
+      /*
   for (let i of this.atletas) {
   i.nombre=i.personaId.nombre+","+i.personaId.apellido;
   console.log("nombre:"+ i.nombre)
   console.log("Entrada:"+i.personaId.nombre+","+i.personaId.apellido)
 }*/
 
-categoriaController.index(this)
-            },
-                  submit() {
-                         console.log("son :"+Object.keys(this.atletaCircuitos).length)
-                this.showAlert = false
-                this.showSuccess = false
+      categoriaController.index(this);
+    },
+    submit() {
+      console.log("son :" + Object.keys(this.atletaCircuitos).length);
+      this.showAlert = false;
+      this.showSuccess = false;
 
-                this.$validator.validateAll().then(success => {
-                    if (success) {
-                    if(this.categoria.id>0)
-                    {
-               rankingController.byCategoria(this,this.categoria.id)
-                    }
-                     else{
-
-                         this.showAlert = true
-                        this.errMsg = "Debe seleccionar un categoria"
-                     }
-                    }
-                    else{
-                          console.log("Error enn el formulario")
-                        this.showAlert = true
-                        this.errMsg = "Form error"
-                    }
-                });
-            },
-
-            loadData(){
-            if(this.ranking){
-                this.columns=[];
-                this.columns.push({
-                      label: 'Lugar',
-                      field: 'atletaId.personaId.nombre',
-                      filterable: true
-                    })
-this.columns.push(    {
-                      label: 'Nombre',
-                      field: 'atletaId.personaId.apellido',
-                      filterable: true
-                    })
-
-                
-                                      
-let nfecha=0;
-if(this.ranking[0]){
-this.ranking[0].puntuaciones.forEach(element => {
-    nfecha++;
-                     this.columns.push(    {
-                      label: 'Fecha '+nfecha +"",
-                      field: 'atletaId.personaId.apellido',
-                      filterable: true
-                    })
-});
-
-}
-}
-
-this.columns.push(    {
-                      label: 'Total',
-                      field: 'atletaId.personaId.apellido',
-                      filterable: true
-                    })
-            }
-            
-            ,
-            volver(){
-                console.log("entre")
- window.history.length > 1
-        ? this.$router.go(-1)
-        : this.$router.push('/')
-    
-
-            }
-,
-             _calculateAge(birthday) {
-            var today = new Date();
-            var birthDate = new Date(birthday);
-            var age = today.getFullYear() - birthDate.getFullYear();
-            var m = today.getMonth() - birthDate.getMonth();
-            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-                age--;
-            }
-            return age;
-              }
+      this.$validator.validateAll().then(success => {
+        if (success) {
+          if (this.categoria.id > 0) {
+            rankingController.byCategoria(this, this.categoria.id);
+          } else {
+            this.showAlert = true;
+            this.errMsg = "Debe seleccionar un categoria";
+          }
+        } else {
+          console.log("Error enn el formulario");
+          this.showAlert = true;
+          this.errMsg = "Form error";
         }
+      });
+    },
+
+    loadData() {
+      if (this.ranking) {
+        this.columns = [];
+            this.columns.push({
+          label: "",
+          field: "",
+   
+        });
+        this.columns.push({
+          label: "Lugar",
+          field: "posicion",
+          filterable: true
+        });
+        this.columns.push({
+          label: "Nombre",
+          field: "nombre",
+          filterable: true
+        });
+
+        let nfecha = 0;
+        if (this.ranking[0]) {
+          this.ranking[0].puntuaciones.forEach(element => {
+            nfecha++;
+            this.columns.push({
+              label: "Fecha " + nfecha + "",
+              field: "atletaId.personaId.apellido",
+              filterable: true
+            });
+          });
+        }
+      }
+
+      this.columns.push({
+        label: "Total",
+        field: "puntos",
+        filterable: true
+      });
+    },
+
+    volver() {
+      console.log("entre");
+      window.history.length > 1 ? this.$router.go(-1) : this.$router.push("/");
+    },
+    _calculateAge(birthday) {
+      var today = new Date();
+      var birthDate = new Date(birthday);
+      var age = today.getFullYear() - birthDate.getFullYear();
+      var m = today.getMonth() - birthDate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+      return age;
     }
+  }
+};
 </script>
+<style>
+.active {
+  width: 100%;
+}
+.custom-img{
+    width: 75px;
+    margin:auto;
+}
+</style>
