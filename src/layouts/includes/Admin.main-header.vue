@@ -25,7 +25,7 @@
                     <li class="dropdown user user-menu">
                         <router-link to="" class="dropdown-toggle" data-toggle="dropdown">
                             <!-- <img src="../../assets/images/logo3.png" class="user-image" alt="User Image"> -->
-                            <span class="hidden-xs">{{usuario.toUpperCase()}} <i class="fa fa-chevron-down"></i></span>
+                            <i class="fa fa-user"></i><span class="hidden-xs">{{usuario.toUpperCase()}} <i class="fa fa-chevron-down"></i></span>
 
                         </router-link>
 

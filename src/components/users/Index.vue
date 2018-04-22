@@ -78,7 +78,7 @@
                      filterable: true,
                     },
                     {
-                      label: '',
+                      label: 'Acciones',
                       field: '',
                       filterable: true,
                     }

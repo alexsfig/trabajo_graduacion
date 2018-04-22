@@ -28,7 +28,7 @@
                             <div class="table-responsive">
                               
                                 <vue-good-table
-                                  title="Jueces Registrados"
+                                  title=""
                                   :columns="columns"
                                   :rows="jueces"
                                   :globalSearch="true"

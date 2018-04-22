@@ -73,7 +73,7 @@
                     <p>Categorias registradas</p>
                   </div>
                   <div class="icon">
-                    <i class="fa fa-circle-o"></i>
+                    <i class="fa fa-bookmark"></i>
                   </div>
                   &nbsp;
                 </div>
@@ -85,7 +85,7 @@
                     <p>Fechas registradas</p>
                   </div>
                   <div class="icon">
-                    <i class="fa fa-flag-checkered"></i>
+                    <i class="fa fa-flag"></i>
                   </div>
                   &nbsp;
                 </div>

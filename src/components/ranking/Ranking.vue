@@ -56,7 +56,7 @@
                                                 {{ errors.first('categoria') }}
                                             </span>
                                               <button type="submit"  class="btn btn-flat btn-sm btn-primary"><i aria-hidden="true" 
-                                        class="fa fa-check-circle"></i>  Buscar </button> 
+                                        class="fa fa-search"></i>  Buscar </button> 
                                         </div>
                                         
                                     </div>
@@ -76,7 +76,6 @@
                                <td style=""><router-link :to="{ name: 'AtletasShow', params: { id: props.row.atleta }}"><img class="custom-img img-responsive img-circle" v-bind:src="getImg(props.row.atleta)" alt="User profile picture"/></router-link></td>
 
                                        <td style="color:navy"><b>#{{props.row.posicion}}</b></td> 
-#C0C0C0
                                    <td><router-link :to="{ name: 'AtletasShow', params: { id: props.row.atleta }}">{{props.row.nombre}}</router-link></td> 
 
 
@@ -95,13 +94,6 @@
 
                         </div>
 
-                          <div class="box-body">
-                              
-                             <div @click="volver()" class="btn btn-flat btn-sm btn-warning margin">
-                                    <i class="fa fa-arrow-circle-left" ></i> Regresar a Circuitos
-                                </div>
-
-                                </div> 
 
 
                     </div>

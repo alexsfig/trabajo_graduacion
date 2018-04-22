@@ -23,7 +23,7 @@
                             <div class="table-responsive">
                               
                                 <vue-good-table
-                                  title="Entrenadores Registrados"
+                                  title=""
                                   :columns="columns"
                                   :rows="entrenadores"
                                   :globalSearch="true"
