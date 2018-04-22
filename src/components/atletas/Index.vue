@@ -131,7 +131,7 @@ export default {
                 },
                
                 {
-                    label: 'Accion',
+                    label: 'Acción',
                     field: '',
                     filterable: true,
                 }

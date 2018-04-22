@@ -6,6 +6,9 @@ import {router} from '../router/index.js'
 import moment from 'moment'
 // define base url to Employees
 const ESCUELAS = 'escuela/'
+const ASOCIAR = 'atleta/asociar/'
+const SINESCUELA = 'atleta/byNoEscuela/'
+const CONESCUELA = 'atleta/byEscuela/'
 
 
 
@@ -57,6 +60,62 @@ export default {
                 }
             })
     }, 
+
+     
+
+     asociar(context, atletaEscuela){
+        context.showAlert = false
+        context.showSuccess = false
+        
+                            HTTP.post(ASOCIAR, atletaEscuela)
+                            .then((resp) => {
+                                if (resp.status>= 200 && resp.status <=300){
+                                    context.showSuccess = true
+                                    context.atleta={id:-1,nombre:'Seleciona un atleta'};
+                                    context.successMsg = "Se Agrego Correctamente el Atleta a la Escuela"
+                                    context.fetchData()
+                            //  context.$router.go()
+                                  //  contextvm.$forceUpdate();
+                                }
+                            })
+                            .catch((err) => {
+                                if (err.response) {
+                                    context.showAlert = true
+                                    context.errMsg = err.response.data
+                                }
+                            })
+
+            //
+
+
+
+    },
+
+    desasociar(context, idatleta,swal){
+        
+        
+
+        let request={
+            atleta:idatleta,
+            escuela:0
+          }
+        
+                            HTTP.post(ASOCIAR, request)
+                            .then((resp) => {
+                            console.log(resp);
+                            swal("Deleted!", "El Atleta ha sido Dado de baja en la Escuela", "success")
+                            context.fetchData();
+                                   })
+                              .catch((err) => {   
+                              console.log(err)            
+                               swal("Error!", "Es posible que el atleta ya este asociado", "error")
+                                      }) 
+
+            //
+
+
+
+    },
     /* 
         Method to update user, pass context, object Users and user id
     */
@@ -127,6 +186,33 @@ export default {
               console.log(err)
             })
     },
+
+    sinescuela(context){
+        HTTP.get(SINESCUELA)
+            .then((resp) => {
+                context.sinescuelas = resp.data
+                console.log(resp.data)
+                for (let i of  context.sinescuelas) {
+                    i.nombre=i.personaId.nombre+"," +i.personaId.apellido;
+
+                }
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+    },
+
+    conescuela(context, id){
+        HTTP.get(CONESCUELA + id)
+            .then((resp) => {
+                context.conescuelas = resp.data
+                console.log(resp.data)
+               
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+    },
     /* 
         Method to retrieve user, pass the context and user id, use this method when you need to edit user
     */
@@ -154,7 +240,10 @@ export default {
             .catch((err) => {               
                 swal("Oh snap!", "Ocurrio un error.", "error")
             }) 
-    } 
-    
+    }
+    /* 
+        Method to delete user, pass the context and user id, use this method when you need to delete user
+    */
+
 
 }

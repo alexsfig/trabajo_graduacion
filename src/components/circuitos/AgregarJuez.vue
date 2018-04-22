@@ -184,7 +184,7 @@
                     },
                    
                      {
-                      label: 'Accion',
+                      label: 'Acción',
                       field: '',
                       filterable: false
                     }

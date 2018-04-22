@@ -59,6 +59,8 @@ import CircuitosFinalizar from '@/components/circuitos/Finalizar'
 import CircuitosIndex from '@/components/circuitos/Index'
 import CircuitosIndexByFecha from '@/components/circuitos/IndexByFecha'
 import AgregarAtleta from '@/components/circuitos/AgregarAtleta'
+import AgregarAtletaEscuela from '@/components/escuelas/AgregarAtletaEscuela'
+import AgregarAtletaClub from '@/components/clubes/AgregarAtletaClub'
 
 import NuevaRonda from '@/components/circuitos/NuevaRonda'
 
@@ -389,6 +391,18 @@ Vue.use(Router)
           path: 'circuitos/agregarAtleta/:id',
           name: 'circuitosAgregarAtleta',
           component: AgregarAtleta,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
+        },
+          {
+          path: 'escuelas/agregarAtleta/:id',
+          name: 'escuelasAgregarAtleta',
+          component: AgregarAtletaEscuela,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
+        },
+        {
+          path: 'clubes/agregarAtleta/:id',
+          name: 'clubesAgregarAtleta',
+          component: AgregarAtletaClub,
           meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
          {

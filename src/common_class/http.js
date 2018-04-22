@@ -6,14 +6,15 @@ import axios from 'axios';
 
 //const BASE_URL = process.env.BASE_URL;
 
-const BASE_URL = "http://localhost:8080/";
+//const BASE_URL = "http://localhost:8080/";
 
 
 //const BASE_URL = process.env.BASE_URL;
 //const BASE_URL = process.env.BASE_URL;
-//const BASE_URL = "http://192.168.1.96:8080/";
+const BASE_URL = "http://192.168.1.96:8080/";
 
-const UPLOAD_URL = 'http://localhost:8080/';
+//const UPLOAD_URL = 'http://localhost:8080/';
+const UPLOAD_URL = "http://192.168.1.96:8080/";
 axios.interceptors.response.use(function (response) {
     console.log(response)
     // Do something with response data

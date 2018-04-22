@@ -6,20 +6,20 @@
                              <div @click="volver()" class="btn btn-flat btn-sm btn-warning margin">
                                     <i class="fa fa-arrow-circle-left" ></i> Regresar
                                 </div>
-
+          {{atleta}}
                                
             </div>
             <div class="col-md-8 col-md-offset-2">
                 <div class="box box-primary">
                     <div class="box-body box-profile">
                         <img class="profile-user-img img-responsive img-circle" :src="avatar" alt="User profile picture">
-
-                        <h3 class="profile-username text-center">{{ atleta.personaId.nombre + " " + atleta.personaId.apellido}}</h3>
+                            
+                        <h3 class="profile-username text-center">{{atleta.personaId?atleta.personaId.nombre:'' + " " }} {{  atleta.personaId?atleta.personaId.apellido:''}}</h3>
                         <p class="text-muted text-center">Ranking 10 <i class="fa fa-star-o"></i></p>
                         <div class="col-sm-8 col-sm-offset-2">
                             <ul class="list-group list-group-unbordered">
                                 <li class="list-group-item">
-                                    <b>Edad</b> <a class="pull-right">{{ _calculateAge( atleta.personaId.fechaNacimiento)?_calculateAge( atleta.personaId.fechaNacimiento)+' años':'No definida' }} </a>
+                                    <b>Edad</b> <a class="pull-right">{{ _calculateAge( atleta.personaId?atleta.personaId.fechaNacimiento:'')?_calculateAge( atleta.personaId.fechaNacimiento)+' años':'No definida' }} </a>
                                 </li>
                                 <li class="list-group-item">
                                     <b>Años practicando</b> <a class="pull-right">{{ atleta.aniosPracticando?parseInt(atleta.aniosPracticando)+' años':'Sin Experiencia' }} </a>
@@ -41,6 +41,12 @@
                                 </li>
                                 <li class="list-group-item">
                                     <b>Idiomas</b></b> <a class="pull-right">{{ atleta.idiomas }}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Escuela Inscrita</b></b> <a class="pull-right">{{ atleta.escuelaId?atleta.escuelaId.nombre:'Sin Inscripción' }}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Club Inscrito</b></b> <a class="pull-right">{{ atleta.clubId?atleta.clubId.nombre:'Sin Inscripción' }}</a>
                                 </li>
                             </ul>
                         </div>
