@@ -6,7 +6,7 @@
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li>Calendario </li>
-                {{fechas}}
+                
             </ol>
         </section>
 
@@ -77,11 +77,13 @@ export default {
       openModal: false,
 
       events: [],
+     
       config: {
         defaultView: "month",
         eventRender: function(event, element) {
           console.log(event);
         }
+
       }
     };
   },
@@ -137,7 +139,9 @@ export default {
           ).add(1, "d"),
           // description: 'Competencia ',
           color: "red",
-          url:BASE_URL+"admin/fechas/form/"+element.id
+          url:BASE_URL+"admin/circuitofecha/"+element.id
+
+           
           // date:new Date(element.fecha.substring(0,4),element.fecha.substring(5,7),element.fecha.substring(8,10))});
         });
       });
