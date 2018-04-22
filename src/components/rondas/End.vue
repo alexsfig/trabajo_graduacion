@@ -1,7 +1,7 @@
 <template>
     <div>
         <section class="content-header">
-            <h1>Finalizar ronda {{ronda.numero}}</h1>
+            <h1>Finalizar ronda {{ronda.numero}} </h1>
 
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -31,7 +31,7 @@
                         <div class="box-header with-border">
                             <!--<h3 class="box-title">Manejo de Rondas del Circuito <b>{{this.circuito.nombre}}</b> para la Fecha <b>{{this.circuito.fechaId.nombre}} </b></h3>-->
                        {{ultima}}
-                        
+              
     <button v-if="ronda.estado=='Calificada'" type="button" @click="finalizar()"   class="margin btn btn-flat btn-sm btn-primary"
                                        ><i aria-hidden="true"
                                          class="fa fa-pencil-square-o"></i> Finalizar Ronda</button>
@@ -61,7 +61,8 @@
                                     <td>{{ props.row.promedio }}</td>
                                     <td>{{ props.row.lugar }}</td>
 
-                                   
+                                                 <td  v-if="props.row.estado=='Finalista'"  style="background-color:Green;">{{ props.row.estado }}</td>      
+          
                         <td  v-if="props.row.estado=='Clasificado'"  style="background-color:Green;">{{ props.row.estado }}</td>      
                                   <td  v-if="props.row.estado=='Eliminado'"  style="background-color:Red;">{{ props.row.estado }}</td>  
                           <td  v-if="props.row.estado=='Repechaje'"  style="background-color:Yellow;">{{ props.row.estado }}</td>      
@@ -147,19 +148,37 @@ export default {
   created() {
     this.fetchData();
   },watch:{
-            "ronda":"addCol"
+            "ronda":"addCol",
+            "heats":"onLoadHead"
+        
         },
   methods: {
-     addCol(){
 
-      if(atletasHeatList.atletasHeatList.length==1)
+    onLoadHead(){
+
+      console.log("*****************")
+       console.log(this.heats.length)
+      if(this.heats.length=1){
+      
       this.ultima=true;
-
+      console.log(this.heats.atletasHeatList);
+      
+      }
+ /*  if(Object.keys(this.heats.atletasHeatList).length==1)
+      this.ultima=true;
+//s.ultima=Object.keys(this.heats.atletasHeatList).length;
+}*/
+    },
+     addCol(){
+console.log("Entress")
+           this.columns.push({label: 'Acciones',
+                      field: '',
+                      filterable: true,})     
        if(this.ronda)
        {
        if(this.columns.length==4)
 {
-    if(this.ronda.estado==="Calificada")
+    if(this.ronda.estado!=="Calificada")
 
      {
         this.columns.push({label: 'Acciones',
@@ -171,7 +190,7 @@ export default {
 
             },
       change(row){
-
+if(!this.ultima){
           console.log(row)
 if(row.estado==='Clasificado'){
 row.estado='Descalificado';
@@ -182,14 +201,28 @@ row.estado='Eliminado'
 return;
 }
 if(row.estado==='Eliminado'){
-row.estado='Repechaje'
+row.estado='Clasificado'
 
 console.log("eentesssssk"+row.estado)
 return;
 }
 if(row.estado==='Repechaje'){
 row.estado='Clasificado'
+return;}
+}
+else{
+if(row.estado==='Descalificado'){
+row.estado='Finalista'
 return;
+
+
+}
+if(row.estado==='Finalista'){
+row.estado='Descalificado'
+return;
+
+
+}
 }
       },
     fetchData() {

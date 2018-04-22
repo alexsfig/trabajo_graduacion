@@ -94,17 +94,21 @@ export default {
             .then((resp) => {
                 console.log(resp)
                 context.heats = resp.data
+                let l= context.heats.length;
                 context.heats.forEach(element => {
-                    console.log("putittassss11")
+               
                     element.atletasHeatList.forEach(element2 => {
-                  console.log("putittassss")
+                        if(l==1){
+                            element2.estado='Finalista'
+
+                        }else{
                   console.log(element2)
                         if(element2.lugar>2)
                         
                         element2.estado='Eliminado'
 
                         else
-                        element2.estado='Clasificado'
+                        element2.estado='Clasificado'}
                     });
                 });
             })

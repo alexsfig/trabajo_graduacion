@@ -171,22 +171,27 @@
 		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Manejo de Categorias</span>
 		                    </router-link>
 		                </li>
-		                <li>
+		           <!--     <li>
 		                    <router-link to="/admin/categorias/create">
 		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Agregar Categorias</span>
 		                    </router-link>
 		                </li>
-
+-->
 						  	   <li>
 		                    <router-link to="/admin/fechas/">
 		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Manejo de Fechas</span>
 		                    </router-link>
 		                </li>
-		                <li>
-		                    <router-link to="/admin/fechas/form">
+		                 <!--      <li>
+		              <router-link to="/admin/fechas/form">
 		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Agregar Fecha</span>
 		                    </router-link>
-		                </li> 
+		                </li> -->
+						   <li>
+		                    <router-link to="/admin/ranking">
+		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Ranking</span>
+		                    </router-link>
+		                    </li> 
 
 		                <!--
 

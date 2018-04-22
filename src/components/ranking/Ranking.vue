@@ -70,20 +70,24 @@
                               </div>
                        
                         <div class="box-body">
-                         <vue-good-table  theme="nocturnal" :columns="columns" :rows="ranking" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
+                         <vue-good-table   theme="nocturnal" :columns="columns" :rows="ranking" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
                                 <template slot="table-row" scope="props"> 
-                                       <td>{{props.row.posicion}}</td> 
-                                   <td>{{props.row.nombre}}</td> 
+
+                               <td style=""><router-link :to="{ name: 'AtletasShow', params: { id: props.row.atleta }}"><img class="custom-img img-responsive img-circle" v-bind:src="getImg(props.row.atleta)" alt="User profile picture"/></router-link></td>
+
+                                       <td style="color:navy"><b>#{{props.row.posicion}}</b></td> 
+
+                                   <td><router-link :to="{ name: 'AtletasShow', params: { id: props.row.atleta }}">{{props.row.nombre}}</router-link></td> 
 
 
-    <td v-for="value in props.row.puntuaciones">{{value.lugar+"° ("+value.puntuacion+")"}}</td> 
+    <td v-for="value in props.row.puntuaciones" :title="value.puntuacion+' Puntos'" :style="value.lugar==1?{background:'#ffffcc'}:value.lugar==2?{background:'#808080'}:value.lugar==3?{background:'#e6e6e6'}:{}"><div  >{{value.lugar}}</div></td> 
                                
 
   
 
 
 
-                                           <td>{{props.row.puntos}}</td>       
+                                           <td  style="color:navy;text-align: center; margin: 0 auto;  text-align: left;">{{props.row.puntos}}</td>       
 
                                   </template>
                             </vue-good-table>
@@ -114,6 +118,7 @@ import rankingController from "../../controllers/ranking.js";
 import atletaCircuitoController from "../../controllers/AtletaCircuito.js";
 import vSelect from "vue-select";
 import moment from "moment";
+const BASE_URL = "http://192.168.1.96:8080/";
 export default {
   name: "AgregarAtleta",
   data() {
@@ -183,15 +188,25 @@ export default {
         }
       });
     },
- 
+  getImg(img) {
+            
+            return BASE_URL+"upload/files/"+img+".png"
+        },
     loadData() {
       if (this.ranking) {
         this.columns = [];
+        this.columns.push({
+          label: "",
+          field: "",
+          filterable: true
+        });
         this.columns.push({
           label: "Lugar",
           field: "posicion",
           filterable: true
         });
+
+      
         this.columns.push({
           label: "Nombre",
           field: "nombre",
@@ -235,3 +250,15 @@ export default {
   }
 };
 </script>
+
+<style>
+.active {
+  width: 100%;
+}
+.custom-img{
+    width: 75px;
+    margin:auto;
+}
+
+
+</style>
