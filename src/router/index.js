@@ -697,7 +697,14 @@ meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
           name: 'UpdateUserJuez',
           component:  UpdateUserJuez,
           meta: { requiresAuth: true  ,adminAuth:false , juezAuth : true}
-        }
+        },
+
+        {
+          path: 'ranking',
+          name: 'RankingJuez',
+          component: Ranking,
+          meta: { requiresAuth: true  ,adminAuth:false, juezAuth : true}
+        },
 
       
      

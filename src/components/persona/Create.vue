@@ -175,7 +175,7 @@
                         <div class="box-body" v-if="datosTipo">
                              <div class="box-body">
                             <div class="col-xs-12 text-left">
-                                <button type="button" @click="returnToSelect" class="btn btn-flat btn-sm btn-warning margin "><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Regresar a Editar informacion de persona</button>
+                                <button type="button" @click="returnToSelect" class="btn btn-flat btn-sm btn-warning margin "><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Regresar a Editar información de persona</button>
                             </div>   </div>
                             <!---#################################################################################-->
                             <!---#################################################################################-->

@@ -99,7 +99,7 @@
                         label: "Correo",
                         field: "correo",
                     }, {
-                        label: "Direccion",
+                        label: "Dirección",
                         field: "direccion",
                     },{
                         label: "Acciones",

@@ -92,7 +92,7 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('direccion') }">
-                                            <label for="">Direccion</label>
+                                            <label for="">Dirección</label>
                                             <textarea id="direccion" name="direccion" data-vv-as="Dirección" class="form-control" v-model="patrocinador.direccion" v-validate="'required'" rows="3"></textarea>
                                             <!-- <input type="text" id="direccion" name="direccion" data-vv-as="direccion" class="form-control" v-model="patrocinador.direccion" v-validate="'required'"> -->
                                             <span class="help-block" for="direccion" v-bind:data-error="errors.first('direccion')">

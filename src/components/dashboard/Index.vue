@@ -122,7 +122,7 @@
                   <div class="box-header with-border">
                     <i style="color:#031328"class="fa fa-users"></i>
 
-                    <h3 class="box-title "><b>Automatizacion de Procesos</b></h3>
+                    <h3 class="box-title "><b>Automatización de Procesos</b></h3>
                   </div>
                   <div class="box-body text-justify">
                 <div class="col-md-12">
