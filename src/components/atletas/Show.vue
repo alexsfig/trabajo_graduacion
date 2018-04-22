@@ -44,13 +44,13 @@
                                     <b>Lado Pie</b> <a class="pull-right">{{ atleta.ladoPie }}</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Idiomas</b></b> <a class="pull-right">{{ atleta.idiomas }}</a>
+                                    <b>Idiomas</b> <a class="pull-right">{{ atleta.idiomas }}</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Escuela Inscrita</b></b> <a class="pull-right">{{ atleta.escuelaId?atleta.escuelaId.nombre:'Sin Inscripción' }}</a>
+                                    <b>Escuela Inscrita</b> <a class="pull-right">{{ atleta.escuelaId?atleta.escuelaId.nombre:'Sin Inscripción' }}</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Club Inscrito</b></b> <a class="pull-right">{{ atleta.clubId?atleta.clubId.nombre:'Sin Inscripción' }}</a>
+                                    <b>Club Inscrito</b> <a class="pull-right">{{ atleta.clubId?atleta.clubId.nombre:'Sin Inscripción' }}</a>
                                 </li>
                             </ul>
                         </div>

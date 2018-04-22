@@ -72,8 +72,6 @@
                         <div class="box-body">
                          <vue-good-table  theme="nocturnal" :columns="columns" :rows="ranking" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
                                 <template slot="table-row" scope="props"> 
-    <td style=""><img class="custom-img img-responsive img-circle" v-bind:src="getImg(props.row.atleta)" alt="User profile picture"></td>
-
                                        <td>{{props.row.posicion}}</td> 
                                    <td>{{props.row.nombre}}</td> 
 
@@ -116,9 +114,6 @@ import rankingController from "../../controllers/ranking.js";
 import atletaCircuitoController from "../../controllers/AtletaCircuito.js";
 import vSelect from "vue-select";
 import moment from "moment";
-
-//const BASE_URL = process.env.BASE_URL;
-const BASE_URL = "http://192.168.1.96:8080/";
 export default {
   name: "AgregarAtleta",
   data() {
@@ -151,10 +146,6 @@ export default {
     ranking: "loadData"
   },
   methods: {
-      getImg(img) {
-            
-            return BASE_URL+"upload/files/"+img+".png"
-        },
     fetchData() {
       // circuitosController.index(this)
       /*      atletaCircuitoController.indexByCircuito(this,this.id);
@@ -192,15 +183,10 @@ export default {
         }
       });
     },
-
+ 
     loadData() {
       if (this.ranking) {
         this.columns = [];
-            this.columns.push({
-          label: "",
-          field: "",
-   
-        });
         this.columns.push({
           label: "Lugar",
           field: "posicion",
@@ -249,12 +235,3 @@ export default {
   }
 };
 </script>
-<style>
-.active {
-  width: 100%;
-}
-.custom-img{
-    width: 75px;
-    margin:auto;
-}
-</style>
