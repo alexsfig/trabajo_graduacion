@@ -47,30 +47,31 @@
                         </div>
                         <div class="col-md-12">
                             <h3>
-                                Editar Información de Atleta: {{ atleta.personaId.nombre  + " " + atleta.personaId.apellido}}
+                                Editar Información de Atleta: <b>{{ atleta.personaId.nombre  + " " + atleta.personaId.apellido+ " " }}</b>de  <b>{{_calculateAge(atleta.personaId.fechaNacimiento)  + " "}}</b>Años de Edad
                             </h3>
                         </div>
                         <div class="col-md-12">
                             <form-wizard @on-complete="updateUsuario" errorColor="#dd4b39" finishButtonText="Actualizar Atleta" title="" nextButtonText="Siguiente" backButtonText="Regresar" subtitle="" stepSize="lg" color="#367fa9">
                                 <tab-content title="Información del Atleta" icon="fa fa-user" :before-change="first_step">
                                     <form @submit.prevent="first_step('form-2-1')" role="form" data-vv-scope="form-2-1">
+                                        
+                                        <div class="col-xs-12 col-sm-4">
+                                            <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.edadInicio') }">
+                                                <label for="">Edad que inicio</label>
+                                                <input type="number" id="edadInicio" name="edadInicio" data-vv-as="Edad que inicio " class="form-control" v-model="atleta.edadInicio" v-validate="'required|min_value:4|max_value:79'">
+                                                <span class="help-block" for="edadInicio" v-bind:data-error="errors.first('form-2-1.edadInicio')">
+                                                    {{ errors.first('form-2-1.edadInicio') }}
+                                                </span>
+                                            </div>
+                                        </div>
                                         <div class="col-xs-12 col-sm-4">
                                             <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.aniosPracticando') }">
                                                 <label for="">Años practicando</label>
-                                                <input min="0" max="50" type="number" id="aniosPracticando" name="aniosPracticando" data-vv-as="Años practicando " class="form-control" v-model="atleta.aniosPracticando" v-validate="'required'">
+                                                <input  type="number" id="aniosPracticando" name="aniosPracticando" data-vv-as="Años practicando " class="form-control" v-model="atleta.aniosPracticando" v-validate="'required|min_value:0|max_value:79'">
                                                 <span class="help-block" for="aniosPracticando" v-bind:data-error="errors.first('form-2-1.aniosPracticando')">
                                                     {{ errors.first('form-2-1.aniosPracticando') }}
                                                 </span>
 
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-4">
-                                            <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.edadInicio') }">
-                                                <label for="">Edad que inicio</label>
-                                                <input type="number" min="5" max="50" id="edadInicio" name="edadInicio" data-vv-as="Edad que inicio " class="form-control" v-model="atleta.edadInicio" v-validate="'required'">
-                                                <span class="help-block" for="edadInicio" v-bind:data-error="errors.first('form-2-1.edadInicio')">
-                                                    {{ errors.first('form-2-1.edadInicio') }}
-                                                </span>
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-4">
@@ -616,10 +617,20 @@ export default {
         first_step() {
             return new Promise((resolve, reject) => {
                 this.$validator.validateAll('form-2-1').then(success => {
-                    if (success) {
+                   if (success) {
+                        if(this.atleta.aniosPracticando <=  this._calculateAge(this.atleta.personaId.fechaNacimiento) - this.atleta.edadInicio){
                         resolve(true)
+                        this.showAlert = false
+                        this.errMsg = ''
+                    }
+
+                        else {
+                        reject(true)
+                        this.showAlert = true
+                        this.errMsg = "Los Años Practicando no pueden ser superior al intervalo de tiempo entre la Edad de Inicio y la Edad del Atleta"}
                     } else {
                         reject(true)
+                        
                     }
                 });
             })
@@ -786,7 +797,18 @@ export default {
          */
         cropUploadFail(status, field) {
             console.log('-------- upload fail --------');
-        }
+        },
+
+         _calculateAge(birthday) {
+            var today = new Date();
+            var birthDate = new Date(birthday);
+            var age = today.getFullYear() - birthDate.getFullYear();
+            var m = today.getMonth() - birthDate.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            return age;
+       }
 
 
     }
