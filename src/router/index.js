@@ -43,7 +43,7 @@ import CategoriasShow from '@/components/categorias/Show'
 import CategoriasIndex from '@/components/categorias/Index'
 
 import Ranking from '@/components/ranking/Ranking'
-
+import RankingJuez from '@/components/ranking/RankingJuez'
 // Import base templates
 import AdminTemplate from '@/layouts/Admin'
 import JuezTemplate from '@/layouts/Juez'
@@ -702,10 +702,14 @@ meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         {
           path: 'ranking',
           name: 'RankingJuez',
-          component: Ranking,
+          component: RankingJuez,
           meta: { requiresAuth: true  ,adminAuth:false, juezAuth : true}
-        },
-
+        },  {
+          path: 'atletas/:id',
+          name: 'AtletasShowJuez',
+          component: AtletasShow,
+          meta: { requiresAuth: true  ,adminAuth:false , juezAuth : true}
+        }
       
      
       
