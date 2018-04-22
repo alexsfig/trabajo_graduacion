@@ -6,8 +6,12 @@
                              <div @click="volver()" class="btn btn-flat btn-sm btn-warning margin">
                                     <i class="fa fa-arrow-circle-left" ></i> Regresar
                                 </div>
+<<<<<<< HEAD
          
                                
+=======
+                                         
+>>>>>>> 2444c94633a63be380b114c04a1607c1aef53314
             </div>
             <div class="col-md-8 col-md-offset-2">
                 <div class="box box-primary">
@@ -77,6 +81,11 @@
                         <strong><i class="fa fa-file-text-o margin-r-5"></i> Nivel Academico</strong>
 
                         <p>{{ atleta.nivelAcademico }}</p>
+                         <hr>
+
+                          <strong><i class="fa fa-file-text-o margin-r-5"></i> Ultimo AÑo Cursado</strong>
+
+                        <p>{{ atleta.uanioCursado }}</p>
                          <hr>
 
                         <strong><i class="fa fa-file-text-o margin-r-5"></i> Otros Estudios</strong>

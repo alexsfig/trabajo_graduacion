@@ -123,7 +123,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <div class="clearfix"></div>
+                                        <!--<div class="clearfix"></div>
                                         <div class="col-xs-12 col-sm-4">
                                             <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.nivelAcademico') }">
                                                 <label for="">Nivel Academico</label>
@@ -132,7 +132,21 @@
                                                     {{ errors.first('form-2-1.nivelAcademico') }}
                                                 </span>
                                             </div>
+                                        </div> -->
+                                         <div class="clearfix"></div>
+                                         <div class="col-xs-12 col-sm-4">
+                                            <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.nivelAcademico') }">
+                                                <label for="">Nivel Academico</label>
+                                                <v-select :debounce="250" :options="niveles" v-model="atleta.nivelAcademico" placeholder="Seleccione un Nivel Academico" label="name">
+                                                </v-select>
+                                                <div class="clearfix"></div>
+                                                <input type="hidden" name="nivelAcademico" value="" data-vv-as="Nivel Academico " v-model="atleta.nivelAcademico"  v-validate="'required'">
+                                                <span class="help-block" for="nivelAcademico" v-bind:data-error="errors.first('form-2-1.nivelAcademico')">
+                                                    {{ errors.first('form-2-1.nivelAcademico') }}
+                                                </span>
+                                            </div>
                                         </div>
+                                        <!--
                                         <div class="col-xs-12 col-sm-4">
                                             <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.uanioCursado') }">
                                                 <label for="">Ultimo Año cursado</label>
@@ -141,7 +155,21 @@
                                                     {{ errors.first('form-2-1.uanioCursado') }}
                                                 </span>
                                             </div>
-                                        </div>
+                                        </div> -->
+
+
+                                             <div class="col-xs-12 col-sm-4">
+                                                <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.uanioCursado') }">
+                                                    <label for="">Ultimo Año cursado</label>
+                                                    <v-select :debounce="250" :options="ucursado" v-model="atleta.uanioCursado" placeholder="Seleccione ultimo Año Cursado" label="name">
+                                                </v-select>
+                                                <div class="clearfix"></div>
+                                                    <input type="hidden" name="uanioCursado" value="" data-vv-as="Ultimo Año cursado " v-model="atleta.uanioCursado" v-validate="'required'">
+                                                    <span class="help-block" for="uanioCursado" v-bind:data-error="errors.first('form-2-1.uanioCursado')">
+                                                              {{ errors.first('form-2-1.uanioCursado') }}
+                                                          </span>
+                                                </div>
+                                            </div>
 
                                         <div class="col-xs-12 col-sm-4">
                                             <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.otrosEstudios') }">
@@ -415,6 +443,51 @@ export default {
                 },
 
             ],
+
+            niveles: [{
+                    name: 'Nivel Inicial'
+                }, {
+                    name: 'Nivel Parvulario'
+                }, {
+                    name: 'Nivel Basico'
+                }, {
+                    name: 'Nivel Medio'
+                }, {
+                    name: 'Nivel Superior'
+                }
+                
+
+            ],
+             ucursado: [{
+                    name: 'Nivel Inicial'
+                }, {
+                    name: 'Nivel Parvulario'
+                }, {
+                    name: 'Nivel Basico-1er Ciclo'
+                }, 
+                {
+                    name: 'Nivel Basico-2do Ciclo'
+                },
+                {
+                    name: 'Nivel Basico-3er Ciclo'
+                },
+                {
+                    name: 'Nivel Medio - 1er año de Bachillerado'
+                },
+                {
+                    name: 'Nivel Medio - 2do año de Bachillerado'
+                },
+                {
+                    name: 'Nivel Medio - 3er año de Bachillerado(Opcional)'
+                },
+                 {
+                    name: 'Nivel Superior - No Finalizado'
+                },
+                {
+                    name: 'Nivel Superior - Finalizado'
+                }
+
+            ],
             type: {
                 name: 'Atleta'
             },
@@ -633,7 +706,7 @@ export default {
             this.showSuccess = false
             this.$validator.validateAll().then(success => {
                 if (success) {
-                    let ladoPie, playaPractica, idiomas = '',
+                    let ladoPie, playaPractica, nivelAcademico, uanioCursado, idiomas = '',
                         olaPreferida, idiomasArr = [];
                     for (var i = this.atleta.idiomas.length - 1; i >= 0; i--) {
                         idiomasArr.push(this.atleta.idiomas[i].name)
@@ -646,6 +719,8 @@ export default {
                         ladoPie = "Derecha"
                     }
                     olaPreferida = this.atleta.olaPreferida.name
+                    nivelAcademico= this.atleta.nivelAcademico.name?this.atleta.nivelAcademico.name:this.atleta.nivelAcademico
+                    uanioCursado= this.atleta.uanioCursado.name?this.atleta.uanioCursado.name:this.atleta.uanioCursado
                     playaPractica = this.atleta.playaPractica.nombre
                     if (this.atleta.ladoPie == true) {
                         ladoPie = 'Izquierda'
@@ -666,7 +741,7 @@ export default {
                         "idiomas": idiomas == undefined ? '' : idiomas,
                         "ladoPie": ladoPie == undefined ? '' : ladoPie,
                         "logros": this.atleta.logros == undefined ? '' : this.atleta.logros,
-                        "nivelAcademico": this.atleta.nivelAcademico == undefined ? '' : this.atleta.nivelAcademico,
+                        "nivelAcademico": nivelAcademico == undefined ? '' : nivelAcademico,
                         "olaPreferida": olaPreferida == undefined ? '' : olaPreferida,
                         "otrosEstudios": this.atleta.otrosEstudios == undefined ? '' : this.atleta.otrosEstudios,
                       //  "personaId": this.atleta.personaId,
@@ -676,7 +751,7 @@ export default {
                         "sabeFirmar": this.atleta.sabeFirmar == false ? 0 : 1,
                         "sabeLeer": this.atleta.sabeLeer == false ? 0 : 1,
                         "tieneLesion": this.atleta.tieneLesion == false ? 0 : 1,
-                        "uanioCursado": this.atleta.uanioCursado == undefined ? '' : this.atleta.uanioCursado,
+                        "uanioCursado": uanioCursado == undefined ? '' : uanioCursado,
                         "ultimaParticipacion": this.atleta.ultimaParticipacion == undefined ? '' : this.atleta.ultimaParticipacion
                     }
 
