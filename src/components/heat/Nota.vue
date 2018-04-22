@@ -56,126 +56,107 @@
 </template>
 
 <script>
-
-import moment from 'moment'
-import vSelect from "vue-select"
+import moment from "moment";
+import vSelect from "vue-select";
 import puntuacionController from "../../controllers/puntuacion.js";
 export default {
-    name: 'AgregarNota',
-    props: [
+  name: "AgregarNota",
+  props: [
+    "title",
 
-        "title",
+    "buttonMsg",
+    "openModal",
+    "atletaHeat",
+    "juezHeat",
+    "idjuez",
+    "nota",
+    "idnota"
+  ],
+  computed: {},
+  created() {
+    this.retrieveRoles();
+  },
+  data() {
+    return {
+      openValue: "",
+      errMsg: "",
+      successMsg: "",
+      success: false,
+      isLogin: false,
+      show: false,
+      showAlert: false,
+      showSuccess: false,
+      updateEntrenador: {
+        personaId: " "
+      },
+      openModalInside: false,
+      roles: [],
+      rol_edit: null,
 
-        "buttonMsg",
-        "openModal",
-        "atletaHeat",
-        "juezHeat",
-        "idjuez",
-        "nota",
-        "idnota"
-
-    ],
-    computed: {
-
-    },
-    created() {
-            
-        this.retrieveRoles()
-    },
-    data() {
-        return {
-            openValue: "",
-            errMsg: '',
-            successMsg: '',
-            success: false,
-            isLogin: false,
-            show: false,
-            showAlert: false,
-            showSuccess: false,
-            updateEntrenador: {
-                personaId: ' '
-            },
-            openModalInside: false,
-            roles: [],
-            rol_edit: null,
-            
-         
-            title2:'',
-
-        }
-    },
-    components: {
-        vSelect
-    },
-    watch: {
-        atletaHeat:function(newd, old) {
-          
-                 this.errors.clear()
-           this.showAlert = false
-                this.showSuccess = false
-         console.log("Entresss")
-                this.openModalInside = true
-               
-        }
-    },
-    methods: {
-        showCallback() {},
-            dismissCallback(msg) {
-                this.showSuccess = false
-                this.showAlert = false
-                this.openModalInside = false
-                this.$emit('openChange', false);
-            },
-            retrieveRoles() {
-             //   roles.index(this)
-            },
-            retrieveData() {
-             //   persona.retrieve(this, this.id)
-            },
-            validateMethod() {
-      
-             
-                    this.updateUsuario();
-           
-            },
-            updateUsuario() {
-                this.showAlert = false
-                this.showSuccess = false
-                this.$validator.validateAll().then(success => {
-                    if (success) {
-                        if(!this.idnota){
-                        let puntuacion={
-                          atletasHeatId:{id:this.atletaHeat.id},
-                          juecesHeatId:{id:this.idjuez},
-                          nota:this.nota
-  
-                        }
-                       puntuacionController.create(this,puntuacion)
-                       this.openModalInside=false
-                       //  this.nota='';
-                        console.log("Entre al modal morro")}
-                        else{
-
-let puntuacion={
-    id:this.idnota,
-                          atletasHeatId:{id:this.atletaHeat.id},
-                          juecesHeatId:{id:this.idjuez},
-                          nota:this.nota,
-                          numeroOla:this.numeroOla
-  
-                        }
-                       puntuacionController.update(this,puntuacion)
-                       this.openModalInside=false
-
-                        }
-                    } else {
-                        this.errMsg = 'Error revisa el formulario'
-                        this.showAlert = true
-                    }
-                })
-
-            }
+      title2: ""
+    };
+  },
+  components: {
+    vSelect
+  },
+  watch: {
+    atletaHeat: function(newd, old) {
+      this.errors.clear();
+      this.showAlert = false;
+      this.showSuccess = false;
+      console.log("Entresss");
+      this.openModalInside = true;
     }
-}
-
+  },
+  methods: {
+    showCallback() {},
+    dismissCallback(msg) {
+      this.showSuccess = false;
+      this.showAlert = false;
+      this.openModalInside = false;
+      this.$emit("openChange", false);
+    },
+    retrieveRoles() {
+      //   roles.index(this)
+    },
+    retrieveData() {
+      //   persona.retrieve(this, this.id)
+    },
+    validateMethod() {
+      this.updateUsuario();
+    },
+    updateUsuario() {
+      this.showAlert = false;
+      this.showSuccess = false;
+      this.$validator.validateAll().then(success => {
+        if (success) {
+          if (!this.idnota) {
+            let puntuacion = {
+              atletasHeatId: { id: this.atletaHeat.id },
+              juecesHeatId: { id: this.idjuez },
+              nota: this.nota
+            };
+            puntuacionController.create(this, puntuacion);
+            this.openModalInside = false;
+            //  this.nota='';
+            console.log("Entre al modal morro");
+          } else {
+            let puntuacion = {
+              id: this.idnota,
+              atletasHeatId: { id: this.atletaHeat.id },
+              juecesHeatId: { id: this.idjuez },
+              nota: this.nota,
+              numeroOla: this.numeroOla
+            };
+            puntuacionController.update(this, puntuacion);
+            this.openModalInside = false;
+          }
+        } else {
+          this.errMsg = "Error revisa el formulario";
+          this.showAlert = true;
+        }
+      });
+    }
+  }
+};
 </script>

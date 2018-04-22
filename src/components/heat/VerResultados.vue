@@ -185,16 +185,16 @@ export default {
       methodSubmit: "editar",
       openModal: false,
       circuito: {},
-      verTodo:false,
+      verTodo: false,
       juezLider: null,
       heat: { rondaId: {} },
       juezCircuitos: [],
       id: "",
       atletasHeat: [],
       atletaHeat: {},
-       resumen: [],
-      juecesHeat:[],
-       juecesHeat2:[],
+      resumen: [],
+      juecesHeat: [],
+      juecesHeat2: [],
       juezHeat: { id: 1 },
       ronda: "",
       columns: [
@@ -202,7 +202,7 @@ export default {
           label: "Color",
           field: "color"
         },
-        
+
         {
           label: "Ola 1",
           field: "o1"
@@ -250,7 +250,8 @@ export default {
         {
           label: "Color",
           field: "color"
-        },  {
+        },
+        {
           label: "Nombre",
           field: "o1"
         },
@@ -296,7 +297,7 @@ export default {
           label: "Ola 10",
           field: "o10"
         },
-           {
+        {
           label: "Promedio",
           field: "o10"
         }
@@ -304,17 +305,16 @@ export default {
     };
   },
   components: {
-     "modalNota": ModalNota
+    modalNota: ModalNota
   },
   created() {
     this.fetchData();
   },
   watch: {
     heat: function(val) {
-
       juezCircuitoController.indexByCircuito(this, val.rondaId.circuitoId.id);
-    },
-      /*juecesHeat: function(val) {
+    }
+    /*juecesHeat: function(val) {
   
   /*console.log("TYYYYYRERERERYEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
         console.log("Tamaño maximo "+this.juecesHeat.length)
@@ -352,38 +352,43 @@ this.juecesHeat[0].puntuacionList.array.forEach(element => {
 
       juecesHeatController.byHeat(this, this.id);
       heatsController.retrieve(this, this.id);
-  heatsController.byResumen(this, this.id);
+      heatsController.byResumen(this, this.id);
       //   a.retrieve(this,this.id);
     },
- showCallback () {
-                this.showAlert = false
-                this.showSuccess = false
-            },
-            dismissCallback (msg) {
-                this.openModal =false
-             
-                this.fetchData()
-            },
-            calcularNota(a,r){
-let total=0;
+    showCallback() {
+      this.showAlert = false;
+      this.showSuccess = false;
+    },
+    dismissCallback(msg) {
+      this.openModal = false;
 
-a.forEach(f=>{
+      this.fetchData();
+    },
+    calcularNota(a, r) {
+      let total = 0;
 
-total=total+f;
-
-})
-console.log("total:"+total+ "  :"+Math.max.apply(null,a)+"  :"+Math.min.apply(null,a))
-if(r.total)
-r.total+=total;
-else
-r.total=total;
-return  (total-Math.max.apply(null,a)-Math.min.apply(null,a))/(a.length-2)
-            },
+      a.forEach(f => {
+        total = total + f;
+      });
+      console.log(
+        "total:" +
+          total +
+          "  :" +
+          Math.max.apply(null, a) +
+          "  :" +
+          Math.min.apply(null, a)
+      );
+      if (r.total) r.total += total;
+      else r.total = total;
+      return (
+        (total - Math.max.apply(null, a) - Math.min.apply(null, a)) /
+        (a.length - 2)
+      );
+    },
     finalizar() {
-
-      heatsController.finalizar(this,this.id)
-     // if(this.resumen[0])
-   /*   if(this.resumen[0].tfinal.nota){
+      heatsController.finalizar(this, this.id);
+      // if(this.resumen[0])
+      /*   if(this.resumen[0].tfinal.nota){
             console.log("pujjktasss" +this.resumen[0].tfinal.nota);
       }
   else{
@@ -429,14 +434,10 @@ this.errMsg="El heat aun no tiene calificaciones "
       );
     },
 
-    volver(){
-                console.log("entre")
- window.history.length > 1
-        ? this.$router.go(-1)
-        : this.$router.push('/')
-    
-
-            }
+    volver() {
+      console.log("entre");
+      window.history.length > 1 ? this.$router.go(-1) : this.$router.push("/");
+    }
   }
 };
 </script>

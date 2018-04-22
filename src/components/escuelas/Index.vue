@@ -49,7 +49,7 @@
 <td>{{ props.row.playaId.nombre }}</td>
 <td>{{ props.row.entrenadorId.nombre }}</td>  
 <td>{{ props.row.direccion }}</td>
-
+<td>{{ props.row.atletas }}</td>
                                   <td class="nowrap">
  <router-link :to="{ name: 'escuelasEdit', params: { id: props.row.id }}">
                                         <button type="button" class="margin btn btn-flat btn-sm btn-primary"
@@ -120,7 +120,11 @@
                     },  {
                         label: "Direccion",
                         field: "direccion",
-                    }, {
+                    }, 
+                    {
+                        label: "Atletas",
+                        field: "atletas",
+                    },{
                         label: "Acciones",
                         field: "",
                     }]
