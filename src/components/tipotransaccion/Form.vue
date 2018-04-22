@@ -1,14 +1,14 @@
 <template>
     <div>
         <section class="content-header">
-            <h1>Tipo de Transaccion</h1>
+            <h1>Tipo de Transacción</h1>
             <ol class="breadcrumb">
 
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li>
-                    <router-link to="/admin/tipoTransaccions">Tipos de Transaccion</router-link>
+                    <router-link to="/admin/tipoTransaccions">Tipos de Transacción</router-link>
                 </li>
-                <li class="active">Formulario Tipo de Transaccion</li>
+                <li class="active">Formulario Tipo de Transacción</li>
             </ol>
         </section>
         <section class="content">
@@ -26,8 +26,8 @@
                     </div>
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title" v-if="!id">Agregar  Tipo de Transaccion</h3>
-                            <h3 class="box-title" v-if="id">Editar Tipo de Transaccion</h3>
+                            <h3 class="box-title" v-if="!id">Agregar  Tipo de Transacción</h3>
+                            <h3 class="box-title" v-if="id">Editar Tipo de Transacción</h3>
                         </div>
 
                         <div class="box-body">
@@ -72,7 +72,7 @@
                                     <div class="clearfix"></div>
                                     <div class="col-xs-12 col-sm-12">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('descripcion') }">
-                                            <label for="">Descripcion</label>
+                                            <label for="">Descripción</label>
                                             <textarea rows="4" cols="50" id="descripcion" name="descripcion" data-vv-as="descripcion" class="form-control" v-model="tipoTransaccion.descripcion" v-validate="'required'"> </textarea>
                                             <!-- <input type="text" id="descripcion" name="descripcion" data-vv-as="descripcion" class="form-control" v-model="tipoTransaccion.descripcion" v-validate="'required'"> -->
                                             <span class="help-block" for="descripcion" v-bind:data-error="errors.first('descripcion')">
@@ -97,7 +97,7 @@
                          <div class="box-body">
                               
                              <div @click="volver()" class="btn btn-flat btn-sm btn-warning margin">
-                                    <i class="fa fa-arrow-circle-left" ></i> Regresar a Tipos de Transaccion
+                                    <i class="fa fa-arrow-circle-left" ></i> Regresar a Tipos de Transacción
                                 </div>
 
                                 </div> 

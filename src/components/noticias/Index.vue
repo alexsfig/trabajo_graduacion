@@ -28,7 +28,7 @@
                             <div class="table-responsive">
                               
                                 <vue-good-table
-                                  title="Listado"
+                                  title=""
                                   :columns="columns"
                                   :rows="noticias"
                                   :globalSearch="true"

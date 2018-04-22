@@ -87,7 +87,7 @@
                         label: "Nombre Cuenta",
                         field: "nombre",
                     }, {
-                        label: "Descripcion Cuenta",
+                        label: "Descripción Cuenta",
                         field: "descripcion",
                     }, {
                         label: "Monto Actual ($)",

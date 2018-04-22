@@ -29,12 +29,13 @@
                     </div>
                   
                    
-
+                    <h4 class="box-title" ><b>Calendario de Actividades</b></h4>
             
                    <div class="box">
-                        
+                         
 
                         <div class="box-body">
+                            
 
                         <div class="col-xs-12">
 

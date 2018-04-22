@@ -44,7 +44,7 @@
                                     </div>
  <div class="col-xs-6 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('fundacion') }" >
-                                            <label for="">Fundacion</label>
+                                            <label for="">Fundación</label>
                                             <dropdown class="form-group">
                                                 <div class="input-group">
                                                     <input placeholder="AAAA-MM-DD" type="text" id="fundacion" name="fundacion" class="form-control" data-vv-as="fecha de fundacion" v-model="escuela.fundacion" v-validate="'required|date_format:YYYY-MM-DD'" :class="{'datepicker':true,  'has-error': errors.has('fundacion') }">
@@ -151,7 +151,7 @@
 
   <div class="col-xs-12 col-sm-12">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('direccion') }" >
-                                            <label for="">Direccion</label>
+                                            <label for="">Dirección</label>
                                             <textarea id="direccion" name="direccion" data-vv-as="Direccion" class="form-control" v-model="escuela.direccion" v-validate="'required'" rows="3"></textarea>
                                                 {{ errors.first('club.direccion') }}
                                             <span class="help-block" for="direccion" v-bind:data-error="errors.first('direccion')"> 

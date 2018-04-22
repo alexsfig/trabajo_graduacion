@@ -41,7 +41,7 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('descripcion') }">
-                                            <label for="">Descripcion</label>
+                                            <label for="">Descripción</label>
                                             <!-- <input type="text" id="descripcion" name="descripcion" data-vv-as="descripcion" class="form-control" v-model="formaPago.descripcion" v-validate="'required'"> -->
 
                                             <textarea rows="4" id="descripcion" name="descripcion" data-vv-as="descripcion" class="form-control" v-model="formaPago.descripcion" v-validate="'required'"> </textarea>

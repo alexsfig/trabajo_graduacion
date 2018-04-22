@@ -110,7 +110,7 @@
                       filterable: true,
                     },
                     {
-                      label: 'Direccion',
+                      label: 'Dirección',
                       field: 'direccion',
                       filterable: true,
                     },
@@ -130,13 +130,13 @@
                       filterable: true,
                     },
                     {
-                      label: 'Descripcion del Juez',
+                      label: 'Descripción del Juez',
                       field: 'descripcion',
                       filterable: true,
                     },
                     
                      {
-                      label: 'Accion',
+                      label: 'Acción',
                       field: '',
                       filterable: true,
                     }

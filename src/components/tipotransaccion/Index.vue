@@ -1,11 +1,11 @@
 <template>
     <div>
         <section class="content-header">
-            <h1>Tipos de Transaccion</h1>
+            <h1>Tipos de Transacción</h1>
 
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li>Manejo de Tipos de Transaccion </li>
+                <li>Manejo de Tipos de Transacción </li>
             </ol>
         </section>
         <section class="content" >
@@ -29,13 +29,13 @@
                 <div class="col-lg-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Manejo de Tipos de Transaccion </h3>
+                            <h3 class="box-title">Manejo de Tipos de Transacción </h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
       <div class="box-action">
                                 <router-link to="/admin/tipoTransaccions/form" class="btn btn-default btn-flat">
-                                    <i class="fa fa-plus"></i> Nuevo Tipo de Transaccion
+                                    <i class="fa fa-plus"></i> Nuevo Tipo de Transacción
                                 </router-link>
                             </div>
                             </div>
@@ -85,7 +85,7 @@
                         label: "Nombre",
                         field: "nombre",
                     }, {
-                        label: "Descripcion",
+                        label: "Descripción",
                         field: "descripcion",
                     }, {
                         label: "Concepto",
@@ -108,7 +108,7 @@
                 let swal = this.$swal;
                 this.$swal({
                     title: 'Estas Seguro?',
-                    html: 'No podras recuperar la informacion de Tipo Transaccion <b>&laquo;' + nombre + '&raquo</b><br>y toda la informacion en relacion al mismo ya no sera accesible',
+                    html: 'No podras recuperar la información de Tipo Transacción <b>&laquo;' + nombre + '&raquo</b><br>y toda la informacion en relacion al mismo ya no sera accesible',
                     type: 'error',
                     showCancelButton: true,
                     confirmButtonText: 'Si, Eliminar!',
@@ -119,7 +119,7 @@
                     if (dismiss === 'cancel') {
                         swal(
                           'Cancelado',
-                          'La tipoTransaccion no se elimino',
+                          'El  Tipo de Transacción no se elimino',
                           'error'
                         )
                     }

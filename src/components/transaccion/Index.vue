@@ -35,7 +35,7 @@
                         <div class="box-body">
       <div class="box-action">
                                 <router-link to="/admin/transaccions/form" class="btn btn-default btn-flat">
-                                    <i class="fa fa-plus"></i> Registrar Nueva Transaccion
+                                    <i class="fa fa-plus"></i> Registrar Nueva Transacción
                                 </router-link>
                             </div>
                             </div>
@@ -104,7 +104,7 @@
                     }, 
                     
                     {
-                        label: "Tipo de Transaccion",
+                        label: "Tipo de Transacción",
                         field: "tipoTransaccion.nombre",
                          filterable: true,
                     },
@@ -156,7 +156,7 @@
                 let swal = this.$swal;
                 this.$swal({
                     title: 'Estas Seguro?',
-                    html: 'No podras recuperar la informacion de la transaccion <b>&laquo;' + nombre + '&raquo</b><br>y toda la informacion relacion al mismo ya no sera accesible',
+                    html: 'No podras recuperar la información de la transaccion <b>&laquo;' + nombre + '&raquo</b><br>y toda la información relacion al mismo ya no sera accesible',
                     type: 'error',
                     showCancelButton: true,
                     confirmButtonText: 'Si, Eliminar!',

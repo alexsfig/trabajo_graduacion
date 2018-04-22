@@ -49,7 +49,7 @@
 
                                     <div class="col-xs-12 col-sm-12">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('form-3.descripcion') }">
-                                            <label for="">Descripcion del juez</label>
+                                            <label for="">Descripción del juez</label>
                                             <textarea v-model="juez.descripcion" class="form-control" name="descripcion" rows="2" data-vv-as="Descripcion del juez" v-validate="'required'" disabled>
 
                                             </textarea>
@@ -81,7 +81,7 @@
                                                 
                                          <div class="col-xs-12">
                                          <div class="fgroup"  :class="{ 'has-error': errors.has('form-4.fecha') }">
-                                            <label for="">Fecha Expedicion</label>
+                                            <label for="">Fecha Expedición</label>
                                             <dropdown class="form-group">
                                                 <div class="input-group">
                                                     <input placeholder="AAAA-MM-DD" type="text" id="fecha" name="fecha" class="form-control" data-vv-as="Fecha de Expedicion" v-model="newCert.fecha" v-validate="'required|date_format:YYYY-MM-DD'" :class="{'datepicker':true,  'has-error': errors.has('fecha') }">
@@ -111,7 +111,7 @@
                                                 <div class="clearfix"></div>
                                                 <div class="col-xs-12">
                                                     <div class="fgroup" :class="{ 'has-error': errors.has('form-4.lugar') }">
-                                                        <label for="">Lugar Expedicion</label>
+                                                        <label for="">Lugar Expedición</label>
                                                         <input v-model="newCert.lugar" name="lugar" type="text" class="form-control" data-vv-as="Lugar de Expedicion" v-validate="'required'">
                                                         <span class="help-block" for="descripcion" v-bind:data-error="errors.first('form-4.descripcion')">
                                                                 {{ errors.first('form-4.lugar') }}
@@ -119,7 +119,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-12 text-right">
-                                                    <button type="submit" class="btn btn-flat btn-sm btn-primary">Agregar Certificacion </button>
+                                                    <button type="submit" class="btn btn-flat btn-sm btn-primary">Agregar Certificación </button>
                                                 </div>
                                             </div>
                                             <div class="col-xs-7">
@@ -198,13 +198,13 @@ export default {
                 label: "Titulo Obtenido",
                 field: "titulo",
             }, {
-                label: "Fecha Expedicion",
+                label: "Fecha Expedición",
                 field: "fecha",
             }, {
-                label: "Lugar Expedicion",
+                label: "Lugar Expedición",
                 field: "lugar",
             }, {
-                label: "Accion"
+                label: "Acción"
             }]
     };
   },

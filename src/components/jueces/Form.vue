@@ -56,7 +56,7 @@
 
                                          <div class="col-xs-12 col-sm-4">
                                          <div class="fgroup"  :class="{ 'has-error': errors.has('fecha') }">
-                                            <label for="">Fecha Expedicion</label>
+                                            <label for="">Fecha Expedición</label>
                                             <dropdown class="form-group">
                                                 <div class="input-group">
                                                     <input placeholder="AAAA-MM-DD" type="text" id="fecha" name="fecha" class="form-control" data-vv-as="Fecha de Expedicion" v-model="Certificacion.fecha" v-validate="'required|date_format:YYYY-MM-DD'" :class="{'datepicker':true,  'has-error': errors.has('fecha') }">
@@ -83,7 +83,7 @@
 
                                      <div class="col-xs-12 col-sm-4">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('lugar') }">
-                                            <label for="">Lugar Expedicion</label>
+                                            <label for="">Lugar Expedición</label>
                                             <input type="text" id="lugar" name="lugar" data-vv-as="Lugar" class="form-control" v-model="Certificacion.lugar" v-validate="'required'">
                                             <span class="help-block" for="nombre" v-bind:data-error="errors.first('lugar')">
                                                 {{ errors.first('lugar') }}

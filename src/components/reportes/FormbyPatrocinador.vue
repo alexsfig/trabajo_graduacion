@@ -366,7 +366,7 @@ export default {
           filterable: true
         },
         {
-          label: "Tipo de Transaccion",
+          label: "Tipo de Transacción",
           field: "tipoTransaccionId.nombre",
           filterable: true
         },
@@ -396,7 +396,7 @@ export default {
           filterable: true
         },
         {
-          label: "Descripcion",
+          label: "Descripción",
           field: "descripcion",
           filterable: true
         }

@@ -97,7 +97,7 @@
                         label: "Nombre",
                         field: "nombre",
                     }, {
-                        label: "Fundacion",
+                        label: "Fundación",
                         field: "fundacion",
                     }, {
                         label: "Correo Electronico",
@@ -118,7 +118,7 @@
                         label: "Entrenador",
                         field: "entrenador",
                     },  {
-                        label: "Direccion",
+                        label: "Dirección",
                         field: "direccion",
                     }, 
                     {

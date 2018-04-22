@@ -53,6 +53,11 @@
 		                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i> <span>Heats Asignados</span>
 		                    </router-link>
 		                </li>
+		                 <li>
+		                    <router-link to="/juez/ranking">
+		                        <i class="fa fa-list-ol" aria-hidden="true"></i> <span>Ranking</span>
+		                    </router-link>
+		                 </li> 
 		            </ul>
 		        </li>
 
