@@ -39,7 +39,7 @@
                         <div class="col-xs-12">
 
    <div id="calendario">
-    <full-calendar :config="config" :events="events"/>
+    <full-calendar :config="config" :events="events" eventClick="eventClick" />
   </div>
 
   </div>
@@ -54,93 +54,105 @@
     </div>
 </template>
 <script>
-    import circuitosController from '../../controllers/circuitos.js';
-    import fechasController from '../../controllers/fechas.js';
-    import vSelect from "vue-select"
-    import moment from "moment"
-    import { FullCalendar } from 'vue-full-calendar'
+import circuitosController from "../../controllers/circuitos.js";
+import fechasController from "../../controllers/fechas.js";
+import vSelect from "vue-select";
+import moment from "moment";
+import { FullCalendar } from "vue-full-calendar";
+import { Common } from "../../common_class/http";
+//const BASE_URL = process.env.BASE_URL;
 
-    export default {
-        name: 'Calendario',
-       
-        data() {
-            return {
-                fechas: [],
-                circuitos: [],
-                showAlert: false,
-                showSuccess: false,
-                methodSubmit: 'editar',
-                openModal: false ,
+const BASE_URL = "http://localhost:8081/";
 
+export default {
+  name: "Calendario",
 
+  data() {
+    return {
+      fechas: [],
+      circuitos: [],
+      showAlert: false,
+      showSuccess: false,
+      methodSubmit: "editar",
+      openModal: false,
 
-                events: [
-             
-            ],
-            config: {
-        defaultView: 'month',
-                eventRender: function(event, element) {
-            console.log(event)
-            }
+      events: [],
+      config: {
+        defaultView: "month",
+        eventRender: function(event, element) {
+          console.log(event);
+        }
       }
-
-            }
-        },
-
-        components : {
- 
-    FullCalendar
-  
+    };
   },
 
-        created(){
-            this.fetchData()
-        },
-         watch:{
+  components: {
+    FullCalendar
+  },
 
-           "fechas":"mounted"
-        },
-        methods:{
-           
-            fetchData(){
-                   console.log("entssre") 
-                fechasController.index(this)
-                circuitosController.index(this)
-            },
-            mounted()
-            {
+  created() {
+    this.fetchData();
+  },
+  watch: {
+    fechas: "mounted"
+  },
+  methods: {
+    fetchData() {
+      console.log("entssre");
+      fechasController.index(this);
+      circuitosController.index(this);
+    },
+      eventClick(event) {
+      console.log(event);
 
-              console.log("entrell") 
-          
-            this.fechas.forEach(element => {
-                    console.log(element.fecha)
-    
-                  console.log("entre"+"*",element.fecha.substring(0,4),element.fecha.substring(5,7),element.fecha.substring(8,10))
-                  this.events.push(
-                            {
+ 
+    },
+    mounted() {
+      console.log("entrell");
 
-                            title:element.nombre,
-                            start: moment(new Date(element.fecha.substring(0,4),element.fecha.substring(5,7),element.fecha.substring(8,10))),
-                    end: moment(new Date(element.fecha.substring(0,4),element.fecha.substring(5,7),element.fecha.substring(8,10))).add(1, 'd')
-                           // description: 'Competencia ',
-                           , color: 'red',
-                            // date:new Date(element.fecha.substring(0,4),element.fecha.substring(5,7),element.fecha.substring(8,10))});
-            });
+      this.fechas.forEach(element => {
+        console.log(element.fecha);
 
-
-            });
-            }
+        console.log(
+          "entre" + "*",
+          element.fecha.substring(0, 4),
+          element.fecha.substring(5, 7),
+          element.fecha.substring(8, 10)
+        );
+        this.events.push({
+          title: element.nombre,
+          start: moment(
+            new Date(
+              element.fecha.substring(0, 4),
+              element.fecha.substring(5, 7),
+              element.fecha.substring(8, 10)
+            )
+          ),
+          end: moment(
+            new Date(
+              element.fecha.substring(0, 4),
+              element.fecha.substring(5, 7),
+              element.fecha.substring(8, 10)
+            )
+          ).add(1, "d"),
+          // description: 'Competencia ',
+          color: "red",
+          url:BASE_URL+"admin/fechas/form/"+element.id
+          // date:new Date(element.fecha.substring(0,4),element.fecha.substring(5,7),element.fecha.substring(8,10))});
+        });
+      });
     }
-    }
+  }
+};
 </script>
 
 <style>
-    #calendario {
-        font-family: 'Avenir', Helvetica, Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-align: center;
-        color: #2c3e50;
-        margin-top: 60px;
-    }
+#calendario {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
 </style>

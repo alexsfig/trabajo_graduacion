@@ -76,7 +76,8 @@
 import atletasController from '../../controllers/atletas.js'
 import ModalEntrenadores from './subcomponents/ModalEntrenadores'
 
-
+//const BASE_URL = process.env.BASE_URL;
+const BASE_URL = "http://192.168.1.96:8080/";
 export default {
     name: 'atletas',
     data() {
@@ -166,7 +167,7 @@ export default {
     methods: {
         getImg(img) {
             
-            return "http://localhost:8080/upload/files/"+img+".png"
+            return BASE_URL+"upload/files/"+img+".png"
         },
         clickHandler(id, atleta, nombre) {
             let swal = this.$swal

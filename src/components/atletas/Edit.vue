@@ -483,9 +483,9 @@ export default {
         atleta: function(val, oldVal) {
             //this.atleta = this.$route.params.atleta
             //this.atleta = this.atleta
-            let img = this.atleta.rutaFoto
+            let img = this.atleta.id
             let imgAsset = null
-            if(process.env.NODE_ENV == "development"){
+            if(process.env.NODE_ENV == "develsssopment"){
                 try{
                  imgAsset = require('@/assets/images/fotos/'+ this.atleta.id+"/avatar.png")
                 }
@@ -494,7 +494,7 @@ export default {
                 }
             }
             else{
-                imgAsset = process.env.BASE_ROUTE + '/static/img/src/assets/images/'+ img
+                imgAsset ="C:\\Users\\grimaldi\\Documents\\images\\"+ this.atleta.id+".pgn"
 
             }
             this.avatar =  imgAsset
@@ -672,6 +672,7 @@ export default {
                         "uanioCursado": this.atleta.uanioCursado == undefined ? '' : this.atleta.uanioCursado,
                         "ultimaParticipacion": this.atleta.ultimaParticipacion == undefined ? '' : this.atleta.ultimaParticipacion
                     }
+
      persona.atleta=atleta;
      atletasController.update(this, persona)
                 } else {

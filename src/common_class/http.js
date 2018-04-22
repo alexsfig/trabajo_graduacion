@@ -37,6 +37,7 @@ export const HTTP = axios.create({
       },
 })
 
+export const api=BASE_URL;
 export const UPLOAD = axios.create({
     baseURL: UPLOAD_URL,
     headers: {
