@@ -381,8 +381,8 @@ import playasController from '../../controllers/playas.js'
 import moment from "moment"
 import myUpload from 'vue-image-crop-upload';
 const default_avatar = require('@/assets/images/default_avatar.png')
-//const BASE_URL = process.env.BASE_URL;
-const BASE_URL = "http://192.168.1.96:8080/";
+const BASE_URL = process.env.BASE_URL;
+//const BASE_URL = "http://192.168.1.96:8080/";
 export default {
     name: 'atletas',
     data() {

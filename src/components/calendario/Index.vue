@@ -62,9 +62,9 @@ import vSelect from "vue-select";
 import moment from "moment";
 import { FullCalendar } from "vue-full-calendar";
 import { Common } from "../../common_class/http";
-//const BASE_URL = process.env.BASE_URL;
+const BASE_URL = process.env.BASE_URL;
 
-const BASE_URL = "http://localhost:8081/";
+//const BASE_URL = "http://localhost:8081/";
 
 export default {
   name: "Calendario",

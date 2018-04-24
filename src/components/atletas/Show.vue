@@ -105,8 +105,8 @@
 import atletasController from '../../controllers/atletas.js'
 import moment from "moment"
 
-//const BASE_URL = process.env.BASE_URL;
-const BASE_URL = "http://192.168.1.96:8080/";
+const BASE_URL = process.env.BASE_URL;
+//const BASE_URL = "http://192.168.1.96:8080/";
 export default {
     name: "ShowAtleta",
     data: () => ({

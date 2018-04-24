@@ -110,7 +110,7 @@ import rankingController from "../../controllers/ranking.js";
 import atletaCircuitoController from "../../controllers/AtletaCircuito.js";
 import vSelect from "vue-select";
 import moment from "moment";
-const BASE_URL = "http://192.168.1.96:8080/";
+const BASE_URL = process.env.BASE_URL;
 export default {
   name: "AgregarAtleta",
   data() {
