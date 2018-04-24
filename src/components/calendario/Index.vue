@@ -30,7 +30,7 @@
                     </div>
                   
                    
-                    <h2>Calendario de Actividades</h2>
+                    <h3>Calendario de Actividades</h3>
             
                    <div class="box">
                          
