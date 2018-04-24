@@ -1,11 +1,11 @@
 <template>
     <div>
         <section class="content-header">
-            <h1>Ranking Circuito</h1>
+            <h1>Resultados de las Rondas</h1>
 
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li>Manejo de Cuentas </li>
+                <li>Manejo de Rondas </li>
             </ol>
         </section>
         <section class="content" >
@@ -43,7 +43,7 @@
     
                             </div>
                             <div class="box-body">
-{{circuito}}
+
 <!--<iframe width="600" height="450" frameborder="0" style="border:0"
 src="https://www.google.com/maps/embed/v1/place?q=san%20salvador%20&key=AIzaSyCNn7bkHEwBaqj_G343JmzQmGUrSCqqT0M" allowfullscreen></iframe>-->
                             <vue-good-table :columns="columns" :rows="atletasranking" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
@@ -68,6 +68,12 @@ src="https://www.google.com/maps/embed/v1/place?q=san%20salvador%20&key=AIzaSyCN
                             </vue-good-table>
 
                         </div>
+
+                        <div class="box-body">
+                              
+                             <div @click="volver()" class="btn btn-flat btn-sm btn-warning margin">
+                                    <i class="fa fa-arrow-circle-left" ></i> Regresar
+                                </div></div>
                     </div>
                     </div>
             </div>
@@ -123,6 +129,14 @@ src="https://www.google.com/maps/embed/v1/place?q=san%20salvador%20&key=AIzaSyCN
 
 
               circuitoController.finalizar(this,this.id);
+            },
+                volver(){
+                console.log("entre")
+ window.history.length > 1
+        ? this.$router.go(-1)
+        : this.$router.push('/')
+    
+
             }
             
         }

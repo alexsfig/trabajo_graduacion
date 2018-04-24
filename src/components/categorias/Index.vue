@@ -28,7 +28,7 @@
                             <div class="table-responsive">
 
                                 <vue-good-table
-                                  title="Categorias"
+                                  title=""
                                   :columns="columns"
                                   :rows="categorias"
                                   :globalSearch="true"

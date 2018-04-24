@@ -131,7 +131,7 @@
              <td v-if="props.row.listNotas[9].mayor"   style="background-color:#D9EFD4;" >{{props.row.listNotas[9].nota}}</td>
             <td v-if="!props.row.listNotas[9].mayor"   >{{props.row.listNotas[9].nota}}</td>
        
-      <td  style="background-color:#D9EFD4;" >{{props.row.notaFinal}}</td>
+      <td  style="background-color:#D9EFD4;" >{{roundToTwo(props.row.notaFinal)}}</td>
       
             
                                   
@@ -344,6 +344,13 @@ this.juecesHeat[0].puntuacionList.array.forEach(element => {
     */
   },
   methods: {
+     roundToTwo(num) {
+      return this.formatPrice(+(Math.round(num + "e+2") + "e-2"));
+    },
+    formatPrice(value) {
+      let val = (value / 1).toFixed(2);
+      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    },
     ponerLider(lider) {
       this.juezLider = lider;
     },
