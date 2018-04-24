@@ -94,6 +94,7 @@ export default {
             .then((resp) => {
                 console.log(resp)
                 context.heats = resp.data
+                console.log("tamaño en el servicio:::"+context.heats.length)
                 let l= context.heats.length;
                 context.heats.forEach(element => {
                

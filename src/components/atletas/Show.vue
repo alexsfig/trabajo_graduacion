@@ -14,7 +14,11 @@
                         <img class="profile-user-img img-responsive img-circle" :src="avatar" alt="User profile picture">
                             
                         <h3 class="profile-username text-center">{{atleta.personaId?atleta.personaId.nombre:'' + " " }} {{  atleta.personaId?atleta.personaId.apellido:''}}</h3>
-                        <p class="text-muted text-center">Ranking 1 <i class="fa fa-star-o"></i></p>
+                    <div v-if=" atleta.ranking">
+                    <div v-for="value in atleta.ranking"  >
+                        <p class="text-muted text-center">Ranking de {{value.categoriaName}} Lugar {{value.lugar}}  Puntos {{value.puntos}}<i class="fa fa-star-o"></i></p>
+                    </div>
+                    </div>
                         <div class="col-sm-8 col-sm-offset-2">
                             <ul class="list-group list-group-unbordered">
                                 <li class="list-group-item">

@@ -30,7 +30,7 @@
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <!--<h3 class="box-title">Manejo de Rondas del Circuito <b>{{this.circuito.nombre}}</b> para la Fecha <b>{{this.circuito.fechaId.nombre}} </b></h3>-->
-                       {{ultima}}
+                    
               
     <button v-if="ronda.estado=='Calificada'" type="button" @click="finalizar()"   class="margin btn btn-flat btn-sm btn-primary"
                                        ><i aria-hidden="true"
@@ -48,7 +48,9 @@
                             </div>
              
                         <div class="box-body">   
+                      
        <div v-for="value in heats">
+       <h3>Heat numero {{value.numero}}</h3>
                             <vue-good-table :columns="columns" :rows="value.atletasHeatList" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
                                 <template slot="table-row" scope="props">
                                   
@@ -158,7 +160,7 @@ export default {
 
       console.log("*****************")
        console.log(this.heats.length)
-      if(this.heats.length=1){
+      if(this.heats.length==1){
       
       this.ultima=true;
       console.log(this.heats.atletasHeatList);
