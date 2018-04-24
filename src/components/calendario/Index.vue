@@ -6,6 +6,7 @@
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li>Calendario </li>
+
                 
             </ol>
         </section>
@@ -29,7 +30,7 @@
                     </div>
                   
                    
-                    <h4 class="box-title" ><b>Calendario de Actividades</b></h4>
+                    <h2>Calendario de Actividades</h2>
             
                    <div class="box">
                          

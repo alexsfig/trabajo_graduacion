@@ -61,7 +61,7 @@
                                     </div>
                                 </div>
                             </form>
-                        </div>
+                        
 
 
                          <div class="box-body">
@@ -70,7 +70,7 @@
                                     <i class="fa fa-arrow-circle-left" ></i> Regresar a Formas de Pago
                                 </div>
 
-                                </div> 
+                                </div> </div>
                     </div>
                 </div>
             </div>

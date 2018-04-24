@@ -111,14 +111,14 @@
                                 </div>
 
                             </form>
-                        </div>
+                       
                           <div class="box-body">
                               
                              <div @click="volver()" class="btn btn-flat btn-sm btn-warning margin">
                                     <i class="fa fa-arrow-circle-left" ></i> Regresar a Patrocinadores
                                 </div>
 
-                                </div> 
+                                </div>  </div>
 
                     </div>
                 </div>

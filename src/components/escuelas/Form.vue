@@ -172,7 +172,14 @@
                                 </div>
 
                             </form>
-                        </div>
+                        
+                         <div class="box-body">
+                              
+                             <div @click="volver()" class="btn btn-flat btn-sm btn-warning margin">
+                                    <i class="fa fa-arrow-circle-left" ></i> Regresar
+                                </div>
+
+                                </div> </div>
                     </div>
                 </div>
             </div>
@@ -239,6 +246,14 @@ entrenadoresController.index(this)
                         this.errMsg = "Form error"
                     }
                 });
+            },
+                volver(){
+                console.log("entre")
+ window.history.length > 1
+        ? this.$router.go(-1)
+        : this.$router.push('/')
+    
+
             }
         }
 

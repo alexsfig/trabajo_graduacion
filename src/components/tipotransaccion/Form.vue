@@ -91,7 +91,7 @@
                                 </div>
 
                             </form>
-                        </div>
+                       
 
 
                          <div class="box-body">
@@ -100,7 +100,7 @@
                                     <i class="fa fa-arrow-circle-left" ></i> Regresar a Tipos de Transacción
                                 </div>
 
-                                </div> 
+                                </div>  </div>
                     </div>
                 </div>
             </div>
