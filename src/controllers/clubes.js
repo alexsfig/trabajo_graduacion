@@ -6,6 +6,9 @@ import {router} from '../router/index.js'
 import moment from 'moment'
 // define base url to Employees
 const ESCUELAS = 'club/'
+const ASOCIAR = 'atleta/asociar/'
+const SINCLUB = 'atleta/byNoClub/'
+const CONCLUB = 'atleta/byClub/'
 
 
 
@@ -62,6 +65,59 @@ export default {
     /* 
         Method to update user, pass context, object Users and user id
     */
+    asociar(context, atletaClub){
+        context.showAlert = false
+        context.showSuccess = false
+        
+                            HTTP.post(ASOCIAR, atletaClub)
+                            .then((resp) => {
+                                if (resp.status>= 200 && resp.status <=300){
+                                    context.showSuccess = true
+                                    context.atleta={id:-1,nombre:'Seleciona un atleta'};
+                                    context.successMsg = "Se Agrego Correctamente el Atleta al Club"
+                                    context.fetchData()
+                            //  context.$router.go()
+                                  //  contextvm.$forceUpdate();
+                                }
+                            })
+                            .catch((err) => {
+                                if (err.response) {
+                                    context.showAlert = true
+                                    context.errMsg = err.response.data
+                                }
+                            })
+
+            //
+
+
+
+    },
+
+    desasociar(context, idatleta,swal){
+        
+        
+
+        let request={
+            atleta:idatleta,
+            club:0
+          }
+        
+                            HTTP.post(ASOCIAR, request)
+                            .then((resp) => {
+                            console.log(resp);
+                            swal("Deleted!", "El Atleta ha sido Dado de baja en el Club", "success")
+                            context.fetchData();
+                                   })
+                              .catch((err) => {   
+                              console.log(err)            
+                                swal("Error!", "Es posible que el atleta ya este asociado", "error")
+                                      }) 
+
+            //
+
+
+
+    },
    
     update(context, clubs){
         context.showAlert = false 
@@ -124,6 +180,33 @@ export default {
                     i.entrenadorId.nombre=i.entrenadorId.personaId.nombre+"," +i.entrenadorId.personaId.apellido;
 
                 }
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+    },
+
+    sinclub(context){
+        HTTP.get(SINCLUB)
+            .then((resp) => {
+                context.sinclubes = resp.data
+                console.log(resp.data)
+                for (let i of  context.sinclubes) {
+                    i.nombre=i.personaId.nombre+"," +i.personaId.apellido;
+
+                }
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+    },
+
+    conclub(context, id){
+        HTTP.get(CONCLUB + id)
+            .then((resp) => {
+                context.conclubes = resp.data
+                console.log(resp.data)
+               
             })
             .catch((err) => {
               console.log(err)

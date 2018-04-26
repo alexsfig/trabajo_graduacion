@@ -20,6 +20,8 @@ export default {
         request.atletasRonda=context.totalAtletas;
         request.numero=1;
         let heatlist=[];
+
+        let dataheat="";
   
 
       let num=1;
@@ -27,25 +29,31 @@ export default {
            
            let heat={};
             heat.numero=num;
+            dataheat+=num+",";
+
             heat.estado="estado"
            // c//onsole.log("numero de heat:::::::" +i[0].numeroHeat)
             heat.atletas=i;
            // console.log(heat.atletas[0])
             if( heat.atletas[0])
-            heat.atletas[0]={id:heat.atletas[0].id,color:heat.atletas[0].color,estado:0};
+            dataheat+= heat.atletas[0].id+"<"+heat.atletas[0].color+"&";
+           // heat.atletas[0]={id:heat.atletas[0].id,color:heat.atletas[0].color,estado:0};
             if( heat.atletas[1])
-            heat.atletas[1]={id:heat.atletas[1].id,color:heat.atletas[1].color,estado:0};
+            dataheat+= heat.atletas[1].id+"<"+heat.atletas[1].color+"&";
+          //  heat.atletas[1]={id:heat.atletas[1].id,color:heat.atletas[1].color,estado:0};
             if( heat.atletas[2])
-            heat.atletas[2]={id:heat.atletas[2].id,color:heat.atletas[2].color,estado:0};
+            dataheat+= heat.atletas[2].id+"<"+heat.atletas[2].color+"&";
+            //heat.atletas[2]={id:heat.atletas[2].id,color:heat.atletas[2].color,estado:0};
             if( heat.atletas[3])
-            heat.atletas[3]={id:heat.atletas[3].id,color:heat.atletas[3].color,estado:0};
+            dataheat+= heat.atletas[3].id+"<"+heat.atletas[3].color+"&";
+          //  heat.atletas[3]={id:heat.atletas[3].id,color:heat.atletas[3].color,estado:0};
 
-
+          dataheat+=">";
             heatlist.push(heat)
 
             num++;
         }
-       request.heatList=heatlist;
+       request.arrayHeat=dataheat;
   
 
        console.log(JSON.stringify(request));

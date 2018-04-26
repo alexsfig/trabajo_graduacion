@@ -16,11 +16,11 @@
                 <div class="col-xs-12">
                     <div class="wrapper-alert">
                         <alert type="danger" :closable="true" v-if="showAlert" @close="showAlert=false">
-                            <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                            <h4><i class="icon fa fa-ban"></i> Error!</h4>
                             <p>{{ errMsg }}</p>
                         </alert>
                         <alert type="success" :closable="true" v-if="showSuccess" @close="showSuccess=false">
-                            <h4><i class="icon fa fa-check"></i> Success!</h4>
+                            <h4><i class="icon fa fa-check"></i> Exito!</h4>
                             <p>{{ successMsg }}</p>
                         </alert>
                     </div>
@@ -92,7 +92,7 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('direccion') }">
-                                            <label for="">Direccion</label>
+                                            <label for="">Dirección</label>
                                             <textarea id="direccion" name="direccion" data-vv-as="Dirección" class="form-control" v-model="patrocinador.direccion" v-validate="'required'" rows="3"></textarea>
                                             <!-- <input type="text" id="direccion" name="direccion" data-vv-as="direccion" class="form-control" v-model="patrocinador.direccion" v-validate="'required'"> -->
                                             <span class="help-block" for="direccion" v-bind:data-error="errors.first('direccion')">
@@ -111,14 +111,14 @@
                                 </div>
 
                             </form>
-                        </div>
+                       
                           <div class="box-body">
                               
                              <div @click="volver()" class="btn btn-flat btn-sm btn-warning margin">
                                     <i class="fa fa-arrow-circle-left" ></i> Regresar a Patrocinadores
                                 </div>
 
-                                </div> 
+                                </div>  </div>
 
                     </div>
                 </div>
@@ -185,7 +185,7 @@
                   } else {
                       console.log("Error enn el formulario")
                       this.showAlert = true
-                      this.errMsg = "Form error"
+                      this.errMsg = "Error revisa el formulario"
                   }
               });
           },

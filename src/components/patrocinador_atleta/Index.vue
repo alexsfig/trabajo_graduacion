@@ -105,7 +105,7 @@ export default {
                     filterable: true,
                 }, 
                 {
-                    label: 'Accion',
+                    label: 'Acción',
                     field: '',
                     filterable: true,
                 }

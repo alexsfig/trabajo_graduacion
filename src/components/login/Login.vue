@@ -9,7 +9,7 @@
 	    <!-- /.login-logo -->
 		<div class="wrapper-alert">
 			<alert type="danger" :closable="true" v-if="showAlert" @close="showAlert=false">
-				<h4><i class="icon fa fa-ban"></i> Alert!</h4>
+				<h4><i class="icon fa fa-ban"></i> Alerta!</h4>
 				<p>{{ errMsg }}</p>
 			</alert>
 		</div>

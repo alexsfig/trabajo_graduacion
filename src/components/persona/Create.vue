@@ -69,18 +69,19 @@
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('form-1.telefono') }">
                                             <label for="">Telefono</label>
-                                            <masked-input mask="1111-1111" placeholder="####-####" id="telefono" name="telefono" data-vv-as="Telefono " class="form-control" v-model="createPersona.telefono" v-validate="'required'">
+                                            <masked-input mask="1111-1111" placeholder="####-####" id="telefono" name="telefono" data-vv-as="Telefono " class="form-control" v-model="createPersona.telefono" >
                                             </masked-input>
                                             <span class="help-block" for="telefono" v-bind:data-error="errors.first('form-1.telefono')">
                                                     {{ errors.first('form-1.telefono') }}
                                                 </span>
                                         </div>
                                     </div>
+
                                     <div class="clearfix"></div>
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('form-1.dui') }">
                                             <label for="">DUI</label>
-                                            <masked-input mask="11111111-1" placeholder="########-#" id="dui" name="dui" data-vv-as="DUI " class="form-control" v-model="createPersona.dui" v-validate="'required'" />
+                                            <masked-input mask="11111111-1" placeholder="########-#" id="dui" name="dui" data-vv-as="DUI " class="form-control" v-model="createPersona.dui"  />
                                             <!-- <input type="text" id="dui" name="dui" v-mask="'########-#'"  data-vv-as="DUI " class="form-control" v-model="createPersona.dui" v-validate="'required'" > -->
                                             <span class="help-block" for="dui" v-bind:data-error="errors.first('form-1.dui')">
                                                     {{ errors.first('form-1.dui') }}
@@ -90,7 +91,7 @@
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('form-1.nit') }">
                                             <label for="">NIT</label>
-                                            <masked-input mask="1111-111111-111-1" placeholder="####-######-###-#" name="nit" data-vv-as="NIT " class="form-control" v-model="createPersona.nit" v-validate="'required'" />
+                                            <masked-input mask="1111-111111-111-1" placeholder="####-######-###-#" name="nit" data-vv-as="NIT " class="form-control" v-model="createPersona.nit" />
                                             <!-- <input type="text" id="nit" name="nit"  v-mask="'####-######-###-#'" data-vv-as="NIT " class="form-control" v-model="createPersona.nit" v-validate="'required'" > -->
                                             <span class="help-block" for="nit" v-bind:data-error="errors.first('form-1.nit')">
                                                     {{ errors.first('form-1.nit') }}
@@ -113,7 +114,7 @@
                                                 </div>
                                                 <template slot="dropdown">
                                                     <li>
-                                                        <date-picker class="date-picker" :language="'es'" v-model="createPersona.fechaNacimiento" :today-btn="todayBtn" :clear-btn="clearBtn" :limit-from="limitFrom" :format="format" :week-starts-with="weekStartsWith" :limit-to="limitTo" :close-on-selected="closeOnSelected">
+                                                        <date-picker class="date-picker" :language="'es-MX'" v-model="createPersona.fechaNacimiento" :today-btn="todayBtn" :clear-btn="clearBtn" :limit-from="limitFrom" :format="format" :week-starts-with="weekStartsWith" :limit-to="limitTo" :close-on-selected="closeOnSelected">
                                                         </date-picker>
                                                     </li>
                                                 </template>
@@ -174,7 +175,7 @@
                         <div class="box-body" v-if="datosTipo">
                              <div class="box-body">
                             <div class="col-xs-12 text-left">
-                                <button type="button" @click="returnToSelect" class="btn btn-flat btn-sm btn-warning margin "><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Regresar a Editar informacion de persona</button>
+                                <button type="button" @click="returnToSelect" class="btn btn-flat btn-sm btn-warning margin "><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Regresar a Editar información de persona</button>
                             </div>   </div>
                             <!---#################################################################################-->
                             <!---#################################################################################-->
@@ -186,15 +187,7 @@
                                 <form-wizard @on-complete="submitAtleta" errorColor="#dd4b39" finishButtonText="Crear Persona" title="" nextButtonText="Siguiente" backButtonText="Regresar" subtitle="" stepSize="lg" color="#367fa9">
                                     <tab-content title="Información del Atleta" icon="fa fa-user" :before-change="first_step">
                                         <form @submit.prevent="first_step('form-2-1')" action="" v-if="type.name == 'Atleta'" data-vv-scope="form-2-1">
-                                            <div class="col-xs-12 col-sm-4">
-                                                <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.aniosPracticando') }">
-                                                    <label for="">Años practicando</label>
-                                                    <input type="number" id="aniosPracticando" name="aniosPracticando" data-vv-as="Años practicando " class="form-control" v-model="createAtleta.aniosPracticando" v-validate="'required|min_value:0|max_value:79'">
-                                                    <span class="help-block" for="aniosPracticando" v-bind:data-error="errors.first('form-2-1.aniosPracticando')">
-                                                        {{ errors.first('form-2-1.aniosPracticando') }}
-                                                    </span>
-                                                </div>
-                                            </div>
+                                           
                                             <div class="col-xs-12 col-sm-4">
                                                 <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.edadInicio') }">
                                                     <label for="">Edad que inicio</label>
@@ -204,6 +197,15 @@
                                                           </span>
                                                 </div>
                                             </div>
+                                             <div class="col-xs-12 col-sm-4">
+                                                <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.aniosPracticando') }">
+                                                    <label for="">Años practicando</label>
+                                                    <input type="number" id="aniosPracticando" name="aniosPracticando" data-vv-as="Años practicando " class="form-control" v-model="createAtleta.aniosPracticando" v-validate="'required|min_value:0|max_value:79'">
+                                                    <span class="help-block" for="aniosPracticando" v-bind:data-error="errors.first('form-2-1.aniosPracticando')">
+                                                        {{ errors.first('form-2-1.aniosPracticando') }}
+                                                    </span>
+                                                </div>
+                                            </div> 
                                             <div class="col-xs-12 col-sm-4">
                                                 <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.type') }">
                                                     <label for="">Idiomas</label>
@@ -254,7 +256,7 @@
                                                 </div>
                                             </div>
                                             <div class="clearfix"></div>
-                                            <div class="col-xs-12 col-sm-4">
+                                            <!--<div class="col-xs-12 col-sm-4">
                                                 <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.nivelAcademico') }">
                                                     <label for="">Nivel Academico</label>
                                                     <input type="text" id="nivelAcademico" name="nivelAcademico" data-vv-as="Nivel Academico " class="form-control" v-model="createAtleta.nivelAcademico" v-validate="'required'">
@@ -262,11 +264,40 @@
                                                               {{ errors.first('form-2-1.nivelAcademico') }}
                                                           </span>
                                                 </div>
+                                            </div>-->
+
+                                            
+                                        <div class="col-xs-12 col-sm-4">
+                                            <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.nivelAcademico') }">
+                                                <label for="">Nivel Academico</label>
+                                                <v-select :debounce="250" :options="niveles" v-model="createAtleta.nivelAcademico" placeholder="Seleccione un Nivel Academico" label="name">
+                                                </v-select>
+                                                <div class="clearfix"></div>
+                                                <input type="hidden" name="nivelAcademico" value="" data-vv-as="Nivel Academico " v-model="createAtleta.nivelAcademico"  v-validate="'required'">
+                                                <span class="help-block" for="nivelAcademico" v-bind:data-error="errors.first('form-2-1.nivelAcademico')">
+                                                    {{ errors.first('form-2-1.nivelAcademico') }}
+                                                </span>
                                             </div>
+                                        </div>
+                                           <!--
                                             <div class="col-xs-12 col-sm-4">
                                                 <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.uanioCursado') }">
                                                     <label for="">Ultimo Año cursado</label>
                                                     <input type="text" id="uanioCursado" name="uanioCursado" data-vv-as="Ultimo Año cursado " class="form-control" v-model="createAtleta.uanioCursado" v-validate="'required'">
+                                                    <span class="help-block" for="uanioCursado" v-bind:data-error="errors.first('form-2-1.uanioCursado')">
+                                                              {{ errors.first('form-2-1.uanioCursado') }}
+                                                          </span>
+                                                </div>
+                                            </div> -->
+
+
+                                             <div class="col-xs-12 col-sm-4">
+                                                <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.uanioCursado') }">
+                                                    <label for="">Ultimo Año cursado</label>
+                                                    <v-select :debounce="250" :options="ucursado" v-model="createAtleta.uanioCursado" placeholder="Seleccione ultimo Año Cursado" label="name">
+                                                </v-select>
+                                                <div class="clearfix"></div>
+                                                    <input type="hidden" name="uanioCursado" value="" data-vv-as="Ultimo Año cursado " v-model="createAtleta.uanioCursado" v-validate="'required'">
                                                     <span class="help-block" for="uanioCursado" v-bind:data-error="errors.first('form-2-1.uanioCursado')">
                                                               {{ errors.first('form-2-1.uanioCursado') }}
                                                           </span>
@@ -442,7 +473,7 @@
                                                                   <i class="fa fa-camera  "></i> Subir Foto de perfil
                                                                 </button>
                                                             </span>
-                                                            <my-upload field="img" @crop-success="cropSuccess" @crop-upload-success="cropUploadSuccess" @crop-upload-fail="cropUploadFail" v-model="showAvatar" :width="300" :height="300" :params="params" lang-type="en" :headers="headers" img-format="png">
+                                                            <my-upload field="img" @crop-success="cropSuccess" @crop-upload-success="cropUploadSuccess" @crop-upload-fail="cropUploadFail" v-model="showAvatar" :width="500" :height="500" :params="params" lang-type="es" :headers="headers" img-format="png">
                                                             </my-upload>
                                                             <input type="hidden" id="avatar" name="avatar" class="form-control" v-model="avatar" v-validate="'required'" :class="{'datepicker':true,  'has-error': errors.has('form-avatar.avatar') }">
                                                             <span class="help-block" for="avatar" v-bind:data-error="errors.first('form-avatar.avatar')">
@@ -770,6 +801,50 @@ export default {
                 },
 
             ],
+            niveles: [{
+                    name: 'Nivel Inicial'
+                }, {
+                    name: 'Nivel Parvulario'
+                }, {
+                    name: 'Nivel Basico'
+                }, {
+                    name: 'Nivel Medio'
+                }, {
+                    name: 'Nivel Superior'
+                }
+                
+
+            ],
+             ucursado: [{
+                    name: 'Nivel Inicial'
+                }, {
+                    name: 'Nivel Parvulario'
+                }, {
+                    name: 'Nivel Basico-1er Ciclo'
+                }, 
+                {
+                    name: 'Nivel Basico-2do Ciclo'
+                },
+                {
+                    name: 'Nivel Basico-3er Ciclo'
+                },
+                {
+                    name: 'Nivel Medio - 1er año de Bachillerado'
+                },
+                {
+                    name: 'Nivel Medio - 2do año de Bachillerado'
+                },
+                {
+                    name: 'Nivel Medio - 3er año de Bachillerado(Opcional)'
+                },
+                 {
+                    name: 'Nivel Superior - No Finalizado'
+                },
+                {
+                    name: 'Nivel Superior - Finalizado'
+                }
+
+            ],
             columns: [{
                 label: "titulo",
                 field: "titulo",
@@ -834,15 +909,26 @@ export default {
             return new Promise((resolve, reject) => {
                 this.$validator.validateAll('form-2-1').then(success => {
                     if (success) {
+                        if(this.createAtleta.aniosPracticando <=  this._calculateAge(this.createPersona.fechaNacimiento) - this.createAtleta.edadInicio){
                         resolve(true)
+                        this.showAlert = false
+                        this.errMsg = ''
+                    }
+
+                        else {
+                        reject(true)
+                        this.showAlert = true
+                        this.errMsg = "Los Años Practicando no pueden ser superior al intervalo de tiempo entre la Edad de Inicio y la Edad del Atleta"}
                     } else {
                         reject(true)
+                        
                     }
                 });
             })
         },
         second_step() {
             return new Promise((resolve, reject) => {
+
                 this.$validator.validateAll('form-2-2').then(success => {
                     if (success) {
                         resolve(true)
@@ -1016,7 +1102,7 @@ export default {
                     this.datosPersona = false
                     this.datosTipo = true
                     let ladoPie, playaPractica, idiomas = '',
-                        olaPreferida, idiomasArr = [];
+                        olaPreferida, nivelAcademico, uanioCursado, idiomasArr = [];
                     for (var i = this.createAtleta.idiomas.length - 1; i >= 0; i--) {
                         idiomasArr.push(this.createAtleta.idiomas[i].name)
                     }
@@ -1028,6 +1114,8 @@ export default {
                         ladoPie = "Derecha"
                     }
                     olaPreferida = this.createAtleta.olaPreferida.name
+                    nivelAcademico= this.createAtleta.nivelAcademico.name
+                    uanioCursado= this.createAtleta.uanioCursado.name
                     playaPractica = this.createAtleta.playaPractica.nombre
                     let persona = this.createPersona
                     let atleta = {
@@ -1041,7 +1129,7 @@ export default {
                         "idiomas": idiomas == undefined ? '' : idiomas,
                         "ladoPie": ladoPie == undefined ? '' : ladoPie,
                         "logros": this.createAtleta.logros == undefined ? '' : this.createAtleta.logros,
-                        "nivelAcademico": this.createAtleta.nivelAcademico == undefined ? '' : this.createAtleta.nivelAcademico,
+                        "nivelAcademico": nivelAcademico == undefined ? '' : nivelAcademico,
                         "olaPreferida": olaPreferida == undefined ? '' : olaPreferida,
                         "otrosEstudios": this.createAtleta.otrosEstudios == undefined ? '' : this.createAtleta.otrosEstudios,
                        // "personaId": persona,
@@ -1051,7 +1139,7 @@ export default {
                         "sabeFirmar": this.createAtleta.sabeFirmar == false ? 0 : 1,
                         "sabeLeer": this.createAtleta.sabeLeer == false ? 0 : 1,
                         "tieneLesion": this.createAtleta.tieneLesion == false ? 0 : 1,
-                        "uanioCursado": this.createAtleta.uanioCursado == undefined ? '' : this.createAtleta.uanioCursado,
+                        "uanioCursado": uanioCursado == undefined ? '' : uanioCursado,
                         "ultimaParticipacion": this.createAtleta.ultimaParticipacion == undefined ? '' : this.createAtleta.ultimaParticipacion
                     }
                     persona.atleta=atleta;
@@ -1091,7 +1179,18 @@ export default {
          */
         cropUploadFail(status, field) {
             console.log('-------- upload fail --------');
-        }
+        },
+
+         _calculateAge(birthday) {
+            var today = new Date();
+            var birthDate = new Date(birthday);
+            var age = today.getFullYear() - birthDate.getFullYear();
+            var m = today.getMonth() - birthDate.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            return age;
+       }
 
     }
 

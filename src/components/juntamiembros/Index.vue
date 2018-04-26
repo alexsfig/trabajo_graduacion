@@ -28,7 +28,7 @@
                             <div class="table-responsive">
                               
                                 <vue-good-table
-                                  title="Miembros de Junta Registrados"
+                                  title=""
                                   :columns="columns"
                                   :rows="juntamiembros"
                                   :globalSearch="true"
@@ -136,7 +136,7 @@
                     },
                     
                      {
-                      label: 'Accion',
+                      label: 'Acción',
                       field: '',
                       filterable: true,
                     }

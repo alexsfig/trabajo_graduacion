@@ -34,6 +34,8 @@
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">Manejo de Atletas</h3>
+
+                      
                     </div>
 
                     <div class="box-body">
@@ -45,30 +47,31 @@
                         </div>
                         <div class="col-md-12">
                             <h3>
-                                Editar Información de Atleta: {{ atleta.personaId.nombre  + " " + atleta.personaId.apellido}}
+                                Editar Información de Atleta: <b>{{ atleta.personaId.nombre  + " " + atleta.personaId.apellido+ " " }}</b>de  <b>{{_calculateAge(atleta.personaId.fechaNacimiento)  + " "}}</b>Años de Edad
                             </h3>
                         </div>
                         <div class="col-md-12">
                             <form-wizard @on-complete="updateUsuario" errorColor="#dd4b39" finishButtonText="Actualizar Atleta" title="" nextButtonText="Siguiente" backButtonText="Regresar" subtitle="" stepSize="lg" color="#367fa9">
                                 <tab-content title="Información del Atleta" icon="fa fa-user" :before-change="first_step">
                                     <form @submit.prevent="first_step('form-2-1')" role="form" data-vv-scope="form-2-1">
+                                        
+                                        <div class="col-xs-12 col-sm-4">
+                                            <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.edadInicio') }">
+                                                <label for="">Edad que inicio</label>
+                                                <input type="number" id="edadInicio" name="edadInicio" data-vv-as="Edad que inicio " class="form-control" v-model="atleta.edadInicio" v-validate="'required|min_value:4|max_value:79'">
+                                                <span class="help-block" for="edadInicio" v-bind:data-error="errors.first('form-2-1.edadInicio')">
+                                                    {{ errors.first('form-2-1.edadInicio') }}
+                                                </span>
+                                            </div>
+                                        </div>
                                         <div class="col-xs-12 col-sm-4">
                                             <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.aniosPracticando') }">
                                                 <label for="">Años practicando</label>
-                                                <input min="0" max="50" type="number" id="aniosPracticando" name="aniosPracticando" data-vv-as="Años practicando " class="form-control" v-model="atleta.aniosPracticando" v-validate="'required'">
+                                                <input  type="number" id="aniosPracticando" name="aniosPracticando" data-vv-as="Años practicando " class="form-control" v-model="atleta.aniosPracticando" v-validate="'required|min_value:0|max_value:79'">
                                                 <span class="help-block" for="aniosPracticando" v-bind:data-error="errors.first('form-2-1.aniosPracticando')">
                                                     {{ errors.first('form-2-1.aniosPracticando') }}
                                                 </span>
 
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-4">
-                                            <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.edadInicio') }">
-                                                <label for="">Edad que inicio</label>
-                                                <input type="number" min="5" max="50" id="edadInicio" name="edadInicio" data-vv-as="Edad que inicio " class="form-control" v-model="atleta.edadInicio" v-validate="'required'">
-                                                <span class="help-block" for="edadInicio" v-bind:data-error="errors.first('form-2-1.edadInicio')">
-                                                    {{ errors.first('form-2-1.edadInicio') }}
-                                                </span>
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-4">
@@ -121,7 +124,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <div class="clearfix"></div>
+                                        <!--<div class="clearfix"></div>
                                         <div class="col-xs-12 col-sm-4">
                                             <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.nivelAcademico') }">
                                                 <label for="">Nivel Academico</label>
@@ -130,7 +133,21 @@
                                                     {{ errors.first('form-2-1.nivelAcademico') }}
                                                 </span>
                                             </div>
+                                        </div> -->
+                                         <div class="clearfix"></div>
+                                         <div class="col-xs-12 col-sm-4">
+                                            <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.nivelAcademico') }">
+                                                <label for="">Nivel Academico</label>
+                                                <v-select :debounce="250" :options="niveles" v-model="atleta.nivelAcademico" placeholder="Seleccione un Nivel Academico" label="name">
+                                                </v-select>
+                                                <div class="clearfix"></div>
+                                                <input type="hidden" name="nivelAcademico" value="" data-vv-as="Nivel Academico " v-model="atleta.nivelAcademico"  v-validate="'required'">
+                                                <span class="help-block" for="nivelAcademico" v-bind:data-error="errors.first('form-2-1.nivelAcademico')">
+                                                    {{ errors.first('form-2-1.nivelAcademico') }}
+                                                </span>
+                                            </div>
                                         </div>
+                                        <!--
                                         <div class="col-xs-12 col-sm-4">
                                             <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.uanioCursado') }">
                                                 <label for="">Ultimo Año cursado</label>
@@ -139,7 +156,21 @@
                                                     {{ errors.first('form-2-1.uanioCursado') }}
                                                 </span>
                                             </div>
-                                        </div>
+                                        </div> -->
+
+
+                                             <div class="col-xs-12 col-sm-4">
+                                                <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.uanioCursado') }">
+                                                    <label for="">Ultimo Año cursado</label>
+                                                    <v-select :debounce="250" :options="ucursado" v-model="atleta.uanioCursado" placeholder="Seleccione ultimo Año Cursado" label="name">
+                                                </v-select>
+                                                <div class="clearfix"></div>
+                                                    <input type="hidden" name="uanioCursado" value="" data-vv-as="Ultimo Año cursado " v-model="atleta.uanioCursado" v-validate="'required'">
+                                                    <span class="help-block" for="uanioCursado" v-bind:data-error="errors.first('form-2-1.uanioCursado')">
+                                                              {{ errors.first('form-2-1.uanioCursado') }}
+                                                          </span>
+                                                </div>
+                                            </div>
 
                                         <div class="col-xs-12 col-sm-4">
                                             <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.otrosEstudios') }">
@@ -309,9 +340,9 @@
                                                               <i class="fa fa-camera  "></i> Subir Foto de perfil
                                                             </button>
                                                         </span>
-                                                        <my-upload field="img" @crop-success="cropSuccess" @crop-upload-success="cropUploadSuccess" @crop-upload-fail="cropUploadFail" v-model="showAvatar" :width="300" :height="300" :params="params" lang-type="en" :headers="headers" img-format="png">
+                                                        <my-upload  field="img" @crop-success="cropSuccess" @crop-upload-success="cropUploadSuccess" @crop-upload-fail="cropUploadFail" v-model="showAvatar" :width="300" :height="300" :params="params" lang-type="en" :headers="headers" img-format="png">
                                                         </my-upload>
-                                                        <input type="hidden" id="avatar" name="avatar" class="form-control" v-model="avatar" v-validate="'required'" :class="{'datepicker':true,  'has-error': errors.has('form-avatar.avatar') }">
+                                                       <!-- <input type="hidden" id="avatar" name="avatar" class="form-control" v-model="avatar" v-validate="'required'" :class="{'datepicker':true,  'has-error': errors.has('form-avatar.avatar') }">-->
                                                         <span class="help-block" for="avatar" v-bind:data-error="errors.first('form-avatar.avatar')">
                                                             {{ errors.first('form-avatar.avatar') }}
                                                         </span>
@@ -350,7 +381,8 @@ import playasController from '../../controllers/playas.js'
 import moment from "moment"
 import myUpload from 'vue-image-crop-upload';
 const default_avatar = require('@/assets/images/default_avatar.png')
-
+const BASE_URL = process.env.BASE_URL;
+//const BASE_URL = "http://192.168.1.96:8080/";
 export default {
     name: 'atletas',
     data() {
@@ -412,6 +444,51 @@ export default {
                 },
 
             ],
+
+            niveles: [{
+                    name: 'Nivel Inicial'
+                }, {
+                    name: 'Nivel Parvulario'
+                }, {
+                    name: 'Nivel Basico'
+                }, {
+                    name: 'Nivel Medio'
+                }, {
+                    name: 'Nivel Superior'
+                }
+                
+
+            ],
+             ucursado: [{
+                    name: 'Nivel Inicial'
+                }, {
+                    name: 'Nivel Parvulario'
+                }, {
+                    name: 'Nivel Basico-1er Ciclo'
+                }, 
+                {
+                    name: 'Nivel Basico-2do Ciclo'
+                },
+                {
+                    name: 'Nivel Basico-3er Ciclo'
+                },
+                {
+                    name: 'Nivel Medio - 1er año de Bachillerado'
+                },
+                {
+                    name: 'Nivel Medio - 2do año de Bachillerado'
+                },
+                {
+                    name: 'Nivel Medio - 3er año de Bachillerado(Opcional)'
+                },
+                 {
+                    name: 'Nivel Superior - No Finalizado'
+                },
+                {
+                    name: 'Nivel Superior - Finalizado'
+                }
+
+            ],
             type: {
                 name: 'Atleta'
             },
@@ -459,7 +536,7 @@ export default {
             }
         },
         avatar(val, oldVal){
-            let img = this.atleta.rutaFoto
+         /*   let img = this.atleta.rutaFoto
             let imgAsset = null
             if(process.env.NODE_ENV == "development"){
                 try{
@@ -471,8 +548,8 @@ export default {
             }
             else{
                 imgAsset = process.env.BASE_ROUTE + '/static/img/src/assets/images/'+ img
-            }
-            if(val !== imgAsset){
+            }*/
+            if(val ){
                 this.changePhoto =  true
             }
             else{
@@ -483,9 +560,9 @@ export default {
         atleta: function(val, oldVal) {
             //this.atleta = this.$route.params.atleta
             //this.atleta = this.atleta
-            let img = this.atleta.rutaFoto
+          /*  let img = this.atleta.id
             let imgAsset = null
-            if(process.env.NODE_ENV == "development"){
+            if(process.env.NODE_ENV == "develsssopment"){
                 try{
                  imgAsset = require('@/assets/images/fotos/'+ this.atleta.id+"/avatar.png")
                 }
@@ -494,11 +571,11 @@ export default {
                 }
             }
             else{
-                imgAsset = process.env.BASE_ROUTE + '/static/img/src/assets/images/'+ img
+                imgAsset ="C:\\Users\\grimaldi\\Documents\\images\\"+ this.atleta.id+".png"
 
-            }
-            this.avatar =  imgAsset
-            this.copy_of_default_image = imgAsset
+            }*/
+            this.avatar =  this.getImg(this.atleta.id)
+            this.copy_of_default_image = this.getImg(this.atleta.id)
             this.atleta.sabeEscribir = (val.sabeEscribir == 1 ? true : false)
             this.atleta.sabeLeer = (val.sabeLeer == 1 ? true : false)
             this.atleta.tieneLesion = (val.tieneLesion == 1 ? true : false)
@@ -533,13 +610,27 @@ export default {
 
     },
     methods: {
+         getImg(img) {
+            
+            return BASE_URL+"upload/files/"+img+".png"
+        },
         first_step() {
             return new Promise((resolve, reject) => {
                 this.$validator.validateAll('form-2-1').then(success => {
-                    if (success) {
+                   if (success) {
+                        if(this.atleta.aniosPracticando <=  this._calculateAge(this.atleta.personaId.fechaNacimiento) - this.atleta.edadInicio){
                         resolve(true)
+                        this.showAlert = false
+                        this.errMsg = ''
+                    }
+
+                        else {
+                        reject(true)
+                        this.showAlert = true
+                        this.errMsg = "Los Años Practicando no pueden ser superior al intervalo de tiempo entre la Edad de Inicio y la Edad del Atleta"}
                     } else {
                         reject(true)
+                        
                     }
                 });
             })
@@ -626,7 +717,7 @@ export default {
             this.showSuccess = false
             this.$validator.validateAll().then(success => {
                 if (success) {
-                    let ladoPie, playaPractica, idiomas = '',
+                    let ladoPie, playaPractica, nivelAcademico, uanioCursado, idiomas = '',
                         olaPreferida, idiomasArr = [];
                     for (var i = this.atleta.idiomas.length - 1; i >= 0; i--) {
                         idiomasArr.push(this.atleta.idiomas[i].name)
@@ -639,6 +730,8 @@ export default {
                         ladoPie = "Derecha"
                     }
                     olaPreferida = this.atleta.olaPreferida.name
+                    nivelAcademico= this.atleta.nivelAcademico.name?this.atleta.nivelAcademico.name:this.atleta.nivelAcademico
+                    uanioCursado= this.atleta.uanioCursado.name?this.atleta.uanioCursado.name:this.atleta.uanioCursado
                     playaPractica = this.atleta.playaPractica.nombre
                     if (this.atleta.ladoPie == true) {
                         ladoPie = 'Izquierda'
@@ -659,7 +752,7 @@ export default {
                         "idiomas": idiomas == undefined ? '' : idiomas,
                         "ladoPie": ladoPie == undefined ? '' : ladoPie,
                         "logros": this.atleta.logros == undefined ? '' : this.atleta.logros,
-                        "nivelAcademico": this.atleta.nivelAcademico == undefined ? '' : this.atleta.nivelAcademico,
+                        "nivelAcademico": nivelAcademico == undefined ? '' : nivelAcademico,
                         "olaPreferida": olaPreferida == undefined ? '' : olaPreferida,
                         "otrosEstudios": this.atleta.otrosEstudios == undefined ? '' : this.atleta.otrosEstudios,
                       //  "personaId": this.atleta.personaId,
@@ -669,9 +762,10 @@ export default {
                         "sabeFirmar": this.atleta.sabeFirmar == false ? 0 : 1,
                         "sabeLeer": this.atleta.sabeLeer == false ? 0 : 1,
                         "tieneLesion": this.atleta.tieneLesion == false ? 0 : 1,
-                        "uanioCursado": this.atleta.uanioCursado == undefined ? '' : this.atleta.uanioCursado,
+                        "uanioCursado": uanioCursado == undefined ? '' : uanioCursado,
                         "ultimaParticipacion": this.atleta.ultimaParticipacion == undefined ? '' : this.atleta.ultimaParticipacion
                     }
+
      persona.atleta=atleta;
      atletasController.update(this, persona)
                 } else {
@@ -703,7 +797,18 @@ export default {
          */
         cropUploadFail(status, field) {
             console.log('-------- upload fail --------');
-        }
+        },
+
+         _calculateAge(birthday) {
+            var today = new Date();
+            var birthDate = new Date(birthday);
+            var age = today.getFullYear() - birthDate.getFullYear();
+            var m = today.getMonth() - birthDate.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            return age;
+       }
 
 
     }

@@ -25,10 +25,10 @@ export default {
         const formData = new FormData()
         let root_path = "persona"
         let filename = context.filename
-        formData.append('avatar', context.avatar)
-        formData.append('filename', context.filename)
+        formData.append('file', context.avatar)
+      //  formData.append('filename', context.filename)
         
-        formData.append('root_path', "C:\\data\\images")
+      //  formData.append('root_path', "C:\\data\\images")
        // this.upload_avatar(context, formData, root_path)
        HTTP.post('persona', atleta)
        .then((resp) => {
@@ -38,12 +38,11 @@ export default {
                context.showSuccess = true
                context.successMsg = "Persona creada exitosamente"
               console.log(resp);
-              formData.append('id', resp.data.atleta.id)
+           //   formData.append('id', resp.data.atleta.id)
               console.log("********************");
               // upload_avatar(context, formData, root_path);
                 console.log("************///********");
-               UPLOAD.post('upload_avatar', formData)
-
+                UPLOAD.post('upload/'+ resp.data.atleta.id,context.avatar)
 
                .then((resp) => {
                    console.log("estoy en crear personaasljjsll")
@@ -276,7 +275,7 @@ console.log(obj);
             })
     },
     upload_avatar(context, formData, root_path){
-        UPLOAD.post('upload_avatar', formData)
+        UPLOAD.post('upload_avatar', formData,{})
             .then((resp) => {
             })
             .catch((err) => {

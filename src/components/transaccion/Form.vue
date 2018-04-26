@@ -15,18 +15,18 @@
                 <div class="col-xs-12">
                     <div class="wrapper-alert">
                         <alert type="danger" :closable="true" v-if="showAlert" @close="showAlert=false">
-                            <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                            <h4><i class="icon fa fa-ban"></i> Error!</h4>
                             <p>{{ errMsg }}</p>
                         </alert>
                         <alert type="success" :closable="true" v-if="showSuccess" @close="showSuccess=false">
-                            <h4><i class="icon fa fa-check"></i> Success!</h4>
+                            <h4><i class="icon fa fa-check"></i> Exito!</h4>
                             <p>{{ successMsg }}</p>
                         </alert>
                     </div>
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title" v-if="!id">Agregar  Transaccion</h3>
-                            <h3 class="box-title" v-if="id">Editar  Transaccion</h3>
+                            <h3 class="box-title" v-if="!id">Agregar  Transacción</h3>
+                            <h3 class="box-title" v-if="id">Editar  Transacción</h3>
                         </div>
                         <div class="box-body">
                             <form @submit.prevent="submit" role="form">
@@ -127,7 +127,7 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('tipoTransaccionId') }">
-                                            <label for="tipoTransaccionId">Tipo de Transaccion</label>
+                                            <label for="tipoTransaccionId">Tipo de Transacción</label>
                                             <v-select :debounce="250" :options="tipoTransaccions" v-model="transaccion.tipoTransaccionId" placeholder="Seleccione un Tipo de Transaccion" label="nombre" @input="changedValue">
                                             </v-select>
                                             <div class="clearfix"></div>
@@ -149,7 +149,7 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('descripcion') }">
-                                            <label for="">Descripcion</label>
+                                            <label for="">Descripción</label>
                                             <textarea type="text" id="descripcion" name="descripcion" data-vv-as="Dirección " class="form-control" v-model="transaccion.descripcion" v-validate="'required'"></textarea>
                                             <span class="help-block" for="descripcion" v-bind:data-error="errors.first('descripcion')">
                                                 {{ errors.first('descripcion') }}
@@ -193,7 +193,7 @@
                                 </div>
 
                             </form>
-                        </div>
+                        
 
                          <div class="box-body">
                               
@@ -201,7 +201,7 @@
                                     <i class="fa fa-arrow-circle-left" ></i> Regresar a Transacciones
                                 </div>
 
-                                </div> 
+                                </div> </div>
                     </div>
                 </div>
             </div>
@@ -317,7 +317,7 @@ export default {
                     } else {
                         console.log("Error enn el formulario");
                         this.showAlert = true;
-                        this.errMsg = "Form error";
+                        this.errMsg = "Error revisa el formulario";
                     }
                 });
             },

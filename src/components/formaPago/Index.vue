@@ -56,7 +56,7 @@
 
                         </div>
                     </div>
-    |                </div>
+                    </div>
             </div>
            <!-- <modalPlaya :methodSubmit="methodSubmit" :title="'Actualizar Usuario'" :buttonMsg="'Actualizar'" :openModal="openModal" :playa="playa" v-on:openChange="isChange"></modalPlaya> -->
         </section>
@@ -81,7 +81,7 @@
                         label: "Nombre",
                         field: "nombre",
                     }, {
-                        label: "Descripcion",
+                        label: "Descripción",
                         field: "descripcion",
                     },{
                         label: "Acciones",
@@ -101,7 +101,7 @@
                 let swal = this.$swal;
                 this.$swal({
                     title: 'Estas Seguro?',
-                    html: 'No podras recuperar la informacion de la Forma de Pago <b>&laquo;' + nombre + '&raquo</b><br>y toda la informacion relacionada a la misma ya no sera accesible',
+                    html: 'No podras recuperar la información de la Forma de Pago <b>&laquo;' + nombre + '&raquo</b><br>y toda la información relacionada a la misma ya no sera accesible',
                     type: 'error',
                     showCancelButton: true,
                     confirmButtonText: 'Si, Eliminar!',

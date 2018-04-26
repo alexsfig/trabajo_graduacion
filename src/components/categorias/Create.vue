@@ -14,11 +14,11 @@
                 <div class="col-xs-12">
                     <div class="wrapper-alert">
                         <alert type="danger" :closable="true" v-if="showAlert" @close="showAlert=false">
-                            <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                            <h4><i class="icon fa fa-ban"></i> Error!</h4>
                             <p>{{ errMsg }}</p>
                         </alert>
                         <alert type="success" :closable="true" v-if="showSuccess" @close="showSuccess=false">
-                            <h4><i class="icon fa fa-check"></i> Success!</h4>
+                            <h4><i class="icon fa fa-check"></i> Exito!</h4>
                             <p>{{ successMsg }}</p>
                         </alert>
                     </div>
@@ -138,6 +138,13 @@
                                 </div>
 
                             </form>
+                             <div class="box-body">
+                              
+                             <div @click="volver()" class="btn btn-flat btn-sm btn-warning margin">
+                                    <i class="fa fa-arrow-circle-left" ></i> Regresar
+                                </div>
+
+                                </div> 
                         </div>
                     </div>
                 </div>
@@ -230,10 +237,20 @@
                     }
                     else{
                         this.showAlert = true
-                        this.errMsg = "Form error"
+                        this.errMsg = "Error revisa el formulario"
                     }
                 });
+            },
+
+             volver(){
+                console.log("entre")
+ window.history.length > 1
+        ? this.$router.go(-1)
+        : this.$router.push('/')
+    
+
             }
+
         }
 
     }

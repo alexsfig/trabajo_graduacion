@@ -40,9 +40,9 @@
                                     <td style=""><img class="custom-img img-responsive img-circle" v-bind:src="getImg(props.row.id)" alt="User profile picture"></td>
                                     <td>{{props.row.personaId.nombre}}</td>
                                     <td>{{props.row.personaId.apellido}}</td>
-                                     <td>{{ _calculateAge(props.row.personaId.fechaNacimiento)}} años</td>
+                                     <td>{{_calculateAge(props.row.personaId.fechaNacimiento)?_calculateAge(props.row.personaId.fechaNacimiento)+' años':'No definida'}} </td>
                                       <td>{{ (props.row.personaId.sexo == 'F' || props.row.personaId.sexo == 'f') ? 'Femenino' : 'Masculino' }}</td>
-                                    <td>{{ parseInt(props.row.aniosPracticando)}} años</td>
+                                    <td>{{ props.row.aniosPracticando?parseInt(props.row.aniosPracticando)+' años':'Sin Experiencia' }}</td>
                                     <td>{{ props.row.playaPractica}}</td>
                                     <td>{{ props.row.ladoPie}}</td>
                                     <td>{{ props.row.olaPreferida}}</td>
@@ -76,7 +76,8 @@
 import atletasController from '../../controllers/atletas.js'
 import ModalEntrenadores from './subcomponents/ModalEntrenadores'
 
-
+const BASE_URL = process.env.BASE_URL;
+//const BASE_URL = "http://192.168.1.96:8080/";
 export default {
     name: 'atletas',
     data() {
@@ -131,7 +132,7 @@ export default {
                 },
                
                 {
-                    label: 'Accion',
+                    label: 'Acción',
                     field: '',
                     filterable: true,
                 }
@@ -165,21 +166,8 @@ export default {
     },
     methods: {
         getImg(img) {
-            let imgAsset = null
-           if(process.env.NODE_ENV == "development"){
-                try{
-                    imgAsset = require('@/assets/images/fotos/'+ img+"/avatar.png")
-                }
-                catch(er){
-                 //   console.log("eurecaaaaaakjlaasjisjhdhgds")
-                    imgAsset = require('@/assets/images/default_avatar.png')
-                }
-            }
-            else{
-               imgAsset = process.env.BASE_ROUTE + '/static/img/src/assets/images/'+ img
-
-            }
-            return imgAsset
+            
+            return BASE_URL+"upload/files/"+img+".png"
         },
         clickHandler(id, atleta, nombre) {
             let swal = this.$swal

@@ -49,14 +49,15 @@
 		            <ul class="treeview-menu">
 		                <li>
 		                    <router-link to="/admin/users/">
-		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Manejo de usuarios</span>
+		                        <i class="fa fa-user" aria-hidden="true"></i> <span>Manejo de usuarios</span>
 		                    </router-link>
 		                </li>
+		                <!--
 		                <li>
 		                    <router-link to="/admin/users/create">
 		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Agregar usuario</span>
 		                    </router-link>
-		                </li>
+		                </li> -->
 		            </ul>
 		        </li>
 
@@ -71,14 +72,15 @@
 		            <ul class="treeview-menu">
 		                <li>
 		                    <router-link to="/admin/noticias/">
-		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Manejo de Noticias</span>
+		                        <i class="fa fa-newspaper-o" aria-hidden="true"></i> <span>Manejo de Noticias</span>
 		                    </router-link>
 		                </li>
+		                <!--
 		                <li>
 		                    <router-link to="/admin/noticias/create">
 		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Agregar Noticia</span>
 		                    </router-link>
-		                </li>
+		                </li>-->
 		            </ul>
 		        </li>
 
@@ -168,25 +170,30 @@
 		            <ul class="treeview-menu">
 		                <li>
 		                    <router-link to="/admin/categorias/">
-		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Manejo de Categorias</span>
+		                        <i class="fa fa-bookmark" aria-hidden="true"></i> <span>Manejo de Categorias</span>
 		                    </router-link>
 		                </li>
-		                <li>
+		           <!--     <li>
 		                    <router-link to="/admin/categorias/create">
 		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Agregar Categorias</span>
 		                    </router-link>
 		                </li>
-
+-->
 						  	   <li>
 		                    <router-link to="/admin/fechas/">
-		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Manejo de Fechas</span>
+		                        <i class="fa fa-flag" aria-hidden="true"></i> <span>Manejo de Fechas</span>
 		                    </router-link>
 		                </li>
-		                <li>
-		                    <router-link to="/admin/fechas/form">
+		                 <!--      <li>
+		              <router-link to="/admin/fechas/form">
 		                        <i class="fa fa-circle-o" aria-hidden="true"></i> <span>Agregar Fecha</span>
 		                    </router-link>
-		                </li> 
+		                </li> -->
+						   <li>
+		                    <router-link to="/admin/ranking">
+		                        <i class="fa fa-list-ol" aria-hidden="true"></i> <span>Ranking</span>
+		                    </router-link>
+		                    </li> 
 
 		                <!--
 
@@ -269,7 +276,7 @@
 
 		         <li>
 		            <router-link to="/admin/playas">
-		                <i class="fa fa-pagelines" aria-hidden="true"></i> <span>Playas</span>
+		                <i class="fa fa-map-marker" aria-hidden="true"></i> <span>Playas</span>
 		            </router-link>
 		        </li>
 

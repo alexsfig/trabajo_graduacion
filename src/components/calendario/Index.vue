@@ -6,7 +6,13 @@
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li>Calendario </li>
+
+                
             </ol>
+        </section>
+
+         <section class="content-header">
+            
         </section>
         <section class="content" >
 
@@ -22,92 +28,137 @@
                             <p>{{ successMsg }}</p>
                         </alert>
                     </div>
-                </div>
-            </div>
+                  
+                   
+                    <h3>Calendario de Actividades</h3>
+            
+                   <div class="box">
+                         
 
-           aqui: {{events[1]}
+                        <div class="box-body">
+                            
 
-            <div id="app">
-        <calendar
-                :first-day="1"
-                :all-events="events"
-                :canAddEvent="false"
-                :canDeleteEvent="false"
-                @eventAdded="eventAdded"
-                @eventDeleted="eventDeleted"
-        ></calendar>
+                        <div class="col-xs-12">
+
+   <div id="calendario">
+    <full-calendar :config="config" :events="events" eventClick="eventClick" />
+  </div>
+
+  </div>
+    </div>
+    </div>
+    </div>
     </div>
 
+
            
-          
-        </section>
+        </section>    
     </div>
 </template>
 <script>
-    import circuitosController from '../../controllers/circuitos.js';
-    import fechasController from '../../controllers/fechas.js';
-    import {Calendar} from 'vue-bootstrap4-calendar';
-     import vSelect from "vue-select"
-    import moment from "moment"
-    export default {
-        name: 'Calendario',
-        data() {
-            return {
-                fechas: [],
-                events: [],
-                 circuitos: [],
-                formaPagos: [],
-                showAlert: false,
-                showSuccess: false,
-                methodSubmit: 'editar',
-                openModal: false 
+import circuitosController from "../../controllers/circuitos.js";
+import fechasController from "../../controllers/fechas.js";
+import vSelect from "vue-select";
+import moment from "moment";
+import { FullCalendar } from "vue-full-calendar";
+import { Common } from "../../common_class/http";
+const BASE_URL = process.env.BASE_URL;
 
-            }
-        },
+//const BASE_URL = "http://localhost:8081/";
 
-        components: {
-            Calendar
-        },
+export default {
+  name: "Calendario",
 
-        created(){
-            this.fetchData()
-        },
-        methods:{
-            eventAdded(event) {
-                this.events.push(event);
-            },
-            eventDeleted(event) {
-                this.events.splice(this.events.indexOf(event), 1);
-            },
-            fetchData(){
-                fechasController.index(this)
-                circuitosController.index(this)
-            }
-            
-        },
-         mounted() {
-            let me = this;
-            this.fechas.forEach(function(item) {
-                        me.events.push(item.id);
-                        me.events.push(item.nombre);
-                        me.events.push(item.fecha);
-                        me.events.push(item.playaId.nombre);
-                         });
+  data() {
+    return {
+      fechas: [],
+      circuitos: [],
+      showAlert: false,
+      showSuccess: false,
+      methodSubmit: "editar",
+      openModal: false,
 
-            /*          console.log(array);
-                setTimeout(function () {
-               me.events = [ // you can make ajax call here
-                    {
-                     id:1,
-                        title:'Event 1',
-                        description: 'Dummy Desc',
-                        color: 'card-danger card-inverse',
-                        date: new Date() 
-
-                     }
-                    
-                ];
-            }, 1000); */
+      events: [],
+     
+      config: {
+        defaultView: "month",
+        eventRender: function(event, element) {
+          console.log(event);
         }
+
+      }
+    };
+  },
+
+  components: {
+    FullCalendar
+  },
+
+  created() {
+    this.fetchData();
+  },
+  watch: {
+    fechas: "mounted"
+  },
+  methods: {
+    fetchData() {
+      console.log("entssre");
+      fechasController.index(this);
+      circuitosController.index(this);
+    },
+      eventClick(event) {
+      console.log(event);
+
+ 
+    },
+    mounted() {
+      console.log("entrell");
+
+      this.fechas.forEach(element => {
+        console.log(element.fecha);
+
+        console.log(
+          "entre" + "*",
+          element.fecha.substring(0, 4),
+          element.fecha.substring(5, 7),
+          element.fecha.substring(8, 10)
+        );
+        this.events.push({
+          title: element.nombre,
+          start: moment(
+            new Date(
+              element.fecha.substring(0, 4),
+              element.fecha.substring(5, 7),
+              element.fecha.substring(8, 10)
+            )
+          ),
+          end: moment(
+            new Date(
+              element.fecha.substring(0, 4),
+              element.fecha.substring(5, 7),
+              element.fecha.substring(8, 10)
+            )
+          ).add(1, "d"),
+          // description: 'Competencia ',
+          color: "red",
+          url:BASE_URL+"admin/circuitofecha/"+element.id
+
+           
+          // date:new Date(element.fecha.substring(0,4),element.fecha.substring(5,7),element.fecha.substring(8,10))});
+        });
+      });
     }
+  }
+};
 </script>
+
+<style>
+#calendario {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+</style>

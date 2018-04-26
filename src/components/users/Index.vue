@@ -28,7 +28,7 @@
                             <div class="table-responsive">
 
                                 <vue-good-table
-                                  title="Listado"
+                                  title=""
                                   :columns="columns"
                                   :rows="users"
                                   :globalSearch="true"
@@ -78,7 +78,7 @@
                      filterable: true,
                     },
                     {
-                      label: '',
+                      label: 'Acciones',
                       field: '',
                       filterable: true,
                     }

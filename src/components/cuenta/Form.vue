@@ -18,11 +18,11 @@
                 <div class="col-xs-12">
                     <div class="wrapper-alert">
                         <alert type="danger" :closable="true" v-if="showAlert" @close="showAlert=false">
-                            <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                            <h4><i class="icon fa fa-ban"></i> Error!</h4>
                             <p>{{ errMsg }}</p>
                         </alert>
                         <alert type="success" :closable="true" v-if="showSuccess" @close="showSuccess=false">
-                            <h4><i class="icon fa fa-check"></i> Success!</h4>
+                            <h4><i class="icon fa fa-check"></i> Exito!</h4>
                             <p>{{ successMsg }}</p>
                         </alert>
                     </div>
@@ -66,7 +66,7 @@
                                     <div class="clearfix"></div>
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('descripcion') }">
-                                            <label for="">Descripcion Cuenta</label>
+                                            <label for="">Descripción Cuenta</label>
                                             <textarea rows="4" cols="50" id="descripcion" name="descripcion" data-vv-as="descripcion" class="form-control" v-model="cuenta.descripcion" v-validate="'required'"> </textarea>
                                             <span class="help-block" for="descripcion" v-bind:data-error="errors.first('descripcion')">
                                                 {{ errors.first('descripcion') }}
@@ -83,7 +83,7 @@
                                 </div>
 
                             </form>
-                        </div>
+                        
 
                         <div class="box-body">
                               
@@ -91,7 +91,7 @@
                                     <i class="fa fa-arrow-circle-left" ></i> Regresar a Cuentas
                                 </div>
 
-                                </div> 
+                                </div> </div>
 
                     </div>
                 </div>
@@ -145,7 +145,7 @@
                   } else {
                       console.log("Error enn el formulario")
                       this.showAlert = true
-                      this.errMsg = "Form error"
+                      this.errMsg = "Error revisa el formulario"
                   }
               });
           },

@@ -42,8 +42,8 @@ import CategoriasCreate from '@/components/categorias/Create'
 import CategoriasShow from '@/components/categorias/Show'
 import CategoriasIndex from '@/components/categorias/Index'
 
-
-
+import Ranking from '@/components/ranking/Ranking'
+import RankingJuez from '@/components/ranking/RankingJuez'
 // Import base templates
 import AdminTemplate from '@/layouts/Admin'
 import JuezTemplate from '@/layouts/Juez'
@@ -59,6 +59,8 @@ import CircuitosFinalizar from '@/components/circuitos/Finalizar'
 import CircuitosIndex from '@/components/circuitos/Index'
 import CircuitosIndexByFecha from '@/components/circuitos/IndexbyFecha'
 import AgregarAtleta from '@/components/circuitos/AgregarAtleta'
+import AgregarAtletaEscuela from '@/components/escuelas/AgregarAtletaEscuela'
+import AgregarAtletaClub from '@/components/clubes/AgregarAtletaClub'
 
 import NuevaRonda from '@/components/circuitos/NuevaRonda'
 
@@ -142,12 +144,12 @@ Vue.use(Router)
       component: AdminTemplate,
       meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false},
       children: [
-      /*  {
+        {
           path: '',
-          name: 'Dashboard',
+          name: 'DashboardRoot',
           component: Dashboard,
           meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
-        },*/
+        },
         {
           path: 'dashboard',
           name: 'Dashboard',
@@ -397,6 +399,18 @@ Vue.use(Router)
           component: AgregarAtleta,
           meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
+          {
+          path: 'escuelas/agregarAtleta/:id',
+          name: 'escuelasAgregarAtleta',
+          component: AgregarAtletaEscuela,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
+        },
+        {
+          path: 'clubes/agregarAtleta/:id',
+          name: 'clubesAgregarAtleta',
+          component: AgregarAtletaClub,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
+        },
          {
           path: 'circuitos/nuevaronda/:id',
           name: 'circuitosNuevaRonda',
@@ -602,6 +616,12 @@ Vue.use(Router)
           component: Reportes,
           meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
+        {
+          path: 'ranking',
+          name: 'Ranking',
+          component: Ranking,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
+        },
 
         {
           path: 'reportes/formbyAtleta',
@@ -684,7 +704,20 @@ meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
           name: 'UpdateUserJuez',
           component:  UpdateUserJuez,
           meta: { requiresAuth: true  ,adminAuth:false , juezAuth : true}
+        },
+
+        {
+          path: 'ranking',
+          name: 'RankingJuez',
+          component: RankingJuez,
+          meta: { requiresAuth: true  ,adminAuth:false, juezAuth : true}
+        },  {
+          path: 'atletas/:id',
+          name: 'AtletasShowJuez',
+          component: AtletasShow,
+          meta: { requiresAuth: true  ,adminAuth:false , juezAuth : true}
         }
+
       ]
     }
   ],
@@ -703,7 +736,7 @@ router.beforeEach((to, from, next) => {
     }
     else if(to.meta.adminAuth) {
     const authUser = JSON.parse(window.localStorage.getItem('rol'))
-    if(authUser ==1 ) {
+    if(authUser == 1 ) {
       next()
     }else {
       next('/juez')

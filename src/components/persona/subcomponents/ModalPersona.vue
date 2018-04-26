@@ -48,7 +48,7 @@
                     <div class="col-xs-12 col-sm-6">
                         <div class="fgroup" :class="{ 'has-error': errors.has('dui') }">
                             <label for="">Dui</label>
-                            <input type="text" id="dui" name="dui" data-vv-as="Dui" v-mask="'########-#'" class="form-control" v-model="updatePersona.dui" v-validate="'required'">
+                            <input type="text" id="dui" name="dui" data-vv-as="Dui" v-mask="'########-#'" class="form-control" v-model="updatePersona.dui" >
                             <span class="help-block" for="dui" v-bind:data-error="errors.first('dui')">
                                     {{ errors.first('dui') }}
                                 </span>
@@ -58,7 +58,7 @@
                     <div class="col-xs-12 col-sm-6">
                         <div class="fgroup" :class="{ 'has-error': errors.has('nit') }">
                             <label for="">Nit</label>
-                            <input type="text" id="nit" name="nit" data-vv-as="Nit" class="form-control" v-mask="'####-######-###-#'" v-model="updatePersona.nit" v-validate="'required'">
+                            <input type="text" id="nit" name="nit" data-vv-as="Nit" class="form-control" v-mask="'####-######-###-#'" v-model="updatePersona.nit" >
                             <span class="help-block" for="nit" v-bind:data-error="errors.first('nit')">
                                     {{ errors.first('nit') }}
                                 </span>
@@ -78,7 +78,7 @@
                     <div class="col-xs-12 col-sm-6">
                         <div class="fgroup" :class="{ 'has-error': errors.has('telefono') }">
                             <label for="">Telefono</label>
-                            <input type="text" id="telefono" name="telefono" data-vv-as="Telefono" v-mask="'####-####'" class="form-control" v-model="updatePersona.telefono" v-validate="'required'">
+                            <input type="text" id="telefono" name="telefono" data-vv-as="Telefono" v-mask="'####-####'" class="form-control" v-model="updatePersona.telefono" >
                             <span class="help-block" for="nit" v-bind:data-error="errors.first('telefono')">
                                     {{ errors.first('telefono') }}
                                 </span>

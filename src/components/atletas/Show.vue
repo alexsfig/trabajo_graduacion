@@ -7,22 +7,25 @@
                                     <i class="fa fa-arrow-circle-left" ></i> Regresar
                                 </div>
 
-                               
             </div>
             <div class="col-md-8 col-md-offset-2">
                 <div class="box box-primary">
                     <div class="box-body box-profile">
                         <img class="profile-user-img img-responsive img-circle" :src="avatar" alt="User profile picture">
-
-                        <h3 class="profile-username text-center">{{ atleta.personaId.nombre + " " + atleta.personaId.apellido}}</h3>
-                        <p class="text-muted text-center">Ranking 10 <i class="fa fa-star-o"></i></p>
+                            
+                        <h3 class="profile-username text-center">{{atleta.personaId?atleta.personaId.nombre:'' + " " }} {{  atleta.personaId?atleta.personaId.apellido:''}}</h3>
+                    <div v-if=" atleta.ranking">
+                    <div v-for="value in atleta.ranking"  >
+                        <p class="text-muted text-center">Ranking de {{value.categoriaName}} Lugar {{value.lugar}}  Puntos {{value.puntos}}<i class="fa fa-star-o"></i></p>
+                    </div>
+                    </div>
                         <div class="col-sm-8 col-sm-offset-2">
                             <ul class="list-group list-group-unbordered">
                                 <li class="list-group-item">
-                                    <b>Edad</b> <a class="pull-right">{{ _calculateAge( atleta.personaId.fechaNacimiento) }} años</a>
+                                    <b>Edad</b> <a class="pull-right">{{ _calculateAge( atleta.personaId?atleta.personaId.fechaNacimiento:'')?_calculateAge( atleta.personaId.fechaNacimiento)+' años':'No definida' }} </a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Años practicando</b> <a class="pull-right">{{ atleta.aniosPracticando }} años</a>
+                                    <b>Años practicando</b> <a class="pull-right">{{ atleta.aniosPracticando?parseInt(atleta.aniosPracticando)+' años':'Sin Experiencia' }} </a>
                                 </li>
                                 <li class="list-group-item">
                                     <b>Edad que inicio</b> <a class="pull-right">{{ atleta.edadInicio }} años</a>
@@ -31,7 +34,7 @@
                                     <b>Fechas que ha Competido</b> <a class="pull-right">{{ atleta.cuantasFechas }}</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Ultima Participacion</b> <a class="pull-right">{{ atleta.ultimaParticipacion }}</a>
+                                    <b>Ultima Participacion</b> <a class="pull-right">{{ atleta.ultimaParticipacion?atleta.ultimaParticipacion:'Sin Participacion' }}</a>
                                 </li>
                                 <li class="list-group-item">
                                     <b>Ola Preferida</b> <a class="pull-right">{{ atleta.olaPreferida }}</a>
@@ -40,7 +43,13 @@
                                     <b>Lado Pie</b> <a class="pull-right">{{ atleta.ladoPie }}</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <b>Idiomas</b></b> <a class="pull-right">{{ atleta.idiomas }}</a>
+                                    <b>Idiomas</b> <a class="pull-right">{{ atleta.idiomas }}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Escuela Inscrita</b> <a class="pull-right">{{ atleta.escuelaId?atleta.escuelaId.nombre:'Sin Inscripción' }}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Club Inscrito</b> <a class="pull-right">{{ atleta.clubId?atleta.clubId.nombre:'Sin Inscripción' }}</a>
                                 </li>
                             </ul>
                         </div>
@@ -73,6 +82,11 @@
                         <p>{{ atleta.nivelAcademico }}</p>
                          <hr>
 
+                          <strong><i class="fa fa-file-text-o margin-r-5"></i> Ultimo AÑo Cursado</strong>
+
+                        <p>{{ atleta.uanioCursado }}</p>
+                         <hr>
+
                         <strong><i class="fa fa-file-text-o margin-r-5"></i> Otros Estudios</strong>
 
                         <p>{{ atleta.otrosEstudios }}</p>
@@ -90,6 +104,9 @@
 <script>
 import atletasController from '../../controllers/atletas.js'
 import moment from "moment"
+
+const BASE_URL = process.env.BASE_URL;
+//const BASE_URL = "http://192.168.1.96:8080/";
 export default {
     name: "ShowAtleta",
     data: () => ({
@@ -125,7 +142,7 @@ export default {
             }
 
            //imgAsset = process.env.BASE_ROUTE + '/static/img/src/assets/images/'+ img
-            this.avatar =  imgAsset
+            this.avatar =   BASE_URL+"upload/files/"+this.atleta.id+".png"
         }
     },
     methods: {

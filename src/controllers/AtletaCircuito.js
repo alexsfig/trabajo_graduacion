@@ -194,6 +194,7 @@ export default {
                                     context.showSuccess = true
                                     context.atleta={id:-1,nombre:'Seleciona un atleta'};
                                     context.successMsg = "Se Agrego Correctamente el Atleta al Circuito"
+                                    context.atletas=[];
                                     context.fetchData()
                             //  context.$router.go()
                                   //  contextvm.$forceUpdate();

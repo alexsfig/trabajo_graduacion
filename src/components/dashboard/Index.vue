@@ -73,7 +73,7 @@
                     <p>Categorias registradas</p>
                   </div>
                   <div class="icon">
-                    <i class="fa fa-circle-o"></i>
+                    <i class="fa fa-bookmark"></i>
                   </div>
                   &nbsp;
                 </div>
@@ -85,7 +85,7 @@
                     <p>Fechas registradas</p>
                   </div>
                   <div class="icon">
-                    <i class="fa fa-flag-checkered"></i>
+                    <i class="fa fa-flag"></i>
                   </div>
                   &nbsp;
                 </div>
@@ -122,7 +122,7 @@
                   <div class="box-header with-border">
                     <i style="color:#031328"class="fa fa-users"></i>
 
-                    <h3 class="box-title "><b>Automatizacion de Procesos</b></h3>
+                    <h3 class="box-title "><b>Automatización de Procesos</b></h3>
                   </div>
                   <div class="box-body text-justify">
                 <div class="col-md-12">

@@ -16,11 +16,11 @@
                 <div class="col-xs-12">
                     <div class="wrapper-alert">
                         <alert type="danger" :closable="true" v-if="showAlert" @close="showAlert=false">
-                            <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                            <h4><i class="icon fa fa-ban"></i> Error!</h4>
                             <p>{{ errMsg }}</p>
                         </alert>
                         <alert type="success" :closable="true" v-if="showSuccess" @close="showSuccess=false">
-                            <h4><i class="icon fa fa-check"></i> Success!</h4>
+                            <h4><i class="icon fa fa-check"></i> Exito!</h4>
                             <p>{{ successMsg }}</p>
                         </alert>
                     </div>
@@ -46,7 +46,7 @@
 
  <div class="col-xs-6 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('fundacion') }" >
-                                            <label for="">Fundacion</label>
+                                            <label for="">Fundación</label>
                                             <dropdown class="form-group">
                                                 <div class="input-group">
                                                     <input placeholder="AAAA-MM-DD" type="text" id="fundacion" name="fundacion" class="form-control" data-vv-as="fecha de fundacion" v-model="club.fundacion" v-validate="'required|date_format:YYYY-MM-DD'" :class="{'datepicker':true,  'has-error': errors.has('fundacion') }">
@@ -158,7 +158,7 @@
                                     
                                        <div class="col-xs-12 col-sm-12">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('direccion') }" >
-                                            <label for="">Direccion</label>
+                                            <label for="">Dirección</label>
                                             <textarea id="direccion" name="direccion" data-vv-as="Direccion" class="form-control" v-model="club.direccion" v-validate="'required'" rows="3"></textarea>
                                                 {{ errors.first('club.direccion') }}
                                             <span class="help-block" for="direccion" v-bind:data-error="errors.first('direccion')"> 
@@ -181,7 +181,14 @@
                                 </div>
 
                             </form>
-                        </div>
+                       
+                        <div class="box-body">
+                              
+                             <div @click="volver()" class="btn btn-flat btn-sm btn-warning margin">
+                                    <i class="fa fa-arrow-circle-left" ></i> Regresar
+                                </div>
+
+                                </div>  </div>
                     </div>
                 </div>
             </div>
@@ -248,9 +255,18 @@ entrenadoresController.index(this)
                     else{
                           console.log("Error enn el formulario")
                         this.showAlert = true
-                        this.errMsg = "Form error"
+                        this.errMsg = "Error revisa el formulario"
                     }
                 });
+            },
+
+                volver(){
+                console.log("entre")
+ window.history.length > 1
+        ? this.$router.go(-1)
+        : this.$router.push('/')
+    
+
             }
         }
 

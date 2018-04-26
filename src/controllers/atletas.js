@@ -66,7 +66,7 @@ export default {
             formData.append('id', context.atleta.id)
 
             formData.append('root_path', root_path)
-            UPLOAD.post('upload_avatar', formData)
+            UPLOAD.post('upload/'+ context.atleta.id,context.avatar)
                 .then((resp) => {})
                 .catch((err) => {
                     if (err.response) {
@@ -196,5 +196,7 @@ export default {
             })
     }
 
+
+    
 
 }

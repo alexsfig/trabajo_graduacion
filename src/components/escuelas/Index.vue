@@ -49,7 +49,7 @@
 <td>{{ props.row.playaId.nombre }}</td>
 <td>{{ props.row.entrenadorId.nombre }}</td>  
 <td>{{ props.row.direccion }}</td>
-
+<td>{{ props.row.atletas }}</td>
                                   <td class="nowrap">
  <router-link :to="{ name: 'escuelasEdit', params: { id: props.row.id }}">
                                         <button type="button" class="margin btn btn-flat btn-sm btn-primary"
@@ -58,6 +58,13 @@
                                         </router-link>                                        <button type="button" class="margin btn btn-flat btn-sm btn-danger" 
                                         @click="deleteEscuela(props.row.id, props.row.nombre)"><i aria-hidden="true" 
                                         class="fa fa-trash-o"></i> Eliminar</button>
+
+                                          <button type="button" class="margin btn btn-flat btn-sm bg-navy margin" 
+                                        @click="agregarAtletas(props.row.id, props.row)"><i aria-hidden="true" 
+                                        class="fa fa-male"></i> Agregar Atletas</button>
+                                    
+
+                                      
                                 
                                     </td>
                                   </template>
@@ -90,7 +97,7 @@
                         label: "Nombre",
                         field: "nombre",
                     }, {
-                        label: "Fundacion",
+                        label: "Fundación",
                         field: "fundacion",
                     }, {
                         label: "Correo Electronico",
@@ -111,9 +118,13 @@
                         label: "Entrenador",
                         field: "entrenador",
                     },  {
-                        label: "Direccion",
+                        label: "Dirección",
                         field: "direccion",
-                    }, {
+                    }, 
+                    {
+                        label: "Atletas",
+                        field: "atletas",
+                    },{
                         label: "Acciones",
                         field: "",
                     }]
@@ -123,6 +134,18 @@
             this.fetchData()
         },
         methods:{
+
+            agregarAtletas(id, escuela) {
+            escuelasController.retrieve(this, id)
+            this.$router.push({
+                name: 'escuelasAgregarAtleta',
+                params: {
+                    id: id,
+                    escuela: escuela
+                }
+            });
+            },
+
             fetchData(){
                 escuelasController.index(this)
             },

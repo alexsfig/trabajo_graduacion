@@ -48,7 +48,10 @@
 <td>{{ props.row.telefonoFijo }}</td>
 <td>{{ props.row.playaId.nombre }}</td>
 <td>{{ props.row.entrenadorId.nombre }}</td> 
-<td>{{ props.row.direccion }}</td>                                   <td class="nowrap">
+<td>{{ props.row.direccion }}</td>
+<td>{{ props.row.atletas }}</td>         
+
+                          <td class="nowrap">
  <router-link :to="{ name: 'clubsEdit', params: { id: props.row.id }}">
                                         <button type="button" class="margin btn btn-flat btn-sm btn-primary"
                                        ><i aria-hidden="true"
@@ -56,6 +59,10 @@
                                         </router-link>                                        <button type="button" class="margin btn btn-flat btn-sm btn-danger" 
                                         @click="deleteClub(props.row.id, props.row.nombre)"><i aria-hidden="true" 
                                         class="fa fa-trash-o"></i> Eliminar</button>
+
+                                          <button type="button" class="margin btn btn-flat btn-sm bg-navy margin" 
+                                        @click="agregarAtletas(props.row.id, props.row)"><i aria-hidden="true" 
+                                        class="fa fa-male"></i> Agregar Atletas</button>
                                 
                                     </td>
                                   </template>
@@ -88,7 +95,7 @@
                         label: "Nombre",
                         field: "nombre",
                     }, {
-                        label: "Fundacion",
+                        label: "Fundación",
                         field: "fundacion",
                     }, {
                         label: "Correo Electronico",
@@ -109,8 +116,13 @@
                         label: "Entrenador",
                         field: "entrenador",
                     },{
-                        label: "Direccion",
+                        label: "Dirección",
                         field: "direccion",
+                    }
+                    ,
+                    {
+                        label: "Atletas",
+                        field: "atletas",
                     },{
                         label: "Acciones",
                         field: "",
@@ -121,6 +133,16 @@
             this.fetchData()
         },
         methods:{
+             agregarAtletas(id, club) {
+            clubsController.retrieve(this, id)
+            this.$router.push({
+                name: 'clubesAgregarAtleta',
+                params: {
+                    id: id,
+                    club: club
+                }
+            });
+            },
             fetchData(){
                 clubsController.index(this)
             },

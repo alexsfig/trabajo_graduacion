@@ -29,7 +29,7 @@
                 <div class="col-lg-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Manejo de circuitos </h3>
+                            <h3 class="box-title">Manejo de circuitos de la Fecha: <b> {{fecha.nombre}} </b></h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -49,7 +49,7 @@
 <td>{{ props.row.nombre }}</td>
 <td>{{ props.row.descripcion }}</td>
 
-<td>{{ props.row.fechaId.nombre }}</td>
+
 <td>{{ props.row.categoriaId.nombreCategoria }}</td>                
 <td>{{ props.row.numJueces+' ( '+props.row.numJuecesEval+')'}} </td>   
 <td>{{ props.row.numAtletas}} </td>                  
@@ -92,9 +92,9 @@
                              
                              <div class="box-body">
                               
-                             <router-link to="/admin/fechas/" class="btn btn-flat btn-sm btn-warning margin">
-                                    <i class="fa fa-arrow-circle-left"></i>  Regresar a Fechas
-                                </router-link>
+                              <div @click="volver()" class="btn btn-flat btn-sm btn-warning margin">
+                                    <i class="fa fa-arrow-circle-left" ></i> Regresar 
+                                </div>
 
                                 </div> 
 
@@ -110,6 +110,7 @@
 <script>
   
     import circuitosController from '../../controllers/circuitos.js';
+    import fechasController from '../../controllers/fechas.js';
      import vSelect from "vue-select"
 
     import moment from "moment"
@@ -117,6 +118,7 @@
         name: 'CircuitosByFecha',
         data() {
             return {
+                fecha: [],
                 circuitos: [],
                 showAlert: false,
                 showSuccess: false,
@@ -129,9 +131,6 @@
                     }, {
                         label: "Descripción",
                         field: "descripcion",
-                    }, {
-                        label: "Fecha",
-                        field: "fechaId.nombre",
                     }, 
                        {
                         label: "Categoria",
@@ -199,6 +198,7 @@
 
             fetchData(){
                 circuitosController.byFecha(this, this.$route.params.id)
+                fechasController.retrieve(this, this.$route.params.id)
             },
             deleteCircuito(id, nombre) {
                 let context = this;
@@ -222,6 +222,14 @@
                     }
                 })
             },
+            volver(){
+                console.log("entre")
+ window.history.length > 1
+        ? this.$router.go(-1)
+        : this.$router.push('/')
+    
+
+            }
         }
     }
 </script>
