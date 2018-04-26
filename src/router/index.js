@@ -155,6 +155,12 @@ Vue.use(Router)
           meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {
+          path: '/',
+          name: 'Dashboard',
+          component: Dashboard,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
+        },
+        {
           path: 'playas',
           name: 'Playas',
           component: Playas,
