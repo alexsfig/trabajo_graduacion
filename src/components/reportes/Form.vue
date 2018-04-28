@@ -107,7 +107,7 @@
                                     </div> 
 
                                                                      
-                                  
+
                                     <div class="col-xs-12 col-sm-4">
                                         <div class="fgroup" >
                                             <label for="cuentaId">Cuenta</label>
@@ -122,7 +122,7 @@
                                             
                                         </div>
                                     </div>
-
+     
                                     <div class="col-xs-12 col-sm-4">
                                         <div class="fgroup" >
                                             <label for="tipoTransaccionId">Tipo de Transacción</label>
@@ -155,9 +155,8 @@
                                            
                                         </div>
                                     </div>
-                                   
-                                  
-                                   
+                  
+  
 
                                     <div class="col-xs-12 col-sm-4" >
                                         <div class="fgroup" >
@@ -173,6 +172,8 @@
                                            
                                         </div>
                                     </div>
+
+                     
                                     <div class="col-xs-12 col-sm-4" >
                                         <div class="fgroup" >
                                             <label for="atletaId">Atleta</label>
@@ -327,7 +328,14 @@ export default {
       ],
       // comprobantev:null,
       transaccion: {
-        fecha: null
+        inicio: null,
+        fin: null,
+        formaPagoId: null,
+        cuentaId: null,
+        tipoTransaccionId: null,
+        naturaleza: null,
+        patrocinadorId: null,
+        atletaId: null
       },
       searchs: [],
       patrocinadors: [],
@@ -344,8 +352,8 @@ export default {
       total: "",
       count: "",
       closeOnSelected: true,
- 
-   // base64Img :'',
+
+      // base64Img :'',
 
       columns: [
         {
@@ -427,8 +435,7 @@ export default {
     }
   },
   created() {
-
-     /*   this.imgToBase64('logo2.png', function(base64) {
+    /*   this.imgToBase64('logo2.png', function(base64) {
             console.log("khsdjdswskjjskdkjsda imagen")
     this.base64Img = base64; 
 });  */
@@ -513,25 +520,24 @@ export default {
       this.transaccion = {};
       this.searchs = [];
     },
-    
-    createPDF(fechaini, fechafin, total, count) {                             
-let filas=[];
-for(let aux of this.searchs){
-let fila={
-fecha:aux.fecha,
-cuenta:aux.cuentaId.nombre,
-tipo: aux.tipoTransaccionId.nombre,
-concepto:aux.tipoTransaccionId.tipo==true?'Ingreso':'Gasto',
-referencia:aux.referencia,
-monto:this.roundToTwo(aux.monto),
-forma:aux.formaPagoId.nombre,
-comprobante:aux.comprobante,
-descripcion:aux.descripcion
 
-}
+    createPDF(fechaini, fechafin, total, count) {
+      let filas = [];
+      for (let aux of this.searchs) {
+        let fila = {
+          fecha: aux.fecha,
+          cuenta: aux.cuentaId.nombre,
+          tipo: aux.tipoTransaccionId.nombre,
+          concepto: aux.tipoTransaccionId.tipo == true ? "Ingreso" : "Gasto",
+          referencia: aux.referencia,
+          monto: this.roundToTwo(aux.monto),
+          forma: aux.formaPagoId.nombre,
+          comprobante: aux.comprobante,
+          descripcion: aux.descripcion
+        };
 
-filas.push(fila)
-}
+        filas.push(fila);
+      }
       let jsPDF = require("jspdf");
       var totalPagesExp = "{total_pages_count_string}";
       require("jspdf-autotable");
@@ -541,101 +547,86 @@ filas.push(fila)
         Gender: "Male"
       };
       var doc = new jsPDF();
-     
-      var columns = [
 
+      var columns = [
         { title: "Fecha", dataKey: "fecha" },
         { title: "Cuenta", dataKey: "cuenta" },
         { title: "Tipo de Transaccion", dataKey: "tipo" },
-        
 
         { title: "Concepto", dataKey: "concepto" },
-        
-       
-        
-     
+
         { title: "Forma de Pago", dataKey: "forma" },
         { title: "Comprobante", dataKey: "comprobante" },
-         { title: "Monto($)", dataKey: "monto" }
-       
-           
+        { title: "Monto($)", dataKey: "monto" }
       ];
       var rows = [];
       for (let row of this.searchs) {
         rows.push(row);
       }
 
-      
-
-     // HEADER
-        doc.setFontSize(20);
-        doc.setTextColor(40);
-        doc.setFontStyle('normal');
-        /*if (this.base64Img) {
+      // HEADER
+      doc.setFontSize(20);
+      doc.setTextColor(40);
+      doc.setFontStyle("normal");
+      /*if (this.base64Img) {
             console.log("agregue una imgToBase64")
             doc.addImage("", 'png', data.settings.margin.left, 15, 10, 10);
         } */
 
-        doc.setFontStyle("bold"); 
-        doc.text("Federacion Salvadoreña de Surf", 53, 20);  
-        doc.setFontSize(13); 
-        doc.text("Resumen Financiero", 10, 35);
-        doc.setFontStyle("normal"); 
-        doc.setFontSize(10);
-        doc.text("Transacciones Registradas Desde: ", 10, 45);
-        doc.setFontStyle("bold");          
-        doc.text(fechaini, 66, 45);
-        doc.setFontStyle("normal"); 
-        doc.text(" Hasta: ", 85, 45);
-        doc.setFontStyle("bold"); 
-        doc.text(fechafin, 97, 45);
-        doc.setFontStyle("normal");  
+      doc.setFontStyle("bold");
+      doc.text("Federacion Salvadoreña de Surf", 53, 20);
+      doc.setFontSize(13);
+      doc.text("Resumen Financiero", 10, 35);
+      doc.setFontStyle("normal");
+      doc.setFontSize(10);
+      doc.text("Transacciones Registradas Desde: ", 10, 45);
+      doc.setFontStyle("bold");
+      doc.text(fechaini, 66, 45);
+      doc.setFontStyle("normal");
+      doc.text(" Hasta: ", 85, 45);
+      doc.setFontStyle("bold");
+      doc.text(fechafin, 97, 45);
+      doc.setFontStyle("normal");
 
-
-
-      var pageContent = function (data) {
-        
-
+      var pageContent = function(data) {
         // FOOTER
 
         var str = "Pagina " + data.pageCount;
         // Total page number plugin only available in jspdf v1.0+
-        if (typeof doc.putTotalPages === 'function') {
-            str = str + " de " + totalPagesExp;
+        if (typeof doc.putTotalPages === "function") {
+          str = str + " de " + totalPagesExp;
         }
         doc.setFontSize(10);
-        doc.text(str, data.settings.margin.left, doc.internal.pageSize.height - 10);
-    };
+        doc.text(
+          str,
+          data.settings.margin.left,
+          doc.internal.pageSize.height - 10
+        );
+      };
 
-
-
-// You could either use a function similar to this or pre convert an image with for example http://dopiaza.org/tools/datauri
-// http://stackoverflow.com/questions/6150289/how-to-convert-image-into-base64-string-using-javascript
-
-
-
+      // You could either use a function similar to this or pre convert an image with for example http://dopiaza.org/tools/datauri
+      // http://stackoverflow.com/questions/6150289/how-to-convert-image-into-base64-string-using-javascript
 
       doc.autoTable(columns, filas, {
-          addPageContent: pageContent,
-         theme:'striped',
-        startY: 50/*, showHeader: 'firstPage'*/
+        addPageContent: pageContent,
+        theme: "striped",
+        startY: 50 /*, showHeader: 'firstPage'*/
       });
-doc.setFontStyle("bold");      
-var linea='Total = Ingreso - Gastos:      '+total;
-var linea2='Numero de Transacciones:   '+count;
-       doc.text(linea, 130, doc.autoTable.previous.finalY + 10);
-       doc.text(linea2, 130, doc.autoTable.previous.finalY + 20);
-       //doc.text(this.count,  20, doc.autoTable.previous.finalY + 10);
+      doc.setFontStyle("bold");
+      var linea = "Total = Ingreso - Gastos:      " + total;
+      var linea2 = "Numero de Transacciones:   " + count;
+      doc.text(linea, 130, doc.autoTable.previous.finalY + 10);
+      doc.text(linea2, 130, doc.autoTable.previous.finalY + 20);
+      //doc.text(this.count,  20, doc.autoTable.previous.finalY + 10);
 
-
-      if (typeof doc.putTotalPages === 'function') {
+      if (typeof doc.putTotalPages === "function") {
         doc.putTotalPages(totalPagesExp);
-    }
+      }
 
       doc.save("Resumen_Financiero.pdf");
-    },
+    }
 
-  /*imgToBase64: function imgToBase64(url, callback) {
+    /*imgToBase64: function imgToBase64(url, callback) {
     console.log("en el conver")
     if (!window.FileReader) {
         callback(null);
@@ -653,7 +644,6 @@ var linea2='Numero de Transacciones:   '+count;
     xhr.open('GET', url);
     xhr.send();
 } */
-
   }
 };
 </script>

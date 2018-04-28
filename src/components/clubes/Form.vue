@@ -119,8 +119,7 @@
                                                 </span>
                                         </div>
                                     </div>
-
-                                    
+                              
      <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup"  :class="{ 'has-error': errors.has('playaId') }">
                                             <label for="playaId">Playa</label>
@@ -155,7 +154,6 @@
                                         </div>
                                     </div>  
 
-                                    
                                        <div class="col-xs-12 col-sm-12">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('direccion') }" >
                                             <label for="">Dirección</label>
@@ -196,80 +194,74 @@
     </div>
 </template>
 
-<script>  import clubsController from '../../controllers/clubes.js'
-  import vSelect from "vue-select" 
-  import playasController from '../../controllers/playas.js'
-  import entrenadoresController from '../../controllers/entrenadores.js'
-  import masked from "vue-masked-input"
+<script>
+import clubsController from "../../controllers/clubes.js";
+import vSelect from "vue-select";
+import playasController from "../../controllers/playas.js";
+import entrenadoresController from "../../controllers/entrenadores.js";
+import masked from "vue-masked-input";
 export default {
-        name: 'Club',
-        data() {
-            return {
+  name: "Club",
+  data() {
+    return {
+      clearBtn: true,
+      todayBtn: true,
+      closeOnSelected: true,
+      limitFrom: "",
+      limitTo: "",
+      format: "yyyy-MM-dd",
+      weekStartsWith: 0,
 
-
-                clearBtn: true,
-                todayBtn: true,
-                closeOnSelected: true,
-                limitFrom: '',
-                limitTo: '',
-                format: 'yyyy-MM-dd',
-                weekStartsWith: 0,
-
-
-
-                errMsg:  '',
-                errorMsg: '',
-                showAlert: false,
-                showSuccess: false,
-                successMsg: "",
-id: '',
-                errMsg: "",
-                isLogin: false,
-club:{},playas:[],entrenadores:[]}
-        },
-        components:{
-            vSelect,
-            'masked-input': masked       
-            
-        },
-        created(){
-                this.id = this.$route.params.id;
-                if(this.id)
-                clubsController.retrieve(this,this.id);
-                console.log("id:"+this.id);playasController.index(this) 
-entrenadoresController.index(this) 
+      errMsg: "",
+      errorMsg: "",
+      showAlert: false,
+      showSuccess: false,
+      successMsg: "",
+      id: "",
+      errMsg: "",
+      isLogin: false,
+      club: {
+        correo: null,
+        playaId: null,
+        entrenadorId: null
+      },
+      playas: [],
+      entrenadores: []
+    };
   },
-        methods: {
-        
-            submit() {
-                this.showAlert = false
-                this.showSuccess = false
-                this.$validator.validateAll().then(success => {
-                    if (success) {
-                     console.log("Error en el servicio")
-                     if(!this.id)
-                        clubsController.create(this, this.club)
-                        else
-                        clubsController.update(this,this.club)
-                    }
-                    else{
-                          console.log("Error enn el formulario")
-                        this.showAlert = true
-                        this.errMsg = "Error revisa el formulario"
-                    }
-                });
-            },
-
-                volver(){
-                console.log("entre")
- window.history.length > 1
-        ? this.$router.go(-1)
-        : this.$router.push('/')
-    
-
-            }
+  components: {
+    vSelect,
+    "masked-input": masked
+  },
+  created() {
+    this.id = this.$route.params.id;
+    if (this.id) clubsController.retrieve(this, this.id);
+    console.log("id:" + this.id);
+    playasController.index(this);
+    entrenadoresController.index(this);
+  },
+  methods: {
+    submit() {
+      this.showAlert = false;
+      this.showSuccess = false;
+      this.$validator.validateAll().then(success => {
+        if (success) {
+          console.log("Error en el servicio");
+          if (!this.id) clubsController.create(this, this.club);
+          else clubsController.update(this, this.club);
+        } else {
+          console.log("Error enn el formulario");
+          this.showAlert = true;
+          this.errMsg = "Error revisa el formulario";
         }
+      });
+    },
 
+    volver() {
+      console.log("entre");
+      window.history.length > 1 ? this.$router.go(-1) : this.$router.push("/");
     }
+  }
+};
 </script>
 <style scoped>

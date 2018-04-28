@@ -35,7 +35,7 @@
                         <div class="box-body">
       <div class="box-action">
 
-                            <form @submit.prevent="submit"  role="form"> 
+                            <form @submit.prevent="submit"  role="form"  > 
                                 <div v-if="numjueces<8">
            <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup"  :class="{ 'has-error': errors.has('juez') }">
@@ -125,170 +125,158 @@
     </div>
 </template>
 <script>
-  
-    import circuitosController from '../../controllers/circuitos.js';
-        import juezController from '../../controllers/jueces.js';
-      import  juezCircuitoController  from '../../controllers/JuezCircuito.js';
-     import vSelect from "vue-select"
-    import moment from "moment"
-    export default {
-        name: 'AgregarJuez',
-        data() {
-            return {
-                circuito: {juezsCircuitoList:[],fechaId:{}},
-                datos:[],
-                juezRol:null,
-                juezCircuito:{},
-                jueces:[],
-                numjueces:0,
-                juecesRoles:[],
-                juezCircuitos:[],
-                juez:null,
-                showAlert: false,
-                showSuccess: false,
-                methodSubmit: 'editar',
-                openModal: false ,
-                id:'',
- columns: [ 
- 
-                       {
-                      label: 'Nombre',
-                      field: 'juezId.personaId.nombre',
-                      filterable: true
-                    },
-                    {
-                      label: 'Apellido',
-                      field: 'juezId.personaId.apellido',
-                      filterable: true
-                    },
-                     {
-                      label: 'Descripcion del Juez',
-                      field: 'descripcion',
-                      filterable: true
-                    },
-                     {
-                      label: 'Telefono',
-                      field: 'juezId.personaId.telefono',
-                      filterable: true
-                    },
-                     {
-                      label: 'Correo',
-                      field: 'juezId.personaId.correo',
-                      filterable: true
-                    },
-
-                    {
-                      label: 'Rol',
-                      field: 'rol',
-                      filterable: true
-                    },
-                   
-                     {
-                      label: 'Acción',
-                      field: '',
-                      filterable: false
-                    }
-                    ]
-            }
-        }, components:{
-            vSelect
+import circuitosController from "../../controllers/circuitos.js";
+import juezController from "../../controllers/jueces.js";
+import juezCircuitoController from "../../controllers/JuezCircuito.js";
+import vSelect from "vue-select";
+import moment from "moment";
+export default {
+  name: "AgregarJuez",
+  data() {
+    return {
+      circuito: { juezsCircuitoList: [], fechaId: {} },
+      datos: [],
+      juezRol: null,
+      juezCircuito: {},
+      jueces: [],
+      numjueces: 0,
+      juecesRoles: [],
+      juezCircuitos: [],
+      juez: null,
+      showAlert: false,
+      showSuccess: false,
+      methodSubmit: "editar",
+      openModal: false,
+      id: "",
+      columns: [
+        {
+          label: "Nombre",
+          field: "juezId.personaId.nombre",
+          filterable: true
         },
-        watch:{
-
-'juezCircuitos': 'calcularSize'
-
-
+        {
+          label: "Apellido",
+          field: "juezId.personaId.apellido",
+          filterable: true
         },
-        created(){
-              this.id = this.$route.params.id;
-        
-            this.fetchData()
+        {
+          label: "Descripcion del Juez",
+          field: "descripcion",
+          filterable: true
         },
-        methods:{
-            restarerror(){this.errors.clear()},
-            calcularSize(
+        {
+          label: "Telefono",
+          field: "juezId.personaId.telefono",
+          filterable: true
+        },
+        {
+          label: "Correo",
+          field: "juezId.personaId.correo",
+          filterable: true
+        },
 
-               
-            ){
+        {
+          label: "Rol",
+          field: "rol",
+          filterable: true
+        },
 
+        {
+          label: "Acción",
+          field: "",
+          filterable: false
+        }
+      ]
+    };
+  },
+  components: {
+    vSelect
+  },
+  watch: {
+    juezCircuitos: "calcularSize"
+  },
+  created() {
+    this.id = this.$route.params.id;
 
-                this.numjueces= Object.keys(this.juezCircuitos).length;
-                console.log("tamañooooooo eexitoso" + this.numjueces)
-            },
+    this.fetchData();
+  },
+  methods: {
+    restarerror() {
+      this.errors.clear();
+    },
+    calcularSize() {
+      this.numjueces = Object.keys(this.juezCircuitos).length;
+      console.log("tamañooooooo eexitoso" + this.numjueces);
+    },
 
-            fetchData(){
-               // circuitosController.index(this)
-               juezCircuitoController.indexByCircuito(this,this.id);
-                circuitosController.retrieve(this,this.id)
-                 juezController.byCircuito(this,this.id)
-                 juezController.getRoles(this)
-                  this.restarerror();
-/*
+    fetchData() {
+      // circuitosController.index(this)
+      juezCircuitoController.indexByCircuito(this, this.id);
+      circuitosController.retrieve(this, this.id);
+      juezController.byCircuito(this, this.id);
+      juezController.getRoles(this);
+      this.restarerror();
+      /*
   for (let i of this.juezs) {
   i.nombre=i.personaId.nombre+","+i.personaId.apellido;
   console.log("nombre:"+ i.nombre)
   console.log("Entrada:"+i.personaId.nombre+","+i.personaId.apellido)
 }*/
-            },
-                  submit() {
-                this.showAlert = false
-                this.showSuccess = false
+    },
+    submit() {
+      this.showAlert = false;
+      this.showSuccess = false;
 
-                this.$validator.validateAll().then(success => {
-                    if (success) {
-                 
-                    
-                        this.juezCircuito.circuitoId=this.circuito;
-                        this.juezCircuito.juezId=this.juez;
-                        this.juezCircuito.rolJuezId=this.juezRol
-                        this.juezCircuito.estado=0;
+      this.$validator.validateAll().then(success => {
+        if (success) {
+          this.juezCircuito.circuitoId = this.circuito;
+          this.juezCircuito.juezId = this.juez;
+          this.juezCircuito.rolJuezId = this.juezRol;
+          this.juezCircuito.estado = 0;
 
-                        console.log(JSON.stringify(  
-                        this.juezCircuito));
-                        juezCircuitoController.create(this,this.juezCircuito)
-                        
-                     
-                     
-                    }
-                    else{
-                          console.log("Error enn el formulario")
-                        this.showAlert = true
-                        this.errMsg = "Error revisa el formulario"
-                    }
-                });
-            },
-            deleteCircuito(id, nombre) {
-                let context = this;
-                let swal = this.$swal;
-                this.$swal({
-                    title: 'Estas Seguro?',
-                    html: 'No podras recuperar la informacion del Juez <b>&laquo;' + nombre + '&raquo</b><br> en el Circuito y toda la informacion en relacion al mismo ya no sera accesible',
-                    type: 'error',
-                    showCancelButton: true,
-                    confirmButtonText: 'Si, Eliminar!',
-                    cancelButtonText: 'No, Mantener'
-                }).then(function() {
-                    juezCircuitoController.delete(context, id, swal);
-                },function(dismiss) {
-                    if (dismiss === 'cancel') {
-                        swal(
-                          'Cancelado',
-                          'El Juez en el Circuito no se dio de baja',
-                          'error'
-                        )
-                    }
-                })
-            },
-
-            volver(){
-                console.log("entre")
- window.history.length > 1
-        ? this.$router.go(-1)
-        : this.$router.push('/')
-    
-
-            }
-             
+          console.log(JSON.stringify(this.juezCircuito));
+          juezCircuitoController.create(this, this.juezCircuito);
+          this.$validator.restarerror();
+        } else {
+          console.log("Error enn el formulario");
+          this.showAlert = true;
+          this.errMsg = "Error revisa el formulario";
         }
+      });
+    },
+    deleteCircuito(id, nombre) {
+      let context = this;
+      let swal = this.$swal;
+      this.$swal({
+        title: "Estas Seguro?",
+        html:
+          "No podras recuperar la informacion del Juez <b>&laquo;" +
+          nombre +
+          "&raquo</b><br> en el Circuito y toda la informacion en relacion al mismo ya no sera accesible",
+        type: "error",
+        showCancelButton: true,
+        confirmButtonText: "Si, Eliminar!",
+        cancelButtonText: "No, Mantener"
+      }).then(
+        function() {
+          juezCircuitoController.delete(context, id, swal);
+        },
+        function(dismiss) {
+          if (dismiss === "cancel") {
+            swal(
+              "Cancelado",
+              "El Juez en el Circuito no se dio de baja",
+              "error"
+            );
+          }
+        }
+      );
+    },
+
+    volver() {
+      console.log("entre");
+      window.history.length > 1 ? this.$router.go(-1) : this.$router.push("/");
     }
+  }
+};
 </script>

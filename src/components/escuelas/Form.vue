@@ -187,76 +187,74 @@
     </div>
 </template>
 
-<script>  import escuelasController from '../../controllers/escuelas.js'
-  import vSelect from "vue-select" 
-  import playasController from '../../controllers/playas.js'
-  import entrenadoresController from '../../controllers/entrenadores.js'
-  import masked from "vue-masked-input"
+<script>
+import escuelasController from "../../controllers/escuelas.js";
+import vSelect from "vue-select";
+import playasController from "../../controllers/playas.js";
+import entrenadoresController from "../../controllers/entrenadores.js";
+import masked from "vue-masked-input";
 export default {
-        name: 'Escuela',
-        data() {
-            return {
+  name: "Escuela",
+  data() {
+    return {
+      clearBtn: true,
+      todayBtn: true,
+      closeOnSelected: true,
+      limitFrom: "",
+      limitTo: "",
+      format: "yyyy-MM-dd",
+      weekStartsWith: 0,
 
+      errMsg: "",
+      errorMsg: "",
+      showAlert: false,
+      showSuccess: false,
+      successMsg: "",
+      id: "",
+      errMsg: "",
+      isLogin: false,
+      escuela: {
 
-                 clearBtn: true,
-                todayBtn: true,
-                closeOnSelected: true,
-                 limitFrom: '',
-                limitTo: '',
-                format: 'yyyy-MM-dd',
-                weekStartsWith: 0,
-
-                errMsg:  '',
-                errorMsg: '',
-                showAlert: false,
-                showSuccess: false,
-                successMsg: "",
-id: '',
-                errMsg: "",
-                isLogin: false,
-escuela:{},playas:[],entrenadores:[]}
-        },
-        components:{
-            vSelect,
-            'masked-input': masked    
-        },
-        created(){
-                this.id = this.$route.params.id;
-                if(this.id)
-                escuelasController.retrieve(this,this.id);
-                console.log("id:"+this.id);playasController.index(this) 
-entrenadoresController.index(this) 
+           correo: null,
+        playaId: null,
+        entrenadorId: null
+      },
+      playas: [],
+      entrenadores: []
+    };
   },
-        methods: {
-        
-            submit() {
-                this.showAlert = false
-                this.showSuccess = false
-                this.$validator.validateAll().then(success => {
-                    if (success) {
-                     console.log("Error en el servicio")
-                     if(!this.id)
-                        escuelasController.create(this, this.escuela)
-                        else
-                        escuelasController.update(this,this.escuela)
-                    }
-                    else{
-                          console.log("Error enn el formulario")
-                        this.showAlert = true
-                        this.errMsg = "Error revisa el formulario"
-                    }
-                });
-            },
-                volver(){
-                console.log("entre")
- window.history.length > 1
-        ? this.$router.go(-1)
-        : this.$router.push('/')
-    
-
-            }
+  components: {
+    vSelect,
+    "masked-input": masked
+  },
+  created() {
+    this.id = this.$route.params.id;
+    if (this.id) escuelasController.retrieve(this, this.id);
+    console.log("id:" + this.id);
+    playasController.index(this);
+    entrenadoresController.index(this);
+  },
+  methods: {
+    submit() {
+      this.showAlert = false;
+      this.showSuccess = false;
+      this.$validator.validateAll().then(success => {
+        if (success) {
+          console.log("Error en el servicio");
+          if (!this.id) escuelasController.create(this, this.escuela);
+          else escuelasController.update(this, this.escuela);
+        } else {
+          console.log("Error enn el formulario");
+          this.showAlert = true;
+          this.errMsg = "Error revisa el formulario";
         }
-
+      });
+    },
+    volver() {
+      console.log("entre");
+      window.history.length > 1 ? this.$router.go(-1) : this.$router.push("/");
     }
+  }
+};
 </script>
 <style scoped>

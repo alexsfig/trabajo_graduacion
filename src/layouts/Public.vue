@@ -11,7 +11,7 @@
 
         <div class="content-wrapper">
             <router-view/>
-     
+          
         </div>
 
         <footer class="main-footer">
@@ -26,8 +26,8 @@
 </template>
 
 <script>
-    import mainHeader from './includes/Admin.main-header.vue'
-    import mainSidebar from './includes/Admin.main-sidebar.vue'
+    import mainHeader from './includes/Public.main-header.vue'
+    import mainSidebar from './includes/Public.main-sidebar.vue'
 
     export default {
         name: 'app',

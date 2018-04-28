@@ -79,7 +79,7 @@
                                    <td><router-link :to="{ name: 'AtletasShow', params: { id: props.row.atleta }}">{{props.row.nombre}}</router-link></td> 
 
 
-    <td v-for="value in props.row.puntuaciones" :title="value.puntuacion+' Puntos'" :style="value.lugar==1?{background:'#FFD700'}:value.lugar==2?{background:'#a8a8a8'}:value.lugar==3?{background:'#cd7f32'}:{}"><div  >{{value.lugar}}</div></td> 
+    <td v-for="value in props.row.puntuaciones" :title="value.puntuacion+' Puntos '  +value.fecha" :style="value.lugar==1?{background:'#FFD700'}:value.lugar==2?{background:'#a8a8a8'}:value.lugar==3?{background:'#cd7f32'}:{}"><div  >{{value.lugar}}</div></td> 
                                
 
   

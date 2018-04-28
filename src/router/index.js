@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 // Import components to use in view
-//import HelloWorld from '@/components/HelloWorld'
+import HelloWorld from '@/components/HelloWorld'
 import Error404 from '@/layouts/Error'
 import Login from '@/components/login/Login'
 import Playas from '@/components/playas/Index'
@@ -48,7 +48,7 @@ import RankingJuez from '@/components/ranking/RankingJuez'
 import AdminTemplate from '@/layouts/Admin'
 import JuezTemplate from '@/layouts/Juez'
 import LoginTemplate from '@/layouts/Login'
-
+import PublicTemplate from '@/layouts/Public'
 
 import FechasIndex from '@/components/fechas/Index'
 import FechasForm from '@/components/fechas/Form'
@@ -118,6 +118,7 @@ Vue.use(Router)
   base: process.env.BASE_ROUTE,
   routes: [
     // Load login views
+ 
     {
       path: '/404',
       component: Error404
@@ -138,12 +139,30 @@ Vue.use(Router)
         }
       ]
     },
+    
+    {
+      path: '/public',
+      component: PublicTemplate,
+
+      children: [
+        {
+          path: '',
+          name: 'DashboardRoot',
+          component: Dashboard,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
+        },
+
+      ]
+    }
+    ,
     // Load Admin views
     {
       path: '/admin',
       component: AdminTemplate,
       meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false},
       children: [
+
+  
         {
           path: '',
           name: 'DashboardRoot',
@@ -156,6 +175,7 @@ Vue.use(Router)
           component: Dashboard,
           meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
+        
         {
           path: 'playas',
           name: 'Playas',
@@ -631,6 +651,19 @@ Vue.use(Router)
           meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
 
+        {
+          path: 'reportes/formbyAtleta/:id',
+          name: 'ReportesbyAtletaOne',
+          component: ReportesAtleta,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
+        },
+
+        {
+          path: 'reportes/formbyPatrocinador/:id',
+          name: 'ReportesbyPatrocinadorOne',
+          component: ReportesPatrocinador,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
+        },
         {
           path: 'heat/:id',
           name: 'heat',

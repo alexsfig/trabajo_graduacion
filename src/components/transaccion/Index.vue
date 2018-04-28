@@ -50,7 +50,11 @@
 <td v-if="props.row.tipoTransaccionId.tipo" style="color:green"><b>{{roundToTwo( props.row.monto) }}</b></td>
 <td>{{ props.row.formaPagoId.nombre }}</td>
 <td>{{ props.row.comprobante }}</td>
-<!--<td>{{ props.row.patrocinadorId?props.row.patrocinadorId.nombre:"N/A" }}</td> -->
+<td v-if="props.row.patrocinadorId"><router-link :to="{ name: 'ReportesbyPatrocinadorOne', params: { id: props.row.patrocinadorId.id }}">{{ props.row.patrocinadorId.nombre}}</router-link></td> 
+<td v-if="!props.row.patrocinadorId">N/A</td>
+
+<td v-if="props.row.atletaId"><router-link :to="{ name: 'ReportesbyAtletaOne', params: { id: props.row.atletaId.id }}">{{ props.row.atletaId.personaId.nombre+","+props.row.atletaId.personaId.apellido}}</router-link></td> 
+<td v-if="!props.row.atletaId">N/A</td>
 
 
 
@@ -130,14 +134,19 @@
                          filterable: true,
                     }
                     , 
-                    /*
+                
                     {
                         label: "Patrocinador",
                         field: "nombre",
                          filterable: true,
                     }
-                    , */
-
+                    , 
+    {
+                        label: "Atleta",
+                        field: "nombre",
+                         filterable: true,
+                    }
+                    , 
                     {
                         label: "Acciones",
                         field: "",

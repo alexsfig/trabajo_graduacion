@@ -194,12 +194,11 @@
                                 <div class="box-footer">
                                     <div class="col-xs-12 text-right">
                                   
-                                        <button type="submit" v-if="!id" class="btn btn-flat btn-sm btn-primary" ><i aria-hidden="true"
+                                        <button type="submit"  class="btn btn-flat btn-sm btn-primary" ><i aria-hidden="true"
                                             class="fa fa-search"></i> Consultar</button>
                                          <button type="button" class="btn btn-flat btn-sm btn-primary" @click="reset()">  <i aria-hidden="true"  class="fa fa-eraser"></i>  Limpiar</button>
                                         <button type="button" v-if="searchs.length>0" class="btn btn-flat btn-sm btn-primary" @click="createPDF(transaccion.inicio, transaccion.fin, total, count, transaccion.atletaId.nombre)"><i aria-hidden="true"  class="fa fa-file"></i> Generar Reporte</button>
-                                        <button type="submit" v-if="id" class="btn btn-flat btn-sm btn-primary">Editar</button>
-
+                                       
                                     </div>
                                 </div>
 
@@ -304,7 +303,7 @@ import atletasController from "../../controllers/atletas.js";
 import formaPagosController from "../../controllers/formaPagos.js";
 import cuentasController from "../../controllers/cuentas.js";
 import tipoTransacionsController from "../../controllers/tipoTransaccions.js";
-
+import moment from "moment"
 export default {
   name: "Transaccion",
   data() {
@@ -331,7 +330,10 @@ export default {
       ],
       // comprobantev:null,
       transaccion: {
-        fecha: null
+        inicio: null,
+        fin: null,
+       
+        atletaId: null
       },
       searchs: [],
       patrocinadors: [],
@@ -346,10 +348,11 @@ export default {
       clearBtn: true,
       todayBtn: true,
       total: "",
+      atleta:'',
       count: "",
       closeOnSelected: true,
- 
-   // base64Img :'',
+
+      // base64Img :'',
 
       columns: [
         {
@@ -408,6 +411,46 @@ export default {
     showSuccess: function(val) {
       transaccionsController.retrieve(this, this.entrada);
     },
+  atleta: function(val) {
+if(this.id){
+    console.log("*******************************")
+     console.log(val);
+     let date=new Date();
+        this.transaccion.fin= moment(date).format('YYYY-MM-DD');
+        date.setMonth(date.getMonth()-1);
+        this.transaccion.inicio=moment(date).format('YYYY-MM-DD');
+        this.transaccion.atletaId={id:this.id,nombre:val.personaId.nombre+','+val.personaId.apellido};
+        //  this.transaccion.atletaId.id=this.id;
+  
+
+//      transaccionsController.retrieve(this, this.id);
+ //     transaccionsController.retrieve(this, this.entrada);
+
+       let entrada = "?";
+          entrada += "inicio=" + this.transaccion.inicio;
+          entrada += "&fin=" + this.transaccion.fin;
+          entrada += this.transaccion.atletaId
+            ? "&atleta=" + this.transaccion.atletaId.id
+            : "";
+          entrada += this.transaccion.patrocinadorId
+            ? "&patrocinador=" + this.transaccion.patrocinadorId.id
+            : "";
+          entrada += this.transaccion.formaPagoId
+            ? "&formaPago=" + this.transaccion.formaPagoId.id
+            : "";
+          entrada += this.transaccion.cuentaId
+            ? "&cuenta=" + this.transaccion.cuentaId.id
+            : "";
+          entrada += this.transaccion.tipoTransaccionId
+            ? "&tipo=" + this.transaccion.tipoTransaccionId.id
+            : "";
+          entrada += this.transaccion.naturaleza
+            ? "&naturaleza=" + this.transaccion.naturaleza.value
+            : "";
+
+          transaccionsController.reporte(this, entrada);
+  }  
+    },
 
     searchs: function(value) {
       let total = [];
@@ -431,25 +474,23 @@ export default {
     }
   },
   created() {
-
-     /*   this.imgToBase64('logo2.png', function(base64) {
+    /*   this.imgToBase64('logo2.png', function(base64) {
             console.log("khsdjdswskjjskdkjsda imagen")
     this.base64Img = base64; 
 });  */
     this.id = this.$route.params.id;
     if (this.id) {
-      transaccionsController.retrieve(this, this.id);
-      transaccionsController.retrieve(this, this.entrada);
+ atletasController.retrieve(this, this.id);
       //this.comprobantev.value = this.transaccion.comprobante;
     }
     //this.transaccion.fecha=new Date();
 
     console.log("id:" + this.id);
-    patrocinadoresController.index(this);
+   // patrocinadoresController.index(this);
     atletasController.index(this);
-    formaPagosController.index(this);
-    cuentasController.index(this);
-    tipoTransacionsController.index(this);
+   // formaPagosController.index(this);
+  //  cuentasController.index(this);
+    //tipoTransacionsController.index(this);
   },
   methods: {
     roundToTwo(num) {
@@ -477,6 +518,7 @@ export default {
       }
     },
     submit() {
+        console.log("888888888888888888888")
       this.showAlert = false;
       this.showSuccess = false;
       this.$validator.validateAll().then(success => {
@@ -503,8 +545,8 @@ export default {
             ? "&naturaleza=" + this.transaccion.naturaleza.value
             : "";
 
-          if (!this.id) transaccionsController.reporte(this, entrada);
-          else transaccionsController.update(this, this.transaccion);
+          transaccionsController.reporte(this, entrada);
+          //else transaccionsController.update(this, this.transaccion);
         } else {
           console.log("Error enn el formulario");
           this.showAlert = true;
@@ -517,25 +559,24 @@ export default {
       this.transaccion = {};
       this.searchs = [];
     },
-    
-    createPDF(fechaini, fechafin, total, count, atleta) {                             
-let filas=[];
-for(let aux of this.searchs){
-let fila={
-fecha:aux.fecha,
-cuenta:aux.cuentaId.nombre,
-tipo: aux.tipoTransaccionId.nombre,
-concepto:aux.tipoTransaccionId.tipo==true?'Ingreso':'Gasto',
-referencia:aux.referencia,
-monto:this.roundToTwo(aux.monto),
-forma:aux.formaPagoId.nombre,
-comprobante:aux.comprobante,
-descripcion:aux.descripcion
 
-}
+    createPDF(fechaini, fechafin, total, count, atleta) {
+      let filas = [];
+      for (let aux of this.searchs) {
+        let fila = {
+          fecha: aux.fecha,
+          cuenta: aux.cuentaId.nombre,
+          tipo: aux.tipoTransaccionId.nombre,
+          concepto: aux.tipoTransaccionId.tipo == true ? "Ingreso" : "Gasto",
+          referencia: aux.referencia,
+          monto: this.roundToTwo(aux.monto),
+          forma: aux.formaPagoId.nombre,
+          comprobante: aux.comprobante,
+          descripcion: aux.descripcion
+        };
 
-filas.push(fila)
-}
+        filas.push(fila);
+      }
       let jsPDF = require("jspdf");
       var totalPagesExp = "{total_pages_count_string}";
       require("jspdf-autotable");
@@ -545,106 +586,91 @@ filas.push(fila)
         Gender: "Male"
       };
       var doc = new jsPDF();
-     
-      var columns = [
 
+      var columns = [
         { title: "Fecha", dataKey: "fecha" },
         { title: "Cuenta", dataKey: "cuenta" },
         { title: "Tipo de Transaccion", dataKey: "tipo" },
-        
 
         { title: "Concepto", dataKey: "concepto" },
-        
-       
-        
-     
+
         { title: "Forma de Pago", dataKey: "forma" },
         { title: "Comprobante", dataKey: "comprobante" },
-         { title: "Monto($)", dataKey: "monto" }
-       
-           
+        { title: "Monto($)", dataKey: "monto" }
       ];
       var rows = [];
       for (let row of this.searchs) {
         rows.push(row);
       }
 
-      
-
-     // HEADER
-        doc.setFontSize(20);
-        doc.setTextColor(40);
-        doc.setFontStyle('normal');
-        /*if (this.base64Img) {
+      // HEADER
+      doc.setFontSize(20);
+      doc.setTextColor(40);
+      doc.setFontStyle("normal");
+      /*if (this.base64Img) {
             console.log("agregue una imgToBase64")
             doc.addImage("", 'png', data.settings.margin.left, 15, 10, 10);
         } */
 
-        doc.setFontStyle("bold"); 
-        doc.text("Federacion Salvadoreña de Surf", 53, 20); 
-        doc.setFontSize(13); 
-        doc.text("Resumen Financiero por Atleta", 10, 35);
-        doc.setFontStyle("normal"); 
-        doc.setFontSize(10);
-        doc.text("Transacciones Registradas Desde: ", 10, 45);
-        doc.setFontStyle("bold");          
-        doc.text(fechaini, 66, 45);
-        doc.setFontStyle("normal"); 
-        doc.text(" Hasta: ", 85, 45);
-        doc.setFontStyle("bold"); 
-        doc.text(fechafin, 97, 45);
-       
-        doc.setFontStyle("normal");  
-        doc.text("Atleta:", 10, 55);
-        doc.setFontStyle("bold"); 
-        doc.text(atleta, 21, 55);
-        doc.setFontStyle("normal");  
+      doc.setFontStyle("bold");
+      doc.text("Federacion Salvadoreña de Surf", 53, 20);
+      doc.setFontSize(13);
+      doc.text("Resumen Financiero por Atleta", 10, 35);
+      doc.setFontStyle("normal");
+      doc.setFontSize(10);
+      doc.text("Transacciones Registradas Desde: ", 10, 45);
+      doc.setFontStyle("bold");
+      doc.text(fechaini, 66, 45);
+      doc.setFontStyle("normal");
+      doc.text(" Hasta: ", 85, 45);
+      doc.setFontStyle("bold");
+      doc.text(fechafin, 97, 45);
 
+      doc.setFontStyle("normal");
+      doc.text("Atleta:", 10, 55);
+      doc.setFontStyle("bold");
+      doc.text(atleta, 21, 55);
+      doc.setFontStyle("normal");
 
-
-      var pageContent = function (data) {
-        
-
+      var pageContent = function(data) {
         // FOOTER
 
         var str = "Pagina " + data.pageCount;
         // Total page number plugin only available in jspdf v1.0+
-        if (typeof doc.putTotalPages === 'function') {
-            str = str + " de " + totalPagesExp;
+        if (typeof doc.putTotalPages === "function") {
+          str = str + " de " + totalPagesExp;
         }
         doc.setFontSize(10);
-        doc.text(str, data.settings.margin.left, doc.internal.pageSize.height - 10);
-    };
+        doc.text(
+          str,
+          data.settings.margin.left,
+          doc.internal.pageSize.height - 10
+        );
+      };
 
-
-
-// You could either use a function similar to this or pre convert an image with for example http://dopiaza.org/tools/datauri
-// http://stackoverflow.com/questions/6150289/how-to-convert-image-into-base64-string-using-javascript
-
-
-
+      // You could either use a function similar to this or pre convert an image with for example http://dopiaza.org/tools/datauri
+      // http://stackoverflow.com/questions/6150289/how-to-convert-image-into-base64-string-using-javascript
 
       doc.autoTable(columns, filas, {
-          addPageContent: pageContent,
-         theme:'striped',
-        startY: 60/*, showHeader: 'firstPage'*/
+        addPageContent: pageContent,
+        theme: "striped",
+        startY: 60 /*, showHeader: 'firstPage'*/
       });
-doc.setFontStyle("bold");      
-var linea='Total Gastos:                 ($) '+total;
-var linea2='Numero de Transacciones:   '+count;
-       doc.text(linea, 130, doc.autoTable.previous.finalY + 10);
-       doc.text(linea2, 130, doc.autoTable.previous.finalY + 20);
-       //doc.text(this.count,  20, doc.autoTable.previous.finalY + 10);
+      doc.setFontStyle("bold");
+      var linea = "Total Gastos:                 ($) " + total;
+      var linea2 = "Numero de Transacciones:   " + count;
+      doc.text(linea, 130, doc.autoTable.previous.finalY + 10);
+      doc.text(linea2, 130, doc.autoTable.previous.finalY + 20);
+      //doc.text(this.count,  20, doc.autoTable.previous.finalY + 10);
 
-
-      if (typeof doc.putTotalPages === 'function') {
+      if (typeof doc.putTotalPages === "function") {
         doc.putTotalPages(totalPagesExp);
-    }
+      }
 
       doc.save("Resumen_Financiero_Atleta.pdf");
-    },
+    }
 
-  /*imgToBase64: function imgToBase64(url, callback) {
+    /*imgToBase64: function imgToBase64(url, callback) {
     console.log("en el conver")
     if (!window.FileReader) {
         callback(null);
@@ -662,7 +688,6 @@ var linea2='Numero de Transacciones:   '+count;
     xhr.open('GET', url);
     xhr.send();
 } */
-
   }
 };
 </script>

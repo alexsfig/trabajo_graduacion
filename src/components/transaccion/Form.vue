@@ -57,6 +57,8 @@
                                             </span>
                                         </div>
                                     </div>
+
+                                
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('formaPagoId') }">
                                             <label for="formaPagoId">Forma de pago</label>
@@ -96,6 +98,7 @@
                                             </span>
                                         </div>
                                     </div>
+
                                    
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('monto') }">
@@ -125,6 +128,7 @@
                                                 </span>
                                         </div>
                                     </div>
+                                   
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup" :class="{ 'has-error': errors.has('tipoTransaccionId') }">
                                             <label for="tipoTransaccionId">Tipo de Transacción</label>
@@ -211,7 +215,6 @@
 </template>
 
 <script>
-
 import transaccionsController from "../../controllers/transacciones.js";
 import vSelect from "vue-select";
 import patrocinadoresController from "../../controllers/patrocinadores.js";
@@ -219,118 +222,129 @@ import atletasController from "../../controllers/atletas.js";
 import formaPagosController from "../../controllers/formaPagos.js";
 import cuentasController from "../../controllers/cuentas.js";
 import tipoTransacionsController from "../../controllers/tipoTransaccions.js";
+import moment from "moment";
 export default {
-    name: "Transaccion",
-    data() {
-        return {
-            errMsg: "",
-            errorMsg: "",
-            showAlert: false,
-            showSuccess: false,
-            successMsg: "",
-            id: "",
-            errMsg: "",
-            enapatro: false,
-            enaatle: false,
-            isLogin: false,
-            comprobante: [{
-                label: "Factura",
-                value: "Factura"
-            }, {
-                label: "Recibo",
-                value: "Recibo"
-            }, {
-                label: "Voucher",
-                value: "Voucher"
-            }],
-            // comprobantev:null,
-            transaccion: {
-                fecha: null
-            },
-
-            patrocinadors: [],
-            atletas: [],
-            formaPagos: [],
-            cuentas: [],
-            tipoTransaccions: [],
-            limitTo: '',
-            limitFrom: '',
-            format: 'yyyy-MM-dd',
-            weekStartsWith: 0,
-            clearBtn: true,
-            todayBtn: true,
-            closeOnSelected: true,
-        };
-    },
-    components: {
-        vSelect
-    },
-    created() {
-        this.id = this.$route.params.id;
-        if (this.id) {
-            transaccionsController.retrieve(this, this.id);
-            //this.comprobantev.value = this.transaccion.comprobante;
+  name: "Transaccion",
+  data() {
+    return {
+      errMsg: "",
+      errorMsg: "",
+      showAlert: false,
+      showSuccess: false,
+      successMsg: "",
+      id: "",
+      errMsg: "",
+      enapatro: false,
+      enaatle: false,
+      isLogin: false,
+      comprobante: [
+        {
+          label: "Factura",
+          value: "Factura"
+        },
+        {
+          label: "Recibo",
+          value: "Recibo"
+        },
+        {
+          label: "Voucher",
+          value: "Voucher"
         }
-        //this.transaccion.fecha=new Date();
+      ],
+      // comprobantev:null,
+      transaccion: {
+        fecha: moment(new Date()).format('YYYY-MM-DD'),
+        comprobante: null,
+        tipoTransaccionId: null,
+        cuentaId: null,
+        formaPagoId: null,
+        atletaId:null,
+        patrocinadorId:null
+      },
 
-        console.log("id:" + this.id);
-        patrocinadoresController.index(this);
-        atletasController.index(this);
-        formaPagosController.index(this);
-        cuentasController.index(this);
-        tipoTransacionsController.index(this);
-    },
-    methods: {
-        changedValue() {
-                this.enaatle = false;
-                this.enapatro = false;
-                console.log("ejemplo hhhhhhhhhhh");
-                if (this.transaccion.tipoTransaccionId) {
-                    if (this.transaccion.tipoTransaccionId.tipo) {
-                        if (this.transaccion.tipoTransaccionId.asociar) {}
-
-                        this.enapatro = true;
-                    } else {
-                        if (this.transaccion.tipoTransaccionId.asociar) {
-                            this.enaatle = true;
-                        }
-                    }
-                }
-            },
-            submit() {
-                this.showAlert = false;
-                this.showSuccess = false;
-                this.$validator.validateAll().then(success => {
-                    if (success) {
-
-                        //this.transaccion.comprobante = this.comprobantev.label;
-
-                        if(this.transaccion.cuentaId.monto>this.transaccion.monto){
-                        this.transaccion.comprobante = this.transaccion.comprobante.label == undefined ? this.transaccion.comprobante : this.transaccion.comprobante.label
-                        if (!this.id) transaccionsController.create(this, this.transaccion);
-                        else transaccionsController.update(this, this.transaccion);}
-                        else{
-
- this.showAlert = true;
-                        this.errMsg = "La cuenta no tiene fondos suficientes";
-                        }
-                    } else {
-                        console.log("Error enn el formulario");
-                        this.showAlert = true;
-                        this.errMsg = "Error revisa el formulario";
-                    }
-                });
-            },
-
-            volver(){
-                console.log("entre")
- window.history.length > 1
-        ? this.$router.go(-1)
-        : this.$router.push('/')
-    
-
-            }
+      patrocinadors: [],
+      atletas: [],
+      formaPagos: [],
+      cuentas: [],
+      tipoTransaccions: [],
+      limitTo: "",
+      limitFrom: "",
+      format: "yyyy-MM-dd",
+      weekStartsWith: 0,
+      clearBtn: true,
+      todayBtn: true,
+      closeOnSelected: true
+    };
+  },
+  components: {
+    vSelect
+  },
+  created() {
+    this.id = this.$route.params.id;
+    if (this.id) {
+      transaccionsController.retrieve(this, this.id);
+      //this.comprobantev.value = this.transaccion.comprobante;
     }
-};
+    //this.transaccion.fecha=new Date();
 
+    console.log("id:" + this.id);
+    patrocinadoresController.index(this);
+    atletasController.index(this);
+    formaPagosController.index(this);
+    cuentasController.index(this);
+    tipoTransacionsController.index(this);
+  },
+  methods: {
+    changedValue() {
+      this.enaatle = false;
+      this.enapatro = false;
+      console.log("ejemplo hhhhhhhhhhh");
+      console.log(this.transaccion.tipoTransaccionId);
+      if (this.transaccion.tipoTransaccionId) {
+        if (this.transaccion.tipoTransaccionId.asociar) {
+          if (this.transaccion.tipoTransaccionId.tipo) {
+            console.log("Habilito enapatro");
+            this.enapatro = true;
+          } else {
+            console.log("Habilito enaatle");
+            this.enaatle = true;
+          }
+        }
+      }
+    },
+    submit() {
+      this.showAlert = false;
+      this.showSuccess = false;
+      this.$validator.validateAll().then(success => {
+        if (success) {
+          //this.transaccion.comprobante = this.comprobantev.label;
+
+          if (
+            this.transaccion.cuentaId.monto >= this.transaccion.monto ||
+            this.transaccion.tipoTransaccionId.tipo
+          ) {
+            this.transaccion.comprobante =
+              this.transaccion.comprobante.label == undefined
+                ? this.transaccion.comprobante
+                : this.transaccion.comprobante.label;
+            if (!this.id) transaccionsController.create(this, this.transaccion);
+            else transaccionsController.update(this, this.transaccion);
+          } else {
+            this.showAlert = true;
+            this.errMsg = "La cuenta no tiene fondos suficientes";
+          }
+        } else {
+          console.log("Error enn el formulario");
+          this.showAlert = true;
+          this.errMsg = "Error revisa el formulario";
+        }
+      });
+    },
+
+    volver() {
+      console.log("entre");
+      window.history.length > 1 ? this.$router.go(-1) : this.$router.push("/");
+    }
+  }
+};
 </script>
