@@ -57,7 +57,7 @@ import CircuitosFormbyFecha from '@/components/circuitos/FormbyFecha'
 import CircuitosEditbyFecha from '@/components/circuitos/EditbyFecha'
 import CircuitosFinalizar from '@/components/circuitos/Finalizar'
 import CircuitosIndex from '@/components/circuitos/Index'
-import CircuitosIndexByFecha from '@/components/circuitos/IndexByFecha'
+import CircuitosIndexByFecha from '@/components/circuitos/IndexbyFecha'
 import AgregarAtleta from '@/components/circuitos/AgregarAtleta'
 import AgregarAtletaEscuela from '@/components/escuelas/AgregarAtletaEscuela'
 import AgregarAtletaClub from '@/components/clubes/AgregarAtletaClub'
@@ -177,6 +177,12 @@ Vue.use(Router)
         },
         
         {
+          path: '/',
+          name: 'Dashboard',
+          component: Dashboard,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
+        },
+        {
           path: 'playas',
           name: 'Playas',
           component: Playas,
@@ -266,7 +272,7 @@ Vue.use(Router)
           component: EntrenadoresShow,
           meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
-        
+
          {
           path: 'jueces/create',
           name: 'JuecesCreate',
@@ -350,7 +356,7 @@ Vue.use(Router)
           component: FechasIndex,
           meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         }
-        , 
+        ,
         {
           path: 'fechas/form',
           name: 'fechasCreate',
@@ -376,7 +382,7 @@ Vue.use(Router)
           component: RondaEnd,
           meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
-        
+
         {
           path: 'circuitofecha/:id',
           name: 'circuitosIndexByFecha',
@@ -598,7 +604,7 @@ Vue.use(Router)
           component: CertiForm,
           meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
-             
+
         {
           path: 'patrocinadoratleta/create',
           name: 'PatrocinadorAtletaCreate',
@@ -697,7 +703,7 @@ meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
 }
 
 
-        
+
       ]
     },
     {
@@ -707,6 +713,7 @@ meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
       children: [
         {
           path: '',
+
           name: 'Dashboard2',
           component: Dashboard,
           meta: { requiresAuth: true ,adminAuth:false , juezAuth : true}
@@ -724,7 +731,7 @@ meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
           component: CalificarInit,
           meta: { requiresAuth: true  ,adminAuth:false , juezAuth : true}
         },
-        
+
         {
           path: 'userjuez',
           name: 'UpdateUserJuez',
@@ -743,12 +750,9 @@ meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
           component: AtletasShow,
           meta: { requiresAuth: true  ,adminAuth:false , juezAuth : true}
         }
-      
-     
-      
+
       ]
-      
-      }   
+    }
   ],
 })
 
@@ -765,7 +769,7 @@ router.beforeEach((to, from, next) => {
     }
     else if(to.meta.adminAuth) {
     const authUser = JSON.parse(window.localStorage.getItem('rol'))
-    if(authUser ==1 ) {
+    if(authUser == 1 ) {
       next()
     }else {
       next('/juez')

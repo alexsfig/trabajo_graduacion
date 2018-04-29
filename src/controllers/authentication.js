@@ -28,13 +28,15 @@ export default {
             if (param !== "undefined") {
                 // context.$router.push(param)
 
-                window.location.replace(param);
+                window.location.replace(process.env.BASE_ROUTE + param);
 
             }else{
+                // ⁄context.$router.push({name: 'Dashboard'})
+
                 if( items[1]==1)
-                context.$router.push({name: 'Dashboard'})
+                  window.location.replace(process.env.BASE_ROUTE +'/admin');
                 if( items[1]==2)
-                context.$router.push({name: 'Dashboard2'})
+                  window.location.replace(process.env.BASE_ROUTE +'/juez');
 
 //                window.location.replace('/admin');
 
@@ -46,8 +48,8 @@ export default {
         })
     },
     signOut(context){
-        context.$router.push({name: 'Login'})
-        //window.location.replace('/login');
+        //context.$router.push({name: 'Login'})
+        window.location.replace(process.env.BASE_ROUTE + '/login');
     }
 
 }
