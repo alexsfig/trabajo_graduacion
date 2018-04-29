@@ -4,7 +4,7 @@
             <h1>Clubes</h1>
             <ol class="breadcrumb">
                 
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
                 <li><router-link to="/admin/club">Clubes</router-link></li>
                 <li class="active">Formulario de  Clubes</li>
 
@@ -27,7 +27,7 @@
                     <div class="box">
                         <div class="box-header">
                             <h3 class="box-title" v-if="!id">Agregar  Club</h3>
-                             <h3 class="box-title" v-if="id">Editar  Club</h3>
+                             <h3 class="box-title" v-if="id">Actualizar Club</h3>
                         </div>
                         
                         <div class="box-body">
@@ -172,8 +172,8 @@
                                     </div>
                                 <div class="box-footer">
                                     <div class="col-xs-12 text-right">
-                                        <button type="submit"  v-if="!id" class="btn btn-flat btn-sm btn-primary">Agregar</button>
-                                            <button type="submit" v-if="id" class="btn btn-flat btn-sm btn-primary">Editar</button>
+                                        <button type="submit"  v-if="!id" class="btn btn-flat btn-sm btn-primary"><i class="fa fa-plus"></i> Agregar</button>
+                                            <button type="submit" v-if="id" class="btn btn-flat btn-sm btn-primary"><i class="fa fa-edit"></i> Actualizar</button>
 
                                     </div>
                                 </div>

@@ -47,10 +47,12 @@ export default {
         HTTP.post(ESCUELAS, request)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
-                    context.showSuccess = true
+                    //context.showSuccess = true
                     context.successMsg = "Escuela Creada"
-                    context.createEscuelas = {}
-                    context.errors.clear()
+                    context.$swal("Exito!", "Escuela Creada", "success")
+                    context.volver();
+                    //context.createEscuelas = {}
+                    //context.errors.clear()
                 }
             })
             .catch((err) => {
@@ -138,14 +140,23 @@ export default {
         HTTP.put(ESCUELAS, request)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
-                    var id = resp.data.id
-                    context.showAlert = false 
+                    //var id = resp.data.id
+                    //context.showAlert = false 
+                    context.$swal("Exito!", "La Escuela ha sido Actualizada", "success")
+                    context.volver(); 
+                }                
+                else
+                {
+                    context.$swal("Ocurrio un error!", "La Escuela no ha sido Actualizada", "error")
+                  //  context.volver();
+
                 }
-                context.showSuccess = true
-                context.successMsg = "Escuela actualizada"
+                //context.showSuccess = true
+                //context.successMsg = "Escuela actualizada"
             })
             .catch((err) => {
-                context.showAlert = true
+                //context.showAlert = true
+                context.$swal("Ocurrio un error!", "La Escuela no ha sido Actualizada", "error")
                 console.log(err)
                 if (err.response) {
                     context.errMsg = err.response.data
@@ -234,11 +245,11 @@ export default {
         HTTP.delete(ESCUELAS + id)
             .then((resp) => {
                 console.log(resp);
-                swal("Deleted!", "La Escuela ha sido eliminada", "success")
+                swal("Exito!", "La Escuela ha sido eliminada", "success")
                 context.fetchData();
             })
             .catch((err) => {               
-                swal("Oh snap!", "Ocurrio un error.", "error")
+                swal("No se puede Eliminar!", "Es posible que la escuela ya este Asociada.", "error")
             }) 
     }
     /* 

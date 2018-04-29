@@ -4,7 +4,7 @@
             <h1>Escuelas</h1>
 
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
                 <li>Manejo de Escuelas </li>
             </ol>
         </section>
@@ -35,7 +35,7 @@
                         <div class="box-body">
       <div class="box-action">
                                 <router-link to="/admin/escuelas/form" class="btn btn-default btn-flat">
-                                    <i class="fa fa-plus"></i> Nueva Escuela
+                                    <i class="fa fa-plus"></i> Nuevo
                                 </router-link>
                             </div>
                             <vue-good-table :columns="columns" :rows="escuelas" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
@@ -49,7 +49,7 @@
 <td>{{ props.row.playaId.nombre }}</td>
 <td>{{ props.row.entrenadorId.nombre }}</td>  
 <td>{{ props.row.direccion }}</td>
-<td>{{ props.row.atletas }}</td>
+<td style="text-align:right;">{{ props.row.atletas }}</td>
                                   <td class="nowrap">
  <router-link :to="{ name: 'escuelasEdit', params: { id: props.row.id }}">
                                         <button type="button" class="margin btn btn-flat btn-sm btn-primary"
@@ -113,10 +113,10 @@
                         field: "telefonoFijo",
                     }, {
                         label: "Playa",
-                        field: "playa",
+                        field: "playaId.nombre",
                     },  {
                         label: "Entrenador",
-                        field: "entrenador",
+                        field: "entrenadorId.nombre",
                     },  {
                         label: "Dirección",
                         field: "direccion",
@@ -124,6 +124,7 @@
                     {
                         label: "Atletas",
                         field: "atletas",
+                        type: "number"
                     },{
                         label: "Acciones",
                         field: "",

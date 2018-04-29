@@ -39,13 +39,13 @@ export default {
                     UPLOAD.post('upload/noticia/'+ resp.data.id,context.avatar)
 
                     .then((resp) => {
-                        context.$swal("Creado!", "La Noticia fue  Creada", "success")
+                        context.$swal("Creado!", "La Noticia fue Creada", "success")
                         context.volver();
                  
                     })
                     .catch((err) => {
 
-                        context.$swal("Ocurrio un error!", "La Noticia no fue  creada  ", "error")
+                        context.$swal("Ocurrio un error!", "La Noticia no fue creada  ", "error")
                         if (err.response) {
                          console.log("estoy en crear personaasljjsllt32y9329y23y9329")
                          //   context.showAlert = true
@@ -84,21 +84,21 @@ export default {
                    if(context.changePhoto)
                     UPLOAD.post('upload/noticia/'+ context.noticia.id,context.avatar)
                     .then((resp) => {
-                        context.$swal("Actualizado!", "La Cuenta fue  actualizda", "success")
+                        context.$swal("Exito!", "La Noticia fue Actualizada", "success")
                         context.volver();
 
 
                     })
                     .catch((err) => {
                         if (err.response) {
-                            context.$swal("Ocurrio un error!", "La Noticia no fue  actualizada  ", "error")  
+                            context.$swal("Ocurrio un error!", "La Noticia fue Actualizada pero la Imagen No", "error")  
                         }
                     })
                     else{
 
          
 
-                            context.$swal("Actualizado!", "La Noticia fue  Creada", "success")
+                            context.$swal("Exito!", "La Noticia fue actualizada", "success")
                             context.volver();
                         
     
@@ -108,7 +108,7 @@ export default {
               //  context.successMsg = "Noticia Actualizada"
             })
             .catch((err) => {
-                context.$swal("Ocurrio un error!", "La Noticia no fue  actualizada  ", "error")
+                context.$swal("Ocurrio un error!", "La Noticia no fue actualizada", "error")
                 
             //    context.showAlert = true
                 console.log(err)

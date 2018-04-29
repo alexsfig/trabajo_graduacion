@@ -49,10 +49,12 @@ export default {
         HTTP.post(ESCUELAS, request)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
-                    context.showSuccess = true
+                    //context.showSuccess = true
                     context.successMsg = "Club Creado"
-                    context.createClubs = {}
-                    context.errors.clear()
+                    context.$swal("Exito!", "Club Creado", "success")
+                    context.volver();
+                    //context.createClubs = {}
+                    //context.errors.clear()
                 }
             })
             .catch((err) => {
@@ -137,14 +139,24 @@ export default {
         HTTP.put(ESCUELAS, request)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
-                    var id = resp.data.id
-                    context.showAlert = false 
+                    //var id = resp.data.id
+                    //context.showAlert = false
+                    context.$swal("Exito!", "El Club ha sido Actualizado", "success")
+                    context.volver(); 
                 }
-                context.showSuccess = true
-                context.successMsg = "Club actualizado"
+
+                else
+                {
+                    context.$swal("Ocurrio un error!", "El Club no ha sido Actualizado", "error")
+                  //  context.volver();
+
+                }
+                //context.showSuccess = true
+                //context.successMsg = "Club actualizado"
             })
             .catch((err) => {
-                context.showAlert = true
+                //context.showAlert = true
+                context.$swal("Ocurrio un error!", "El Club no ha sido Actualizado", "error")
                 console.log(err)
                 if (err.response) {
                     context.errMsg = err.response.data
@@ -233,11 +245,11 @@ export default {
         HTTP.delete(ESCUELAS + id)
             .then((resp) => {
                 console.log(resp);
-                swal("Deleted!", "La Club ha sido eliminado", "success")
+                swal("Exito!", "La Club ha sido eliminado", "success")
                 context.fetchData();
             })
             .catch((err) => {               
-                swal("Oh snap!", "Ocurrio un error.", "error")
+                swal("No se puede Eliminar!", "Es posible que el Club ya este Asociado.", "error")
             }) 
     } 
     
