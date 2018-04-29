@@ -19,7 +19,7 @@ import Toasted from 'vue-toasted';
 import * as VueGoogleMaps from 'vue2-google-maps';
 import FullCalendar from 'vue-full-calendar'
 import "fullcalendar/dist/fullcalendar.min.css";
-
+import  Tweet  from 'vue-tweet-embed';
 Vue.use(FullCalendar)
 
 Vue.config.productionTip = false;

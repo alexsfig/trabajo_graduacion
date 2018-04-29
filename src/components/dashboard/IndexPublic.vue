@@ -128,20 +128,45 @@
                     <h3 class="box-title "><b>Automatización de Procesos</b></h3>
                   </div>
                   <div class="box-body text-justify">
-                <div class="col-md-12">
-                      El sistema permitirá la creación de <b>TORNEOS (FECHAS)</b>, asignado a la playa donde se realizará el evento.
-                      <br><br>
-                      Se podrá definir las <b>CATEGORÍAS</b> participantes, así como los atletas por cada categoría.
-                      <br><br>
-                      El sistema será el responsable de la asignación de atletas para cada uno de los heats que se realicen, así como la sumatoria de puntos al final de cada heat.
-                      <br><br>
-                      Al final de cada <b>TORNEOS (FECHAS)</b> que se realice el sistema generará la tabla de puntuaciones finales de cada una de las <b>CATEGORÍAS</b>
-                    </div>
+    
+           <Timeline :id="'fesurfing_'" :sourceType="'likes'" style="height:200" :options="{ tweetLimit: '3' }"/>
+
+
+                  </div>
+                </div>
+              </div>
+                      <div class="col-md-6">
+                <div class="box box-success">
+                  <div class="box-header with-border">
+                    <i style="color:#031328" class="fa fa-users"></i>
+
+                    <h3 class="box-title "><b>Automatización de Procesos</b></h3>
+                  </div>
+                  <div class="box-body text-justify">
+    
+           <Timeline :id="'fesurfing_'" :sourceType="'profile'" :options="{ tweetLimit: '3' }"/>
+
 
                   </div>
                 </div>
               </div>
             </div>
+
+             <div class="col-md-12">
+                <div class="box box-success">
+                  <div class="box-header with-border">
+                    <i style="color:#031328" class="fa fa-users"></i>
+
+                    <h3 class="box-title "><b>Automatización de Procesos</b></h3>
+                  </div>
+                  <div class="box-body text-justify">
+    
+           <Timeline :id="'fesurfing_'" :sourceType="'likes'" style="height:200" :options="{ tweetLimit: '8' }"/>
+
+
+                  </div>
+                </div>
+              </div>
             <div class="row padd">
               <img class="img-responsive" src="../../assets/images/background/Foto3.png" alt="">
             </div>
@@ -158,6 +183,7 @@ import categoriasController from "../../controllers/categorias.js";
 import fechasController from "../../controllers/fechas.js";
 import patrocinadoresController from "../../controllers/patrocinadores.js";
 import noticiasController from "../../controllers/noticias.js";
+import { Tweet, Moment, Timeline } from 'vue-tweet-embed'
 const BASE_URL = process.env.BASE_URL;
 export default {
   name: "clubes",
@@ -181,6 +207,11 @@ export default {
   watch: {
     $route: "fetchData"
   },
+      components: {
+         'Tweet': Tweet,
+        'Timeline': Timeline
+  
+    },
   methods: {
       getImg(img) {
             

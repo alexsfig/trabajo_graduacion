@@ -69,73 +69,81 @@
     </div>
 </template>
 <script>
-  
-    import patrocinadorsController from '../../controllers/patrocinadores.js';
-     import vSelect from "vue-select"
-    import moment from "moment"
-    export default {
-        name: 'Patrocinadors',
-        data() {
-            return {
-                patrocinadors: [],
-                showAlert: false,
-                showSuccess: false,
-                methodSubmit: 'editar',
-                openModal: false ,
- columns: [ 
- {
-                        label: "Nombre",
-                        field: "nombre",
-                    }, {
-                        label: "Nit",
-                        field: "nit",
-                    }, {
-                        label: "Tipo",
-                        field: "tipo",
-                    }, {
-                        label: "Telefono",
-                        field: "telefono",
-                    }, {
-                        label: "Correo",
-                        field: "correo",
-                    }, {
-                        label: "Dirección",
-                        field: "direccion",
-                    },{
-                        label: "Acciones",
-                        field: "",
-                    }]
-            }
+import patrocinadorsController from "../../controllers/patrocinadores.js";
+import vSelect from "vue-select";
+import moment from "moment";
+export default {
+  name: "Patrocinadors",
+  data() {
+    return {
+      patrocinadors: [],
+      showAlert: false,
+      showSuccess: false,
+      methodSubmit: "editar",
+      openModal: false,
+      columns: [
+        {
+          label: "Nombre",
+          field: "nombre"
         },
-        created(){
-            this.fetchData()
+        {
+          label: "Nit",
+          field: "nit"
         },
-        methods:{
-            fetchData(){
-                patrocinadorsController.index(this)
-            },
-            deletePatrocinador(id, nombre) {
-                let context = this;
-                let swal = this.$swal;
-                this.$swal({
-                    title: 'Estas Seguro?',
-                    html: 'No podras recuperar la informacion del patrocinador <b>&laquo;' + nombre + '&raquo</b><br>y toda la informacion con relacion al mismo ya no sera accesible',
-                    type: 'error',
-                    showCancelButton: true,
-                    confirmButtonText: 'Si, Eliminar!',
-                    cancelButtonText: 'No, Mantener'
-                }).then(function() {
-                    patrocinadorsController.delete(context, id, swal);
-                },function(dismiss) {
-                    if (dismiss === 'cancel') {
-                        swal(
-                          'Cancelado',
-                          'La Patrocinador no se elimino',
-                          'error'
-                        )
-                    }
-                })
-            },
+        {
+          label: "Tipo",
+          field: "tipo"
+        },
+        {
+          label: "Telefono",
+          field: "telefono"
+        },
+        {
+          label: "Correo",
+          field: "correo"
+        },
+        {
+          label: "Dirección",
+          field: "direccion"
+        },
+        {
+          label: "Acciones",
+          field: ""
         }
+      ]
+    };
+  },
+  created() {
+    this.fetchData();
+  },
+  methods: {
+    fetchData() {
+      patrocinadorsController.index(this);
+    },
+    deletePatrocinador(id, nombre) {
+      let context = this;
+      let swal = this.$swal;
+      this.$swal({
+        title: "Estas Seguro?",
+        html:
+          "No podras recuperar la informacion del patrocinador <b>&laquo;" +
+          nombre +
+          "&raquo</b><br>y toda la informacion con relacion al mismo ya no sera accesible",
+        type: "error",
+        showCancelButton: true,
+        confirmButtonText: "Si, Eliminar!",
+        cancelButtonText: "No, Mantener"
+      }).then(
+        function() {
+          patrocinadorsController.delete(context, id, swal);
+        },
+        function(dismiss) {
+          if (dismiss === "cancel") {
+            swal("Cancelado", "La Patrocinador no se elimino", "error");
+          }
+        }
+      );
     }
+  }
+};
 </script>
