@@ -31,14 +31,24 @@ export default {
         HTTP.put(TIPOTRANSACCION, tipoTransaccions)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
-                    var id = resp.data.id
-                    context.showAlert = false
+                    //var id = resp.data.id
+                    //context.showAlert = false
+                    context.$swal("Exito!", "El Tipo de Transaccion fue Actualizado", "success")
+                    context.volver();
                 }
-                context.showSuccess = true
-                context.successMsg = "Tipo de Transaccion Actualizado"
+                 else
+                {
+                    context.$swal("Ocurrio un error!", "El Tipo de Transaccion no fue Actualizado", "error")
+                  //  context.volver();
+
+                }
+                //context.showSuccess = true
+                //context.successMsg = "Tipo de Transaccion Actualizado"
             })
             .catch((err) => {
-                context.showAlert = true
+                
+                context.$swal("Ocurrio un error!", "El Tipo de Transaccion no fue Actualizado", "error")
+                //context.showAlert = true
                 console.log(err)
                 if (err.response) {
                     context.errMsg = err.response.data
@@ -106,7 +116,7 @@ export default {
         HTTP.delete(TIPOTRANSACCION + id)
             .then((resp) => {
                 console.log(resp);
-                swal("Deleted!", "El Tipo de Transaccion ha sido eliminado", "success")
+                swal("Exito!", "El Tipo de Transaccion ha sido eliminado", "success")
                 context.fetchData();
             })
             .catch((err) => {
@@ -120,10 +130,12 @@ export default {
                             HTTP.post(TIPOTRANSACCION, tipoTransaccion)
                             .then((resp) => {
                                 if (resp.status>= 200 && resp.status <=300){
-                                    context.showSuccess = true
+                                    //context.showSuccess = true
                                     context.successMsg = "Tipo de Transaccion creado exitosamente"
-                                    context.fetchData()
-                                    context.resetForm()
+                                    context.$swal("Exito!", "Tipo de Transaccion creado exitosamente", "success")
+                                    context.volver();
+                               //     context.fetchData()
+                               //     context.resetForm()
                                 }
                             })
                             .catch((err) => {

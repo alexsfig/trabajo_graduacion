@@ -4,7 +4,7 @@
             <h1>Tipo de Transacción</h1>
             <ol class="breadcrumb">
 
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
                 <li>
                     <router-link to="/admin/tipoTransaccions">Tipos de Transacción</router-link>
                 </li>
@@ -27,7 +27,7 @@
                     <div class="box">
                         <div class="box-header">
                             <h3 class="box-title" v-if="!id">Agregar  Tipo de Transacción</h3>
-                            <h3 class="box-title" v-if="id">Editar Tipo de Transacción</h3>
+                            <h3 class="box-title" v-if="id">Actualizar Tipo de Transacción</h3>
                         </div>
 
                         <div class="box-body">
@@ -84,8 +84,8 @@
                                 </div>
                                 <div class="box-footer">
                                     <div class="col-xs-12 text-right">
-                                        <button type="submit" v-if="!id" class="btn btn-flat btn-sm btn-primary">Agregar</button>
-                                        <button type="submit" v-if="id" class="btn btn-flat btn-sm btn-primary">Editar</button>
+                                        <button type="submit" v-if="!id" class="btn btn-flat btn-sm btn-primary"><i class="fa fa-plus"></i> Agregar</button>
+                                        <button type="submit" v-if="id" class="btn btn-flat btn-sm btn-primary"><i class="fa fa-edit"></i> Actualizar</button>
 
                                     </div>
                                 </div>
@@ -97,7 +97,7 @@
                          <div class="box-body">
                               
                              <div @click="volver()" class="btn btn-flat btn-sm btn-warning margin">
-                                    <i class="fa fa-arrow-circle-left" ></i> Regresar a Tipos de Transacción
+                                    <i class="fa fa-arrow-circle-left" ></i> Regresar
                                 </div>
 
                                 </div>  </div>

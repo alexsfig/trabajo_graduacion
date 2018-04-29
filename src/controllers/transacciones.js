@@ -32,14 +32,23 @@ export default {
         HTTP.put(TIPOTRANSACCION, transaccions)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
-                    var id = resp.data.id
-                    context.showAlert = false
+                    //var id = resp.data.id
+                    //context.showAlert = false
+                    context.$swal("Exito!", "La Transaccion fue Actualizada", "success")
+                    context.volver();
                 }
-                context.showSuccess = true
-                context.successMsg = "Transaccion Actualizada"
+                else
+                {
+                    context.$swal("Ocurrio un error!", "La Transaccion no fue Actualizada", "error")
+                  //  context.volver();
+
+                }
+                //context.showSuccess = true
+                //context.successMsg = "Transaccion Actualizada"
             })
             .catch((err) => {
-                context.showAlert = true
+                //context.showAlert = true
+                context.$swal("Ocurrio un error!", "La Transaccion no fue Actualizada", "error")
                 console.log(err)
                 if (err.response) {
                     context.errMsg = err.response.data
@@ -126,11 +135,11 @@ export default {
         HTTP.delete(TIPOTRANSACCION + id)
             .then((resp) => {
                 console.log(resp);
-                swal("Deleted!", "La Transaccion ha sido eliminada", "success")
+                swal("Exito!", "La Transaccion ha sido eliminada", "success")
                 context.fetchData();
             })
             .catch((err) => {
-                swal("Oh snap!", "Ocurrio un error.", "error")
+                swal("No se puede Eliminar!", "Es posible que la Transaccion ya este Asociada.", "error")
             })
     }, 
     create(context, transaccion){
@@ -143,10 +152,11 @@ export default {
                             HTTP.post(TIPOTRANSACCION, transaccion)
                             .then((resp) => {
                                 if (resp.status>= 200 && resp.status <=300){
-                                    context.showSuccess = true
-                                    context.successMsg = "Transaccion creada exitosamente"
-                                    context.fetchData()
-                                    context.resetForm()
+                                    //context.showSuccess = true
+                                    context.$swal("Exito!", "Transaccion creada exitosamente", "success")
+                                    context.volver();
+                               //   context.fetchData()
+                               //   context.resetForm()
                                 }
                             })
                             .catch((err) => {

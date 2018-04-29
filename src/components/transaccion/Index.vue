@@ -4,7 +4,7 @@
             <h1>Transacciones</h1>
 
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
                 <li>Manejo de Transacciones </li>
             </ol>
         </section>
@@ -35,7 +35,7 @@
                         <div class="box-body">
       <div class="box-action">
                                 <router-link to="/admin/transaccions/form" class="btn btn-default btn-flat">
-                                    <i class="fa fa-plus"></i> Registrar Nueva Transacción
+                                    <i class="fa fa-plus"></i> Nuevo
                                 </router-link>
                             </div>
                             </div>
@@ -43,11 +43,11 @@
                             <vue-good-table :columns="columns" :rows="transaccions" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
                                 <template slot="table-row" scope="props">
 <td>{{ props.row.fecha }}</td>
-<td>{{ props.row.cuentaId.nombre }}</td>
+
 <td>{{ props.row.tipoTransaccionId.nombre }}</td> 
 <td>{{ props.row.tipoTransaccionId.tipo==true?'Ingreso':'Gasto' }}</td> 
-<td v-if="!props.row.tipoTransaccionId.tipo" style="color:#FF0000"><b>{{ roundToTwo(props.row.monto) }}</b></td>
-<td v-if="props.row.tipoTransaccionId.tipo" style="color:green"><b>{{roundToTwo( props.row.monto) }}</b></td>
+<td v-if="!props.row.tipoTransaccionId.tipo" style="color:#FF0000;text-align:right;"><b>{{ roundToTwo(props.row.monto) }}</b></td>
+<td v-if="props.row.tipoTransaccionId.tipo" style="color:green;text-align:right;"><b>{{roundToTwo( props.row.monto) }}</b></td>
 <td>{{ props.row.formaPagoId.nombre }}</td>
 <td>{{ props.row.comprobante }}</td>
 <td v-if="props.row.patrocinadorId"><router-link :to="{ name: 'ReportesbyPatrocinadorOne', params: { id: props.row.patrocinadorId.id }}">{{ props.row.patrocinadorId.nombre}}</router-link></td> 
@@ -63,10 +63,15 @@
  <router-link :to="{ name: 'transaccionsEdit', params: { id: props.row.id }}">
                                         <button type="button" class="margin btn btn-flat btn-sm btn-primary"
                                        ><i aria-hidden="true"
-                                         class="fa fa-pencil-square-o"></i> Actualizar</button>
-                                        </router-link>                                        <button type="button" class="margin btn btn-flat btn-sm btn-danger" 
-                                        @click="deleteTransaccion(props.row.id, props.row.descripcion)"><i aria-hidden="true" 
-                                        class="fa fa-trash-o"></i> Eliminar</button>
+                                         class="fa fa-pencil-square-o"></i> Actualizar</button>                                         
+                                        </router-link>  
+
+                                        <button type="button" class="margin btn btn-flat btn-sm bg-navy margin" @click="detalle(props.row.id)"><i class="fa fa-eye" aria-hidden="true"></i>  Ver Detalle</button>                                      
+
+
+                                        <!--<button type="button" class="margin btn btn-flat btn-sm btn-danger" 
+                                        @click="deleteTransaccion(props.row.id, props.row.cuentaId.nombre)"><i aria-hidden="true" 
+                                        class="fa fa-trash-o"></i> Eliminar</button>-->
                                 
                                     </td>
                                   </template>
@@ -99,34 +104,29 @@
                         label: "Fecha",
                         field: "fecha",
                         filterable: true,
-                    } 
-
-                    , {
-                        label: "Cuenta",
-                        field: "nombre",
-                        filterable: true,
                     }, 
                     
                     {
                         label: "Tipo de Transacción",
-                        field: "tipoTransaccion.nombre",
+                        field: "tipoTransaccionId.nombre",
                          filterable: true,
                     },
                     {
                         label: "Concepto",
-                        field: "tipoTransaccion.tipo",
-                         filterable: true,
+                        field: "tipo",
+                        filterable: true,
                     },
 
                     {
                         label: "Monto ($)",
                         field: "monto",
                          filterable: true,
+                         type : "number"
                     },
 
                     {
                         label: "Forma de pago",
-                        field: "formaPago.nombre",
+                        field: "formaPagoId.nombre",
                          filterable: true,
                     },  {
                         label: "Comprobante",
@@ -141,7 +141,7 @@
                          filterable: true,
                     }
                     , 
-    {
+                    {
                         label: "Atleta",
                         field: "nombre",
                          filterable: true,
@@ -157,6 +157,16 @@
             this.fetchData()
         },
         methods:{
+            detalle(id) {
+            
+            this.$router.push({
+                name: 'transaccionShow',
+                params: {
+                    id: id
+                   
+                }
+            });
+            },
             fetchData(){
                 transaccionsController.index(this)
             },
@@ -165,7 +175,7 @@
                 let swal = this.$swal;
                 this.$swal({
                     title: 'Estas Seguro?',
-                    html: 'No podras recuperar la información de la transaccion <b>&laquo;' + nombre + '&raquo</b><br>y toda la información relacion al mismo ya no sera accesible',
+                    html: 'No podras recuperar la información de la transaccion de la cuenta: <b>&laquo;' + nombre + '&raquo</b><br>y toda la información en relacion a la misma ya no sera accesible',
                     type: 'error',
                     showCancelButton: true,
                     confirmButtonText: 'Si, Eliminar!',
@@ -176,7 +186,7 @@
                     if (dismiss === 'cancel') {
                         swal(
                           'Cancelado',
-                          'La transaccion no se elimino',
+                          'La Transaccion no se elimino',
                           'error'
                         )
                     }

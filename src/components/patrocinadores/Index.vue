@@ -4,7 +4,7 @@
             <h1>Patrocinadores</h1>
 
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
                 <li>Manejo de Patrocinadores </li>
             </ol>
         </section>
@@ -35,7 +35,7 @@
                         <div class="box-body">
       <div class="box-action">
                                 <router-link to="/admin/patrocinadors/form" class="btn btn-default btn-flat">
-                                    <i class="fa fa-plus"></i> Nuevo Patrocinador
+                                    <i class="fa fa-plus"></i> Nuevo
                                 </router-link>
                             </div>
                             </div>

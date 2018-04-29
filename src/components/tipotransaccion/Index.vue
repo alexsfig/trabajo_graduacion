@@ -4,7 +4,7 @@
             <h1>Tipos de Transacción</h1>
 
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
                 <li>Manejo de Tipos de Transacción </li>
             </ol>
         </section>
@@ -35,7 +35,7 @@
                         <div class="box-body">
       <div class="box-action">
                                 <router-link to="/admin/tipoTransaccions/form" class="btn btn-default btn-flat">
-                                    <i class="fa fa-plus"></i> Nuevo Tipo de Transacción
+                                    <i class="fa fa-plus"></i> Nuevo
                                 </router-link>
                             </div>
                             </div>
@@ -89,7 +89,7 @@
                         field: "descripcion",
                     }, {
                         label: "Concepto",
-                        field: "tipo",
+                        field: "tipoNombre",
                     },{
                         label: "Acciones",
                         field: "",

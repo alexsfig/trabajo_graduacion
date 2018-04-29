@@ -24,11 +24,13 @@ export default {
         HTTP.post(USERS, user)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
-                    context.showSuccess = true
+                    //context.showSuccess = true
                     context.successMsg = "Usuario Creado"
-                    context.createUser = {}
-                    context.confirm_password = ""
-                    context.errors.clear()
+                    //context.createUser = {}
+                    //context.confirm_password = ""
+                    context.$swal("Exito!", "Usuario Creado", "success")
+                    context.volver();
+                    //context.errors.clear()
                 }
             })
             .catch((err) => {
@@ -48,15 +50,15 @@ export default {
         HTTP.put(USERS, user)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
-                    var id = resp.data.id
-                    context.showAlert = false 
+                   var id = resp.data.id
+                    context.showAlert = false
                 }
                 context.showSuccess = true
                 context.successMsg = "Usuario Actualizado"
             })
             .catch((err) => {
-                context.showAlert = true
-                console.log(err)
+                 context.showAlert = true
+                 console.log(err)
                 if (err.response) {
                     context.errMsg = err.response.data
                     console.log(err.response.data);
@@ -72,14 +74,23 @@ export default {
         HTTP.put(USERS, user)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
-                    var id = resp.data.id
-                    context.showAlert = false 
+                    //var id = resp.data.id
+                    //context.showAlert = false
+                    context.$swal("Exito!", "La Contraseña ha sido Modificada", "success")
+                    
                 }
-                context.showSuccess = true
-                context.successMsg = "La Contraseña ha sido Modificada"
+                else
+                {
+                    context.$swal("Ocurrio un error!", "La Contraseña no ha sido Modificada", "error")
+                  //  context.volver();
+
+                }
+                //context.showSuccess = true
+                //context.successMsg = "La Contraseña ha sido Modificada"
             })
             .catch((err) => {
-                context.showAlert = true
+                //context.showAlert = true
+                context.$swal("Ocurrio un error!", "La Contraseña no ha sido Modificada", "error")
                 console.log(err)
                 if (err.response) {
                     context.errMsg = err.response.data
@@ -136,11 +147,11 @@ export default {
         HTTP.delete(USERS + id)
             .then((resp) => {
                 console.log(resp);
-                swal("Deleted!", "El usuario ha sido eliminado", "success")
+                swal("Exito!", "El Usuario ha sido Eliminado", "success")
                 context.fetchData();
             })
             .catch((err) => {               
-                swal("Oh snap!", "Ocurrio un error.", "error")
+                swal("No se Puede Eliminar!", "Es posible que el Usuario ya este Asociado.", "error")
             })
     }
     

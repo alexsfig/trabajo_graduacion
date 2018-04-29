@@ -22,15 +22,13 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title">Listado de Patrocinios</h3>
-                    </div>
+                    
 
                     <div class="box-body">
 
                         <div class="box-action">
                                 <router-link to="/admin/patrocinadoratleta/create" class="btn btn-default btn-flat">
-                                    <i class="fa fa-plus"></i> Nuevo Patrocinio
+                                    <i class="fa fa-plus"></i> Nuevo
                                 </router-link>
                             </div>
 
@@ -160,7 +158,7 @@ export default {
             let context = this
             swal({
                 title: 'Estas Seguro?',
-                html: 'No podras recuperar la informacion del Patrocinio de <b>' + nombre + '</b>',
+                html: 'No podras recuperar la información del Patrocinio de <b>&laquo;' + nombre + '&raquo;</b>',
                 type: 'error',
                 showCancelButton: true,
                 confirmButtonText: 'Si, Eliminar!',
@@ -174,7 +172,7 @@ export default {
                     if (dismiss === 'cancel') {
                         swal(
                             'Cancelado',
-                            'El Patrocinio no se elimino',
+                            'El Patrocinio no se Elimino',
                             'error'
                         )
                     }

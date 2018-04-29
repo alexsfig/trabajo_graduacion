@@ -4,7 +4,7 @@
             <h1>Cuentas</h1>
             <ol class="breadcrumb">
 
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
                 <li>
                     <router-link to="/admin/cuentas">Cuentas</router-link>
                 </li>
@@ -28,8 +28,8 @@
                     </div>
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title" v-if="!id">Agregar  Cuenta</h3>
-                            <h3 class="box-title" v-if="id">Editar  Cuentas</h3>
+                            <h3 class="box-title" v-if="!id">Agregar Cuenta</h3>
+                            <h3 class="box-title" v-if="id">Actualizar Cuenta</h3>
                         </div>
 
                         <div class="box-body">
@@ -76,8 +76,8 @@
                                 </div>
                                 <div class="box-footer">
                                     <div class="col-xs-12 text-right">
-                                        <button type="submit" v-if="!id" class="btn btn-flat btn-sm btn-primary">Agregar Cuenta</button>
-                                        <button type="submit" v-if="id" class="btn btn-flat btn-sm btn-primary">Editar Cuenta</button>
+                                        <button type="submit" v-if="!id" class="btn btn-flat btn-sm btn-primary"> <i class="fa fa-plus"></i> Agregar</button>
+                                        <button type="submit" v-if="id" class="btn btn-flat btn-sm btn-primary"><i class="fa fa-edit"></i> Actualizar</button>
 
                                     </div>
                                 </div>
@@ -88,7 +88,7 @@
                         <div class="box-body">
                               
                              <div @click="volver()" class="btn btn-flat btn-sm btn-warning margin">
-                                    <i class="fa fa-arrow-circle-left" ></i> Regresar a Cuentas
+                                    <i class="fa fa-arrow-circle-left" ></i> Regresar
                                 </div>
 
                                 </div> </div>
@@ -125,6 +125,7 @@ export default {
     this.id = this.$route.params.id;
     if (this.id) cuentasController.retrieve(this, this.id);
     else this.cuenta.monto = "0.00";
+
     console.log("id:" + this.id);
   },
   methods: {
@@ -147,6 +148,13 @@ export default {
       console.log("entre");
       window.history.length > 1 ? this.$router.go(-1) : this.$router.push("/");
     }
-  }
+  },
+  roundToTwo(num) {
+      return this.formatPrice(+(Math.round(num + "e+2") + "e-2"));
+    },
+    formatPrice(value) {
+      let val = (value / 1).toFixed(2);
+      return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
 };
 </script>

@@ -33,12 +33,12 @@ export default {
                 if (resp.status>= 200 && resp.status <=300){
                    // var id = resp.data.id
                     //context.showAlert = false
-                    context.$swal("Actualizado!", "La Cuenta fue  actualizda", "success")
+                    context.$swal("Exito!", "La Cuenta fue Actualizada", "success")
                     context.volver();
                 }
                 else
                 {
-                    context.$swal("Ocurrio un error!", "La Cuenta no fue  actualizda  ", "error")
+                    context.$swal("Ocurrio un error!", "La Cuenta no fue Actualizada  ", "error")
                   //  context.volver();
 
                 }
@@ -47,7 +47,7 @@ export default {
             })
             .catch((err) => {
 
-                context.$swal("Ocurrio un error!", "La Cuenta no fue  actualizda  ", "error")
+                context.$swal("Ocurrio un error!", "La Cuenta no fue actualizda  ", "error")
                 //context.showAlert = true
                 console.log(err)
                 if (err.response) {
@@ -113,11 +113,11 @@ export default {
         HTTP.delete(CUENTAS + id)
             .then((resp) => {
                 console.log(resp);
-                swal("Deleted!", "La Cuenta ha sido eliminada", "success")
+                swal("Exito!", "La Cuenta ha sido eliminada", "success")
                 context.fetchData();
             })
             .catch((err) => {
-                swal("Oh snap!", "Ocurrio un error.", "error")
+                swal("Error!", "Es Posible que la cuenta ya este Asociada.", "error")
             })
     }, 
     create(context, cuenta){
@@ -128,10 +128,10 @@ export default {
                             .then((resp) => {
                                 if (resp.status>= 200 && resp.status <=300){
                                   //  context.showSuccess = true
-                                    context.successMsg = "Cuenta creada exitddosamente"
+                                    context.successMsg = "Cuenta creada exitosamente"
 
 
-                                    context.$swal("Creado!", "La Cuenta fue  Creada", "success")
+                                    context.$swal("Exito!", "La Cuenta fue Creada", "success")
                                     context.volver();
                                //     context.fetchData()
                                ///     context.resetForm()

@@ -4,7 +4,7 @@
             <h1>Formas de Pago</h1>
 
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
                 <li>Manejo de Formas de Pago </li>
             </ol>
         </section>
@@ -35,7 +35,7 @@
                         <div class="box-body">
       <div class="box-action">
                                 <router-link to="/admin/formaPagos/form" class="btn btn-default btn-flat">
-                                    <i class="fa fa-plus"></i> Nueva Forma de Pago
+                                    <i class="fa fa-plus"></i> Nuevo
                                 </router-link>
                             </div>
                             <vue-good-table :columns="columns" :rows="formaPagos" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">

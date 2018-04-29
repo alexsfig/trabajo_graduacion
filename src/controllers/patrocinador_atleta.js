@@ -112,7 +112,7 @@ export default {
         HTTP.delete(PATROCINADOR_ATLETA + id)
             .then((resp) => {
                 console.log(resp);
-                swal("Deleted!", "El Patrocinio ha sido eliminado", "success")
+                swal("Exito!", "El Patrocinio ha sido Eliminado", "success")
                 context.fetchData();
             })
             .catch((err) => {
@@ -136,10 +136,12 @@ export default {
                             HTTP.post(PATROCINADOR_ATLETA, request)
                             .then((resp) => {
                                 if (resp.status>= 200 && resp.status <=300){
-                                    context.showSuccess = true
+                                    //context.showSuccess = true
                                     context.successMsg = "Patrocinio creado exitosamente"
-                                    context.fetchData()
-                                    context.resetForm()
+                                    context.$swal("Exito!", "Patrocinio Creado", "success")
+                                    context.volver();
+                                    //context.fetchData()
+                                    //context.resetForm()
                                 }
                             })
                             .catch((err) => {

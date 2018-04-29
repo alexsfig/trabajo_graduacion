@@ -21,7 +21,7 @@
 
                             <div class="box-action">
                                 <router-link to="/admin/users/create" class="btn btn-default btn-flat">
-                                    <i class="fa fa-plus"></i> Agregar nuevo
+                                    <i class="fa fa-plus"></i> Nuevo
                                 </router-link>
                             </div>
 
@@ -113,7 +113,7 @@
                 let context = this
                 swal({
                     title: 'Estas Seguro?',
-                    html: 'No podras recuperar la informacion del usuario <b>' + user.usuario + '</b>',
+                    html: 'No podras recuperar la información del usuario <b>&laquo;' + user.usuario + '&raquo;</b>',
                     type: 'error',
                     showCancelButton: true,
                     confirmButtonText: 'Si, Eliminar!',
@@ -127,7 +127,7 @@
                       if (dismiss === 'cancel') {
                         swal(
                           'Cancelado',
-                          'El usuario no se elimino',
+                          'El Usuario no se Elimino',
                           'error'
                         )
                       }

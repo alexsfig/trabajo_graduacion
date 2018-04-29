@@ -4,7 +4,7 @@
             <h1>Cuentas</h1>
 
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
                 <li>Manejo de Cuentas </li>
             </ol>
         </section>
@@ -35,7 +35,7 @@
                         <div class="box-body">
       <div class="box-action">
                                 <router-link to="/admin/cuentas/form" class="btn btn-default btn-flat">
-                                    <i class="fa fa-plus"></i> Nueva Cuenta
+                                    <i class="fa fa-plus"></i> Nuevo
                                 </router-link>
                             </div>
                             </div>
@@ -45,8 +45,8 @@
                                 <template slot="table-row" scope="props">
 <td>{{ props.row.nombre }}</td>
 <td>{{ props.row.descripcion }}</td>
-<td v-if="props.row.monto<=0" style="color:#FF0000"><b>{{ roundToTwo(props.row.monto) }}</b></td>
-<td v-if="props.row.monto>0" style="color:green"><b>{{roundToTwo( props.row.monto) }}</b></td>
+<td v-if="props.row.monto<=0" style="color:#FF0000;text-align:right;"><b>{{ roundToTwo(props.row.monto) }}</b></td>
+<td v-if="props.row.monto>0" style="color:green;text-align:right;"><b>{{roundToTwo( props.row.monto) }}</b></td>
                                   <td class="nowrap">
  <router-link :to="{ name: 'cuentasEdit', params: { id: props.row.id }}">
                                         <button type="button" class="margin btn btn-flat btn-sm btn-primary"
@@ -92,6 +92,7 @@
                     }, {
                         label: "Monto Actual ($)",
                         field: "monto",
+                        type: 'number'
                     },
                      {
                         label: "Acciones",
