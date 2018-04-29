@@ -3,7 +3,7 @@
         <section class="content-header">
             <h1>Resumen Financiero por Atleta</h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
                 <li>
                     <router-link to="/admin/transaccion/">Transacciones</router-link>
                 </li>
@@ -231,8 +231,8 @@
 <td>{{ props.row.tipoTransaccionId.nombre }}</td>
 <td>{{ props.row.tipoTransaccionId.tipo==true?'Ingreso':'Gasto' }}</td>
 <td>{{ props.row.referencia }}</td>
-<td v-if="!props.row.tipoTransaccionId.tipo" style="color:#FF0000"><b>{{ roundToTwo(props.row.monto) }}</b></td>
-<td v-if="props.row.tipoTransaccionId.tipo" style="color:green"><b>{{roundToTwo( props.row.monto) }}</b></td>
+<td v-if="!props.row.tipoTransaccionId.tipo" style="color:#FF0000;text-align:right;"><b>{{ roundToTwo(props.row.monto) }}</b></td>
+<td v-if="props.row.tipoTransaccionId.tipo" style="color:green;text-align:right;"><b>{{roundToTwo( props.row.monto) }}</b></td>
 <td>{{ props.row.formaPagoId.nombre }}</td>
 <td>{{ props.row.comprobante }}</td>
 <td>{{ props.row.descripcion }}</td>
@@ -372,7 +372,7 @@ export default {
         },
         {
           label: "Concepto",
-          field: "tipoTransaccionId.tipo",
+          field: "tipo",
           filterable: true
         },
         {
@@ -383,7 +383,8 @@ export default {
         {
           label: "Monto($)",
           field: "monto",
-          filterable: true
+          filterable: true,
+          type : "number"
         },
         {
           label: "Forma de Pago",

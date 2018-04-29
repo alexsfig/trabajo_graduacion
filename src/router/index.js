@@ -84,6 +84,7 @@ import PatrocinadorIndex from '@/components/patrocinadores/Index'
 
 import TransaccionForm from '@/components/transaccion/Form'
 import TransaccionIndex from '@/components/transaccion/Index'
+import TransaccionShow from '@/components/transaccion/Show'
 import EscuelasForm from '@/components/escuelas/Form'
 import EscuelasIndex from '@/components/escuelas/Index'
 
@@ -525,6 +526,12 @@ Vue.use(Router)
           path: 'transaccion',
           name: 'transaccionIndex',
           component: TransaccionIndex,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
+        },
+        {
+          path: 'transaccion/:id',
+          name: 'transaccionShow',
+          component: TransaccionShow,
           meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
         {

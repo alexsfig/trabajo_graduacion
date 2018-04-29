@@ -31,14 +31,23 @@ export default {
         HTTP.put(PATROCINADORES, patrocinadors)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
-                    var id = resp.data.id
-                    context.showAlert = false
+                     //var id = resp.data.id
+                    //context.showAlert = false
+                    context.$swal("Exito!", "El Patrocinador fue Actualizado", "success")
+                    context.volver();
                 }
-                context.showSuccess = true
-                context.successMsg = "Patrocinador Actualizado"
+                else
+                {
+                    context.$swal("Ocurrio un error!", "El Patrocinador no fue Actualizado", "error")
+                  //  context.volver();
+
+                }
+                //context.showSuccess = true
+                //context.successMsg = "Patrocinador Actualizado"
             })
             .catch((err) => {
-                context.showAlert = true
+                //context.showAlert = true
+                context.$swal("Ocurrio un error!", "El Patrocinador no fue Actualizado", "error")
                 console.log(err)
                 if (err.response) {
                     context.errMsg = err.response.data
@@ -98,11 +107,11 @@ export default {
         HTTP.delete(PATROCINADORES + id)
             .then((resp) => {
                 console.log(resp);
-                swal("Deleted!", "El Patrocinador ha sido eliminado", "success")
+                swal("Exito!", "El Patrocinador ha sido eliminado", "success")
                 context.fetchData();
             })
             .catch((err) => {
-                swal("No se puede Eliminar!", "Es posible que el patrocinador ya este asociado.", "error")
+                swal("No se puede Eliminar!", "Es posible que el patrocinador ya este Asociado.", "error")
             })
     }, 
     create(context, patrocinador){
@@ -112,10 +121,12 @@ export default {
                             HTTP.post(PATROCINADORES, patrocinador)
                             .then((resp) => {
                                 if (resp.status>= 200 && resp.status <=300){
-                                    context.showSuccess = true
+                                    //context.showSuccess = true
                                     context.successMsg = "Patrocinador creado exitosamente"
-                                    context.fetchData()
-                                    context.resetForm()
+                                    context.$swal("Exito!", "Patrocinador creado exitosamente", "success")
+                                    context.volver();
+                               //     context.fetchData()
+                               //    context.resetForm()
                                 }
                             })
                             .catch((err) => {

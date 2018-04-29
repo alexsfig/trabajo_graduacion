@@ -31,14 +31,23 @@ export default {
         HTTP.put(FORMAPAGO, formaPagos)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
-                    var id = resp.data.id
-                    context.showAlert = false
+                    //var id = resp.data.id
+                    //context.showAlert = false
+                    context.$swal("Exito!", "La Forma de Pago fue Actualizada", "success")
+                    context.volver();
                 }
-                context.showSuccess = true
-                context.successMsg = "Forma de Pago Actualizada"
+                else
+                {
+                    context.$swal("Ocurrio un error!", "La Forma de Pago no fue Actualizada", "error")
+                  //  context.volver();
+
+                }
+                //context.showSuccess = true
+                //context.successMsg = "Forma de Pago Actualizada"
             })
             .catch((err) => {
-                context.showAlert = true
+                //context.showAlert = true
+                context.$swal("Ocurrio un error!", "La Forma de Pago no fue Actualizada", "error")
                 console.log(err)
                 if (err.response) {
                     context.errMsg = err.response.data
@@ -98,11 +107,11 @@ export default {
         HTTP.delete(FORMAPAGO + id)
             .then((resp) => {
                 console.log(resp);
-                swal("Deleted!", "La Forma de Pago ha sido eliminada", "success")
+                swal("Exito!", "La Forma de Pago ha sido eliminada", "success")
                 context.fetchData();
             })
             .catch((err) => {
-                swal("Oh snap!", "Ocurrio un error.", "error")
+                swal("Error!", "Es Posible que la forma de pago ya este Asociada.", "error")
             })
     }, 
     create(context, formaPago){
@@ -112,10 +121,12 @@ export default {
                             HTTP.post(FORMAPAGO, formaPago)
                             .then((resp) => {
                                 if (resp.status>= 200 && resp.status <=300){
-                                    context.showSuccess = true
+                                    //context.showSuccess = true
                                     context.successMsg = "Forma de Pago creada exitosamente"
-                                    context.fetchData()
-                                    context.resetForm()
+                                    context.$swal("Exito!", "Forma de Pago creada exitosamente", "success")
+                                    context.volver();
+                               //     context.fetchData()
+                               //    context.resetForm()
                                 }
                             })
                             .catch((err) => {
