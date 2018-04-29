@@ -101,64 +101,52 @@
 </template>
 
 <script>
-
-  import cuentasController from '../../controllers/cuentas.js'
-  import vSelect from "vue-select"
-  export default {
-      name: 'Cuenta',
-      data() {
-          return {
-              errMsg: '',
-              errorMsg: '',
-              showAlert: false,
-              showSuccess: false,
-              successMsg: "",
-              id: '',
-              errMsg: "",
-              isLogin: false,
-              cuenta: {}
-          }
-      },
-      components: {
-          vSelect
-      },
-      created() {
-          this.id = this.$route.params.id;
-          if (this.id)
-              cuentasController.retrieve(this, this.id);
-            else
-              this.cuenta.monto="0.00";
-          console.log("id:" + this.id);
-      },
-      methods: {
-
-          submit() {
-              this.showAlert = false
-              this.showSuccess = false
-              this.$validator.validateAll().then(success => {
-                  if (success) {
-                      console.log("Error en el servicio")
-                      if (!this.id)
-                          cuentasController.create(this, this.cuenta)
-                      else
-                          cuentasController.update(this, this.cuenta)
-                  } else {
-                      console.log("Error enn el formulario")
-                      this.showAlert = true
-                      this.errMsg = "Error revisa el formulario"
-                  }
-              });
-          },
-            volver(){
-                console.log("entre")
- window.history.length > 1
-        ? this.$router.go(-1)
-        : this.$router.push('/')
-    
-
-            }
-      }
-
+import cuentasController from "../../controllers/cuentas.js";
+import vSelect from "vue-select";
+export default {
+  name: "Cuenta",
+  data() {
+    return {
+      errMsg: "",
+      errorMsg: "",
+      showAlert: false,
+      showSuccess: false,
+      successMsg: "",
+      id: "",
+      errMsg: "",
+      isLogin: false,
+      cuenta: {}
+    };
+  },
+  components: {
+    vSelect
+  },
+  created() {
+    this.id = this.$route.params.id;
+    if (this.id) cuentasController.retrieve(this, this.id);
+    else this.cuenta.monto = "0.00";
+    console.log("id:" + this.id);
+  },
+  methods: {
+    submit() {
+      this.showAlert = false;
+      this.showSuccess = false;
+      this.$validator.validateAll().then(success => {
+        if (success) {
+       
+          if (!this.id) cuentasController.create(this, this.cuenta);
+          else cuentasController.update(this, this.cuenta);
+        } else {
+          console.log("Error enn el formulario");
+          this.showAlert = true;
+          this.errMsg = "Error revisa el formulario";
+        }
+      });
+    },
+    volver() {
+      console.log("entre");
+      window.history.length > 1 ? this.$router.go(-1) : this.$router.push("/");
+    }
   }
-
+};
 </script>

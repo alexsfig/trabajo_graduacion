@@ -31,14 +31,24 @@ export default {
         HTTP.put(CUENTAS, cuentas)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
-                    var id = resp.data.id
-                    context.showAlert = false
+                   // var id = resp.data.id
+                    //context.showAlert = false
+                    context.$swal("Actualizado!", "La Cuenta fue  actualizda", "success")
+                    context.volver();
                 }
-                context.showSuccess = true
-                context.successMsg = "Cuenta Actualizada"
+                else
+                {
+                    context.$swal("Ocurrio un error!", "La Cuenta no fue  actualizda  ", "error")
+                  //  context.volver();
+
+                }
+               // context.showSuccess = true
+                //context.successMsg = "Cuenta Actualizada"
             })
             .catch((err) => {
-                context.showAlert = true
+
+                context.$swal("Ocurrio un error!", "La Cuenta no fue  actualizda  ", "error")
+                //context.showAlert = true
                 console.log(err)
                 if (err.response) {
                     context.errMsg = err.response.data
@@ -117,10 +127,14 @@ export default {
                             HTTP.post(CUENTAS, cuenta)
                             .then((resp) => {
                                 if (resp.status>= 200 && resp.status <=300){
-                                    context.showSuccess = true
-                                    context.successMsg = "Cuenta creada exitosamente"
-                                    context.fetchData()
-                                    context.resetForm()
+                                  //  context.showSuccess = true
+                                    context.successMsg = "Cuenta creada exitddosamente"
+
+
+                                    context.$swal("Creado!", "La Cuenta fue  Creada", "success")
+                                    context.volver();
+                               //     context.fetchData()
+                               ///     context.resetForm()
                                 }
                             })
                             .catch((err) => {

@@ -236,7 +236,7 @@ export default {
 
           console.log(JSON.stringify(this.juezCircuito));
           juezCircuitoController.create(this, this.juezCircuito);
-          this.$validator.restarerror();
+         
         } else {
           console.log("Error enn el formulario");
           this.showAlert = true;

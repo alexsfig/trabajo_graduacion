@@ -62,7 +62,7 @@ import vSelect from "vue-select";
 import moment from "moment";
 import { FullCalendar } from "vue-full-calendar";
 import { Common } from "../../common_class/http";
-const BASE_URL = process.env.BASE_URL;
+//const BASE_URL = process.env.BASE_URL;
 
 //const BASE_URL = "http://localhost:8081/";
 
@@ -141,7 +141,7 @@ export default {
           ).add(1, "d"),
           // description: 'Competencia ',
           color: "red",
-          url:BASE_URL+"admin/circuitofecha/"+element.id
+          url:"/admin/circuitofecha/"+element.id
 
            
           // date:new Date(element.fecha.substring(0,4),element.fecha.substring(5,7),element.fecha.substring(8,10))});
