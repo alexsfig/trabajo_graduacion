@@ -106,7 +106,7 @@
                                 </div>
                                 <div class="box-footer">
                                     <div class="col-xs-12 text-right">
-                                        <button type="submit" class="btn btn-flat btn-sm btn-primary">Agregar Nuevo</button>
+                                        <button type="submit" class="btn btn-flat btn-sm btn-primary"><i class="fa fa-plus"></i> Agregar</button>
                                     </div>
                                 </div>
 
