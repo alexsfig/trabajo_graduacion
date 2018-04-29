@@ -128,7 +128,9 @@ export default {
                                     context.successMsg = "Se Agrego Correctamente el Juez al Circuito"
                                     context.fetchData()
                                    context.juez=null;
+                          
                                 context.juezRol=null;
+                                context.$errors.clear()
                                     //context.$validator.;
                                    
                                 }

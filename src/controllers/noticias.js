@@ -3,6 +3,7 @@
 import {HTTP} from '../common_class/http.js';
 // Use router 
 import {router} from '../router/index.js'
+import {UPLOAD} from '../common_class/http.js';
 import moment from 'moment'
 // define base url to Employees
 const NOTICIAS = 'noticias/'
@@ -22,20 +23,46 @@ export default {
     create(context, noticias){
         context.showAlert = false 
          context.showSuccess = false 
-          noticias.id= 0;
+   
            console.log(localStorage.getItem('iduser'));
           noticias.usuarioId= parseInt(localStorage.getItem('iduser'));
           //noticias.fechaInicio = moment(noticias.fechaInicio).format('YYYY-MM-DD');
         HTTP.post(NOTICIAS, noticias)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
-                    context.showSuccess = true
-                    context.successMsg = "Noticia Creada"
-                    context.createNoticias = {}
-                    context.errors.clear()
+                 //   context.showSuccess = true
+                  //  context.successMsg = "Noticia Creada"
+                  //  context.createNoticias = {}
+            //        context.errors.clear()
+            console.log("estoy en crear personaasljjslldd")
+            if(context.changePhoto)
+                    UPLOAD.post('upload/noticia/'+ resp.data.id,context.avatar)
+
+                    .then((resp) => {
+                        context.$swal("Creado!", "La Noticia fue  Creada", "success")
+                        context.volver();
+                 
+                    })
+                    .catch((err) => {
+
+                        context.$swal("Ocurrio un error!", "La Noticia no fue  creada  ", "error")
+                        if (err.response) {
+                         console.log("estoy en crear personaasljjsllt32y9329y23y9329")
+                         //   context.showAlert = true
+                         ///   context.errMsg = err.response.data
+                        }
+                    })
+                    else{
+
+                        context.$swal("Creado!", "La Noticia fue  Creada", "success")
+                        context.volver();
+                    }
+
+                    
                 }
             })
             .catch((err) => {
+                console.log(err)
                 if (err.response) {
                     context.showAlert = true
                     context.errMsg = err.response.data
@@ -52,14 +79,38 @@ export default {
         HTTP.put(NOTICIAS, noticias)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
-                    var id = resp.data.id
-                    context.showAlert = false 
+                //    var id = resp.data.id
+                //    context.showAlert = false 
+                   if(context.changePhoto)
+                    UPLOAD.post('upload/noticia/'+ context.noticia.id,context.avatar)
+                    .then((resp) => {
+                        context.$swal("Actualizado!", "La Cuenta fue  actualizda", "success")
+                        context.volver();
+
+
+                    })
+                    .catch((err) => {
+                        if (err.response) {
+                            context.$swal("Ocurrio un error!", "La Noticia no fue  actualizada  ", "error")  
+                        }
+                    })
+                    else{
+
+         
+
+                            context.$swal("Actualizado!", "La Noticia fue  Creada", "success")
+                            context.volver();
+                        
+    
+                    }
                 }
-                context.showSuccess = true
-                context.successMsg = "Noticia Actualizada"
+           //     context.showSuccess = true
+              //  context.successMsg = "Noticia Actualizada"
             })
             .catch((err) => {
-                context.showAlert = true
+                context.$swal("Ocurrio un error!", "La Noticia no fue  actualizada  ", "error")
+                
+            //    context.showAlert = true
                 console.log(err)
                 if (err.response) {
                     context.errMsg = err.response.data
@@ -96,6 +147,16 @@ export default {
               console.log(err)
             })
     },
+    indexActuales(context){
+        HTTP.get(NOTICIAS+"actuales")
+            .then((resp) => {
+                context.noticias = resp.data
+                console.log(resp.data)
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+    },
     /* 
         Method to retrieve user, pass the context and user id, use this method when you need to edit user
     */
@@ -104,6 +165,7 @@ export default {
             .then((resp) => {
                 console.log(resp)
                 context.noticia = resp.data;
+                context.create = resp.data;
             })
             .catch((err) => {
               console.log(err)

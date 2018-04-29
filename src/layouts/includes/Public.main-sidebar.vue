@@ -24,7 +24,7 @@
 
 		        <li class="header">Navegación principal</li>
 	        <li>
-		            <router-link to="/juez">
+		            <router-link to="/public">
 		                <i class="fa fa-tachometer" aria-hidden="true"></i> <span>Inicio</span>
 		            </router-link>
 		        </li>

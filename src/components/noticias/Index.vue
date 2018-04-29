@@ -41,7 +41,11 @@
                                     <td>{{ props.row.fechaFin}}</td>
                                     <td>{{ props.row.usuarioId.usuario}}</td>
                                     <td>
-                                        <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="openModal=true, retrieveData(props.row.id)" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar</button>
+                                      <router-link :to="{ name: 'NoticiasEdit', params: { id: props.row.id }}">
+                                        <button type="button" class="margin btn btn-flat btn-sm btn-primary"
+                                       ><i aria-hidden="true"
+                                         class="fa fa-pencil-square-o"></i> Actualizar</button>
+                                        </router-link>  
                                         
                                         <button type="button" class="margin btn btn-sm btn-flat btn-danger" @click="clickHandler(props.row.id, noticia)" ><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
                                     </td>
@@ -53,7 +57,6 @@
                     </div>    
                 </div>
             </div>
-            <modalNoticias :methodSubmit="methodSubmit"  :title="'Actualizar Noticia'" :buttonMsg="'Actualizar'" :openModal="openModal" :noticia="noticia" v-on:openChange="isChange"></modalNoticias>
          
             
 

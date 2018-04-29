@@ -34,11 +34,11 @@
                <router-link to="/admin/jueces"> <div class="col-lg-2 col-xs-6">
                 <div class="small-box bg-green">
                   <div class="inner">
-                    <h3>{{ this.jueces.length}}</h3>
-                    <p>Jueces registrados</p>
+                    <h3>{{ this.patrocinadors.length}}</h3>
+                    <p>Patrocinadores </p>
                   </div>
                   <div class="icon">
-                    <i class="fa fa-gavel"></i>
+                    <i class="fa fa-user-secret"></i>
                   </div>
                   &nbsp;
                 </div>
@@ -100,21 +100,22 @@
                   <div class="box-header with-border">
                     <i style="color:#031328" class="fa fa-users"></i>
 
-                    <h3 class="box-title "><b>Interactuando con el Sistema</b></h3>
+                    <h1 class="box-title "><b>Noticias </b></h1>
                   </div>
                   <div class="box-body text-justify">
-               
-          <div class="col-md-12">
-                      Usando el menú lateral, podrá acceder a todas las opciones que posee el sistema.
-                      <br><br>
-                      Usted podrá agregar <b> ATLETAS, JUECES, MIEMBROS DE JUNTA O ENTRENADORES</b> de forma fácil y rápida.
-                      <br><br>
-                      También conseguirá llevar un registro de las <b>PLAYAS</b> donde se practica el surf y donde se realizan las competencias.
-                      <br><br>
-                      Mediante el sistema se podrán crear <b>NOTICIAS</b> las cuales serán accedidas desde el sitio web o de desde la aplicación móvil.
-                      <br><br>
-                      El sistema permitirá la creación de <b>USUARIOS</b>, los cuales podrán acceder al sistema, y poder realizar modificaciones según los permisos que se tengan concedidos. 
-                    </div>
+                <div v-for="noticia in noticias">
+               <router-link :to="{ name: 'NoticiasShow', params: { id: noticia.id }}">
+               <div class="box-comment"><img :src="getImg(noticia.id)" alt="User Image" class="img-rounded img-md" style="margin-right:5%" />
+                <div class="comment-text"><span class="username">
+         <b> {{noticia.nombre}} </b> <br/>
+          </span>
+  {{noticia.descripcion.length>200?noticia.descripcion.substring(0,200)+".....":noticia.descripcion}}
+  </div></div></router-link>
+  <hr/>
+                </div>
+            
+
+                
 
                   </div>
                 </div>
@@ -148,55 +149,60 @@
     </div>
   </template>
   <script>
-    import clubesController from '../../controllers/clubes.js'
-    import escuelasController from '../../controllers/escuelas.js'
-    import atletaController from '../../controllers/atletas.js'
-    import JuecesController from '../../controllers/jueces.js'
-    import entrenadoresController from '../../controllers/entrenadores.js'
-    import categoriasController from '../../controllers/categorias.js'
-    import fechasController from '../../controllers/fechas.js';
-
-    export default {
-        name: 'clubes',
-        data() {
-            return {
-              clubs: [],
-              escuelas: [],
-              atletas: [],
-              jueces: [],
-              entrenadores: [],
-               categorias: [],
-               fechas: [],
-
-            }
+import clubesController from "../../controllers/clubes.js";
+import escuelasController from "../../controllers/escuelas.js";
+import atletaController from "../../controllers/atletas.js";
+import JuecesController from "../../controllers/jueces.js";
+import entrenadoresController from "../../controllers/entrenadores.js";
+import categoriasController from "../../controllers/categorias.js";
+import fechasController from "../../controllers/fechas.js";
+import patrocinadoresController from "../../controllers/patrocinadores.js";
+import noticiasController from "../../controllers/noticias.js";
+const BASE_URL = process.env.BASE_URL;
+export default {
+  name: "clubes",
+  data() {
+    return {
+      clubs: [],
+      escuelas: [],
+      atletas: [],
+      jueces: [],
+      entrenadores: [],
+      categorias: [],
+      fechas: [],
+      patrocinadors: [],
+      noticias: []
+    };
+  },
+  components: {},
+  created() {
+    this.fetchData();
+  },
+  watch: {
+    $route: "fetchData"
+  },
+  methods: {
+      getImg(img) {
+            
+            return BASE_URL+"upload/files/noticia/"+img+".png"
         },
-        components:{
-
-        },
-        created() {
-            this.fetchData()
-        },
-        watch: {
-            '$route': 'fetchData'
-        },
-        methods: {
-            fetchData() {
-                clubesController.index(this)
-                escuelasController.index(this)
-                JuecesController.index(this)
-                atletaController.index(this)
-                entrenadoresController.index(this)
-                categoriasController.index(this)
-                fechasController.index(this)
-            }
-        }
-
+    fetchData() {
+      clubesController.index(this);
+      escuelasController.index(this);
+      JuecesController.index(this);
+      atletaController.index(this);
+      entrenadoresController.index(this);
+      categoriasController.index(this);
+      fechasController.index(this);
+      patrocinadoresController.index(this);
+      noticiasController.indexActuales(this);
     }
-
-  </script>
+  }
+};
+</script>
   <style  lang="css">
-    .padd {
-      padding-top: 20px;
-      padding-bottom: 20px;
-    }
-  </style>
+.padd {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+</style>

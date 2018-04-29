@@ -6,6 +6,7 @@ import Error404 from '@/layouts/Error'
 import Login from '@/components/login/Login'
 import Playas from '@/components/playas/Index'
 import Dashboard from '@/components/dashboard/Index'
+import DashboardPublic from '@/components/dashboard/IndexPublic'
 import UsersCreate from '@/components/users/Create'
 import UsersShow from '@/components/users/Show'
 import UsersIndex from '@/components/users/Index'
@@ -147,9 +148,15 @@ Vue.use(Router)
       children: [
         {
           path: '',
-          name: 'DashboardRoot',
-          component: Dashboard,
-          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
+          name: 'DashboardRoot2',
+          component: DashboardPublic,
+          meta: { requiresAuth: false  ,adminAuth:true , juezAuth : false}
+        },
+        {
+          path: 'noticias/:id',
+          name: 'NoticiasShow',
+          component: NoticiasShow,
+          meta: { requiresAuth: false  ,adminAuth:true , juezAuth : false}
         },
 
       ]
@@ -221,6 +228,12 @@ Vue.use(Router)
         {
           path: 'noticias/create',
           name: 'NoticiasCreate',
+          component: NoticiasCreate,
+          meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
+        },
+        {
+          path: 'noticias/edit/:id',
+          name: 'NoticiasEdit',
           component: NoticiasCreate,
           meta: { requiresAuth: true  ,adminAuth:true , juezAuth : false}
         },
