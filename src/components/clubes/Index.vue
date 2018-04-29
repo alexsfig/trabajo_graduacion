@@ -4,7 +4,7 @@
             <h1>Clubes</h1>
 
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
                 <li>Manejo de Clubes </li>
             </ol>
         </section>
@@ -35,7 +35,7 @@
                         <div class="box-body">
       <div class="box-action">
                                 <router-link to="/admin/clubs/form" class="btn btn-default btn-flat">
-                                    <i class="fa fa-plus"></i> Nuevo Club
+                                    <i class="fa fa-plus"></i> Nuevo
                                 </router-link>
                             </div>
                             <vue-good-table :columns="columns" :rows="clubs" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
@@ -49,7 +49,7 @@
 <td>{{ props.row.playaId.nombre }}</td>
 <td>{{ props.row.entrenadorId.nombre }}</td> 
 <td>{{ props.row.direccion }}</td>
-<td>{{ props.row.atletas }}</td>         
+<td style="text-align:right;">{{ props.row.atletas }}</td>         
 
                           <td class="nowrap">
  <router-link :to="{ name: 'clubsEdit', params: { id: props.row.id }}">
@@ -111,10 +111,10 @@
                         field: "telefonoFijo",
                     }, {
                         label: "Playa",
-                        field: "playa",
+                        field: "playaId.nombre",
                     }, {
                         label: "Entrenador",
-                        field: "entrenador",
+                        field: "entrenadorId.nombre",
                     },{
                         label: "Dirección",
                         field: "direccion",
@@ -123,6 +123,7 @@
                     {
                         label: "Atletas",
                         field: "atletas",
+                        type: "number"
                     },{
                         label: "Acciones",
                         field: "",

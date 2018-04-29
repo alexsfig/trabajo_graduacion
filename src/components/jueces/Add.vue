@@ -1,7 +1,7 @@
 <template>
     <div>
         <section class="content-header">
-            <h1>Agregar como juez a {{persona.nombre}},{{persona.apellido}}</h1>
+           
             <ol class="breadcrumb">
                 
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -10,6 +10,10 @@
 
 
             </ol>
+        </section>
+        <section class="content-header">         
+           
+          
         </section>
        <section class="content">
             <div class="row">
@@ -26,7 +30,7 @@
                     </div>
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title" v-if="!id">Agregar  Nuevo juez </h3>
+                            <h3 class="box-title" v-if="!id">Agregar Nuevo juez </h3>
                              <h3 class="box-title" v-if="id"></h3>
 
 
@@ -39,6 +43,8 @@
                         </div>
                         
                         <div class="box-body">
+
+
         
                             <form @submit.prevent="submit"  role="form"> 
                                 <div class="box-body"> 
@@ -48,7 +54,13 @@
                                    
 
                                     <div class="col-xs-12 col-sm-12">
+
+                                    <h3>Agregar como juez a <b>{{persona.nombre}},{{persona.apellido}} </b></h3>
+
+
+
                                         <div class="fgroup" :class="{ 'has-error': errors.has('descripcion') }">
+
                                             <label for="">Descripcion del juez</label>
                                             <textarea v-model="descripcion" class="form-control" name="descripcion" rows="2" data-vv-as="Descripcion del juez" v-validate="'required'" >
 
@@ -119,7 +131,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-12 text-right">
-                                                    <button type="submit" class="btn btn-flat btn-sm btn-primary">Agregar Certificacion </button>
+                                                    <button type="submit" class="btn btn-flat btn-sm btn-primary"> <i class="fa fa-plus"></i> Agregar Certificación </button>
                                                 </div>
                                             </div>
                                             <div class="col-xs-7">
@@ -146,7 +158,7 @@
                                         <div class="box-footer">
                                             <div class="col-xs-12 text-right">
                                              
-                                                <button type="submit" class="btn btn-flat btn-sm btn-primary">Guardar Juez </button>
+                                                <button type="submit" class="btn btn-flat btn-sm btn-primary"><i class="fa fa-edit"></i> Guardar Juez </button>
                                             </div>
                                         </div>
                                     </div>

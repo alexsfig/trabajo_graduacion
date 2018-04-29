@@ -267,11 +267,11 @@ console.log(obj);
         HTTP.delete(PERSONA + id)
             .then((resp) => {
                 console.log(resp);
-                swal("Eliminacion exitosa!", "La persona ha sido eliminada", "success")
+                swal("Exito!", "La persona ha sido eliminada", "success")
                 context.fetchData();
             })
             .catch((err) => {
-                swal("Oh snap!", "Ocurrio un error.", "error")
+                swal("No se puede Eliminar!", "Es posible que la persona ya este Asociada.", "error")
             })
     },
     upload_avatar(context, formData, root_path){

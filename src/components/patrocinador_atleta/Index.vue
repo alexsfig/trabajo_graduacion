@@ -14,7 +14,7 @@
                 Patrocinio de Atletas
             </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
             <li>Patrocinio de Atletas</li>
         </ol>
     </section>
@@ -45,7 +45,7 @@
                                    
                                     <td>{{ props.row.patrocinadorId.nombre}}</td>
                                      <td>{{props.row.atletaId.personaId.nombre}} ,{{props.row.atletaId.personaId.apellido}}</td>
-                                    <td>{{props.row.tiempoPatrocinio}} años </td>
+                                    <td style="text-align:right;">{{props.row.tiempoPatrocinio}} años </td>
                                      <td>
                                                                                
                                         <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="profile(props.row.atletaId.id, props.row)"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Perfil  de Atleta Patrocinado</button>            
@@ -100,6 +100,7 @@ export default {
                 {
                     label: 'Tiempo de Patrocinio',
                     field: 'tiempoPatrocinio',
+                    type: 'number',
                     filterable: true,
                 }, 
                 {

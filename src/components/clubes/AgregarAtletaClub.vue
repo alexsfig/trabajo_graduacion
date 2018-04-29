@@ -4,7 +4,7 @@
             <h1>Inscripción de Atletas</h1>
 
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
                 <li>Manejo de Clubes </li>
               
             </ol>
@@ -76,7 +76,7 @@
                                    <td>{{props.row.personaId.apellido}}</td> 
                                    <td> {{ _calculateAge( props.row.personaId.fechaNacimiento)  }} años</td>
                                     <td> {{ props.row.personaId.sexo == 'F' ? 'Femenino' : 'Masculino' }}</td>
-                                     <td>{{ props.row.aniosPracticando}} años</td> 
+                                     <td style="text-align:right;">{{ props.row.aniosPracticando}} años</td> 
                                      <td>{{ props.row.playaPractica}}</td>    
                                      <td>{{ props.row.ladoPie}}</td>   
                                      <td>{{ props.row.olaPreferida}}</td>   
@@ -101,7 +101,7 @@
                           <div class="box-body">
                               
                              <div @click="volver()" class="btn btn-flat btn-sm btn-warning margin">
-                                    <i class="fa fa-arrow-circle-left" ></i> Regresar a Clubes
+                                    <i class="fa fa-arrow-circle-left" ></i> Regresar
                                 </div>
 
                                 </div> 
@@ -145,45 +145,45 @@
  
                        {
                       label: 'Nombre',
-                      field: 'atletaId.personaId.nombre',
+                      field: 'personaId.nombre',
                       filterable: true
                     },
                     {
                       label: 'Apellido',
-                      field: 'atletaId.personaId.apellido',
+                      field: 'personaId.apellido',
                       filterable: true
                     },
 
                      {
                       label: 'Edad',
-                      field: 'atletaId.personaId.fechaNacimiento',
+                      field: 'personaId.fechaNacimiento',
                       filterable: true
                     },
                     {
                       label: 'Sexo',
-                      field: 'atletaId.sexo',
+                      field: 'personaId.sexo',
                       filterable: true
                     },
 
                     {
                       label: 'Años Practicando',
-                      field: 'atletaId.aniosPracticando',
+                      field: 'aniosPracticando',
                       type: 'number',
                       filterable: true
                     },
                      {
                       label: 'Playa donde Practica',
-                      field: 'atletaId.playaPractica',
+                      field: 'playaPractica',
                       filterable: true
                     },
                      {
                       label: 'Lado del Pie',
-                      field: 'atletaId.ladoPie',
+                      field: 'ladoPie',
                       filterable: true
                     },
                       {
                       label: 'Ola Preferida',
-                      field: 'atletaId.olaPreferida',
+                      field: 'olaPreferida',
                       filterable: true
                     },
                     
