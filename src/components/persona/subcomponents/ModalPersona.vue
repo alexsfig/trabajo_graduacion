@@ -36,14 +36,31 @@
                     </div>
 
                     <div class="col-xs-12 col-sm-6">
-                        <div class="fgroup" :class="{ 'has-error': errors.has('fechaNacimiento') }">
-                            <label for="">Fecha de Nacimiento</label>
-                            <input type="date" id="fechaNacimiento" name="fechaNacimiento" data-vv-as="Fecha de Nacimiento" class="form-control" v-model="updatePersona.fechaNacimiento" v-validate="'required'">
-                            <span class="help-block" for="fechaNacimiento" v-bind:data-error="errors.first('fechaNacimiento')">
-                                    {{ errors.first('fechaNacimiento') }}
-                                </span>
-                        </div>
-                    </div>
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('fechaNacimiento') }" >
+                                            <label for="">Fecha de Nacimiento</label>
+                                            <dropdown class="form-group">
+                                                <div class="input-group">
+                                                    <input placeholder="AAAA-MM-DD" type="text" id="fechaNacimiento" name="fechaNacimiento" class="form-control" data-vv-as="Fecha de Nacimiento" v-model="updatePersona.fechaNacimiento" v-validate="'required|date_format:YYYY-MM-DD'" :class="{'datepicker':true,  'has-error': errors.has('fechaNacimiento') }">
+                                                    <div class="input-group-btn">
+                                                        <button class="btn btn-default" type="button" data-role="trigger" :class="{'has-error': errors.has('fechaNacimiento') }">
+                                                            <i class="glyphicon glyphicon-calendar"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <template slot="dropdown">
+                                                    <li>
+                                                        <date-picker class="date-picker" :language="'es'" v-model="updatePersona.fechaNacimiento" :today-btn="todayBtn" :clear-btn="clearBtn" :limit-from="limitFrom" :format="format" :week-starts-with="weekStartsWith" :limit-to="limitTo" :close-on-selected="closeOnSelected">
+                                                        </date-picker>
+                                                    </li>
+                                                </template>
+                                            </dropdown>
+
+                                           
+                                            <span class="help-block" for="fechaNacimiento" v-bind:data-error="errors.first('fechaNacimiento')">
+                                                {{ errors.first('fechaNacimiento') }}
+                                            </span>
+                                        </div>
+                                    </div>
 
                     <div class="col-xs-12 col-sm-6">
                         <div class="fgroup" :class="{ 'has-error': errors.has('dui') }">
@@ -53,7 +70,7 @@
                                     {{ errors.first('dui') }}
                                 </span>
                         </div>
-                    </div>
+                    </div> <div class="clearfix"></div>   
 
                     <div class="col-xs-12 col-sm-6">
                         <div class="fgroup" :class="{ 'has-error': errors.has('nit') }">
@@ -160,6 +177,14 @@ export default {
     },
     data() {
         return {
+            clearBtn: true,
+            todayBtn: true,
+            closeOnSelected: true,
+            limitFrom: "",
+            limitTo: "",
+            format: "yyyy-MM-dd",
+            weekStartsWith: 0,
+            
             openValue: "",
             errMsg: '',
             successMsg: '',

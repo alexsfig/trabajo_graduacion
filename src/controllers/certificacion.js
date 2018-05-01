@@ -45,14 +45,23 @@ export default {
         HTTP.put(CERTIFICACION, certificacion)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
-                    var id = resp.data.id
-                    context.showAlert = false 
+                    //var id = resp.data.id
+                    //context.showAlert = false 
+                    context.$swal("Exito!", "La Certificación fue Actualizada", "success")
+                    context.volver();
+                }                
+                else
+                {
+                    context.$swal("Ocurrio un error!", "La Certificación no fue Actualizada", "error")
+                  //  context.volver();
+
                 }
-                context.showSuccess = true
-                context.successMsg = "Certificacion Actualizada"
+                //context.showSuccess = true
+                //context.successMsg = "Certificacion Actualizada"
             })
             .catch((err) => {
-                context.showAlert = true
+                //context.showAlert = true
+                context.$swal("Ocurrio un error!", "La Certificación no fue Actualizada", "error")
                 console.log(err)
                 if (err.response) {
                     context.errMsg = err.response.data

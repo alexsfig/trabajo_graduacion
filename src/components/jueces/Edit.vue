@@ -4,7 +4,7 @@
             <h1>Certificaciones</h1>
             <ol class="breadcrumb">
                 
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
                 <li><router-link to="/admin/jueces">Jueces</router-link></li>
                 <li class="active">Certificaciones</li>
 
@@ -119,7 +119,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-12 text-right">
-                                                    <button type="submit" class="btn btn-flat btn-sm btn-primary">Agregar Certificación </button>
+                                                    <button type="submit" class="btn btn-flat btn-sm btn-primary"><i class="fa fa-plus"></i> Agregar Certificación </button>
                                                 </div>
                                             </div>
                                             <div class="col-xs-7">
