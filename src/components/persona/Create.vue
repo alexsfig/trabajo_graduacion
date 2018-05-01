@@ -10,7 +10,7 @@
         <section class="content-header">
             <h1>Personas</h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
                 <li>
                     <router-link to="/admin/persona">Personas</router-link>
                 </li>
