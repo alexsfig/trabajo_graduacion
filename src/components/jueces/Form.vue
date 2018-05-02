@@ -4,11 +4,11 @@
             <h1>Certificaciones</h1>
             <ol class="breadcrumb">
 
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
                 <li>
                     <router-link to="/admin/jueces">Jueces</router-link>
                 </li>
-                <li class="active">Editar Certificacion</li>
+                <li class="active">Actualizar Certificacion</li>
             </ol>
         </section>
         <section class="content">
@@ -34,7 +34,7 @@
 
                         <div class="box-header">
                             <h3 class="box-title" v-if="!id">Agregar  Tipo de Transaccion</h3>
-                            <h3 class="box-title" v-if="id">Editar Certificacion</h3>
+                            <h3 class="box-title" v-if="id">Actualizar Certificacion</h3>
                         </div>
 
                         <div class="box-body">
@@ -98,7 +98,7 @@
                                 <div class="box-footer">
                                     <div class="col-xs-12 text-right">
                                         <button type="submit" v-if="!id" class="btn btn-flat btn-sm btn-primary">Agregar</button>
-                                        <button type="submit" v-if="id" class="btn btn-flat btn-sm btn-primary">Editar</button>
+                                        <button type="submit" v-if="id" class="btn btn-flat btn-sm btn-primary"><i class="fa fa-edit"></i> Actualizar</button>
 
                                     
 
@@ -109,7 +109,7 @@
                             <router-link :to="{ name: 'juezEdit', params: { id: Certificacion.juezId.id }}">
                                         <button type="button" class="btn btn-flat btn-sm btn-warning margin"
                                        ><i aria-hidden="true"
-                                         class="fa fa-chevron-circle-left"></i> Regresar a Certificaciones del Juez</button>
+                                         class="fa fa-chevron-circle-left"></i> Regresar </button>
                                         </router-link> 
 
                                      
@@ -144,7 +144,7 @@
               id: '',
               errMsg: "",
               isLogin: false,
-              Certificacion: {},
+              Certificacion: {juezId:{}},
 
 
                clearBtn: true,
@@ -189,7 +189,15 @@
                       this.errMsg = "Form error"
                   }
               });
-          }
+          },
+             volver(){
+                console.log("entre")
+ window.history.length > 1
+        ? this.$router.go(-1)
+        : this.$router.push('/')
+    
+
+            }
       }
 
   }

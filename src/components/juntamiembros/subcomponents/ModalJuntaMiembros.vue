@@ -67,7 +67,7 @@
                     <div class="col-xs-12 col-sm-6">
                         <div class="fgroup" :class="{ 'has-error': errors.has('dui') }">
                             <label for="">Dui</label>
-                            <input type="text" id="dui" name="dui" v-mask="'########-#'" data-vv-as="Dui" class="form-control" v-model="persona.dui" v-validate="'required'">
+                            <input type="text" id="dui" name="dui" v-mask="'########-#'" data-vv-as="Dui" class="form-control" v-model="persona.dui" >
                             <span class="help-block" for="dui" v-bind:data-error="errors.first('dui')">
                                     {{ errors.first('dui') }}
                                 </span>
@@ -81,7 +81,7 @@
                     <div class="col-xs-12 col-sm-6">
                         <div class="fgroup" :class="{ 'has-error': errors.has('nit') }">
                             <label for="">Nit</label>
-                            <input type="text" id="nit" name="nit" data-vv-as="Nit" v-mask="'####-######-###-#'" class="form-control" v-model="persona.nit" v-validate="'required'">
+                            <input type="text" id="nit" name="nit" data-vv-as="Nit" v-mask="'####-######-###-#'" class="form-control" v-model="persona.nit" >
                             <span class="help-block" for="nit" v-bind:data-error="errors.first('nit')">
                                     {{ errors.first('nit') }}
                                 </span>
@@ -101,7 +101,7 @@
                     <div class="col-xs-12 col-sm-6">
                         <div class="fgroup" :class="{ 'has-error': errors.has('telefono') }">
                             <label for="">Telefono</label>
-                           <input type="text" id="telefono" v-mask="'####-####'" name="telefono" data-vv-as="Telefono" class="form-control" v-model="persona.telefono" v-validate="'required'"> 
+                           <input type="text" id="telefono" v-mask="'####-####'" name="telefono" data-vv-as="Telefono" class="form-control" v-model="persona.telefono" > 
 
                           
                             <span class="help-block" for="nit" v-bind:data-error="errors.first('telefono')">
@@ -164,7 +164,7 @@
                 </div>
                 <div class="box-footer">
                     <div class="col-xs-12 text-right">
-                        <button type="submit" class="btn btn-flat btn-sm btn-primary">{{ buttonMsg }}</button>
+                        <button type="submit" class="btn btn-flat btn-sm btn-primary"><i class="fa fa-edit"></i> {{ buttonMsg }}</button>
                     </div>
                 </div>
 
@@ -193,8 +193,8 @@ export default {
         "buttonMsg",
         "methodSubmit",
         "openModal",
-        "miembrojunta",
-        "persona"
+        "miembrojunta" //,
+        //"persona"
 
     ],
     jerarquia: [{
@@ -223,6 +223,15 @@ export default {
     },
     data() {
         return {
+
+             clearBtn: true,
+             todayBtn: true,
+             closeOnSelected: true,
+             limitFrom: "",
+             limitTo: "",
+             format: "yyyy-MM-dd",
+             weekStartsWith: 0,
+             
             openValue: "",
             errMsg: '',
             successMsg: '',
@@ -232,7 +241,7 @@ export default {
             showAlert: false,
             showSuccess: false,
             updateMiembrojunta: {
-                personaId: {}
+                personaId: {}, nivelJerarquia:{}
             },
             persona:{},
             openModalInside: false,

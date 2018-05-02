@@ -14,7 +14,7 @@
             Atletas
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
             <li>Manejo de Atletas</li>
         </ol>
     </section>
@@ -41,32 +41,34 @@
                         </div>
                         <div class="col-md-12">
                             <h3>
-                                Crear Información de Atleta: {{ persona.nombre  + " " + persona.apellido}}
+                                Crear Información de Atleta: <b>{{ persona.nombre  + " " + persona.apellido}} </b>de  <b>{{_calculateAge(persona.fechaNacimiento)  + " "}}</b>Años de Edad
                             </h3>
                         </div>
                         <div class="col-md-12">
-                            <form-wizard @on-complete="createAtleta" errorColor="#dd4b39" finishButtonText="Actualizar Atleta" title="" nextButtonText="Siguiente" backButtonText="Regresar" subtitle="" stepSize="lg" color="#367fa9">
+                            <form-wizard @on-complete="createAtleta" errorColor="#dd4b39" finishButtonText="Agregar" title="" nextButtonText="Siguiente" backButtonText="Regresar" subtitle="" stepSize="lg" color="#367fa9">
                                 <tab-content title="Información del Atleta" icon="fa fa-user" :before-change="first_step">
                                     <form @submit.prevent="first_step('form-2-1')" role="form" data-vv-scope="form-2-1">
+
+                                        <div class="col-xs-12 col-sm-4">
+                                            <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.edadInicio') }">
+                                                <label for="">Edad que inicio</label>
+                                                <input type="number" min="5" max="50" id="edadInicio" name="edadInicio" data-vv-as="Edad que inicio " class="form-control" v-model="atleta.edadInicio" v-validate="'required|min_value:4|max_value:79'">
+                                                <span class="help-block" for="edadInicio" v-bind:data-error="errors.first('form-2-1.edadInicio')">
+                                                    {{ errors.first('form-2-1.edadInicio') }}
+                                                </span>
+                                            </div>
+                                        </div>
                                         <div class="col-xs-12 col-sm-4">
                                             <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.aniosPracticando') }">
                                                 <label for="">Años practicando</label>
-                                                <input min="0" max="50" type="number" id="aniosPracticando" name="aniosPracticando" data-vv-as="Años practicando " class="form-control" v-model="atleta.aniosPracticando" v-validate="'required'">
+                                                <input min="0" max="50" type="number" id="aniosPracticando" name="aniosPracticando" data-vv-as="Años practicando " class="form-control" v-model="atleta.aniosPracticando" v-validate="'required|min_value:0|max_value:79'">
                                                 <span class="help-block" for="aniosPracticando" v-bind:data-error="errors.first('form-2-1.aniosPracticando')">
                                                     {{ errors.first('form-2-1.aniosPracticando') }}
                                                 </span>
 
                                             </div>
                                         </div>
-                                        <div class="col-xs-12 col-sm-4">
-                                            <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.edadInicio') }">
-                                                <label for="">Edad que inicio</label>
-                                                <input type="number" min="5" max="50" id="edadInicio" name="edadInicio" data-vv-as="Edad que inicio " class="form-control" v-model="atleta.edadInicio" v-validate="'required'">
-                                                <span class="help-block" for="edadInicio" v-bind:data-error="errors.first('form-2-1.edadInicio')">
-                                                    {{ errors.first('form-2-1.edadInicio') }}
-                                                </span>
-                                            </div>
-                                        </div>
+                                        
                                         <div class="col-xs-12 col-sm-4">
                                             <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.idiomas') }">
                                                 <label for="">Idiomas</label>
@@ -117,6 +119,7 @@
                                                 </span>
                                             </div>
                                         </div>
+                                        <!--
                                         <div class="clearfix"></div>
                                         <div class="col-xs-12 col-sm-4">
                                             <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.nivelAcademico') }">
@@ -126,8 +129,21 @@
                                                     {{ errors.first('form-2-1.nivelAcademico') }}
                                                 </span>
                                             </div>
+                                        </div> -->
+                                        <div class="clearfix"></div>
+                                         <div class="col-xs-12 col-sm-4">
+                                            <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.nivelAcademico') }">
+                                                <label for="">Nivel Academico</label>
+                                                <v-select :debounce="250" :options="niveles" v-model="atleta.nivelAcademico" placeholder="Seleccione un Nivel Academico" label="name">
+                                                </v-select>
+                                                <div class="clearfix"></div>
+                                                <input type="hidden" name="nivelAcademico" value="" data-vv-as="Nivel Academico " v-model="atleta.nivelAcademico"  v-validate="'required'">
+                                                <span class="help-block" for="nivelAcademico" v-bind:data-error="errors.first('form-2-1.nivelAcademico')">
+                                                    {{ errors.first('form-2-1.nivelAcademico') }}
+                                                </span>
+                                            </div>
                                         </div>
-                                        <div class="col-xs-12 col-sm-4">
+                                        <!--<div class="col-xs-12 col-sm-4">
                                             <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.uanioCursado') }">
                                                 <label for="">Ultimo Año cursado</label>
                                                 <input type="text" id="uanioCursado" name="uanioCursado" data-vv-as="Ultimo Año cursado " class="form-control" v-model="atleta.uanioCursado" v-validate="'required'">
@@ -135,7 +151,19 @@
                                                     {{ errors.first('form-2-1.uanioCursado') }}
                                                 </span>
                                             </div>
-                                        </div>
+                                        </div>-->
+                                        <div class="col-xs-12 col-sm-4">
+                                                <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.uanioCursado') }">
+                                                    <label for="">Ultimo Año cursado</label>
+                                                    <v-select :debounce="250" :options="ucursado" v-model="atleta.uanioCursado" placeholder="Seleccione ultimo Año Cursado" label="name">
+                                                </v-select>
+                                                <div class="clearfix"></div>
+                                                    <input type="hidden" name="uanioCursado" value="" data-vv-as="Ultimo Año cursado " v-model="atleta.uanioCursado" v-validate="'required'">
+                                                    <span class="help-block" for="uanioCursado" v-bind:data-error="errors.first('form-2-1.uanioCursado')">
+                                                              {{ errors.first('form-2-1.uanioCursado') }}
+                                                          </span>
+                                                </div>
+                                            </div>
 
                                         <div class="col-xs-12 col-sm-4">
                                             <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.otrosEstudios') }">
@@ -387,6 +415,52 @@ export default {
                 },
 
             ],
+
+            niveles: [{
+                    name: 'Nivel Inicial'
+                }, {
+                    name: 'Nivel Parvulario'
+                }, {
+                    name: 'Nivel Basico'
+                }, {
+                    name: 'Nivel Medio'
+                }, {
+                    name: 'Nivel Superior'
+                }
+                
+
+            ],
+
+            ucursado: [{
+                    name: 'Nivel Inicial'
+                }, {
+                    name: 'Nivel Parvulario'
+                }, {
+                    name: 'Nivel Basico-1er Ciclo'
+                }, 
+                {
+                    name: 'Nivel Basico-2do Ciclo'
+                },
+                {
+                    name: 'Nivel Basico-3er Ciclo'
+                },
+                {
+                    name: 'Nivel Medio - 1er año de Bachillerado'
+                },
+                {
+                    name: 'Nivel Medio - 2do año de Bachillerado'
+                },
+                {
+                    name: 'Nivel Medio - 3er año de Bachillerado(Opcional)'
+                },
+                 {
+                    name: 'Nivel Superior - No Finalizado'
+                },
+                {
+                    name: 'Nivel Superior - Finalizado'
+                }
+
+            ],
             playas: [],
             olas: [{
                     name: 'Derecha'
@@ -480,11 +554,10 @@ export default {
             else{
                 this.changePhoto = false
             }
-        },
+        } /* ,
         '$route': 'fetchData',
         atleta: function(val, oldVal) {
-            //this.atleta = this.$route.params.atleta
-            //this.atleta = this.atleta
+            
             let img = this.atleta.rutaFoto
             let imgAsset = null
             if(process.env.NODE_ENV == "development"){
@@ -533,7 +606,7 @@ export default {
                 this.atleta = val.atletaId
 
             }
-        }
+        }  */
 
     },
     methods: {
@@ -549,10 +622,20 @@ export default {
         first_step() {
             return new Promise((resolve, reject) => {
                 this.$validator.validateAll('form-2-1').then(success => {
-                    if (success) {
+                   if (success) {
+                        if(this.atleta.aniosPracticando <=  this._calculateAge(this.persona.fechaNacimiento) - this.atleta.edadInicio){
                         resolve(true)
+                        this.showAlert = false
+                        this.errMsg = ''
+                    }
+
+                        else {
+                        reject(true)
+                        this.showAlert = true
+                        this.errMsg = "Los Años Practicando no pueden ser superior al intervalo de tiempo entre la Edad de Inicio y la Edad del Atleta"}
                     } else {
                         reject(true)
+                        
                     }
                 });
             })
@@ -639,7 +722,7 @@ export default {
             this.$validator.validateAll().then(success => {
                 if (success) {
                     let ladoPie, playaPractica, idiomas = '',
-                        olaPreferida, idiomasArr = [];
+                        olaPreferida, nivelAcademico, uanioCursado, idiomasArr = [];
                     for (var i = this.atleta.idiomas.length - 1; i >= 0; i--) {
                         idiomasArr.push(this.atleta.idiomas[i].name)
                     }
@@ -650,6 +733,8 @@ export default {
                         ladoPie = "Derecha"
                     }
                     olaPreferida = this.atleta.olaPreferida.name
+                    nivelAcademico= this.atleta.nivelAcademico.name
+                    uanioCursado= this.atleta.uanioCursado.name
                     playaPractica = this.atleta.playaPractica.nombre
                     let persona = this.createPersona
                     let atleta = {
@@ -662,7 +747,7 @@ export default {
                         "idiomas": idiomas == undefined ? '' : idiomas,
                         "ladoPie": ladoPie == undefined ? '' : ladoPie,
                         "logros": this.atleta.logros == undefined ? '' : this.atleta.logros,
-                        "nivelAcademico": this.atleta.nivelAcademico == undefined ? '' : this.atleta.nivelAcademico,
+                        "nivelAcademico": nivelAcademico == undefined ? '' : nivelAcademico,
                         "olaPreferida": olaPreferida == undefined ? '' : olaPreferida,
                         "otrosEstudios": this.atleta.otrosEstudios == undefined ? '' : this.atleta.otrosEstudios,
                         "personaId": this.persona,
@@ -672,7 +757,7 @@ export default {
                         "sabeFirmar": this.atleta.sabeFirmar == false ? 0 : 1,
                         "sabeLeer": this.atleta.sabeLeer == false ? 0 : 1,
                         "tieneLesion": this.atleta.tieneLesion == false ? 0 : 1,
-                        "uanioCursado": this.atleta.uanioCursado == undefined ? '' : this.atleta.uanioCursado,
+                        "uanioCursado": uanioCursado == undefined ? '' : uanioCursado,
                         "ultimaParticipacion": this.atleta.ultimaParticipacion == undefined ? '' : this.atleta.ultimaParticipacion
                     }
                     if(this.persona.atletaId == null){
@@ -710,7 +795,18 @@ export default {
          * upload fail
          */
         cropUploadFail(status, field) {
-        }
+        },
+
+         _calculateAge(birthday) {
+            var today = new Date();
+            var birthDate = new Date(birthday);
+            var age = today.getFullYear() - birthDate.getFullYear();
+            var m = today.getMonth() - birthDate.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            return age;
+       }
 
 
     }

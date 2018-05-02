@@ -4,7 +4,7 @@
             <h1>Categorias</h1>
             <ol class="breadcrumb">
 
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
                 <li><router-link to="/admin/categorias">Categorias</router-link></li>
                 <li class="active">Agregar Categorias</li>
             </ol>
@@ -133,7 +133,7 @@
                                 </div>
                                 <div class="box-footer">
                                     <div class="col-xs-12 text-right">
-                                        <button type="submit" class="btn btn-flat btn-sm btn-primary">Agregar Categoria</button>
+                                        <button type="submit" class="btn btn-flat btn-sm btn-primary"><i class="fa fa-plus"></i> Agregar </button>
                                     </div>
                                 </div>
 

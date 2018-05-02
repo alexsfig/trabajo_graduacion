@@ -4,7 +4,7 @@
             <h1>Circuitos</h1>
             <ol class="breadcrumb">
 
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
                 <li>
                       <router-link :to="{ name: 'circuitosIndexByFecha', params: { id: this.id2 }}">
                                        Circuitos

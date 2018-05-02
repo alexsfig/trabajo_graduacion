@@ -4,7 +4,7 @@
             <h1>Manejo de Personas</h1>
 
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
                 <li>Manejo de Personas </li>
             </ol>
         </section>
@@ -145,19 +145,20 @@ export default {
         },
         {
           label: "Atleta",
-          field: "atleta"
+          field: ""  
+
         },
         {
           label: "Miembro",
-          field: "miembroJunta"
+          field: ""
         },
         {
           label: "Juez",
-          field: "juez"
+          field: ""
         },
         {
           label: "Entrenador",
-          field: "entrenador"
+          field: ""
         },
         {
           label: "Acción",
@@ -206,7 +207,7 @@ export default {
         config1 = {
           title: "Crear?",
           html:
-            "Deseas crear la informacion de atleta de la persona <b>&laquo;" +
+            "Deseas crear la informacion de atleta a partir de la persona <b>&laquo;" +
             row.nombre +
             "&raquo</b>",
           type: "success",

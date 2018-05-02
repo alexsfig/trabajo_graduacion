@@ -5,7 +5,7 @@
                 Miembros de Junta Directiva
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
                 <li>Manejo de Miembros de Junta Directiva</li>
             </ol>
         </section>
@@ -37,7 +37,7 @@
                                   <template slot="table-row" scope="props">
                                     <td>{{ props.row.personaId.nombre}}</td> 
                                     <td>{{ props.row.personaId.apellido}}</td> 
-                                    <td>{{ props.row.personaId.fechaNacimiento}}</td> 
+                                    <td>{{ _calculateAge(props.row.personaId.fechaNacimiento)?_calculateAge(props.row.personaId.fechaNacimiento)+' años':'No definida'}}</td> 
                                      <td>{{ props.row.personaId.dui}}</td> 
                                      <td>{{ props.row.personaId.nit}}</td>
                                      <td>{{ props.row.personaId.direccion}}</td>
@@ -95,38 +95,38 @@
                     },
 
                     {
-                      label: 'Fecha de Nacimiento',
-                      field: 'fechaNacimiento',
+                      label: 'Edad',
+                      field: 'personaId.fechaNacimiento',
                       filterable: true,
                     },
                      {
                       label: 'Dui',
-                      field: 'dui',
+                      field: 'personaId.dui',
                       filterable: true,
                     },
                     {
                       label: 'Nit',
-                      field: 'nit',
+                      field: 'personaId.nit',
                       filterable: true,
                     },
                     {
                       label: 'Direccion',
-                      field: 'direccion',
+                      field: 'personaId.direccion',
                       filterable: true,
                     },
                     {
                       label: 'Telefono',
-                      field: 'telefono',
+                      field: 'personaId.telefono',
                       filterable: true,
                     },
                     {
                       label: 'Correo',
-                      field: 'correo',
+                      field: 'personaId.correo',
                       filterable: true,
                     },
                     {
                       label: 'Sexo',
-                      field: 'sexo',
+                      field: 'personaId.sexo',
                       filterable: true,
                     },
                     {
@@ -214,6 +214,17 @@
             retrieveData(id) {
                 juntamiembrosController.retrieve(this, id)
             },
+
+                _calculateAge(birthday) {
+            var today = new Date();
+            var birthDate = new Date(birthday);
+            var age = today.getFullYear() - birthDate.getFullYear();
+            var m = today.getMonth() - birthDate.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            return age;
+           }
         }
 
     }
