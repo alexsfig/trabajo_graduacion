@@ -4,7 +4,7 @@
             <h1>Finalizar ronda {{ronda.numero}} </h1>
 
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
                 <li>Manejo de Rondas  </li>
             </ol>
         </section>

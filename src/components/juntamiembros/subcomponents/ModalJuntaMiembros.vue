@@ -193,8 +193,8 @@ export default {
         "buttonMsg",
         "methodSubmit",
         "openModal",
-        "miembrojunta",
-        "persona"
+        "miembrojunta" //,
+        //"persona"
 
     ],
     jerarquia: [{
@@ -223,6 +223,15 @@ export default {
     },
     data() {
         return {
+
+             clearBtn: true,
+             todayBtn: true,
+             closeOnSelected: true,
+             limitFrom: "",
+             limitTo: "",
+             format: "yyyy-MM-dd",
+             weekStartsWith: 0,
+             
             openValue: "",
             errMsg: '',
             successMsg: '',
@@ -232,7 +241,7 @@ export default {
             showAlert: false,
             showSuccess: false,
             updateMiembrojunta: {
-                personaId: {}
+                personaId: {}, nivelJerarquia:{}
             },
             persona:{},
             openModalInside: false,

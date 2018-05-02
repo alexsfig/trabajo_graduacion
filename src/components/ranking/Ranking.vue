@@ -4,8 +4,8 @@
             <h1>Ranking por categoria</h1>
 
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li>Manejo de Circuitos </li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+                <li>Ranking </li>
       
             </ol>
         </section>

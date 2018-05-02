@@ -4,7 +4,7 @@
             <h1>Fechas</h1>
 
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
                 <li>Manejo de Fechas </li>
             </ol>
         </section>
@@ -36,7 +36,7 @@
                                 
                             <div class="box-action">
                                 <router-link to="/admin/fechas/form" class="btn btn-default btn-flat">
-                                    <i class="fa fa-plus"></i> Nueva Fecha
+                                    <i class="fa fa-plus"></i> Nuevo
                                 </router-link>
                             </div>
 

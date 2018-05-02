@@ -4,7 +4,7 @@
             <h1>Fechas</h1>
             <ol class="breadcrumb">
                 
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
                 <li><router-link to="/admin/fechas">Fechas</router-link></li>
                 <li class="active">Formulario de  Fechas</li>
 
@@ -96,7 +96,7 @@
                                 </div>
                                 <div class="box-footer">
                                     <div class="col-xs-12 text-right">
-                                        <button type="submit"  v-if="!id" class="btn btn-flat btn-sm btn-primary">Agregar</button>
+                                        <button type="submit"  v-if="!id" class="btn btn-flat btn-sm btn-primary"><i class="fa fa-plus"></i> Agregar</button>
                                             <button type="submit" v-if="id" class="btn btn-flat btn-sm btn-primary">Editar</button>
 
                                     </div>

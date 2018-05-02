@@ -5,7 +5,7 @@
                 Categorias
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
                 <li>Manejo de Categorias</li>
             </ol>
         </section>
@@ -21,7 +21,7 @@
 
                             <div class="box-action">
                                 <router-link to="/admin/categorias/create" class="btn btn-default btn-flat">
-                                    <i class="fa fa-plus"></i> Nueva Categoria
+                                    <i class="fa fa-plus"></i> Nuevo
                                 </router-link>
                             </div>
 

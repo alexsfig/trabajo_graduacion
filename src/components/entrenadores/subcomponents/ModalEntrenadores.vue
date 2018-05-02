@@ -203,7 +203,7 @@
                 limitTo: '',
                 format: 'yyyy-MM-dd',
                 weekStartsWith: 0,
-                
+                updateEntrenador :{personaId:{}},
                 openValue: "",
                 errMsg:  '',
                 successMsg:  '',
