@@ -11,7 +11,7 @@
 
         <div class="content-wrapper">
             <router-view/>
-     
+
         </div>
 
         <footer class="main-footer">
@@ -123,4 +123,74 @@
      vertical-align: middle;
 }
 .margin { margin: 5px; }
+.fgroup.required label:after {
+  content:"*";
+  color:#de4b39;
+}
+.v-select .dropdown-toggle .clear {
+    font-size: 20px;
+    color: #e35a38;
+}
+.hr-text {
+  line-height: 1em;
+  position: relative;
+  outline: 0;
+  border: 0;
+  color: black;
+  text-align: center;
+  height: 2.5em;
+  opacity: .7   ;
+}
+.hr-text::before {
+    content: '';
+    background: linear-gradient(to right, transparent, #818078, transparent);
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 1px;
+}
+.hr-text::after {
+    content: attr(data-content);
+    position: relative;
+    display: inline-block;
+    color: black;
+    padding: 0 .5em;
+    line-height: 1.5em;
+    background-color: #fcfcfa;
+    font-size: 22px;
+    text-transform: uppercase;
+}
+
+.hr-title {
+  line-height: 1em;
+  position: relative;
+  outline: 0;
+  border: 0;
+  color: #0072b5;
+  text-align: center;
+  height: 3.5em;
+  opacity: .8;
+}
+.hr-title::before {
+    content: '';
+    background: linear-gradient(to right, transparent, #0072b5, transparent);
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 2px;
+}
+.hr-title::after {
+    content: attr(data-content);
+    position: relative;
+    display: inline-block;
+    color: #0072b5;
+    padding: 0 .5em;
+    line-height: 1.5em;
+    background-color: #fcfcfa;
+    font-size: 32px;
+    text-transform: uppercase;
+}
+
 </style>
