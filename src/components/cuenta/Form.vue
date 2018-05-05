@@ -49,7 +49,7 @@
                                     <!--  :disabled="id"    -->
 
                                       <div  class="col-xs-12 col-sm-6">
-                                        <div class="fgroup required" :class="{ 'has-error': errors.has('monto') }">
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('monto') }">
                                             <label for="">Monto Actual ($)</label>
                                             <div class="input-group">
                                                 <span class="input-group-addon">$</span>

@@ -65,7 +65,7 @@
                                     </div>
 
                     <div class="col-xs-12 col-sm-6">
-                        <div class="fgroup required" :class="{ 'has-error': errors.has('dui') }">
+                        <div class="fgroup" :class="{ 'has-error': errors.has('dui') }">
                             <label for="">Dui</label>
                             <input type="text" id="dui" name="dui" v-mask="'########-#'" data-vv-as="Dui" class="form-control" v-model="persona.dui" >
                             <span class="help-block" for="dui" v-bind:data-error="errors.first('dui')">
@@ -79,7 +79,7 @@
                                     </div>
 
                     <div class="col-xs-12 col-sm-6">
-                        <div class="fgroup required" :class="{ 'has-error': errors.has('nit') }">
+                        <div class="fgroup" :class="{ 'has-error': errors.has('nit') }">
                             <label for="">Nit</label>
                             <input type="text" id="nit" name="nit" data-vv-as="Nit" v-mask="'####-######-###-#'" class="form-control" v-model="persona.nit" >
                             <span class="help-block" for="nit" v-bind:data-error="errors.first('nit')">
@@ -99,7 +99,7 @@
                     </div>
 
                     <div class="col-xs-12 col-sm-6">
-                        <div class="fgroup required" :class="{ 'has-error': errors.has('telefono') }">
+                        <div class="fgroup" :class="{ 'has-error': errors.has('telefono') }">
                             <label for="">Telefono</label>
                            <input type="text" id="telefono" v-mask="'####-####'" name="telefono" data-vv-as="Telefono" class="form-control" v-model="persona.telefono" > 
 

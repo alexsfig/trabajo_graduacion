@@ -173,7 +173,7 @@
                                             </div>
 
                                         <div class="col-xs-12 col-sm-4">
-                                            <div class="fgroup required" :class="{ 'has-error': errors.has('form-2-1.otrosEstudios') }">
+                                            <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.otrosEstudios') }">
                                                 <label for="">Otros Estudios</label>
                                                 <textarea type="text" id="otrosEstudios" name="otrosEstudios" data-vv-as="Otros Estudios " class="form-control" v-model="atleta.otrosEstudios" v-validate="''"></textarea>
                                                 <span class="help-block" for="otrosEstudios" v-bind:data-error="errors.first('form-2-1.otrosEstudios')">

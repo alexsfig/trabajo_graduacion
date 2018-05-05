@@ -67,7 +67,7 @@
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup required" :class="{ 'has-error': errors.has('form-1.telefono') }">
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('form-1.telefono') }">
                                             <label for="">Telefono</label>
                                             <masked-input mask="1111-1111" placeholder="####-####" id="telefono" name="telefono" data-vv-as="Telefono " class="form-control" v-model="createPersona.telefono" >
                                             </masked-input>
@@ -79,7 +79,7 @@
 
                                     <div class="clearfix"></div>
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup required" :class="{ 'has-error': errors.has('form-1.dui') }">
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('form-1.dui') }">
                                             <label for="">DUI</label>
                                             <masked-input mask="11111111-1" placeholder="########-#" id="dui" name="dui" data-vv-as="DUI " class="form-control" v-model="createPersona.dui"  />
                                             <!-- <input type="text" id="dui" name="dui" v-mask="'########-#'"  data-vv-as="DUI " class="form-control" v-model="createPersona.dui" v-validate="'required'" > -->
@@ -89,7 +89,7 @@
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup required" :class="{ 'has-error': errors.has('form-1.nit') }">
+                                        <div class="fgroup" :class="{ 'has-error': errors.has('form-1.nit') }">
                                             <label for="">NIT</label>
                                             <masked-input mask="1111-111111-111-1" placeholder="####-######-###-#" name="nit" data-vv-as="NIT " class="form-control" v-model="createPersona.nit" />
                                             <!-- <input type="text" id="nit" name="nit"  v-mask="'####-######-###-#'" data-vv-as="NIT " class="form-control" v-model="createPersona.nit" v-validate="'required'" > -->
@@ -305,7 +305,7 @@
                                             </div>
 
                                             <div class="col-xs-12 col-sm-4">
-                                                <div class="fgroup required" :class="{ 'has-error': errors.has('form-2-1.otrosEstudios') }">
+                                                <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.otrosEstudios') }">
                                                     <label for="">Otros Estudios</label>
                                                     <textarea type="text" id="otrosEstudios" name="otrosEstudios" data-vv-as="Otros Estudios " class="form-control" v-model="createAtleta.otrosEstudios" v-validate="''"></textarea>
                                                     <span class="help-block" for="otrosEstudios" v-bind:data-error="errors.first('form-2-1.otrosEstudios')">

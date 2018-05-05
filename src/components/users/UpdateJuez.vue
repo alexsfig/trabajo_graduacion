@@ -4,7 +4,7 @@
             <h1>Usuario</h1>
             <ol class="breadcrumb">
                 
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
                 <li><router-link to="/admin/users">Usuario</router-link></li>
                 <li class="active">Modificar Contraseña</li>
             </ol>

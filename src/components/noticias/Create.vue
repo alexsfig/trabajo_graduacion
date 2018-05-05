@@ -8,7 +8,8 @@
             <li>
                 <router-link to="/admin/noticias">Noticias</router-link>
             </li>
-            <li class="active">Agregar Noticia</li>
+            <li v-if="!id" class="active">Agregar Noticia</li>
+            <li v-if="id" class="active">Actualizar Noticia</li>
         </ol>
     </section>
     <section class="content">
@@ -26,7 +27,9 @@
                 </div>
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Agregar Noticia</h3>
+                        <h3 v-if="!id" class="box-title">Agregar Noticia</h3>
+                        <h3 v-if="id" class="box-title">Actualizar Noticia</h3>
+
                     </div>
                     <div class="box-body">
                         <form @submit.prevent="submit" role="form">
