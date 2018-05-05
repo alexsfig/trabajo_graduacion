@@ -27,7 +27,7 @@ export default {
         let filename = context.filename
         formData.append('file', context.avatar)
       //  formData.append('filename', context.filename)
-        
+
       //  formData.append('root_path', "C:\\data\\images")
        // this.upload_avatar(context, formData, root_path)
        HTTP.post('persona', atleta)
@@ -47,7 +47,7 @@ export default {
                .then((resp) => {
                    console.log("estoy en crear personaasljjsll")
                    console.log(atleta)
-            
+
                })
                .catch((err) => {
                    if (err.response) {
@@ -56,8 +56,8 @@ export default {
                        context.errMsg = err.response.data
                    }
                })
-   
-               
+
+
                context.fetchData()
                context.resetForm()
                console.log("Saliendo");
@@ -69,7 +69,7 @@ export default {
                context.errMsg = err.response.data
            }
        })
-    
+
     },
     createJuez(context, juez){
         context.showAlert = false
@@ -95,7 +95,7 @@ export default {
         context.showSuccess = false
     /*let temp=entrenador;
 
-   
+
     let obj =temp.personaId;
 
 
@@ -153,7 +153,7 @@ console.log(obj);
                 }
                 context.showSuccess = true
                 context.successMsg = "Persona Actualizada exitosamente"
-                
+
             })
             .catch((err) => {
                 context.showAlert = true
@@ -190,7 +190,7 @@ console.log(obj);
                         context.updatePersona.sexo='Femenino'
                       }
 
-                
+
             })
             .catch((err) => {
                 context.showAlert = true
@@ -220,13 +220,18 @@ console.log(obj);
         Method to display all PERSONA, pass only the context
     */
     index(context){
+        context.loading = true
         HTTP.get(PERSONA)
             .then((resp) => {
                 context.personas = resp.data
+                context.loading = false
+
                 //return  resp.data
             })
             .catch((err) => {
               console.log(err)
+              context.loading = false
+
             })
     },
     /*
