@@ -40,7 +40,7 @@
            <div class="col-xs-12 col-sm-6">
 
             
-                                        <div class="fgroup"  :class="{ 'has-error': errors.has('categoria') }">
+                                        <div class="fgroup required"  :class="{ 'has-error': errors.has('categoria') }">
                                           
                                             <label for="categoria">Categoria</label>
                                             <v-select

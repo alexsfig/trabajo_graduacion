@@ -36,7 +36,7 @@
                         
 
                             <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup"  :class="{ 'has-error': errors.has('patrocinadorId') }">
+                                        <div class="fgroup required"  :class="{ 'has-error': errors.has('patrocinadorId') }">
                                             <label for="">Patrocinador</label>
                                             <v-select
                                                 :debounce="250"
@@ -54,7 +54,7 @@
                                     </div>
 
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup"  :class="{ 'has-error': errors.has('atletaId') }">
+                                        <div class="fgroup required"  :class="{ 'has-error': errors.has('atletaId') }">
                                             <label for="">Atleta Patrocinado</label>
                                             <v-select
                                                 :debounce="250"
@@ -74,7 +74,7 @@
  
                             
                         <div class="col-xs-12 col-sm-6">
-                            <div class="fgroup" :class="{ 'has-error': errors.has('tiempoPatrocinio') }" >
+                            <div class="fgroup required" :class="{ 'has-error': errors.has('tiempoPatrocinio') }" >
                                 <label for="">Tiempo de Patrocinio (Años)</label>
                                 <input type="number" id="tiempoPatrocinio" name="tiempoPatrocinio" data-vv-as="Tiempo de Patrocinio" class="form-control" 
                                 v-model="createPatrocinadorAtleta.tiempoPatrocinio" v-validate="'required|min_value:1|max_value:1000'" >

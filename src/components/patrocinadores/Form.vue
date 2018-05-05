@@ -33,7 +33,7 @@
                             <form @submit.prevent="submit" role="form">
                                 <div class="box-body">
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('nombre') }">
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('nombre') }">
                                             <label for="">Nombre</label>
                                             <input type="text" id="nombre" name="nombre" data-vv-as="Nombre" class="form-control" v-model="patrocinador.nombre" v-validate="'required'">
                                             <span class="help-block" for="nombre" v-bind:data-error="errors.first('nombre')">
@@ -42,7 +42,7 @@
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('nit') }">
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('nit') }">
                                             <label for="">Nit</label>
                                             <masked-input mask="1111-111111-111-1" placeholder="####-######-###-#" name="nit" data-vv-as="Nit" class="form-control" v-model="patrocinador.nit" v-validate="'required'" />
                                             <span class="help-block" for="nit" v-bind:data-error="errors.first('nit')">
@@ -52,7 +52,7 @@
                                     </div>
                                     <div class="clearfix"></div>
                                     <!--<div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('telefono') }">
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('telefono') }">
                                             <label for="">Telefono</label>
                                             <input type="text" id="telefono" name="telefono" data-vv-as="Telefono" class="form-control" v-model="patrocinador.telefono" v-validate="'required'">
                                             <span class="help-block" for="telefono" v-bind:data-error="errors.first('telefono')">
@@ -61,7 +61,7 @@
                                         </div>
                                     </div> -->
                                      <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('telefono') }">
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('telefono') }">
                                             <label for="">Telefono</label>
                                           <masked-input mask="1111-1111" placeholder="####-####" name="telefono" data-vv-as="Telefono" class="form-control" v-model="patrocinador.telefono" v-validate="'required'"/>
                                             <span class="help-block" for="telefono" v-bind:data-error="errors.first('telefono')">
@@ -70,7 +70,7 @@
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('correo') }">
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('correo') }">
                                             <label for="">Correo</label>
                                             <input type="email" id="correo" name="correo" data-vv-as="Correo" class="form-control" v-model="patrocinador.correo" v-validate="'required|email'">
                                             <span class="help-block" for="correo" v-bind:data-error="errors.first('correo')">
@@ -80,7 +80,7 @@
                                     </div>
                                     <div class="clearfix"></div>
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('tipo') }">
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('tipo') }">
                                             <label for="">Tipo</label>
                                             <v-select :debounce="250" :options="tipo" v-model="patrocinador.tipo" placeholder="Seleccione el Tipo" label="label">
                                             </v-select>
@@ -91,7 +91,7 @@
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('direccion') }">
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('direccion') }">
                                             <label for="">Dirección</label>
                                             <textarea id="direccion" name="direccion" data-vv-as="Dirección" class="form-control" v-model="patrocinador.direccion" v-validate="'required'" rows="3"></textarea>
                                             <!-- <input type="text" id="direccion" name="direccion" data-vv-as="direccion" class="form-control" v-model="patrocinador.direccion" v-validate="'required'"> -->

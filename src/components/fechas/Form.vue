@@ -36,7 +36,7 @@
                                 <div class="box-body">
 
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('nombre') }" >
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('nombre') }" >
                                             <label for="">Nombre de Fecha</label>
                                             <input type="text" id="nombre" name="nombre" data-vv-as="Nombre de Fecha" class="form-control" v-model="fecha.nombre" v-validate="'required'" >
                                             <span class="help-block" for="nombre" v-bind:data-error="errors.first('nombre')">
@@ -45,7 +45,7 @@
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup"  :class="{ 'has-error': errors.has('playa') }">
+                                        <div class="fgroup required"  :class="{ 'has-error': errors.has('playa') }">
                                             <label for="playa">Playa de Realización</label>
                                             <v-select
                                                 :debounce="250"
@@ -65,7 +65,7 @@
 
 
                                      <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('fecha') }" >
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('fecha') }" >
                                             <label for="">Inicio de Fecha</label>
                                             <dropdown class="form-group">
                                                 <div class="input-group">

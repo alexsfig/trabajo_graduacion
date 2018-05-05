@@ -39,7 +39,7 @@
                             <form @submit.prevent="submit" role="form">
                                 <div class="box-body">
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('nombre') }">
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('nombre') }">
                                             <label for="">Nombre</label>
                                             <input type="text" id="nombre" name="nombre" data-vv-as="nombre" class="form-control" v-model="circuito.nombre" v-validate="'required'">
                                             <span class="help-block" for="nombre" v-bind:data-error="errors.first('nombre')">
@@ -48,7 +48,7 @@
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('descripcion') }">
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('descripcion') }">
                                             <label for="">Descripción</label>
                                             <input type="text" id="descripcion" name="descripcion" data-vv-as="descripcion" class="form-control" v-model="circuito.descripcion" v-validate="'required'">
                                             <span class="help-block" for="descripcion" v-bind:data-error="errors.first('descripcion')">
@@ -61,7 +61,7 @@
                                     </div>
 
                                       <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" >
+                                        <div class="fgroup required" >
                                             <label for="">Fecha</label>
                                             <input type="text" id="fecha.nombre" name="fecha.nombre" data-vv-as="fecha.nombre" class="form-control" v-model="fecha.nombre" v-validate="'required'" disabled>
                                             <span class="help-block" for="fecha.nombre" v-bind:data-error="errors.first('fecha.nombre')">
@@ -71,7 +71,7 @@
                                     </div>
                                    
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('categoriaId') }">
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('categoriaId') }">
                                             <label for="categoriaId">Categoria</label>
                                             <v-select :debounce="250" :options="categorias" v-model="circuito.categoriaId" placeholder="Escoja una categoria" label="nombreCategoria">
                                             </v-select>

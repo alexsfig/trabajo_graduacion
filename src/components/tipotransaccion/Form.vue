@@ -35,7 +35,7 @@
                             <form @submit.prevent="submit" role="form">
                                 <div class="box-body">
                                     <div class="col-xs-12 col-sm-4">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('nombre') }">
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('nombre') }">
                                             <label for="">Nombre</label>
                                             <input type="text" id="nombre" name="nombre" data-vv-as="nombre" class="form-control" v-model="tipoTransaccion.nombre" v-validate="'required'">
                                             <span class="help-block" for="nombre" v-bind:data-error="errors.first('nombre')">
@@ -44,7 +44,7 @@
                                         </div>
                                     </div>
                                     <div class="col-xs-6 col-sm-4">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('tipo') }">
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('tipo') }">
                                             <label for="">Concepto</label>
                                             <span class="pull-right">
                                                 <toggle-button  v-model="tipoTransaccion.tipo" :sync="true"
@@ -57,7 +57,7 @@
                                         </div>
                                     </div>
                                     <div class="col-xs-6 col-sm-4">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('asociar') }">
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('asociar') }">
                                             <label for="">Asociar a</label>
                                             <span class="pull-right">
                                                 <toggle-button  v-model="tipoTransaccion.asociar" :sync="true"
@@ -71,7 +71,7 @@
                                     </div>
                                     <div class="clearfix"></div>
                                     <div class="col-xs-12 col-sm-12">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('descripcion') }">
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('descripcion') }">
                                             <label for="">Descripción</label>
                                             <textarea rows="4" cols="50" id="descripcion" name="descripcion" data-vv-as="descripcion" class="form-control" v-model="tipoTransaccion.descripcion" v-validate="'required'"> </textarea>
                                             <!-- <input type="text" id="descripcion" name="descripcion" data-vv-as="descripcion" class="form-control" v-model="tipoTransaccion.descripcion" v-validate="'required'"> -->

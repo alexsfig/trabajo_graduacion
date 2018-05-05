@@ -18,7 +18,7 @@
                     <div class="box-body">
                         <input type="hidden" v-model="id">
                         <div class="col-xs-12 col-sm-6">
-                            <div class="fgroup" :class="{ 'has-error': errors.has('usuario') }" >
+                            <div class="fgroup required" :class="{ 'has-error': errors.has('usuario') }" >
                                 <label for="">Usuario</label>
                                 <input type="text" id="usuario" name="usuario" data-vv-as="Nombre de usuario" class="form-control" v-model="updateUser.usuario" v-validate="'required'" >
                                 <span class="help-block" for="usuario" v-bind:data-error="errors.first('usuario')">
@@ -27,7 +27,7 @@
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-6">
-                            <div class="fgroup"  :class="{ 'has-error': errors.has('rol_edit') }">
+                            <div class="fgroup required"  :class="{ 'has-error': errors.has('rol_edit') }">
                                 <label for="">Rol</label>
                                 <v-select
                                     :debounce="250"
@@ -46,7 +46,7 @@
 
 
                         <div class="col-xs-12 col-sm-6" v-if="enapatro">
-                                        <div class="fgroup"  :class="{ 'has-error': errors.has('personaId') }">
+                                        <div class="fgroup required"  :class="{ 'has-error': errors.has('personaId') }">
                                             <label for="">Juez Asociado</label>
                                             <v-select
                                                 :debounce="250"

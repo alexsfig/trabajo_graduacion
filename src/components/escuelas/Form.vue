@@ -34,7 +34,7 @@
         
                             <form @submit.prevent="submit"  role="form"> 
                                 <div class="box-body"> <div class="col-xs-12 col-sm-6">
-                         <div class="fgroup" :class="{ 'has-error': errors.has('nombre') }" >
+                         <div class="fgroup required" :class="{ 'has-error': errors.has('nombre') }" >
                                             <label for="">Nombre</label>
                                             <input type="text" id="nombre" name="nombre" data-vv-as="nombre" class="form-control"
 											v-model="escuela.nombre" v-validate="'required'" >
@@ -43,7 +43,7 @@
                                             </span>      </div>
                                     </div>
  <div class="col-xs-6 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('fundacion') }" >
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('fundacion') }" >
                                             <label for="">Fundación</label>
                                             <dropdown class="form-group">
                                                 <div class="input-group">
@@ -69,7 +69,7 @@
                                         </div>
                                     </div>
  <div class="col-xs-12 col-sm-6">
-                         <div class="fgroup" :class="{ 'has-error': errors.has('correo') }" >
+                         <div class="fgroup required" :class="{ 'has-error': errors.has('correo') }" >
                                             <label for="">Correo Electronico</label>
                                             <input type="email" id="correo" name="correo" data-vv-as="correo" class="form-control"
 											v-model="escuela.correo" v-validate="'required|email'" >
@@ -78,7 +78,7 @@
                                             </span>      </div>
                                     </div>
 <div class="col-xs-12 col-sm-6">
-                         <div class="fgroup" :class="{ 'has-error': errors.has('representante') }" >
+                         <div class="fgroup required" :class="{ 'has-error': errors.has('representante') }" >
                                             <label for="">Representante</label>
                                             <input type="text" id="representante" name="representante" data-vv-as="representante" class="form-control"
                                             v-model="escuela.representante" v-validate="'required'" >
@@ -89,7 +89,7 @@
 
 
 <div class="col-xs-12 col-sm-6">
-                            <div class="fgroup" :class="{ 'has-error': errors.has('celular') }">
+                            <div class="fgroup required" :class="{ 'has-error': errors.has('celular') }">
                                             <label for="">Celular</label>
                                             <masked-input mask="1111-1111" placeholder="####-####" id="celular" name="celular" data-vv-as="celular " class="form-control" v-model="escuela.celular" v-validate="'required'">
                                             </masked-input>
@@ -101,7 +101,7 @@
 
 
 <div class="col-xs-12 col-sm-6">
-                            <div class="fgroup" :class="{ 'has-error': errors.has('telefonoFijo') }">
+                            <div class="fgroup required" :class="{ 'has-error': errors.has('telefonoFijo') }">
                                             <label for="">Telefono Fijo</label>
                                             <masked-input mask="1111-1111" placeholder="####-####" id="telefonoFijo" name="telefonoFijo" data-vv-as="telefonoFijo " class="form-control" v-model="escuela.telefonoFijo" v-validate="'required'">
                                             </masked-input>
@@ -113,7 +113,7 @@
 
 
    <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup"  :class="{ 'has-error': errors.has('playaId') }">
+                                        <div class="fgroup required"  :class="{ 'has-error': errors.has('playaId') }">
                                             <label for="playaId">Playa</label>
                                             <v-select
                                                 :debounce="250"
@@ -132,7 +132,7 @@
 
 
 <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup"  :class="{ 'has-error': errors.has('entrenadorId') }">
+                                        <div class="fgroup required"  :class="{ 'has-error': errors.has('entrenadorId') }">
                                             <label for="entrenadorId">Entrenador</label>
                                             <v-select
                                                 :debounce="250"
@@ -150,7 +150,7 @@
                                     </div> 
 
   <div class="col-xs-12 col-sm-12">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('direccion') }" >
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('direccion') }" >
                                             <label for="">Dirección</label>
                                             <textarea id="direccion" name="direccion" data-vv-as="Direccion" class="form-control" v-model="escuela.direccion" v-validate="'required'" rows="3"></textarea>
                                                 {{ errors.first('club.direccion') }}

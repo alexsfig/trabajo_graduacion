@@ -192,5 +192,7 @@
     font-size: 32px;
     text-transform: uppercase;
 }
-
+.global-search-input{
+    width: calcs(50%) !important;
+}
 </style>

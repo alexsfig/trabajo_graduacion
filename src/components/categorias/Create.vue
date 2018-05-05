@@ -33,7 +33,7 @@
                                 <div class="box-body">
 
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('nombreCategoria') }" >
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('nombreCategoria') }" >
                                             <label for="">Nombre Categoria</label>
                                             <input type="text" id="nombreCategoria" name="nombreCategoria" data-vv-as="Nombre de la categoria" class="form-control" v-model="createCategorias.nombreCategoria" v-validate="'required'" >
                                             <span class="help-block" for="nombreCategoria" v-bind:data-error="errors.first('nombreCategoria')">
@@ -42,7 +42,7 @@
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup"  :class="{ 'has-error': errors.has('sexo') }">
+                                        <div class="fgroup required"  :class="{ 'has-error': errors.has('sexo') }">
                                             <label for="">Sexo</label>
                                             <v-select
                                                 :debounce="250"
@@ -60,7 +60,7 @@
                                     </div>
                                     <div class="clearfix"></div>
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('edadMin') }" >
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('edadMin') }" >
                                             <label for="">Edad Minima</label>
                                             <input type="number" id="edadMin" name="edadMin" data-vv-as="Edad Minima de la categoria" class="form-control" v-model="createCategorias.edadMin" v-validate="'required|min_value:7|max_value:79'" >
                                             <span class="help-block" for="edadMin" v-bind:data-error="errors.first('edadMin')">
@@ -70,7 +70,7 @@
                                     </div>
 
                                      <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('edadMax') }" >
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('edadMax') }" >
                                             <label for="">Edad Maxima</label>
                                             <input type="number" id="edadMax" name="edadMax"  data-vv-as="Edad Maxima de la categoria" class="form-control" v-model="createCategorias.edadMax" v-validate="'required|min_value:7|max_value:79'" 
                                             >
@@ -81,7 +81,7 @@
                                     </div>
                                     <div class="clearfix"></div>
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('descripcionCategoria') }" >
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('descripcionCategoria') }" >
                                             <label for="">Descripción</label>
                                             <textarea rows="4" cols="50" id="descripcionCategoria" name="descripcionCategoria" data-vv-as="Descripcion de la categoria" class="form-control" v-model="createCategorias.descripcionCategoria" v-validate="'required'"> </textarea>
 
@@ -94,7 +94,7 @@
                                     </div>
 
                                       <!--<div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('descripcionCategoria') }" >
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('descripcionCategoria') }" >
                                             <label for="">Descripcion</label>
                                             <input type="text" id="descripcionCategoria" name="descripcionCategoria" data-vv-as="Descripcion de la categoria" class="form-control" v-model="createCategorias.descripcionCategoria" v-validate="'required'" >
                                             <span class="help-block" for="descripcionCategoria" v-bind:data-error="errors.first('descripcionCategoria')">
@@ -105,7 +105,7 @@
 
 
                                    <!-- <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('sexo') }" >
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('sexo') }" >
                                             <label for="">Sexo</label>
                                             <input type="text" id="sexo" name="sexo" data-vv-as="Sexo de la Categoria" class="form-control" v-model="createCategorias.sexo" v-validate="'required'" >
                                             <span class="help-block" for="sexo" v-bind:data-error="errors.first('sexo')">
@@ -115,7 +115,7 @@
                                     </div> -->
 
                                    <!-- <div class="col-xs-12 col-sm-4">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('sexo') }" >
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('sexo') }" >
                                             <label for="">Sexo</label>
                                             <br>
                                             <span class="pull-right">

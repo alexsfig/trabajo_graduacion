@@ -48,7 +48,7 @@
                                    
 
                                     <div class="col-xs-12 col-sm-12">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('form-3.descripcion') }">
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('form-3.descripcion') }">
                                             <label for="">Descripción del juez</label>
                                             <textarea v-model="juez.descripcion" class="form-control" name="descripcion" rows="2" data-vv-as="Descripcion del juez" v-validate="'required'" disabled>
 
@@ -69,7 +69,7 @@
                                             <div class="col-sm-5">
 
                                                 <div class="col-xs-12">
-                                                    <div class="fgroup" :class="{ 'has-error': errors.has('form-4.titulo') }">
+                                                    <div class="fgroup required" :class="{ 'has-error': errors.has('form-4.titulo') }">
                                                         <label for="">Titulo Obtenido</label>
                                                         <input v-model="newCert.titulo" name="titulo" type="text" data-vv-as="Titulo Obtenido" class="form-control" v-validate="'required'">
                                                         <span class="help-block" for="titulo" v-bind:data-error="errors.first('form-4.titulo')">
@@ -80,7 +80,7 @@
                                                    
                                                 
                                          <div class="col-xs-12">
-                                         <div class="fgroup"  :class="{ 'has-error': errors.has('form-4.fecha') }">
+                                         <div class="fgroup required"  :class="{ 'has-error': errors.has('form-4.fecha') }">
                                             <label for="">Fecha Expedición</label>
                                             <dropdown class="form-group">
                                                 <div class="input-group">
@@ -110,7 +110,7 @@
                                                
                                                 <div class="clearfix"></div>
                                                 <div class="col-xs-12">
-                                                    <div class="fgroup" :class="{ 'has-error': errors.has('form-4.lugar') }">
+                                                    <div class="fgroup required" :class="{ 'has-error': errors.has('form-4.lugar') }">
                                                         <label for="">Lugar Expedición</label>
                                                         <input v-model="newCert.lugar" name="lugar" type="text" class="form-control" data-vv-as="Lugar de Expedicion" v-validate="'required'">
                                                         <span class="help-block" for="descripcion" v-bind:data-error="errors.first('form-4.descripcion')">

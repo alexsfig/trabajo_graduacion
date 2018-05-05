@@ -38,7 +38,7 @@
  
                             <form @submit.prevent="submit"  role="form"> 
            <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup"  :class="{ 'has-error': errors.has('atleta') }">
+                                        <div class="fgroup required"  :class="{ 'has-error': errors.has('atleta') }">
                                           
                                             <label for="atleta">Atleta</label>
                                             <v-select

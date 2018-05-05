@@ -16,7 +16,7 @@
             <form @submit.prevent="validateMethod" role="form">
                 <div class="box-body">
                     <div class="col-xs-12 col-sm-12">
-                        <div class="fgroup" :class="{ 'has-error': errors.has('nivelJerarquia') }">
+                        <div class="fgroup required" :class="{ 'has-error': errors.has('nivelJerarquia') }">
                             <label for="">Nivel Jerarquia</label>
                             <v-select :debounce="250" :options="jerarquia" v-model="updateMiembrojunta.nivelJerarquia" placeholder="Seleccione la jerarquia" label="name">
                             </v-select>

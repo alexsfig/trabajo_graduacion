@@ -38,7 +38,7 @@
                             <form @submit.prevent="submit"  role="form"  > 
                                 <div v-if="numjueces<8">
            <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup"  :class="{ 'has-error': errors.has('juez') }">
+                                        <div class="fgroup required"  :class="{ 'has-error': errors.has('juez') }">
                                             <label for="juez">Juez</label>
                                             <v-select
                                                 :debounce="250"
@@ -53,7 +53,7 @@
                                                 {{ errors.first('juez') }}
                                             </span>
                    
-                                        <div class="fgroup"  :class="{ 'has-error': errors.has('juezRol') }">
+                                        <div class="fgroup required"  :class="{ 'has-error': errors.has('juezRol') }">
                                             <label for="juezRol">Rol </label>
                                             <v-select
                                                 :debounce="250"
