@@ -18,7 +18,7 @@
                     <div class="box-body">
                        <input type="hidden" v-model="id"> 
                         <div class="col-xs-12 col-sm-6">
-                            <div class="fgroup" :class="{ 'has-error': errors.has('nombreclub') }" >
+                            <div class="fgroup required" :class="{ 'has-error': errors.has('nombreclub') }" >
                                 <label for="">Nombre</label>
                                 <input type="text" id="nombreclub" name="nombreclub" data-vv-as="Nombre del Club" class="form-control" v-model="updateClub.entidadId.nombre" v-validate="'required'" >
                                 <span class="help-block" for="nombreclub" v-bind:data-error="errors.first('nombreclub')">
@@ -28,7 +28,7 @@
                         </div>
 
                         <div class="col-xs-12 col-sm-6">
-                            <div class="fgroup" :class="{ 'has-error': errors.has('fundacion') }" >
+                            <div class="fgroup required" :class="{ 'has-error': errors.has('fundacion') }" >
                                 <label for="">Fundacion</label>
                                 <input type="date" id="fundacion" name="fundacion" data-vv-as="Fecha Fundacion del Club" class="form-control" v-model="updateClub.fundacion" v-validate="'required'" >
                                 <span class="help-block" for="fundacion" v-bind:data-error="errors.first('fundacion')">
@@ -38,7 +38,7 @@
                         </div>
 
                          <div class="col-xs-12 col-sm-6">
-                            <div class="fgroup" :class="{ 'has-error': errors.has('nombreplaya') }" >
+                            <div class="fgroup required" :class="{ 'has-error': errors.has('nombreplaya') }" >
                                 <label for="">Playa Ubicacion</label>
                                 <input type="text" id="nombreplaya" name="nombreplaya" data-vv-as="Nombre de playa" class="form-control" v-model="updateClub.playaId.nombre" v-validate="'required'" >
                                 <span class="help-block" for="nombreplaya" v-bind:data-error="errors.first('nombreplaya')">
@@ -48,7 +48,7 @@
                         </div>
          
                          <div class="col-xs-12 col-sm-6">
-                            <div class="fgroup" :class="{ 'has-error': errors.has('entrenador') }" >
+                            <div class="fgroup required" :class="{ 'has-error': errors.has('entrenador') }" >
                                 <label for="">Entrenador</label>
                                 <input type="text" id="entrenador" name="entrenador" data-vv-as="Entrenador del club" class="form-control" v-model="updateClub.entrenadorId.personaId.nombre" v-validate="'required'" >
                                 <span class="help-block" for="entrenador" v-bind:data-error="errors.first('entrenador')">

@@ -33,7 +33,7 @@
                                 <div class="box-body">
 
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('usuario') }" >
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('usuario') }" >
                                             <label for="">Usuario</label>
                                             <input type="text" id="usuario" name="usuario" data-vv-as="Nombre de usuario" class="form-control" v-model="createUser.usuario" v-validate="'required'" >
                                             <span class="help-block" for="usuario" v-bind:data-error="errors.first('usuario')">
@@ -42,7 +42,7 @@
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup"  :class="{ 'has-error': errors.has('rol_edit') }">
+                                        <div class="fgroup required"  :class="{ 'has-error': errors.has('rol_edit') }">
                                             <label for="">Position</label>
                                             <v-select
                                                 :debounce="250"
@@ -60,7 +60,7 @@
                                     </div>
                                     <div class="clearfix"></div>
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('password') }">
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('password') }">
                                             <label for="">Contraseña</label>
                                             <input type="password" id="password" name="password" class="form-control" data-vv-as="Contraseña"  v-model="createUser.contrasena" v-validate="'required|confirmed:confirm_password|min:8'" >
                                             <span class="help-block" for="password" v-bind:data-error="errors.first('password')">
@@ -70,7 +70,7 @@
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('confirm_password') }">
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('confirm_password') }">
                                             <label for="">Confirmación de contraseña</label>
                                             <input type="password" id="confirm_password" name="confirm_password" class="form-control" data-vv-as="Confirmación de contraseña"  v-model="confirm_password" v-validate="'required'" >
                                             <span class="help-block" for="confirm_password" v-bind:data-error="errors.first('confirm_password')">

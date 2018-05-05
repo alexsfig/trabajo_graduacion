@@ -33,7 +33,7 @@
                                 <div class="box-body">
 
                                     <div class="col-xs-12 col-sm-4">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('nombre') }" >
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('nombre') }" >
                                             <label for="">Título</label>
                                             <input type="text" id="nombre" name="nombre" data-vv-as="Nombre de la noticia" class="form-control" v-model="noticia.nombre" v-validate="'required'" >
                                             <span class="help-block" for="nombre" v-bind:data-error="errors.first('nombre')">
@@ -43,7 +43,7 @@
                                     </div>
 
                                     <div class="col-xs-6 col-sm-4">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('fechaInicio') }" >
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('fechaInicio') }" >
                                             <label for="">Fecha Inicio</label>
                                             <dropdown class="form-group">
                                                 <div class="input-group">
@@ -70,7 +70,7 @@
                                     </div>
 
                                     <div class="col-xs-6 col-sm-4">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('fechaFin') }" >
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('fechaFin') }" >
                                             <label for="">Fecha Fin</label>
                                             <dropdown class="form-group">
                                                 <div class="input-group">
@@ -98,7 +98,7 @@
                                     
                                     <div class="clearfix"></div>
                                     <div class="col-xs-12 col-sm-12">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('descripcion') }" >
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('descripcion') }" >
                                             <label for="">Descripción</label>
                                             <textarea id="descripcion" name="descripcion" data-vv-as="Descripcion de la noticia" class="form-control" v-model="noticia.descripcion" v-validate="'required'" rows="3"></textarea>
                                             <!-- <input type="text" id="descripcion" name="descripcion" data-vv-as="Descripcion de la noticia" class="form-control" v-model="noticia.descripcion" v-validate="'required'" > -->
@@ -115,7 +115,7 @@
                             
                                                 <div class="col-md-6">
                                      
-                                                    <div class="fgroup">
+                                                    <div class="fgroup required">
                                                         <label for="">Imagen de perfil</label>
                                                         <br>
                                                         <span id="management-avatar" style="display:inline-block">

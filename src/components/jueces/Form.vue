@@ -42,7 +42,7 @@
                             <form @submit.prevent="submit" role="form">
                                 <div class="box-body">
                                     <div class="col-xs-12 col-sm-4">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('titulo') }">
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('titulo') }">
                                             <label for="">Titulo Obtenido</label>
                                             <input type="text" id="titulo" name="titulo" data-vv-as="Titulo Obtenido" class="form-control" v-model="Certificacion.titulo" v-validate="'required'">
                                             <span class="help-block" for="nombre" v-bind:data-error="errors.first('titulo')">
@@ -55,7 +55,7 @@
 
 
                                          <div class="col-xs-12 col-sm-4">
-                                         <div class="fgroup"  :class="{ 'has-error': errors.has('fecha') }">
+                                         <div class="fgroup required"  :class="{ 'has-error': errors.has('fecha') }">
                                             <label for="">Fecha Expedición</label>
                                             <dropdown class="form-group">
                                                 <div class="input-group">
@@ -82,7 +82,7 @@
                                     </div>
 
                                      <div class="col-xs-12 col-sm-4">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('lugar') }">
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('lugar') }">
                                             <label for="">Lugar Expedición</label>
                                             <input type="text" id="lugar" name="lugar" data-vv-as="Lugar" class="form-control" v-model="Certificacion.lugar" v-validate="'required'">
                                             <span class="help-block" for="nombre" v-bind:data-error="errors.first('lugar')">

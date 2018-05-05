@@ -33,7 +33,7 @@
                                 <div class="box-body">
 
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('nombre') }" >
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('nombre') }" >
                                             <label for="">Titulo</label>
                                             <input type="text" id="nombre" name="nombre" data-vv-as="Nombre de la noticia" class="form-control" v-model="createNoticias.nombre" v-validate="'required'" >
                                             <span class="help-block" for="nombre" v-bind:data-error="errors.first('nombre')">
@@ -43,7 +43,7 @@
                                     </div>
 
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('descripcion') }" >
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('descripcion') }" >
                                             <label for="">Descripcion</label>
                                             <input type="text" id="descripcion" name="descripcion" data-vv-as="Descripcion de la noticia" class="form-control" v-model="createNoticias.descripcion" v-validate="'required'" >
                                             <span class="help-block" for="descripcion" v-bind:data-error="errors.first('descripcion')">
@@ -53,7 +53,7 @@
                                     </div>
 
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('fechaInicio') }" >
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('fechaInicio') }" >
                                             <label for="">Fecha Inicio</label>
                                             <input type="date" id="fechaInicio" name="fechaInicio" data-vv-as="Fecha de Inicio" class="form-control" v-model="createNoticias.fechaInicio" v-validate="'required'" >
                                             <span class="help-block" for="FechaInicio" v-bind:data-error="errors.first('fechaInicio')">
@@ -63,7 +63,7 @@
                                     </div>
 
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('fechaFin') }" >
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('fechaFin') }" >
                                             <label for="">Fecha Fin</label>
                                             <input type="date" id="fechaFin" name="fechaFin" data-vv-as="Fecha Fin" class="form-control" v-model="createNoticias.fechaFin" v-validate="'required'" >
                                             <span class="help-block" for="fechaFin" v-bind:data-error="errors.first('fechaFin')">
