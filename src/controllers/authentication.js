@@ -49,6 +49,7 @@ export default {
     },
     signOut(context){
         //context.$router.push({name: 'Login'})
+        localStorage.clear();
         window.location.replace(process.env.BASE_ROUTE + '/login');
     }
 

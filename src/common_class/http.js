@@ -1,10 +1,10 @@
 import axios from 'axios';
 // Define custom base url to connect to API
-//const BASE_URL = process.env.BASE_URL;
-const BASE_URL='http://alexsfig.com/fesasurf_api/'
+const BASE_URL = process.env.BASE_URL;
+//onst BASE_URL='http://alexsfig.com/fesasurf_api/'
 //const BASE_URL = 'http://192.168.1.96:8080/';
-const UPLOAD_URL = 'http://alexsfig.com/fesasurf_api/'
-//const UPLOAD_URL = process.env.UPLOAD_URL;
+//const UPLOAD_URL = 'http://alexsfig.com/fesasurf_api/'
+const UPLOAD_URL = process.env.UPLOAD_URL;
 axios.interceptors.response.use(function (response) {
     console.log(response)
     // Do something with response data

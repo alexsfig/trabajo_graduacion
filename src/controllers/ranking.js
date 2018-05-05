@@ -26,4 +26,18 @@ export default {
               console.log(err)
             })
 
-    }}
+    },
+    byCategoriaTop(context, id){
+        HTTP.get("ranking/byCategoryTop/" + id)
+            .then((resp) => {
+                console.log(resp)
+                context.ranking = resp.data;
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+
+    }
+
+
+}

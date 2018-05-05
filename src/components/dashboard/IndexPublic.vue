@@ -19,7 +19,7 @@
               <img class="img-responsive" src="../../assets/images/background/Foto2.png" alt="">
             </div>
             <div class="row padd">
-             <router-link to="/admin/atletas"> <div class="col-lg-2 col-xs-6">
+             <router-link to="/public/atletas"> <div class="col-lg-2 col-xs-6">
                 <div class="small-box bg-blue">
                   <div class="inner">
                     <h3>{{ this.atletas.length}}</h3>
@@ -125,31 +125,46 @@
                   <div class="box-header with-border">
                     <i style="color:#031328" class="fa fa-users"></i>
 
-                    <h3 class="box-title "><b>Automatización de Procesos</b></h3>
+                    <h3 class="box-title "><b>Ranking</b></h3>
                   </div>
                   <div class="box-body text-justify">
     
-           <Timeline :id="'fesurfing_'" :sourceType="'likes'" style="height:200" :options="{ tweetLimit: '3' }"/>
+            <v-select  :debounce="250" :options="categorias" v-model="catSelect" placeholder="Seleccione una categoria" label="nombreCategoria">
+                                            </v-select>
 
-
-                  </div>
+<br/>
+<div class="table-responsive">
+ <table class="table table-bordered">
+    <thead>
+      <tr>
+           <th>Pos</th>
+        <th></th>
+         <th>Puntos</th>
+        <th>Heat ganados</th>
+        <th>Promedio</th>
+               <th>Mejor nota</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="r in ranking">
+        <td><label>{{r.lugar}}</label></td>
+        <td><img class="custom-img img-responsive img-circle" v-bind:src="getImgA(r.atletaId.id)" alt="User profile picture">
+        <h3>{{r.atletaId.personaId.nombre+","+r.atletaId.personaId.apellido}}</h3>
+        
+        </td>
+            <td>{{r.puntuacion}}</td>
+        <td>{{r.heatGanados}}</td>
+        <td>{{r.promedio}}</td>
+            <td>{{r.mayorNota}}</td>
+      </tr>
+   
+   
+    </tbody>
+  </table>
+          </div>          </div>
                 </div>
               </div>
-                      <div class="col-md-6">
-                <div class="box box-success">
-                  <div class="box-header with-border">
-                    <i style="color:#031328" class="fa fa-users"></i>
-
-                    <h3 class="box-title "><b>Automatización de Procesos</b></h3>
-                  </div>
-                  <div class="box-body text-justify">
-    
-           <Timeline :id="'fesurfing_'" :sourceType="'profile'" :options="{ tweetLimit: '3' }"/>
-
-
-                  </div>
-                </div>
-              </div>
+               
             </div>
 
              <div class="col-md-12">
@@ -183,7 +198,10 @@ import categoriasController from "../../controllers/categorias.js";
 import fechasController from "../../controllers/fechas.js";
 import patrocinadoresController from "../../controllers/patrocinadores.js";
 import noticiasController from "../../controllers/noticias.js";
+import rankingController from "../../controllers/ranking.js";
 import { Tweet, Moment, Timeline } from 'vue-tweet-embed'
+import vSelect from "vue-select";
+import categorias from '../../controllers/categorias.js';
 const BASE_URL = process.env.BASE_URL;
 export default {
   name: "clubes",
@@ -197,7 +215,9 @@ export default {
       categorias: [],
       fechas: [],
       patrocinadors: [],
-      noticias: []
+      noticias: [],
+      catSelect:'',
+      ranking:[]
     };
   },
   components: {},
@@ -205,17 +225,40 @@ export default {
     this.fetchData();
   },
   watch: {
-    $route: "fetchData"
+    $route: "fetchData",
+    categorias:"setDefault",
+    catSelect:"changeCat"
   },
       components: {
          'Tweet': Tweet,
-        'Timeline': Timeline
+        'Timeline': Timeline,
+        vSelect
   
     },
   methods: {
+    changeCat(){
+if(this.catSelect)
+rankingController.byCategoriaTop(this,this.catSelect.id)
+
+    },
+    setDefault(){
+
+      if(this.categorias.length>0){
+        
+this.catSelect=this.categorias[0];
+
+      }
+
+
+
+    },
       getImg(img) {
             
             return BASE_URL+"upload/files/noticia/"+img+".png"
+        },
+           getImgA(img) {
+            
+            return BASE_URL+"upload/files/"+img+".png"
         },
     fetchData() {
       clubesController.index(this);
@@ -227,6 +270,7 @@ export default {
       fechasController.index(this);
       patrocinadoresController.index(this);
       noticiasController.indexActuales(this);
+    
     }
   }
 };
@@ -236,4 +280,13 @@ export default {
   padding-top: 20px;
   padding-bottom: 20px;
 }
+
+.active {
+  width: 100%;
+}
+.custom-img{
+    width: 75px;
+    margin:auto;
+}
 </style>
+

@@ -53,24 +53,6 @@
 		        </li>
 
 
-		        <li class="treeview">
-		            <router-link to="#">
-		                <i class="fa fa-user" aria-hidden="true"></i>
-		                <span>Usuario</span>
-		                <span class="pull-right-container">
-		                    <i class="fa fa-angle-left pull-right"></i>
-		                </span>
-		            </router-link>
-		            <ul class="treeview-menu">
-		               
-		                <li>
-		                    <router-link to="/juez/userjuez/">
-		                        <i class="fa fa-retweet" aria-hidden="true"></i> <span>Modificar Contraseña</span>
-		                    </router-link>
-		                </li>
-		            </ul>
-		        </li>
-
 			
 	
 		    </ul>
