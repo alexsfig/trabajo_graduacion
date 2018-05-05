@@ -31,7 +31,7 @@
                     <div class="box">
                         <div class="box-header">
                             <h3 class="box-title" v-if="!id">Agregar  Circuito</h3>
-                            <h3 class="box-title" v-if="id">Editar  Circuitos</h3>
+                            <h3 class="box-title" v-if="id">Actualizar  Circuitos</h3>
                         </div>
 
                         <div class="box-body">
@@ -86,7 +86,7 @@
                                 <div class="box-footer">
                                     <div class="col-xs-12 text-right">
                                         <button type="submit" v-if="!id" class="btn btn-flat btn-sm btn-primary">Agregar</button>
-                                        <button type="submit" v-if="id" class="btn btn-flat btn-sm btn-primary">Editar</button>
+                                        <button type="submit" v-if="id" class="btn btn-flat btn-sm btn-primary"><i class="fa fa-edit"></i> Actualizar</button>
 
                                     </div>
                                 </div>
@@ -95,7 +95,7 @@
                                  <router-link :to="{ name: 'circuitosIndexByFecha', params: { id: this.id2 }}">
                                         <button type="button" class="btn btn-flat btn-sm btn-warning margin"
                                        ><i aria-hidden="true"
-                                         class="fa fa-arrow-circle-left"></i>  Regresar a Circuitos</button>
+                                         class="fa fa-arrow-circle-left"></i>  Regresar</button>
                                         </router-link> 
 
                                          </div>

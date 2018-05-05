@@ -27,7 +27,7 @@
                     <div class="box">
                         <div class="box-header">
                             <h3 class="box-title" v-if="!id">Agregar  Fecha</h3>
-                             <h3 class="box-title" v-if="id">Editar  Fechas</h3>
+                             <h3 class="box-title" v-if="id">Actualizar Fechas</h3>
                         </div>
                         
                         <div class="box-body">
@@ -97,7 +97,7 @@
                                 <div class="box-footer">
                                     <div class="col-xs-12 text-right">
                                         <button type="submit"  v-if="!id" class="btn btn-flat btn-sm btn-primary"><i class="fa fa-plus"></i> Agregar</button>
-                                            <button type="submit" v-if="id" class="btn btn-flat btn-sm btn-primary">Editar</button>
+                                            <button type="submit" v-if="id" class="btn btn-flat btn-sm btn-primary"><i class="fa fa-edit"></i> Actualizar</button>
 
                                     </div>
                                 </div>

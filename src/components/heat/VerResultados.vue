@@ -63,7 +63,7 @@
                         </div>
                         <div class="view-all" v-if="verTodo">
                             <div class="notes-per-heat" v-for="value in juecesHeat">
-                                <hr class="hr-text" v-bind:data-content="'Juez' + value.persona.nombre + ' ' + value.persona.apellido">
+                                <hr class="hr-text" v-bind:data-content="'Juez ' + value.persona.nombre + ' ' + value.persona.apellido">
                                 <vue-good-table :columns="columns" :rows="value.puntuacionList" :paginate="true" :globalSearch="false" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
                                     <template slot="table-row" scope="props">
                                         <td v-if="props.row.color=='Amarillo'" class="yellowBG">{{ props.row.color }}</td>
