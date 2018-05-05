@@ -68,7 +68,7 @@
 
                                             </div>
                                         </div>
-                                        
+
                                         <div class="col-xs-12 col-sm-4">
                                             <div class="fgroup required" :class="{ 'has-error': errors.has('form-2-1.idiomas') }">
                                                 <label for="">Idiomas</label>
@@ -427,7 +427,7 @@ export default {
                 }, {
                     name: 'Nivel Superior'
                 }
-                
+
 
             ],
 
@@ -437,7 +437,7 @@ export default {
                     name: 'Nivel Parvulario'
                 }, {
                     name: 'Nivel Basico-1er Ciclo'
-                }, 
+                },
                 {
                     name: 'Nivel Basico-2do Ciclo'
                 },
@@ -557,7 +557,7 @@ export default {
         } /* ,
         '$route': 'fetchData',
         atleta: function(val, oldVal) {
-            
+
             let img = this.atleta.rutaFoto
             let imgAsset = null
             if(process.env.NODE_ENV == "development"){
@@ -635,7 +635,7 @@ export default {
                         this.errMsg = "Los Años Practicando no pueden ser superior al intervalo de tiempo entre la Edad de Inicio y la Edad del Atleta"}
                     } else {
                         reject(true)
-                        
+
                     }
                 });
             })

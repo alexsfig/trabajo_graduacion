@@ -1,14 +1,24 @@
-<style scoped>
+<style>
 
 .active {
     width: 100%;
 }
 
-</style>
+.custom-img {
+    width: 75px;
+    margin: auto;
+}
 
+</style>
 <template>
 
 <div>
+    <div v-show="loading" class="col-md-12">
+        <div class="loading">
+            <i class="fa fa-refresh fa-spin fa-3x fa-fw" aria-hidden="true"></i>
+            <span class="sr-only">Refreshing...</span>
+        </div>
+    </div>
     <section class="content-header">
         <h1>
                 Atletas
@@ -40,15 +50,12 @@
                                     <td style=""><img class="custom-img img-responsive img-circle" v-bind:src="getImg(props.row.id)" alt="User profile picture"></td>
                                     <td>{{props.row.personaId.nombre}}</td>
                                     <td>{{props.row.personaId.apellido}}</td>
-                                     <td>{{_calculateAge(props.row.personaId.fechaNacimiento)?_calculateAge(props.row.personaId.fechaNacimiento)+' años':'No definida'}} </td>
-                                      <td>{{ (props.row.personaId.sexo == 'F' || props.row.personaId.sexo == 'f') ? 'Femenino' : 'Masculino' }}</td>
+                                    <td>{{_calculateAge(props.row.personaId.fechaNacimiento)?_calculateAge(props.row.personaId.fechaNacimiento)+' años':'No definida'}} </td>
+                                    <td>{{ (props.row.personaId.sexo == 'F' || props.row.personaId.sexo == 'f') ? 'Femenino' : 'Masculino' }}</td>
                                     <td style="text-align:right;">{{ props.row.aniosPracticando?parseInt(props.row.aniosPracticando)+' años':'Sin Experiencia' }}</td>
                                     <td>{{ props.row.playaPractica}}</td>
                                     <td>{{ props.row.ladoPie}}</td>
                                     <td>{{ props.row.olaPreferida}}</td>
-                                    
-                                   
-                                   
                                     <td>
                                         <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="retrieveData(props.row.id, props.row)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Actualizar</button>
                                         <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="profile(props.row.id, props.row)"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Ver Perfil</button>
@@ -82,13 +89,12 @@ export default {
     name: 'atletas',
     data() {
         return {
-            columns: [
-                {
+            loading: false,
+            columns: [{
                     label: '',
                     field: 'avatar',
                     filterable: true,
-                },
-                {
+                }, {
                     label: 'Nombre',
                     field: 'personaId.nombre',
                     filterable: true,
@@ -98,7 +104,7 @@ export default {
                     filterable: true,
                 },
 
-                 {
+                {
                     label: 'Edad',
                     field: 'personaId.fechaNacimiento',
                     filterable: true,
@@ -114,8 +120,8 @@ export default {
                     label: 'Años Practicando',
                     field: 'aniosPracticando',
                     type: 'number',
-                  //  dateInputFormat: 'YYYY-MM-DD', // expects 2018-03-16
-                  //  dateOutputFormat: 'MMM Do YYYY', // outputs Mar 16th 2018
+                    //  dateInputFormat: 'YYYY-MM-DD', // expects 2018-03-16
+                    //  dateOutputFormat: 'MMM Do YYYY', // outputs Mar 16th 2018
                     filterable: true,
                 }, {
                     label: 'Playa donde Practica',
@@ -130,7 +136,7 @@ export default {
                     field: 'olaPreferida',
                     filterable: true,
                 },
-               
+
                 {
                     label: 'Acción',
                     field: '',
@@ -166,92 +172,83 @@ export default {
     },
     methods: {
         getImg(img) {
-            
-            return BASE_URL+"upload/files/"+img+".png"
-        },
-        clickHandler(id, atleta, nombre) {
-            let swal = this.$swal
-            let context = this
-            swal({
-                title: 'Estas Seguro?',
-                html: 'No podras recuperar la informacion del atleta <b>' + nombre + '</b>',
-                type: 'error',
-                showCancelButton: true,
-                confirmButtonText: 'Si, Eliminar!',
-                cancelButtonText: 'No, Mantener'
-            }).then(
-                function() {
-                    atletasController.delete(context, id, swal)
-                },
-                function(dismiss) {
-                    // dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
-                    if (dismiss === 'cancel') {
-                        swal(
-                            'Cancelado',
-                            'El Atleta no se elimino',
-                            'error'
-                        )
+
+                return BASE_URL + "upload/files/" + img + ".png"
+            },
+            clickHandler(id, atleta, nombre) {
+                let swal = this.$swal
+                let context = this
+                swal({
+                    title: 'Estas Seguro?',
+                    html: 'No podras recuperar la informacion del atleta <b>' + nombre + '</b>',
+                    type: 'error',
+                    showCancelButton: true,
+                    confirmButtonText: 'Si, Eliminar!',
+                    cancelButtonText: 'No, Mantener'
+                }).then(
+                    function() {
+                        atletasController.delete(context, id, swal)
+                    },
+                    function(dismiss) {
+                        // dismiss can be 'overlay', 'cancel', 'close', 'esc', 'timer'
+                        if (dismiss === 'cancel') {
+                            swal(
+                                'Cancelado',
+                                'El Atleta no se elimino',
+                                'error'
+                            )
+                        }
                     }
-                }
-            )
-        },
-        isChange() {
-            this.openModal = false
-            this.fetchData()
-        },
-        showCallback() {
-            this.showAlert = false
-            this.showSuccess = false
-        },
-        dismissCallback(msg) {
-            this.openModal = false
-            atletasController.index(this)
-            this.fetchData()
-        },
-        fetchData() {
-            atletasController.index(this)
-        },
-        retrieveData(id, atleta) {
-            atletasController.retrieve(this, id)
-            this.$router.push({
-                name: 'AtletasEdit',
-                params: {
-                    id: id,
-                    atleta: atleta
-                }
-            });
-        },
-        profile(id) {
-            this.$router.push({
-                name: 'AtletasShow',
-                params: {
-                    id: id
-                }
-            });
+                )
+            },
+            isChange() {
+                this.openModal = false
+                this.fetchData()
+            },
+            showCallback() {
+                this.showAlert = false
+                this.showSuccess = false
+            },
+            dismissCallback(msg) {
+                this.openModal = false
+                atletasController.index(this)
+                this.fetchData()
+            },
+            fetchData() {
+                atletasController.index(this)
+            },
+            retrieveData(id, atleta) {
+                atletasController.retrieve(this, id)
+                this.$router.push({
+                    name: 'AtletasEdit',
+                    params: {
+                        id: id,
+                        atleta: atleta
+                    }
+                });
+            },
+            profile(id) {
+                this.$router.push({
+                    name: 'AtletasShow',
+                    params: {
+                        id: id
+                    }
+                });
 
-        },
+            },
 
-        _calculateAge(birthday) {
-            var today = new Date();
-            var birthDate = new Date(birthday);
-            var age = today.getFullYear() - birthDate.getFullYear();
-            var m = today.getMonth() - birthDate.getMonth();
-            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-                age--;
+            _calculateAge(birthday) {
+                var today = new Date();
+                var birthDate = new Date(birthday);
+                var age = today.getFullYear() - birthDate.getFullYear();
+                var m = today.getMonth() - birthDate.getMonth();
+                if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                    age--;
+                }
+                return age;
             }
-            return age;
-       }
     }
 
 }
 
 </script>
-<style>
-.active {
-  width: 100%;
-}
-.custom-img{
-    width: 75px;
-    margin:auto;
-}
-</style>
