@@ -4,7 +4,7 @@
             <h1>Agregar Jueces Evaluadores</h1>
 
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
                 <li>Manejo de Circuitos </li>
             </ol>
         </section>
@@ -38,7 +38,7 @@
                             <form @submit.prevent="submit"  role="form"  > 
                                 <div v-if="numjueces<8">
            <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup"  :class="{ 'has-error': errors.has('juez') }">
+                                        <div class="fgroup required"  :class="{ 'has-error': errors.has('juez') }">
                                             <label for="juez">Juez</label>
                                             <v-select
                                                 :debounce="250"
@@ -53,7 +53,7 @@
                                                 {{ errors.first('juez') }}
                                             </span>
                    
-                                        <div class="fgroup"  :class="{ 'has-error': errors.has('juezRol') }">
+                                        <div class="fgroup required"  :class="{ 'has-error': errors.has('juezRol') }">
                                             <label for="juezRol">Rol </label>
                                             <v-select
                                                 :debounce="250"
@@ -111,7 +111,7 @@
                          <div class="box-body">
                                
                               <div @click="volver()" class="btn btn-flat btn-sm btn-warning margin">
-                                    <i class="fa fa-arrow-circle-left" ></i> Regresar a Circuitos
+                                    <i class="fa fa-arrow-circle-left" ></i> Regresar
                                 </div>
 
                                 </div>

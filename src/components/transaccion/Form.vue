@@ -32,7 +32,7 @@
                             <form @submit.prevent="submit" role="form">
                                 <div class="box-body">
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('fecha') }">
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('fecha') }">
                                             <label for="">Fecha</label>
                                             <dropdown class="form-group">
                                                 <div class="input-group">
@@ -60,7 +60,7 @@
 
                                 
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('formaPagoId') }">
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('formaPagoId') }">
                                             <label for="formaPagoId">Forma de pago</label>
                                             <v-select :disabled="id?true:false" :debounce="250" :options="formaPagos" v-model="transaccion.formaPagoId" placeholder="Seleccione una Forma de Pago" label="nombre">
                                             </v-select>
@@ -76,7 +76,7 @@
 
 
                            <!--          <div class="col-xs-12 col-sm-6">
-                         <div class="fgroup" :class="{ 'has-error': errors.has('monto') }" >
+                         <div class="fgroup required" :class="{ 'has-error': errors.has('monto') }" >
                                             <label for="">Monto ($)</label>
                                             <input type="number" id="monto" name="monto" data-vv-as="monto" min="0" class="form-control"
 											v-model="transaccion.monto" v-validate="'required|min_value:0.01'"  step="0.01">
@@ -87,7 +87,7 @@
                                     </div>   -->
 
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('comprobante') }">
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('comprobante') }">
                                             <label for="">Comprobante</label>
 
                                             <v-select :disabled="id?true:false" :debounce="250" :options="comprobante" v-model="transaccion.comprobante" placeholder="Seleccione un Comprobante" label="label">
@@ -101,7 +101,7 @@
 
                                    
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('monto') }">
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('monto') }">
                                             <label for="">Monto</label>
                                             <div class="input-group">
                                                 <span class="input-group-addon">$</span>
@@ -115,7 +115,7 @@
                                     </div>
                                      <div class="clearfix"></div>
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('cuentaId') }">
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('cuentaId') }">
                                             <label for="cuentaId">Cuenta</label>
                                             <v-select :disabled="id?true:false" :debounce="250" 
                                             :options="cuentas" v-model="transaccion.cuentaId" 
@@ -130,7 +130,7 @@
                                     </div>
                                    
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('tipoTransaccionId') }">
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('tipoTransaccionId') }">
                                             <label for="tipoTransaccionId">Tipo de Transacción</label>
                                             <v-select :disabled="id?true:false" :debounce="250" :options="tipoTransaccions" v-model="transaccion.tipoTransaccionId" placeholder="Seleccione un Tipo de Transaccion" label="nombre" @input="changedValue">
                                             </v-select>
@@ -143,7 +143,7 @@
                                     </div>
                                     <div class="clearfix"></div>
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('referencia') }">
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('referencia') }">
                                             <label for="">Referencia</label>
                                             <input :disabled="id" type="text" id="referencia" name="referencia" data-vv-as="Referencia" class="form-control" v-model="transaccion.referencia" v-validate="'required'">
                                             <span class="help-block" for="referencia" v-bind:data-error="errors.first('referencia')">
@@ -152,7 +152,7 @@
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('descripcion') }">
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('descripcion') }">
                                             <label for="">Descripción</label>
                                             <textarea type="text" id="descripcion" name="descripcion" data-vv-as="Dirección " class="form-control" v-model="transaccion.descripcion" v-validate="'required'"></textarea>
                                             <span class="help-block" for="descripcion" v-bind:data-error="errors.first('descripcion')">
@@ -163,7 +163,7 @@
                                     <div class="clearfix"></div>
 
                                     <div class="col-xs-12 col-sm-6" v-if="enapatro">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('patrocinadorId') }">
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('patrocinadorId') }">
                                             <label for="patrocinadorId">Patrocinador</label>
                                             <v-select :disabled="id?true:false" :debounce="250" :options="patrocinadors" v-model="transaccion.patrocinadorId" placeholder="Seleccione un Patrocinador" label="nombre">
                                             </v-select>
@@ -175,7 +175,7 @@
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6" v-if="enaatle">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('atletaId') }">
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('atletaId') }">
                                             <label for="atletaId">Atleta</label>
                                             <v-select :disabled="id?true:false" :debounce="250" :options="atletas" v-model="transaccion.atletaId" placeholder="Seleccione un Atleta" label="nombre">
                                             </v-select>

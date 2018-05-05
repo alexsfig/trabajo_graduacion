@@ -121,18 +121,19 @@ export default {
         Method to display all users, pass only the context
     */
    index(context){
+       context.loading = true
         HTTP.get(ATLETAS)
             .then((resp) => {
-                console.log("gsgjhksl");
                 context.atletas = resp.data
-                console.log(resp.data)
                 for (let i of  context.atletas) {
-                 //   console.log("nombre:"+ i.nombre)
-                  //  console.log("Entrada:"+i.personaId.nombre+","+i.personaId.apellido)
-                    i.nombre=i.personaId.nombre+","+i.personaId.apellido;}
+                    i.nombre = i.personaId.nombre + ", " +i.personaId.apellido;
+                }
+                context.loading = false
             })
             .catch((err) => {
               console.log(err)
+              context.loading = false
+              
             })
     },
 
@@ -162,7 +163,7 @@ export default {
                   //  console.log("nombre:"+ i.nombre)
                   //  console.log("Entrada:"+i.personaId.nombre+","+i.personaId.apellido)
                     i.nombre=i.personaId.nombre+","+i.personaId.apellido;}
-            
+
             }
         )
             .catch((err) => {
@@ -197,6 +198,6 @@ export default {
     }
 
 
-    
+
 
 }

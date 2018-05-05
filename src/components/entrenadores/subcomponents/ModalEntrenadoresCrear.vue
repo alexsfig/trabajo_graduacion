@@ -16,7 +16,7 @@
             <form @submit.prevent="validateMethod" role="form">
                 <div class="box-body">
                         <div class="col-xs-12 col-sm-6">
-                            <div class="fgroup" :class="{ 'has-error': errors.has('descripcion') }" >
+                            <div class="fgroup required" :class="{ 'has-error': errors.has('descripcion') }" >
                                 <label for="">Descripción</label>
                                 <input type="text" id="descripcion" name="descripcion" data-vv-as="Descripcion" class="form-control" 
                                 v-model="updateEntrenador.descripcion" v-validate="'required'" >

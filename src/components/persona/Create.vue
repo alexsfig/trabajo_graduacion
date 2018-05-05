@@ -38,7 +38,7 @@
                             <form @submit.prevent="submit('form-1')" role="form" data-vv-scope="form-1">
                                 <div>
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('form-1.nombre') }">
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('form-1.nombre') }">
                                             <label for="">Nombre</label>
                                             <input type="text" id="nombre" name="nombre" data-vv-as="Nombre " class="form-control" v-model="createPersona.nombre" v-validate="'required'">
                                             <span class="help-block" for="nombre" v-bind:data-error="errors.first('form-1.nombre')">
@@ -47,7 +47,7 @@
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('form-1.apellido') }">
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('form-1.apellido') }">
                                             <label for="">Apellido</label>
                                             <input type="text" id="apellido" name="apellido" data-vv-as="Apellido " class="form-control" v-model="createPersona.apellido" v-validate="'required'">
                                             <span class="help-block" for="apellido" v-bind:data-error="errors.first('form-1.apellido')">
@@ -58,7 +58,7 @@
 
                                     <div class="clearfix"></div>
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('form-1.correo') }">
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('form-1.correo') }">
                                             <label for="">Correo</label>
                                             <input type="email" id="correo" name="correo" data-vv-as="Correo " class="form-control" v-model="createPersona.correo" v-validate="'required|email'">
                                             <span class="help-block" for="correo" v-bind:data-error="errors.first('form-1.correo')">
@@ -101,7 +101,7 @@
 
                                     <div class="col-xs-12 col-sm-6">
 
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('form-1.fechaNacimiento') }">
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('form-1.fechaNacimiento') }">
                                             <label for="">Fecha Nacimiento</label>
                                             <dropdown class="form-group">
                                                 <div class="input-group">
@@ -125,7 +125,7 @@
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('form-1.tipo') }">
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('form-1.tipo') }">
                                             <label for="">Tipo</label>
                                             <v-select :debounce="250" :options="positions" v-model="type" 
                                             placeholder="Seleccione el tipo" label="name">
@@ -141,7 +141,7 @@
                                     <div class="clearfix"></div>
 
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('form-1.sex') }">
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('form-1.sex') }">
                                             <label for="">Sexo</label>
                                             <v-select :options="sexo" v-model="sex" placeholder="Seleccione el sexo" label="name">
                                             </v-select>
@@ -153,7 +153,7 @@
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('form-1.direccion') }">
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('form-1.direccion') }">
                                             <label for="">Dirección</label>
                                             <textarea type="text" id="direccion" name="direccion" data-vv-as="Dirección " class="form-control" v-model="createPersona.direccion" v-validate="'required'"></textarea>
                                             <span class="help-block" for="direccion" v-bind:data-error="errors.first('form-1.direccion')">
@@ -189,7 +189,7 @@
                                         <form @submit.prevent="first_step('form-2-1')" action="" v-if="type.name == 'Atleta'" data-vv-scope="form-2-1">
                                            
                                             <div class="col-xs-12 col-sm-4">
-                                                <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.edadInicio') }">
+                                                <div class="fgroup required" :class="{ 'has-error': errors.has('form-2-1.edadInicio') }">
                                                     <label for="">Edad que inicio</label>
                                                     <input type="number" id="edadInicio" name="edadInicio" data-vv-as="Edad que inicio " class="form-control" v-model="createAtleta.edadInicio" v-validate="'required|min_value:4|max_value:79'">
                                                     <span class="help-block" for="edadInicio" v-bind:data-error="errors.first('form-2-1.edadInicio')">
@@ -198,7 +198,7 @@
                                                 </div>
                                             </div>
                                              <div class="col-xs-12 col-sm-4">
-                                                <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.aniosPracticando') }">
+                                                <div class="fgroup required" :class="{ 'has-error': errors.has('form-2-1.aniosPracticando') }">
                                                     <label for="">Años practicando</label>
                                                     <input type="number" id="aniosPracticando" name="aniosPracticando" data-vv-as="Años practicando " class="form-control" v-model="createAtleta.aniosPracticando" v-validate="'required|min_value:0|max_value:79'">
                                                     <span class="help-block" for="aniosPracticando" v-bind:data-error="errors.first('form-2-1.aniosPracticando')">
@@ -207,7 +207,7 @@
                                                 </div>
                                             </div> 
                                             <div class="col-xs-12 col-sm-4">
-                                                <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.type') }">
+                                                <div class="fgroup required" :class="{ 'has-error': errors.has('form-2-1.type') }">
                                                     <label for="">Idiomas</label>
                                                     <v-select multiple :debounce="250" :options="idiomas" v-model="createAtleta.idiomas" placeholder="Seleccione el idioma" label="name">
                                                     </v-select>
@@ -220,7 +220,7 @@
                                             </div>
                                             <div class="clearfix"></div>
                                             <div class="col-xs-12 col-sm-4">
-                                                <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.sabeEscribir') }">
+                                                <div class="fgroup required" :class="{ 'has-error': errors.has('form-2-1.sabeEscribir') }">
                                                     <label for="">Sabe Escribir</label>
                                                     <br>
                                                     <span class="pull-right">
@@ -232,7 +232,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-xs-12 col-sm-4">
-                                                <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.sabeFirmar') }">
+                                                <div class="fgroup required" :class="{ 'has-error': errors.has('form-2-1.sabeFirmar') }">
                                                     <label for="">Sabe Leer</label>
                                                     <br>
                                                     <span class="pull-right">
@@ -244,7 +244,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-xs-12 col-sm-4">
-                                                <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.sabeLeer') }">
+                                                <div class="fgroup required" :class="{ 'has-error': errors.has('form-2-1.sabeLeer') }">
                                                     <label for="">Sabe Firmar</label>
                                                     <br>
                                                     <span class="pull-right">
@@ -257,7 +257,7 @@
                                             </div>
                                             <div class="clearfix"></div>
                                             <!--<div class="col-xs-12 col-sm-4">
-                                                <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.nivelAcademico') }">
+                                                <div class="fgroup required" :class="{ 'has-error': errors.has('form-2-1.nivelAcademico') }">
                                                     <label for="">Nivel Academico</label>
                                                     <input type="text" id="nivelAcademico" name="nivelAcademico" data-vv-as="Nivel Academico " class="form-control" v-model="createAtleta.nivelAcademico" v-validate="'required'">
                                                     <span class="help-block" for="nivelAcademico" v-bind:data-error="errors.first('form-2-1.nivelAcademico')">
@@ -268,7 +268,7 @@
 
                                             
                                         <div class="col-xs-12 col-sm-4">
-                                            <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.nivelAcademico') }">
+                                            <div class="fgroup required" :class="{ 'has-error': errors.has('form-2-1.nivelAcademico') }">
                                                 <label for="">Nivel Academico</label>
                                                 <v-select :debounce="250" :options="niveles" v-model="createAtleta.nivelAcademico" placeholder="Seleccione un Nivel Academico" label="name">
                                                 </v-select>
@@ -281,7 +281,7 @@
                                         </div>
                                            <!--
                                             <div class="col-xs-12 col-sm-4">
-                                                <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.uanioCursado') }">
+                                                <div class="fgroup required" :class="{ 'has-error': errors.has('form-2-1.uanioCursado') }">
                                                     <label for="">Ultimo Año cursado</label>
                                                     <input type="text" id="uanioCursado" name="uanioCursado" data-vv-as="Ultimo Año cursado " class="form-control" v-model="createAtleta.uanioCursado" v-validate="'required'">
                                                     <span class="help-block" for="uanioCursado" v-bind:data-error="errors.first('form-2-1.uanioCursado')">
@@ -292,7 +292,7 @@
 
 
                                              <div class="col-xs-12 col-sm-4">
-                                                <div class="fgroup" :class="{ 'has-error': errors.has('form-2-1.uanioCursado') }">
+                                                <div class="fgroup required" :class="{ 'has-error': errors.has('form-2-1.uanioCursado') }">
                                                     <label for="">Ultimo Año cursado</label>
                                                     <v-select :debounce="250" :options="ucursado" v-model="createAtleta.uanioCursado" placeholder="Seleccione ultimo Año Cursado" label="name">
                                                 </v-select>
@@ -320,7 +320,7 @@
                                     <tab-content title="Formación Como Atleta" icon="fa fa-user" :before-change="second_step">
                                         <form @submit.prevent="second_step('form-2-2')" action="" v-if="type.name == 'Atleta'" data-vv-scope="form-2-2">
                                             <div class="col-xs-12 col-sm-4">
-                                                <div class="fgroup" :class="{ 'has-error': errors.has('form-2-2.tieneLesion') }">
+                                                <div class="fgroup required" :class="{ 'has-error': errors.has('form-2-2.tieneLesion') }">
                                                     <label for="">Tiene Lesion</label>
                                                     <br>
                                                     <span class="pull-right">
@@ -332,7 +332,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-xs-12 col-sm-8">
-                                                <div class="fgroup" :class="{ 'has-error': errors.has('form-2-2.descripcionLesion') }">
+                                                <div class="fgroup required" :class="{ 'has-error': errors.has('form-2-2.descripcionLesion') }">
                                                     <label for="">Descripcion lesión</label>
                                                     <textarea type="text" id="descripcionLesion" name="descripcionLesion" data-vv-as="Descripcion lesión " class="form-control" v-model="createAtleta.descripcionLesion" v-validate="'required'" :disabled="has_lession == true"></textarea>
                                                     <span class="help-block" for="descripcionLesion" v-bind:data-error="errors.first('form-2-2.descripcionLesion')">
@@ -342,7 +342,7 @@
                                             </div>
                                             <div class="clearfix"></div>
                                             <div class="col-xs-12 col-sm-4">
-                                                <div class="fgroup" :class="{ 'has-error': errors.has('form-2-2.compitioFechas') }">
+                                                <div class="fgroup required" :class="{ 'has-error': errors.has('form-2-2.compitioFechas') }">
                                                     <label for="">Ha competido en fechas</label>
                                                     <br>
                                                     <span class="pull-right">
@@ -354,8 +354,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-xs-12 col-sm-4">
-                                                <div class="fgroup" :class="{ 'has-error': errors.has('form-2-2.cuantasFechas') }">
-                                                    <div class="fgroup" :class="{ 'has-error': errors.has('form-2-2.cuantasFechas') }">
+                                                <div class="fgroup required" :class="{ 'has-error': errors.has('form-2-2.cuantasFechas') }">
+                                                    <div class="fgroup required" :class="{ 'has-error': errors.has('form-2-2.cuantasFechas') }">
                                                         <label for="">Fechas que ha competido</label>
                                                         <input type="number" id="cuantasFechas" name="cuantasFechas" data-vv-as="Fechas que ha competido " class="form-control" v-model="createAtleta.cuantasFechas" v-validate="'required|min_value:1'" :disabled="has_competition == true">
                                                         <span class="help-block" for="cuantasFechas" v-bind:data-error="errors.first('form-2-2.cuantasFechas')">
@@ -366,7 +366,7 @@
                                             </div>
                                             <div class="col-xs-12 col-sm-4">
 
-                                                <div class="fgroup" :class="{ 'has-error': errors.has('form-2-2.ultimaParticipacion') }">
+                                                <div class="fgroup required" :class="{ 'has-error': errors.has('form-2-2.ultimaParticipacion') }">
                                                     <label for="">Fecha Ultima Competición</label>
                                                     <dropdown class="form-group">
                                                         <div class="input-group">
@@ -392,7 +392,7 @@
                                             </div>
                                             <div class="clearfix"></div>
                                             <div class="col-xs-12 col-sm-4">
-                                                <div class="fgroup" :class="{ 'has-error': errors.has('form-2-2.ladoPie') }">
+                                                <div class="fgroup required" :class="{ 'has-error': errors.has('form-2-2.ladoPie') }">
                                                     <label for="">Lado del Pie</label>
                                                     <br>
                                                     <span class="pull-right">
@@ -404,7 +404,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-xs-12 col-sm-4">
-                                                <div class="fgroup" :class="{ 'has-error': errors.has('form-2-2.type') }">
+                                                <div class="fgroup required" :class="{ 'has-error': errors.has('form-2-2.type') }">
                                                     <label for="">Ola Favorita</label>
                                                     <v-select :debounce="250" :options="olas" v-model="createAtleta.olaPreferida" placeholder="Seleccione ola favorita" label="name">
                                                     </v-select>
@@ -417,7 +417,7 @@
                                             </div>
 
                                             <div class="col-xs-12 col-sm-4">
-                                                <div class="fgroup" :class="{ 'has-error': errors.has('form-2-2.logros') }">
+                                                <div class="fgroup required" :class="{ 'has-error': errors.has('form-2-2.logros') }">
                                                     <label for="">Logros</label>
                                                     <textarea type="text" id="logros" name="logros" data-vv-as="Logros " class="form-control" v-model="createAtleta.logros" v-validate="'required'"></textarea>
                                                     <span class="help-block" for="logros" v-bind:data-error="errors.first('form-2-2.logros')">
@@ -429,7 +429,7 @@
 
                                             </div>
                                             <div class="col-xs-12 col-sm-4">
-                                                <div class="fgroup" :class="{ 'has-error': errors.has('form-2-2.playaPractica') }">
+                                                <div class="fgroup required" :class="{ 'has-error': errors.has('form-2-2.playaPractica') }">
                                                     <label for="">Playa Donde Practica</label>
                                                     <v-select :debounce="250" :options="playas" v-model="createAtleta.playaPractica" placeholder="Seleccione Playa" label="nombre">
                                                     </v-select>
@@ -440,7 +440,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-xs-12 col-sm-8">
-                                                <div class="fgroup" :class="{ 'has-error': errors.has('form-2-2.rutinaConstancia') }">
+                                                <div class="fgroup required" :class="{ 'has-error': errors.has('form-2-2.rutinaConstancia') }">
                                                     <label for="">Rutina Constancia</label>
                                                     <textarea type="text" id="rutinaConstancia" name="rutinaConstancia" data-vv-as="Rutina Constancia " class="form-control" v-model="createAtleta.rutinaConstancia" v-validate="'required'"></textarea>
                                                     <span class="help-block" for="rutinaConstancia" v-bind:data-error="errors.first('form-2-2.rutinaConstancia')">
@@ -456,7 +456,7 @@
                                             <div class="row">
                                                 <div class="fgroup col-md-8 col-md-offset-2" :class="{ 'has-error': errors.has('form-avatar.avatar') }">
                                                     <div class="col-md-6">
-                                                        <div class="fgroup">
+                                                        <div class="fgroup required">
                                                             <label for="">Usar foto por defecto</label>
                                                             <br>
                                                             <span class="pull-right">
@@ -465,7 +465,7 @@
 
                                                         </div>
                                                         <div class="clearfix"></div>
-                                                        <div class="fgroup">
+                                                        <div class="fgroup required">
                                                             <label for="">Imagen de perfil</label>
                                                             <br>
                                                             <span id="management-avatar" style="display:inline-block">
@@ -501,7 +501,7 @@
                                 <div v-if="type.name == 'Juez'">
                                     <h3>Información del Juez</h3>
                                     <div class="col-xs-12 col-sm-12">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('form-3.descripcion') }">
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('form-3.descripcion') }">
                                             <label for="">Descripcion del juez</label>
                                             <textarea v-model="createJuez.descripcion" class="form-control" name="descripcion" rows="2" data-vv-as="Descripcion del juez" v-validate="'required'">
 
@@ -521,7 +521,7 @@
                                             <div class="col-sm-5">
 
                                                 <div class="col-xs-12">
-                                                    <div class="fgroup">
+                                                    <div class="fgroup required">
                                                         <label for="">Titulo</label>
                                                         <input v-model="newCert.titulo" name="titulo" type="text" data-vv-as="titulo" class="form-control" v-validate="'required'">
                                                         <span class="help-block" for="descripcion" v-bind:data-error="errors.first('form-4.descripcion')">
@@ -531,7 +531,7 @@
                                                 </div>
                                                 <div class="col-xs-12">
 
-                                                    <div class="fgroup" :class="{ 'has-error': errors.has('form-4.fecha') }">
+                                                    <div class="fgroup required" :class="{ 'has-error': errors.has('form-4.fecha') }">
                                                         <label for="">Fecha</label>
                                                         <dropdown class="form-group">
                                                             <div class="input-group">
@@ -556,7 +556,7 @@
                                                 </div>
                                                 <div class="clearfix"></div>
                                                 <div class="col-xs-12">
-                                                    <div class="fgroup">
+                                                    <div class="fgroup required">
                                                         <label for="">Lugar</label>
                                                         <input v-model="newCert.lugar" name="lugar" type="text" class="form-control" data-vv-as="Lugar" v-validate="'required'">
                                                         <span class="help-block" for="descripcion" v-bind:data-error="errors.first('form-4.descripcion')">
@@ -604,7 +604,7 @@
                                 <div v-if="type.name == 'Entrenador'">
                                     <h3>Información del Entrenador</h3>
                                     <div class="col-xs-12 col-sm-12">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('form-5.descripcion') }">
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('form-5.descripcion') }">
                                             <label for="">Descripcion del Entrenador</label>
                                             <textarea v-model="createEntrenador.descripcion" class="form-control" name="descripcion" rows="2" data-vv-as="Descripcion del Entrenador" v-validate="'required'">
 
@@ -633,7 +633,7 @@
                                 <div v-if="type.name == 'Miembro Junta'">
                                     <h3>Información del Miembro Junta</h3>
                                     <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('form-6.nivelJerarquia') }">
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('form-6.nivelJerarquia') }">
                                             <label for="">Nivel Jerarquia</label>
                                             <v-select :debounce="250" :options="jerarquia"
                                              v-model="createMiembroJunta.nivelJerarquia" placeholder="Seleccione la jerarquia" label="name">

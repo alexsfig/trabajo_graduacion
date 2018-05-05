@@ -4,7 +4,7 @@
             <h1>Inscripción de Atletas</h1>
 
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
                 <li>Manejo de Circuitos </li>
               
             </ol>
@@ -38,7 +38,7 @@
  
                             <form @submit.prevent="submit"  role="form"> 
            <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup"  :class="{ 'has-error': errors.has('atleta') }">
+                                        <div class="fgroup required"  :class="{ 'has-error': errors.has('atleta') }">
                                           
                                             <label for="atleta">Atleta</label>
                                             <v-select
@@ -100,7 +100,7 @@
                           <div class="box-body">
                               
                              <div @click="volver()" class="btn btn-flat btn-sm btn-warning margin">
-                                    <i class="fa fa-arrow-circle-left" ></i> Regresar a Circuitos
+                                    <i class="fa fa-arrow-circle-left" ></i> Regresar
                                 </div>
 
                                 </div> 

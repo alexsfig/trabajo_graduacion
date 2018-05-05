@@ -4,7 +4,7 @@
             <h1>Usuario</h1>
             <ol class="breadcrumb">
                 
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
                 <li><router-link to="/admin/users">Usuario</router-link></li>
                 <li class="active">Modificar Contraseña</li>
             </ol>
@@ -34,7 +34,7 @@
                     <div class="box-body">
                        <!-- <input type="hidden" v-model="id"> -->
                         <div class="col-xs-12 col-sm-6">
-                            <div class="fgroup" :class="{ 'has-error': errors.has('password') }">
+                            <div class="fgroup required" :class="{ 'has-error': errors.has('password') }">
                                 <label for="">Nueva Contraseña</label>
                                 <input type="password" id="password" name="password" class="form-control" data-vv-as="Contraseña"  v-model="usuario.contrasena" v-validate="'required|confirmed:confirm_password|min:8'" >
                                 <span class="help-block" for="password" v-bind:data-error="errors.first('password')">
@@ -44,7 +44,7 @@
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-6">
-                            <div class="fgroup" :class="{ 'has-error': errors.has('confirm_password') }">
+                            <div class="fgroup required" :class="{ 'has-error': errors.has('confirm_password') }">
                                 <label for="">Confirmación de contraseña</label>
                                 <input type="password" id="confirm_password" name="confirm_password" class="form-control" data-vv-as="Confirmación de contraseña"  v-model="confirm_password" v-validate="'required'" >
                                 <span class="help-block" for="confirm_password" v-bind:data-error="errors.first('confirm_password')">

@@ -16,7 +16,7 @@
             <form @submit.prevent="validateMethod" role="form">
                 <div class="box-body">
                         <!--<div class="col-xs-12 col-sm-6">
-                            <div class="fgroup" :class="{ 'has-error': errors.has('nota') }" >
+                            <div class="fgroup required" :class="{ 'has-error': errors.has('nota') }" >
                                 <label for="">Nota</label>
                                 <input type="text" id="nota" name="nota" data-vv-as="Nota" class="form-control" 
                                 v-model="nota" v-validate="'required'" >
@@ -28,7 +28,7 @@
 
 
                         <div class="col-xs-12 col-sm-6">
-                             <div class="fgroup" :class="{ 'has-error': errors.has('nota') }">
+                             <div class="fgroup required" :class="{ 'has-error': errors.has('nota') }">
                                 <label for=""></label>
                                      <div class="input-group">
                                                 <span class="input-group-addon"><b>Nota: </b></span>
@@ -43,7 +43,7 @@
                 </div>
                 <div class="box-footer">
                     <div class="col-xs-12 text-right">
-                        <button type="submit" class="btn btn-flat btn-sm btn-primary">{{ buttonMsg }}</button>
+                        <button type="submit" class="btn btn-flat btn-sm btn-primary"><i class="fa fa-edit"></i> {{ buttonMsg }}</button>
                     </div>
                 </div>
 

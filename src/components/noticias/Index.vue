@@ -47,7 +47,7 @@
                                          class="fa fa-pencil-square-o"></i> Actualizar</button>
                                         </router-link>  
                                         
-                                        <button type="button" class="margin btn btn-sm btn-flat btn-danger" @click="clickHandler(props.row.id, noticia)" ><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
+                                        <button type="button" class="margin btn btn-sm btn-flat btn-danger" @click="clickHandler(props.row.id, noticia, props.row.nombre)" ><i class="fa fa-trash-o" aria-hidden="true"></i> Eliminar</button>
                                     </td>
                                   </template>
                                 </vue-good-table>
@@ -133,12 +133,12 @@
             '$route': 'fetchData'
         },
         methods: {
-            clickHandler(id, noticia) {
+            clickHandler(id, noticia, nombre) {
                 let swal = this.$swal
                 let context = this
                 swal({
                     title: 'Estas Seguro?',
-                    html: 'No podras recuperar la información de la Noticia: <b>' + noticia.nombre + '</b>',
+                    html: 'No podras recuperar la información de la Noticia: <b>' + nombre + '</b>',
                     type: 'error',
                     showCancelButton: true,
                     confirmButtonText: 'Si, Eliminar!',

@@ -4,7 +4,7 @@
             <h1>Ranking por categoria</h1>
 
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
                 <li>Manejo de Circuitos </li>
       
             </ol>
@@ -40,7 +40,7 @@
            <div class="col-xs-12 col-sm-6">
 
             
-                                        <div class="fgroup"  :class="{ 'has-error': errors.has('categoria') }">
+                                        <div class="fgroup required"  :class="{ 'has-error': errors.has('categoria') }">
                                           
                                             <label for="categoria">Categoria</label>
                                             <v-select

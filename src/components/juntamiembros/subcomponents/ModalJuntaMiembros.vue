@@ -18,7 +18,7 @@
                 <div class="box-body">
                     <input type="hidden" v-model="id">
                     <div class="col-xs-12 col-sm-6">
-                        <div class="fgroup" :class="{ 'has-error': errors.has('nombre') }">
+                        <div class="fgroup required" :class="{ 'has-error': errors.has('nombre') }">
                             <label for="">Nombre</label>
                             <input type="text" id="nombre" name="nombre" data-vv-as="Nombre" class="form-control" v-model="persona.nombre" v-validate="'required'">
                             <span class="help-block" for="nombre" v-bind:data-error="errors.first('nombre')">
@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6">
-                        <div class="fgroup" :class="{ 'has-error': errors.has('apellido') }">
+                        <div class="fgroup required" :class="{ 'has-error': errors.has('apellido') }">
                             <label for="">Apellido</label>
                             <input type="text" id="apellido" name="apellido" data-vv-as="Apellido" class="form-control" v-model="persona.apellido" v-validate="'required'">
                             <span class="help-block" for="apellido" v-bind:data-error="errors.first('apellido')">
@@ -38,7 +38,7 @@
 
                     
                      <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup" :class="{ 'has-error': errors.has('fechaNacimiento') }" >
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('fechaNacimiento') }" >
                                             <label for="">Fecha de Nacimiento</label>
                                             <dropdown class="form-group">
                                                 <div class="input-group">
@@ -89,7 +89,7 @@
                     </div>
 
                     <div class="col-xs-12 col-sm-6">
-                        <div class="fgroup" :class="{ 'has-error': errors.has('direccion') }">
+                        <div class="fgroup required" :class="{ 'has-error': errors.has('direccion') }">
                             <label for="">Direccion</label>
                             <input type="text" id="direccion" name="direccion" data-vv-as="Direccion" class="form-control" v-model="persona.direccion" v-validate="'required'">
                             <span class="help-block" for="nit" v-bind:data-error="errors.first('direccion')">
@@ -111,7 +111,7 @@
                     </div>
 
                     <div class="col-xs-12 col-sm-6">
-                        <div class="fgroup" :class="{ 'has-error': errors.has('correo') }">
+                        <div class="fgroup required" :class="{ 'has-error': errors.has('correo') }">
                             <label for="">Correo</label>
                             <input type="mail" id="correo" name="correo" data-vv-as="Correo" class="form-control" v-model="persona.correo" v-validate="'required|email'">
                             <span class="help-block" for="nit" v-bind:data-error="errors.first('correo')">
@@ -122,7 +122,7 @@
 
 
                    <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup"  :class="{ 'has-error': errors.has('sexo') }">
+                                        <div class="fgroup required"  :class="{ 'has-error': errors.has('sexo') }">
                                             <label for="">Sexo</label>
                                             <v-select
                                                 :debounce="250"
@@ -143,7 +143,7 @@
 
                     <div class="col-xs-12 col-sm-6">
                        
-                            <div class="fgroup" :class="{ 'has-error': errors.has('nivelJerarquia') }">
+                            <div class="fgroup required" :class="{ 'has-error': errors.has('nivelJerarquia') }">
                                 <label for="">Nivel Jerarquia</label>
                                 <v-select :debounce="250" :options="jerarquia" v-model="updateMiembrojunta.nivelJerarquia" placeholder="Seleccione la jerarquia" label="name">
                                 </v-select>

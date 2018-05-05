@@ -30,72 +30,72 @@
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <!--<h3 class="box-title">Manejo de Rondas del Circuito <b>{{this.circuito.nombre}}</b> para la Fecha <b>{{this.circuito.fechaId.nombre}} </b></h3>-->
-                    
-              
+
+
     <button v-if="ronda.estado=='Calificada'" type="button" @click="finalizar()"   class="margin btn btn-flat btn-sm btn-primary"
                                        ><i aria-hidden="true"
                                          class="fa fa-pencil-square-o"></i> Finalizar Ronda</button>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
-                                
+
                            <router-link v-if="nuevoHabilitar" :to="{ name: 'circuitosNuevaRonda', params: { id: id }}">
                                         <button type="button" class="margin btn btn-flat btn-sm btn-primary"
                                        ><i aria-hidden="true"
                                          class="fa fa-pencil-square-o"></i> Nueva Ronda </button>
-                                        </router-link>   
+                                        </router-link>
 
                             </div>
-             
-                        <div class="box-body">   
-                      
+
+                        <div class="box-body">
+
        <div v-for="value in heats">
        <h3>Heat numero {{value.numero}}</h3>
                             <vue-good-table :columns="columns" :rows="value.atletasHeatList" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
                                 <template slot="table-row" scope="props">
-                                  
-                                          <td v-if="props.row.color=='Amarillo'" style="background-color:yellow;">{{ props.row.color }}</td>  
-                                  
-                          <td v-if="props.row.color=='Azul'"  style="background-color:#0F7AD5;">{{ props.row.color }}</td>  
-                                 <td  v-if="props.row.color=='Verde'"  style="background-color:Green;">{{ props.row.color }}</td>      
-                                  <td  v-if="props.row.color=='Rojo'"  style="background-color:Red;">{{ props.row.color }}</td>       
-                                 
+
+                                          <td v-if="props.row.color=='Amarillo'" style="background-color:yellow;">{{ props.row.color }}</td>
+
+                          <td v-if="props.row.color=='Azul'"  style="background-color:#0F7AD5;">{{ props.row.color }}</td>
+                                 <td  v-if="props.row.color=='Verde'"  style="background-color:Green;">{{ props.row.color }}</td>
+                                  <td  v-if="props.row.color=='Rojo'"  style="background-color:Red;">{{ props.row.color }}</td>
+
                                     <td>{{ props.row.promedio }}</td>
                                     <td>{{ props.row.lugar }}</td>
 
-                                                 <td  v-if="props.row.estado=='Finalista'"  style="background-color:Green;">{{ props.row.estado }}</td>      
-          
-                        <td  v-if="props.row.estado=='Clasificado'"  style="background-color:Green;">{{ props.row.estado }}</td>      
-                                  <td  v-if="props.row.estado=='Eliminado'"  style="background-color:Red;">{{ props.row.estado }}</td>  
-                          <td  v-if="props.row.estado=='Repechaje'"  style="background-color:Yellow;">{{ props.row.estado }}</td>      
-                                  <td  v-if="props.row.estado=='Descalificado'"  style="background-color:Red;">{{ props.row.estado }}</td>  
-                              
-                                 
-                                                                 
+                                                 <td  v-if="props.row.estado=='Finalista'"  style="background-color:Green;">{{ props.row.estado }}</td>
+
+                        <td  v-if="props.row.estado=='Clasificado'"  style="background-color:Green;">{{ props.row.estado }}</td>
+                                  <td  v-if="props.row.estado=='Eliminado'"  style="background-color:Red;">{{ props.row.estado }}</td>
+                          <td  v-if="props.row.estado=='Repechaje'"  style="background-color:Yellow;">{{ props.row.estado }}</td>
+                                  <td  v-if="props.row.estado=='Descalificado'"  style="background-color:Red;">{{ props.row.estado }}</td>
+
+
+
 
 
     <td  v-if="ronda.estado=='Calificada'">
     <button  type="button" @click="change(props.row)" class="margin btn btn-flat btn-sm btn-primary"
                                        ><i aria-hidden="true"
                                          class="fa fa-pencil-square-o"></i> Cambiardd</button>
-                                        
-        
+
+
                                  </td>
 
-   
-    
+
+
                                   </template>
                             </vue-good-table>
 </div>
                         </div>
 
                          <div class="box-body">
-                              
+
                               <div @click="volver()" class="btn btn-flat btn-sm btn-warning margin">
                                     <i class="fa fa-arrow-circle-left" ></i> Regresar a Circuitos
                                 </div>
 
-                                </div> 
+                                </div>
 
 
                     </div>
@@ -152,7 +152,7 @@ export default {
   },watch:{
             "ronda":"addCol",
             "heats":"onLoadHead"
-        
+
         },
   methods: {
 
@@ -161,10 +161,10 @@ export default {
       console.log("*****************")
        console.log(this.heats.length)
       if(this.heats.length==1){
-      
+
       this.ultima=true;
       console.log(this.heats.atletasHeatList);
-      
+
       }
  /*  if(Object.keys(this.heats.atletasHeatList).length==1)
       this.ultima=true;
@@ -175,7 +175,7 @@ export default {
 console.log("Entress")
            this.columns.push({label: 'Acciones',
                       field: '',
-                      filterable: true,})     
+                      filterable: true,})
        if(this.ronda)
        {
        if(this.columns.length==4)
@@ -185,7 +185,7 @@ console.log("Entress")
      {
         this.columns.push({label: 'Acciones',
                       field: '',
-                      filterable: true,})             
+                      filterable: true,})
                     }
 }
        }
@@ -264,7 +264,7 @@ return;
         title: "Estas Seguro?",
         html:
           "No podras recuperar la informacion de la ronda " +
-         
+
           " y toda la informacion relacion a la misma ya que no sera accesible",
         type: "error",
         showCancelButton: true,
@@ -272,7 +272,7 @@ return;
         cancelButtonText: "No"
       }).then(
         function() {
-          
+
           rondasController.finalizar(context, context.id, swal);
         },
         function(dismiss) {
@@ -289,7 +289,7 @@ return;
  window.history.length > 1
         ? this.$router.go(-1)
         : this.$router.push('/')
-    
+
 
             }
 
