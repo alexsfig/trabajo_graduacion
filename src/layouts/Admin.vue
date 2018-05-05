@@ -193,6 +193,9 @@
     text-transform: uppercase;
 }
 .global-search-input{
-    width: calcs(50%) !important;
+    width: calc(50%) !important;
+}
+.has-error .v-select.searchable .dropdown-toggle{
+    border-color: #a94442;
 }
 </style>

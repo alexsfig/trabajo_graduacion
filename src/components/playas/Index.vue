@@ -24,25 +24,30 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <GmapAutocomplete @place_changed="setPlace" class="form-control" :options="{  componentRestrictions: {'country': ['SV']} }" :value="searchValue">
-                </GmapAutocomplete>
-                <GmapMap style="width: 100%; height: 400px " :zoom="this.center.zoom" v-if="this.center" :center="{lat: this.center.lat, lng: this.center.lng}">
-                    <GmapMarker v-if="this.place" label="★" :position="{
-                  lat: this.place.geometry.location.lat(),
-                  lng: this.place.geometry.location.lng(),
-                  nombre: this.place.name,
-                  direccion: this.place.formatted_address
-                }" />
-                </GmapMap>
+            <div class="col-md-6">
+                <div class="box box-success ">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Buscar Playa</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="input-map">
+                            <GmapAutocomplete @place_changed="setPlace" class="form-control " :options="{  componentRestrictions: {'country': ['SV']} }" :value="searchValue">
+                            </GmapAutocomplete>
+                        </div>
+                        <div class="map">
+                            <GmapMap style="width: 100%; height: 400px " :zoom="this.center.zoom" v-if="this.center" :center="{lat: this.center.lat, lng: this.center.lng}">
+                                <GmapMarker v-if="this.place" label="★" :position="{
+                              lat: this.place.geometry.location.lat(),
+                              lng: this.place.geometry.location.lng(),
+                              nombre: this.place.name,
+                              direccion: this.place.formatted_address
+                            }" />
+                            </GmapMap>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-        </div>
-
-    </section>
-    <section class="content">
-        <div class="row">
-            <div class="col-lg-6">
+            <div class="col-md-6">
                 <div class="box box-success">
                     <div class="box-header with-border">
                         <h3 class="box-title">Agregar Nueva Playa
@@ -73,7 +78,9 @@
                     </form>
                 </div>
             </div>
-            <div class="col-lg-6">
+        </div>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
                 <div class="box box-primary">
                     <div class="box-header with-border">
                         <h3 class="box-title">Listado de Playas</h3>
@@ -267,12 +274,14 @@ export default {
 
                 }
             }
-
-
-
-
-
     }
 }
-
 </script>
+<style scoped>
+    .input-map{
+        padding: 10px 0
+    }
+    .map{
+        padding: 0 10px
+    }
+</style>
