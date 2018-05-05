@@ -72,7 +72,7 @@
                                      <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup required" :class="{ 'has-error': errors.has('edadMax') }" >
                                             <label for="">Edad Maxima</label>
-                                            <input type="number" id="edadMax" name="edadMax"  data-vv-as="Edad Maxima de la categoria" class="form-control" v-model="createCategorias.edadMax" v-validate="'required|min_value:7|max_value:79'" 
+                                            <input type="number" id="edadMax" name="edadMax"  data-vv-as="Edad Maxima de la categoria" class="form-control" v-model="createCategorias.edadMax" v-validate="'required|min_value:7|max_value:79'"
                                             >
                                             <span class="help-block" for="edadMax" v-bind:data-error="errors.first('edadMax')">
                                                 {{ errors.first('edadMax') }}
@@ -139,12 +139,12 @@
 
                             </form>
                              <div class="box-body">
-                              
+
                              <div @click="volver()" class="btn btn-flat btn-sm btn-warning margin">
                                     <i class="fa fa-arrow-circle-left" ></i> Regresar
                                 </div>
 
-                                </div> 
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -172,46 +172,25 @@
                 isLogin: false,
                 createCategorias: {
                     edadMax: null,
-                    edadMin: null
+                    edadMin: null,
+                    sexo: null
                 },
-
                 sexo:[
                     {name: 'M', nombre:'Masculino'},
                     {name: 'F', nombre:'Femenino'},
                     {name: 'X', nombre:'Mixto'}
-
-
                 ]
-
-
-
-
-
             }
         },
         components:{
-
-
            vSelect
-
-
-        },    
-             
-             
-        
-
-
+        },
         methods: {
-
-
-
             submit() {
                 this.showAlert = false
                 this.showSuccess = false
                 this.$validator.validateAll().then(success => {
                     if (success) {
-
-
                         if( this.createCategorias.sexo=='Masculino'){
                         this.createCategorias.sexo='M'
                       }
@@ -228,7 +207,7 @@
                        this.createCategorias.sexo = this.createCategorias.sexo.name == undefined ? this.createCategorias.sexo : this.createCategorias.sexo.name
                         categorias.create(this, this.createCategorias)
 
-                      
+
 
 
 
@@ -247,7 +226,7 @@
  window.history.length > 1
         ? this.$router.go(-1)
         : this.$router.push('/')
-    
+
 
             }
 

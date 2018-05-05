@@ -53,7 +53,7 @@
                         </div>
 
                     </div>
-                    <div class="box-body col-md-10 col-md-offset-1">
+                    <div class="box-body col-md-12">
                         <vue-good-table :columns="columns" :rows="rondas" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
                             <template slot="table-row" scope="props">
                                 <td>{{ props.row.numero }}</td>
