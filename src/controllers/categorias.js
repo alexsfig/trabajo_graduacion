@@ -48,9 +48,8 @@ export default {
                       }
                   
 
-                      context.$swal("Exito!", "Categoria creada  con exito", "success")
-                   
-                      context.volver();          
+                    context.fetchData()
+                    context.resetForm()                 
                       
 
            
@@ -108,11 +107,8 @@ export default {
                     var id = resp.data.id
                     context.showAlert = false 
                 }
-                   
-
-                context.$swal("Exito!", "Categoria actualizada  con exito", "success")
-                   
-                context.volver();          
+                context.showSuccess = true
+                context.successMsg = "Categoria Actualizada"
 
                  if( categorias.sexo=='M'){
                         context.updateCategoria.sexo='Masculino'
