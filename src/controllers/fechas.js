@@ -33,9 +33,13 @@ export default {
                 if (resp.status>= 200 && resp.status <=300){
                     var id = resp.data.id
                     context.showAlert = false
+                         
+
+                    context.$swal("Exito!", "Fecha actualizada  con exito", "success")
+                   
+                    context.volver();          
                 }
-                context.showSuccess = true
-                context.successMsg = "Fecha Actualizada"
+              
             })
             .catch((err) => {
                 context.showAlert = true
