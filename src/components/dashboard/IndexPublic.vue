@@ -97,6 +97,22 @@
 
                   </div>
                 </div>
+
+                 <div class="col-12">
+                <div class="box box-success">
+                  <div class="box-header with-border">
+                    <i style="color:#031328" class="fa fa-twitter"></i>
+
+                    <h3 class="box-title "><b>Redes Sociales</b></h3>
+                  </div>
+                  <div class="box-body text-justify">
+    
+           <Timeline :id="'fesasurf'" :sourceType="'profile'" style="height:200" :options="{ tweetLimit: '4' }"/>
+
+
+                  </div>
+                </div>
+              </div>
               </div>
               <div class="col-md-6">
                 <div class="box box-success">
@@ -148,21 +164,9 @@
                
             </div>
 
-             <div class="col-md-6">
-                <div class="box box-success">
-                  <div class="box-header with-border">
-                    <i style="color:#031328" class="fa fa-twitter"></i>
+            
 
-                    <h3 class="box-title "><b>Redes Sociales</b></h3>
-                  </div>
-                  <div class="box-body text-justify">
-    
-           <Timeline :id="'fesasurf'" :sourceType="'profile'" style="height:200" :options="{ tweetLimit: '4' }"/>
-
-
-                  </div>
-                </div>
-              </div>
+              
             <div class="row padd">
               <img class="img-responsive" src="../../assets/images/background/Foto3.png" alt="">
             </div>
