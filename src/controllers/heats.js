@@ -136,11 +136,9 @@ export default {
                 if (resp.status>= 200 && resp.status <=300){
                     var id = resp.data.id
                     context.showAlert = false 
-                    context.$toasted.show("Heat Iniciado  con exito", { 
-                        theme: "primary", 
-                        position: "top-right", 
-                        duration : 5000
-                   });
+
+                    context.$swal("Exito!", "Heat Iniciado  con exito", "success")
+                   
                   context.volver();
                 }
                // context.showSuccess = true
