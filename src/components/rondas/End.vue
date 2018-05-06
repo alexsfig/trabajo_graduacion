@@ -263,10 +263,8 @@ return;
       this.$swal({
         title: "Estas Seguro?",
         html:
-          "No podras recuperar la informacion de la ronda " +
-
-          " y toda la informacion relacion a la misma ya que no sera accesible",
-        type: "error",
+          "No podras retroceder esta accion" ,
+        type: "warning",
         showCancelButton: true,
         confirmButtonText: "Si, Finalizar!",
         cancelButtonText: "No"
