@@ -63,7 +63,7 @@
                                     <td>{{ props.row.promedio }}</td>
                                     <td>{{ props.row.lugar }}</td>
 
-                                                 <td  v-if="props.row.estado=='Finalista'"  style="background-color:Green;">{{ props.row.estado }}</td>
+                                                 <td  v-if="props.row.estado=='Finalista'"  class="greenBG">{{ props.row.estado }}</td>
 
                         <td  v-if="props.row.estado=='Clasificado'"  class="greenBG">{{ props.row.estado }}</td>
                                   <td  v-if="props.row.estado=='Eliminado'"  class="redBG">{{ props.row.estado }}</td>
