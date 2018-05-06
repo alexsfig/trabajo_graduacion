@@ -698,6 +698,7 @@ export default {
       },
       creaCert: [],
       createAtleta: {
+          ultimaParticipacion:null,
         compitioFechas: false,
         sabeEscribir: false,
         sabeFirmar: false,
@@ -1016,7 +1017,7 @@ export default {
           console.log(this.errors)
         
 
-  
+        this.$validator.resetForm(scope)
         } else {
           this.showAlert = true;
           this.errMsg = "Por favor complete el formulario";

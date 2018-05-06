@@ -397,10 +397,17 @@ export default {
           apellido: ""
        
         },
-        idiomas: null,
+       ultimaParticipacion:null,
+        compitioFechas: false,
+        sabeEscribir: false,
+        sabeFirmar: false,
+        sabeLeer: false,
+        tieneLesion: false,
+        ladoPie: true,
         olaPreferida: null,
         playaPractica: null,
-           nivelAcademico: null,
+        idiomas: null,
+          nivelAcademico: null,
           uanioCursado: null
       },
 
