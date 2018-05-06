@@ -144,11 +144,7 @@ create(context,heats){
                 context.successMsg = "Ronda Creada con exito Creada"
               //  context.fetchData()
                // context.reset()
-                context.$toasted.show("Ronda creada   con exito", { 
-                    theme: "primary", 
-                    position: "top-right", 
-                    duration : 5000
-               });
+                  context.$swal("Exito!", "Se genero una nueva ronda", "success")
               context.volver();
             }
         })
