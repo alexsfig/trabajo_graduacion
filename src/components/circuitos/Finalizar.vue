@@ -29,8 +29,8 @@
                     <div class="box-header with-border">
                         <hr class="hr-title" :data-content="'Puntuaciones finales ' + circuito.fechaId.nombre">
                         <hr class="hr-text" :data-content="'Circuito ' + circuito.nombre + ' - ' + circuito.fechaId.fecha">
-                    </div>
-                    <button @click="asignar()" v-if="circuito.estado=='Calificado'" class="btn btn-flat btn-sm btn-primary"><i aria-hidden="true" class="fa fa-check-circle"></i> Asignar Puntuaciones </button>
+                  
+                    <button @click="asignar()" v-if="circuito.estado=='Calificado'" class="btn btn-flat btn-sm btn-primary"><i aria-hidden="true" class="fa fa-check-circle"></i> Asignar Puntuaciones </button>   </div>
                     <!-- /.box-header -->
                     <div class="box-body">
 
