@@ -54,10 +54,10 @@ export default {
         Method to update user, pass context, object Users and user id
     */
 
-    update(context, atletas){
+    update(context, persona){
         context.showAlert = false
         context.showSuccess = false
-        if (context.changePhoto == true) {
+      /*  if (context.changePhoto == true) {
             const formData = new FormData()
             //let filename =  atletas.rutaFoto.replace(/^.*[\\\/]/, '').replace(/\.[^/.]+$/, "")fdd
             let root_path = "persona"
@@ -75,19 +75,44 @@ export default {
                     }
                 })
         }
-
+*/
        // atletas.rutaFoto=atletas;
-        HTTP.put("persona", atletas)
+        HTTP.put("persona", persona)
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
                     var id = resp.data.id
                     context.showAlert = false
+
+                           context.showSuccess = true
+               context.successMsg = "Persona creada exitosamente"
+              console.log(resp);
+           //   formData.append('id', resp.data.atleta.id)
+              console.log("********************");
+              // upload_avatar(context, formData, root_path);
+                console.log("************///********");
+                UPLOAD.post('upload/'+ resp.data.atleta.id,context.avatar)
+
+               .then((resp) => {
+                   console.log("estoy en crear personaasljjsll")
+                   console.log(atleta)
+
+               })
+               .catch((err) => {
+                console.log(err)
+                   if (err.response) {
+                    console.log("estoy en crear personaasljjsllt32y9329y23y9329")
+                       context.showAlert = true
+                       context.errMsg = err.response.data
+                   }
+               })
+
                 }
                 context.showSuccess = true
                 context.successMsg = "Atleta Actualizado"
             })
             .catch((err) => {
                 context.showAlert = true
+                console.log(err)
                 if (err.response) {
                     context.errMsg = "Eroor servicio"
                     context.showAlert = true

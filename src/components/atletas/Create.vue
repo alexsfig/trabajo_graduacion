@@ -1,9 +1,7 @@
 <style scoped>
-
 .active {
-    width: 100%;
+  width: 100%;
 }
-
 </style>
 
 <template>
@@ -130,6 +128,7 @@
                                                 </span>
                                             </div>
                                         </div> -->
+                                        
                                         <div class="clearfix"></div>
                                          <div class="col-xs-12 col-sm-4">
                                             <div class="fgroup required" :class="{ 'has-error': errors.has('form-2-1.nivelAcademico') }">
@@ -152,6 +151,7 @@
                                                 </span>
                                             </div>
                                         </div>-->
+                               
                                         <div class="col-xs-12 col-sm-4">
                                                 <div class="fgroup required" :class="{ 'has-error': errors.has('form-2-1.uanioCursado') }">
                                                     <label for="">Ultimo Año cursado</label>
@@ -313,40 +313,41 @@
                                 </tab-content>
                                 <tab-content title="Fotografia" icon="fa fa-camera" :before-change="third_step">
                                     <form  @submit.prevent="third_step('form-avatar')" role="form" data-vv-scope="form-avatar">
-                                        <div class="row">
-                                            <div class="fgroup col-md-8 col-md-offset-2" :class="{ 'has-error': errors.has('form-avatar.avatar') }">
-                                                <div class="col-md-6">
-                                                    <!-- <div class="fgroup required">
-                                                        <label for="">Usar foto por defecto</label>
-                                                        <br>
-                                                        <span class="pull-right">
-                                                            <toggle-button  v-model="use_default_avatar" :sync="true" :value="true" :width="130" :height="35" id="changed-font" :labels="{checked: 'Si', unchecked: 'No'}" :color="{checked: '#37b53c', unchecked: '#f55d5d'}"/>
-                                                        </span>
+                                  <div class="row">
+                                                <div class="fgroup col-md-8 col-md-offset-2" :class="{ 'has-error': errors.has('form-avatar.avatar') }">
+                                                    <div class="col-md-6">
+                                                        <div class="fgroup required">
+                                                            <label for="">Usar foto por defecto</label>
+                                                            <br>
+                                                            <span class="pull-right">
+                                                                <toggle-button  v-model="use_default_avatar" :sync="true" :value="true" :width="130" :height="35" id="changed-font" :labels="{checked: 'Si', unchecked: 'No'}" :color="{checked: '#37b53c', unchecked: '#f55d5d'}"/>
+                                                            </span>
 
-                                                    </div> -->
-                                                    <div class="clearfix"></div>
-                                                    <div class="fgroup required">
-                                                        <label for="">Imagen de perfil</label>
-                                                        <br>
-                                                        <span id="management-avatar" style="display:inline-block">
-                                                            <button :disabled="use_default_avatar" id="" type="button" class="btn btn-primary btn-flat btn-md margin" @click="toggleShow">
-                                                              <i class="fa fa-camera  "></i> Subir Foto de perfil
-                                                            </button>
-                                                        </span>
-                                                        <my-upload field="img" @crop-success="cropSuccess" @crop-upload-success="cropUploadSuccess" @crop-upload-fail="cropUploadFail" v-model="showAvatar" :width="300" :height="300" :params="params" lang-type="en" :headers="headers" img-format="png">
-                                                        </my-upload>
-                                                        <input type="hidden" id="avatar" name="avatar" class="form-control" v-model="avatar" v-validate="'required'" :class="{'datepicker':true,  'has-error': errors.has('form-avatar.avatar') }">
-                                                        <span class="help-block" for="avatar" v-bind:data-error="errors.first('form-avatar.avatar')">
-                                                            {{ errors.first('form-avatar.avatar') }}
-                                                        </span>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                        <div class="fgroup required">
+                                                            <label for="">Imagen de perfil</label>
+                                                            <br>
+                                                            <span id="management-avatar" style="display:inline-block">
+                                                                <button :disabled="use_default_avatar" id="" type="button" class="btn btn-primary btn-flat btn-md margin" @click="toggleShow">
+                                                                  <i class="fa fa-camera  "></i> Subir Foto de perfil
+                                                                </button>
+                                                            </span>
+                                                            <my-upload field="img" @crop-success="cropSuccess" @crop-upload-success="cropUploadSuccess" @crop-upload-fail="cropUploadFail" v-model="showAvatar" :width="300" :height="300" :params="params" lang-type="es" :headers="headers" img-format="png">
+                                                            </my-upload>
+                                                            <input type="hidden" id="avatar" name="avatar" class="form-control" v-model="avatar" v-validate="'required'" :class="{'datepicker':true,  'has-error': errors.has('form-avatar.avatar') }">
+                                                            <span class="help-block" for="avatar" v-bind:data-error="errors.first('form-avatar.avatar')">
+                                                                {{ errors.first('form-avatar.avatar') }}
+                                                            </span>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <img :src="avatar" class="img-avatar img-responsive img-rounded">
-                                                </div>
+                                                    <div class="col-md-6">
+                                                        <img :src="avatar" class="img-avatar img-responsive img-rounded">
 
+                                                    </div>
+
+                                                </div>
                                             </div>
-                                        </div>
                                     </form>
                                 </tab-content>
                             </form-wizard>
@@ -365,196 +366,212 @@
 </template>
 
 <script>
-
-import atletasController from '../../controllers/atletas.js'
-import personaController from '../../controllers/persona.js'
-import ModalEntrenadores from './subcomponents/ModalEntrenadores'
-import vSelect from "vue-select"
-import masked from "vue-masked-input"
-import playasController from '../../controllers/playas.js'
-import moment from "moment"
-import myUpload from 'vue-image-crop-upload';
-const default_avatar = require('@/assets/images/default_avatar.png')
+import atletasController from "../../controllers/atletas.js";
+import personaController from "../../controllers/persona.js";
+import ModalEntrenadores from "./subcomponents/ModalEntrenadores";
+import vSelect from "vue-select";
+import masked from "vue-masked-input";
+import playasController from "../../controllers/playas.js";
+import moment from "moment";
+import myUpload from "vue-image-crop-upload";
+const default_avatar = require("@/assets/images/default_avatar.png");
 
 export default {
-    name: 'atletas',
-    data() {
-        return {
-            methodSubmit: 'update',
-            buttonMsg: "Actualizar",
-            openModal: false,
-            errMsg: '',
-            success: false,
-            isLogin: false,
-            showAlert: false,
-            showSuccess: false,
-            // We need to initialize the component with any
-            // properties that will be used in it
-            atletas: [],
-            atleta: {
-                personaId: {
-                    nombre: '',
-                    apellido: ''
-                },
-                idiomas: null,
-                olaPreferida: null,
-                playaPractica: null
-            },
-
-            atletaUpdate: {},
-            idiomas: [{
-                    name: 'Español'
-                }, {
-                    name: 'Ingles'
-                }, {
-                    name: 'Frances'
-                }, {
-                    name: 'Aleman'
-                }, {
-                    name: 'Portugues'
-                },
-
-            ],
-
-            niveles: [{
-                    name: 'Nivel Inicial'
-                }, {
-                    name: 'Nivel Parvulario'
-                }, {
-                    name: 'Nivel Basico'
-                }, {
-                    name: 'Nivel Medio'
-                }, {
-                    name: 'Nivel Superior'
-                }
-
-
-            ],
-
-            ucursado: [{
-                    name: 'Nivel Inicial'
-                }, {
-                    name: 'Nivel Parvulario'
-                }, {
-                    name: 'Nivel Basico-1er Ciclo'
-                },
-                {
-                    name: 'Nivel Basico-2do Ciclo'
-                },
-                {
-                    name: 'Nivel Basico-3er Ciclo'
-                },
-                {
-                    name: 'Nivel Medio - 1er año de Bachillerado'
-                },
-                {
-                    name: 'Nivel Medio - 2do año de Bachillerado'
-                },
-                {
-                    name: 'Nivel Medio - 3er año de Bachillerado(Opcional)'
-                },
-                 {
-                    name: 'Nivel Superior - No Finalizado'
-                },
-                {
-                    name: 'Nivel Superior - Finalizado'
-                }
-
-            ],
-            playas: [],
-            olas: [{
-                    name: 'Derecha'
-                }, {
-                    name: 'Izquierda'
-                }, {
-                    name: 'Pico ó Mixta'
-                }, {
-                    name: 'Cerrote'
-                }, {
-                    name: 'Viento'
-                }, {
-                    name: 'De Fondo ó Swell'
-                }, {
-                    name: 'Huecas'
-                }, {
-                    name: 'Derramadas'
-                }, {
-                    name: 'Onduladas'
-                }, {
-                    name: 'Colapso'
-                },
-
-            ],
-            type: {
-                name: 'Atleta'
-            },
-            has_lession: true,
-            has_competition: true,
-            limitTo: '',
-            format: 'yyyy-MM-dd',
-            weekStartsWith: 0,
-            clearBtn: true,
-            todayBtn: true,
-            closeOnSelected: true,
-            limitFrom: '',
-            avatar: '',
-            juez: null,
-            imgDataUrl: '', // the datebase64 url of created image
-            showAvatar: false,
-            params: {},
-            headers: {
-                smail: '*_~'
-            },
-            show: false,
-            use_default_avatar: false,
-            changePhoto: false,
-            copy_of_default_image: '',
-            filename: '',
-            persona: {}
-        }
-    },
-    components: {
-        "modalentrenadores": ModalEntrenadores,
-        vSelect,
-        'masked-input': masked,
-        'my-upload': myUpload,
-    },
-    created() {
-        this.fetchData()
-        this.filename = (new Date().getTime()).toString(36)
-        this.atleta.rutaFoto =  "persona/atleta/"+this.filename+".png"
-
-    },
-    watch: {
-        use_default_avatar(val, oldVal){
-            if(val == true){
-                this.avatar = default_avatar
-            }
-            else{
-                this.avatar = this.copy_of_default_image
-            }
+  name: "atletas",
+  data() {
+    return {
+      methodSubmit: "update",
+      buttonMsg: "Actualizar",
+      openModal: false,
+      errMsg: "",
+      success: false,
+      isLogin: false,
+      showAlert: false,
+      showSuccess: false,
+      // We need to initialize the component with any
+      // properties that will be used in it
+      atletas: [],
+      atleta: {
+        personaId: {
+          nombre: "",
+          apellido: ""
+       
         },
-        avatar(val, oldVal){
-            let img = this.atleta.rutaFoto
-            let imgAsset = null
-            if(process.env.NODE_ENV == "development"){
-                try{
-                    imgAsset = require('@/assets/images/'+ img)
-                }
-                catch(er){
-                    imgAsset = require('@/assets/images/default_avatar.png')
-                }
-            }
-            else{
-                imgAsset = process.env.BASE_ROUTE + '/static/img/src/assets/images/'+ img
-            }
-            if(val !== imgAsset){
-                this.changePhoto =  true
-            }
-            else{
-                this.changePhoto = false
-            }
-        } /* ,
+        idiomas: null,
+        olaPreferida: null,
+        playaPractica: null,
+           nivelAcademico: null,
+          uanioCursado: null
+      },
+
+      atletaUpdate: {},
+      idiomas: [
+        {
+          name: "Español"
+        },
+        {
+          name: "Ingles"
+        },
+        {
+          name: "Frances"
+        },
+        {
+          name: "Aleman"
+        },
+        {
+          name: "Portugues"
+        }
+      ],
+
+      niveles: [
+        {
+          name: "Nivel Inicial"
+        },
+        {
+          name: "Nivel Parvulario"
+        },
+        {
+          name: "Nivel Basico"
+        },
+        {
+          name: "Nivel Medio"
+        },
+        {
+          name: "Nivel Superior"
+        }
+      ],
+
+      ucursado: [
+        {
+          name: "Nivel Inicial"
+        },
+        {
+          name: "Nivel Parvulario"
+        },
+        {
+          name: "Nivel Basico-1er Ciclo"
+        },
+        {
+          name: "Nivel Basico-2do Ciclo"
+        },
+        {
+          name: "Nivel Basico-3er Ciclo"
+        },
+        {
+          name: "Nivel Medio - 1er año de Bachillerado"
+        },
+        {
+          name: "Nivel Medio - 2do año de Bachillerado"
+        },
+        {
+          name: "Nivel Medio - 3er año de Bachillerado(Opcional)"
+        },
+        {
+          name: "Nivel Superior - No Finalizado"
+        },
+        {
+          name: "Nivel Superior - Finalizado"
+        }
+      ],
+      playas: [],
+      olas: [
+        {
+          name: "Derecha"
+        },
+        {
+          name: "Izquierda"
+        },
+        {
+          name: "Pico ó Mixta"
+        },
+        {
+          name: "Cerrote"
+        },
+        {
+          name: "Viento"
+        },
+        {
+          name: "De Fondo ó Swell"
+        },
+        {
+          name: "Huecas"
+        },
+        {
+          name: "Derramadas"
+        },
+        {
+          name: "Onduladas"
+        },
+        {
+          name: "Colapso"
+        }
+      ],
+      type: {
+        name: "Atleta"
+      },
+      has_lession: true,
+      has_competition: true,
+      limitTo: "",
+      format: "yyyy-MM-dd",
+      weekStartsWith: 0,
+      clearBtn: true,
+      todayBtn: true,
+      closeOnSelected: true,
+      limitFrom: "",
+      avatar: "",
+      juez: null,
+      imgDataUrl: "", // the datebase64 url of created image
+      showAvatar: false,
+      params: {},
+      headers: {
+        smail: "*_~"
+      },
+      show: false,
+      use_default_avatar: false,
+      changePhoto: false,
+      copy_of_default_image: "",
+      filename: "",
+      persona: {}
+    };
+  },
+  components: {
+    modalentrenadores: ModalEntrenadores,
+    vSelect,
+    "masked-input": masked,
+    "my-upload": myUpload
+  },
+  created() {
+    this.fetchData();
+    this.filename = new Date().getTime().toString(36);
+    this.atleta.rutaFoto = "persona/atleta/" + this.filename + ".png";
+  },
+  watch: {
+    use_default_avatar(val, oldVal) {
+      if (val == true) {
+        this.avatar = default_avatar;
+      } else {
+        this.avatar = this.copy_of_default_image;
+      }
+    },
+    avatar(val, oldVal) {
+      let img = this.atleta.rutaFoto;
+      let imgAsset = null;
+      if (process.env.NODE_ENV == "development") {
+        try {
+          imgAsset = require("@/assets/images/" + img);
+        } catch (er) {
+          imgAsset = require("@/assets/images/default_avatar.png");
+        }
+      } else {
+        imgAsset =
+          process.env.BASE_ROUTE + "/static/img/src/assets/images/" + img;
+      }
+      if (val !== imgAsset) {
+        this.changePhoto = true;
+      } else {
+        this.changePhoto = false;
+      }
+    } /* ,
         '$route': 'fetchData',
         atleta: function(val, oldVal) {
 
@@ -607,210 +624,230 @@ export default {
 
             }
         }  */
-
+  },
+  methods: {
+    _redirectTo(id) {
+      this.$router.push({
+        name: "AtletasShow",
+        params: {
+          id: id
+        }
+      });
     },
-    methods: {
-        _redirectTo(id){
-            this.$router.push({
-               name: 'AtletasShow',
-               params: {
-                   id: id,
-               }
-           });
-        },
 
-        first_step() {
-            return new Promise((resolve, reject) => {
-                this.$validator.validateAll('form-2-1').then(success => {
-                   if (success) {
-                        if(this.atleta.aniosPracticando <=  this._calculateAge(this.persona.fechaNacimiento) - this.atleta.edadInicio){
-                        resolve(true)
-                        this.showAlert = false
-                        this.errMsg = ''
-                    }
-
-                        else {
-                        reject(true)
-                        this.showAlert = true
-                        this.errMsg = "Los Años Practicando no pueden ser superior al intervalo de tiempo entre la Edad de Inicio y la Edad del Atleta"}
-                    } else {
-                        reject(true)
-
-                    }
-                });
-            })
-        },
-        second_step() {
-            return new Promise((resolve, reject) => {
-                this.$validator.validateAll('form-2-2').then(success => {
-                    if (success) {
-                        resolve(true)
-                    } else {
-                        reject(true)
-                    }
-                });
-            })
-        },
-        third_step(){
-            return new Promise((resolve, reject) => {
-                this.$validator.validateAll('form-avatar').then(success => {
-                    this.showAlert = false
-                    this.showSuccess = false
-                    if (success) {
-                        resolve(true)
-                    }
-                    else{
-                        this.showAlert = true
-                        this.errMsg = "Todos los campos son requeridos"
-                        reject(true)
-                    }
-                });
-            })
-        },
-        onChangeLesion(evt) {
-            if (evt.value == true) {
-                this.has_lession = false
+    first_step() {
+      return new Promise((resolve, reject) => {
+        this.$validator.validateAll("form-2-1").then(success => {
+          if (success) {
+            if (
+              this.atleta.aniosPracticando <=
+              this._calculateAge(this.persona.fechaNacimiento) -
+                this.atleta.edadInicio
+            ) {
+              resolve(true);
+              this.showAlert = false;
+              this.errMsg = "";
             } else {
-                this.has_lession = true
+              reject(true);
+              this.showAlert = true;
+              this.errMsg =
+                "Los Años Practicando no pueden ser superior al intervalo de tiempo entre la Edad de Inicio y la Edad del Atleta";
             }
-        },
-        onChangeCompetition(evt) {
-            if (evt.value == true) {
-                this.has_competition = false
-            } else {
-                this.has_competition = true
-            }
-        },
-        isChange() {
-            this.openModal = false
-            this.fetchData()
-        },
-        showCallback() {
-            this.showAlert = false
-            this.showSuccess = false
-        },
-        dismissCallback(msg) {
-            this.openModal = false
-            atletasController.index(this)
-            this.fetchData()
-        },
-        fetchData() {
-            personaController.retrieve(this, this.$route.params.id)
+          } else {
+            reject(true);
+          }
+        });
+      });
+    },
+    second_step() {
+      return new Promise((resolve, reject) => {
+        this.$validator.validateAll("form-2-2").then(success => {
+          if (success) {
+            resolve(true);
+          } else {
+            reject(true);
+          }
+        });
+      });
+    },
+    third_step() {
+      return new Promise((resolve, reject) => {
+        this.$validator.validateAll("form-avatar").then(success => {
+          this.showAlert = false;
+          this.showSuccess = false;
+          if (success) {
+            resolve(true);
+          } else {
+            this.showAlert = true;
+            this.errMsg = "Todos los campos son requeridos";
+            reject(true);
+          }
+        });
+      });
+    },
+    onChangeLesion(evt) {
+      if (evt.value == true) {
+        this.has_lession = false;
+      } else {
+        this.has_lession = true;
+      }
+    },
+    onChangeCompetition(evt) {
+      if (evt.value == true) {
+        this.has_competition = false;
+      } else {
+        this.has_competition = true;
+      }
+    },
+    isChange() {
+      this.openModal = false;
+      this.fetchData();
+    },
+    showCallback() {
+      this.showAlert = false;
+      this.showSuccess = false;
+    },
+    dismissCallback(msg) {
+      this.openModal = false;
+      atletasController.index(this);
+      this.fetchData();
+    },
+    fetchData() {
+      personaController.retrieve(this, this.$route.params.id);
 
-            playasController.index(this)
+      playasController.index(this);
+    },
+    // retrieveData(id) {
+    //     atletasController.retrieve(this, id)
+    // },
+    volverAtletas() {
+      this.$router.push({
+        name: "AtletasIndex"
+      });
+    },
 
-        },
-        // retrieveData(id) {
-        //     atletasController.retrieve(this, id)
-        // },
-        volverAtletas() {
-            this.$router.push({
-                name: 'AtletasIndex',
-            });
-        },
+    validateMethod() {
+      if (this.methodSubmit == "update") {
+        this.createAtleta();
+      } else {
+      }
+    },
+    createAtleta() {
+      this.showAlert = false;
+      this.showSuccess = false;
+      console.log("Entreee")
+      this.$validator.validateAll().then(success => {
+        if (success) {
+              console.log("Entreee22")
+          let ladoPie,
+            playaPractica,
+            idiomas = "",
+            olaPreferida,
+            nivelAcademico,
+            uanioCursado,
+            idiomasArr = [];
+          for (var i = this.atleta.idiomas.length - 1; i >= 0; i--) {
+            idiomasArr.push(this.atleta.idiomas[i].name);
+          }
+          idiomas = idiomasArr.toString();
+          if (this.atleta.ladoPie == true) {
+            ladoPie = "Izquierda";
+          } else {
+            ladoPie = "Derecha";
+          }
+          olaPreferida = this.atleta.olaPreferida.name;
+          nivelAcademico = this.atleta.nivelAcademico.name;
+          uanioCursado = this.atleta.uanioCursado.name;
+          playaPractica = this.atleta.playaPractica.nombre;
+          let persona = this.createPersona;
+          let atleta = {
+            rutaFoto: this.atleta.rutaFoto,
+            aniosPracticando:
+              this.atleta.aniosPracticando == undefined
+                ? 0
+                : parseInt(this.atleta.aniosPracticando),
+            compitioFechas: this.atleta.compitioFechas == false ? 0 : 1,
+            cuantasFechas:
+              this.atleta.cuantasFechas == undefined
+                ? 0
+                : parseInt(this.atleta.cuantasFechas),
+            descripcionLesion:
+              this.atleta.descripcionLesion == undefined
+                ? ""
+                : this.atleta.descripcionLesion,
+            edadInicio:
+              this.atleta.edadInicio == undefined
+                ? 0
+                : parseInt(this.atleta.edadInicio),
+            idiomas: idiomas == undefined ? "" : idiomas,
+            ladoPie: ladoPie == undefined ? "" : ladoPie,
+            logros: this.atleta.logros == undefined ? "" : this.atleta.logros,
+            nivelAcademico: nivelAcademico == undefined ? "" : nivelAcademico,
+            olaPreferida: olaPreferida == undefined ? "" : olaPreferida,
+            otrosEstudios:
+              this.atleta.otrosEstudios == undefined
+                ? ""
+                : this.atleta.otrosEstudios,
+         
+            playaPractica: playaPractica == undefined ? "" : playaPractica,
+            rutinaConstancia:
+              this.atleta.rutinaConstancia == undefined
+                ? ""
+                : this.atleta.rutinaConstancia,
+            sabeEscribir: this.atleta.sabeEscribir == false ? 0 : 1,
+            sabeFirmar: this.atleta.sabeFirmar == false ? 0 : 1,
+            sabeLeer: this.atleta.sabeLeer == false ? 0 : 1,
+            tieneLesion: this.atleta.tieneLesion == false ? 0 : 1,
+            uanioCursado: uanioCursado == undefined ? "" : uanioCursado,
+            ultimaParticipacion:
+              this.atleta.ultimaParticipacion == undefined
+                ? ""
+                : this.atleta.ultimaParticipacion
+          };
+                console.log("Entree33")
+          this.persona.atleta=atleta
+                console.log("Entree44")
+            atletasController.update(this, this.persona);
+                console.log("Entreee55")
+        } else {
+          this.errMsg = "Error revisa el formulario";
+          this.showAlert = true;
+        }
+      }
+      
+      
+      
+      );
+    },
+    toggleShow() {
+      this.showAvatar = !this.show;
+    },
+    /**
+     * crop success
+     */
+    cropSuccess(imgDataUrl, field) {
+      this.avatar = imgDataUrl;
+      this.copy_of_default_image = imgDataUrl;
+    },
+    /**
+     * upload success
+     */
+    cropUploadSuccess(jsonData, field) {},
+    /**
+     * upload fail
+     */
+    cropUploadFail(status, field) {},
 
-
-        validateMethod() {
-            if (this.methodSubmit == 'update') {
-                this.createAtleta();
-            } else {
-            }
-        },
-        createAtleta() {
-            this.showAlert = false
-            this.showSuccess = false
-            this.$validator.validateAll().then(success => {
-                if (success) {
-                    let ladoPie, playaPractica, idiomas = '',
-                        olaPreferida, nivelAcademico, uanioCursado, idiomasArr = [];
-                    for (var i = this.atleta.idiomas.length - 1; i >= 0; i--) {
-                        idiomasArr.push(this.atleta.idiomas[i].name)
-                    }
-                    idiomas = idiomasArr.toString();
-                    if (this.atleta.ladoPie == true) {
-                        ladoPie = 'Izquierda'
-                    } else {
-                        ladoPie = "Derecha"
-                    }
-                    olaPreferida = this.atleta.olaPreferida.name
-                    nivelAcademico= this.atleta.nivelAcademico.name
-                    uanioCursado= this.atleta.uanioCursado.name
-                    playaPractica = this.atleta.playaPractica.nombre
-                    let persona = this.createPersona
-                    let atleta = {
-                        "rutaFoto": this.atleta.rutaFoto,
-                        "aniosPracticando": this.atleta.aniosPracticando == undefined ? 0 : parseInt(this.atleta.aniosPracticando),
-                        "compitioFechas": this.atleta.compitioFechas == false ? 0 : 1,
-                        "cuantasFechas": this.atleta.cuantasFechas == undefined ? 0 : parseInt(this.atleta.cuantasFechas),
-                        "descripcionLesion": this.atleta.descripcionLesion == undefined ? '' : this.atleta.descripcionLesion,
-                        "edadInicio": this.atleta.edadInicio == undefined ? 0 : parseInt(this.atleta.edadInicio),
-                        "idiomas": idiomas == undefined ? '' : idiomas,
-                        "ladoPie": ladoPie == undefined ? '' : ladoPie,
-                        "logros": this.atleta.logros == undefined ? '' : this.atleta.logros,
-                        "nivelAcademico": nivelAcademico == undefined ? '' : nivelAcademico,
-                        "olaPreferida": olaPreferida == undefined ? '' : olaPreferida,
-                        "otrosEstudios": this.atleta.otrosEstudios == undefined ? '' : this.atleta.otrosEstudios,
-                        "personaId": this.persona,
-                        "playaPractica": playaPractica == undefined ? '' : playaPractica,
-                        "rutinaConstancia": this.atleta.rutinaConstancia == undefined ? '' : this.atleta.rutinaConstancia,
-                        "sabeEscribir": this.atleta.sabeEscribir == false ? 0 : 1,
-                        "sabeFirmar": this.atleta.sabeFirmar == false ? 0 : 1,
-                        "sabeLeer": this.atleta.sabeLeer == false ? 0 : 1,
-                        "tieneLesion": this.atleta.tieneLesion == false ? 0 : 1,
-                        "uanioCursado": uanioCursado == undefined ? '' : uanioCursado,
-                        "ultimaParticipacion": this.atleta.ultimaParticipacion == undefined ? '' : this.atleta.ultimaParticipacion
-                    }
-                    if(this.persona.atletaId == null){
-                        atleta.id = 0;
-                        atletasController.create(this, atleta)
-                    }
-                    else{
-                        atleta.id =  this.persona.atletaId.id
-                        atletasController.update(this, atleta)
-
-                    }
-                } else {
-                    this.errMsg = 'Error revisa el formulario'
-                    this.showAlert = true
-                }
-            })
-
-        },
-        toggleShow() {
-            this.showAvatar = !this.show;
-        },
-        /**
-         * crop success
-         */
-        cropSuccess(imgDataUrl, field) {
-            this.avatar = imgDataUrl;
-            this.copy_of_default_image = imgDataUrl
-        },
-        /**
-         * upload success
-         */
-        cropUploadSuccess(jsonData, field) {
-        },
-        /**
-         * upload fail
-         */
-        cropUploadFail(status, field) {
-        },
-
-         _calculateAge(birthday) {
-            var today = new Date();
-            var birthDate = new Date(birthday);
-            var age = today.getFullYear() - birthDate.getFullYear();
-            var m = today.getMonth() - birthDate.getMonth();
-            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-                age--;
-            }
-            return age;
-       }
-
-
+    _calculateAge(birthday) {
+      var today = new Date();
+      var birthDate = new Date(birthday);
+      var age = today.getFullYear() - birthDate.getFullYear();
+      var m = today.getMonth() - birthDate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+      return age;
     }
-
-}
-
+  }
+};
 </script>
