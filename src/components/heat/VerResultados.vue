@@ -59,7 +59,8 @@
 
                         </div>
                         <div v-if="resumen[0].listNotas[0].nota>0.0">
-                            <button v-if="heat.estado=='Iniciado'" type="button" style="float:right" class="margin btn btn-flat btn-sm btn-success" @click="finalizar()"><i aria-hidden="true" class="fa fa-check"></i> Finalizar heat </button>
+                            <button v-if="heat.estado=='Iniciado'" type="button" style="float:right" class="margin btn btn-flat btn-sm btn-success" @click="finalizar()"><i aria-hidden="true" 
+                                        class="fa fa-flag-checkered"></i> Finalizar heat </button>
                         </div>
                         <div class="view-all" v-if="verTodo">
                             <div class="notes-per-heat" v-for="value in juecesHeat">

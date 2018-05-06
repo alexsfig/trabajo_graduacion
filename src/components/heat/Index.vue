@@ -30,7 +30,7 @@
                         <hr class="hr-text" :data-content="'Circuito ' + (ronda.circuitoId ? ronda.circuitoId.nombre : '')">
                         <!-- <h3 class="box-title"> <b>{{ronda.numero}}</b> del Circuito <b>{{ronda.circuitoId?ronda.circuitoId.nombre:''}}</b> </h3> -->
                         <router-link style="float:right" v-if="ronda.estado=='Calificada'" :to="{name:'rondaEnd',params:{id:ronda.id}}" class="btn btn-success btn-flat"><i aria-hidden="true" 
-                                        class="fa fa-flag-checkered"></i> Dar por finalizada
+                                        class="fa fa-flag-checkered"></i> Dar por finalizada la Ronda
                         </router-link>
                     </div>
                     <!-- /.box-header -->
@@ -42,11 +42,11 @@
                                 <td>{{ props.row.natletas }} atletas</td>
                                 <td class="nowrap">
                                     <router-link v-if="props.row.estado=='Por iniciar'" :to="{ name: 'heatInit', params: { id: props.row.id }}">
-                                        <button type="button" class="margin btn btn-flat btn-sm btn-primary"><i aria-hidden="true" class="fa fa-pencil-square-o"></i> Iniciar Heat</button>
+                                        <button type="button" class="margin btn btn-flat btn-sm btn-primary"><i aria-hidden="true" class="fa fa-pencil-square-o"></i> Gestionar Heat</button>
                                     </router-link>
                                     <div v-if="props.row.estado!='En espera'">
                                         <router-link v-if="props.row.estado!='Por iniciar'" :to="{ name: 'ResultadoHeat', params: { id: props.row.id }}">
-                                            <button type="button" class="margin btn btn-flat btn-sm btn-primary"><i aria-hidden="true" class="fa fa-pencil-square-o"></i> Revisar</button>
+                                            <button type="button" class="margin btn btn-flat btn-sm btn-primary"><i aria-hidden="true" class="fa fa-check"></i> Revisar</button>
                                         </router-link>
                                     </div>
                                 </td>

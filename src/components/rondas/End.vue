@@ -41,8 +41,7 @@
 
                            <router-link v-if="nuevoHabilitar" :to="{ name: 'circuitosNuevaRonda', params: { id: id }}">
                                         <button type="button" class="margin btn btn-flat btn-sm btn-primary"
-                                       ><i aria-hidden="true"
-                                         class="fa fa-pencil-square-o"></i> Nueva Ronda </button>
+                                       ><i class="fa fa-plus"></i> Nueva Ronda </button>
                                         </router-link>
 
                             </div>

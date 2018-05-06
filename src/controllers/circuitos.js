@@ -248,7 +248,7 @@ descripcion:circuito.descripcion,
             .then((resp) => {
                 if (resp.status>= 200 && resp.status <=300){
                     context.showSuccess = true
-                    context.successMsg = "Circuito cerrado exitosamente"
+                    context.successMsg = "Circuito Finalizado exitosamente"
                     context.fetchData()
             
                 }

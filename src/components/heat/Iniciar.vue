@@ -76,7 +76,7 @@
                                       <div v-if=" props.row.rolJuezId.rol=='Evaluador'">
                                         <button v-if="!juezLider" type="button" class="margin btn btn-flat btn-sm btn-success" 
                                         @click="ponerLider(props.row)"><i aria-hidden="true" 
-                                        class="fa fa-at"></i> Lider</button>
+                                        class="fa fa-user"></i> Lider</button>
                                       </div>
                                     </td>
                                   </template>
