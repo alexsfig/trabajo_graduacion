@@ -1,9 +1,7 @@
 <style>
-
 .vue-js-switch#changed-font {
-    font-size: 16px;
+  font-size: 16px;
 }
-
 </style>
 <template>
     <div>
@@ -290,7 +288,6 @@
                                                 </div>
                                             </div> -->
 
-
                                              <div class="col-xs-12 col-sm-4">
                                                 <div class="fgroup required" :class="{ 'has-error': errors.has('form-2-1.uanioCursado') }">
                                                     <label for="">Ultimo Año cursado</label>
@@ -516,7 +513,7 @@
                                             Agregar certificaciones:
                                         </h3>
                                     <div class="col-sm-12">
-                                        <form @submit.prevent="add_certificacion('form-4')" action="" data-vv-scope="form-4">
+                                        <form id="formaddCer" name="formaddCer" @submit.prevent="add_certificacion('form-4')" action="" data-vv-scope="form-4">
 
                                             <div class="col-sm-5">
 
@@ -665,535 +662,583 @@
 </template>
 
 <script>
+import users from "../../controllers/users.js";
+import playasController from "../../controllers/playas.js";
+import personaController from "../../controllers/persona.js";
+import certificacionController from "../../controllers/certificacion.js";
+import vSelect from "vue-select";
+import moment from "moment";
+import myUpload from "vue-image-crop-upload";
+const default_avatar = require("@/assets/images/default_avatar.png");
 
-import users from '../../controllers/users.js'
-import playasController from '../../controllers/playas.js'
-import personaController from '../../controllers/persona.js'
-import certificacionController from '../../controllers/certificacion.js'
-import vSelect from "vue-select"
-import moment from "moment"
-import myUpload from 'vue-image-crop-upload';
-const default_avatar = require('@/assets/images/default_avatar.png')
-
-
-import masked from "vue-masked-input"
+import masked from "vue-masked-input";
 export default {
-    name: 'Usuarios',
-    data() {
-        return {
-            errMsg: '',
-            errorMsg: '',
-            showAlert: false,
-            showSuccess: false,
-            successMsg: "",
-            errMsg: "",
-            isLogin: false,
-            createPersona: {
-                'fechaNacimiento': null,
-                'telefono': null,
-                'dui': null,
-                'nit': null
-            },
-            filename: '',
-            createJuez: {},
-            createEntrenador: {},
-            createMiembroJunta: {},
-            newCert: {
-                fecha: null,
-            },
-            creaCert: [],
-            createAtleta: {
-                compitioFechas: false,
-                sabeEscribir: false,
-                sabeFirmar: false,
-                sabeLeer: false,
-                tieneLesion: false,
-                ladoPie: true,
-                olaPreferida: null,
-                playaPractica: null,
-                idiomas: null
-
-            },
-            type: null,
-            confirm_password: "",
-            roles: [],
-            clearBtn: true,
-            todayBtn: true,
-            closeOnSelected: true,
-            limitFrom: '',
-            datosPersona: true,
-            datosTipo: false,
-            limitTo: '',
-            format: 'yyyy-MM-dd',
-            weekStartsWith: 0,
-            has_lession: true,
-            has_competition: true,
-            positions: [
-                {
-                    name: 'Juez'
-                },
-                {
-                    name: 'Atleta'
-                },
-                {
-                    name: 'Miembro Junta'
-                },
-                {
-                    name: 'Entrenador'
-                },
-
-            ],
-            jerarquia: [{
-                    name: 'Presidente'
-                }, {
-                    name: 'Vice Presidente'
-                }, {
-                    name: 'Secretario'
-                }, {
-                    name: 'Tesorero'
-                }, {
-                    name: 'Vocal'
-                }, {
-                    name: 'Sindico'
-                },
-
-            ],
-
-            idiomas: [{
-                    name: 'Español'
-                }, {
-                    name: 'Ingles'
-                }, {
-                    name: 'Frances'
-                }, {
-                    name: 'Aleman'
-                }, {
-                    name: 'Portugues'
-                },
-
-            ],
-            playas: [],
-            sex : '',
-            sexo:[
-                {name: 'Femenino', shortName: 'F'},
-                {name: 'Masculino', shortName: 'M'}
-            ],
-            olas: [{
-                    name: 'Derecha'
-                }, {
-                    name: 'Izquierda'
-                }, {
-                    name: 'Pico ó Mixta'
-                }, {
-                    name: 'Cerrote'
-                }, {
-                    name: 'Viento'
-                }, {
-                    name: 'De Fondo ó Swell'
-                }, {
-                    name: 'Huecas'
-                }, {
-                    name: 'Derramadas'
-                }, {
-                    name: 'Onduladas'
-                }, {
-                    name: 'Colapso'
-                },
-
-            ],
-            niveles: [{
-                    name: 'Nivel Inicial'
-                }, {
-                    name: 'Nivel Parvulario'
-                }, {
-                    name: 'Nivel Basico'
-                }, {
-                    name: 'Nivel Medio'
-                }, {
-                    name: 'Nivel Superior'
-                }
-                
-
-            ],
-             ucursado: [{
-                    name: 'Nivel Inicial'
-                }, {
-                    name: 'Nivel Parvulario'
-                }, {
-                    name: 'Nivel Basico-1er Ciclo'
-                }, 
-                {
-                    name: 'Nivel Basico-2do Ciclo'
-                },
-                {
-                    name: 'Nivel Basico-3er Ciclo'
-                },
-                {
-                    name: 'Nivel Medio - 1er año de Bachillerado'
-                },
-                {
-                    name: 'Nivel Medio - 2do año de Bachillerado'
-                },
-                {
-                    name: 'Nivel Medio - 3er año de Bachillerado(Opcional)'
-                },
-                 {
-                    name: 'Nivel Superior - No Finalizado'
-                },
-                {
-                    name: 'Nivel Superior - Finalizado'
-                }
-
-            ],
-            columns: [{
-                label: "titulo",
-                field: "titulo",
-            }, {
-                label: "fecha",
-                field: "fecha",
-            }, {
-                label: "lugar",
-                field: "lugar",
-            }, {
-                label: "Action"
-            }],
-            avatar: default_avatar,
-            juez: null,
-            imgDataUrl: '', // the datebase64 url of created image
-            showAvatar: false,
-            params: {},
-            headers: {
-                smail: '*_~'
-            },
-            show: false,
-            use_default_avatar: false
+  name: "Usuarios",
+  data() {
+    return {
+      errMsg: "",
+      errorMsg: "",
+      showAlert: false,
+      showSuccess: false,
+      successMsg: "",
+      errMsg: "",
+      isLogin: false,
+      createPersona: {
+        fechaNacimiento: null,
+        telefono: null,
+        dui: null,
+        nit: null
+      },
+      filename: "",
+      createJuez: {},
+      createEntrenador: {},
+      createMiembroJunta: {},
+      newCert: {
+        fecha: null
+      },
+      creaCert: [],
+      createAtleta: {
+        compitioFechas: false,
+        sabeEscribir: false,
+        sabeFirmar: false,
+        sabeLeer: false,
+        tieneLesion: false,
+        ladoPie: true,
+        olaPreferida: null,
+        playaPractica: null,
+        idiomas: null,
+          nivelAcademico: null,
+          uanioCursado: null
+      },
+      type: null,
+      confirm_password: "",
+      roles: [],
+      clearBtn: true,
+      todayBtn: true,
+      closeOnSelected: true,
+      limitFrom: "",
+      datosPersona: true,
+      datosTipo: false,
+      limitTo: "",
+      format: "yyyy-MM-dd",
+      weekStartsWith: 0,
+      has_lession: true,
+      has_competition: true,
+      positions: [
+        {
+          name: "Juez"
+        },
+        {
+          name: "Atleta"
+        },
+        {
+          name: "Miembro Junta"
+        },
+        {
+          name: "Entrenador"
         }
-    },
-    components: {
-        vSelect,
-        'masked-input': masked,
-        'my-upload': myUpload,
-    },
-    created() {
-        this.filename = (new Date().getTime()).toString(36)
-        this.createAtleta.ruta_foto =  "persona/atleta/"+this.filename+".png"
-        this.fetchData()
-            //console.log(personaController.index())
-        console.log(moment)
-    },
-    watch: {
-        use_default_avatar(val, oldVal){
-            if(val == true){
-                this.avatar = default_avatar
-            }
-            else{
-                this.avatar = ''
-            }
+      ],
+      jerarquia: [
+        {
+          name: "Presidente"
         },
-        sex(val, oldVal){
-            this.createPersona.sexo = val.shortName
+        {
+          name: "Vice Presidente"
         },
-        juez(val, old_val) {
-            if (val != null) {
-                $.each(this.creaCert, function(index, val) {
-                    val.juezId = this.juez
-                    console.log(val)
-
-                    //certificacionController.create(this, val)
-                });
-            }
+        {
+          name: "Secretario"
+        },
+        {
+          name: "Tesorero"
+        },
+        {
+          name: "Vocal"
+        },
+        {
+          name: "Sindico"
         }
+      ],
+
+      idiomas: [
+        {
+          name: "Español"
+        },
+        {
+          name: "Ingles"
+        },
+        {
+          name: "Frances"
+        },
+        {
+          name: "Aleman"
+        },
+        {
+          name: "Portugues"
+        }
+      ],
+      playas: [],
+      sex: "",
+      sexo: [
+        { name: "Femenino", shortName: "F" },
+        { name: "Masculino", shortName: "M" }
+      ],
+      olas: [
+        {
+          name: "Derecha"
+        },
+        {
+          name: "Izquierda"
+        },
+        {
+          name: "Pico ó Mixta"
+        },
+        {
+          name: "Cerrote"
+        },
+        {
+          name: "Viento"
+        },
+        {
+          name: "De Fondo ó Swell"
+        },
+        {
+          name: "Huecas"
+        },
+        {
+          name: "Derramadas"
+        },
+        {
+          name: "Onduladas"
+        },
+        {
+          name: "Colapso"
+        }
+      ],
+      niveles: [
+        {
+          name: "Nivel Inicial"
+        },
+        {
+          name: "Nivel Parvulario"
+        },
+        {
+          name: "Nivel Basico"
+        },
+        {
+          name: "Nivel Medio"
+        },
+        {
+          name: "Nivel Superior"
+        }
+      ],
+      ucursado: [
+        {
+          name: "Nivel Inicial"
+        },
+        {
+          name: "Nivel Parvulario"
+        },
+        {
+          name: "Nivel Basico-1er Ciclo"
+        },
+        {
+          name: "Nivel Basico-2do Ciclo"
+        },
+        {
+          name: "Nivel Basico-3er Ciclo"
+        },
+        {
+          name: "Nivel Medio - 1er año de Bachillerado"
+        },
+        {
+          name: "Nivel Medio - 2do año de Bachillerado"
+        },
+        {
+          name: "Nivel Medio - 3er año de Bachillerado(Opcional)"
+        },
+        {
+          name: "Nivel Superior - No Finalizado"
+        },
+        {
+          name: "Nivel Superior - Finalizado"
+        }
+      ],
+      columns: [
+        {
+          label: "titulo",
+          field: "titulo"
+        },
+        {
+          label: "fecha",
+          field: "fecha"
+        },
+        {
+          label: "lugar",
+          field: "lugar"
+        },
+        {
+          label: "Action"
+        }
+      ],
+      avatar: default_avatar,
+      juez: null,
+      imgDataUrl: "", // the datebase64 url of created image
+      showAvatar: false,
+      params: {},
+      headers: {
+        smail: "*_~"
+      },
+      show: false,
+      use_default_avatar: false
+    };
+  },
+  components: {
+    vSelect,
+    "masked-input": masked,
+    "my-upload": myUpload
+  },
+  created() {
+    this.filename = new Date().getTime().toString(36);
+    this.createAtleta.ruta_foto = "persona/atleta/" + this.filename + ".png";
+    this.fetchData();
+    //console.log(personaController.index())
+    console.log(moment);
+  },
+  watch: {
+    use_default_avatar(val, oldVal) {
+      if (val == true) {
+        this.avatar = default_avatar;
+      } else {
+        this.avatar = "";
+      }
     },
-    methods: {
-        first_step() {
-            return new Promise((resolve, reject) => {
-                this.$validator.validateAll('form-2-1').then(success => {
-                    if (success) {
-                        if(this.createAtleta.aniosPracticando <=  this._calculateAge(this.createPersona.fechaNacimiento) - this.createAtleta.edadInicio){
-                        resolve(true)
-                        this.showAlert = false
-                        this.errMsg = ''
-                    }
+    sex(val, oldVal) {
+      this.createPersona.sexo = val.shortName;
+    },
+    juez(val, old_val) {
+      if (val != null) {
+        $.each(this.creaCert, function(index, val) {
+          val.juezId = this.juez;
+          console.log(val);
 
-                        else {
-                        reject(true)
-                        this.showAlert = true
-                        this.errMsg = "Los Años Practicando no pueden ser superior al intervalo de tiempo entre la Edad de Inicio y la Edad del Atleta"}
-                    } else {
-                        reject(true)
-                        
-                    }
-                });
-            })
-        },
-        second_step() {
-            return new Promise((resolve, reject) => {
-
-                this.$validator.validateAll('form-2-2').then(success => {
-                    if (success) {
-                        resolve(true)
-                    } else {
-                        reject(true)
-                    }
-                });
-            })
-        },
-        third_step(){
-            return new Promise((resolve, reject) => {
-                this.$validator.validateAll('form-avatar').then(success => {
-                    this.showAlert = false
-                    this.showSuccess = false
-                    if (success) {
-                        resolve(true)
-                    }
-                    else{
-                        this.showAlert = true
-                        this.errMsg = "Please complete all required fields"
-                        reject(true)
-                    }
-                });
-            })
-        },
-        resetForm() {
-            this.createPersona = {
-                    'fechaNacimiento': null,
-                    'telefono': null,
-                    'dui': null,
-                    'nit': null
-                },
-                this.createJuez = {},
-                this.createEntrenador = {},
-                this.createMiembroJunta = {},
-                this.newCert = {
-                    fecha: null,
-                },
-                this.creaCert = [],
-                this.createAtleta = {
-                    "compitioFechas": false,
-                    "sabeEscribir": false,
-                    "sabeFirmar": false,
-                    "sabeLeer": false,
-                    "tieneLesion": false,
-                    "ladoPie": true,
-
-                },
-                this.type = null,
-                this.datosPersona = true
-            this.datosTipo = false
-        },
-        add_certificacion(scope) {
-            this.$validator.validateAll(scope).then(success => {
-                if (success) {
-                    this.creaCert.push(this.newCert)
-                    this.newCert = {
-                        fecha: null,
-                    }
-                } else {
-                    this.showAlert = true
-                    this.errMsg = "Por favor complete el formulario"
-                }
-            });
-        },
-        deleteCert(id) {
-            this.creaCert.splice(id, 1);
-        },
-        onChangeLesion(evt) {
-            if (evt.value == true) {
-                this.has_lession = false
-            } else {
-                this.has_lession = true
-            }
-        },
-        onChangeCompetition(evt) {
-            if (evt.value == true) {
-                this.has_competition = false
-            } else {
-                this.has_competition = true
-            }
-        },
-        submit(scope) {
-            this.showAlert = false
-            this.showSuccess = false
-            this.$validator.validateAll(scope).then(success => {
-                if (success) {
-                    this.datosPersona = false
-                    this.datosTipo = true
-                } else {
-                    this.showAlert = true
-                    this.errMsg = "Por favor complete el formulario"
-                }
-            });
-        },
-        submitEntrenador(scope) {
-            this.showAlert = false
-            this.showSuccess = false
-            this.$validator.validateAll(scope).then(success => {
-                if (success) {
-                    let persona = this.createPersona
-                    let entrenador = {
-                        "descripcion": this.createEntrenador.descripcion
-
-                    }
-                    persona.entrenador=entrenador;
-                    this.entrenador = entrenador
-                    personaController.createEntrenador(this, persona)
-                      console.log("////////////////////////")
-                    console.log(persona)
-                } else {
-                    this.showAlert = true
-                    this.errMsg = "Por favor complete el formulario"
-                }
-
-            });
-
-        },
-        submitMiembroJunta(scope) {
-            this.showAlert = false
-            this.showSuccess = false
-            this.$validator.validateAll(scope).then(success => {
-                if (success) {
-                    let persona = this.createPersona
-                    let miembroJunta = {
-                        "nivelJerarquia": this.createMiembroJunta.nivelJerarquia.name
-                       
-
-                    }
-                    persona.miembroJunta=miembroJunta;
-
-                    this.miembroJunta = miembroJunta
-                    personaController.createMiembroJunta(this, persona)
-                    console.log(miembroJunta)
-                } else {
-                    this.showAlert = true
-                    this.errMsg = "Por favor complete el formulario"
-                }
-
-            });
-
-        },
-        submitJuez(scope) {
-            this.showAlert = false
-            this.showSuccess = false
-            this.$validator.validateAll(scope).then(success => {
-                if (success) {
-                    let persona = this.createPersona
-                    let juez = {
-                        "descripcion": this.createJuez.descripcion,
-                         "certificacionList":this.creaCert
-                        //"personaId": persona,
-                    }
-                    persona.juez=juez;
-                    this.juez = juez
-                    personaController.createJuez(this, persona)
-                    console.log(juez)
-                } else {
-                    this.showAlert = true
-                    this.errMsg = "Por favor complete el formulario"
-                }
-
-            });
-
-        },
-        submitAtleta() {
-            this.showAlert = false
-            this.showSuccess = false
-            this.$validator.validateAll().then(success => {
-                if (success) {
-                    this.datosPersona = false
-                    this.datosTipo = true
-                    let ladoPie, playaPractica, idiomas = '',
-                        olaPreferida, nivelAcademico, uanioCursado, idiomasArr = [];
-                    for (var i = this.createAtleta.idiomas.length - 1; i >= 0; i--) {
-                        idiomasArr.push(this.createAtleta.idiomas[i].name)
-                    }
-                    idiomas = idiomasArr.toString();
-
-                    if (this.createAtleta.ladoPie == true) {
-                        ladoPie = 'Izquierda'
-                    } else {
-                        ladoPie = "Derecha"
-                    }
-                    olaPreferida = this.createAtleta.olaPreferida.name
-                    nivelAcademico= this.createAtleta.nivelAcademico.name
-                    uanioCursado= this.createAtleta.uanioCursado.name
-                    playaPractica = this.createAtleta.playaPractica.nombre
-                    let persona = this.createPersona
-                    let atleta = {
-                     
-                        "ruta_foto": this.createAtleta.ruta_foto,
-                        "aniosPracticando": this.createAtleta.aniosPracticando == undefined ? 0 : parseInt(this.createAtleta.aniosPracticando),
-                        "compitioFechas": this.createAtleta.compitioFechas == false ? 0 : 1,
-                        "cuantasFechas": this.createAtleta.cuantasFechas == undefined ? 0 : parseInt(this.createAtleta.cuantasFechas),
-                        "descripcionLesion": this.createAtleta.descripcionLesion == undefined ? '' : this.createAtleta.descripcionLesion,
-                        "edadInicio": this.createAtleta.edadInicio == undefined ? 0 : parseInt(this.createAtleta.edadInicio),
-                        "idiomas": idiomas == undefined ? '' : idiomas,
-                        "ladoPie": ladoPie == undefined ? '' : ladoPie,
-                        "logros": this.createAtleta.logros == undefined ? '' : this.createAtleta.logros,
-                        "nivelAcademico": nivelAcademico == undefined ? '' : nivelAcademico,
-                        "olaPreferida": olaPreferida == undefined ? '' : olaPreferida,
-                        "otrosEstudios": this.createAtleta.otrosEstudios == undefined ? '' : this.createAtleta.otrosEstudios,
-                       // "personaId": persona,
-                        "playaPractica": playaPractica == undefined ? '' : playaPractica,
-                        "rutinaConstancia": this.createAtleta.rutinaConstancia == undefined ? '' : this.createAtleta.rutinaConstancia,
-                        "sabeEscribir": this.createAtleta.sabeEscribir == false ? 0 : 1,
-                        "sabeFirmar": this.createAtleta.sabeFirmar == false ? 0 : 1,
-                        "sabeLeer": this.createAtleta.sabeLeer == false ? 0 : 1,
-                        "tieneLesion": this.createAtleta.tieneLesion == false ? 0 : 1,
-                        "uanioCursado": uanioCursado == undefined ? '' : uanioCursado,
-                        "ultimaParticipacion": this.createAtleta.ultimaParticipacion == undefined ? '' : this.createAtleta.ultimaParticipacion
-                    }
-                    persona.atleta=atleta;
-                    personaController.createAtleta(this, persona)
-                    console.log(atleta)
-                } else {
-                    this.showAlert = true
-                    this.errMsg = "Por favor complete el formulario"
-                }
-            });
-        },
-        returnToSelect() {
-            this.datosPersona = true
-            this.datosTipo = false
-        },
-        fetchData() {
-            playasController.index(this)
-        },
-        toggleShow() {
-            this.showAvatar = !this.show;
-        },
-        /**
-         * crop success
-         */
-        cropSuccess(imgDataUrl, field) {
-            console.log('-------- crop success --------');
-            this.avatar = imgDataUrl;
-        },
-        /**
-         * upload success
-         */
-        cropUploadSuccess(jsonData, field) {
-            console.log('-------- upload success --------');
-        },
-        /**
-         * upload fail
-         */
-        cropUploadFail(status, field) {
-            console.log('-------- upload fail --------');
-        },
-
-         _calculateAge(birthday) {
-            var today = new Date();
-            var birthDate = new Date(birthday);
-            var age = today.getFullYear() - birthDate.getFullYear();
-            var m = today.getMonth() - birthDate.getMonth();
-            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-                age--;
-            }
-            return age;
-       }
-
+          //certificacionController.create(this, val)
+        });
+      }
     }
+  },
+  methods: {
+    first_step() {
+      return new Promise((resolve, reject) => {
+        this.$validator.validateAll("form-2-1").then(success => {
+          if (success) {
+            if (
+              this.createAtleta.aniosPracticando <=
+              this._calculateAge(this.createPersona.fechaNacimiento) -
+                this.createAtleta.edadInicio
+            ) {
+              resolve(true);
+              this.showAlert = false;
+              this.errMsg = "";
+            } else {
+              reject(true);
+              this.showAlert = true;
+              this.errMsg =
+                "Los Años Practicando no pueden ser superior al intervalo de tiempo entre la Edad de Inicio y la Edad del Atleta";
+            }
+          } else {
+            reject(true);
+          }
+        });
+      });
+    },
+    second_step() {
+      return new Promise((resolve, reject) => {
+        this.$validator.validateAll("form-2-2").then(success => {
+          if (success) {
+            resolve(true);
+          } else {
+            reject(true);
+          }
+        });
+      });
+    },
+    third_step() {
+      return new Promise((resolve, reject) => {
+        this.$validator.validateAll("form-avatar").then(success => {
+          this.showAlert = false;
+          this.showSuccess = false;
+          if (success) {
+            resolve(true);
+          } else {
+            this.showAlert = true;
+            this.errMsg = "Please complete all required fields";
+            reject(true);
+          }
+        });
+      });
+    },
+    resetForm() {
+      (this.createPersona = {
+        fechaNacimiento: null,
+        telefono: null,
+        dui: null,
+        nit: null
+      }),
+        (this.createJuez = {}),
+        (this.createEntrenador = {}),
+        (this.createMiembroJunta = {}),
+        (this.newCert = {
+          fecha: null
+        }),
+        (this.creaCert = []),
+        (this.createAtleta = {
+          compitioFechas: false,
+          sabeEscribir: false,
+          sabeFirmar: false,
+          sabeLeer: false,
+          tieneLesion: false,
+          ladoPie: true,
+        
+        }),
+        (this.type = null),
+        (this.datosPersona = true);
+      this.datosTipo = false;
+    },
+    add_certificacion(scope) {
+      this.$validator.validateAll(scope).then(success => {
+        if (success) {
+          this.creaCert.push(this.newCert);
+          this.newCert = {
+            fecha: ' '
+          };
 
-}
+       
+          console.log(this.errors)
+        
 
+  
+        } else {
+          this.showAlert = true;
+          this.errMsg = "Por favor complete el formulario";
+        }
+      });
+    },
+    deleteCert(id) {
+      this.creaCert.splice(id, 1);
+    },
+    onChangeLesion(evt) {
+      if (evt.value == true) {
+        this.has_lession = false;
+      } else {
+        this.has_lession = true;
+      }
+    },
+    onChangeCompetition(evt) {
+      if (evt.value == true) {
+        this.has_competition = false;
+      } else {
+        this.has_competition = true;
+      }
+    },
+    submit(scope) {
+      this.showAlert = false;
+      this.showSuccess = false;
+      this.$validator.validateAll(scope).then(success => {
+        if (success) {
+          this.datosPersona = false;
+          this.datosTipo = true;
+        } else {
+          this.showAlert = true;
+          this.errMsg = "Por favor complete el formulario";
+        }
+      });
+    },
+    submitEntrenador(scope) {
+      this.showAlert = false;
+      this.showSuccess = false;
+      this.$validator.validateAll(scope).then(success => {
+        if (success) {
+          let persona = this.createPersona;
+          let entrenador = {
+            descripcion: this.createEntrenador.descripcion
+          };
+          persona.entrenador = entrenador;
+          this.entrenador = entrenador;
+          personaController.createEntrenador(this, persona);
+          console.log("////////////////////////");
+          console.log(persona);
+        } else {
+          this.showAlert = true;
+          this.errMsg = "Por favor complete el formulario";
+        }
+      });
+    },
+    submitMiembroJunta(scope) {
+      this.showAlert = false;
+      this.showSuccess = false;
+      this.$validator.validateAll(scope).then(success => {
+        if (success) {
+          let persona = this.createPersona;
+          let miembroJunta = {
+            nivelJerarquia: this.createMiembroJunta.nivelJerarquia.name
+          };
+          persona.miembroJunta = miembroJunta;
+
+          this.miembroJunta = miembroJunta;
+          personaController.createMiembroJunta(this, persona);
+          console.log(miembroJunta);
+        } else {
+          this.showAlert = true;
+          this.errMsg = "Por favor complete el formulario";
+        }
+      });
+    },
+    submitJuez(scope) {
+      this.showAlert = false;
+      this.showSuccess = false;
+      this.$validator.validateAll(scope).then(success => {
+        if (success) {
+          let persona = this.createPersona;
+          let juez = {
+            descripcion: this.createJuez.descripcion,
+            certificacionList: this.creaCert
+            //"personaId": persona,
+          };
+          persona.juez = juez;
+          this.juez = juez;
+          personaController.createJuez(this, persona);
+          console.log(juez);
+        } else {
+          this.showAlert = true;
+          this.errMsg = "Por favor complete el formulario";
+        }
+      });
+    },
+    submitAtleta() {
+      this.showAlert = false;
+      this.showSuccess = false;
+      this.$validator.validateAll().then(success => {
+        if (success) {
+          this.datosPersona = false;
+          this.datosTipo = true;
+          let ladoPie,
+            playaPractica,
+            idiomas = "",
+            olaPreferida,
+            nivelAcademico,
+            uanioCursado,
+            idiomasArr = [];
+          for (var i = this.createAtleta.idiomas.length - 1; i >= 0; i--) {
+            idiomasArr.push(this.createAtleta.idiomas[i].name);
+          }
+          idiomas = idiomasArr.toString();
+
+          if (this.createAtleta.ladoPie == true) {
+            ladoPie = "Izquierda";
+          } else {
+            ladoPie = "Derecha";
+          }
+          olaPreferida = this.createAtleta.olaPreferida.name;
+          nivelAcademico = this.createAtleta.nivelAcademico.name;
+          uanioCursado = this.createAtleta.uanioCursado.name;
+          playaPractica = this.createAtleta.playaPractica.nombre;
+          let persona = this.createPersona;
+          let atleta = {
+            ruta_foto: this.createAtleta.ruta_foto,
+            aniosPracticando:
+              this.createAtleta.aniosPracticando == undefined
+                ? 0
+                : parseInt(this.createAtleta.aniosPracticando),
+            compitioFechas: this.createAtleta.compitioFechas == false ? 0 : 1,
+            cuantasFechas:
+              this.createAtleta.cuantasFechas == undefined
+                ? 0
+                : parseInt(this.createAtleta.cuantasFechas),
+            descripcionLesion:
+              this.createAtleta.descripcionLesion == undefined
+                ? ""
+                : this.createAtleta.descripcionLesion,
+            edadInicio:
+              this.createAtleta.edadInicio == undefined
+                ? 0
+                : parseInt(this.createAtleta.edadInicio),
+            idiomas: idiomas == undefined ? "" : idiomas,
+            ladoPie: ladoPie == undefined ? "" : ladoPie,
+            logros:
+              this.createAtleta.logros == undefined
+                ? ""
+                : this.createAtleta.logros,
+            nivelAcademico: nivelAcademico == undefined ? "" : nivelAcademico,
+            olaPreferida: olaPreferida == undefined ? "" : olaPreferida,
+            otrosEstudios:
+              this.createAtleta.otrosEstudios == undefined
+                ? ""
+                : this.createAtleta.otrosEstudios,
+            // "personaId": persona,
+            playaPractica: playaPractica == undefined ? "" : playaPractica,
+            rutinaConstancia:
+              this.createAtleta.rutinaConstancia == undefined
+                ? ""
+                : this.createAtleta.rutinaConstancia,
+            sabeEscribir: this.createAtleta.sabeEscribir == false ? 0 : 1,
+            sabeFirmar: this.createAtleta.sabeFirmar == false ? 0 : 1,
+            sabeLeer: this.createAtleta.sabeLeer == false ? 0 : 1,
+            tieneLesion: this.createAtleta.tieneLesion == false ? 0 : 1,
+            uanioCursado: uanioCursado == undefined ? "" : uanioCursado,
+            ultimaParticipacion:
+              this.createAtleta.ultimaParticipacion == undefined
+                ? ""
+                : this.createAtleta.ultimaParticipacion
+          };
+          persona.atleta = atleta;
+          personaController.createAtleta(this, persona);
+          console.log(atleta);
+        } else {
+          this.showAlert = true;
+          this.errMsg = "Por favor complete el formulario";
+        }
+      });
+    },
+    returnToSelect() {
+      this.datosPersona = true;
+      this.datosTipo = false;
+    },
+    fetchData() {
+      playasController.index(this);
+    },
+    toggleShow() {
+      this.showAvatar = !this.show;
+    },
+    /**
+     * crop success
+     */
+    cropSuccess(imgDataUrl, field) {
+      console.log("-------- crop success --------");
+      this.avatar = imgDataUrl;
+    },
+    /**
+     * upload success
+     */
+    cropUploadSuccess(jsonData, field) {
+      console.log("-------- upload success --------");
+    },
+    /**
+     * upload fail
+     */
+    cropUploadFail(status, field) {
+      console.log("-------- upload fail --------");
+    },
+
+    _calculateAge(birthday) {
+      var today = new Date();
+      var birthDate = new Date(birthday);
+      var age = today.getFullYear() - birthDate.getFullYear();
+      var m = today.getMonth() - birthDate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+      return age;
+    }
+  }
+};
 </script>

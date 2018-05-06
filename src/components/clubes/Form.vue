@@ -223,7 +223,10 @@ export default {
       club: {
         correo: null,
         playaId: null,
-        entrenadorId: null
+        entrenadorId: null,
+        celular:null,
+        telefonoFijo:null,
+        fundacion:null
       },
       playas: [],
       entrenadores: []

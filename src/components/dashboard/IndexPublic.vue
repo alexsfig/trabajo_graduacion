@@ -160,8 +160,23 @@
   </table>
           </div>          </div>
                 </div>
+                 <div class="col-12">
+                             <div class="box box-success">
+                  <div class="box-header with-border">
+
+                      <div class="box-header with-border">
+                    <i style="color:#031328" class="fa fa-list-ol"></i>
+
+                    <h3 class="box-title "><b>Calendario</b></h3>
+                  </div>
+                  <div class="box-body text-justify">
+          <full-calendar :config="config" :events="events" eventClick="eventClick" />
+
+              
+                  </div>    </div></div></div>
               </div>
                
+
             </div>
 
             
@@ -187,6 +202,12 @@ import rankingController from "../../controllers/ranking.js";
 import { Tweet, Moment, Timeline } from 'vue-tweet-embed'
 import vSelect from "vue-select";
 import categorias from '../../controllers/categorias.js';
+import moment from "moment";
+import {
+    FullCalendar
+}
+from "vue-full-calendar";
+import calendarController from "../../components/calendario/Index";
 const BASE_URL = process.env.BASE_URL;
 export default {
   name: "clubes",
@@ -202,7 +223,15 @@ export default {
       patrocinadors: [],
       noticias: [],
       catSelect:'',
-      ranking:[]
+      ranking:[],
+      events:[],
+         config: {
+           locale: 'es',
+                defaultView: "month",
+                eventRender: function(event, element) {
+                    console.log(event);
+                }
+            }
     };
   },
   components: {},
@@ -212,12 +241,14 @@ export default {
   watch: {
     $route: "fetchData",
     categorias:"setDefault",
-    catSelect:"changeCat"
+    catSelect:"changeCat",
+     fechas: "mounted"
   },
       components: {
          'Tweet': Tweet,
         'Timeline': Timeline,
-        vSelect
+        vSelect,
+        FullCalendar
   
     },
   methods: {
@@ -256,7 +287,45 @@ this.catSelect=this.categorias[0];
       patrocinadoresController.index(this);
       noticiasController.indexActuales(this);
     
-    }
+    },
+          mounted() {
+                console.log("entrell");
+
+                this.fechas.forEach(element => {
+                    console.log(element.fecha);
+
+                    console.log(
+                        "entre" + "*",
+                        element.fecha.substring(0, 4),
+                        element.fecha.substring(5, 7),
+                        element.fecha.substring(8, 10)
+                    );
+                    this.events.push({
+                        title: element.nombre,
+                        start: moment(
+                            new Date(
+                                element.fecha.substring(0, 4),
+                                element.fecha.substring(5, 7),
+                                element.fecha.substring(8, 10)
+                            )
+                        ),
+                        end: moment(
+                            new Date(
+                                element.fecha.substring(0, 4),
+                                element.fecha.substring(5, 7),
+                                element.fecha.substring(8, 10)
+                              
+                            )
+                        ).add(1, "d"),
+                        // description: 'Competencia ',
+                        color: "red",
+                    //    url: "/admin/circuitofecha/" + element.id
+
+
+                        // date:new Date(element.fecha.substring(0,4),element.fecha.substring(5,7),element.fecha.substring(8,10))});
+                    });
+                });
+            }
   }
 };
 </script>
@@ -269,9 +338,28 @@ this.catSelect=this.categorias[0];
 .active {
   width: 100%;
 }
-.custom-img{
-    width: 75px;
-    margin:auto;
+.custom-img {
+  width: 75px;
+  margin: auto;
+}
+
+#calendario {
+    font-family: "Avenir", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
+}
+a.fc-day-grid-event{
+    background-color: #3e9dbd !important;
+    border-color: #31b6e4 !important;
+    height: 30px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 13px;
 }
 </style>
+
+
 
