@@ -65,9 +65,9 @@ export default {
             .then((resp) => {
                 context.resumen = resp.data
                 context.showSuccess = true
-                context.successMsg = "Finalizado exitosamente"
-                context.fetchData()
-                console.log(resp.data)
+                context.$swal("Exito!", "Heat Finalizado  con exito", "success")
+                   
+                context.volver();
            /*     for (let i of  context.heats) {
                 i.natletas=Object.keys(i.atletasHeatList).length;
           
