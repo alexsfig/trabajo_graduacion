@@ -54,21 +54,21 @@
                             <vue-good-table :columns="columns" :rows="value.atletasHeatList" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
                                 <template slot="table-row" scope="props">
 
-                                          <td v-if="props.row.color=='Amarillo'" style="background-color:yellow;">{{ props.row.color }}</td>
+                                          <td v-if="props.row.color=='Amarillo'" class="yellowBG">{{ props.row.color }}</td>
 
-                          <td v-if="props.row.color=='Azul'"  style="background-color:#0F7AD5;">{{ props.row.color }}</td>
-                                 <td  v-if="props.row.color=='Verde'"  style="background-color:Green;">{{ props.row.color }}</td>
-                                  <td  v-if="props.row.color=='Rojo'"  style="background-color:Red;">{{ props.row.color }}</td>
+                          <td v-if="props.row.color=='Azul'"  class="blueBG">{{ props.row.color }}</td>
+                                 <td  v-if="props.row.color=='Verde'"  class="greenBG">{{ props.row.color }}</td>
+                                  <td  v-if="props.row.color=='Rojo'"  class="redBG">{{ props.row.color }}</td>
 
                                     <td>{{ props.row.promedio }}</td>
                                     <td>{{ props.row.lugar }}</td>
 
                                                  <td  v-if="props.row.estado=='Finalista'"  style="background-color:Green;">{{ props.row.estado }}</td>
 
-                        <td  v-if="props.row.estado=='Clasificado'"  style="background-color:Green;">{{ props.row.estado }}</td>
-                                  <td  v-if="props.row.estado=='Eliminado'"  style="background-color:Red;">{{ props.row.estado }}</td>
-                          <td  v-if="props.row.estado=='Repechaje'"  style="background-color:Yellow;">{{ props.row.estado }}</td>
-                                  <td  v-if="props.row.estado=='Descalificado'"  style="background-color:Red;">{{ props.row.estado }}</td>
+                        <td  v-if="props.row.estado=='Clasificado'"  class="greenBG">{{ props.row.estado }}</td>
+                                  <td  v-if="props.row.estado=='Eliminado'"  class="redBG">{{ props.row.estado }}</td>
+                          <td  v-if="props.row.estado=='Repechaje'"  class="yellowBG">{{ props.row.estado }}</td>
+                                  <td  v-if="props.row.estado=='Descalificado'" class="redBG">{{ props.row.estado }}</td>
 
 
 
@@ -296,3 +296,26 @@ return;
   }
 };
 </script>
+<style scoped>
+    td.greenBG{
+        background-color: lightgreen
+    }
+    td.redBG{
+        background-color: #dd4b39
+    }
+    td.blueBG{
+        background-color: #3c8dbc
+    }
+    td.yellowBG{
+        background-color: #ffff97
+    }
+    .view-all{
+        padding: 30px 0
+    }
+    .heat-notes{
+        padding: 50px 0
+    }
+    .notes-per-heat{
+        padding: 20px 0
+    }
+</style>
