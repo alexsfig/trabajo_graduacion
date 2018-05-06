@@ -80,7 +80,8 @@
 
                     <h1 class="box-title "><b>Ultimas Noticias </b></h1>
                   </div>
-                  <div class="box-body text-justify">
+                  <div class="box-body text-justify"  >
+                    <div class="pre-scrollable" >
                 <div v-for="noticia in noticias">
                <router-link :to="{ name: 'NoticiasShow', params: { id: noticia.id }}">
                <div class="box-comment"><img :src="getImg(noticia.id)" alt="User Image" class="img-rounded img-md" style="margin-right:5%" />
@@ -93,6 +94,7 @@
                 </div>
             
 
+    </div>
                 
 
                   </div>
