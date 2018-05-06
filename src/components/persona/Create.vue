@@ -565,7 +565,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-12 text-right">
-                                                    <button type="submit" class="btn btn-flat btn-sm btn-primary">Agregar certificacion </button>
+                                                    <button type="submit" class="btn btn-flat btn-sm btn-primary"><i class="fa fa-plus"></i> Agregar certificacion </button>
                                                 </div>
                                             </div>
                                             <div class="col-xs-7">
@@ -589,7 +589,7 @@
                                     <div class="col-xs-12 col-sm-12 pull-right">
                                         <div class="box-footer">
                                             <div class="col-xs-12 text-right">
-                                                <button type="submit" class="btn btn-flat btn-sm btn-primary">Guardar Juez </button>
+                                                <button type="submit" class="btn btn-flat btn-sm btn-primary"><i class="fa fa-edit"></i> Guardar Juez </button>
                                             </div>
                                         </div>
                                     </div>
@@ -618,7 +618,7 @@
                                     <div class="col-xs-12 col-sm-12 pull-right">
                                         <div class="box-footer">
                                             <div class="col-xs-12 text-right">
-                                                <button type="submit" class="btn btn-flat btn-sm btn-primary">Guardar Entrenador </button>
+                                                <button type="submit" class="btn btn-flat btn-sm btn-primary"><i class="fa fa-edit"></i> Guardar Entrenador </button>
                                             </div>
                                         </div>
                                     </div>
@@ -649,7 +649,7 @@
                                     <div class="col-xs-12 col-sm-12 pull-right">
                                         <div class="box-footer">
                                             <div class="col-xs-12 text-right">
-                                                <button type="submit" class="btn btn-flat btn-sm btn-primary">Guardar Miembro Junta </button>
+                                                <button type="submit" class="btn btn-flat btn-sm btn-primary"> <i class="fa fa-edit"></i> Guardar Miembro Junta </button>
                                             </div>
                                         </div>
                                     </div>
