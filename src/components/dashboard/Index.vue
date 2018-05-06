@@ -23,7 +23,7 @@
                 <div class="small-box bg-blue">
                   <div class="inner">
                     <h3>{{ this.atletas.length}}</h3>
-                     <p>Atletas registrados</p> 
+                     <p>Atletas Registrados</p> 
                   </div>  
                   <div class="icon">
                     <i class="fa fa-users"></i>
@@ -35,7 +35,7 @@
                 <div class="small-box bg-green">
                   <div class="inner">
                     <h3>{{ this.jueces.length}}</h3>
-                    <p>Jueces registrados</p>
+                    <p>Jueces Registrados</p>
                   </div>
                   <div class="icon">
                     <i class="fa fa-gavel"></i>
@@ -47,7 +47,7 @@
                 <div class="small-box bg-yellow">
                   <div class="inner">
                     <h3>{{ this.entrenadores.length}}</h3>
-                    <p>Entrenadores registrados</p>
+                    <p>Entrenadores Registrados</p>
                   </div>
                   <div class="icon">
                     <i class="fa fa-binoculars"></i>
@@ -59,7 +59,7 @@
                 <div class="small-box bg-red">
                   <div class="inner">
                     <h3>{{ this.clubs.length + this.escuelas.length}}</h3>
-                    <p>Escuelas/Club registrados</p>
+                    <p>Escuelas/Club Registrados</p>
                   </div>
                   <div class="icon">
                     <i class="fa fa-university"></i>
@@ -71,7 +71,7 @@
                 <div class="small-box bg-aqua">
                   <div class="inner">
                     <h3>{{ this.categorias.length }}</h3>
-                    <p>Categorias registradas</p>
+                    <p>Categorias Registradas</p>
                   </div>
                   <div class="icon">
                     <i class="fa fa-bookmark"></i>
@@ -83,7 +83,7 @@
                 <div class="small-box bg-orange">
                   <div class="inner">
                     <h3>{{ this.fechas.length }}</h3>
-                    <p>Fechas registradas</p>
+                    <p>Fechas Registradas</p>
                   </div>
                   <div class="icon">
                     <i class="fa fa-flag"></i>

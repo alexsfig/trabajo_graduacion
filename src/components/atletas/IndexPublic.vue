@@ -15,7 +15,7 @@
             </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-            <li>Manejo de Atletas</li>
+            <li>Ver Atletas</li>
         </ol>
     </section>
     <section class="content">
@@ -23,7 +23,7 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Manejo de Atletas</h3>
+                        <h3 class="box-title">Ver Atletas</h3>
                     </div>
 
                     <div class="box-body">
@@ -51,7 +51,7 @@
                                    
                                     <td>
                    
-                                        <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="profile(props.row.id, props.row)"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Ver Perfil</button>
+                                        <button type="button" class="margin btn btn-sm btn-flat btn-primary" @click="profile(props.row.id, props.row)"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Perfil Completo</button>
                                        
                                     </td>
                                 </template>

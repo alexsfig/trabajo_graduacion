@@ -28,6 +28,8 @@
 		                <i class="fa fa-tachometer" aria-hidden="true"></i> <span>Inicio</span>
 		            </router-link>
 		        </li>
+
+		        <!--
 		    
 		        <li class="treeview">
 		            <router-link to="#">
@@ -50,7 +52,7 @@
 		                    </router-link>
 		                 </li> 
 		            </ul>
-		        </li>
+		        </li> -->
 
 
 			

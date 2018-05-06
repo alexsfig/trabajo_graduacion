@@ -19,11 +19,11 @@
               <img class="img-responsive" src="../../assets/images/background/Foto2.png" alt="">
             </div>
             <div class="row padd">
-             <router-link to="/public/atletas"> <div class="col-lg-2 col-xs-6">
+             <router-link to="/public/atletas"> <div class="col-lg-3 col-xs-6">
                 <div class="small-box bg-blue">
                   <div class="inner">
                     <h3>{{ this.atletas.length}}</h3>
-                     <p>Atletas registrados</p> 
+                     <p>Atletas Registrados</p> 
                   </div>  
                   <div class="icon">
                     <i class="fa fa-users"></i>
@@ -31,66 +31,44 @@
                   &nbsp;
                 </div> 
               </div> </router-link>
-               <router-link to="/admin/jueces"> <div class="col-lg-2 col-xs-6">
+              <!-- <router-link to="/admin/patrocinadors"> --><div class="col-lg-3 col-xs-6">
                 <div class="small-box bg-green">
                   <div class="inner">
                     <h3>{{ this.patrocinadors.length}}</h3>
-                    <p>Patrocinadores </p>
+                    <p>Patrocinadores Registrados</p>
                   </div>
                   <div class="icon">
                     <i class="fa fa-user-secret"></i>
                   </div>
                   &nbsp;
                 </div>
-              </div>  </router-link>
-              <router-link to="/admin/entrenadores"><div class="col-lg-2 col-xs-6">
-                <div class="small-box bg-yellow">
-                  <div class="inner">
-                    <h3>{{ this.entrenadores.length}}</h3>
-                    <p>Entrenadores registrados</p>
-                  </div>
-                  <div class="icon">
-                    <i class="fa fa-binoculars"></i>
-                  </div>
-                  &nbsp;
-                </div>
-              </div> </router-link>
-               <router-link to="/admin/escuelas"><div class="col-lg-2 col-xs-6">
+              </div> <!-- </router-link> -->
+              
+               <!--<router-link to="/admin/escuelas"> --><div class="col-lg-3 col-xs-6">
                 <div class="small-box bg-red">
                   <div class="inner">
                     <h3>{{ this.clubs.length + this.escuelas.length}}</h3>
-                    <p>Escuelas/Club registrados</p>
+                    <p>Escuelas/Clubes Registrados</p>
                   </div>
                   <div class="icon">
                     <i class="fa fa-university"></i>
                   </div>
                   &nbsp;
                 </div>
-              </div></router-link>
-              <router-link to="/admin/categorias"><div class="col-lg-2 col-xs-6">
-                <div class="small-box bg-aqua">
-                  <div class="inner">
-                    <h3>{{ this.categorias.length }}</h3>
-                    <p>Categorias registradas</p>
-                  </div>
-                  <div class="icon">
-                    <i class="fa fa-bookmark"></i>
-                  </div>
-                  &nbsp;
-                </div>
-              </div></router-link>
-               <router-link to="/admin/fechas"><div class="col-lg-2 col-xs-6">
-                <div class="small-box bg-orange">
+              </div> <!--</router-link> -->
+              
+               <!--<router-link to="/admin/fechas">--><div class="col-lg-3 col-xs-6">
+                <div class="small-box bg-yellow">
                   <div class="inner">
                     <h3>{{ this.fechas.length }}</h3>
-                    <p>Fechas registradas</p>
+                    <p>Fechas Registradas</p>
                   </div>
                   <div class="icon">
                     <i class="fa fa-flag"></i>
                   </div>
                   &nbsp;
                 </div>
-              </div></router-link>
+              </div><!--</router-link> -->
 
             </div> 
 
@@ -98,9 +76,9 @@
               <div class="col-md-6">
                 <div class="box box-primary">
                   <div class="box-header with-border">
-                    <i style="color:#031328" class="fa fa-users"></i>
+                    <i style="color:#031328" class="fa fa-newspaper-o"></i>
 
-                    <h1 class="box-title "><b>Noticias </b></h1>
+                    <h1 class="box-title "><b>Ultimas Noticias </b></h1>
                   </div>
                   <div class="box-body text-justify">
                 <div v-for="noticia in noticias">
@@ -123,7 +101,7 @@
               <div class="col-md-6">
                 <div class="box box-success">
                   <div class="box-header with-border">
-                    <i style="color:#031328" class="fa fa-users"></i>
+                    <i style="color:#031328" class="fa fa-list-ol"></i>
 
                     <h3 class="box-title "><b>Ranking</b></h3>
                   </div>
@@ -149,7 +127,10 @@
       <tr v-for="r in ranking">
         <td><label>{{r.lugar}}</label></td>
         <td><img class="custom-img img-responsive img-circle" v-bind:src="getImgA(r.atletaId.id)" alt="User profile picture">
-        <h3>{{r.atletaId.personaId.nombre+","+r.atletaId.personaId.apellido}}</h3>
+         <router-link :to="{ name: 'AtletasShowPublic', params: { id: r.atletaId.id }}">
+         <h3>{{r.atletaId.personaId.nombre+","+r.atletaId.personaId.apellido}}</h3>
+         </router-link>
+
         
         </td>
             <td>{{r.puntuacion}}</td>
@@ -167,16 +148,16 @@
                
             </div>
 
-             <div class="col-md-12">
+             <div class="col-md-6">
                 <div class="box box-success">
                   <div class="box-header with-border">
-                    <i style="color:#031328" class="fa fa-users"></i>
+                    <i style="color:#031328" class="fa fa-twitter"></i>
 
-                    <h3 class="box-title "><b>Automatización de Procesos</b></h3>
+                    <h3 class="box-title "><b>Redes Sociales</b></h3>
                   </div>
                   <div class="box-body text-justify">
     
-           <Timeline :id="'fesurfing_'" :sourceType="'likes'" style="height:200" :options="{ tweetLimit: '8' }"/>
+           <Timeline :id="'fesasurf'" :sourceType="'profile'" style="height:200" :options="{ tweetLimit: '4' }"/>
 
 
                   </div>
