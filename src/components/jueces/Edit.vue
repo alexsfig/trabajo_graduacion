@@ -177,7 +177,7 @@ export default {
       successMsg: "",
       id: "",
       creaCert:[],
-      newCert:{},
+      newCert:{fecha:null},
 
 
 
