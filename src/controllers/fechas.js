@@ -114,8 +114,8 @@ export default {
                                 if (resp.status>= 200 && resp.status <=300){
                                     context.showSuccess = true
                                     context.successMsg = "Fecha creada exitosamente"
-                                    context.fetchData()
-                                    context.resetForm()
+                                    context.$swal("Exito!", "Fecha creada", "success")
+                                    context.volver();
                                 }
                             })
                             .catch((err) => {

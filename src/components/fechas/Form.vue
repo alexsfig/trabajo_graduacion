@@ -133,7 +133,9 @@
                 successMsg: "",
                 errMsg: "",
                 isLogin: false,
-                fecha: {},
+                fecha: {
+                    fecha:null
+                },
                 playas: [],
                 id: '',
 
