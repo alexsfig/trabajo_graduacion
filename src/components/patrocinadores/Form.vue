@@ -154,7 +154,14 @@
                   }
 
               ],
-              patrocinador: {}
+              patrocinador: {
+                  nit:null,
+                  tipo:null,
+                  telefono:null
+
+
+
+              }
           }
       },
       components: {

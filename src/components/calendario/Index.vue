@@ -85,6 +85,7 @@ export default {
             openModal: false,
             events: [],
             config: {
+                   locale: 'es',
                 defaultView: "month",
                 eventRender: function(event, element) {
                     console.log(event);
