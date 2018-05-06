@@ -241,7 +241,7 @@ return;
           "No podras recuperar la informacion de la ronda <b>&laquo;" +
           nombre +
           "&raquo</b><br>y toda la informacion relacion a la misma ya que no sera accesible",
-        type: "error",
+        type: "warning",
         showCancelButton: true,
         confirmButtonText: "Si, Eliminar!",
         cancelButtonText: "No, Mantener"
