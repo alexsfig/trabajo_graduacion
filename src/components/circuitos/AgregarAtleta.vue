@@ -75,7 +75,7 @@
                                    <td>{{props.row.atletaId.personaId.apellido}}</td> 
                                    <td> {{ _calculateAge( props.row.atletaId.personaId.fechaNacimiento)  }} años</td>
                                     <td> {{ props.row.atletaId.personaId.sexo == 'F' ? 'Femenino' : 'Masculino' }}</td>
-                                     <td>{{ props.row.atletaId.aniosPracticando}} años</td> 
+                                     <td style="text-align:right;">{{ props.row.atletaId.aniosPracticando}} años</td> 
                                      <td>{{ props.row.atletaId.playaPractica}}</td>    
                                      <td>{{ props.row.atletaId.ladoPie}}</td>   
                                      <td>{{ props.row.atletaId.olaPreferida}}</td>   
@@ -156,7 +156,7 @@
                     },
                     {
                       label: 'Sexo',
-                      field: 'atletaId.sexo',
+                      field: 'atletaId.personaId.sexo',
                       filterable: true
                     },
 

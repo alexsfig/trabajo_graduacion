@@ -31,7 +31,7 @@
                         <hr class="hr-text" v-bind:data-content=" this.circuito.fechaId.nombre">
 
                         <!-- <h4 >Heat: <b>{{this.numero}}</b>. Ronda: <b>{{this.rondaId.numero}} </b>. Estado: <b>{{this.estado}} </b></h4> -->
-                        <h3 class="box-title">Estado <b>{{this.circuito.estado}}</b></h3>
+                        <h3 class="box-title">Estado Circuito: <b>{{this.circuito.estado}}</b></h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body text-right">
@@ -112,7 +112,7 @@ export default {
                     label: "Numero de Atletas",
                     field: "atletasRonda"
                 }, {
-                    label: "Estado",
+                    label: "Estado Ronda",
                     field: "estado"
                 },
 

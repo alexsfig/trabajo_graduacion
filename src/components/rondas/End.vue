@@ -33,8 +33,8 @@
 
 
     <button v-if="ronda.estado=='Calificada'" type="button" @click="finalizar()"   class="margin btn btn-flat btn-sm btn-primary"
-                                       ><i aria-hidden="true"
-                                         class="fa fa-pencil-square-o"></i> Finalizar Ronda</button>
+                                       ><i aria-hidden="true" 
+                                        class="fa fa-flag-checkered"></i> Finalizar Ronda</button>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -76,8 +76,8 @@
 
     <td  v-if="ronda.estado=='Calificada'">
     <button  type="button" @click="change(props.row)" class="margin btn btn-flat btn-sm btn-primary"
-                                       ><i aria-hidden="true"
-                                         class="fa fa-pencil-square-o"></i> Cambiardd</button>
+                                       ><i aria-hidden="true" 
+                                        class="fa fa-retweet"></i> Cambiar Estado</button>
 
 
                                  </td>

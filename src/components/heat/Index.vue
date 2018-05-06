@@ -29,8 +29,8 @@
                         <hr class="hr-title" :data-content="'Heats Ronda ' + ronda.numero">
                         <hr class="hr-text" :data-content="'Circuito ' + (ronda.circuitoId ? ronda.circuitoId.nombre : '')">
                         <!-- <h3 class="box-title"> <b>{{ronda.numero}}</b> del Circuito <b>{{ronda.circuitoId?ronda.circuitoId.nombre:''}}</b> </h3> -->
-                        <router-link style="float:right" v-if="ronda.estado=='Calificada'" :to="{name:'rondaEnd',params:{id:ronda.id}}" class="btn btn-success btn-flat">
-                            Dar por finalizada
+                        <router-link style="float:right" v-if="ronda.estado=='Calificada'" :to="{name:'rondaEnd',params:{id:ronda.id}}" class="btn btn-success btn-flat"><i aria-hidden="true" 
+                                        class="fa fa-flag-checkered"></i> Dar por finalizada
                         </router-link>
                     </div>
                     <!-- /.box-header -->
