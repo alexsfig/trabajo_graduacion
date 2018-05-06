@@ -190,7 +190,7 @@ create(context,heats){
         HTTP.post("heat/finishRonda/" + id,data)
             .then((resp) => {
                 console.log(resp);
-                swal("Finalizada!", "La Ronda ha sido finalizada", "Exito!")
+                swal("Finalizada!", "La Ronda ha sido finalizada", "success")
                 context.fetchData();
             })
             .catch((err) => {
