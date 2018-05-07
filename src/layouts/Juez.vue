@@ -123,4 +123,12 @@
      vertical-align: middle;
 }
 .margin { margin: 5px; }
+.fgroup.required label:after {
+  content:"*";
+  color:#de4b39;
+}
+.v-select .dropdown-toggle .clear {
+    font-size: 20px;
+    color: #e35a38;
+}
 </style>
