@@ -147,7 +147,7 @@ const router = new Router({
     },
 
     {
-      path: '/public',
+      path: '/',
       component: PublicTemplate,
 
       children: [

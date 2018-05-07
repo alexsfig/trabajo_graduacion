@@ -35,7 +35,7 @@
                     <div class="box-header">
                         <h3 class="box-title">Manejo de Atletas</h3>
 
-                      
+
                     </div>
 
                     <div class="box-body">
@@ -54,7 +54,7 @@
                             <form-wizard @on-complete="updateUsuario" errorColor="#dd4b39" finishButtonText="Actualizar Atleta" title="" nextButtonText="Siguiente" backButtonText="Regresar" subtitle="" stepSize="lg" color="#367fa9">
                                 <tab-content title="Información del Atleta" icon="fa fa-user" :before-change="first_step">
                                     <form @submit.prevent="first_step('form-2-1')" role="form" data-vv-scope="form-2-1">
-                                        
+
                                         <div class="col-xs-12 col-sm-4">
                                             <div class="fgroup required" :class="{ 'has-error': errors.has('form-2-1.edadInicio') }">
                                                 <label for="">Edad que inicio</label>
@@ -456,7 +456,7 @@ export default {
                 }, {
                     name: 'Nivel Superior'
                 }
-                
+
 
             ],
              ucursado: [{
@@ -465,7 +465,7 @@ export default {
                     name: 'Nivel Parvulario'
                 }, {
                     name: 'Nivel Basico-1er Ciclo'
-                }, 
+                },
                 {
                     name: 'Nivel Basico-2do Ciclo'
                 },
@@ -611,7 +611,7 @@ export default {
     },
     methods: {
          getImg(img) {
-            
+
             return BASE_URL+"upload/files/"+img+".png"
         },
         first_step() {
@@ -630,7 +630,7 @@ export default {
                         this.errMsg = "Los Años Practicando no pueden ser superior al intervalo de tiempo entre la Edad de Inicio y la Edad del Atleta"}
                     } else {
                         reject(true)
-                        
+
                     }
                 });
             })
