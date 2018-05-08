@@ -146,24 +146,18 @@ const router = new Router({
         }
       ]
     },
+    {
+      path: '',
+      path: '',
+      name: 'DashboardRoot2',
+      component: DashboardPublic,
+      meta: { requiresAuth: false, adminAuth: true, juezAuth: false }
+    },
 
     {
       path: '',
       component: PublicTemplate,
-
       children: [
-        {
-          path: '',
-          name: 'DashboardRoot2',
-          component: DashboardPublic,
-          meta: { requiresAuth: false, adminAuth: true, juezAuth: false }
-        },
-        {
-          path: '/',
-          name: 'DashboardRoot2',
-          component: DashboardPublic,
-          meta: { requiresAuth: false, adminAuth: true, juezAuth: false }
-        },
         {
           path: '/noticias/:id',
           name: 'NoticiasShow',
