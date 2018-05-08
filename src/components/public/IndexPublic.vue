@@ -3,12 +3,6 @@
     padding-top: 20px;
     padding-bottom: 20px;
 }
-
-.custom-img {
-    width: 75px;
-    margin: auto;
-}
-
 #calendario {
     font-family: "Avenir", Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -29,7 +23,6 @@ a.fc-day-grid-event {
 </style>
 
 <template>
-
 <div>
     <header class="masthead text-center text-white d-flex">
         <div class="container my-auto">
@@ -58,22 +51,24 @@ a.fc-day-grid-event {
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <h2 class="section-heading text-white">SWELL!</h2>
-                    <hr class="light my-4">
-                    <p class="text-faded mb-4">Start Bootstrap has everything you need to get your new website up and running in no time! All of the templates and themes on Start Bootstrap are open source, free to download, and easy to use. No strings attached!</p>
-                    <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Get Started!</a>
+                    <div class="service-box mt-5 mx-auto">
+                        <i class="fa fa-4x fa-star-o text-primary mb-3 sr-icons"></i>
+                        <hr >
+
+                        <h3 class="mb-3">Ranking de atletas</h3>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="container">
+        <!-- <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading">At Your Service</h2>
                     <hr class="my-4">
                 </div>
             </div>
-        </div>
-        <div class="container">
+        </div> -->
+        <!-- <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-3 text-center">
                     <div class="service-box mt-5 mx-auto">
@@ -101,25 +96,23 @@ a.fc-day-grid-event {
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </section>
     <section class="bg-white" id="ranking">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
                     <div class="box-header with-border">
-                        <i style="color:#031328" class="fa fa-trophy fa-3x"></i>
-
-                        <h3 class="box-title "><b>Ranking</b></h3>
+                        <h2 class="box-title ">
+                            <i style="color:#031328" class="fa fa-trophy fa-2x"></i>
+                             <b>Top 5 </b>
+                         </h2>
                     </div>
                 </div>
                 <div class="col-lg-12 text-center">
-
                     <div class="box-body text-justify">
-
                         <v-select :debounce="250" :options="categorias" v-model="catSelect" placeholder="Seleccione una categoria" label="nombreCategoria">
                         </v-select>
-
                         <br/>
                         <div class="table-responsive">
                             <table class="table table-bordered">
@@ -127,6 +120,7 @@ a.fc-day-grid-event {
                                     <tr>
                                         <th>Pos</th>
                                         <th></th>
+                                        <th>Nombre</th>
                                         <th>Puntos</th>
                                         <th>Heat ganados</th>
                                         <th>Promedio</th>
@@ -140,8 +134,11 @@ a.fc-day-grid-event {
                                         </td>
                                         <td>
                                             <img class="custom-img img-responsive img-circle" v-bind:src="getImgA(r.atletaId.id)" alt="User profile picture">
-                                            <router-link :to="{ name: 'AtletasShowPublic', params: { id: r.atletaId.id }}">
-                                                {{r.atletaId.personaId.nombre+","+r.atletaId.personaId.apellido}}
+                                        </td>
+                                        <td>
+                                            {{r.atletaId.personaId.nombre+" "+r.atletaId.personaId.apellido}}
+                                            <router-link :to="{ name: 'AtletasShowPublic', params: { id: r.atletaId.id }}" class="pull-right"  v-tooltip="'You have new messages.'">
+                                                <i class="fa fa-bookmark" ></i>
                                             </router-link>
                                         </td>
                                         <td>{{r.puntuacion}}</td>
@@ -149,12 +146,102 @@ a.fc-day-grid-event {
                                         <td>{{r.promedio}}</td>
                                         <td>{{r.mayorNota}}</td>
                                     </tr>
-
-
                                 </tbody>
                             </table>
                         </div>
                     </div>
+                </div>
+                <div class="col-lg-12 text-center">
+                    <router-link :to="{ name: 'AtletasIndexPublic' }" class="pull-right btn btn-primary"  v-tooltip="'You have new messages.'">
+                        Ver Ranking completo <i class="fa fa-trophy" ></i>
+                    </router-link>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="bg-primary" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <div class="service-box mt-5 mx-auto">
+                        <i class="fa fa-4x fa-paper-plane text-primary mb-3 sr-icons"></i>
+                        <hr >
+                        <h3 class="mb-3">Fechas</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="bg-white" id="ranking">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1 text-center">
+                    <full-calendar :config="config" :events="events" eventClick="eventClick" />
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="bg-primary" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <div class="service-box mt-5 mx-auto">
+                        <i class="fa fa-4x fa-newspaper-o text-primary mb-3 sr-icons"></i>
+                        <hr >
+                        <h3 class="mb-3">Noticias</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="bg-white" id="ranking">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1 text-center col-container">
+                    <div v-for="noticia in noticias" class="col-md-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="notice-img">
+                                    <img :src="getImg(noticia.id)" alt="User Image" class="img-rounded img-responsive" />
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <span class="username">
+                                <b> {{noticia.nombre}} </b>
+                                <br/>
+                                </span>
+                                {{noticia.descripcion.length>200?noticia.descripcion.substring(0,200)+".....":noticia.descripcion}}
+                                <br>
+                                <router-link :to="{ name: 'NoticiasShow', params: { id: noticia.id }}">
+                                    Ver mas
+                                </router-link>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="bg-primary" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <div class="service-box mt-5 mx-auto">
+                        <i class="fa fa-4x fa-twitter-square  text-primary mb-3 sr-icons"></i>
+                        <hr >
+                        <h3 class="mb-3">Redes Sociales</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="bg-white" id="ranking">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1 text-center col-container">
+                    <Timeline :id="'fesasurf'" :sourceType="'profile'" :widget-class="'col-md-12'" :options="{ tweetLimit: '4' }" />                    
                 </div>
             </div>
         </div>
@@ -207,6 +294,7 @@ export default {
             config: {
                 locale: 'es',
                 defaultView: "month",
+                weekends: false,
                 eventRender: function(event, element) {
                     console.log(event);
                 }
@@ -253,14 +341,14 @@ export default {
             return BASE_URL + "upload/files/" + img + ".png"
         },
         fetchData() {
-            clubesController.index(this);
-            escuelasController.index(this);
-            JuecesController.index(this);
-            atletaController.index(this);
-            entrenadoresController.index(this);
+            // clubesController.index(this);
+            // escuelasController.index(this);
+            // JuecesController.index(this);
+            // atletaController.index(this);
+            // entrenadoresController.index(this);
             categoriasController.index(this);
             fechasController.index(this);
-            patrocinadoresController.index(this);
+            // patrocinadoresController.index(this);
             noticiasController.indexActuales(this);
 
         },

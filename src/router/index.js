@@ -6,7 +6,7 @@ import Error404 from '@/layouts/Error'
 import Login from '@/components/login/Login'
 import Playas from '@/components/playas/Index'
 import Dashboard from '@/components/dashboard/Index'
-import DashboardPublic from '@/components/dashboard/IndexPublic'
+import DashboardPublic from '@/components/public/IndexPublic'
 import UsersCreate from '@/components/users/Create'
 import UsersShow from '@/components/users/Show'
 import UsersIndex from '@/components/users/Index'
@@ -16,6 +16,7 @@ import PersonaCreate from '@/components/persona/Create'
 
 import NoticiasCreate from '@/components/noticias/Create'
 import NoticiasShow from '@/components/noticias/Show'
+import PublicNoticiasShow from '@/components/public/NoticiasShow'
 import NoticiasIndex from '@/components/noticias/Index'
 
 import JuntamiembrosCreate from '@/components/juntamiembros/Create'
@@ -38,8 +39,8 @@ import AtletasCreate from '@/components/atletas/Create'
 import AtletasEdit from '@/components/atletas/Edit'
 import AtletasShow from '@/components/atletas/Show'
 
-import AtletasShowPublic from '@/components/atletas/ShowPublic'
-import AtletasIndexPublic from '@/components/atletas/IndexPublic'
+import AtletasShowPublic from '@/components/public/AtletaShowPublic'
+import AtletasIndexPublic from '@/components/public/AtletaIndexPublic'
 
 import AtletasIndex from '@/components/atletas/Index'
 
@@ -147,7 +148,7 @@ const router = new Router({
     },
 
     {
-      path: '/public',
+      path: '/',
       component: PublicTemplate,
 
       children: [
@@ -160,7 +161,7 @@ const router = new Router({
         {
           path: 'noticias/:id',
           name: 'NoticiasShow',
-          component: NoticiasShow,
+          component: PublicNoticiasShow,
           meta: { requiresAuth: false, adminAuth: true, juezAuth: false }
         },
         {
@@ -176,9 +177,6 @@ const router = new Router({
           component: AtletasShowPublic,
           meta: { requiresAuth: false, adminAuth: true, juezAuth: false }
         }
-
-
-
 
       ]
     }

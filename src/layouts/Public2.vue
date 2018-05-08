@@ -10,8 +10,8 @@
         </aside>
 
         <div class="content-wrapper">
-            <router-view>
-          </router-view>
+            <router-view/>
+
         </div>
 
         <footer class="main-footer">
@@ -26,8 +26,8 @@
 </template>
 
 <script>
-    import mainHeader from './includes/Juez.main-header.vue'
-    import mainSidebar from './includes/Juez.main-sidebar.vue'
+    import mainHeader from './includes/Public.main-header.vue'
+    import mainSidebar from './includes/Public.main-sidebar.vue'
 
     export default {
         name: 'app',
@@ -123,12 +123,4 @@
      vertical-align: middle;
 }
 .margin { margin: 5px; }
-.fgroup.required label:after {
-  content:"*";
-  color:#de4b39;
-}
-.v-select .dropdown-toggle .clear {
-    font-size: 20px;
-    color: #e35a38;
-}
 </style>
