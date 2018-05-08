@@ -4,7 +4,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 text-left">
-                        <div @click="volver()" class="btn btn-flat btn-sm btn-primary2 margin">
+                        <div @click="volver()" class="btn btn-primary2 margin">
                             <i class="fa fa-arrow-circle-left"></i> Regresar
                         </div>
                     </div>
