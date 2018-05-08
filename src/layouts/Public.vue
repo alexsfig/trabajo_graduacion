@@ -2,6 +2,7 @@
 
 @import '../assets/bower_components/font-awesome/css/font-awesome.min.css';
 @import '../assets/bower_components/Ionicons/css/ionicons.min.css';
+@import '../assets/bower_components/bootstrap/css/creative.css';
 @import '../assets/bower_components/AdminLTE/AdminLTE.min.css';
 @import '../assets/bower_components/AdminLTE/skins/_all-skins.min.css';
 .active{
