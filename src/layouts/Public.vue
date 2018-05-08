@@ -1,4 +1,4 @@
-<style scoped>
+<style>
 
 @import '../assets/bower_components/font-awesome/css/font-awesome.min.css';
 @import '../assets/bower_components/Ionicons/css/ionicons.min.css';
