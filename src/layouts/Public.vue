@@ -272,6 +272,7 @@ img::-moz-selection {
 }
 
 .btn-primary2 {
+    color: white;
   text-transform: uppercase;
   background-color: #F05F40 !important;
   border-color: #ef5230 !important;
@@ -490,8 +491,6 @@ img::-moz-selection {
                                 Ranking
                             </router-link>
                         </li>
-                        <li><a href="#contact">Contact</a></li>
-
                     </ul>
                 </div>
                 <!--/.nav-collapse -->
