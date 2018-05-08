@@ -33,7 +33,7 @@
 
 <template>
 
-<div id="">
+<div id="" class="row">
     <div class="container-fluid">
         <nav id="mainNav" class="navbar navbar-expand-lg navbar-light navbar-fixed-top">
             <div class="container">

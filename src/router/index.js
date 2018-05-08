@@ -148,7 +148,7 @@ const router = new Router({
     },
 
     {
-      path: '/',
+      path: '',
       component: PublicTemplate,
 
       children: [
@@ -159,20 +159,26 @@ const router = new Router({
           meta: { requiresAuth: false, adminAuth: true, juezAuth: false }
         },
         {
-          path: 'noticias/:id',
+          path: '/',
+          name: 'DashboardRoot2',
+          component: DashboardPublic,
+          meta: { requiresAuth: false, adminAuth: true, juezAuth: false }
+        },
+        {
+          path: '/noticias/:id',
           name: 'NoticiasShow',
           component: PublicNoticiasShow,
           meta: { requiresAuth: false, adminAuth: true, juezAuth: false }
         },
         {
-          path: 'atletas',
+          path: '/atletas',
           name: 'AtletasIndexPublic',
           component: AtletasIndexPublic,
           meta: { requiresAuth: false, adminAuth: true, juezAuth: false }
         },
 
         {
-          path: 'atletas/:id',
+          path: '/atletas/:id',
           name: 'AtletasShowPublic',
           component: AtletasShowPublic,
           meta: { requiresAuth: false, adminAuth: true, juezAuth: false }
