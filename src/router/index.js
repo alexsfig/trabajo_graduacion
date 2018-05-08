@@ -127,6 +127,34 @@ const router = new Router({
     // Load login views
 
     {
+      path: '/',
+      component: PublicTemplate,
+      children: [
+        {
+            path: '',
+            name: 'DashboardRoot2',
+            component: DashboardPublic,
+        },
+        {
+          path: 'noticias/:id',
+          name: 'NoticiasShow',
+          component: PublicNoticiasShow,
+        },
+        {
+          path: 'atletas',
+          name: 'AtletasIndexPublic',
+          component: AtletasIndexPublic,
+        },
+
+        {
+          path: 'atletas/:id',
+          name: 'AtletasShowPublic',
+          component: AtletasShowPublic,
+        }
+
+      ]
+    },
+    {
       path: '/404',
       component: Error404
     },
@@ -146,41 +174,6 @@ const router = new Router({
         }
       ]
     },
-    {
-      path: '',
-      path: '',
-      name: 'DashboardRoot2',
-      component: DashboardPublic,
-      meta: { requiresAuth: false, adminAuth: true, juezAuth: false }
-    },
-
-    {
-      path: '',
-      component: PublicTemplate,
-      children: [
-        {
-          path: '/noticias/:id',
-          name: 'NoticiasShow',
-          component: PublicNoticiasShow,
-          meta: { requiresAuth: false, adminAuth: true, juezAuth: false }
-        },
-        {
-          path: '/atletas',
-          name: 'AtletasIndexPublic',
-          component: AtletasIndexPublic,
-          meta: { requiresAuth: false, adminAuth: true, juezAuth: false }
-        },
-
-        {
-          path: '/atletas/:id',
-          name: 'AtletasShowPublic',
-          component: AtletasShowPublic,
-          meta: { requiresAuth: false, adminAuth: true, juezAuth: false }
-        }
-
-      ]
-    }
-    ,
     // Load Admin views
     {
       path: '/admin',
