@@ -161,16 +161,6 @@ header.masthead p {
 .margin {
     margin: 5px;
 }
-body,
-html {
-  width: 100%;
-  height: 100%;
-}
-
-body {
-  font-family: 'Merriweather', 'Helvetica Neue', Arial, sans-serif;
-}
-
 hr {
   max-width: 40%;
   border-width: 3px;
@@ -190,15 +180,6 @@ a {
 
 a:hover {
   color: #f05f40;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
 }
 
 .bg-primary {
@@ -275,54 +256,12 @@ img::-moz-selection {
   transition: all 0.2s;
 }
 
-.portfolio-box .portfolio-box-caption .portfolio-box-caption-content {
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  transform: translateY(-50%);
-  text-align: center;
-}
-
-.portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-category,
-.portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name {
-  padding: 0 15px;
-  font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
-}
-
-.portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-category {
-  font-size: 14px;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
-.portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name {
-  font-size: 18px;
-}
-
-.portfolio-box:hover .portfolio-box-caption {
-  opacity: 1;
-}
-
-.portfolio-box:focus {
-  outline: none;
-}
-
-@media (min-width: 768px) {
-  .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-category {
-    font-size: 16px;
-  }
-  .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name {
-    font-size: 22px;
-  }
-}
-
 .text-primary {
   color: #F05F40 !important;
 }
 
 .btn {
   font-weight: 700;
-  text-transform: uppercase;
   border: none;
   border-radius: 300px;
   font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
@@ -332,17 +271,18 @@ img::-moz-selection {
   padding: 1rem 2rem;
 }
 
-.btn-primary {
+.btn-primary2 {
+  text-transform: uppercase;
   background-color: #F05F40 !important;
   border-color: #ef5230 !important;
 }
 
-.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+.btn-primary2:hover, .btn-primary2:focus, .btn-primary2:active {
   color: #fff;
   background-color: #ee4b28 !important;
 }
 
-.btn-primary:active, .btn-primary:focus {
+.btn-primary2:active, .btn-primary2:focus {
   box-shadow: 0 0 0 0.2rem rgba(240, 95, 64, 0.5) !important;
 }
 
@@ -520,8 +460,6 @@ img::-moz-selection {
     z-index: 820;
 }
 
-
-
 </style>
 
 <template>
@@ -542,7 +480,7 @@ img::-moz-selection {
 
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active">
+                        <li class="">
                             <router-link :to="{ name: 'DashboardRoot2'}">
                                 Home
                             </router-link>
