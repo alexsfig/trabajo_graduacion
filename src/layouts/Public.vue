@@ -412,7 +412,7 @@ img::-moz-selection {
                     <ul class="nav navbar-nav">
                         <li class="active">
                             <router-link :to="{ name: 'DashboardRoot2'}">
-                                Home
+                                Inicio
                             </router-link>
                         </li>
                         <li>
@@ -420,8 +420,6 @@ img::-moz-selection {
                                 Ranking
                             </router-link>
                         </li>
-                        <li><a href="#contact">Contact</a></li>
-
                     </ul>
                 </div>
                 <!--/.nav-collapse -->
