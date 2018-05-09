@@ -148,3 +148,11 @@ header.masthead p {
     font-size: 4rem;
   }
 }
+
+.container.my-auto {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.container.my-auto h1 {
+    color: #ff5531;
+}
