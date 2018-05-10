@@ -23,11 +23,15 @@
     </section>
     <section class="bg-white">
         <div class="row">
+          
             <div class="col-md-10 col-md-offset-1">
-                <div class="col-xs-12 col-sm-6 notice-img-full ">
+                <div class="col-xs-12 col-sm-6 notice-img-full " style="margin-top: 25px;">
                     <img :src="getImg(noticia.id)" alt="User Image" class="img-responsive" />
                 </div>
                 <div class="col-xs-12 col-sm-6">
+                    
+             <h2 align="center">{{noticia.nombre}}</h2>
+        
                     <p align="justify" style="white-space: pre-line">
                         {{noticia.descripcion}}
                     </p>
@@ -71,7 +75,7 @@ export default {
     },
     methods: {
         getImg(img) {
-            return BASE_URL + "upload/files/" + img + ".png"
+            return BASE_URL + "upload/files/noticia/" + img + ".png"
         },
         isChange() {
             this.open1 = false

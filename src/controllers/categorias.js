@@ -47,10 +47,8 @@ export default {
                         context.createCategorias.sexo='Mixto'
                       }
                   
-
-                    context.fetchData()
-                    context.resetForm()                 
-                      
+                      context.$swal("Exito!", "Categoria Creado", "success")
+                      context.volver();
 
            
                      

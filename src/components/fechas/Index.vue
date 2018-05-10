@@ -49,14 +49,16 @@
                                     <td>{{ props.row.nombre }}</td>
                                      <td>{{ props.row.playaId.nombre }}</td>
                                     <td>{{ props.row.fecha }}</td>
-                                  
+                                  <td>{{ props.row.estado }}</td>
                                   
                                     <td class="nowrap">
+                                    <div v-if="props.row.estado=='Creada'">
                                         <router-link :to="{ name: 'fechasEdit', params: { id: props.row.id }}">
                                         <button type="button" class="margin btn btn-flat btn-sm btn-primary"
                                        ><i aria-hidden="true"
                                          class="fa fa-pencil-square-o"></i> Actualizar</button>
                                         </router-link>
+                                    </div>
                                         <button type="button" class="margin btn btn-flat btn-sm btn-danger" 
                                         @click="deleteFecha(props.row.id, props.row.nombre)"><i aria-hidden="true" 
                                         class="fa fa-trash-o"></i> Eliminar</button>
@@ -109,13 +111,13 @@
 
                     
                      {
-                        label: "Acciones",
-                        field: "playaId.id",
+                        label: "Estado",
+                        field: "estado",
                     },
                      {
-                      label: '',
-                      field: '',
-                      filterable: true,
+                        label: "Acciones",
+                        field: "playaId.id",
+                      filterable: false,
                     }
                 ]
             }
