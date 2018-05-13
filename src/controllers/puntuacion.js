@@ -54,11 +54,17 @@ export default {
     update(context, puntuacion){
         HTTP.put(PUNTUACION, puntuacion)
         .then((resp) => {
-            if (resp.status>= 200 && resp.status <=300){
+            if (resp.status>= 200 && resp.status <=201){
                 context.showSuccess = true
                 context.successMsg = "Puntuacion  creada exitosamente"
                 context.fetchData()
                 context.resetForm()
+            }
+            else{
+
+
+                context.$swal("Advertencia!", "El heat fue cerrado", "warning")
+                context.volver();
             }
         })
         .catch((err) => {
