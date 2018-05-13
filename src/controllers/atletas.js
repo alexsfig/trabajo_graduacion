@@ -203,7 +203,7 @@ export default {
         HTTP.delete(ATLETAS + id)
             .then((resp) => {
                 console.log(resp);
-                swal("Deleted!", "El Atleta ha sido eliminado", "success")
+                swal("Eliminado!", "El Atleta ha sido eliminado", "success")
                 context.fetchData();
             })
             .catch((err) => {

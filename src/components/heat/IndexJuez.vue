@@ -40,6 +40,7 @@
                                 </router-link>
                             </div>-->
    <!-- {{heats[0]}} -->
+
                             <vue-good-table :columns="columns" :rows="heats" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
                                 <template slot="table-row" scope="props">
                                   
@@ -53,14 +54,22 @@
                                            <td>{{ props.row.rondaId.circuitoId.nombre }}</td>
                                             <td>{{ props.row.rondaId.circuitoId.descripcion }}</td>
                                      
-                                       
+                                        <td>{{ props.row.rolJuez }}</td>
                                     <td class="nowrap">
+                                        <div v-if="props.row.rolJuez!='Lider'">
                                         <router-link  :to="{ name: 'CalificarHeatJ', params: { id: props.row.id }}">
                                         <button type="button" class="margin btn btn-flat btn-sm btn-primary"
                                        ><i aria-hidden="true"
                                          class="fa fa-pencil-square-o"></i> Calificar</button>
                                         </router-link>
-                                 
+                                        </div>
+                                            <div v-if="props.row.rolJuez=='Lider'">
+                                        <router-link  :to="{ name: 'VerResultadosJuezInit', params: { id: props.row.id }}">
+                                        <button type="button" class="margin btn btn-flat btn-sm btn-primary"
+                                       ><i aria-hidden="true"
+                                         class="fa fa-pencil-square-o"></i> Ver Resultados</button>
+                                        </router-link>
+                                            </div>
                                     </td>
                                   </template>
                             </vue-good-table>
@@ -119,6 +128,11 @@
                     {
                         label: "Descripción del Circuito",
                         field: "rondaId.circuitoId.descripcion",
+                    }                                
+                     ,
+                       {
+                        label: "Rol Juez",
+                        field: "rolJuez",
                     }                                
                      ,
                      {

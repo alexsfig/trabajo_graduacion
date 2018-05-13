@@ -217,7 +217,7 @@
 					 <li class="treeview">
 		            <router-link to="#">
 		                <i class="fa fa-balance-scale" aria-hidden="true"></i>
-		                <span>Finanzas</span>
+		                <span>Ingresos y gastos </span>
 		                <span class="pull-right-container">
 		                    <i class="fa fa-angle-left pull-right"></i>
 		                </span>

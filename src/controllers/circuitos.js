@@ -135,7 +135,7 @@ export default {
         HTTP.delete(FECHAS + id)
             .then((resp) => {
                 console.log(resp);
-                swal("Deleted!", "El Circuito ha sido eliminado", "success")
+                swal("Eliminado!", "El Circuito ha sido eliminado", "success")
                 context.fetchData();
             })
             .catch((err) => {

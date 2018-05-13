@@ -128,7 +128,7 @@ export default {
         HTTP.delete(JUECES + id)
             .then((resp) => {
                 console.log(resp);
-                swal("Deleted!", "El Juez ha sido eliminado", "success")
+                swal("Eliminado!", "El Juez ha sido eliminado", "success")
                 context.fetchData();
             })
             .catch((err) => {   

@@ -102,7 +102,7 @@ export default {
         HTTP.delete(FECHAS + id)
             .then((resp) => {
                 console.log(resp);
-                swal("Deleted!", "La Fecha ha sido eliminada", "success")
+                swal("Eliminado!", "La Fecha ha sido eliminada", "success")
                 context.fetchData();
             })
             .catch((err) => {

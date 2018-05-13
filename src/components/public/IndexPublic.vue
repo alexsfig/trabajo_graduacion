@@ -271,6 +271,45 @@ a.fc-day-grid-event {
                     </div>
                 </div>
             </section>
+
+                <section class="bg-primary" id="about">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2 text-center">
+                            <div class="service-box mt-5 mx-auto">
+                                <i class="fa fa-4x fa-twitter-square  text-primary mb-3 sr-icons"></i>
+                                <hr >
+                                <h3 class="mb-3">Playas </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="bg-white" id="ranking">
+                <div class="container">
+                    <div class="row">
+                         <div class="row padd">
+             <router-link to="/admin/atletas"> <div class="col-lg-10 col-md-12">
+                <div class="small-box bg-blue">
+                    <div class="panel-heading">
+                                        <div class="notice-img">
+                                            <img src="./logo.png" alt="User Image" class="img-rounded img-responsive" />
+                                        </div>
+                                    </div>
+                  <div class="inner">
+                    <h3>{{ this.atletas.length}}</h3>
+                     <p>Atletas Registrados</p> 
+                  </div>  
+                  <div class="icon">
+                    <i class="fa fa-wi-cloud"></i>
+                  </div> 
+                  &nbsp;
+                </div> 
+              </div> </router-link>
+                         </div>   
+                    </div>
+                </div>
+            </section>
         </div>
 
 

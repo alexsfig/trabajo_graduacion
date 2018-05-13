@@ -126,7 +126,7 @@ export default {
         HTTP.delete(PLAYAS + id)
             .then((resp) => {
                 console.log(resp);
-                swal("Deleted!", "La Playa ha sido Eliminada", "success")
+                swal("Eliminado!", "La Playa ha sido Eliminada", "success")
                 context.fetchData();
             })
             .catch((err) => {               

@@ -104,7 +104,7 @@ export default {
         HTTP.delete(TIPOTRANSACCION + id)
             .then((resp) => {
                 console.log(resp);
-                swal("Deleted!", "La Transaccion ha sido eliminada", "success")
+                swal("Eliminado!", "La Transaccion ha sido eliminada", "success")
                 context.fetchData();
             })
             .catch((err) => {

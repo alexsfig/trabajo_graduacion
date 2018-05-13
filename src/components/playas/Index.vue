@@ -30,6 +30,7 @@
                         <h3 class="box-title">Buscar Playa</h3>
                     </div>
                     <div class="box-body">
+                       ddd {{place}}
                         <div class="input-map">
                             <GmapAutocomplete @place_changed="setPlace" class="form-control " :options="{  componentRestrictions: {'country': ['SV']} }" :value="searchValue">
                             </GmapAutocomplete>
@@ -203,6 +204,8 @@ export default {
                     if (success) {
                         this.playasCreate.nombre = this.center.nombre ? this.center.nombre : '';
                         this.playasCreate.ubicacion = this.center.direccion ? this.center.direccion : '';
+                           this.playasCreate.lat = this.center.lat ? this.center.lat : '';
+                        this.playasCreate.lng = this.center.lng ? this.center.lng : '';
                         playasController.create(this, this.playasCreate);
                     } else {
                         this.showAlert = true

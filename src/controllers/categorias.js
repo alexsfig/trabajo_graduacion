@@ -210,7 +210,7 @@ export default {
         HTTP.delete(CATEGORIAS + id)
             .then((resp) => {
                 console.log(resp);
-                swal("Deleted!", "La Categoria ha sido eliminada", "success")
+                swal("Eliminado!", "La Categoria ha sido eliminada", "success")
                 context.fetchData();
             })
             .catch((err) => {               

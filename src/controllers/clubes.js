@@ -107,7 +107,7 @@ export default {
                             HTTP.post(ASOCIAR, request)
                             .then((resp) => {
                             console.log(resp);
-                            swal("Deleted!", "El Atleta ha sido Dado de baja en el Club", "success")
+                            swal("Eliminado!", "El Atleta ha sido Dado de baja en el Club", "success")
                             context.fetchData();
                                    })
                               .catch((err) => {   

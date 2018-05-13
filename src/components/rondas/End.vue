@@ -47,7 +47,7 @@
                             </div>
 
                         <div class="box-body">
-
+{{heats}}
        <div v-for="value in heats">
        <h3>Heat numero {{value.numero}}</h3>
                             <vue-good-table :columns="columns" :rows="value.atletasHeatList" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
@@ -74,7 +74,7 @@
 
 
     <td  v-if="ronda.estado=='Calificada'">
-    <button  type="button" @click="change(props.row)" class="margin btn btn-flat btn-sm btn-primary"
+    <button  type="button" @click="change(props.row,value)" class="margin btn btn-flat btn-sm btn-primary"
                                        ><i aria-hidden="true" 
                                         class="fa fa-retweet"></i> Cambiar Estado</button>
 
@@ -172,12 +172,12 @@ export default {
     },
      addCol(){
 console.log("Entress")
-           this.columns.push({label: 'Acciones',
+          /* this.columns.push({label: 'Acciones',
                       field: '',
-                      filterable: true,})
+                      filterable: true,})*/
        if(this.ronda)
        {
-       if(this.columns.length==4)
+       if(this.columns.length==3)
 {
     if(this.ronda.estado!=="Calificada")
 
@@ -190,35 +190,46 @@ console.log("Entress")
        }
 
             },
-      change(row){
+      change(row,value){
+      
+        console.log("?????????????")
+                console.log( this.heats[value.numero-1])
+                
+   
 if(!this.ultima){
           console.log(row)
 if(row.estado==='Clasificado'){
 row.estado='Descalificado';
+this.heats[value.numero-1].atletasHeatList[row.lugar-1].estado='Descalificado';
 return;
 }
 if(row.estado==='Descalificado'){
+  this.heats[value.numero-1].atletasHeatList[row.lugar-1].estado='Eliminado'
 row.estado='Eliminado'
 return;
 }
 if(row.estado==='Eliminado'){
+    this.heats[value.numero-1].atletasHeatList[row.lugar-1].estado='Clasificado'
 row.estado='Clasificado'
 
 console.log("eentesssssk"+row.estado)
 return;
 }
 if(row.estado==='Repechaje'){
+  this.heats[value.numero-1].atletasHeatList[row.lugar-1].estado='Clasificado'
 row.estado='Clasificado'
 return;}
 }
 else{
 if(row.estado==='Descalificado'){
+  this.heats[value.numero-1].atletasHeatList[row.lugar-1].estado='Finalista'
 row.estado='Finalista'
 return;
 
 
 }
 if(row.estado==='Finalista'){
+    this.heats[value.numero-1].atletasHeatList[row.lugar-1].estado='Descalificado'
 row.estado='Descalificado'
 return;
 

@@ -117,7 +117,7 @@ export default {
         HTTP.delete(CERTIFICACION + id)
             .then((resp) => {
                 console.log(resp);
-                swal("Deleted!", "El Certificacion ha sido eliminada", "success")
+                swal("Eliminado!", "El Certificacion ha sido eliminada", "success")
                 context.fetchData();
             })
             .catch((err) => {               

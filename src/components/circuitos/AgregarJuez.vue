@@ -35,7 +35,7 @@
                         <div class="box-body">
       <div class="box-action">
 
-                            <form @submit.prevent="submit"  role="form"  > 
+                            <form id="form" name="form" @submit.prevent="submit"  role="form"  > 
                                 <div v-if="numjueces<8">
            <div class="col-xs-12 col-sm-6">
                                         <div class="fgroup required"  :class="{ 'has-error': errors.has('juez') }">
@@ -229,6 +229,12 @@ export default {
 
       this.$validator.validateAll().then(success => {
         if (success) {
+console.log(this.juez)
+console.log(this.juezRol)
+
+
+           if(this.juez!='Selecione un juez') {     
+             if( this.juezRol!='Selecione un rol de Inicio')         {    
           this.juezCircuito.circuitoId = this.circuito;
           this.juezCircuito.juezId = this.juez;
           this.juezCircuito.rolJuezId = this.juezRol;
@@ -236,9 +242,24 @@ export default {
 
           console.log(JSON.stringify(this.juezCircuito));
           juezCircuitoController.create(this, this.juezCircuito);
-         
+       
         } else {
-          console.log("Error enn el formulario");
+      this.showAlert = true
+  this.errMsg = "Seleccione un rol"
+        }
+        }
+        else{
+  
+  this.showAlert = true
+  this.errMsg = "Seleccione un juez"
+          
+        }
+        
+        
+        }else{
+
+
+      console.log("Error enn el formulario");
           this.showAlert = true;
           this.errMsg = "Error revisa el formulario";
         }

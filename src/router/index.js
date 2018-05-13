@@ -114,7 +114,7 @@ import PatrocinadorAtletaIndex from '@/components/patrocinador_atleta/Index'
 import HeatInit from '@/components/heat/Iniciar'
 import CalificarInit from '@/components/heat/Calificar'
 import VerResultadosInit from '@/components/heat/VerResultados'
-
+import VerResultadosJuezInit from '@/components/heat/VerResultadosJuez'
 import Reportes from '@/components/reportes/Form'
 import ReportesAtleta from '@/components/reportes/FormbyAtleta'
 import ReportesPatrocinador from '@/components/reportes/FormbyPatrocinador'
@@ -763,6 +763,13 @@ const router = new Router({
           meta: { requiresAuth: true, adminAuth: false, juezAuth: true }
         },
 
+        {
+          path: 'verResultados/:id',
+          name: 'VerResultadosJuezInit',
+          component: VerResultadosJuezInit,
+          meta: { requiresAuth: true, adminAuth: false, juezAuth: true }
+        },
+        
         {
           path: 'userjuez',
           name: 'UpdateUserJuez',

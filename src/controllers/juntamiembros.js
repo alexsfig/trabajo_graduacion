@@ -128,7 +128,7 @@ export default {
         HTTP.delete(JUNTAMIEMBROS + id)
             .then((resp) => {
                 console.log(resp);
-                swal("Deleted!", "El miembro ha sido eliminado", "success")
+                swal("Eliminado!", "El miembro ha sido eliminado", "success")
                 context.fetchData();
             })
             .catch((err) => {

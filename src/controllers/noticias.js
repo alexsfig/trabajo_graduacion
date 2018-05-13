@@ -178,7 +178,7 @@ export default {
         HTTP.delete(NOTICIAS + id)
             .then((resp) => {
                 console.log(resp);
-                swal("Deleted!", "La Noticia ha sido eliminada", "success")
+                swal("Eliminado!", "La Noticia ha sido eliminada", "success")
                 context.fetchData();
             })
             .catch((err) => {               

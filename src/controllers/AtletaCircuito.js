@@ -176,7 +176,7 @@ export default {
         HTTP.delete(FECHAS + id)
             .then((resp) => {
                 console.log(resp);
-                swal("Deleted!", "El Atleta ha sido Dado de baja en el Circuito", "success")
+                swal("Eliminado!", "El Atleta ha sido Dado de baja en el Circuito", "success")
                 context.fetchData();
             })
             .catch((err) => {

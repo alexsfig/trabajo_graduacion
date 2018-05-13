@@ -86,16 +86,16 @@
 
                                     </div>   -->
 
-                                    <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup required" :class="{ 'has-error': errors.has('comprobante') }">
-                                            <label for="">Comprobante</label>
-
-                                            <v-select :disabled="id?true:false" :debounce="250" :options="comprobante" v-model="transaccion.comprobante" placeholder="Seleccione un Comprobante" label="label">
+                             <div class="col-xs-12 col-sm-6">
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('tipoTransaccionId') }">
+                                            <label for="tipoTransaccionId">Tipo de Transacción</label>
+                                            <v-select :disabled="id?true:false" :debounce="250" :options="tipoTransaccions" v-model="transaccion.tipoTransaccionId" placeholder="Seleccione un Tipo de Transaccion" label="nombre" @input="changedValue">
                                             </v-select>
-                                            <input type="hidden" name="comprobante" value="" data-vv-as="Comprobante" v-model="transaccion.comprobante" v-validate="'required'">
-                                            <span class="help-block" for="comprobante" v-bind:data-error="errors.first('comprobante')">
-                                                {{ errors.first('comprobante') }}
-                                            </span>
+                                            <div class="clearfix"></div>
+                                            <input type="hidden" name="tipoTransaccionId" value="" data-vv-as="Tipo de Transaccion" v-model="transaccion.tipoTransaccionId" v-validate="'required'">
+                                            <span class="help-block" for="tipoTransaccionId" v-bind:data-error="errors.first('tipoTransaccionId')">
+                                                    {{ errors.first('tipoTransaccionId') }}
+                                                </span>
                                         </div>
                                     </div>
 
@@ -129,16 +129,18 @@
                                         </div>
                                     </div>
                                    
-                                    <div class="col-xs-12 col-sm-6">
-                                        <div class="fgroup required" :class="{ 'has-error': errors.has('tipoTransaccionId') }">
-                                            <label for="tipoTransaccionId">Tipo de Transacción</label>
-                                            <v-select :disabled="id?true:false" :debounce="250" :options="tipoTransaccions" v-model="transaccion.tipoTransaccionId" placeholder="Seleccione un Tipo de Transaccion" label="nombre" @input="changedValue">
+                                  
+
+                                       <div class="col-xs-12 col-sm-6">
+                                        <div class="fgroup required" :class="{ 'has-error': errors.has('comprobante') }">
+                                            <label for="">Comprobante</label>
+
+                                            <v-select :disabled="id?true:false" :debounce="250" :options="comprobante" v-model="transaccion.comprobante" placeholder="Seleccione un Comprobante" label="label">
                                             </v-select>
-                                            <div class="clearfix"></div>
-                                            <input type="hidden" name="tipoTransaccionId" value="" data-vv-as="Tipo de Transaccion" v-model="transaccion.tipoTransaccionId" v-validate="'required'">
-                                            <span class="help-block" for="tipoTransaccionId" v-bind:data-error="errors.first('tipoTransaccionId')">
-                                                    {{ errors.first('tipoTransaccionId') }}
-                                                </span>
+                                            <input type="hidden" name="comprobante" value="" data-vv-as="Comprobante" v-model="transaccion.comprobante" v-validate="'required'">
+                                            <span class="help-block" for="comprobante" v-bind:data-error="errors.first('comprobante')">
+                                                {{ errors.first('comprobante') }}
+                                            </span>
                                         </div>
                                     </div>
                                     <div class="clearfix"></div>
@@ -237,7 +239,8 @@ export default {
       enapatro: false,
       enaatle: false,
       isLogin: false,
-      comprobante: [
+      comprobante:[],
+      comprobante1: [
         {
           label: "Factura",
           value: "Factura"
@@ -249,6 +252,20 @@ export default {
         {
           label: "Voucher",
           value: "Voucher"
+        }
+      ],
+      comprobante2: [
+        {
+          label: "Factura2",
+          value: "Factura2"
+        },
+        {
+          label: "Recibo2",
+          value: "Recibo2"
+        },
+        {
+          label: "Voucher2",
+          value: "Voucher2"
         }
       ],
       // comprobantev:null,
@@ -299,6 +316,21 @@ export default {
       this.enaatle = false;
       this.enapatro = false;
       console.log("ejemplo hhhhhhhhhhh");
+      if (this.transaccion.tipoTransaccionId) {
+  
+          if (this.transaccion.tipoTransaccionId.tipo){
+
+this.comprobante=this.comprobante1;
+          }else{
+
+this.comprobante=this.comprobante2;
+          }
+      }
+          
+          
+
+
+
       console.log(this.transaccion.tipoTransaccionId);
       if (this.transaccion.tipoTransaccionId) {
         if (this.transaccion.tipoTransaccionId.asociar) {

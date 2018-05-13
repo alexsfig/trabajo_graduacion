@@ -42,6 +42,7 @@
  <button type="button" class="margin btn btn-flat btn-sm btn-success" 
                                         @click="submit()"><i aria-hidden="true" 
                                         class="fa fa-check"></i> Crear Ronda</button> </div>
+                                     
 <div v-for="value in listheat">
  <div class="box-body">
         
@@ -69,7 +70,7 @@
                                         
                                         <div v-if="!changeAtleta">
                                         <button type="button" v-if="!props.row.selected" class="margin btn btn-flat btn-sm btn-warning" 
-                                        @click="cambioInit(props.row)"><i aria-hidden="true" 
+                                        @click="cambioInit(props,value[0].numeroHeat-1)"><i aria-hidden="true" 
                                         class="fa fa-retweet"></i> Re-Asignar</button>
                                         </div>
 
@@ -77,7 +78,7 @@
                                    
                                    
                                       <button type="button" v-if="!props.row.selected" class="margin btn btn-flat btn-sm btn-success" 
-                                        @click="cambioRealizar(props.row)"><i aria-hidden="true" 
+                                        @click="cambioRealizar(props,value[0].numeroHeat-1)"><i aria-hidden="true" 
                                         class="fa fa-retweet"></i> cambiar</button>
 
  <button type="button" v-if="props.row.selected" class="margin btn btn-flat btn-sm btn-danger" 
@@ -115,133 +116,144 @@
 
 </template>
 <script>
-  
-    import circuitosController from '../../controllers/circuitos.js';
-    import atletaController from '../../controllers/atletas.js';
-    import atletaCircuitoController  from '../../controllers/AtletaCircuito.js';
-    import rondasController  from '../../controllers/rondas.js';
-    import vSelect from "vue-select"
-    import moment from "moment"
-    export default {
-        name: 'AgregarAtleta',
-        data() {
-            return {
-                circuito: {atletasCircuitoList:[],fechaId:{}},
-                datos:[],
-                aux:null,
-                atletaCircuito:{},
-                atletas:[],
-                atletaCircuitos:[],
-                listheat:[],
-                totalAtletas:0,
-                atleta:null,
-                showAlert: false,
-                showSuccess: false,
-                methodSubmit: 'editar',
-                openModal: false ,
-                 changeAtleta: false ,
-                id:'',
-                columns: [ 
- 
-                       {
-                      label: 'Nombre',
-                      field: 'atletaId.personaId.nombre',
-                      filterable: false
-                    },
-                    {
-                      label: 'Apellido',
-                      field: 'atletaId.personaId.apellido',
-                      filterable: false
-                    },
-
-                    {
-                      label: 'Años Practicando',
-                      field: 'aniosPracticando',
-                      filterable: false
-                    },
-                   {
-                      label: 'Lado de Pie',
-                      field: 'ladoPie',
-                      filterable: false
-                    },
-                      {
-                      label: 'Ola Preferida',
-                      field: 'olaPreferida',
-                      filterable: false
-                    },
-                     {
-                      label: 'Accion',
-                      field: '',
-                      filterable: false
-                    },
-                     {
-                      label: 'Color',
-                      field: 'color',
-                      filterable: false
-                    }
-                    ]
-            }
-        }, components:{
-            vSelect
+import circuitosController from "../../controllers/circuitos.js";
+import atletaController from "../../controllers/atletas.js";
+import atletaCircuitoController from "../../controllers/AtletaCircuito.js";
+import rondasController from "../../controllers/rondas.js";
+import vSelect from "vue-select";
+import moment from "moment";
+export default {
+  name: "AgregarAtleta",
+  data() {
+    return {
+      circuito: { atletasCircuitoList: [], fechaId: {} },
+      datos: [],
+      aux: null,
+      atletaCircuito: {},
+      atletas: [],
+      atletaCircuitos: [],
+      listheat: [],
+      totalAtletas: 0,
+      atleta: null,
+      showAlert: false,
+      showSuccess: false,
+      methodSubmit: "editar",
+      openModal: false,
+      changeAtleta: false,
+      id: "",
+      numTable: "",
+      numIndex: "",
+      columns: [
+        {
+          label: "Nombre",
+          field: "atletaId.personaId.nombre",
+          filterable: false
         },
-        created(){
-              this.id = this.$route.params.id;
-        
-            this.fetchData()
+        {
+          label: "Apellido",
+          field: "atletaId.personaId.apellido",
+          filterable: false
         },
-        methods:{
-            fetchData(){
-               // circuitosController.index(this)
-               atletaCircuitoController.indexByCircuitoClasificados(this,this.id);
-               atletaCircuitoController.getheat(this,this.id);
-                circuitosController.retrieve(this,this.id)
-                 atletaController.index(this)
 
-/*
+        {
+          label: "Años Practicando",
+          field: "aniosPracticando",
+          filterable: false
+        },
+        {
+          label: "Lado de Pie",
+          field: "ladoPie",
+          filterable: false
+        },
+        {
+          label: "Ola Preferida",
+          field: "olaPreferida",
+          filterable: false
+        },
+        {
+          label: "Accion",
+          field: "",
+          filterable: false
+        },
+        {
+          label: "Color",
+          field: "color",
+          filterable: false
+        }
+      ]
+    };
+  },
+  components: {
+    vSelect
+  },
+  created() {
+    this.id = this.$route.params.id;
+
+    this.fetchData();
+  },
+  methods: {
+    fetchData() {
+      // circuitosController.index(this)
+      atletaCircuitoController.indexByCircuitoClasificados(this, this.id);
+      atletaCircuitoController.getheat(this, this.id);
+      circuitosController.retrieve(this, this.id);
+      atletaController.index(this);
+
+      /*
   for (let i of this.atletas) {
   i.nombre=i.personaId.nombre+","+i.personaId.apellido;
   console.log("nombre:"+ i.nombre)
   console.log("Entrada:"+i.personaId.nombre+","+i.personaId.apellido)
 }*/
-            },
+    },
 
-               cambioInit(row) {
+    cambioInit(props, num) {
+      //row.personaId.apellido="jdksks";
 
-//row.personaId.apellido="jdksks";
+      props.row.selected = true;
+      this.changeAtleta = true;
+      this.aux = props.row;
+      this.numTable = num;
+      this.numIndex = props.index ;
+    },
+    cambioRealizar(props, num) {
+      console.log(props.row);
+      console.log(this.aux)
+      console.log(this.numTable)
+        console.log(this.numIndex)
+        
+      //console.log(this.listheat[list[0].numeroHeat - 1][0]);
+        let aux5=props.row.atletaId;
+      //row.personaId.apellido="jdksks";
+           this.listheat[num][props.index].atletaId=this.aux.atletaId;
+       
+       this.listheat[this.numTable][this.numIndex].atletaId=aux5;
+      let aux2 = props.row.atletaId;
+      props.row.atletaId = this.aux.atletaId;
+      this.aux.atletaId = aux2;
+      props.row.selected = false;
+      this.aux.selected = false;
+      this.changeAtleta = false;
+       console.log( this.listheat[num][props.index])
+      console.log(this.listheat[this.numTable][this.numIndex])
+   
+  
+          console.log( this.listheat)
+    },
 
-row.selected=true;
-this.changeAtleta=true;
-this.aux=row;
+    cambioCancelar(row) {
+      row.selected = false;
+      this.changeAtleta = false;
+      this.numTable = "";
+      this.numIndex = "";
+    },
+    submit() {
+      this.showAlert = false;
+      this.showSuccess = false;
 
-               },
-    cambioRealizar(row) {
-
-//row.personaId.apellido="jdksks";
-let aux2=row.atletaId;
-row.atletaId=this.aux.atletaId;
-this.aux.atletaId=aux2;
-row.selected=false;
-this.aux.selected=false;
-this.changeAtleta=false;
-
-
-               },
-
-               cambioCancelar(row){
-
-row.selected=false;
-this.changeAtleta=false;
-                   
-               },
-                  submit() {
-                this.showAlert = false
-                this.showSuccess = false
-
-                this.$validator.validateAll().then(success => {
-                    if (success) {
-                 
-                    
-                       /* this.atletaCircuito.circuitoId=this.circuito;
+      this.$validator.validateAll().then(success => {
+        if (success) {
+          /* this.atletaCircuito.circuitoId=this.circuito;
                         this.atletaCircuito.atletaId=this.atleta;
                         this.atletaCircuito.estado=0;
 
@@ -250,72 +262,67 @@ this.changeAtleta=false;
                         atletaCircuitoController.create(this,this.atletaCircuito)
                         */
 
-                        rondasController.create(this,this.listheat);
-
-                     
-                    }
-                    else{
-                          console.log("Error enn el formulario")
-                        this.showAlert = true
-                        this.errMsg = "Error revisa el formulario"
-                    }
-                });
-            },
-            deleteCircuito(id, nombre) {
-                let context = this;
-                let swal = this.$swal;
-                this.$swal({
-                    title: 'Estas Seguro?',
-                    html: 'No podras recuperar la informacion de la circuito <b>&laquo;' + nombre + '&raquo</b><br>y toda la informacion relacion al mismo ya no sera accesible',
-                    type: 'error',
-                    showCancelButton: true,
-                    confirmButtonText: 'Si, Eliminar!',
-                    cancelButtonText: 'No, Mantener'
-                }).then(function() {
-                    atletaCircuitoController.delete(context, id, swal);
-                },function(dismiss) {
-                    if (dismiss === 'cancel') {
-                        swal(
-                          'Cancelado',
-                          'La circuito no se elimino',
-                          'error'
-                        )
-                    }
-                })
-            },
-
-            volver(){
-                console.log("entre")
- window.history.length > 1
-        ? this.$router.go(-1)
-        : this.$router.push('/')
-    
-
-            }
+          rondasController.create(this, this.listheat);
+        } else {
+          console.log("Error enn el formulario");
+          this.showAlert = true;
+          this.errMsg = "Error revisa el formulario";
         }
+      });
+    },
+    deleteCircuito(id, nombre) {
+      let context = this;
+      let swal = this.$swal;
+      this.$swal({
+        title: "Estas Seguro?",
+        html:
+          "No podras recuperar la informacion de la circuito <b>&laquo;" +
+          nombre +
+          "&raquo</b><br>y toda la informacion relacion al mismo ya no sera accesible",
+        type: "error",
+        showCancelButton: true,
+        confirmButtonText: "Si, Eliminar!",
+        cancelButtonText: "No, Mantener"
+      }).then(
+        function() {
+          atletaCircuitoController.delete(context, id, swal);
+        },
+        function(dismiss) {
+          if (dismiss === "cancel") {
+            swal("Cancelado", "La circuito no se elimino", "error");
+          }
+        }
+      );
+    },
+
+    volver() {
+      console.log("entre");
+      window.history.length > 1 ? this.$router.go(-1) : this.$router.push("/");
     }
+  }
+};
 </script>
 
 <style scoped>
-    td.greenBG{
-        background-color: lightgreen
-    }
-    td.redBG{
-        background-color: #dd4b39
-    }
-    td.blueBG{
-        background-color: #3c8dbc
-    }
-    td.yellowBG{
-        background-color: #ffff97
-    }
-    .view-all{
-        padding: 30px 0
-    }
-    .heat-notes{
-        padding: 50px 0
-    }
-    .notes-per-heat{
-        padding: 20px 0
-    }
+td.greenBG {
+  background-color: lightgreen;
+}
+td.redBG {
+  background-color: #dd4b39;
+}
+td.blueBG {
+  background-color: #3c8dbc;
+}
+td.yellowBG {
+  background-color: #ffff97;
+}
+.view-all {
+  padding: 30px 0;
+}
+.heat-notes {
+  padding: 50px 0;
+}
+.notes-per-heat {
+  padding: 20px 0;
+}
 </style>
