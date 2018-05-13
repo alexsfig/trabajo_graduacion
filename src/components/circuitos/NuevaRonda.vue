@@ -43,7 +43,7 @@
  <button type="button" class="margin btn btn-flat btn-sm btn-success" 
                                         @click="submit()"><i aria-hidden="true" 
                                         class="fa fa-check"></i> Crear Ronda</button> </div>
-              {{listheat}}                       
+                                  
 <div v-for="value in listheat">
  <div class="box-body">
         

@@ -47,7 +47,7 @@
                             </div>
 
                         <div class="box-body">
-{{heats}}
+
        <div v-for="value in heats">
        <h3>Heat numero {{value.numero}}</h3>
                             <vue-good-table :columns="columns" :rows="value.atletasHeatList" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
