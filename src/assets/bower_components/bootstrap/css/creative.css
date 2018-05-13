@@ -1,7 +1,7 @@
 header.masthead {
   padding-top: 10rem;
   padding-bottom: calc(10rem - 56px);
-  background-image: url("../img/header.png");
+  background-image: url("../img/bg01.png");
   background-position: center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -15,4 +15,58 @@ header.masthead {
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
+
+}
+section.bg-primary {
+    padding: 1rem 0;
+}
+header.masthead hr {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+header.masthead h1 {
+  font-size: 2rem;
+}
+
+header.masthead p {
+  font-weight: 300;
+}
+
+@media (min-width: 768px) {
+  header.masthead p {
+    font-size: 1.15rem;
+  }
+}
+
+@media (min-width: 992px) {
+    .bg-secondary {
+      height: 25vh;
+      min-height: 100px;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  header.masthead {
+    height: 50vh;
+    min-height: 400px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  header.masthead h1 {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  header.masthead h1 {
+    font-size: 4rem;
+  }
+}
+
+.container.my-auto {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.container.my-auto h1 {
+    color: #ff5531;
 }

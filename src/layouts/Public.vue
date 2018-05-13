@@ -483,7 +483,7 @@ img::-moz-selection {
                     <ul class="nav navbar-nav">
                         <li class="">
                             <router-link :to="{ name: 'DashboardRoot2'}">
-                                Home
+                                Inicio
                             </router-link>
                         </li>
                         <li>
