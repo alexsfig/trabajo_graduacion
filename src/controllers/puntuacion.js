@@ -23,6 +23,8 @@ export default {
     /*
         Method to update user, pass context, object Users and user id
     */
+
+    
     create(context, puntuacion){
                             HTTP.post(PUNTUACION, puntuacion)
                             .then((resp) => {
