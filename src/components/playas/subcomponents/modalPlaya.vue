@@ -18,7 +18,7 @@
                     <input type="hidden" v-model="id">
                     <div class="fgroup required" :class="{ 'has-error': errors.has('nombre') }">
                         <label for="nombre">Nombre</label>
-                        <input type="text" id="nombre" name="nombre" data-vv-as="nombre" class="form-control" v-model="playaUpdate.nombre" v-validate="'required'" />
+                        <input type="text" id="nombre" name="nombre" data-vv-as="nombre" class="form-control" v-model="playaUpdate.nombre" v-validate="'required'" disabled/>
                         <span class="help-block" for="nombre" v-bind:data-error="errors.first('nombre')">
                                 {{ errors.first('nombre') }}
                             </span>
@@ -33,7 +33,7 @@
                 </div>
                 <div class="box-footer">
                     <div class="col-xs-12 text-right">
-                        <button type="submit" class="btn btn-flat btn-sm btn-primary">{{ buttonMsg }}</button>
+                        <button type="submit" class="btn btn-flat btn-sm btn-primary"><i class="fa fa-edit"></i> {{ buttonMsg }}</button>
                     </div>
                 </div>
 

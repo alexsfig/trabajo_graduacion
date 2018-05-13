@@ -240,7 +240,7 @@ export default {
       enaatle: false,
       isLogin: false,
       comprobante:[],
-      comprobante1: [
+      comprobante2: [
         {
           label: "Factura",
           value: "Factura"
@@ -254,18 +254,18 @@ export default {
           value: "Voucher"
         }
       ],
-      comprobante2: [
+      comprobante1: [
         {
-          label: "Factura2",
-          value: "Factura2"
+          label: "Comprobante de Deposito",
+          value: "Comprobante de Deposito"
         },
         {
-          label: "Recibo2",
-          value: "Recibo2"
+          label: "Credito Fiscal",
+          value: "Credito Fiscal"
         },
         {
-          label: "Voucher2",
-          value: "Voucher2"
+          label: "Voucher",
+          value: "Voucher"
         }
       ],
       // comprobantev:null,

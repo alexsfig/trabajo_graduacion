@@ -1,11 +1,25 @@
+<style>
+
+.active {
+    width: 100%;
+}
+
+.custom-img {
+    width: 75px;
+    margin: auto;
+}
+
+</style>
+
 <template>
+
     <div>
         <section class="content-header">
             <h1>Ranking por categoria</h1>
 
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-                <li>Manejo de Circuitos </li>
+                <li>Ranking </li>
       
             </ol>
         </section>
@@ -79,13 +93,14 @@
                                    <td><router-link :to="{ name: 'AtletasShowJuez', params: { id: props.row.atleta }}">{{props.row.nombre}}</router-link></td> 
 
 
-    <td v-for="value in props.row.puntuaciones" :title="value.puntuacion+' Puntos'" :style="value.lugar==1?{background:'#FFD700'}:value.lugar==2?{background:'#a8a8a8'}:value.lugar==3?{background:'#cd7f32'}:{}"><div  >{{value.lugar}}</div></td> 
-                               
+    <td class="text-center td-nota" v-for="(value, key) in props.row.puntuaciones" :title="value.puntuacion+' Puntos '  +value.fecha" >
+                                    <div class="td-color" :style="{background:getColor( value.lugar, key )}">&nbsp;</div>
+                                    <div class="td-text">
+                                        <b>{{value.lugar}}</b>
+                                    </div>
+                                </td>                      
 
   
-
-
-
                                            <td  style="color:navy;text-align: center; margin: 0 auto;  text-align: left;">{{props.row.puntos}}</td>       
 
                                   </template>
@@ -238,19 +253,59 @@ export default {
         age--;
       }
       return age;
-    }
+    },
+      getColor(value, key){
+            var puntos = []
+            for (let variable of this.ranking) {
+                if (puntos.indexOf(variable.puntuaciones[key].lugar) == -1) {
+                    puntos.push(variable.puntuaciones[key].lugar)
+                }
+            }
+            if (value == '--') {
+                var value2 = 1;
+            }
+            else{
+                var value2 = value/(puntos.length+3);
+            }
+            var hue=((1-value2)*120).toString(10);
+            return ["hsl(",hue,", 100%, 70%)"].join("");
+        }
   }
 };
 </script>
 
-<style>
-.active {
+<style scoped="">
+    .table > tbody > tr > td{
+        vertical-align: middle !important;
+    }
+    .td-color{
+        display: inline-block;
+        height: 20px;
+        float: unset;
+        width: 20px;
+        padding: 0 0;
+    }
+    @media only screen and (min-width:960px){
+        .td-color{
+            float: left;
+
+        }
+    }
+
+    .td-text{
+        display: inline-block;
+        padding: 0 20px;
+    }
+    .td-nota{
+        width: 100px;
+    }
+
+    .active {
   width: 100%;
 }
 .custom-img{
     width: 75px;
     margin:auto;
 }
-
 
 </style>

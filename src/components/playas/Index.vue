@@ -25,12 +25,12 @@
         </div>
         <div class="row">
             <div class="col-md-6">
-                <div class="box box-success ">
+                <div class="box box-primary">
                     <div class="box-header with-border">
                         <h3 class="box-title">Buscar Playa</h3>
                     </div>
                     <div class="box-body">
-                       ddd {{place}}
+                       
                         <div class="input-map">
                             <GmapAutocomplete @place_changed="setPlace" class="form-control " :options="{  componentRestrictions: {'country': ['SV']} }" :value="searchValue">
                             </GmapAutocomplete>
@@ -49,7 +49,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="box box-success">
+                <div class="box box-primary">
                     <div class="box-header with-border">
                         <h3 class="box-title">Agregar Nueva Playa
                             {{searchValue}}
@@ -73,8 +73,8 @@
                             </div>
                         </div>
                         <div class="box-footer">
-                            <button type="button" class="pull-left btn btn-default btn-flat" @click="reset()">Limpiar</button>
-                            <button type="submit" class="pull-right btn btn-success btn-flat">Agregar</button>
+                            <button type="button" class="pull-left btn btn-default btn-flat" @click="reset()"><i aria-hidden="true" class="fa fa-eraser"></i> Limpiar</button>
+                            <button type="submit" class="pull-right btn btn-primary btn-flat"><i class="fa fa-plus"></i> Agregar</button>
                         </div>
                     </form>
                 </div>
@@ -155,7 +155,7 @@ export default {
                 label: "Nombre",
                 field: "nombre",
             }, {
-                label: "Ubicación",
+                label: "Descripción Ubicación",
                 field: "ubicacion",
             }, {
                 label: "Acción"
