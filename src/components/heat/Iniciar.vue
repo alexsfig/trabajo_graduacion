@@ -42,10 +42,10 @@
                             
 
 <div v-if="juezLider" >
-    Lider de jueces: 
+    Lider de jueces: <b>
     {{
         juezLider.juezId.personaId.nombre}},{{
-        juezLider.juezId.personaId.apellido}}
+        juezLider.juezId.personaId.apellido}} </b>
 
 <button v-if="juezLider" type="button" class="margin btn btn-flat btn-sm btn-warning" 
                                         @click="juezLider=null"><i aria-hidden="true" 
