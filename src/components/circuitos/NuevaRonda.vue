@@ -39,10 +39,11 @@
                                
     <form @submit.prevent="submit"  role="form"> 
     <div class="box-body">
+        
  <button type="button" class="margin btn btn-flat btn-sm btn-success" 
                                         @click="submit()"><i aria-hidden="true" 
                                         class="fa fa-check"></i> Crear Ronda</button> </div>
-                                     
+              {{listheat}}                       
 <div v-for="value in listheat">
  <div class="box-body">
         
@@ -224,10 +225,13 @@ export default {
         
       //console.log(this.listheat[list[0].numeroHeat - 1][0]);
         let aux5=props.row.atletaId;
+         let aux6=props.row.id;
       //row.personaId.apellido="jdksks";
            this.listheat[num][props.index].atletaId=this.aux.atletaId;
-       
+       this.listheat[num][props.index].id=this.aux.id;
+
        this.listheat[this.numTable][this.numIndex].atletaId=aux5;
+        this.listheat[this.numTable][this.numIndex].id=aux6;
       let aux2 = props.row.atletaId;
       props.row.atletaId = this.aux.atletaId;
       this.aux.atletaId = aux2;

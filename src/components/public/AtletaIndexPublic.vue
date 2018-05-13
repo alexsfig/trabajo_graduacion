@@ -51,8 +51,8 @@
                                                 <i class="fa fa-bookmark" ></i>
                                             </router-link>
                                         </td>
-                                        <td class="text-center td-nota" v-for="(value, key) in r.puntuaciones" :title="value.puntuacion+' Puntos '  +value.fecha" >
-                                            <div class="td-color" :style="{background:getColor( value.lugar, key )}">&nbsp;</div>
+                                        <td class="text-center td-nota" v-for="(value, key) in r.puntuaciones" :title="value.puntuacion+' Puntos '  +(value.fecha==null?'':value.fecha)" >
+                                            <div class="td-color" :style="{background:getColor( value.lugar==0?'--':value.lugar, key )}">&nbsp;</div>
                                             <div class="td-text">
                                                 <b>{{ value.lugar == '--' ? '0' : value.lugar}}</b>
                                             </div>

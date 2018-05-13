@@ -169,8 +169,9 @@ a.fc-day-grid-event {
                                             <td>
                                                 <label>{{r.lugar}}</label>
                                             </td>
-                                            <td>
+                                            <td> <router-link :to="{ name: 'AtletasShowPublic', params: { id: r.atletaId.id }}" class="pull-right" v-tooltip="'You have new messages.'">
                                                 <img class="custom-img img-responsive img-circle" v-bind:src="getImgA(r.atletaId.id)" alt="User profile picture">
+                                                </router-link>
                                             </td>
                                             <td>
                                                 {{r.atletaId.personaId.nombre+" "+r.atletaId.personaId.apellido}}

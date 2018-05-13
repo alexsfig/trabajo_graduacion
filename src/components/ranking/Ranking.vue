@@ -77,8 +77,8 @@
                                 <td>
                                     <router-link :to="{ name: 'AtletasShow', params: { id: props.row.atleta }}">{{props.row.nombre}}</router-link>
                                 </td>
-                                <td class="text-center td-nota" v-for="(value, key) in props.row.puntuaciones" :title="value.puntuacion+' Puntos '  +value.fecha" >
-                                    <div class="td-color" :style="{background:getColor( value.lugar, key )}">&nbsp;</div>
+                                <td class="text-center td-nota" v-for="(value, key) in props.row.puntuaciones" :title="value.puntuacion+' Puntos '  + (value.fecha==null?'':value.fecha)" >
+                                    <div class="td-color" :style="{background:getColor( value.lugar==0?'--':value.lugar, key )}">&nbsp;</div>
                                     <div class="td-text">
                                         <b>{{value.lugar}}</b>
                                     </div>

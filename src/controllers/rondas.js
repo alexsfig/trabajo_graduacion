@@ -191,7 +191,8 @@ create(context,heats){
             .then((resp) => {
                 console.log(resp);
                 swal("Finalizada!", "La Ronda ha sido finalizada", "success")
-                context.fetchData();
+                context.volver();
+               // context.fetchData();
             })
             .catch((err) => {
                 swal("Oh snap!", "Ocurrio un error.", "error")

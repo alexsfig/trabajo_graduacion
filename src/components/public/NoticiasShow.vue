@@ -15,7 +15,7 @@
                     <div class="service-box mt-5 mx-auto">
                         <i class="fa fa-4x fa-newspaper-o text-primary mb-3 sr-icons"></i>
                         <hr >
-                        <h3 class="mb-3">Noticias</h3>
+                        <h3 class="mb-3">{{noticia.nombre}}<!--Noticias--></h3>
                     </div>
                 </div>
             </div>
@@ -30,7 +30,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-6">
                     
-             <h2 align="center">{{noticia.nombre}}</h2>
+            <!-- <h2 align="center">{{noticia.nombre}}</h2>-->
         
                     <p align="justify" style="white-space: pre-line">
                         {{noticia.descripcion}}

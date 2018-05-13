@@ -132,7 +132,9 @@
                 successMsg: "",
                 errMsg: "",
                 isLogin: false,
-                createPatrocinadorAtleta: {},
+                createPatrocinadorAtleta: {atletaId:null,
+                patrocinadorId:null
+                },
 
                 patrocinadors: [],
                 atletas: []

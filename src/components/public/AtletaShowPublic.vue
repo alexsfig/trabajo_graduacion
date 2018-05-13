@@ -30,6 +30,13 @@
                                 <p class="text-center"> {{value.categoriaName}}, Lugar {{value.lugar}} <b>Puntos {{value.puntos}} <i class="fa fa-star"></i></b></p>
                             </div>
                         </div>
+                         <br>
+                        <hr class="hr-text" data-content="patrocinadores">
+                        <div v-if=" atleta.ranking">
+                            <div class="logros" v-for="value in atleta.patrocinadores">
+                             <b>   <p class="text-center"> {{value.nombre}} <i class="fa fa-donate"></i></p></b>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-8">
                         <hr class="hr-text" :data-content="(atleta.personaId ? atleta.personaId.nombre : '' )+ ' ' + (atleta.personaId ? atleta.personaId.apellido:'') ">
