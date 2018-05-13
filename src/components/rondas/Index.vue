@@ -42,7 +42,7 @@
                             </router-link>
                         </div>
                         </div>
-                        <div v-if="circuito.estado=='Calificado'">
+                     <div v-if="circuito.estado=='Calificado'">
                             <router-link v-if="nuevoHabilitar" :to="{ name: 'CircuitosFinalizar', params: { id: id }}">
                                 <button type="button" class="margin btn btn-flat btn-sm btn-primary"><i aria-hidden="true" 
                                         class="fa fa-flag-checkered"></i> Finalizar Circuito </button>
@@ -135,7 +135,7 @@ export default {
             this.nuevoHabilitar = true;
             if (val) {
                 for (let i of val) {
-                    if (i.estado == "No iniciada" || i.estado == "En progreso" || i.estado == "Calificada")
+                    if (i.estado == "No iniciada" || i.estado == "En progreso" || i.estado == "Calificada"|| i.estado == "Iniciada")
                         this.nuevoHabilitar = false;
 
                 }
