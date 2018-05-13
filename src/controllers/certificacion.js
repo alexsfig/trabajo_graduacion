@@ -121,7 +121,7 @@ export default {
                 context.fetchData();
             })
             .catch((err) => {               
-                swal("Oh snap!", "Ocurrio un error.", "error")
+                swal("Error!", "Ocurrio un error.", "error")
             })
     }
     
