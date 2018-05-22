@@ -190,7 +190,7 @@ a.fc-day-grid-event {
                         </div>
                     </div>
                     <div class="col-lg-12 text-center">
-                        <router-link :to="{ name: 'AtletasIndexPublic' }" class="pull-right btn btn-primary" v-tooltip="'You have new messages.'">
+                        <router-link :to="{ name: 'AtletasIndexPublic' }" class="pull-right btn btn-primary2" v-tooltip="'You have new messages.'">
                             Ver Ranking completo <i class="fa fa-trophy"></i>
                         </router-link>
                     </div>
