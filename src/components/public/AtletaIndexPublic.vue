@@ -42,7 +42,7 @@
                                 <tbody>
                                     <tr v-for="r in ranking">
                                         <td style="">
-                                            <router-link :to="{ name: 'AtletasShow', params: { id: r.atleta }}"><img class="custom-img img-responsive img-circle" v-bind:src="getImg(r.atleta)" alt="User profile picture" /></router-link>
+                                            <router-link :to="{ name: 'AtletasShowPublic', params: { id: r.atleta }}"><img class="custom-img img-responsive img-circle" v-bind:src="getImg(r.atleta)" alt="User profile picture" /></router-link>
                                         </td>
                                         <td style="color:navy"><b>#{{r.posicion}}</b></td>
                                         <td>
