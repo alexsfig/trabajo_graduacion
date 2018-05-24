@@ -54,7 +54,7 @@
                                         <td class="text-center td-nota" v-for="(value, key) in r.puntuaciones" :title="value.puntuacion+' Puntos '  +(value.fecha==null?'':value.fecha)" >
                                             <div class="td-color" :style="{background:getColor( value.lugar==0?'--':value.lugar, key )}">&nbsp;</div>
                                             <div class="td-text">
-                                                <b>{{ value.lugar == '--' ? '0' : value.lugar}}</b>
+                                                <b>{{ value.lugar }}</b>
                                             </div>
                                         </td>
                                         <td style="color:navy;text-align: center; margin: 0 auto;  text-align: left;">{{r.puntos}}</td>
