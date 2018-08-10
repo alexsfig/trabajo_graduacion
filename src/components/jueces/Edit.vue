@@ -16,7 +16,7 @@
                 <div class="col-xs-12">
                     <div class="wrapper-alert">
                         <alert type="danger" :closable="true" v-if="showAlert" @close="showAlert=false">
-                            <h4><i class="icon fa fa-ban"></i> Error!</h4>
+                            <h4><i class="icon fa fa-ban"></i> Alert!</h4>
                             <p>{{ errMsg }}</p>
                         </alert>
                         <alert type="success" :closable="true" v-if="showSuccess" @close="showSuccess=false">
@@ -66,7 +66,7 @@
                                     <div class="col-sm-12">
                                         <form @submit.prevent="add_certificacion('form-4')" action="" data-vv-scope="form-4">
 
-                                            <div class="col-sm-5">
+                                            <div class="col-md-5">
 
                                                 <div class="col-xs-12">
                                                     <div class="fgroup required" :class="{ 'has-error': errors.has('form-4.titulo') }">
@@ -108,7 +108,7 @@
 
 
                                                
-                                                <div class="clearfix"></div>
+                                               
                                                 <div class="col-xs-12">
                                                     <div class="fgroup required" :class="{ 'has-error': errors.has('form-4.lugar') }">
                                                         <label for="">Lugar Expedición</label>
@@ -121,8 +121,10 @@
                                                 <div class="col-xs-12 text-right">
                                                     <button type="submit" class="btn btn-flat btn-sm btn-primary"><i class="fa fa-plus"></i> Agregar Certificación </button>
                                                 </div>
+                                                 <div class="clearfix"></div>
                                             </div>
-                                            <div class="col-xs-7">
+                                            
+                                            <div class="col-md-7">
                                                 <div class="col-xs-12 ">
                                                     <vue-good-table :columns="columns" :rows="juez.certificacionList" title="Certificaciones del juez" :paginate="true" :globalSearch="true" globalSearchPlaceholder="Search" styleClass="table table-striped table-condensed">
                                                         <template slot="table-row" scope="props">
