@@ -42,7 +42,7 @@
                                 <tbody>
                                     <tr v-for="r in ranking">
                                         <td style="">
-                                            <router-link :to="{ name: 'AtletasShow', params: { id: r.atleta }}"><img class="custom-img img-responsive img-circle" v-bind:src="getImg(r.atleta)" alt="User profile picture" /></router-link>
+                                            <router-link :to="{ name: 'AtletasShowPublic', params: { id: r.atleta }}"><img class="custom-img img-responsive img-circle" v-bind:src="getImg(r.atleta)" alt="User profile picture" /></router-link>
                                         </td>
                                         <td style="color:navy"><b>#{{r.posicion}}</b></td>
                                         <td>
@@ -54,7 +54,7 @@
                                         <td class="text-center td-nota" v-for="(value, key) in r.puntuaciones" :title="value.puntuacion+' Puntos '  +(value.fecha==null?'':value.fecha)" >
                                             <div class="td-color" :style="{background:getColor( value.lugar==0?'--':value.lugar, key )}">&nbsp;</div>
                                             <div class="td-text">
-                                                <b>{{ value.lugar == '--' ? '0' : value.lugar}}</b>
+                                                <b>{{ value.lugar }}</b>
                                             </div>
                                         </td>
                                         <td style="color:navy;text-align: center; margin: 0 auto;  text-align: left;">{{r.puntos}}</td>
