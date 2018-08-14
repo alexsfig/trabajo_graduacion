@@ -215,7 +215,6 @@ a.fc-day-grid-event {
                 <div class="row">
                     <div class="col-lg-10 col-lg-offset-1 text-center">
                         <full-calendar :config="config" :events="events" eventClick="eventClick" />
-
                     </div>
                 </div>
             </div>
