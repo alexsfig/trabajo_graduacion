@@ -28,7 +28,7 @@
                         <v-select :debounce="250" :options="categorias" v-model="catSelect" placeholder="Seleccione una categoria" label="nombreCategoria">
                         </v-select>
                         <br/>
-                        <div class="table-responsive">
+                        <div class="table-responsive" v-if="ranking.length > 0"  >
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -46,7 +46,7 @@
                                         </td>
                                         <td style="color:navy"><b>#{{r.posicion}}</b></td>
                                         <td>
-                                            {{r.nombre}}s
+                                            {{r.nombre}}
                                             <router-link :to="{ name: 'AtletasShowPublic', params: { id: r.atleta }}" class="pull-right">
                                                 <i class="fa fa-bookmark" ></i>
                                             </router-link>
@@ -61,6 +61,11 @@
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
+                        <div v-if="ranking.length == 0">
+                            <h3>
+                                No hay resultados que mostrar                                
+                            </h3>
                         </div>
                     </div>
                 </div>
@@ -88,15 +93,10 @@ export default {
     data() {
         return {
             categorias: [],
-            ranking: [
-                { posiciones: []}
-            ],
+            ranking: [],
             catSelect: '',
             atletas: [],
             atleta: {}
-
-
-
         }
     },
     components: {
