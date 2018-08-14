@@ -33,8 +33,7 @@ export default {
        HTTP.post('persona', atleta)
        .then((resp) => {
            if (resp.status>= 200 && resp.status <=300){
-
-
+       
                context.showSuccess = true
                context.successMsg = "Persona creada exitosamente"
               console.log(resp);
@@ -47,7 +46,10 @@ export default {
                .then((resp) => {
                    console.log("estoy en crear personaasljjsll")
                    console.log(atleta)
-
+                   context.$router.push({
+                    name: "PersonaIndex"
+                  });
+    
                })
                .catch((err) => {
                    if (err.response) {
@@ -58,9 +60,9 @@ export default {
                })
 
 
-               context.fetchData()
-               context.resetForm()
-               console.log("Saliendo");
+              // context.fetchData()
+             //  context.resetForm()
+              // console.log("Saliendo");
            }
        })
        .catch((err) => {

@@ -2,7 +2,7 @@
 // Base class connection
 import {HTTP} from '../common_class/http.js';
 import {UPLOAD} from '../common_class/http.js';
-
+const UPLOAD_URL  = process.env.UPLOAD_URL;
 // Use router
 import {router} from '../router/index.js'
 import moment from 'moment'
@@ -90,6 +90,8 @@ export default {
               console.log("********************");
               // upload_avatar(context, formData, root_path);
                 console.log("************///********");
+                console.log(String(context.avatar).indexOf(UPLOAD_URL));
+                if(String(context.avatar).indexOf(UPLOAD_URL)==-1)
                 UPLOAD.post('upload/'+ resp.data.atleta.id,context.avatar)
 
                .then((resp) => {

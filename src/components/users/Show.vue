@@ -56,7 +56,7 @@
                     </div>
                 </div>
             </div>
-            <modalEmployee :methodSubmit="methodSubmit" :title="'Update Employee'" :buttonMsg="'Update'" :open1="open1" :first_name="employee.first_name" :last_name="employee.last_name" :ssn="employee.ssn" :email="employee.email" :phone_number="employee.phone_number" :birth_date="employee.birth_date" :apply_incentives="employee.apply_incentives" :profile_picture="employee.profile_picture" :id="employee.id"v-on:openChange="isChange"></modalEmployee>
+           
         </section>
     </div>
 </template>

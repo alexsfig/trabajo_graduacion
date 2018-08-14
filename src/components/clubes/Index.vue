@@ -77,98 +77,108 @@
     </div>
 </template>
 <script>
-  
-    import clubsController from '../../controllers/clubes.js';
-     import vSelect from "vue-select"
-    import moment from "moment"
-    export default {
-        name: 'Clubs',
-        data() {
-            return {
-                clubs: [],
-                showAlert: false,
-                showSuccess: false,
-                methodSubmit: 'editar',
-                openModal: false ,
- columns: [ 
- {
-                        label: "Nombre",
-                        field: "nombre",
-                    }, {
-                        label: "Fundación",
-                        field: "fundacion",
-                    }, {
-                        label: "Correo Electronico",
-                        field: "correo",
-                    }, {
-                        label: "Representante",
-                        field: "representante",
-                    }, {                        
-                        label: "Celular",
-                        field: "celular",
-                    }, {
-                        label: "Telefono Fijo",
-                        field: "telefonoFijo",
-                    }, {
-                        label: "Playa",
-                        field: "playaId.nombre",
-                    }, {
-                        label: "Entrenador",
-                        field: "entrenadorId.nombre",
-                    },{
-                        label: "Dirección",
-                        field: "direccion",
-                    }
-                    ,
-                    {
-                        label: "Atletas",
-                        field: "atletas",
-                        type: "number"
-                    },{
-                        label: "Acciones",
-                        field: "",
-                    }]
-            }
+import clubsController from "../../controllers/clubes.js";
+import vSelect from "vue-select";
+import moment from "moment";
+export default {
+  name: "Clubs",
+  data() {
+    return {
+      clubs: [],
+      showAlert: false,
+      showSuccess: false,
+      methodSubmit: "editar",
+      openModal: false,
+      columns: [
+        {
+          label: "Nombre",
+          field: "nombre"
         },
-        created(){
-            this.fetchData()
+        {
+          label: "Fundación",
+          field: "fundacion"
         },
-        methods:{
-             agregarAtletas(id, club) {
-            clubsController.retrieve(this, id)
-            this.$router.push({
-                name: 'clubesAgregarAtleta',
-                params: {
-                    id: id,
-                    club: club
-                }
-            });
-            },
-            fetchData(){
-                clubsController.index(this)
-            },
-            deleteClub(id, nombre) {
-                let context = this;
-                let swal = this.$swal;
-                this.$swal({
-                    title: 'Estas Seguro?',
-                    html: 'No podras recuperar la informacion del club <b>&laquo;' + nombre + '&raquo</b><br>y toda la informacion en relacion al mismo ya que no sera accesible',
-                    type: 'error',
-                    showCancelButton: true,
-                    confirmButtonText: 'Si, Eliminar!',
-                    cancelButtonText: 'No, Mantener'
-                }).then(function() {
-                    clubsController.delete(context, id, swal);
-                },function(dismiss) {
-                    if (dismiss === 'cancel') {
-                        swal(
-                          'Cancelado',
-                          'La club no se elimino',
-                          'error'
-                        )
-                    }
-                })
-            },
+        {
+          label: "Correo Electronico",
+          field: "correo"
+        },
+        {
+          label: "Representante",
+          field: "representante"
+        },
+        {
+          label: "Celular",
+          field: "celular"
+        },
+        {
+          label: "Telefono Fijo",
+          field: "telefonoFijo"
+        },
+        {
+          label: "Playa",
+          field: "playaId.nombre"
+        },
+        {
+          label: "Entrenador",
+          field: "entrenadorId.nombre"
+        },
+        {
+          label: "Dirección",
+          field: "direccion"
+        },
+        {
+          label: "Atletas",
+          field: "atletas",
+          type: "number"
+        },
+        {
+          label: "Acciones",
+          field: ""
         }
+      ]
+    };
+  },
+  created() {
+    this.fetchData();
+  },
+  methods: {
+    agregarAtletas(id, club) {
+      clubsController.retrieve(this, id);
+this.$router.push({
+        name: "clubesAgregarAtleta",
+        params: {
+          id: id,
+          club: club
+        }
+      });
+    },
+    fetchData() {
+      clubsController.index(this);
+    },
+    deleteClub(id, nombre) {
+      let context = this;
+      let swal = this.$swal;
+      this.$swal({
+        title: "Estas Seguro?",
+        html:
+          "No podras recuperar la informacion del club <b>&laquo;" +
+          nombre +
+          "&raquo</b><br>y toda la informacion en relacion al mismo ya que no sera accesible",
+        type: "error",
+        showCancelButton: true,
+        confirmButtonText: "Si, Eliminar!",
+        cancelButtonText: "No, Mantener"
+      }).then(
+        function() {
+          clubsController.delete(context, id, swal);
+        },
+        function(dismiss) {
+          if (dismiss === "cancel") {
+            swal("Cancelado", "La club no se elimino", "error");
+          }
+        }
+      );
     }
+  }
+};
 </script>

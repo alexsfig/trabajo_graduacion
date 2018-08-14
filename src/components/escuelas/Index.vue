@@ -79,99 +79,109 @@
     </div>
 </template>
 <script>
-  
-    import escuelasController from '../../controllers/escuelas.js';
-     import vSelect from "vue-select"
-    import moment from "moment"
-    export default {
-        name: 'Escuelas',
-        data() {
-            return {
-                escuelas: [],
-                showAlert: false,
-                showSuccess: false,
-                methodSubmit: 'editar',
-                openModal: false ,
- columns: [ 
- {
-                        label: "Nombre",
-                        field: "nombre",
-                    }, {
-                        label: "Fundación",
-                        field: "fundacion",
-                    }, {
-                        label: "Correo Electronico",
-                        field: "correo",
-                    }, {
-                        label: "Representante",
-                        field: "representante",
-                    }, {
-                        label: "Celular",
-                        field: "celular",
-                    }, {
-                        label: "Telefono Fijo",
-                        field: "telefonoFijo",
-                    }, {
-                        label: "Playa",
-                        field: "playaId.nombre",
-                    },  {
-                        label: "Entrenador",
-                        field: "entrenadorId.nombre",
-                    },  {
-                        label: "Dirección",
-                        field: "direccion",
-                    }, 
-                    {
-                        label: "Atletas",
-                        field: "atletas",
-                        type: "number"
-                    },{
-                        label: "Acciones",
-                        field: "",
-                    }]
-            }
+import escuelasController from "../../controllers/escuelas.js";
+import vSelect from "vue-select";
+import moment from "moment";
+export default {
+  name: "Escuelas",
+  data() {
+    return {
+      escuelas: [],
+      showAlert: false,
+      showSuccess: false,
+      methodSubmit: "editar",
+      openModal: false,
+      columns: [
+        {
+          label: "Nombre",
+          field: "nombre"
         },
-        created(){
-            this.fetchData()
+        {
+          label: "Fundación",
+          field: "fundacion"
         },
-        methods:{
-
-            agregarAtletas(id, escuela) {
-            escuelasController.retrieve(this, id)
-            this.$router.push({
-                name: 'escuelasAgregarAtleta',
-                params: {
-                    id: id,
-                    escuela: escuela
-                }
-            });
-            },
-
-            fetchData(){
-                escuelasController.index(this)
-            },
-            deleteEscuela(id, nombre) {
-                let context = this;
-                let swal = this.$swal;
-                this.$swal({
-                    title: 'Estas Seguro?',
-                    html: 'No podras recuperar la informacion de la escuela <b>&laquo;' + nombre + '&raquo</b><br>y toda la informacion en relacion a la misma ya que no sera accesible',
-                    type: 'error',
-                    showCancelButton: true,
-                    confirmButtonText: 'Si, Eliminar!',
-                    cancelButtonText: 'No, Mantener'
-                }).then(function() {
-                    escuelasController.delete(context, id, swal);
-                },function(dismiss) {
-                    if (dismiss === 'cancel') {
-                        swal(
-                          'Cancelado',
-                          'La escuela no se elimino',
-                          'error'
-                        )
-                    }
-                })
-            },
+        {
+          label: "Correo Electronico",
+          field: "correo"
+        },
+        {
+          label: "Representante",
+          field: "representante"
+        },
+        {
+          label: "Celular",
+          field: "celular"
+        },
+        {
+          label: "Telefono Fijo",
+          field: "telefonoFijo"
+        },
+        {
+          label: "Playa",
+          field: "playaId.nombre"
+        },
+        {
+          label: "Entrenador",
+          field: "entrenadorId.nombre"
+        },
+        {
+          label: "Dirección",
+          field: "direccion"
+        },
+        {
+          label: "Atletas",
+          field: "atletas",
+          type: "number"
+        },
+        {
+          label: "Acciones",
+          field: ""
         }
+      ]
+    };
+  },
+  created() {
+    this.fetchData();
+  },
+  methods: {
+    agregarAtletas(id, escuela) {
+      escuelasController.retrieve(this, id);
+      this.$router.push({
+        name: "escuelasAgregarAtleta",
+        params: {
+          id: id,
+          escuela: escuela
+        }
+      });
+    },
+
+    fetchData() {
+      escuelasController.index(this);
+    },
+    deleteEscuela(id, nombre) {
+      let context = this;
+      let swal = this.$swal;
+      this.$swal({
+        title: "Estas Seguro?",
+        html:
+          "No podras recuperar la informacion de la escuela <b>&laquo;" +
+          nombre +
+          "&raquo</b><br>y toda la informacion en relacion a la misma ya que no sera accesible",
+        type: "error",
+        showCancelButton: true,
+        confirmButtonText: "Si, Eliminar!",
+        cancelButtonText: "No, Mantener"
+      }).then(
+        function() {
+          escuelasController.delete(context, id, swal);
+        },
+        function(dismiss) {
+          if (dismiss === "cancel") {
+            swal("Cancelado", "La escuela no se elimino", "error");
+          }
+        }
+      );
     }
+  }
+};
 </script>
