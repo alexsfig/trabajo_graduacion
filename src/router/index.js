@@ -797,10 +797,7 @@ const router = new Router({
 
 
 router.beforeEach((to, from, next) => {
-  //console.log(JSON.stringify(to));
   if (to.meta.requiresAuth) {
-    console.log("requiere audit");
-    console.log
     const authUser = JSON.parse(window.localStorage.getItem('rol'))
     if (!authUser) {
       next({ name: 'Login' })
@@ -817,7 +814,6 @@ router.beforeEach((to, from, next) => {
       if (authUser == 2) {
         next()
       } else {
-        console.log('Im in admin')
         next('/admin')
       }
     }

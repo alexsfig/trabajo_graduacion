@@ -97,43 +97,6 @@ a.fc-day-grid-event {
                     </div>
                 </div>
             </div>
-            <!-- <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12 text-center">
-                            <h2 class="section-heading">At Your Service</h2>
-                            <hr class="my-4">
-                        </div>
-                    </div>
-                </div> -->
-            <!-- <div class="container">
-                    <div class="row">
-                        <div class="col-lg-3 col-md-3 text-center">
-                            <div class="service-box mt-5 mx-auto">
-                                <i class="fa fa-4x fa-star-o text-primary mb-3 sr-icons"></i>
-                                <h3 class="mb-3">Ranking de atletas</h3>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-3 text-center">
-                            <div class="service-box mt-5 mx-auto">
-                                <i class="fa fa-4x fa-paper-plane text-primary mb-3 sr-icons"></i>
-                                <h3 class="mb-3">Fechas</h3>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-3 text-center">
-                            <div class="service-box mt-5 mx-auto">
-                                <i class="fa fa-4x fa-newspaper-o text-primary mb-3 sr-icons"></i>
-                                <h3 class="mb-3">Noticias</h3>
-
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-3 text-center">
-                            <div class="service-box mt-5 mx-auto">
-                                <i class="fa fa-4x fa-heart text-primary mb-3 sr-icons"></i>
-                                <h3 class="mb-3">Informacion dela Federacion</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
         </section>
         <section class="bg-white" id="ranking">
             <div class="container">
@@ -333,9 +296,8 @@ export default {
             config: {
                 locale: 'es',
                 defaultView: "month",
-                weekends: false,
+                weekends: true,
                 eventRender: function(event, element) {
-                    console.log(event);
                 }
             }
         };
@@ -361,14 +323,11 @@ export default {
         changeCat() {
                 if (this.catSelect)
                     rankingController.byCategoriaTop(this, this.catSelect.id)
-
             },
             setDefault() {
-
                 if (this.categorias.length > 0) {
 
                     this.catSelect = this.categorias[0];
-
                 }
             },
             getImg(img) {
@@ -380,52 +339,31 @@ export default {
                 return BASE_URL + "upload/files/" + img + ".png"
             },
             fetchData() {
-                // clubesController.index(this);
-                // escuelasController.index(this);
-                // JuecesController.index(this);
-                // atletaController.index(this);
-                // entrenadoresController.index(this);
                 categoriasController.index(this);
                 fechasController.index(this);
-                // patrocinadoresController.index(this);
                 noticiasController.indexActuales(this);
 
             },
             mounted() {
-                console.log("entrell");
-
                 this.fechas.forEach(element => {
-                    console.log(element.fecha);
-
-                    console.log(
-                        "entre" + "*",
-                        element.fecha.substring(0, 4),
-                        element.fecha.substring(5, 7),
-                        element.fecha.substring(8, 10)
-                    );
+                    let dia = element.fecha.substring(0, 4), mes = element.fecha.substring(5, 7) - 1, anio =  element.fecha.substring(8, 10)
                     this.events.push({
                         title: element.nombre,
                         start: moment(
                             new Date(
-                                element.fecha.substring(0, 4),
-                                element.fecha.substring(5, 7),
-                                element.fecha.substring(8, 10)
+                                dia,
+                                mes,
+                                anio
                             )
                         ),
                         end: moment(
                             new Date(
-                                element.fecha.substring(0, 4),
-                                element.fecha.substring(5, 7),
-                                element.fecha.substring(8, 10)
-
+                                dia,
+                                mes,
+                                anio
                             )
                         ).add(1, "d"),
-                        // description: 'Competencia ',
-                        color: "red",
-                        //    url: "/admin/circuitofecha/" + element.id
-
-
-                        // date:new Date(element.fecha.substring(0,4),element.fecha.substring(5,7),element.fecha.substring(8,10))});
+                        color: "white",
                     });
                 });
             }

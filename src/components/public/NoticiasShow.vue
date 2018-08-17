@@ -23,9 +23,14 @@
     </section>
     <section class="bg-white">
         <div class="container">
-            
+            <div class="row">   
+                <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+                    <h2 align="center" style="white-space: pre-line;">
+                        {{noticia.descripcion}}
+                    </h2>
+                </div>
+            </div>
             <div class="row">
-            
                 <div class="col-xs-12 col-sm-10 col-sm-offset-1 notice-img-full " style="margin-top: 25px;">
                     <img :src="getImg(noticia.id)" alt="User Image" class="img-responsive" />
                 </div>

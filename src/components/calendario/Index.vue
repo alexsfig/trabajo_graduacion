@@ -88,7 +88,6 @@ export default {
                    locale: 'es',
                 defaultView: "month",
                 eventRender: function(event, element) {
-                    console.log(event);
                 }
             }
         };
@@ -104,49 +103,30 @@ export default {
     },
     methods: {
         fetchData() {
-                console.log("entssre");
                 fechasController.index(this);
                 circuitosController.index(this);
             },
-            eventClick(event) {
-                console.log(event);
-
-
-            },
             mounted() {
-                console.log("entrell");
-
                 this.fechas.forEach(element => {
-                    console.log(element.fecha);
-
-                    console.log(
-                        "entre" + "*",
-                        element.fecha.substring(0, 4),
-                        element.fecha.substring(5, 7),
-                        element.fecha.substring(8, 10)
-                    );
+                    let dia = element.fecha.substring(0, 4), mes = element.fecha.substring(5, 7) -1, anio =  element.fecha.substring(8, 10)
                     this.events.push({
                         title: element.nombre,
                         start: moment(
                             new Date(
-                                element.fecha.substring(0, 4),
-                                element.fecha.substring(5, 7),
-                                element.fecha.substring(8, 10)
+                                dia,
+                                mes,
+                                anio
                             )
                         ),
                         end: moment(
                             new Date(
-                                element.fecha.substring(0, 4),
-                                element.fecha.substring(5, 7),
-                                element.fecha.substring(8, 10)
+                                dia,
+                                mes,
+                                anio
                             )
                         ).add(1, "d"),
-                        // description: 'Competencia ',
                         color: "red",
                         url: "/admin/circuitofecha/" + element.id
-
-
-                        // date:new Date(element.fecha.substring(0,4),element.fecha.substring(5,7),element.fecha.substring(8,10))});
                     });
                 });
             }
